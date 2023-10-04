@@ -16,3 +16,10 @@ services:
     restart: unless-stopped
     ports:
       - ${POSTGRES_PORT}:5432
+
+  crystalpuzzles-api:
+    build: .
+    depends_on:
+      - crystalpuzzles-db
+    ports:
+      - "8000:8000"
