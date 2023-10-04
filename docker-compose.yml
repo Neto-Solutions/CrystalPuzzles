@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  crystalpuzzles-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U postgres -d postgres' ]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    ports:
+      - "5431:5432"
