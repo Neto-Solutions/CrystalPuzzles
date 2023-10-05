@@ -3,6 +3,7 @@ version: "3.8"
 services:
   crystalpuzzles-db:
     image: postgres:latest
+    env_file: .env
     environment:
       POSTGRES_DB: ${POSTGRES_DB_NAME}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -18,7 +19,9 @@ services:
       - ${POSTGRES_PORT}:5432
 
   crystalpuzzles-api:
-    build: .
+    build: ./backend/
+    env_file:
+      - .env
     depends_on:
       - crystalpuzzles-db
     ports:
