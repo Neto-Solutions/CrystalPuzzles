@@ -1,0 +1,14 @@
+### Python ###
+.idea/
+backend/.idea/
+
+### Byte-compiled / optimized / DLL files ###
+__pycache__/
+*/__pycache__/*
+
+### Virual enviroment
+backend/.env
+.env
+
+### Migrations ###
+# backend/migrations/

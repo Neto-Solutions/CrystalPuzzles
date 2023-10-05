@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  crystalpuzzles-db:
+    image: postgres:latest
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB_NAME}
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES_PORT}:5432
+
+  crystalpuzzles-api:
+    build: ./backend/
+    env_file:
+      - .env
+    depends_on:
+      - crystalpuzzles-db
+    ports:
+      - "8000:8000"
