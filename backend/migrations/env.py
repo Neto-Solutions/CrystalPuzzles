@@ -8,9 +8,9 @@ from alembic import context
 from src.config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS
 
 from src.database import Base
-from src.auth.models_v2 import User, UserType, UserGroup, UserRank, Task
-from src.lesson.models_v2 import Lesson, Training, TrainingCheck, Space, Check
-from src.schedule.models_v2 import Schedule
+from src.auth.models import User, UserType, UserGroup, UserRank, Task
+from src.lesson.models import Lesson, Training, TrainingCheck, Space, Check
+from src.schedule.models import Schedule
 
 
 # this is the Alembic Config object, which provides

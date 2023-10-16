@@ -1,8 +1,8 @@
 """Start migrations
 
-Revision ID: 24acfc8c006d
+Revision ID: 6d6f531b2cfd
 Revises: 
-Create Date: 2023-10-10 14:44:38.365577
+Create Date: 2023-10-12 14:16:51.822096
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '24acfc8c006d'
+revision: str = '6d6f531b2cfd'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -66,20 +66,20 @@ def upgrade() -> None:
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=254), nullable=False),
-    sa.Column('password', sa.String(length=128), nullable=False),
+    sa.Column('hashed_password', sa.String(length=128), nullable=False),
     sa.Column('is_superuser', sa.Boolean(), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.Column('is_verified', sa.Boolean(), nullable=False),
     sa.Column('firstname', sa.String(length=50), nullable=False),
     sa.Column('lastname', sa.String(length=50), nullable=False),
-    sa.Column('surname', sa.String(length=50), nullable=False),
-    sa.Column('photo', sa.String(), nullable=False),
+    sa.Column('surname', sa.String(length=50), nullable=True),
     sa.Column('birthday', sa.Date(), nullable=False),
-    sa.Column('type_id', sa.Integer(), nullable=False),
+    sa.Column('photo', sa.String(), nullable=True),
+    sa.Column('type_id', sa.Integer(), nullable=True),
     sa.Column('gender', sa.String(), nullable=False),
-    sa.Column('group_id', sa.Integer(), nullable=False),
-    sa.Column('rank_id', sa.Integer(), nullable=False),
-    sa.Column('contact', sa.String(), nullable=False),
+    sa.Column('group_id', sa.Integer(), nullable=True),
+    sa.Column('rank_id', sa.Integer(), nullable=True),
+    sa.Column('contact', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['group_id'], ['user_group.id'], ),
     sa.ForeignKeyConstraint(['rank_id'], ['user_rank.id'], ),
     sa.ForeignKeyConstraint(['type_id'], ['user_type.id'], ),
