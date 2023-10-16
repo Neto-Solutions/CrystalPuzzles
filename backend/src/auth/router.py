@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.auth.models import User, Token
 from src.auth.schemas import UserCreateSchema, UserReadSchema
 from src.auth.utils import get_user_by_email, hash_password, create_access_token, \
-    get_current_user, authenticate_user, create_refresh_token, oauth2_scheme, jwtdecode
+    get_current_user, authenticate_user, create_refresh_token, oauth2_scheme
 from src.database import get_async_session
 
 
