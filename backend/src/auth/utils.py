@@ -17,7 +17,7 @@ from jose import jwt, JWTError
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/user/login/")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/user/login/", scheme_name="JWT")
 
 
 def hash_password(password: str) -> str:
@@ -80,6 +80,8 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
+        if datetime.fromtimestamp(payload.get("exp")) < datetime.now():
+            raise credentials_exception
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
