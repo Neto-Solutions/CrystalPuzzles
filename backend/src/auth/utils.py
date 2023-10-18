@@ -1,3 +1,5 @@
+import random
+import string
 from datetime import timedelta, datetime
 
 from fastapi import Depends, HTTPException, status
@@ -21,7 +23,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/user/login/", scheme_name="JWT")
 
 
 def hash_password(password: str) -> str:
-    """Хэширует пароль при регитсрации"""
+    """ Хэширует пароль при регитсрации """
     return pwd_context.hash(password)
 
 
@@ -31,6 +33,7 @@ def verify_password(password: str, hashed_password: str) -> bool:
 
 
 async def authenticate_user(email: str, password: str):
+    """ Аутентификация пользователя """
     user = await get_user_by_email(email)
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect email or password")
@@ -40,7 +43,7 @@ async def authenticate_user(email: str, password: str):
 
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
-    """ Создает access_token для пользователя с указанным user.id """
+    """ Создает access_token для пользователя с указанным email """
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
@@ -52,20 +55,19 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
 
 def create_refresh_token(data: dict, expires_delta: timedelta | None = None):
-    """ Создает refresh_token для пользователя с указанным user.id """
+    """ Создает refresh_token для пользователя с указанным email """
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
         expire = datetime.utcnow() + timedelta(minutes=int(REFRESH_TOKEN_EXPIRE_MINUTES))
     to_encode.update({"exp": expire})
-    to_encode = {"exp": expires_delta, "sub": str(data)}
     encoded_jwt = jwt.encode(to_encode, REFRESH_SECRET_KEY, ALGORITHM)
     return encoded_jwt
 
 
 async def get_user_by_email(email: str):
-    """ Возвращает информацию о пользователе """
+    """ Возвращает информацию о пользователе по email """
     async with async_session_maker() as session:
         user = await session.execute(select(User).where(User.email == email))
         return user.scalar()
@@ -79,7 +81,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
+        payload = jwt_access_decode(token)
         if datetime.fromtimestamp(payload.get("exp")) < datetime.now():
             raise credentials_exception
         username: str = payload.get("sub")
@@ -98,4 +100,19 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     return user
 
 
+def generated_code():
+    """ Генерация кода для верификации пользователя """
+    code = ''.join(random.choice(string.digits) for _ in range(4))
+    return code
 
+
+def jwt_access_decode(token: str):
+    """ Декодирование access_token """
+    payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
+    return payload
+
+
+def jwt_refresh_decode(token: str):
+    """ Декодирование refresh_token """
+    payload = jwt.decode(token, REFRESH_SECRET_KEY, algorithms=ALGORITHM)
+    return payload
