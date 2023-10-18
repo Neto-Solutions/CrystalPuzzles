@@ -16,6 +16,7 @@ class User(Base):
     firstname: Mapped[str] = mapped_column(sa.String(50), nullable=True)
     lastname: Mapped[str] = mapped_column(sa.String(50), nullable=True)
     surname: Mapped[str] = mapped_column(sa.String(50), nullable=True)
+    code: Mapped[int] = mapped_column(nullable=True)
     birthday = mapped_column(sa.Date, nullable=True)
     photo: Mapped[str] = mapped_column(nullable=True)
     type_id: Mapped[int] = mapped_column(sa.ForeignKey("user_type.id"), nullable=True)
