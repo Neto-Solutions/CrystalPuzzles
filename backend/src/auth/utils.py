@@ -17,6 +17,7 @@ from src.database import async_session_maker
 
 from jose import jwt, JWTError
 
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/user/login/", scheme_name="JWT")
@@ -116,3 +117,4 @@ def jwt_refresh_decode(token: str):
     """ Декодирование refresh_token """
     payload = jwt.decode(token, REFRESH_SECRET_KEY, algorithms=ALGORITHM)
     return payload
+

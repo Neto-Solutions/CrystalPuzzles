@@ -15,6 +15,7 @@ python-jose = {extras = ["cryptography"], version = "*"}
 python-multipart = "*"
 celery = "*"
 redis = "*"
+propelauth-fastapi = "*"
 
 [dev-packages]
 
