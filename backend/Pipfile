@@ -16,6 +16,7 @@ python-multipart = "*"
 celery = "*"
 redis = "*"
 propelauth-fastapi = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

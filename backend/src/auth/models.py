@@ -21,6 +21,7 @@ class User(Base):
     photo: Mapped[str] = mapped_column(nullable=True)
     type_id: Mapped[int] = mapped_column(sa.ForeignKey("user_type.id"), nullable=True)
     gender: Mapped[str] = mapped_column(sa.String, nullable=True)
+    # Это поле лишнее (смотри схему БД)
     group_id: Mapped[int] = mapped_column(sa.ForeignKey("user_group.id"), nullable=True)
     rank_id: Mapped[int] = mapped_column(sa.ForeignKey("user_rank.id"), nullable=True)
     contact: Mapped[str] = mapped_column(nullable=True)
