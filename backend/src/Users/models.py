@@ -1,13 +1,11 @@
 import datetime
-
 from sqlalchemy.orm import Mapped, mapped_column
 import sqlalchemy as sa
 from src.database import Base
 
 
 class User(Base):
-    __tablename__ = "user"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    __tablename__ = "Users"
     email: Mapped[int] = mapped_column(sa.String(254), nullable=False)
     hashed_password: Mapped[int] = mapped_column(sa.String(128), nullable=False)
     is_superuser: Mapped[bool] = mapped_column(default=False, nullable=False)
@@ -19,44 +17,28 @@ class User(Base):
     code: Mapped[int] = mapped_column(nullable=True)
     birthday = mapped_column(sa.Date, nullable=True)
     photo: Mapped[str] = mapped_column(nullable=True)
-    type_id: Mapped[int] = mapped_column(sa.ForeignKey("user_type.id"), nullable=True)
-    gender: Mapped[str] = mapped_column(sa.String, nullable=True)
-    # Это поле лишнее (смотри схему БД)
-    group_id: Mapped[int] = mapped_column(sa.ForeignKey("user_group.id"), nullable=True)
-    rank_id: Mapped[int] = mapped_column(sa.ForeignKey("user_rank.id"), nullable=True)
+    role: Mapped[str] = mapped_column(sa.ForeignKey("Roles.name"), nullable=True)
+    is_man: Mapped[bool] = mapped_column(sa.Boolean, nullable=False, default=True)
+    rank_id: Mapped[int] = mapped_column(sa.ForeignKey("Ranks.id"), nullable=True)
     contact: Mapped[str] = mapped_column(nullable=True)
 
+class Role(Base):
+    __tablename__ = "Roles"
+    name: Mapped[str] = mapped_column(sa.String, nullable=False, unique=True)
 
-class UserType(Base):
-    __tablename__ = "user_type"
-    id: Mapped[int] = mapped_column(primary_key=True)
+class Rank(Base):
+    __tablename__ = "Ranks"
     name: Mapped[str] = mapped_column(sa.String, nullable=False)
-
-
-class UserGroup(Base):
-    __tablename__ = "user_group"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(sa.String, nullable=False)
-    trainer_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("user.id", use_alter=True))
-
-
-class UserRank(Base):
-    __tablename__ = "user_rank"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(sa.String, nullable=False)
-    task_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("task.id"))
-
+    task_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("Tasks.id"))
 
 class Task(Base):
-    __tablename__ = "task"
-    id: Mapped[int] = mapped_column(primary_key=True)
+    __tablename__ = "Tasks"
     name: Mapped[str] = mapped_column(sa.String, nullable=False)
     description = mapped_column(sa.Text, nullable=True)
 
-
 class Token(Base):
-    __tablename__ = "token"
-    user_id: Mapped[str] = mapped_column(sa.ForeignKey("user.id"), nullable=False)
+    __tablename__ = "Tokens"
+    user_id: Mapped[str] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
     access_token: Mapped[str] = mapped_column(sa.String(450), primary_key=True)
     refresh_token: Mapped[str] = mapped_column(sa.String(450), nullable=False)
     status: Mapped[bool]

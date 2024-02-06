@@ -3,7 +3,7 @@ from email.message import EmailMessage
 
 from celery import Celery
 
-from src.auth.config import SMTP_PASSWORD, SMTP_USER, SMTP_HOST, SMTP_PORT
+from src.Users.config import SMTP_PASSWORD, SMTP_USER, SMTP_HOST, SMTP_PORT
 
 celery = Celery('tasks', broker='redis://localhost:6379')
 
