@@ -1,14 +1,18 @@
+from datetime import datetime
 from typing import AsyncGenerator, Generator
 
 from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
-from sqlalchemy.orm import DeclarativeBase, sessionmaker, Session
+from sqlalchemy.orm import DeclarativeBase, sessionmaker, Session, Mapped, mapped_column
 
 from src.config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 
+import sqlalchemy as sa
 
 class Base(DeclarativeBase):
-    pass
+    id: Mapped[int] = mapped_column(primary_key=True)
+    DateAdd: Mapped[datetime] = mapped_column(sa.DateTime)
+    DateUpdate: Mapped[datetime] = mapped_column(sa.DateTime)
 
 
 """ Async session"""

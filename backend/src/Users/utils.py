@@ -9,9 +9,9 @@ from passlib.context import CryptContext
 
 from sqlalchemy import select
 
-from src.auth.models import User
-from src.auth.schemas import TokenData
-from src.auth.config import SECRET_KEY, ALGORITHM, REFRESH_SECRET_KEY, ACCESS_TOKEN_EXPIRE_MINUTES, \
+from src.Users.models import User
+from src.Users.schemas import TokenData
+from src.Users.config import SECRET_KEY, ALGORITHM, REFRESH_SECRET_KEY, ACCESS_TOKEN_EXPIRE_MINUTES, \
     REFRESH_TOKEN_EXPIRE_MINUTES
 from src.database import async_session_maker
 
@@ -20,7 +20,7 @@ from jose import jwt, JWTError
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/user/login/", scheme_name="JWT")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login/", scheme_name="JWT")
 
 
 def hash_password(password: str) -> str:
@@ -75,7 +75,7 @@ async def get_user_by_email(email: str):
 
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
-    """ Возвращает пользователя по токену """
+    """ Возвращает авторизованного пользователя """
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -101,6 +101,15 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     return user
 
 
+def get_current_user_with_role(roles: list):
+    """Ограничение пользователя по ролям """
+    def get_user_and_validate(user: User = Depends(get_current_user)):
+        if user.role not in roles:
+            raise HTTPException(status_code=403, detail="Access denied")
+        return user
+    return get_user_and_validate
+
+
 def generated_code():
     """ Генерация кода для верификации пользователя """
     code = ''.join(random.choice(string.digits) for _ in range(4))
@@ -117,4 +126,6 @@ def jwt_refresh_decode(token: str):
     """ Декодирование refresh_token """
     payload = jwt.decode(token, REFRESH_SECRET_KEY, algorithms=ALGORITHM)
     return payload
+
+
 
