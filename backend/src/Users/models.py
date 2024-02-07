@@ -1,10 +1,12 @@
 import datetime
 from sqlalchemy.orm import Mapped, mapped_column
 import sqlalchemy as sa
+
+from src.modelmanager import ModelManager
 from src.database import Base
 
 
-class User(Base):
+class User(Base, ModelManager):
     __tablename__ = "Users"
     email: Mapped[int] = mapped_column(sa.String(254), nullable=False)
     hashed_password: Mapped[int] = mapped_column(sa.String(128), nullable=False)
@@ -22,21 +24,21 @@ class User(Base):
     rank_id: Mapped[int] = mapped_column(sa.ForeignKey("Ranks.id"), nullable=True)
     contact: Mapped[str] = mapped_column(nullable=True)
 
-class Role(Base):
+class Role(Base, ModelManager):
     __tablename__ = "Roles"
     name: Mapped[str] = mapped_column(sa.String, nullable=False, unique=True)
 
-class Rank(Base):
+class Rank(Base, ModelManager):
     __tablename__ = "Ranks"
     name: Mapped[str] = mapped_column(sa.String, nullable=False)
     task_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("Tasks.id"))
 
-class Task(Base):
+class Task(Base, ModelManager):
     __tablename__ = "Tasks"
     name: Mapped[str] = mapped_column(sa.String, nullable=False)
     description = mapped_column(sa.Text, nullable=True)
 
-class Token(Base):
+class Token(Base, ModelManager):
     __tablename__ = "Tokens"
     user_id: Mapped[str] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
     access_token: Mapped[str] = mapped_column(sa.String(450), primary_key=True)
