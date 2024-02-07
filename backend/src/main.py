@@ -22,6 +22,7 @@ async def init_user_type():
             session.add(Role(name="admin", DateAdd=datetime.now(), DateUpdate=datetime.now()))
             session.add(Role(name="trainer", DateAdd=datetime.now(), DateUpdate=datetime.now()))
             session.add(Role(name="student", DateAdd=datetime.now(), DateUpdate=datetime.now()))
+            session.add(Role(name="supervisor", DateAdd=datetime.now(), DateUpdate=datetime.now()))
             await session.commit()
 
 
