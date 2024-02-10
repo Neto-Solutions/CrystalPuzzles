@@ -1,5 +1,6 @@
 import datetime
-from sqlalchemy.orm import Mapped, mapped_column
+
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
 
 from src.modelmanager import ModelManager
@@ -23,6 +24,9 @@ class User(Base, ModelManager):
     is_man: Mapped[bool] = mapped_column(sa.Boolean, nullable=False, default=True)
     rank_id: Mapped[int] = mapped_column(sa.ForeignKey("Ranks.id"), nullable=True)
     contact: Mapped[str] = mapped_column(nullable=True)
+    group_id: Mapped[int] = mapped_column(sa.ForeignKey('Groups.id', use_alter=True), nullable=True)
+    group = relationship("Group", back_populates="students", foreign_keys=group_id)
+
 
 class Role(Base, ModelManager):
     __tablename__ = "Roles"

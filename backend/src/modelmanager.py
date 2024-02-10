@@ -16,7 +16,7 @@ class ModelManager:
     def get_all(cls, db: Session):
         return db.query(cls).all()
 
-    def create(self, db:Session):
+    def create(self, db: Session):
         try:
             self.DateAdd = datetime.now()
             self.DateUpdate = datetime.now()
@@ -27,7 +27,7 @@ class ModelManager:
             db.rollback()
             raise HTTPException(status_code=400, detail=str(e))
 
-    def update(self, db:Session, **kwargs):
+    def update(self, db: Session, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
         self.DateUpdate = datetime.now()
