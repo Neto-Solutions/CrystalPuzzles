@@ -14,3 +14,7 @@ class GroupResponseModel(BaseModel):
     name: str
     trainer_id: int
 
+class AddStudentForGroupViewModel(BaseModel):
+    """ Добавление студента в группу """
+    student_id: int
+    group_id: int
