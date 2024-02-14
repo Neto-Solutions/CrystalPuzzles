@@ -7,3 +7,8 @@ Cоздание и запуск web-приложения для автомати
 ## Структура базы данных
 
 [Схема БД](https://drive.google.com/file/d/1wlh5Fx_p16oJYw8Glp65YqlaYdonkcV9/view?usp=drivesdk "Схема БД")
+
+## Ткстирование
+
+[Документация](./docs/README.md)
+
