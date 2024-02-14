@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from starlette import status
 
 from src.Group.models import Group
-from src.Group.shemas import GroupViewModel, GroupResponseModel, AddStudentForGroupViewModel
+from src.Group.shemas import GroupViewModel, GroupResponseModel, StudentForGroupViewModel
 from src.Users.models import User
 from src.Users.utils import get_current_user, get_current_user_with_role
 from src.database import get_sync_session
@@ -91,27 +91,34 @@ student_routers = APIRouter(
 )
 
 
-@student_routers.get("/select-student/")
-async def group_list(group_id: int, current_user: User = Depends(get_current_user)):
-    pass
-
-
 @student_routers.post("/add-student/")
-async def add_student_for_group(items: List[AddStudentForGroupViewModel],
+async def add_student_for_group(items: StudentForGroupViewModel,
                                 user: str = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"])),
                                 session: Session = Depends(get_sync_session)
                                 ):
+    """ Добавление студента в группу """
+    group = Group.get(db=session, id=items.group_id)
+    user = User.get(db=session, id=items.student_id)
+    if group is None or not user.is_student():
+        raise HTTPException(status_code=404, detail="Item not found")
+    result = group.add_student(db=session, student_id=user.id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return Response(status_code=201)
 
-    for item in items:
-        group = Group.get(db=session, id=item.group_id)
-        if group is None or not Group.user_is_student(db=session, id=item.student_id):
-            raise HTTPException(status_code=404, detail="Item not found")
-        status = group.add_student(db=session, student_id=item.student_id)
-        if not status:
-            raise HTTPException(status_code=404, detail="Item not found")
-        return Response(status_code=201)
 
-
-@student_routers.post("/delete-student/")
-async def delete_student_for_group(group_id: int, current_user: User = Depends(get_current_user)):
-    pass
+@student_routers.delete("/delete-student/")
+async def delete_student_for_group(
+                                items: StudentForGroupViewModel,
+                                user: str = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"])),
+                                session: Session = Depends(get_sync_session)
+                                ):
+    """ Удаление студента из группы """
+    group = Group.get(db=session, id=items.group_id)
+    user = User.get(db=session, id=items.student_id)
+    if group is None or not user.is_student():
+        raise HTTPException(status_code=404, detail="Item not found")
+    result = group.delete_student(db=session, student_id=user.id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return Response(status_code=204)
