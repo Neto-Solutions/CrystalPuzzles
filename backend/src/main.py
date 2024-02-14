@@ -38,4 +38,3 @@ app.include_router(group_routers)
 app.include_router(student_routers)
 # app.include_router(lesson_routers)
 
-

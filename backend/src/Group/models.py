@@ -1,5 +1,3 @@
-from typing import List
-
 from requests import Session
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
@@ -14,11 +12,7 @@ class Group(Base, ModelManager, AsyncModelManager):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(sa.String, nullable=False)
     trainer_id: Mapped[int] = mapped_column(sa.ForeignKey('Users.id', use_alter=True), nullable=True)
-    trainer = relationship("User", foreign_keys=trainer_id)
-
-    student = relationship("User", back_populates="group")
-
-
+    trainer = relationship("User", foreign_keys=trainer_id, backref="trainer")
 
     @classmethod
     def trainer_exists(cls, db: Session, id) -> bool:
@@ -26,17 +20,27 @@ class Group(Base, ModelManager, AsyncModelManager):
             return False
         return True
 
-    @classmethod
-    def user_is_student(cls, db: Session, id) -> bool:
-        user = User.get(db=db, id=id)
-        if user and user.role == "student":
+    def add_student(self, db: Session, student_id: int):
+        user = User.get(db=db, id=student_id)
+        if user and user.is_student():
+            StudentGroup(student_id=user.id, group_id=self.id).create(db=db)
             return True
         return False
 
-    def add_student(self, db: Session, student_id: int):
-        if self.user_is_student(db=db, id=student_id):
-            self.students.append(User.get(db=db, id=student_id))
-            db.commit()
+    def delete_student(self, db: Session, student_id: int):
+        user = User.get(db=db, id=student_id)
+        if user and user.is_student():
+            if user.group[0].group_id == self.id:
+                user.group[0].delete(db)
             return True
         return False
+
+
+class StudentGroup(Base, ModelManager):
+    __tablename__ = "StudentGroups"
+    student_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), unique=True)
+    group_id: Mapped[int] = mapped_column(sa.ForeignKey("Groups.id"))
+
+    student = relationship("User", foreign_keys=student_id, backref="group")
+    group = relationship("Group", foreign_keys=group_id, backref="students")
 
