@@ -8,7 +8,7 @@ Cоздание и запуск web-приложения для автомати
 
 [Схема БД](https://drive.google.com/file/d/1wlh5Fx_p16oJYw8Glp65YqlaYdonkcV9/view?usp=drivesdk "Схема БД")
 
-## Ткстирование
+## Тестирование
 
 [Документация](./docs/README.md)
 
