@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy.orm import Mapped, mapped_column, relationship, Session
+from sqlalchemy.orm import Mapped, mapped_column
 import sqlalchemy as sa
 
 from src.modelmanager import ModelManager
@@ -19,12 +19,11 @@ class User(Base, ModelManager):
     surname: Mapped[str] = mapped_column(sa.String(50), nullable=True)
     code: Mapped[int] = mapped_column(nullable=True)
     birthday = mapped_column(sa.Date, nullable=True)
-    photo: Mapped[str] = mapped_column(nullable=True)
+    photo: Mapped[bytes] = mapped_column(nullable=True)
     role: Mapped[str] = mapped_column(sa.ForeignKey("Roles.name"), nullable=True)
     is_man: Mapped[bool] = mapped_column(sa.Boolean, nullable=False, default=True)
     rank_id: Mapped[int] = mapped_column(sa.ForeignKey("Ranks.id"), nullable=True)
     contact: Mapped[str] = mapped_column(nullable=True)
-    student = relationship("StudentGroup", backref="user")
 
     def is_student(self) -> bool:
         if self.role == "student":
