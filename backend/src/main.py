@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from sqlalchemy import func, select
 
 from src.Users.models import Role
-from src.Users.router import users_routers
+from src.Users.router import users_routers, profile_routers
 from src.Group.router import group_routers, student_routers
 from src.Auth.router import auth_routers
 from src.Lesson.router import router as lesson_routers
@@ -34,6 +34,7 @@ async def startup_event():
 
 app.include_router(auth_routers)
 app.include_router(users_routers)
+app.include_router(profile_routers)
 app.include_router(group_routers)
 app.include_router(student_routers)
 # app.include_router(lesson_routers)

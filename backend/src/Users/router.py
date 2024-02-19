@@ -1,20 +1,16 @@
+import base64
 from datetime import datetime
-from smtplib import SMTPDataError, SMTPRecipientsRefused
 
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
-from jose import ExpiredSignatureError
-from sqlalchemy import select, update
+from fastapi import APIRouter, Depends, HTTPException, File, UploadFile
+from sqlalchemy import update
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-from src.Users.models import User, Token
-from src.Users.schemas import UserCreateSchema, UserReadSchema, VerifiedEmailCode, ChangePassword
-from src.Users.tasks import send_code_email_verified
-from src.Users.utils import get_user_by_email, hash_password, create_access_token, \
-    get_current_user, authenticate_user, create_refresh_token, oauth2_scheme, generated_code, verify_password, \
-    jwt_access_decode, jwt_refresh_decode
+from src.Users.models import User
+from src.Users.schemas import UserCreateSchema, UserReadSchema, UserVerifiedEmailCode, UserChangePassword, \
+    UserEditSchema, PhotoReadSchema
+from src.Users.utils import get_user_by_email, hash_password, get_current_user, generated_code, verify_password
 from src.database import get_async_session
 
 
@@ -24,14 +20,11 @@ users_routers = APIRouter(
 )
 
 
-@users_routers.get("/account", response_model=UserReadSchema)
-async def account(current_user: User = Depends(get_current_user)):
-    """ Возвращает данные пользователя """
-    return current_user
-
-
 @users_routers.post("/register/", response_model=UserReadSchema)
-async def register(data: UserCreateSchema, session: AsyncSession = Depends(get_async_session)):
+async def register(
+        data: UserCreateSchema,
+        session: AsyncSession = Depends(get_async_session)
+):
     """ Регистрация пользователя """
     existing_user = await get_user_by_email(data.email)
     if existing_user:
@@ -52,9 +45,9 @@ async def register(data: UserCreateSchema, session: AsyncSession = Depends(get_a
     return create_user
 
 
-@users_routers.post('/veridied/')
+@users_routers.post('/verified/')
 async def email_verify(
-        data: VerifiedEmailCode,
+        data: UserVerifiedEmailCode,
         user: User = Depends(get_current_user),
         session: AsyncSession = Depends(get_async_session)
 ):
@@ -68,11 +61,24 @@ async def email_verify(
         raise HTTPException(status_code=400, detail="Incorrect code")
 
 
-@users_routers.post('/change-password/')
+profile_routers = APIRouter(
+    prefix="/api/v1/profile",
+    tags=["Profile"]
+)
+
+
+@profile_routers.get("/", response_model=UserReadSchema)
+async def account(current_user: User = Depends(get_current_user)):
+    """ Возвращает данные пользователя """
+    return current_user
+
+
+@profile_routers.post('/change-password/')
 async def change_password(
-        data: ChangePassword,
+        data: UserChangePassword,
         user: User = Depends(get_current_user),
-        session: AsyncSession = Depends(get_async_session)):
+        session: AsyncSession = Depends(get_async_session)
+):
     """ Сменить пароль пользователя """
     if data.old_password == data.new_password:
         raise HTTPException(status_code=400, detail='Passwords may not be repeated')
@@ -86,3 +92,73 @@ async def change_password(
         raise HTTPException(status_code=400, detail='You entered the wrong password')
     return {'status': 'Password updated successfully'}
 
+
+@profile_routers.put('/edit/')
+async def edit_account(
+        data: UserEditSchema,
+        user: User = Depends(get_current_user),
+        session: AsyncSession = Depends(get_async_session)
+):
+    """ Редактирование данных пользователя """
+    user_dict = data.model_dump()
+    user_dict["DateUpdate"] = datetime.now()
+    await session.execute(
+        update(User).where(User.email == user.email).values(**user_dict)
+    )
+    await session.commit()
+    return {'status': 'Account updated successfully'}
+
+
+@profile_routers.get('/edit/', response_model=UserEditSchema)
+async def edit_account_view(current_user: User = Depends(get_current_user)):
+    """ Редактирование данных пользователя """
+    return current_user
+
+
+
+@profile_routers.put('/remove/')
+async def delete_account(
+        current_user: User = Depends(get_current_user),
+        session: AsyncSession = Depends(get_async_session)
+):
+    """ Удаление данных пользователя """
+    stmt = update(User).where(User.id == current_user.id).values(is_active=False)
+    await session.execute(stmt)
+    await session.commit()
+    return {'status': 'Account deleted successfully'}
+
+
+@profile_routers.put("/set-photo/")
+async def set_photo(
+        file: UploadFile = File(...),
+        user: User = Depends(get_current_user),
+        session: AsyncSession = Depends(get_async_session)
+):
+    """ Установить фото пользователя """
+    contents = await file.read()
+    try:
+        encoded_file = base64.b64encode(contents)
+        await session.execute(update(User).where(User.id == user.id).values(photo=encoded_file))
+        await session.commit()
+    except Exception as e:
+        await session.rollback()
+        raise HTTPException(status_code=500, detail=f"Error occurred: {e}")
+    return {'status': 'Photo updated'}
+
+
+
+@profile_routers.put("remove-photo/")
+async def remove_photo(
+        current_user: User = Depends(get_current_user),
+        session: AsyncSession = Depends(get_async_session)
+):
+    """ Удалить фото пользователя """
+    await session.execute(update(User).where(User.id == current_user.id).values(photo=None))
+    await session.commit()
+    return "Photo removed"
+
+
+@profile_routers.get("/get-photo/", response_model=PhotoReadSchema)
+async def get_photo(current_user: User = Depends(get_current_user)):
+    """ Получить фото пользователя """
+    return current_user

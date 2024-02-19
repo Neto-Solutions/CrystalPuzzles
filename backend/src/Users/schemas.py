@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional
 
 from fastapi import HTTPException
@@ -8,6 +9,12 @@ class UserCreateSchema(BaseModel):
     """ Валидация регистрационных данных """
     email: EmailStr
     password: str
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    surname: Optional[str] = None
+    birthday: datetime
+    is_man: Optional[bool] = True
+    contact: Optional[str] = None
 
     @field_validator('password')
     def validate_password(cls, value):
@@ -24,9 +31,15 @@ class UserReadSchema(BaseModel):
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
     is_verified: Optional[bool] = False
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    surname: Optional[str] = None
+    birthday: datetime
+    is_man: Optional[bool] = True
+    contact: Optional[str] = None
 
 
-class ChangePassword(BaseModel):
+class UserChangePassword(BaseModel):
     """ Валидирует старый и новый пароль """
     old_password: str
     new_password: str
@@ -39,7 +52,7 @@ class ChangePassword(BaseModel):
             return value
 
 
-class VerifiedEmailCode(BaseModel):
+class UserVerifiedEmailCode(BaseModel):
     """ Валидация кода верификации email """
     code: int
 
@@ -49,6 +62,22 @@ class VerifiedEmailCode(BaseModel):
             raise HTTPException(status_code=400, detail={"error": "Code must be 4 digits"})
         else:
             return value
+
+
+class UserEditSchema(BaseModel):
+    """ Валидация редактирования данных пользователя """
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    surname: Optional[str] = None
+    birthday: datetime
+    is_man: Optional[bool] = True
+    contact: Optional[str] = None
+
+
+class PhotoReadSchema(BaseModel):
+    """ Формирует ответ с деталями о фото пользователя """
+    photo: Optional[bytes] = None
+
 
 
 class Token(BaseModel):
