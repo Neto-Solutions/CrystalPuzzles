@@ -17,6 +17,7 @@ celery = "*"
 redis = "*"
 propelauth-fastapi = "*"
 psycopg2-binary = "*"
+pylint = "*"
 
 [dev-packages]
 
