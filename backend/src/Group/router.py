@@ -81,6 +81,8 @@ async def delete_group(group_id: int,
     item = Group.get(db=session, id=group_id)
     if item is None:
         raise HTTPException(status_code=404, detail="Item not found")
+    for person in item.students:
+        person.delete(db=session)
     item.delete(db=session)
     return Response(status_code=204)
 
