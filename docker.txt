@@ -1,0 +1,4 @@
+Для запуска базы данных
+
+docker run --name sqlCrystalPuzzles -e POSTGRES_DB=sqlCrystalPuzzles -e POSTGRES_PASSWORD=crystal -p 54323:5432 -d postgres:14.6
+
