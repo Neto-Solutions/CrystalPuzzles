@@ -17,12 +17,6 @@ services:
     restart: unless-stopped
     ports:
       - ${POSTGRES_PORT}:5432
-      
-  crystalpuzzles-redis:
-    image: redis:latest
-    restart: unless-stopped
-    ports:
-      - '6379:6379'
 
   crystalpuzzles-api:
     build: ./backend/
@@ -30,6 +24,5 @@ services:
       - .env
     depends_on:
       - crystalpuzzles-db
-      - crystalpuzzles-redis
     ports:
-      - "8001:8000"
+      - "8000:8000"
