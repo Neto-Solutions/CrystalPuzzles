@@ -1,6 +1,8 @@
 import React from "react"
 import logo from "../../../svg/header_logo.svg"
 
+
+
 function Checkin_header() {
       return (
         <header className="checkin_header">
