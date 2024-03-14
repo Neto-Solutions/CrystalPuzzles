@@ -93,6 +93,11 @@
     font-weight: 400;
     margin-bottom: 142px;
 }
+.general_met_analitic_shedule {
+    position: relative;
+    left: 10px;
+    top: 5px;
+ }
 .general_met_progress_schedule_cont {
     width: 347px;
     padding: 18px, 1px, 18px, 1px;
@@ -105,6 +110,19 @@
     font-size: 24px;
     font-weight: 400;
     margin-bottom: 142px;
+}
+.general_met_timetable_cont {
+    border: 1.5px solid #0E1079;
+    border-radius: 20px;
+    width: 347px;
+    height: 379px;
+    margin-bottom: 15px;
+}
+.general_met_shedule_head {
+    text-align: center;
+    font-family: Rubik;
+    font-size: 24px;
+    font-weight: 400;
 }
 .general_met_progress_image {
     width: 346px;
@@ -137,7 +155,7 @@
     
 }
 .general_met_table_head {
-    width: 343px;
+    width: 347px;
     height: 95px;
     border-radius: 20px;
     border: 10px solid #5BA1DF;
@@ -145,35 +163,128 @@
     font-family: Rubik;
     font-size: 24px;
     font-weight: 400;
+    padding-top: 13px;
 }
 .general_met_table_part {
+    width: 115px;
     border: 10px solid #5BA1DF;
-    width: 115.67px;
-    height: 84px;
-    padding: 40px;
+    padding: 32px;
     border-radius: 20px;
+    border: 10px solid #5BA1DF;
 }
 .general_met_notifications_cont {
     width: 714px;
     height: 448px;
     border-radius: 20px;
     border: 1.5px solid #0E1079;
+    padding: 31px 30px 31px 30px;
+    background-color: #E1F1F8;
+    
+}
+.general_met_notification_cont {
+    margin-bottom: 12px;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.general_met_not_decor_line {
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #2B2D91;
+    margin-bottom: 40px;
 }
 .general_met_notifications_head {
-    text-align: center;
-    font-family: Rubik;
+    text-align: left;
+    font-family: Roboto;
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;  
+    margin-bottom: 64px;  
 }
-.general_met_schedule_chapter {
-    border: 1.5px solid #0E1079;
+.general_met_notification_descr {
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: inherit;
+    text-decoration: none;
+
+}
+.general_met_notification_btn {
+    width: 145px;
+    height:54px;
+    padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    width: 347px;
-    height: 379px;
+    border: 1px solid #2B2D91;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2B2D91;
+    background-color: white;
 }
-.general_met_shedule_head {
-    text-align: center;
+.general_met_notifications_btns_cont {
+   text-align: right;
+}
+.general_met_notifications_btns {
+    width: 175px;
+    height:56px;
+    padding: 15.5px 28px 15.5px 28px;
+    border-radius: 20px;
+    border: 1px solid #2B2D91;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 500;
+    color: #2B2D91;
+    background-color: white;
+}
+.general_met_timetable_cont {
+    padding: 0 15px 0 15px;
+}
+.general_met_timetable_head {
     font-family: Rubik;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 29px;
 }
+.general_met_timetable_decor_line {
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #2B2D91;
+    margin-bottom: 20px;
+}
+.general_met_timetable_item {
+    margin-bottom: 10px;
+    width: 275px;
+}
+.general_met_timetable_item_descr {
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.gen_timetable_diff_color {
+    color: #2B2D91;
+}
+.general_met_timetable_btn {
+    padding: 15.5px 28px 15.5px 28px;
+    border-radius: 20px;
+    border: 1.5px solid #0E1079;
+    background-color: white;
+    display: block;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    width: 347px;
+    margin-bottom: 20px;
+}
+
