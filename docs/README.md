@@ -1,5 +1,6 @@
 # Документация по тестированию
 
-## [Чеклист](./Check-list.md)
+## [Чек-лист](./Check-list.md)
 ## [Майнд-карта](./MindMap.md)
 ## [Вопросник](./QuestionsTesting.md)
+## [Требования](./Requirements.md)
