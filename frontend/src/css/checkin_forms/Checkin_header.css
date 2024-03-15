@@ -1,0 +1,11 @@
+.logo_container {
+    width:  487px;
+    height:  84px;
+    position: relative;
+    padding: 20px 140px 20px 0px;
+
+}
+.checkin_header {
+    display: flex;
+    justify-content: end;
+}
