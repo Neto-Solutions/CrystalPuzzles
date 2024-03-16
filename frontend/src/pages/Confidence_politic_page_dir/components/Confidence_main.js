@@ -1,7 +1,7 @@
 import React from "react"
 
  
-function Confident_main() {
+function Confidence_main() {
       return (
         <div className="confident_main_container">
             <h1 className="confident_main_container_header">
@@ -26,4 +26,4 @@ function Confident_main() {
       )
 }
 
-export default Confident_main
+export default Confidence_main

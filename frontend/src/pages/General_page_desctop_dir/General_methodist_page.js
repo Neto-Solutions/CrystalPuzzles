@@ -5,7 +5,7 @@ import '../../css/general_page_methodist/General_methodist_page.css';
 
 function General_methodist_page() {
     return(
-        <div>
+        <div className="genereal_page_methodist">
             <Checkin_header/>
             <General_met_main/>
         </div>

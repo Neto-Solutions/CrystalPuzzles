@@ -1,8 +1,10 @@
-import React from "react"
-import General_acc_panel from "./General_acc_panel"
-import General_header from "./General_header"
-import shedule_progress from "../../../svg/progress_shedule.svg"
-import analitic from "../../../svg/analitic.svg"
+import React from "react";
+import General_acc_panel from "./General_acc_panel";
+import General_header from "./General_header";
+import shedule_progress from "../../../svg/progress_shedule.svg";
+import analitic from "../../../svg/analitic.svg";
+
+
 function General_met_main() {
       return (
         <div className="general_met_main_cont">

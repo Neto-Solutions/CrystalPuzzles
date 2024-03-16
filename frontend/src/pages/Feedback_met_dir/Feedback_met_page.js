@@ -5,7 +5,7 @@ import '../../css/feedback_page_methodist/Feedback_methodist_page.css';
 
 function Feedback_met_page() {
     return(
-        <div>
+        <div className="feedback_page_methodist">
             <Checkin_header/>
             <Feedback_met/>
         </div>

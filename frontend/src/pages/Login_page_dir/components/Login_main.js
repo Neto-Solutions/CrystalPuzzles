@@ -1,5 +1,5 @@
-import React from "react"
-
+import React from "react";
+import {Link} from "react-router-dom";
  
 function Login_main() {
       return (
@@ -28,16 +28,16 @@ function Login_main() {
                 <label className="login_confidence_politic_cont">
                     <input className="login_confidence_politic_checkbox" type="checkbox"/>
                     <p className="login_confidence_politic_cont_descr">Подтверждая, вы соглашаетесь на обработку персональных 
-                    данных и c <a className="login_confidence_politic_link" href="#">политикой конфиденциальности</a></p>
+                    данных и c <Link to="/confidence" className="login_confidence_politic_link" >политикой конфиденциальности</Link></p>
                 </label>
                 <div className="login_enter_btn_cont">
-                    <button className="login_enter_btn">Войти</button>
+                    <Link to="/home" className="login_enter_btn">Войти</Link>
                 </div>
                 <div className="login_acc_registr_link_cont">
-                    <a href="#" className="login_acc_registr_link">Нет аккаунта?</a>
+                     <Link to="/registration" className="login_acc_registr_link">Нет аккаунта?</Link>
                 </div>
                 <div className="login_acc_registr_btn_cont">
-                    <button className="login_acc_registr_btn">Зарегистрироваться</button>
+                    <Link to="/registration" className="login_acc_registr_btn">Зарегистрироваться</Link>
                 </div>
                 
             </form>

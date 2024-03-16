@@ -1,13 +1,13 @@
 import React from "react"
 import Checkin_header from "./components/Checkin_header"
-import Confident_main from "./components/Confident_main"
+import Confidence_main from "./components/Confidence_main"
 
 
 function Confident_page() {
     return(
-        <div>
+        <div className="confident_page_methodist">
             <Checkin_header/>
-            <Confident_main/>
+            <Confidence_main/>
         </div>
     )
 }

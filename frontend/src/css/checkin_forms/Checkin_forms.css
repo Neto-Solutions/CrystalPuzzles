@@ -154,6 +154,7 @@ label .reg_stud_confidence_politic_checkbox {
 .login_acc_registr_btn_cont, .reg_acc_registr_btn_cont, 
 .reg_stud_acc_registr_btn_cont {
     margin: auto;
+    text-align: center;
 }
 .login_acc_registr_btn, .reg_acc_registr_btn, .reg_stud_acc_registr_btn {
     font-family: Rubik;
@@ -161,29 +162,32 @@ label .reg_stud_confidence_politic_checkbox {
     display: block;
     width: 470px;
     height: 53px;
-    padding: 15.5px, 28px, 15.5px, 28px;
+    padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
     border:solid #2B2D91 1.5px;
     background-color: #2B2D91;
     color: white;
+    text-decoration: none;
 }
- 
+.login_acc_registr_btn {
+    width: 224px;
+}
 .login_enter_btn_cont {
     margin-bottom: 36px;
+    text-align: center;
 }
 .login_enter_btn {
+    display: inline-block;
+    text-decoration: none;
     font-size: 18px;
     font-weight: 500;
     width: 470px;
     height: 53px;
-    padding: 15.5px, 28px, 15.5px, 28px;
+    padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
     border: solid #2B2D91 2px;
     color: inherit;
     background-color: inherit;
-}
-.login_acc_registr_btn {
-    width: 244px;
 }
 
 /*реализация просмотра пароля*/
