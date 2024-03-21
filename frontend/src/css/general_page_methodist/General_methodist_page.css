@@ -82,6 +82,7 @@
 }
 .general_met_analitic_cont {
     width: 347px;
+    height: 347px;
     padding: 18px, 1px, 18px, 1px;
     border: 1.5px solid #0E1079;
     border-radius: 20px;
@@ -97,10 +98,11 @@
 .general_met_analitic_shedule {
     position: relative;
     left: 10px;
-    top: 5px;
+    bottom: 25px;
  }
 .general_met_progress_schedule_cont {
     width: 347px;
+    height: 347px;
     padding: 18px, 1px, 18px, 1px;
     border: 1.5px solid #0E1079;
     border-radius: 20px;
@@ -128,6 +130,11 @@
 }
 .general_met_progress_image {
     width: 346px;
+}
+.general_met_progress_schedule_cont_route, .general_met_analytic_cont_route ,
+.general_met_timetable_cont_route {
+    text-decoration: none;
+    color: black;
 }
 .general_met_base_cont {
     display: flex;

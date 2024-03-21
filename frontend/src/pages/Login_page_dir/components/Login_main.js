@@ -31,7 +31,7 @@ function Login_main() {
                     данных и c <Link to="/confidence" className="login_confidence_politic_link" >политикой конфиденциальности</Link></p>
                 </label>
                 <div className="login_enter_btn_cont">
-                    <Link to="/home" className="login_enter_btn">Войти</Link>
+                    <Link to="/" className="login_enter_btn">Войти</Link>
                 </div>
                 <div className="login_acc_registr_link_cont">
                      <Link to="/registration" className="login_acc_registr_link">Нет аккаунта?</Link>

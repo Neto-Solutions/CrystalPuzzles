@@ -1,5 +1,5 @@
 import React from "react"
-
+import {Link} from "react-router-dom";
  
 function Confidence_main() {
       return (
@@ -18,7 +18,7 @@ function Confidence_main() {
                     <p className="confident_politic_descr">Согласие с политикой компании </p>
                 </label>
                 <div className="confident_btn_cont">
-                    <button className="confident_btn">Подтвердить</button>
+                    <Link to="/" className="confident_btn">Подтвердить</Link>
                 </div>
                 
             </form>

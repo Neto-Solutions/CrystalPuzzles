@@ -67,9 +67,12 @@
     
 }
 .confident_btn {
+    display: inline-block;
+    text-decoration: none;
+
     width:  224px;
     height:  53px;
-    padding: 15.5px, 28px, 15.5px, 28px;
+    padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
     background-color: #2B2D91;
     color: white;
