@@ -6,7 +6,7 @@ import Registration_page from './pages/Registration_page_dir/Registration_page';
 import Login_page from './pages/Login_page_dir/Login_page';
 import Confidence_page from './pages/Confidence_politic_page_dir/Confidence_page';
 import Registration_student_page from './pages/Registration_student_page_dir/Registration_student_page';
-import General_methodist_page from './pages/General_page_desctop_dir/General_methodist_page';
+import General_methodist_page from './pages/General_page_met_desctop_dir/General_methodist_page';
 import Analytic_meth_page from './pages/Analytics_met_page_dir/Analytic_met_page';
 import Shedule_prog_met_page from './pages/Shedule_progress_met_dir/Shedule_prog_met_page';
 import Timetable_met_page from './pages/Timetable_met_dir/Timetable_met_page';
@@ -17,6 +17,8 @@ import Analytic_specific_meth_page from './pages/Analytics_met_specific_page_dir
 import Methodist_shedule_progress_page from './pages/Methodist_shedule_progress_page_dir/Methodist_shedule_progress_page.js'
 import Make_timetable_met_page from './pages/Make_timetable_met_dir/Make_timetable_met_page.js'
 import Notifications_met_page from './pages/Notifications_met_page_dir/Notifications_met_page.js'
+import General_trainer_page from './pages/General_page_trainer_desctop_dir/General_trainer_page.js';
+
 
 function App()  {
     return (
@@ -25,7 +27,7 @@ function App()  {
         <div className="App">
 
           <Switch>
-            <Notifications_met_page/>
+            <General_trainer_page/>
             <Route exact path="/">
               <General_methodist_page/>
             </Route>
