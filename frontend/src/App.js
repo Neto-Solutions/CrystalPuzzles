@@ -15,15 +15,17 @@ import Effective_table_met_page from './pages/Effectiv_table_met_dir/Effective_t
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Analytic_specific_meth_page from './pages/Analytics_met_specific_page_dir/Analytic_specific_met_page.js'
 import Methodist_shedule_progress_page from './pages/Methodist_shedule_progress_page_dir/Methodist_shedule_progress_page.js'
+import Make_timetable_met_page from './pages/Make_timetable_met_dir/Make_timetable_met_page.js'
+import Notifications_met_page from './pages/Notifications_met_page_dir/Notifications_met_page.js'
 
 function App()  {
     return (
       <Router>
         
         <div className="App">
-        
+
           <Switch>
-          <Methodist_shedule_progress_page/>
+            <Notifications_met_page/>
             <Route exact path="/">
               <General_methodist_page/>
             </Route>
