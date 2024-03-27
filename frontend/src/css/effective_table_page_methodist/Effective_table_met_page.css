@@ -130,6 +130,11 @@
     font-weight: 500;
     color: #2B2D91;
     background-color: white;
+    transition: color 0.5s, background-color 0.5s;
+}
+.effective_table_download_btn:hover, .effective_table_google_doc_link:hover {
+    background-color: #0E1079;
+    color: white;
 }
 .effective_table_head {
     height: 100px;

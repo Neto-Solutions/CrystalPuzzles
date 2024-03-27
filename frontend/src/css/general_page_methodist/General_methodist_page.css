@@ -41,14 +41,15 @@
     width: 225px;
     height: 24px;
     margin  : 24px 0 24px 0;
-    text-transform: uppercase;
     padding-left: 10px;
     font-family: Roboto;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     border: none;
     background-color: inherit;
+    
 }
+
 .general_met_acc_links a {
     text-decoration: none;
 }
@@ -56,25 +57,50 @@
     display:flex;
     gap: 12px ;
     margin-bottom: 15px;
+    overflow: hidden;
+}
+.general_met_help_cont:hover .general_met_help_icon {
+    left: -20px;
+}
+.general_met_help_cont:hover .general_met_help_link {
+    left: -20px;
+}
+.general_met_exit_cont:hover .general_met_exit_icon {
+    left: -20px;
+}
+.general_met_exit_cont:hover .general_met_exit_link {
+    left: -20px;
 }
 .general_met_exit_cont {
     display: flex;
     gap: 12px ;
-
+    overflow: hidden;
 }
 .general_met_exit_icon {
+    position: relative;
+    left: 0;
     width: 20px;
     height: 20px;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 .general_met_help_icon {
+    position: relative;
+    left: 0;
     width: 20px;
     height: 20px;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 .general_met_help_link {
+    left: 0px;
+    position: relative;
     color: #989898;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 .general_met_exit_link {
+    position: relative;
+    left: 0;
     color: #2B2D91;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 .general_met_acc_links {
     margin  : 24px 0 24px 0;
@@ -132,7 +158,8 @@
     width: 346px;
 }
 .general_met_progress_schedule_cont_route, .general_met_analytic_cont_route ,
-.general_met_timetable_cont_route {
+.general_met_timetable_cont_route, .general_met_notifications_cont_route,
+.general_met_table_cont_route {
     text-decoration: none;
     color: black;
 }
@@ -228,6 +255,15 @@
     font-weight: 500;
     color: #2B2D91;
     background-color: white;
+    transition: color 0.5s, background-color 0.5s;
+}
+.general_met_notification_btn:hover {
+    background-color: #0E1079;
+    color: white;
+}
+.general_met_notifications_btns:hover {
+    background-color: #0E1079;
+    color: white;
 }
 .general_met_notifications_btns_cont {
    text-align: right;
@@ -243,6 +279,7 @@
     font-weight: 500;
     color: #2B2D91;
     background-color: white;
+    transition: color 0.5s, background-color 0.5s;
 }
 .general_met_timetable_cont {
     padding: 0 15px 0 15px;
@@ -290,5 +327,11 @@
     font-weight: 500;
     width: 347px;
     margin-bottom: 20px;
+    transition: color 0.5s, background-color 0.5s;
+}
+.general_met_timetable_btn:hover {
+    background-color: #0E1079;
+    color: white;
+    
 }
 

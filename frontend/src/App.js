@@ -18,7 +18,7 @@ import Methodist_shedule_progress_page from './pages/Methodist_shedule_progress_
 import Make_timetable_met_page from './pages/Make_timetable_met_dir/Make_timetable_met_page.js'
 import Notifications_met_page from './pages/Notifications_met_page_dir/Notifications_met_page.js'
 import General_trainer_page from './pages/General_page_trainer_desctop_dir/General_trainer_page.js';
-
+import Notifications_trainer_page from './pages/Notifications_trainer_page_dir/Notifications_trainer_page.js'
 
 function App()  {
     return (
@@ -27,7 +27,7 @@ function App()  {
         <div className="App">
 
           <Switch>
-            <General_trainer_page/>
+            
             <Route exact path="/">
               <General_methodist_page/>
             </Route>
@@ -40,10 +40,15 @@ function App()  {
             <Route exact path="/shedule_progress">
               <Shedule_prog_met_page/>
             </Route>
+            <Route exact path="/effective_table">
+              <Effective_table_met_page/>
+            </Route>
+            <Route exact path="/notifications">
+              <Notifications_met_page/>
+            </Route>
             <Route exact path="/timetable_methodist">
               <Timetable_met_page/>
             </Route>
-            
             <Route exact path="/analytic">
               <Analytic_meth_page/>
             </Route>

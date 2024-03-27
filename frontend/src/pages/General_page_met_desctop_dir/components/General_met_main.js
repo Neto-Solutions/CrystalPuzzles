@@ -29,19 +29,21 @@ function General_met_main() {
                             <img className="general_met_analitic_shedule" src={analitic} />
                         </section>
                     </Link>
-                    
-                    <section className="general_met_table_cont">
-                        <h1 className="general_met_table_head">Таблицы</h1>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                        <div className="general_met_table_part"></div>
-                    </section>
+                    <Link to="/effective_table" className="general_met_table_cont_route">
+                        <section className="general_met_table_cont">
+                            <h1 className="general_met_table_head">Таблицы</h1>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                            <div className="general_met_table_part"></div>
+                        </section>
+                    </Link>
+                    <Link to="/notifications" className="general_met_notifications_cont_route">
                     <section className="general_met_notifications_cont">
                         <h1 className="general_met_notifications_head">Уведомления</h1>
                         <div className="general_met_notification_cont">
@@ -58,6 +60,8 @@ function General_met_main() {
                             <button className="general_met_notifications_btns">Показать все</button>
                         </div>
                     </section>
+                    </Link>
+                    
                     <Link to="/timetable_methodist" className="general_met_timetable_cont_route">
                         <section className="general_met_timetable_chapter">
                             <div className="general_met_timetable_cont">

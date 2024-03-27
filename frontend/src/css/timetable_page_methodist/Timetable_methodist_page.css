@@ -108,4 +108,15 @@ div .timetable_met_calendar_month_day:nth-child(14n) {
 }
 .timetable_met_make_shedule_descr {
     color: #0E1079;
+    
+}
+.timetable_met_make_shedule_cont:hover .timetable_met_make_shedule_descr {
+    color: white;
+}
+.timetable_met_make_shedule_cont:hover {
+    background-color: #0E1079;
+}
+
+.timetable_met_make_shedule_cont {
+    transition: color 0.5s, background-color 0.5s;
 }

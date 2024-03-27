@@ -4,25 +4,20 @@ import help from "../../../svg/help_icon.svg"
 import exit from "../../../svg/exit_icon.svg"
 import {Link} from "react-router-dom";
 
-
 function General_acc_info() {
       return (
            <aside className="general_met_aside">
                 <div className="general_met_acc_info_cont">
                     <img src={avatar} className="general_met_acc_img"/>
                     <div className="general_met_acc_info_descr">
-                        <span className="general_met_acc_prof">методист</span>
+                        <span className="general_met_acc_prof">тренер</span>
                         <span className="general_met_acc_name">Антонина</span>
                     </div>      
                 </div>
                 <div className="general_met_acc_decor_line"></div>
                 <nav className="general_met_nav">
                     <select className="general_met_nav_options">
-                        <option className="general_met_nav_item" selected>ГЛАВНАЯ</option>
-                        <option className="general_met_nav_item" >Графики прогресса</option>
-                        <option className="general_met_nav_item" >Аналитика</option>
-                        <option className="general_met_nav_item" >Таблицы</option>
-                        <option className="general_met_nav_item" >Обратная связь</option>
+                        <option className="general_met_nav_item" selected>главная</option>
                     </select>
                 </nav>
                 <div className="general_met_acc_decor_line"></div>
