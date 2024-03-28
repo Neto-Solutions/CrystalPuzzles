@@ -1,5 +1,5 @@
 import React from "react"
-
+import {Link} from "react-router-dom";
  
 function Registration_main() {
       return (
@@ -39,7 +39,7 @@ function Registration_main() {
                     данных и c <a className="reg_stud_confidence_politic_link" href="#">политикой конфиденциальности</a></p>
                 </label>
                 <div className="reg_stud_acc_registr_btn_cont">
-                    <button className="reg_stud_acc_registr_btn">Зарегистрироваться</button>
+                    <Link to="/" className="reg_stud_acc_registr_btn">Зарегистрироваться</Link>
                 </div>
                 
             </form>

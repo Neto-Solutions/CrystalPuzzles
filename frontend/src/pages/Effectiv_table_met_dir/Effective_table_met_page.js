@@ -5,7 +5,7 @@ import '../../css/effective_table_page_methodist/Effective_table_met_page.css';
 
 function Effective_table_met_page() {
     return(
-        <div>
+        <div className="effective_page_methodist">
             <Checkin_header/>
             <Effective_table_met/>
         </div>

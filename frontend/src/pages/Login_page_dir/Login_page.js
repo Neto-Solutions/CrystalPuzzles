@@ -4,7 +4,7 @@ import Login_main from "./components/Login_main"
 
 function Login_page() {
     return(
-        <div>
+        <div className="login_page_methodist">
             <Checkin_header/>
             <Login_main/>
         </div>
