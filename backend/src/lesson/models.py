@@ -1,44 +1,40 @@
-import sqlalchemy as sa
-from src.database import metadata
-
-lesson = sa.Table(
-    "lesson",
-    metadata,
-    sa.Column("id", sa.Integer, primary_key=True),
-    sa.Column("trainer_id", sa.Integer, sa.ForeignKey("user.id")),
-    sa.Column("date", sa.Date),
-    sa.Column("space_id", sa.Integer, sa.ForeignKey("space.id")),
-    sa.Column("comments", sa.Text),
-    sa.Column("check", sa.Integer, sa.ForeignKey("check.id"))
-)
-
-space = sa.Table(
-    "space",
-    metadata,
-    sa.Column("id", sa.Integer, primary_key=True),
-    sa.Column("name", sa.String)
-)
-
-check = sa.Table(
-    "check",
-    metadata,
-    sa.Column("id", sa.Integer, primary_key=True),
-    sa.Column("student_id", sa.Integer, sa.ForeignKey("user.id")),
-    sa.Column("training_check_id", sa.Integer, sa.ForeignKey("training_check.id"))
-)
-
-training_check = sa.Table(
-    "training_check",
-    metadata,
-    sa.Column("id", sa.Integer, primary_key=True),
-    sa.Column("training_id", sa.Integer, sa.ForeignKey("training.id")),
-    sa.Column("repetitions", sa.Integer),
-    sa.Column("assessment", sa.Integer)
-)
-
-training = sa.Table(
-    "training",
-    metadata,
-    sa.Column("id", sa.Integer, primary_key=True),
-    sa.Column("name", sa.String)
-)
+# from sqlalchemy.orm import Mapped, mapped_column
+# from src.database import Base
+# import sqlalchemy as sa
+#
+#
+# class Lesson(Base):
+#     __tablename__ = "lesson"
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     trainer_id: Mapped[int] = mapped_column(sa.ForeignKey("user.id"))
+#     date = mapped_column(sa.Date)
+#     space_id: Mapped[int] = mapped_column(sa.ForeignKey("space.id"))
+#     comments = mapped_column(sa.Text, nullable=True)
+#     check: Mapped[int] = mapped_column(sa.ForeignKey("check.id"))
+#
+#
+# class Space(Base):
+#     __tablename__ = "space"
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     name: Mapped[str] = mapped_column(sa.String)
+#
+#
+# class Check(Base):
+#     __tablename__ = "check"
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     student_id: Mapped[int] = mapped_column(sa.ForeignKey("user.id"))
+#     training_check_id: Mapped[int] = mapped_column(sa.ForeignKey("training_check.id"))
+#
+#
+# class TrainingCheck(Base):
+#     __tablename__ = "training_check"
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     training_id: Mapped[int] = mapped_column(sa.ForeignKey("training.id"))
+#     repetitions: Mapped[int]
+#     assessment: Mapped[int]
+#
+#
+# class Training(Base):
+#     __tablename__ = "training"
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     name: Mapped[str] = mapped_column(sa.String)

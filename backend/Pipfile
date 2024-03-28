@@ -6,10 +6,18 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = "*"
-pydantic = "*"
 sqlalchemy = "*"
 asyncpg = "*"
 alembic = "*"
+passlib = {extras = ["bcrypt"], version = "*"}
+pydantic = {extras = ["email"], version = "*"}
+python-jose = {extras = ["cryptography"], version = "*"}
+python-multipart = "*"
+celery = "*"
+redis = "*"
+propelauth-fastapi = "*"
+psycopg2-binary = "*"
+pylint = "*"
 
 [dev-packages]
 
