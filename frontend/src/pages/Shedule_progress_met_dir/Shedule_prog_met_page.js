@@ -5,7 +5,7 @@ import Shedule_prog_met from "./components/Shedule_prog_met"
 
 function Shedule_prog_met_page() {
     return(
-        <div>
+        <div className="shedule_prog_page_methodist">
             <Checkin_header/>
             <Shedule_prog_met/>
         </div>

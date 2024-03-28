@@ -5,7 +5,7 @@ import '../../css/analytic_page_methodist/Analytic_methodist_page.css';
 
 function Analytic_meth_page() {
     return(
-        <div>
+        <div  className="analytic_page_methodist">
             <Checkin_header/>
             <Analytic_met/>
         </div>

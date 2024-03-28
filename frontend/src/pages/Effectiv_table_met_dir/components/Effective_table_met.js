@@ -65,9 +65,9 @@ function Effective_table_met() {
                         Примечание
                       </div>
                       <div className="effective_table_sixth_column_part">
-                      Баллы суммир уются
+                      Баллы суммируются
                       </div>
-                    </div>
+                  </div>
                   </div>
                   <div className="effective_table_download_btn_cont">
                     <button className="effective_table_download_btn">Выгрузить</button>

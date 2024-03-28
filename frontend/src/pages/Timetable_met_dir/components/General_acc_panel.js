@@ -2,7 +2,8 @@ import React from "react"
 import avatar from "../../../svg/avatar.svg"
 import help from "../../../svg/help_icon.svg"
 import exit from "../../../svg/exit_icon.svg"
- 
+import {Link} from "react-router-dom";
+
 function General_acc_info() {
       return (
            <aside className="general_met_aside">
@@ -21,14 +22,14 @@ function General_acc_info() {
                 </nav>
                 <div className="general_met_acc_decor_line"></div>
                 <div className="general_met_acc_links">
-                    <a href="#" className="general_met_help_cont">
+                    <Link to="/login" className="general_met_help_cont">
                         <img src={help} className="general_met_help_icon"/>
                         <span className="general_met_help_link">Помощь</span>
-                    </a>
-                    <a href="#" className="general_met_exit_cont">
+                    </Link>
+                    <Link to="/login" className="general_met_exit_cont">
                         <img src={exit} className="general_met_exit_icon"/>
                         <span className="general_met_exit_link">Выйти</span>
-                    </a>
+                    </Link>
                 </div>
             </aside>
       )
