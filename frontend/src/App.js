@@ -19,17 +19,17 @@ import Make_timetable_met_page from './pages/Make_timetable_met_dir/Make_timetab
 import Notifications_met_page from './pages/Notifications_met_page_dir/Notifications_met_page.js'
 import General_trainer_page from './pages/General_page_trainer_desctop_dir/General_trainer_page.js';
 import Notifications_trainer_page from './pages/Notifications_trainer_page_dir/Notifications_trainer_page.js'
-
+import CheckListTrainerPage from './pages/Checklist_trainer_dir/Checklist_trainer_page.js'
 function App()  {
     return (
       <Router>
         
         <div className="App">
-
+          
           <Switch>
             
             <Route exact path="/">
-              <General_methodist_page/>
+            <CheckListTrainerPage/>
             </Route>
             <Route exact path="/login">
               <Login_page/>

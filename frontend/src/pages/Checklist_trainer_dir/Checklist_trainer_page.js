@@ -1,15 +1,15 @@
 import React from "react"
 import Checkin_header from "./components/Checkin_header"
-import Feedback_met from "./components/Feedback_met"
+import Checklist_trainer from "./components/Checklist_trainer"
 import '../../css/feedback_page_methodist/Feedback_methodist_page.css';
 
-function Feedback_met_page() {
+function CheckListTrainerPage() {
     return(
         <div className="feedback_page_methodist">
             <Checkin_header/>
-            <Feedback_met/>
+            <Checklist_trainer/>
         </div>
     )
 }
 
-export default Feedback_met_page
+export default CheckListTrainerPage

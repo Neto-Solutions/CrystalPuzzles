@@ -9,7 +9,7 @@ function General_acc_info() {
                 <div className="general_met_acc_info_cont">
                     <img src={avatar} className="general_met_acc_img"/>
                     <div className="general_met_acc_info_descr">
-                        <span className="general_met_acc_prof">методист</span>
+                        <span className="general_met_acc_prof">тренер</span>
                         <span className="general_met_acc_name">Антонина</span>
                     </div>      
                 </div>
