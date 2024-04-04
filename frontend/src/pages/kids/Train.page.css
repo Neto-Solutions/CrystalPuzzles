@@ -1,0 +1,46 @@
+.train_card {
+    width: 958px;
+    height: 179px;
+    padding: 29px 30px;
+    border: solid 1.5px #0E1079;
+    border-radius: 20px;
+    background-color: #DAE8F0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.train_card_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.train_card_info_name {
+    font-family: "Rubik";
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.train_card_info_trainer,
+.train_card_info_combination {
+    font-family: "Rubik";
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.train_card_info_trainer_title,
+.train_card_info_combination_title {
+    margin-right: 5px;
+    font-family: "Rubik";
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.train_card_info_combination {}
+
+.train_card_date {
+    font-family: "Roboto";
+    font-size: 23px;
+    font-weight: 500;
+}
