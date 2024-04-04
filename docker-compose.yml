@@ -4,6 +4,9 @@ services:
   db:
     container_name: ${POSTGRES_HOST}
     image: postgres:latest
+    env_file:
+    # - .env
+      - .env.template # для быстрого локального запуска
     environment:
       POSTGRES_DB: ${POSTGRES_DB_NAME}
       POSTGRES_USER: ${POSTGRES_USER}
