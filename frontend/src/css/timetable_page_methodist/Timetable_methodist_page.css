@@ -12,6 +12,7 @@
 .timetable_met_calendar {
     border: solid 1.5px #0E1079;
     border-radius: 20px;
+    width: 1082px;
 }
 .timetable_met_header_base_cont {
     margin-left: 142px;
@@ -67,15 +68,20 @@
 .timetable_met_calendar_month_day:nth-child(7n) {
     border-right: none;
 }
+div .timetable_met_calendar_month_day:nth-child(14n) {
+    border-radius: 0px 0px 20px 0px;
+}
+
 .timetable_met_calendar_month_day:nth-child(n + 8) {
     border-bottom: none;
+    border-radius: 0 0 0 20px;
 }
 .timetable_met_btns_cont {
+    min-width: 1082px;
     display: flex;
     flex-direction: column;
     align-items: end;
     gap: 20px;
-    width: 100%;
 }
 .timetable_met_calendar_range_cont, .timetable_met_make_shedule_cont {
     width: 347px;
@@ -102,4 +108,15 @@
 }
 .timetable_met_make_shedule_descr {
     color: #0E1079;
+    
+}
+.timetable_met_make_shedule_cont:hover .timetable_met_make_shedule_descr {
+    color: white;
+}
+.timetable_met_make_shedule_cont:hover {
+    background-color: #0E1079;
+}
+
+.timetable_met_make_shedule_cont {
+    transition: color 0.5s, background-color 0.5s;
 }

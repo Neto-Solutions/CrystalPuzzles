@@ -12,3 +12,7 @@ backend/.env
 
 ### Migrations ###
 # backend/migrations/
+
+### PG Data ###
+
+/pgdata

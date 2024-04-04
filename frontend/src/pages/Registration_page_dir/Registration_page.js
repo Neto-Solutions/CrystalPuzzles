@@ -5,7 +5,7 @@ import Registration_main from "./components/Registration_main"
 
 function Registration_page() {
     return(
-        <div>
+        <div className="registration_page_methodist">
             <Checkin_header/>
             <Registration_main/>
         </div>

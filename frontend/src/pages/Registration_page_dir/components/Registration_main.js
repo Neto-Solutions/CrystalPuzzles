@@ -1,5 +1,5 @@
 import React from "react"
-
+import {Link} from "react-router-dom";
  
 function Registration_main() {
       return (
@@ -28,10 +28,10 @@ function Registration_main() {
                 <label className="reg_confidence_politic_cont">
                     <input className="reg_confidence_politic_checkbox" type="checkbox"/>
                     <p className="reg_confidence_politic_cont_descr">Подтверждая, вы соглашаетесь на обработку персональных 
-                    данных и c <a className="reg_confidence_politic_link" href="#">политикой конфиденциальности</a></p>
+                    данных и c <Link to="/confidence" className="reg_confidence_politic_link" >политикой конфиденциальности</Link></p>
                 </label>
                 <div className="reg_acc_registr_btn_cont">
-                    <button className="reg_acc_registr_btn">Зарегистрироваться</button>
+                    <Link to="/" className="reg_acc_registr_btn">Зарегистрироваться</Link>
                 </div>
                 
             </form>

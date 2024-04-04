@@ -23,7 +23,8 @@ def upgrade() -> None:
     op.alter_column('Users', 'photo',
                existing_type=sa.VARCHAR(),
                type_=sa.LargeBinary(),
-               existing_nullable=True)
+               existing_nullable=True,
+               postgresql_using='photo::bytea')
     # ### end Alembic commands ###
 
 
