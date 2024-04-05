@@ -3,15 +3,15 @@ import ConfidencePage from "../pages/check.in/Confidence.page";
 
 const checkInRouter = [
     {
-        path: "/login",
+        path: "login",
         element: <CheckInPage login />,
     },
     {
-        path: "/registration",
+        path: "registration",
         element: <CheckInPage />,
     },
     {
-        path: "/politics",
+        path: "politics",
         element: <ConfidencePage />,
     }
 ]

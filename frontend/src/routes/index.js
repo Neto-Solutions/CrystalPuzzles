@@ -8,16 +8,20 @@ import checkInRouter from "./check.in.router";
 export default function createRouter(role) {
     return createBrowserRouter(
         [
-            ...checkInRouter,
             {
                 path: "/",
-                element: <Root />,
+                element: <Root sidebar />,
                 loader: () => {
                     return null;
                 }, // loader to fetch data before render
                 children: (role === "kids" && kidsRouter) ||
                     (role === "methodist" && methodistRouter) ||
                     (role === "trainer" && trainerRouter)
+            },
+            {
+                path: "/",
+                element: <Root />,
+                children: checkInRouter
             },
         ]
     )
