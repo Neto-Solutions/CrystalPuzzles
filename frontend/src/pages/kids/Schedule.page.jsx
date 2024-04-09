@@ -1,7 +1,7 @@
 import './Schedule.page.css';
 import PageContainer from '../../components/page.container/Page.container';
 import Calendar from '../../components/calendar/Calendar';
-import { ReactComponent as DownArrow } from '../../assets/svg/calendar_arrow_down.svg';
+import ChooseButton from '../../components/button.choose/Choose.button';
 export default function SchedulePage() {
 	const tempArray = Array.from({ length: 7 }, () => ({
 		time: '10:15',
@@ -21,10 +21,7 @@ export default function SchedulePage() {
 				</div>
 				<div className="shedule_page_calendar_container">
 					<Calendar />
-					<button className="shedule_page_calendar_btn">
-						Выберите тренера
-						<DownArrow className="shedule_page_calendar_btn_arrow" />
-					</button>
+					<ChooseButton />
 				</div>
 			</PageContainer.Body>
 		</>
