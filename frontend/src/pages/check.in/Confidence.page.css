@@ -6,7 +6,6 @@
     margin-bottom: 500px;
 }
 
-
 .confident_main_container_header {
     font-family: Roboto;
     font-size: 40px;
@@ -15,7 +14,6 @@
     letter-spacing: 0em;
     text-align: center;
 }
-
 
 .confident_form {
     max-width: 470px;
@@ -35,8 +33,6 @@
     border-radius: 5px;
     border: 1px solid black;
     margin-right: 11px;
-
-
 }
 
 .confident_btn {
@@ -47,7 +43,7 @@
     height: 53px;
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    background-color: #2B2D91;
+    background-color: #2b2d91;
     color: white;
     font-family: Roboto;
     font-size: 20px;
@@ -58,7 +54,6 @@
     -moz-appearance: none;
     -o-appearance: none;
     appearance: none;
-
 }
 
 .confident_btn_cont {

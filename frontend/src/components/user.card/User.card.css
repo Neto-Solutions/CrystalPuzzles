@@ -5,8 +5,8 @@
     height: 138px;
     padding: 10px, 20px, 10px, 20px;
     border-radius: 20px;
-    border: 2px solid #0E1079;
-    background-color: #E1F1F8;
+    border: 2px solid #0e1079;
+    background-color: #e1f1f8;
 }
 
 .user_card_img {
@@ -16,7 +16,7 @@
     width: 138px;
     height: 134px;
     border-radius: 20px;
-    border: solid #0E1079 2px;
+    border: solid #0e1079 2px;
     border-bottom: none;
     border-top: none;
     border-left: none;
@@ -31,5 +31,4 @@
     font-weight: 500;
     text-align: left;
     margin: 6px 0 0 20px;
-
 }

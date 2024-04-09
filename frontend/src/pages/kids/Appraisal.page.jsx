@@ -1,8 +1,3 @@
-
 export default function AppraisalPage() {
-    return (
-        <div>
-
-        </div>
-    )
+	return <div></div>;
 }

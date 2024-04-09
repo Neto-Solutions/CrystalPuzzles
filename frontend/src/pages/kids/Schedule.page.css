@@ -1,19 +1,18 @@
 .schedule_table {
     width: 714px;
     height: 393px;
-    border: solid #0E1079 1.5px;
+    border: solid #0e1079 1.5px;
     border-radius: 20px;
 }
 
 .schedule_table_row {
-    font-family: "Rubik";
+    font-family: 'Rubik';
     font-size: 24px;
     font-weight: 400;
 }
 
-
 .schedule_table_row_item_time {
-    border-right: solid #0E1079 1.5px;
+    border-right: solid #0e1079 1.5px;
     width: 102px;
     text-align: center;
 }

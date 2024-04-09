@@ -7,7 +7,6 @@
     gap: 20px 20px;
     flex-wrap: wrap;
     margin-right: 140px;
-
 }
 
 .effective_table_met_header_base_cont {
@@ -26,7 +25,6 @@
     width: 102px;
     height: 489px;
     border: solid black 1px;
-
 }
 
 .effective_table_first_column div {
@@ -145,18 +143,20 @@
     height: 57px;
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    border: solid #2B2D91 1.5px;
+    border: solid #2b2d91 1.5px;
     font-family: Roboto;
     font-size: 20px;
     font-weight: 500;
-    color: #2B2D91;
+    color: #2b2d91;
     background-color: white;
-    transition: color 0.5s, background-color 0.5s;
+    transition:
+        color 0.5s,
+        background-color 0.5s;
 }
 
 .effective_table_download_btn:hover,
 .effective_table_google_doc_link:hover {
-    background-color: #0E1079;
+    background-color: #0e1079;
     color: white;
 }
 

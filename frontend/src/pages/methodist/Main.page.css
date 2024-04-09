@@ -34,7 +34,7 @@
     width: 225px;
     height: 2px;
     border-radius: 2px;
-    background-color: #2B2D91;
+    background-color: #2b2d91;
 }
 
 .general_met_acc_img {
@@ -54,7 +54,6 @@
     font-weight: 600;
     border: none;
     background-color: inherit;
-
 }
 
 .general_met_acc_links a {
@@ -116,7 +115,7 @@
 .general_met_exit_link {
     position: relative;
     left: 0;
-    color: #2B2D91;
+    color: #2b2d91;
     transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 
@@ -129,7 +128,7 @@
     width: 347px;
     height: 347px;
     padding: 18px, 1px, 18px, 1px;
-    border: 1.5px solid #0E1079;
+    border: 1.5px solid #0e1079;
     border-radius: 20px;
 }
 
@@ -152,7 +151,7 @@
     width: 347px;
     height: 347px;
     padding: 18px, 1px, 18px, 1px;
-    border: 1.5px solid #0E1079;
+    border: 1.5px solid #0e1079;
     border-radius: 20px;
 }
 
@@ -166,7 +165,7 @@
 }
 
 .general_met_timetable_cont {
-    border: 1.5px solid #0E1079;
+    border: 1.5px solid #0e1079;
     border-radius: 20px;
     width: 347px;
     height: 379px;
@@ -224,7 +223,7 @@
     width: 347px;
     height: 95px;
     border-radius: 20px;
-    border: 10px solid #5BA1DF;
+    border: 10px solid #5ba1df;
     text-align: center;
     font-family: Rubik;
     font-size: 24px;
@@ -234,20 +233,19 @@
 
 .general_met_table_part {
     width: 115px;
-    border: 10px solid #5BA1DF;
+    border: 10px solid #5ba1df;
     padding: 32px;
     border-radius: 20px;
-    border: 10px solid #5BA1DF;
+    border: 10px solid #5ba1df;
 }
 
 .general_met_notifications_cont {
     width: 714px;
     height: 448px;
     border-radius: 20px;
-    border: 1.5px solid #0E1079;
+    border: 1.5px solid #0e1079;
     padding: 31px 30px 31px 30px;
-    background-color: #E1F1F8;
-
+    background-color: #e1f1f8;
 }
 
 .general_met_notification_cont {
@@ -262,7 +260,7 @@
     width: 100%;
     height: 2px;
     border-radius: 2px;
-    background-color: #2B2D91;
+    background-color: #2b2d91;
     margin-bottom: 40px;
 }
 
@@ -283,7 +281,6 @@
     text-align: left;
     color: inherit;
     text-decoration: none;
-
 }
 
 .general_met_notification_btn {
@@ -291,22 +288,24 @@
     height: 54px;
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    border: 1px solid #2B2D91;
+    border: 1px solid #2b2d91;
     font-family: Roboto;
     font-size: 20px;
     font-weight: 500;
-    color: #2B2D91;
+    color: #2b2d91;
     background-color: white;
-    transition: color 0.5s, background-color 0.5s;
+    transition:
+        color 0.5s,
+        background-color 0.5s;
 }
 
 .general_met_notification_btn:hover {
-    background-color: #0E1079;
+    background-color: #0e1079;
     color: white;
 }
 
 .general_met_notifications_btns:hover {
-    background-color: #0E1079;
+    background-color: #0e1079;
     color: white;
 }
 
@@ -319,13 +318,15 @@
     height: 56px;
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    border: 1px solid #2B2D91;
+    border: 1px solid #2b2d91;
     font-family: Roboto;
     font-size: 18px;
     font-weight: 500;
-    color: #2B2D91;
+    color: #2b2d91;
     background-color: white;
-    transition: color 0.5s, background-color 0.5s;
+    transition:
+        color 0.5s,
+        background-color 0.5s;
 }
 
 .general_met_timetable_cont {
@@ -347,7 +348,7 @@
     width: 100%;
     height: 2px;
     border-radius: 2px;
-    background-color: #2B2D91;
+    background-color: #2b2d91;
     margin-bottom: 20px;
 }
 
@@ -366,13 +367,13 @@
 }
 
 .gen_timetable_diff_color {
-    color: #2B2D91;
+    color: #2b2d91;
 }
 
 .general_met_timetable_btn {
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    border: 1.5px solid #0E1079;
+    border: 1.5px solid #0e1079;
     background-color: white;
     display: block;
     font-family: Roboto;
@@ -380,11 +381,12 @@
     font-weight: 500;
     width: 347px;
     margin-bottom: 20px;
-    transition: color 0.5s, background-color 0.5s;
+    transition:
+        color 0.5s,
+        background-color 0.5s;
 }
 
 .general_met_timetable_btn:hover {
-    background-color: #0E1079;
+    background-color: #0e1079;
     color: white;
-
 }

@@ -19,8 +19,8 @@
     height: 138px;
     padding: 10px, 20px, 10px, 20px;
     border-radius: 20px;
-    border: 2px solid #0E1079;
-    background-color: #E1F1F8;
+    border: 2px solid #0e1079;
+    background-color: #e1f1f8;
     position: relative;
     margin-bottom: 14px;
 }
@@ -32,7 +32,7 @@
     width: 138px;
     height: 134px;
     border-radius: 20px;
-    border: solid #0E1079 2px;
+    border: solid #0e1079 2px;
     border-bottom: none;
     border-top: none;
     border-left: none;
@@ -47,7 +47,6 @@
     font-weight: 500;
     text-align: left;
     margin: 6px 0 0 20px;
-
 }
 
 .shedule_progress_met_show_link {
@@ -71,8 +70,8 @@
 
 .shedule_progress_met_btn {
     text-decoration: none;
-    color: #0E1079;
-    border: 1.5px solid #2B2D91;
+    color: #0e1079;
+    border: 1.5px solid #2b2d91;
     width: 347px;
     height: 57px;
     padding: 9px 15px 8px 22px;

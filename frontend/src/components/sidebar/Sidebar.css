@@ -21,14 +21,14 @@
 }
 
 .sidebar_accaunt_profession {
-    font-family: "Roboto";
+    font-family: 'Roboto';
     font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
 }
 
 .sidebar_accaunt_name {
-    font-family: "Rubik";
+    font-family: 'Rubik';
     font-size: 22px;
     font-weight: 400;
 }
@@ -37,24 +37,26 @@
     width: 225px;
     height: 2px;
     border-radius: 2px;
-    background-color: #2B2D91;
+    background-color: #2b2d91;
 }
 
-.sidebar_navigation {}
+.sidebar_navigation {
+}
 
 .sidebar_navigation_options {
     width: 225px;
     height: 24px;
     margin: 24px 0 24px 0;
     padding-left: 10px;
-    font-family: "Roboto";
+    font-family: 'Roboto';
     font-size: 20px;
     font-weight: 700;
     border: none;
     background-color: inherit;
 }
 
-.sidebar_navigation_item {}
+.sidebar_navigation_item {
+}
 
 .sidebar_links_container {
     overflow: hidden;
@@ -69,7 +71,7 @@
     overflow: hidden;
     position: relative;
     left: 0;
-    color: #2B2D91;
+    color: #2b2d91;
     transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 
@@ -86,7 +88,7 @@
 }
 
 .sidebar_link_exit span {
-    color: #2B2D91;
+    color: #2b2d91;
 }
 
 .sidebar_link_icon {
@@ -97,4 +99,5 @@
     transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 
-.sidebar_link_text {}
+.sidebar_link_text {
+}

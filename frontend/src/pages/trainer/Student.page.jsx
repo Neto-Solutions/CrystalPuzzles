@@ -1,7 +1,3 @@
 export default function StudentPage() {
-    return (
-        <div>
-
-        </div>
-    )
+	return <div></div>;
 }

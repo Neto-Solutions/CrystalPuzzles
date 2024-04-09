@@ -8,30 +8,31 @@
 
 .check_list_header {
     padding: 6px;
-    background-color: #A1CBF1;
-    border: solid #2B2D91 1px;
+    background-color: #a1cbf1;
+    border: solid #2b2d91 1px;
     border-radius: 20px;
-    font-family: "Rubik";
+    font-family: 'Rubik';
     font-size: 24px;
     font-weight: 400;
     line-height: 28.44px;
     text-align: center;
 }
 
-.check_list_list {}
+.check_list_list {
+}
 
 .check_list_item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 30px;
-    background-color: #DAE8F0;
-    border: solid #0E1079 1.5px;
+    background-color: #dae8f0;
+    border: solid #0e1079 1.5px;
     border-radius: 20px;
 }
 
 .check_list_item_title {
-    font-family: "Rubik";
+    font-family: 'Rubik';
     font-size: 24px;
     font-weight: 400;
 }
@@ -40,7 +41,6 @@
     width: 36px;
     height: 36px;
 }
-
 
 .imgs_container {
     position: relative;
@@ -55,7 +55,6 @@
 .hedgehog {
     top: 45px;
     left: 100px;
-
 }
 
 .raccoon {
@@ -67,5 +66,4 @@
 .hedgehog,
 .raccoon {
     position: absolute;
-
 }

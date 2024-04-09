@@ -1,7 +1,3 @@
 export default function FeedbackPage() {
-    return (
-        <div>
-
-        </div>
-    )
+	return <div></div>;
 }

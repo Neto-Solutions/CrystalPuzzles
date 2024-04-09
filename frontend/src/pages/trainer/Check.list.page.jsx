@@ -1,7 +1,3 @@
 export default function CheckListPage() {
-    return (
-        <div>
-
-        </div>
-    )
+	return <div></div>;
 }

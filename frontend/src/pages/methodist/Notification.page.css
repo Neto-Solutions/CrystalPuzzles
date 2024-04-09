@@ -16,8 +16,8 @@
 .notifications_met_cont {
     width: 714px;
     padding: 31px 30px 0px 30px;
-    background-color: #E1F1F8;
-    border: 1.5px solid #2B2D91;
+    background-color: #e1f1f8;
+    border: 1.5px solid #2b2d91;
     border-radius: 20px;
 }
 
@@ -31,7 +31,7 @@
 
 .notifications_met_item {
     display: flex;
-    border-bottom: solid #0E1079 1px;
+    border-bottom: solid #0e1079 1px;
     justify-content: space-between;
     padding-bottom: 13px;
     margin-bottom: 62px;
@@ -51,17 +51,19 @@
 .notifications_met_open_link {
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    border: 1px solid #2B2D91;
+    border: 1px solid #2b2d91;
     background-color: white;
     font-family: Roboto;
     font-size: 20px;
     font-weight: 500;
     text-decoration: none;
-    color: #2B2D91;
-    transition: color 0.5s, background-color 0.5s;
+    color: #2b2d91;
+    transition:
+        color 0.5s,
+        background-color 0.5s;
 }
 
 .notifications_met_open_link:hover {
-    background-color: #0E1079;
+    background-color: #0e1079;
     color: white;
 }

@@ -7,7 +7,6 @@
     gap: 20px 20px;
     flex-wrap: wrap;
     margin-right: 140px;
-
 }
 
 .feedback_met_header_base_cont {
@@ -19,7 +18,7 @@
     height: 330px;
     padding: 10px;
     border-radius: 20px;
-    border: solid #2B2D91 1px;
+    border: solid #2b2d91 1px;
     margin-bottom: 20px;
 }
 
@@ -38,7 +37,7 @@
     height: 262px;
     padding: 30px 10px 30px 10px;
     border-radius: 16px;
-    border: solid #2B2D91 1px;
+    border: solid #2b2d91 1px;
     background-color: white;
     font-family: Rubik;
     font-size: 24px;
@@ -57,7 +56,7 @@
     height: 57px;
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
-    border: solid #2B2D91 1.5px;
+    border: solid #2b2d91 1.5px;
     font-size: 18px;
     font-weight: 500;
 }
