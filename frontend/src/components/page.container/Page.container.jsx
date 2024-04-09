@@ -1,7 +1,7 @@
 import './Page.container.css';
 const PageContainer = {
 	Header: ({ title }) => <Header title={title} />,
-	Body: ({ children }) => <Body>{children}</Body>,
+	Body: ({ children }) => <Body>{children}</Body>
 };
 function Header({ title }) {
 	return (

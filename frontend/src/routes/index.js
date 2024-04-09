@@ -16,12 +16,12 @@ export default function createRouter(role) {
 			children:
 				(role === 'kids' && kidsRouter) ||
 				(role === 'methodist' && methodistRouter) ||
-				(role === 'trainer' && trainerRouter),
+				(role === 'trainer' && trainerRouter)
 		},
 		{
 			path: '/',
 			element: <Root />,
-			children: checkInRouter,
-		},
+			children: checkInRouter
+		}
 	]);
 }

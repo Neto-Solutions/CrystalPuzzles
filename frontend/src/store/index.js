@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import Cookie from 'js-cookie';
 
 const mainReducer = (
 	prevState = {
 		user: {
-			role: 'methodist',
-		},
+			role: Cookie.get('role') || 'methodist'
+		}
 	},
 	action
 ) => {
@@ -12,12 +13,13 @@ const mainReducer = (
 
 	switch (type) {
 		case 'SET_ROLE':
+			Cookie.set('role', payload);
 			return {
 				...prevState,
 				user: {
 					...prevState.user,
-					role: payload,
-				},
+					role: payload
+				}
 			};
 		default:
 			return prevState;

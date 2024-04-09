@@ -11,40 +11,40 @@ import FeedbackPage from '../pages/trainer/Feedback.page';
 const trainerRouter = [
 	{
 		path: '/',
-		element: <MainPage />,
+		element: <MainPage />
 	},
 	{
 		path: '/notification',
-		element: <NotificationPage />,
+		element: <NotificationPage />
 	},
 	{
 		path: '/check-list',
-		element: <CheckListPage />,
+		element: <CheckListPage />
 	},
 	{
 		path: '/schedule',
-		element: <SchefulePage />,
+		element: <SchefulePage />
 	},
 	{
 		path: '/teams',
-		element: <TeamsPage />,
+		element: <TeamsPage />
 	},
 	{
 		path: '/group/create',
-		element: <CreateGroupPage />,
+		element: <CreateGroupPage />
 	},
 	{
 		path: '/students',
-		element: <StudentsList />,
+		element: <StudentsList />
 	},
 	{
 		path: '/student',
-		element: <StudentPage />,
+		element: <StudentPage />
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />,
-	},
+		element: <FeedbackPage />
+	}
 ];
 
 export default trainerRouter;

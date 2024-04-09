@@ -11,40 +11,40 @@ import NotificationPage from '../pages/methodist/Notification.page';
 const methodistRouter = [
 	{
 		path: '/',
-		element: <MainPage />,
+		element: <MainPage />
 	},
 	{
 		path: '/analytics',
-		element: <AnalyticsPage />,
+		element: <AnalyticsPage />
 	},
 	{
 		path: '/analytics/view',
-		element: <AnalyticsViewPage />,
+		element: <AnalyticsViewPage />
 	},
 	{
 		path: '/progress',
-		element: <ProgressGraphPage />,
+		element: <ProgressGraphPage />
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage />,
+		element: <SchedulePage />
 	},
 	{
 		path: '/schedule/create',
-		element: <CreateSchedulePage />,
+		element: <CreateSchedulePage />
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />,
+		element: <FeedbackPage />
 	},
 	{
 		path: '/evaluation',
-		element: <EvaluationTable />,
+		element: <EvaluationTable />
 	},
 	{
 		path: '/notifications',
-		element: <NotificationPage />,
-	},
+		element: <NotificationPage />
+	}
 ];
 
 export default methodistRouter;

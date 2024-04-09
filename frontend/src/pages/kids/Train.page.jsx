@@ -5,7 +5,7 @@ export default function TrainPage() {
 		name: 'Дмитриева Анастасия Алексеевна',
 		trainer: 'Анастасия',
 		combination: '(жетон 1)',
-		date: '12/11/22',
+		date: '12/11/22'
 	}));
 	return (
 		<>

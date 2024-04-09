@@ -8,28 +8,28 @@ import AppraisalPage from '../pages/kids/Appraisal.page';
 const kidsRouter = [
 	{
 		path: '/',
-		element: <MainPage />,
+		element: <MainPage />
 	},
 	{
 		path: '/train',
-		element: <TrainPage />,
+		element: <TrainPage />
 	},
 	{
 		path: '/check-list',
-		element: <CheckListPage />,
+		element: <CheckListPage />
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage />,
+		element: <SchedulePage />
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />,
+		element: <FeedbackPage />
 	},
 	{
 		path: '/appraisal',
-		element: <AppraisalPage />,
-	},
+		element: <AppraisalPage />
+	}
 ];
 
 export default kidsRouter;

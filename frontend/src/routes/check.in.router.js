@@ -4,16 +4,16 @@ import ConfidencePage from '../pages/check.in/Confidence.page';
 const checkInRouter = [
 	{
 		path: 'login',
-		element: <CheckInPage login />,
+		element: <CheckInPage login />
 	},
 	{
 		path: 'registration',
-		element: <CheckInPage />,
+		element: <CheckInPage />
 	},
 	{
 		path: 'politics',
-		element: <ConfidencePage />,
-	},
+		element: <ConfidencePage />
+	}
 ];
 
 export default checkInRouter;
