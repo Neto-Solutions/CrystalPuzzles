@@ -1,6 +1,6 @@
 import './Feedback.page.css';
 import PageContainer from '../../components/page.container/Page.container';
-import ChooseButton from '../../components/button.choose/Choose.button';
+import ChooseButton from '../../components/button/Choose.button';
 export default function FeedbackPage() {
 	return (
 		<>

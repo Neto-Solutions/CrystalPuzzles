@@ -1,7 +1,7 @@
 import './Schedule.page.css';
 import PageContainer from '../../components/page.container/Page.container';
 import Calendar from '../../components/calendar/Calendar';
-import ChooseButton from '../../components/button.choose/Choose.button';
+import ChooseButton from '../../components/button/Choose.button';
 export default function SchedulePage() {
 	const tempArray = Array.from({ length: 7 }, () => ({
 		time: '10:15',
