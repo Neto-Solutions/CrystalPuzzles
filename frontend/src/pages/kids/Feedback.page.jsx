@@ -19,7 +19,7 @@ export default function FeedbackPage() {
 						</button>
 					</form>
 				</div>
-				<ChooseButton />
+				<ChooseButton title="Выберите тренера" downArrow />
 			</PageContainer.Body>
 		</>
 	);
