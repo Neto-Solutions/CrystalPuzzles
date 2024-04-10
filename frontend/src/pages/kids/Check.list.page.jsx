@@ -1,9 +1,9 @@
 import './Check.list.page.css';
-import PageContainer from '../../components/page.container/Page.container';
-import Card from '../../components/card/Card';
-import bunny from '../../assets/svg/bunny.svg';
-import hedgehog from '../../assets/svg/hedgehog.svg';
-import raccoon from '../../assets/svg/raccoon.svg';
+import PageContainer from '@components/page.container/Page.container';
+import Card from '@components/card/Card';
+import bunny from '@assets/svg/bunny.svg';
+import hedgehog from '@assets/svg/hedgehog.svg';
+import raccoon from '@assets/svg/raccoon.svg';
 
 export default function CheckListPage() {
 	const tempArray = Array.from({ length: 6 }, () => '1');

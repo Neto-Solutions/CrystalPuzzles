@@ -1,5 +1,5 @@
 import './Notification.page.css';
-import PageContainer from '../../components/page.container/Page.container';
+import PageContainer from '@components/page.container/Page.container';
 import { Link } from 'react-router-dom';
 export default function NotificationPage() {
 	return (

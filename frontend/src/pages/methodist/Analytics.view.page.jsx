@@ -1,8 +1,8 @@
 import './Analytics.view.page.css';
 import { Link } from 'react-router-dom';
-import calendar_icon from '../../assets/svg/calendar_icon.svg';
-import UserCard from '../../components/user.card/User.card';
-import PageContainer from '../../components/page.container/Page.container';
+import calendar_icon from '@assets/svg/calendar_icon.svg';
+import UserCard from '@components/user.card/User.card';
+import PageContainer from '@components/page.container/Page.container';
 export default function AnalyticsViewPage() {
 	return (
 		<>

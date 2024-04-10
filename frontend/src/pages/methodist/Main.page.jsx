@@ -1,8 +1,8 @@
 import './Main.page.css';
 import { Link } from 'react-router-dom';
-import PageContainer from '../../components/page.container/Page.container';
-import shedule_progress from '../../assets/svg/progress_shedule.svg';
-import analitic from '../../assets/svg/analitic.svg';
+import PageContainer from '@components/page.container/Page.container';
+import shedule_progress from '@assets/svg/progress_shedule.svg';
+import analitic from '@assets/svg/analitic.svg';
 export default function MainPage() {
 	return (
 		<>

@@ -1,8 +1,8 @@
 import './Root.css';
 import { Outlet } from 'react-router-dom';
-import Header from '../components/header/Header';
-import Sidebar from '../components/sidebar/Sidebar';
-import RouterTool from '../utils/Router.tool';
+import Header from '@components/header/Header';
+import Sidebar from '@components/sidebar/Sidebar';
+import RouterTool from '@utils/Router.tool';
 
 export default function Root({ sidebar = false }) {
 	return (

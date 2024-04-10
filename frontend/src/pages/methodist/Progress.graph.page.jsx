@@ -1,6 +1,6 @@
 import './Progress.graph.page.css';
-import PageContainer from '../../components/page.container/Page.container';
-import UserCard from '../../components/user.card/User.card';
+import PageContainer from '@components/page.container/Page.container';
+import UserCard from '@components/user.card/User.card';
 
 export default function ProgressGraphPage() {
 	const tempArray = Array.from(

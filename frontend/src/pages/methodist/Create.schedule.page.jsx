@@ -1,8 +1,8 @@
 import './Create.schedule.page.css';
-import left_arrow from '../../assets/svg/calendar_arrow_left.svg';
-import right_arrow from '../../assets/svg/calendar_arrow_right.svg';
+import left_arrow from '@assets/svg/calendar_arrow_left.svg';
+import right_arrow from '@assets/svg/calendar_arrow_right.svg';
 import { Link } from 'react-router-dom';
-import PageContainer from '../../components/page.container/Page.container';
+import PageContainer from '@components/page.container/Page.container';
 
 export default function CreateShedulePage() {
 	const tempArray = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];

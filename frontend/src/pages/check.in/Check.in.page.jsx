@@ -1,5 +1,5 @@
 import './Check.in.page.css';
-import { ReactComponent as Eye } from '../../assets/svg/eye_icon.svg';
+import { ReactComponent as Eye } from '@assets/svg/eye_icon.svg';
 import { useNavigate, Link } from 'react-router-dom';
 export default function CheckInPage({ login }) {
 	const navigate = useNavigate();

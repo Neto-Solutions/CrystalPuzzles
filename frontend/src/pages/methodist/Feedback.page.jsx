@@ -1,5 +1,5 @@
 import './Feedback.page.css';
-import PageContainer from '../../components/page.container/Page.container';
+import PageContainer from '@components/page.container/Page.container';
 
 export default function FeedbackPage() {
 	return (

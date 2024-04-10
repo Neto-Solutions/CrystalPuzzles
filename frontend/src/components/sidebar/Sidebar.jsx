@@ -1,7 +1,7 @@
 import './Sidebar.css';
-import avatar from '../../assets/svg/avatar.svg';
-import help from '../../assets/svg/help_icon.svg';
-import exit from '../../assets/svg/exit_icon.svg';
+import avatar from '@assets/svg/avatar.svg';
+import help from '@assets/svg/help_icon.svg';
+import exit from '@assets/svg/exit_icon.svg';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {

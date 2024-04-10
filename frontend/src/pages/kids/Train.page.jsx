@@ -1,5 +1,5 @@
 import './Train.page.css';
-import PageContainer from '../../components/page.container/Page.container';
+import PageContainer from '@components/page.container/Page.container';
 export default function TrainPage() {
 	const tempArray = Array.from({ length: 3 }, () => ({
 		name: 'Дмитриева Анастасия Алексеевна',

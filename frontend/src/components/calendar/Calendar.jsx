@@ -1,8 +1,8 @@
 import './Calendar.css';
 
 import { useEffect, useState } from 'react';
-import { ReactComponent as LeftArrow } from '../../assets/svg/small_calendar_arrow_left.svg';
-import { ReactComponent as RightArrow } from '../../assets/svg/small_calendar_arrow_right.svg';
+import { ReactComponent as LeftArrow } from '@assets/svg/small_calendar_arrow_left.svg';
+import { ReactComponent as RightArrow } from '@assets/svg/small_calendar_arrow_right.svg';
 import moment from 'moment';
 
 export default function Calendar() {
