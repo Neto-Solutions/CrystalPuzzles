@@ -1,18 +1,15 @@
-import asyncio
 from logging.config import fileConfig
 
+from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from sqlalchemy.engine import Connection
-from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-from src.config import DB_HOST, DB_PORT, DB_USER, DB_NAME, DB_PASS
+from core.config import settings
 
-from src.Group.models import *
-from src.Users.models import *
-
-from src.database import Base
+from service.identity.models import User, Role, Rank, Task
+from service.group.models import Group, StudentGroup
+from core.database import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -22,12 +19,11 @@ section = config.config_ini_section
 # значение, заданное здесь, будет переопределять значение, заданное в alembic.ini
 # значение передается в `ConfigParser.set`,
 # который поддерживает интерполяцию переменных с помощью pyformat (например, `%(some_value)s`).
-config.set_section_option(section, "DB_HOST", DB_HOST)
-config.set_section_option(section, "DB_PORT", DB_PORT)
-config.set_section_option(section, "DB_USER", DB_USER)
-config.set_section_option(section, "DB_NAME", DB_NAME)
-config.set_section_option(section, "DB_PASS", DB_PASS)
-
+config.set_section_option(section, "PG_HOST", settings.PG_HOST)
+config.set_section_option(section, "PG_PORT", settings.PG_PORT)
+config.set_section_option(section, "PG_USER", settings.PG_USER)
+config.set_section_option(section, "PG_NAME", settings.PG_DATABASE)
+config.set_section_option(section, "PG_PASS", settings.PG_PASSWORD)
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
@@ -37,7 +33,6 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
@@ -70,35 +65,26 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
-def do_run_migrations(connection: Connection) -> None:
-    context.configure(connection=connection, target_metadata=target_metadata)
+def run_migrations_online() -> None:
+    """Run migrations in 'online' mode.
 
-    with context.begin_transaction():
-        context.run_migrations()
-
-
-async def run_async_migrations() -> None:
-    """In this scenario we need to create an Engine
+    In this scenario we need to create an Engine
     and associate a connection with the context.
 
     """
-
-    connectable = async_engine_from_config(
+    connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
 
-    async with connectable.connect() as connection:
-        await connection.run_sync(do_run_migrations)
+    with connectable.connect() as connection:
+        context.configure(
+            connection=connection, target_metadata=target_metadata
+        )
 
-    await connectable.dispose()
-
-
-def run_migrations_online() -> None:
-    """Run migrations in 'online' mode."""
-
-    asyncio.run(run_async_migrations())
+        with context.begin_transaction():
+            context.run_migrations()
 
 
 if context.is_offline_mode():

@@ -6,4 +6,4 @@ RUN pip install pipenv && \
 pipenv install --deploy
 COPY . /app/
 EXPOSE 8000
-CMD ["pipenv", "run", "python", "start.py"]
+CMD ["pipenv", "run", "python", "main.py"]
