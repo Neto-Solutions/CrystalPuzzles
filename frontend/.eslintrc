@@ -21,11 +21,10 @@
 		"react/prop-types": "off",
 		"no-console": "warn",
 		"no-alert": "warn",
+		"no-unused-vars": "warn",
+		"no-empty": "warn",
 		"for-direction": "error",
-		"no-empty": "error",
-		"no-ex-assign": "error",
-		"no-func-assign": "error",
-		"no-unused-vars": "warn"
+		"no-ex-assign": "error"
 	},
 	"settings": {
 		"react": {
