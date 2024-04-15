@@ -1,27 +1,21 @@
-import './Schedule.page.css';
-import PageContainer from '@components/page.container/Page.container';
-import left_arrow from '@assets/svg/calendar_arrow_left.svg';
-import right_arrow from '@assets/svg/calendar_arrow_right.svg';
-import calendar_icon from '@assets/svg/calendar_icon.svg';
+import "./Schedule.page.css"
+import PageContainer from "../../components/page.container/Page.container"
+import left_arrow from "../../assets/svg/calendar_arrow_left.svg"
+import right_arrow from "../../assets/svg/calendar_arrow_right.svg"
+import calendar_icon from "../../assets/svg/calendar_icon.svg"
+import Title from "../../components/title/Title"
+
 
 export default function SchedulePage() {
 	return (
 		<>
-			<PageContainer.Header title="Расписание тренеров" />
+			<Title isHeading>Расписание тренеров</Title>
 			<PageContainer.Body>
 				<div className="timetable_met_calendar">
 					<header className="timetable_met_calendar_head">
-						<img
-							src={left_arrow}
-							className="timetable_met_calendar_left_arrow"
-							alt=""
-						/>
+						<img src={left_arrow} className="timetable_met_calendar_left_arrow" alt="" />
 						<h1 className="timetable_met_calendar_current_date">Май, 2022</h1>
-						<img
-							src={right_arrow}
-							className="timetable_met_calendar_left_arrow"
-							alt=""
-						/>
+						<img src={right_arrow} className="timetable_met_calendar_left_arrow" alt="" />
 					</header>
 					<div className="timetable_met_calendar_week_days_name_cont">
 						<div className="timetable_met_calendar_week_day_name">пн</div>
@@ -48,25 +42,18 @@ export default function SchedulePage() {
 						<div className="timetable_met_calendar_month_day">13</div>
 						<div className="timetable_met_calendar_month_day">14</div>
 					</div>
+
 				</div>
 				<div className="timetable_met_btns_cont">
 					<div className="timetable_met_calendar_range_cont">
-						<div className="timetable_met_calendar_range_dates">
-							02.10.23 - 08.10.23
-						</div>
-						<img
-							className="timetable_met_calendar_range_icon"
-							src={calendar_icon}
-							alt=""
-						/>
+						<div className="timetable_met_calendar_range_dates">02.10.23 - 08.10.23</div>
+						<img className="timetable_met_calendar_range_icon" src={calendar_icon} alt="" />
 					</div>
 					<div className="timetable_met_make_shedule_cont">
-						<div className="timetable_met_make_shedule_descr">
-							Составить расписание
-						</div>
+						<div className="timetable_met_make_shedule_descr">Составить расписание</div>
 					</div>
 				</div>
 			</PageContainer.Body>
 		</>
-	);
+	)
 }

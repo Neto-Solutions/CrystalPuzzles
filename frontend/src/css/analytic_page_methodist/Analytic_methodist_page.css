@@ -1,0 +1,46 @@
+
+.analytic_met_main_cont {
+   display: flex;
+}
+.analytic_met_base_cont {
+    display: flex;
+    gap: 20px 20px;
+    flex-wrap: wrap;
+    margin-right: 140px;
+}
+
+.analytic_met_header_base_cont {
+    margin-left: 142px;
+}
+.analytic_met_part {
+    display: flex;
+    width:  347px;
+    height:  138px;
+    padding: 10px, 20px, 10px, 20px;
+    border-radius: 20px;
+    border: 2px solid #0E1079;
+    background-color: #E1F1F8;
+}
+.analytic_met_photo {
+    background-image: url('../../img/methodist_img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 138px;
+    height: 134px;
+    border-radius: 20px;
+    border: solid #0E1079  2px;
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+}
+.analytic_met_descr {
+    width: 158px;
+    height: 80px;
+    padding: 0px, 10px, 0px, 10px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+    margin: 6px 0 0 20px;
+
+}

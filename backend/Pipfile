@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = "*"
-sqlalchemy = "*"
 asyncpg = "*"
 alembic = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
@@ -18,12 +17,10 @@ redis = "*"
 propelauth-fastapi = "*"
 psycopg2-binary = "*"
 pylint = "*"
-uvloop = "*"
+pydantic-settings = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
-
-[scripts]
-start = "python start.py"
