@@ -3,12 +3,13 @@ import PageContainer from "../../components/page.container/Page.container"
 import left_arrow from "../../assets/svg/calendar_arrow_left.svg"
 import right_arrow from "../../assets/svg/calendar_arrow_right.svg"
 import calendar_icon from "../../assets/svg/calendar_icon.svg"
+import Title from "../../components/title/Title"
 
 
 export default function SchedulePage() {
     return (
         <>
-            <PageContainer.Header title="Расписание тренеров" />
+            <Title isHeading>Расписание тренеров</Title>
             <PageContainer.Body>
                 <div className="timetable_met_calendar">
                     <header className="timetable_met_calendar_head">
