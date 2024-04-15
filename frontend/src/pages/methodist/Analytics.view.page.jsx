@@ -1,29 +1,34 @@
-import "./Analytics.view.page.css"
-import { Link } from "react-router-dom";
-import calendar_icon from "../../assets/svg/calendar_icon.svg"
+import {Link} from "react-router-dom";
+import calendar_icon from "../../assets/svg/calendar_icon.svg";
 import UserCard from "../../components/user.card/User.card";
 import PageContainer from "../../components/page.container/Page.container";
-export default function AnalyticsViewPage() {
-    return (
-        <>
-            <PageContainer.Header title="Аналитика тренеров" />
-            <PageContainer.Body>
-                <UserCard name="Дмитриева Анастасия Алексеевна" >
-                    <div className="analytic_specific_met_show_link">Показать</div>
-                </UserCard>
+import Title from "../../components/title/Title";
+import Button from "../../components/button/Button";
+import styles from "./Analytics.view.page.module.scss";
 
-                <div className="analytic_specific_met_trainer_comment">
-                    <span className="trainer_comment">Комментарий тренера</span>
-                </div>
-                <div className="analytic_specific_met_btns_cont">
-                    <Link className="analytic_specific_met_btn analytic_specific_met_btn_calendar">
-                        <span className="analytic_specific_met_date">02.10.23 - 08.10.23</span>
-                        <img className="analytic_specific_met_icon" src={calendar_icon} alt="" />
-                    </Link>
-                    <Link className="analytic_specific_met_btn">Выгрузить</Link>
-                    <Link className="analytic_specific_met_btn">Открыть в Google doc</Link>
-                </div>
-            </PageContainer.Body>
-        </>
-    )
+export default function AnalyticsViewPage() {
+  return (
+    <>
+      <Title isHeading>Аналитика</Title>
+      <PageContainer.Body>
+        <UserCard name='Дмитриева Анастасия Алексеевна'>
+          <div className={styles.link}>Показать</div>
+        </UserCard>
+
+        <div className={styles.comment}>
+          <p>Комментарий тренера</p>
+        </div>
+        <div className={styles["btns-content"]}>
+          <Link className={`${styles.btn} ${styles.calendar}`}>
+            <span className={styles.date}>02.10.23 - 08.10.23</span>
+            <img className={styles["date-icon"]} src={calendar_icon} alt='' />
+          </Link>
+          {/* <Link className='btn'>Выгрузить</Link>
+          <Link className='btn'>Открыть в Google doc</Link> */}
+          <Button>Выгрузить</Button>
+          <Button>Открыть в Google doc</Button>
+        </div>
+      </PageContainer.Body>
+    </>
+  );
 }
