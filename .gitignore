@@ -16,3 +16,6 @@ backend/.env
 ### PG Data ###
 
 /pgdata
+
+### Other ###
+app.log
