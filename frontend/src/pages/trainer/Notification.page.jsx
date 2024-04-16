@@ -1,7 +1,3 @@
 export default function NotificationPage() {
-    return (
-        <div>
-
-        </div>
-    )
+	return <div></div>;
 }

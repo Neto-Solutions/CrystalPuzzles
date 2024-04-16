@@ -1,15 +1,15 @@
-import PageContainer from "../../components/page.container/Page.container";
-import Title from "../../components/title/Title";
-import Button from "../../components/button/Button";
-import styles from "./Feedback.page.module.scss";
+import PageContainer from '../../components/page.container/Page.container';
+import Title from '../../components/title/Title';
+import Button from '../../components/button/Button';
+import styles from './Feedback.page.module.scss';
 
 export default function FeedbackPage() {
   return (
     <>
-      <Title isHeading>Обратная связь</Title>
+      <PageContainer.Header title="Обратная связь" />
       <PageContainer.Body>
-        <div className={styles["feedback-wrap"]}>
-          <Title tag='h2' className={styles["second-title"]}>
+        <div className={styles['feedback-wrap']}>
+          <Title tag="h2" className={styles['second-title']}>
             Оставить комментарий методисту
           </Title>
           <textarea className={styles.textaria}>
@@ -17,7 +17,7 @@ export default function FeedbackPage() {
             стоматолога.
           </textarea>
         </div>
-        <Button className={styles["send-btn"]}>Отправить</Button>
+        <Button className={styles['send-btn']}>Отправить</Button>
       </PageContainer.Body>
     </>
   );

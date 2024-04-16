@@ -1,10 +1,9 @@
-import "./User.card.css";
-
-export default function UserCard({name, children}) {
+import './User.card.scss';
+export default function UserCard({ name, children }) {
   return (
-    <div className='card'>
-      <div className='img'></div>
-      <div className='name'>{name}</div>
+    <div className="user_card">
+      <div className="user_card_img"></div>
+      <div className="user_card_name">{name}</div>
       {children}
     </div>
   );

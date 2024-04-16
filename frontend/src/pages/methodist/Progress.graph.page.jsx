@@ -1,16 +1,15 @@
-import "./Progress.graph.page.css";
-import PageContainer from "../../components/page.container/Page.container";
-import UserCard from "../../components/user.card/User.card";
-import Title from "../../components/title/Title";
+import './Progress.graph.page.module.scss';
+import PageContainer from '../../components/page.container/Page.container';
+import UserCard from '../../components/user.card/User.card';
 
 export default function ProgressGraphPage() {
   const tempArray = Array.from(
-    {length: 6},
-    () => "Дмитриева Анастасия Алексеевна",
+    { length: 6 },
+    () => 'Дмитриева Анастасия Алексеевна'
   );
   return (
     <>
-      <Title isHeading>График прогресса тренеров</Title>
+      <PageContainer.Header title="График прогресса тренеров" />
       <PageContainer.Body>
         {tempArray.map((item, index) => {
           return <UserCard key={index} name={item} />;

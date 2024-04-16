@@ -1,17 +1,17 @@
 @font-face {
-  font-family: "Roboto";
-  src: url("../../fonts/Roboto-Medium.ttf");
+	font-family: 'Roboto';
+	src: url('../../fonts/Roboto-Medium.ttf');
 }
 
 @font-face {
-  font-family: "Rubik";
-  src: url("../../fonts/Rubik-VariableFont_wght.ttf");
+	font-family: 'Rubik';
+	src: url('../../fonts/Rubik-VariableFont_wght.ttf');
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 h1,
@@ -21,28 +21,28 @@ h4,
 h5,
 h6,
 p {
-  margin: 0;
+	margin: 0;
 }
 
 a {
-  text-decoration: none;
-  color: var(--main-color);
+	text-decoration: none;
+	color: var(--main-color);
 }
 
 ul,
 li {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
 }
 
 body {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 30px 30px 30px;
-  background: var(--dark-gradient) no-repeat;
-  color: var(--main-color);
+	width: 100%;
+	// max-width: 1440px;
+	margin: 0 auto;
+	padding: 0 30px 30px 30px;
+	background: var(--dark-gradient) no-repeat;
+	color: var(--main-color);
 }
 
 /* body {
