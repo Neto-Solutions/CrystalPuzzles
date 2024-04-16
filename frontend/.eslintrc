@@ -19,6 +19,7 @@
 		"prettier/prettier": "error",
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
+		"react/jsx-key": "warn",
 		"no-console": "warn",
 		"no-alert": "warn",
 		"no-unused-vars": "warn",

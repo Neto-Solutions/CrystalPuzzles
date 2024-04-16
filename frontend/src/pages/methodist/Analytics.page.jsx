@@ -1,6 +1,6 @@
-import './Analytics.page.scss';
-import UserCard from '@components/user.card/User.card';
-import PageContainer from '@components/page.container/Page.container';
+import UserCard from '../../components/user.card/User.card';
+import PageContainer from '../../components/page.container/Page.container';
+
 export default function AnalyticsPage() {
 	const tempArray = Array.from(
 		{ length: 6 },

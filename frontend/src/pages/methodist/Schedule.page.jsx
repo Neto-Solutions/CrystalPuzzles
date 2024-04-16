@@ -1,8 +1,8 @@
-import './Schedule.page.scss';
-import PageContainer from '@components/page.container/Page.container';
-import left_arrow from '@assets/svg/calendar_arrow_left.svg';
-import right_arrow from '@assets/svg/calendar_arrow_right.svg';
-import calendar_icon from '@assets/svg/calendar_icon.svg';
+import './Schedule.page.module.scss';
+import PageContainer from '../../components/page.container/Page.container';
+import left_arrow from '../../assets/svg/calendar_arrow_left.svg';
+import right_arrow from '../../assets/svg/calendar_arrow_right.svg';
+import calendar_icon from '../../assets/svg/calendar_icon.svg';
 
 export default function SchedulePage() {
 	return (

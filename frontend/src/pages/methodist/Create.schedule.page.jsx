@@ -1,8 +1,9 @@
-import './Create.schedule.page.scss';
-import left_arrow from '@assets/svg/calendar_arrow_left.svg';
-import right_arrow from '@assets/svg/calendar_arrow_right.svg';
-import { Link } from 'react-router-dom';
-import PageContainer from '@components/page.container/Page.container';
+// import {Link} from "react-router-dom";
+import left_arrow from '../../assets/svg/calendar_arrow_left.svg';
+import right_arrow from '../../assets/svg/calendar_arrow_right.svg';
+import PageContainer from '../../components/page.container/Page.container';
+import Button from '../../components/button/Button';
+import styles from './Create.schedule.page.module.scss';
 
 export default function CreateShedulePage() {
 	const tempArray = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
@@ -12,55 +13,60 @@ export default function CreateShedulePage() {
 		<>
 			<PageContainer.Header title="Составить расписание тренеров" />
 			<PageContainer.Body>
-				<div className="make_timetable_met_calendar">
-					<header className="make_timetable_met_calendar_head">
+				<div className={styles.calendar}>
+					<header className={styles['make_timetable_met_calendar_head']}>
 						<img
 							src={left_arrow}
-							className="make_timetable_met_calendar_left_arrow"
+							className={styles['make_timetable_met_calendar_left_arrow']}
 							alt=""
 						/>
-						<h1 className="make_timetable_met_calendar_current_date">
+						<h1 className={styles['make_timetable_met_calendar_current_date']}>
 							Май, 2022
 						</h1>
 						<img
 							src={right_arrow}
-							className="make_timetable_met_calendar_left_arrow"
+							className={styles['make_timetable_met_calendar_left_arrow']}
 							alt=""
 						/>
 					</header>
-					<div className="make_timetable_met_calendar_week_days_name_cont">
+					<div
+						className={
+							styles['make_timetable_met_calendar_week_days_name_cont']
+						}
+					>
 						{tempArray.map((item, index) => (
 							<div
 								key={index}
-								className="make_timetable_met_calendar_week_day_name"
+								className={styles['make_timetable_met_calendar_week_day_name']}
 							>
 								{item}
 							</div>
 						))}
 					</div>
-					<div className="make_timetable_met_calendar_month_days_cont">
+					<div
+						className={styles['make_timetable_met_calendar_month_days_cont']}
+					>
 						{tempArray2.map((item, index) => (
 							<div
 								key={index}
-								className="make_timetable_met_calendar_month_day"
+								className={styles['make_timetable_met_calendar_month_day']}
 							>
 								{item}
 							</div>
 						))}
 					</div>
 				</div>
-				<div className="make_timetable_met_choose_trainer_cont">
-					<select className="make_timetable_met_choose_trainer">
+				<div className={styles['btns-wrap']}>
+					<select className={styles['choose-btn']}>
 						<option> Выберите тренера</option>
 					</select>
-					<select className="make_timetable_met_choose_place">
+					<select className={styles['choose-btn']}>
 						<option>Выберите площадку</option>
 					</select>
-					<div className="make_timetable_met_send_shedule_cont">
-						<Link className="make_timetable_met_send_shedule_link">
-							Отправить расписание
-						</Link>
-					</div>
+					{/* <div className='make_timetable_met_send_shedule_cont'> */}
+					{/* <Link className="make_timetable_met_send_shedule_link">Отправить расписание</Link> */}
+					{/* </div> */}
+					<Button>Отправить расписание</Button>
 				</div>
 			</PageContainer.Body>
 		</>
