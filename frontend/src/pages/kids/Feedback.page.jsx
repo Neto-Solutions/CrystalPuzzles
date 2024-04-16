@@ -1,4 +1,4 @@
-import './Feedback.page.css';
+import './Feedback.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 import ChooseButton from '@components/button/Choose.button';
 export default function FeedbackPage() {

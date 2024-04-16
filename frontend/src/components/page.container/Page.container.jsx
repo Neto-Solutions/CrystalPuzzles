@@ -1,4 +1,4 @@
-import './Page.container.css';
+import './Page.container.scss';
 const PageContainer = {
 	Header: ({ title }) => <Header title={title} />,
 	Body: ({ children }) => <Body>{children}</Body>

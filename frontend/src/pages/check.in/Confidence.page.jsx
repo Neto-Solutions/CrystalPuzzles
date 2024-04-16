@@ -1,4 +1,4 @@
-import './Confidence.page.css';
+import './Confidence.page.scss';
 import { Link } from 'react-router-dom';
 export default function ConfidencePage() {
 	return (

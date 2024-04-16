@@ -1,4 +1,4 @@
-import './Analytics.page.css';
+import './Analytics.page.scss';
 import UserCard from '@components/user.card/User.card';
 import PageContainer from '@components/page.container/Page.container';
 export default function AnalyticsPage() {

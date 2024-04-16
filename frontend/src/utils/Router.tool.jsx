@@ -1,4 +1,4 @@
-import './Router.tool.css';
+import './Router.tool.scss';
 import checkInRoutes from '../routes/check.in.router';
 import methodistRoutes from '../routes/methodist.router';
 import trainerRoutes from '../routes/trainer.router';

@@ -1,4 +1,4 @@
-import './Main.page.css';
+import './Main.page.scss';
 import { Link } from 'react-router-dom';
 import PageContainer from '@components/page.container/Page.container';
 import shedule_progress from '@assets/svg/progress_shedule.svg';

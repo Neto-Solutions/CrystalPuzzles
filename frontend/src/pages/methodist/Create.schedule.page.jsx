@@ -1,4 +1,4 @@
-import './Create.schedule.page.css';
+import './Create.schedule.page.scss';
 import left_arrow from '@assets/svg/calendar_arrow_left.svg';
 import right_arrow from '@assets/svg/calendar_arrow_right.svg';
 import { Link } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import './Schedule.page.css';
+import './Schedule.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 import Calendar from '@components/calendar/Calendar';
 import ChooseButton from '@components/button/Choose.button';

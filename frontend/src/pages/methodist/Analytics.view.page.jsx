@@ -1,4 +1,4 @@
-import './Analytics.view.page.css';
+import './Analytics.view.page.scss';
 import { Link } from 'react-router-dom';
 import calendar_icon from '@assets/svg/calendar_icon.svg';
 import UserCard from '@components/user.card/User.card';

@@ -1,4 +1,4 @@
-import './Card.css';
+import './Card.scss';
 
 export default function Card({ title, children }) {
 	return (

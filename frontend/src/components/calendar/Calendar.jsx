@@ -1,4 +1,4 @@
-import './Calendar.css';
+import './Calendar.scss';
 
 import { useEffect, useState } from 'react';
 import { ReactComponent as LeftArrow } from '@assets/svg/small_calendar_arrow_left.svg';

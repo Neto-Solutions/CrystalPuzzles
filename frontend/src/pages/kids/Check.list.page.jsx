@@ -1,4 +1,4 @@
-import './Check.list.page.css';
+import './Check.list.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 import Card from '@components/card/Card';
 import bunny from '@assets/svg/bunny.svg';

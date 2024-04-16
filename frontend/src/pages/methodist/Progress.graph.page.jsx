@@ -1,4 +1,4 @@
-import './Progress.graph.page.css';
+import './Progress.graph.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 import UserCard from '@components/user.card/User.card';
 

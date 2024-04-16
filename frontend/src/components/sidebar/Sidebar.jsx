@@ -1,4 +1,4 @@
-import './Sidebar.css';
+import './Sidebar.scss';
 import avatar from '@assets/svg/avatar.svg';
 import help from '@assets/svg/help_icon.svg';
 import exit from '@assets/svg/exit_icon.svg';

@@ -1,4 +1,4 @@
-import './Appraisal.page.css';
+import './Appraisal.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 import ChooseButton from '@components/button/Choose.button';
 export default function AppraisalPage() {

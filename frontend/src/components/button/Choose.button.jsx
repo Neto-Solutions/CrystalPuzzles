@@ -1,4 +1,4 @@
-import './Choose.button.css';
+import './Choose.button.scss';
 import { ReactComponent as DownArrow } from '@assets/svg/calendar_arrow_down.svg';
 export default function ChooseButton({
 	title,

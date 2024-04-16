@@ -1,4 +1,4 @@
-import './Main.page.css';
+import './Main.page.scss';
 import { Link } from 'react-router-dom';
 import reward_animal from '@assets/svg/reward_animal.svg';
 import Card from '@components/card/Card';

@@ -1,4 +1,4 @@
-import './Evaluation.table.page.css';
+import './Evaluation.table.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 export default function EvaluationTablePage() {
 	return (

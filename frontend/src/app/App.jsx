@@ -1,7 +1,7 @@
-import './App.css';
+import './App.scss';
 import { useMemo } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import createRouter from './routes';
+import createRouter from '../routes';
 import { useSelector } from 'react-redux';
 
 export default function App() {
