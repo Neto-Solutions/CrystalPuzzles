@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = "*"
-sqlalchemy = "*"
+uvloop = "*"
 asyncpg = "*"
 alembic = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
@@ -18,6 +18,8 @@ redis = "*"
 propelauth-fastapi = "*"
 psycopg2-binary = "*"
 pylint = "*"
+pydantic-settings = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 

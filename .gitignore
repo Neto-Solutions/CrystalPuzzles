@@ -9,6 +9,14 @@ __pycache__/
 ### Virual enviroment
 backend/.env
 .env
+Pipfile.lock
 
 ### Migrations ###
 # backend/migrations/
+
+### PG Data ###
+
+/pgdata
+
+### Other ###
+app.log
