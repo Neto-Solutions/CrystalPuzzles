@@ -42,5 +42,5 @@ class Message(BaseModel):
 
 class BaseFilterSchema(BaseModel):
     page_number: int = Query(ge=0, default=0, description="Номер страницы")
-    page_size: int = Query(ge=1, le=100, default=settings.PAGE_SIZE, description="Строка поиска")
-    search_string: str | None = Query(default=None, description="Размер страницы")
+    page_size: int = Query(ge=1, le=100, default=settings.PAGE_SIZE, description="Размер страницы")
+    search_string: str | None = Query(default=None, description="Строка поиска")
