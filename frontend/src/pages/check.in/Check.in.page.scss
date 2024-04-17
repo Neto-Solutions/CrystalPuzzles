@@ -1,0 +1,150 @@
+.input,
+.input_select,
+.input_option {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.check_in_container {
+    display: flex;
+    flex-direction: column;
+    max-width: 470px;
+    margin: auto;
+}
+
+.check_in_header {
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 47px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.check_in_form {
+    display: flex;
+    flex-direction: column;
+    color: #2b2d91;
+    font-family: Rubik;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.input_select {
+    padding: 12px 0px 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #0e1079;
+    width: 470px;
+    background-color: white;
+}
+
+.input_container {
+    margin-bottom: 20px;
+}
+
+.input_description {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    color: #2b2d91;
+}
+
+.input {
+    width: 433px;
+    padding: 12px 0px 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #0e1079;
+    width: 470px;
+    background-color: white;
+}
+
+.input_select {
+}
+
+.input_option {
+}
+
+.input_password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input_password_eye {
+    position: absolute;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+}
+
+.check_in_forget_password {
+    text-align: end;
+    margin-bottom: 28px;
+}
+
+.check_in_forget_password_link,
+.check_in_btn_label {
+    color: #2b2d91;
+    text-decoration: underline;
+}
+
+.input_checkbox_container {
+    display: flex;
+}
+
+.input_checkbox {
+    width: 38px;
+    height: 24px;
+    border: 1px black solid;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.check_in_confidence_politic_link {
+    color: inherit;
+    font-weight: 500;
+}
+
+.check_in_submit_btn {
+    margin-bottom: 36px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    width: 470px;
+    height: 53px;
+    padding: 15.5px 28px 15.5px 28px;
+    border-radius: 20px;
+    border: solid #2b2d91 2px;
+    color: inherit;
+    background-color: inherit;
+}
+
+.check_in_btn_container {
+    margin: auto;
+    text-align: center;
+}
+
+.check_in_btn {
+    margin-top: 20px;
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 500;
+    color: #e1f1f8;
+    background-color: #2b2d91;
+    padding: 15.5px 28px 15.5px 28px;
+    border-radius: 20px;
+}
+
+.check_in_btn:hover,
+.input_checkbox:hover,
+.check_in_submit_btn:hover,
+.input_select:hover {
+    cursor: pointer;
+}
