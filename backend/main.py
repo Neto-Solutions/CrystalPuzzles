@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
+import logging
 
+from alembic import command, config
 from fastapi import FastAPI
 import uvicorn
 from fastapi.openapi.utils import get_openapi
@@ -87,6 +89,19 @@ all_routers = [
     student_router
 ]
 
+def run_migrations() -> None:
+    """
+    Подключает Alembic и выполняет миграции БД
+    """
+    try:
+        logging.info('Start Alembic migrations')
+        alembic_cfg = config.Config("alembic.ini")
+        command.upgrade(alembic_cfg, "head")
+        logging.info('Alembic migrations success')
+    except Exception as e:
+        logging.error(f'Error while running Alembic migrations: {e}')
+
+
 
 for router in all_routers:
     app.include_router(router)
@@ -94,6 +109,8 @@ for router in all_routers:
 app.add_api_route('/health', endpoint=healthCheckRoute(factory=_healthChecks), include_in_schema=False)
 
 if __name__ == '__main__':
+
+    run_migrations()
 
     uvicorn.run(
         'main:app',
