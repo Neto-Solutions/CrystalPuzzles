@@ -1,12 +1,12 @@
-import logo from "../../assets/img/logo.png";
-import "./Header.scss";
+import logo from '@assets/svg/header_logo.svg';
+import './Header.scss';
 
 export default function Header() {
-  return (
-    <header className='header'>
-      <div>
-        <img className='logo' src={logo} alt='Logo' />
-      </div>
-    </header>
-  );
+	return (
+		<header className="checkin_header">
+			<div className="logo_container">
+				<img src={logo} alt="" />
+			</div>
+		</header>
+	);
 }

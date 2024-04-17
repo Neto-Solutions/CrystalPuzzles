@@ -1,0 +1,20 @@
+.choose_button {
+	cursor: pointer;
+	user-select: none;
+	width: 346px;
+	height: 57px;
+	background-color: #A1CBF1;
+	border: 1.5px solid #0E1079;
+	border-radius: 20px;
+	font-family: "Rubik";
+	font-size: 24px;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.choose_button_arrow {
+	margin-left: 10px;
+	margin-right: 10px;
+}

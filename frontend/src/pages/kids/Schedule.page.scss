@@ -1,0 +1,58 @@
+.schedule_table {
+    width: 714px;
+    height: fit-content;
+    border: solid #0e1079 1.5px;
+    border-radius: 20px;
+}
+
+.schedule_table_row {
+    height: 57px;
+    font-family: 'Rubik';
+    font-size: 24px;
+    font-weight: 400;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    border-bottom: solid #0e1079 1.5px;
+}
+
+.schedule_table_row:last-child {
+    border-bottom: none;
+}
+
+
+.schedule_table_row_item_time {
+    border-right: solid #0e1079 1.5px;
+    width: 102px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule_table_row_item_name {}
+
+.shedule_page_calendar_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.shedule_page_calendar_btn {
+    user-select: none;
+    margin-top: 20px;
+    width: 346px;
+    height: 57px;
+    background-color: #A1CBF1;
+    border: 1.5px solid #0E1079;
+    border-radius: 20px;
+    font-family: "Rubik";
+    font-size: 24px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shedule_page_calendar_btn_arrow {
+    margin-left: 10px;
+    margin-right: 10px;
+}
