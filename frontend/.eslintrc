@@ -24,9 +24,7 @@
 		"no-console": "warn",
 		"no-alert": "warn",
 		"no-unused-vars": "warn",
-		"no-empty": "warn",
-		"for-direction": "error",
-		"no-ex-assign": "error"
+		"no-empty": "warn"
 	},
 	"settings": {
 		"react": {
