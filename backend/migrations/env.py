@@ -9,6 +9,8 @@ from core.config import settings
 
 from service.identity.models import User, Role, Rank, Task
 from service.group.models import Group, StudentGroup
+from service.training.models import Training
+from service.lesson.models import Lesson, Check, TrainingCheck
 from core.database import Base
 
 # this is the Alembic Config object, which provides
