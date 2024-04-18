@@ -16,7 +16,8 @@
 	},
 	"plugins": ["react"],
 	"rules": {
-		"prettier/prettier": "warn",
+		"prettier/prettier": "error",
+		"linebreak-style": "off", // avoid error in Windows
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
 		"react/jsx-key": "warn",
