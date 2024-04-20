@@ -13,7 +13,7 @@ on:
       - release  # Correct trigger syntax
 
 jobs:
-  deploy:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,12 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v3
+        
+  integration:
+    runs-on: ubuntu-latest
+    needs: [tests]
 
+    steps:
       - name: Create ZIP deployment package
         run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
 
@@ -41,3 +46,33 @@ jobs:
 
       - name: Print message for task end
         run: echo "Task for S3 complete"
+
+
+  deployment:
+    runs-on: ubuntu-latest
+    needs: [integration]
+
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.MY_AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.MY_AWS_SECRET_KEY }}
+          aws-region: ${{ env.AWS_REGION_NAME }}
+
+      - name: Create new Elastic Beanstalk Application Version
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name ${{ env.EB_APPLICATION_NAME }} \
+            --version-label v1.0.0 \
+            --source-bundle S3Bucket=my-s3-bucket,S3Key=deployments/${{ env.DEPLOY_PACKAGE_NAME }}  # Adjust bucket and key
+
+      - name: Update Elastic Beanstalk Environment
+        run: |
+          aws elasticbeanstalk update-environment \
+            --environment-name ${{ env.EB_ENVIROMENT_NAME }} \
+            --version-label v1.0.0
+          
+
+      
+      
