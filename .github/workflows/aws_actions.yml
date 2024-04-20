@@ -34,7 +34,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION_NAME }}
 
       - name: Debug environment variables
-        run: echo "Bucket name: ${{ env.EB_PACKAGE_S3_BUCKET_NAME }}"
+        run: echo ${{ env.EB_PACKAGE_S3_BUCKET_NAME }}
 
       - name: Copy Deployment package to S3 bucket
         run: aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.EB_PACKAGE_S3_BUCKET_NAME }}/
