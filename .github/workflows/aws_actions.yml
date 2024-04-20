@@ -66,14 +66,18 @@ jobs:
         run: |
           aws elasticbeanstalk create-application-version \
             --application-name ${{ env.EB_APPLICATION_NAME }} \
-            --version-label v1.0.0 \
-            --source-bundle S3Bucket=my-s3-bucket,S3Key=deployments/${{ env.DEPLOY_PACKAGE_NAME }}  # Adjust bucket and key
+            --version-label "Ver-${{ github.sha }}" \
+            --source-bundle S3Bucket=${{ env.EB_PACKAGE_S3_BUCKET_NAME }},S3Key=deployments/${{ env.DEPLOY_PACKAGE_NAME }}
+            --description "CommitSHA-${{ github.sha }}"
 
       - name: Update Elastic Beanstalk Environment
         run: |
           aws elasticbeanstalk update-environment \
             --environment-name ${{ env.EB_ENVIROMENT_NAME }} \
-            --version-label v1.0.0
+            --version-label "Ver-${{ github.sha }}"
+
+      - name: Print message for task end
+        run: echo "The deployment task is complete"
           
 
       
