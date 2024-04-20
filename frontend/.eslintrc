@@ -16,7 +16,7 @@
 	},
 	"plugins": ["react"],
 	"rules": {
-		"prettier/prettier": "error",
+		"prettier/prettier": "warn",
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
 		"react/jsx-key": "warn",
