@@ -1,0 +1,17 @@
+name: Ci-Cd-Pipeline-to-AWS
+
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hellow Word
+      run: echo "Helow Word"
+
+      
