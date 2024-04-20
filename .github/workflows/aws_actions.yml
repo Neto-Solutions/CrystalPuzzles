@@ -1,5 +1,11 @@
 name: Ci-Cd-Pipeline-to-AWS
 
+env:
+  EB_PASKAGE_S3_BUCKET_NAME: "crystall-fastapi-app-packages"
+  EB_APPLICATION_NAME: "FastApiCr"
+  EB_ENVIROMENT_NAME:  "FastApiCr-env"
+  DEPLOY_PACKAGE_NAME:  "CrystalPuzzles_${{ github.sha }}.zip"
+  AWS_REGION_NAME: "eu-central-1"
 
 on:
   push:
@@ -7,11 +13,20 @@ on:
       - release
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Say Hellow Word
       run: echo "Helow Word"
+      
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create ZIP deployment package
+      run: zip -r ${{ secrets.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+  
+
+  
 
       
