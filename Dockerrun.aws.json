@@ -5,6 +5,6 @@
   "dockerComposeFileName": "docker-compose.yml",
   "options": {
     "awslogs-stream-prefix": "eb",
-    "awslogs-region": "your-aws-region"
+    "awslogs-region": "eu-central-1"
   }
 }
