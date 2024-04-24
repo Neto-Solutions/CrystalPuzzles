@@ -14,6 +14,7 @@ from core.utils.healthcheck import HealthCheckFactory, HealthCheckSQLAlchemy, He
 from service.identity.initialize import RolesInitialize, BaseUserInitialize
 
 from service.group.routers.group_router import group_router
+from service.identity.routers.admin_panel_router import admin_panel_router
 from service.identity.routers.auth_router import auth_routers
 from service.identity.routers.user_router import user_router
 from service.identity.routers.profile_router import profile_router
@@ -92,7 +93,8 @@ all_routers = [
     student_router,
     training_router,
     space_router,
-    lesson_router
+    lesson_router,
+    admin_panel_router
 ]
 
 def run_migrations() -> None:

@@ -58,20 +58,23 @@ class EditUserSchema(BaseModel):
             return value.replace(tzinfo=None)
 
 
-class UserSchemaForTable(BaseModel):
+class UserShortSchemaForTable(BaseModel):
     """ Формирует ответ с деталями о пользователе """
     id: int
     email: EmailStr
-    is_active: Optional[bool] = True
-    is_superuser: Optional[bool] = False
-    is_verified: Optional[bool] = False
     firstname: Optional[str] = None
     lastname: Optional[str] = None
     surname: Optional[str] = None
-    birthday: datetime
+    birthday: Optional[datetime]
     is_man: Optional[bool] = True
     contact: Optional[str] = None
 
+class UserSchemaForTable(UserShortSchemaForTable):
+    is_active: Optional[bool] = True
+    is_superuser: Optional[bool] = False
+    is_verified: Optional[bool] = False
+    role: str
+    deleted: bool
 
 class UserViewSchemaForPage(BaseModel):
     page: int

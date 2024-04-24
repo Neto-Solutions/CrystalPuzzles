@@ -37,7 +37,7 @@ class UserRepository(BaseRepository):
                 "page": page_number,
                 "max_page_count": math.ceil(count_records / page_size) - 1,
                 "count_records": count_records,
-                "records": [row.to_read_model for row in records] if count_records != 0 else []
+                "records": [row for row in records] if count_records != 0 else []
             }
         return response
 
