@@ -74,7 +74,7 @@ jobs:
         run: |
           aws elasticbeanstalk update-environment \
             --environment-name ${{ env.EB_ENVIRONMENT_NAME }} \
-            --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t3.medium
+            --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t3.medium \    
             --version-label "Ver-${{ github.sha }}"
 
       - name: Print message for task end
