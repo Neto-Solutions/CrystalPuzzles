@@ -57,7 +57,7 @@ services:
     depends_on:
       - api
     ports:
-      - 8080:443
+      - 8080:3000
     networks:
       - frontend
 
