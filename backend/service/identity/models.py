@@ -31,6 +31,8 @@ class User(Base):
     contact: Mapped[str] = mapped_column(sa.String, nullable=True)
 
     group = relationship("Group", back_populates="trainer", lazy="subquery")
+    # lessons = relationship("Lesson", back_populates="trainer", lazy="subquery")
+
 
     @property
     def is_student(self) -> bool:

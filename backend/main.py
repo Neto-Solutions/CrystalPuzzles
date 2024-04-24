@@ -10,20 +10,22 @@ from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
 from core.routers import healthCheckRoute
 from core.utils.healthcheck import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
-from service.identity.initialize import RolesInitialize
-
+from service.identity.initialize import RolesInitialize, BaseUserInitialize
 
 from service.group.routers.group_router import group_router
 from service.identity.routers.auth_router import auth_routers
 from service.identity.routers.user_router import user_router
 from service.identity.routers.profile_router import profile_router
 from service.group.routers.student_router import student_router
+from service.lesson.routers.lesson_router import lesson_router
+from service.lesson.routers.space_router import space_router
 from service.training.router import training_router
 
 """ Initialize """
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await RolesInitialize.initialize()
+    await BaseUserInitialize.initialize()
     yield
 
 
@@ -87,7 +89,9 @@ all_routers = [
     auth_routers,
     group_router,
     student_router,
-    training_router
+    training_router,
+    space_router,
+    lesson_router
 ]
 
 def run_migrations() -> None:
@@ -118,5 +122,5 @@ if __name__ == '__main__':
         host="0.0.0.0",
         port=8000,
         reload=True,
-        loop='uvloop',
+        # loop='uvloop',
     )

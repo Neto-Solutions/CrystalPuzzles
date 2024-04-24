@@ -18,6 +18,9 @@ def lesson_service():
 def space_service():
     return SpaceService(SpaceRepository)
 
+def space_repository():
+    return SpaceRepository()
+
 def check_service():
     return CheckService(CheckRepository)
 
