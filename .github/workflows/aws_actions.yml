@@ -73,7 +73,7 @@ jobs:
         run: |
           aws elasticbeanstalk update-environment \
             --environment-name ${{ env.EB_ENVIROMENT_NAME }} \
-            --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t3.medium
+            --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t4g.medium
              --version-label "Ver-${{ github.sha }}"
 
             
