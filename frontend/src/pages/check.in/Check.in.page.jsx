@@ -1,8 +1,24 @@
 import './Check.in.page.scss';
 import { ReactComponent as Eye } from '@assets/svg/eye_icon.svg';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-export default function CheckInPage({ login }) {
+import { registerUser } from '../../api/users.api';
+export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
+	const [data, setData] = useState({
+		email: 'user@example.com',
+		password: 'string',
+		firstname: 'string',
+		lastname: 'string',
+		surname: 'string',
+		birthday: '2024-04-26T08:13:59.493Z',
+		is_man: true,
+		contact: 'string'
+	});
+	async function handleRegistration() {
+		const response = await registerUser(data);
+		console.log(response);
+	}
 	return (
 		<>
 			<div className="check_in_container">
@@ -75,7 +91,9 @@ export default function CheckInPage({ login }) {
 							</Link>
 						</p>
 					</label>
-					<div className="check_in_submit_btn">Войти</div>
+					<div className="check_in_submit_btn" onClick={handleRegistration}>
+						{login ? 'Войти' : 'Зарегистрироваться'}
+					</div>
 				</form>
 				{login ? (
 					<>
