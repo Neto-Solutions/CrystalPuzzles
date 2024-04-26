@@ -26,7 +26,7 @@ export const Datepicker = () => {
 		return [...Array(14)].map((_, index) => {
 			const currentDate = startDate.clone().add(index, 'days');
 			return (
-				<li key={index} className={styles['days-item']}>
+				<li key={index} className={styles['days_item']}>
 					{currentDate.format('D')}
 				</li>
 			);
@@ -57,15 +57,15 @@ export const Datepicker = () => {
 				<button onClick={prevTwoWeeks} className={styles.btn}>
 					<img className={styles.arrow} src={arrowLeft} />
 				</button>
-				<h3 className={styles['month-title']}>{generateHeader(startDate)}</h3>
+				<h3 className={styles['month_title']}>{generateHeader(startDate)}</h3>
 				<button onClick={nextTwoWeeks} className={styles.btn}>
 					<img className={styles.arrow} src={arrowRight} />
 				</button>
 			</header>
-			<div className={`${styles['grid-wrap']}`}>
+			<div className={`${styles['grid_wrap']}`}>
 				<ul className={`${styles.grid} ${styles.weeks}`}>
 					{daysOfWeek.map((item) => (
-						<li key={item} className={styles['weeks-item']}>
+						<li key={item} className={styles['weeks_item']}>
 							{item}
 						</li>
 					))}

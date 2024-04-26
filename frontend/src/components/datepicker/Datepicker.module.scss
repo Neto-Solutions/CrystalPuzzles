@@ -2,7 +2,6 @@
 	min-width: 1078px;
 	border: var(--border);
 	border-radius: var(--radius);
-
 }
 
 .top {
@@ -31,13 +30,13 @@
 	cursor: pointer;
 }
 
-.month-title {
+.month_title {
 	font-family: var(--ff-first);
 	font-weight: var(--fw-medium);
 	font-size: var(--fz-btn);
 }
 
-.grid-wrap {
+.grid_wrap {
 	font-family: var(--ff-second);
 	font-weight: var(--fw-regular);
 	font-size: var(--fz-text);
@@ -56,7 +55,7 @@
 	border-bottom: var(--border);
 	border-top: var(--border);
 
-	.weeks-item {
+	.weeks_item {
 		padding: 12px;
 		align-self: center;
 		&:nth-child(n):not(:last-child) {
@@ -67,7 +66,7 @@
 
 .days {
 	grid-template-rows: repeat(2, 154px);
-	.days-item {
+	.days_item {
 		padding: 12px;
 		cursor: pointer;
 

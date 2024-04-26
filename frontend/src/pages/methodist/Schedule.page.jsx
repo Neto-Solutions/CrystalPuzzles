@@ -11,8 +11,8 @@ export default function SchedulePage() {
 			<PageContainer.Header title="Расписание тренеров" />
 			<PageContainer.Body>
 				<Datepicker />
-				<div className={styles['btns-wrap']}>
-					<ChooseButton className={styles['choose-btn']}></ChooseButton>
+				<div className={styles['btns_wrap']}>
+					<ChooseButton className={styles['choose_btn']}></ChooseButton>
 					<Button>Составить расписание</Button>
 				</div>
 			</PageContainer.Body>

@@ -11,7 +11,7 @@ export default function CreateShedulePage() {
 			<PageContainer.Header title="Составить расписание тренеров" />
 			<PageContainer.Body>
 				<Datepicker />
-				<div className={styles['btns-wrap']}>
+				<div className={styles['btns_wrap']}>
 					<ChooseButton
 						title={'Выберите тренера'}
 						downArrow={'calendar_arrow_down.svg'}
