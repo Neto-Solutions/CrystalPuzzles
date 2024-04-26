@@ -19,6 +19,7 @@ from service.identity.routers.auth_router import auth_routers
 from service.identity.routers.user_router import user_router
 from service.identity.routers.profile_router import profile_router
 from service.group.routers.student_router import student_router
+from service.training.router import training_router
 
 """ Initialize """
 @asynccontextmanager
@@ -86,7 +87,8 @@ all_routers = [
     profile_router,
     auth_routers,
     group_router,
-    student_router
+    student_router,
+    training_router
 ]
 
 def run_migrations() -> None:
