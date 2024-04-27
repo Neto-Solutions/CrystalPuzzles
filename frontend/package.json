@@ -18,7 +18,7 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "craco start",
+		"start": "craco start --host 255.255.255.0 --port 3000",
 		"build": "craco build",
 		"test": "craco test",
 		"eject": "craco eject",
