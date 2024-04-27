@@ -1,8 +1,8 @@
 import { $host, $authHost } from './';
 
 const authUser = async (user) => {
-	// const { username, password } = user;
-	const { data } = await $host.post('/auth/login', { user });
+	const { username, password } = user;
+	const { data } = await $host.post('/auth/login', { username, password });
 	return data;
 };
 

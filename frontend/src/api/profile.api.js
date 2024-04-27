@@ -11,8 +11,15 @@ const getProfileEdit = async () => {
 };
 
 const updateProfile = async (profile) => {
-	// const { firstname, lastname, surname, birthday, is_man, contact } = profile;
-	const { data } = await $authHost.put('/profile/edit', profile);
+	const { firstname, lastname, surname, birthday, is_man, contact } = profile;
+	const { data } = await $authHost.put('/profile/edit', {
+		firstname,
+		lastname,
+		surname,
+		birthday,
+		is_man,
+		contact
+	});
 	return data;
 };
 

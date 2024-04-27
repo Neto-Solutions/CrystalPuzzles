@@ -21,8 +21,8 @@ const createGroup = async (group) => {
 };
 
 const updateGroup = async (group) => {
-	// const { id, name, trainer_id } = group;
-	const { data } = await $authHost.put(`/group`, group);
+	const { id, name, trainer_id } = group;
+	const { data } = await $authHost.put(`/group`, { id, name, trainer_id });
 	return data;
 };
 
