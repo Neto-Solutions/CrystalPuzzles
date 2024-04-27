@@ -1,7 +1,7 @@
 import './Main.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 import Button from '@components/button/Button';
-import ChooseButton from '@components/button/Choose.button';
+
 
 export default function MainPage() {
 	return	(
@@ -9,23 +9,22 @@ export default function MainPage() {
 		<PageContainer.Header title="Главная страница" />
 		<PageContainer.Body>
 			<div className="general_main_cont">
-	
 				<div className="general_header_base_cont">
 					<main className="general_base_cont">
 						<section className="general_notifications_cont">
 							<h1 className="general_notifications_head">Уведомления</h1>
 							<div className="general_notification_cont">
 								<a href="#" className="general_notification_descr">Михаил выполнил все задания</a>
-								<button className="general_notification_btn">Открыть</button>
+								<Button className="general_notification_btn">Открыть</Button>
 							</div>
 							<div className="general_not_decor_line"></div>
 							<div className="general_notification_cont">
 								<a href="#" className="general_notification_descr">Методист Мария оставила вам сообщение</a>
-								<button className="general_notification_btn">Открыть</button>
+								<Button className="general_notification_btn">Открыть</Button>
 							</div>
 							<div className="general_not_decor_line"></div>
 							<div className="general_notifications_btns_cont">
-								<button className="general_notifications_btns">Показать все</button>
+								<Button className="general_notifications_btns">Показать все</Button>
 							</div>
 						</section>
 						<a className="general_timetable_cont_route">
@@ -51,7 +50,7 @@ export default function MainPage() {
 
 								</div>
 								<div className="general_timetable_btns_cont">
-									<button className="general_timetable_btn ">Сформировать чек-лист</button>
+									<Button className="general_timetable_btn ">Сформировать чек-лист</Button>
 								</div>
 							</section>
 
