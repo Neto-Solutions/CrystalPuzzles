@@ -1,0 +1,28 @@
+.qroup_item_create_group {
+    width: 714px;
+    height: 57px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px ;
+    border: 1.5px solid var(--border-border-primary, #0E1079);
+    margin-bottom: 20px;
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.13px;
+    text-align: left;
+    padding: 10px 30px 0px 30px;
+    background: var(--color-main-200, #DAE8F0);
+}
+
+.group_item_checkbox {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 2px solid var(--border-border-primary, #0E1079);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+.create_btn {
+    width: 347px;
+}
