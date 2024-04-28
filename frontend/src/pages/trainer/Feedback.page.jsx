@@ -14,9 +14,7 @@ export default function FeedbackPage() {
 							</div>
 							<textarea className="feedback_form_textarea" name="" id="" />
 						</div>
-						<button className="feedback_form_send_button">
-							Отправить 
-						</button>
+						<button className="feedback_form_send_button">Отправить</button>
 					</form>
 				</div>
 			</PageContainer.Body>

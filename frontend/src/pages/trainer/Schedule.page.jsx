@@ -12,7 +12,7 @@ export default function SchedulePage() {
 		<>
 			<PageContainer.Header title="Расписание" />
 			<PageContainer.Body>
-			<div className="schedule_table">
+				<div className="schedule_table">
 					{tempArray.map((item, index) => (
 						<div key={index} className="schedule_table_row">
 							<div className="schedule_table_row_item_time">{item.time}</div>
