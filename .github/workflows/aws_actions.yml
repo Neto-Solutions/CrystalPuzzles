@@ -18,9 +18,7 @@ jobs:
 
     steps:
       - name: Say Hello World  # Correct indentation
-        run: echo "Hello World"
-
-     
+        run: echo "Hello World"     
         
   integration:
     runs-on: ubuntu-latest
