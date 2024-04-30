@@ -11,6 +11,7 @@ on:
   push:
     branches:
       - release  # Correct trigger syntax
+      
 
 jobs:
   tests:
@@ -18,7 +19,8 @@ jobs:
 
     steps:
       - name: Say Hello World  # Correct indentation
-        run: echo "Hello World"     
+        run: echo "Hello World"  
+        
         
   integration:
     runs-on: ubuntu-latest
@@ -77,8 +79,7 @@ jobs:
             
 
       - name: Print message for task end
-        run: echo "The deployment task is complete"
-          
+        run: echo "The deployment task is complete"        
 
       
       
