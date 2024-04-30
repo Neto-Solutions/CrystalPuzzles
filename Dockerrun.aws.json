@@ -1,5 +1,5 @@
 {
-  "AWSEBDockerrunVersion": "2",
+  "AWSEBDockerrunVersion": "1",
   "volumes": [],
   "containerDefinitions": [],
   "dockerComposeFileName": "docker-compose.yml",
