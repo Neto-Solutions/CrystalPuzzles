@@ -3,7 +3,7 @@ name: Ci-Cd-Pipeline-to-AWS
 env:
   EB_PACKAGE_S3_BUCKET_NAME: "crystall-fastapi-app-packages"  # Corrected spelling
   EB_APPLICATION_NAME: "FastApiCr"
-  EB_ENVIROMENT_NAME:  "FastApiCr-env-1"
+  EB_ENVIROMENT_NAME:  "FastApiCr-env"
   DEPLOY_PACKAGE_NAME:  "CrystalPuzzles_${{ github.sha }}.zip"
   AWS_REGION_NAME: "eu-central-1"
 
@@ -69,12 +69,12 @@ jobs:
             --version-label "Ver-${{ github.sha }}" \
             --source-bundle S3Bucket=${{ env.EB_PACKAGE_S3_BUCKET_NAME }},S3Key=${{ env.DEPLOY_PACKAGE_NAME }} 
             
-      # - name: Update Elastic Beanstalk Environment Configuration
-      #   run: |
-      #     aws elasticbeanstalk update-environment \
-      #       --environment-name ${{ env.EB_ENVIROMENT_NAME }} \
-      #       --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t4g.xlarge \
-      #       --version-label "Ver-${{ github.sha }}"
+      - name: Update Elastic Beanstalk Environment Configuration
+        run: |
+          aws elasticbeanstalk update-environment \
+            --environment-name ${{ env.EB_ENVIROMENT_NAME }} \
+            --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t4g.medium \
+            --version-label "Ver-${{ github.sha }}"
 
             
 
