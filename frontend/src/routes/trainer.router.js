@@ -15,15 +15,18 @@ const trainerRouter = [
 	},
 	{
 		path: '/notification',
-		element: <NotificationPage />
+		element: <NotificationPage />,
+		local: 'Уведомления'
 	},
 	{
 		path: '/check-list',
-		element: <CheckListPage />
+		element: <CheckListPage />,
+		local: 'Чек-листы'
 	},
 	{
 		path: '/schedule',
-		element: <SchefulePage />
+		element: <SchefulePage />,
+		local: 'Расписание'
 	},
 	{
 		path: '/teams',
@@ -31,11 +34,13 @@ const trainerRouter = [
 	},
 	{
 		path: '/group/create',
-		element: <CreateGroupPage />
+		element: <CreateGroupPage />,
+		local: 'Группы'
 	},
 	{
 		path: '/students',
-		element: <StudentsList />
+		element: <StudentsList />,
+		local: 'Ученики'
 	},
 	{
 		path: '/student',
@@ -43,7 +48,8 @@ const trainerRouter = [
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />
+		element: <FeedbackPage />,
+		local: 'Обратная связь'
 	}
 ];
 
