@@ -1,6 +1,6 @@
 import './Appraisal.page.scss';
 import PageContainer from '@components/page.container/Page.container';
-import ChooseButton from '@components/button/Choose.button';
+import Button from '@components/button/Button';
 export default function AppraisalPage() {
 	return (
 		<>
@@ -14,9 +14,9 @@ export default function AppraisalPage() {
 						<textarea className="appraisal_form_textarea" name="" id="" />
 					</div>
 					<div className="appraisal_form_buttons">
-						<ChooseButton />
+						<Button title="Отправить" />
 						<div className="emoji_container"></div>
-						<ChooseButton />
+						<Button title="Отменить" />
 					</div>
 				</form>
 			</PageContainer.Body>

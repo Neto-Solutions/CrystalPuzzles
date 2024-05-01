@@ -1,7 +1,7 @@
 import './Schedule.page.scss';
 import PageContainer from '@components/page.container/Page.container';
 import Calendar from '@components/calendar/Calendar';
-import ChooseButton from '@components/button/Choose.button';
+import Button from '@components/button/Button';
 export default function SchedulePage() {
 	const tempArray = Array.from({ length: 7 }, () => ({
 		time: '10:15',
@@ -21,7 +21,7 @@ export default function SchedulePage() {
 				</div>
 				<div className="shedule_page_calendar_container">
 					<Calendar />
-					<ChooseButton />
+					<Button title="Записаться" />
 				</div>
 			</PageContainer.Body>
 		</>

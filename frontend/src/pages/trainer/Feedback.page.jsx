@@ -1,5 +1,6 @@
 import './Feedback.page.scss';
 import PageContainer from '@components/page.container/Page.container';
+import Button from '@components/button/Button';
 
 export default function FeedbackPage() {
 	return (
@@ -14,7 +15,7 @@ export default function FeedbackPage() {
 							</div>
 							<textarea className="feedback_form_textarea" name="" id="" />
 						</div>
-						<button className="feedback_form_send_button">Отправить</button>
+						<Button title="Отправить" className="feedback_form_send_button" />
 					</form>
 				</div>
 			</PageContainer.Body>

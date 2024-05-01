@@ -14,7 +14,7 @@ export default function CreateGroupPage() {
 					</div>
 				</div>
 				<div className="create_group_btn">
-					<Button className="create_btn">Ученики</Button>
+					<Button title="Ученики" className="create_btn" />
 				</div>
 			</PageContainer.Body>
 		</div>

@@ -1,6 +1,6 @@
 import './Feedback.page.scss';
 import PageContainer from '@components/page.container/Page.container';
-import ChooseButton from '@components/button/Choose.button';
+import Button from '@components/button/Button';
 export default function FeedbackPage() {
 	return (
 		<>
@@ -19,7 +19,7 @@ export default function FeedbackPage() {
 						</button>
 					</form>
 				</div>
-				<ChooseButton title="Выберите тренера" downArrow />
+				<Button title="Выберите тренера" downArrow />
 			</PageContainer.Body>
 		</>
 	);

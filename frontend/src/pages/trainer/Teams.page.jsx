@@ -12,8 +12,8 @@ export default function TeamsPage() {
 					<div className="qroup_item">3 группа “Зайки”</div>
 					<div className="qroup_item">6 группа “Лисы”</div>
 				</div>
-				<div className="create_group_btn">
-					<Button className="create_btn">Создать группу</Button>
+				<div className="">
+					<Button title="Создать группу" />
 				</div>
 			</PageContainer.Body>
 		</div>

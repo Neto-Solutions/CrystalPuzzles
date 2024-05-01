@@ -1,7 +1,6 @@
 // import calendar_icon from '../../assets/svg/calendar_icon.svg';
 import PageContainer from '../../components/page.container/Page.container';
 import { Datepicker } from '../../components/datepicker/Datepicker';
-import ChooseButton from '../../components/button/Choose.button';
 import Button from '../../components/button/Button';
 import styles from './Schedule.page.module.scss';
 
@@ -12,8 +11,8 @@ export default function SchedulePage() {
 			<PageContainer.Body>
 				<Datepicker />
 				<div className={styles['btns_wrap']}>
-					<ChooseButton className={styles['choose_btn']}></ChooseButton>
-					<Button>Составить расписание</Button>
+					<Button />
+					<Button title="Составить расписание" />
 				</div>
 			</PageContainer.Body>
 		</>

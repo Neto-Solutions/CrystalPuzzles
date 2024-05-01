@@ -38,8 +38,8 @@ export default function MainPage() {
 							Таблицы
 						</Title>
 						<div className={styles['table-wrap']}>
-							{[...Array(9)].map((item) => (
-								<div className={styles['table-item']}></div>
+							{[...Array(9)].map((_, index) => (
+								<div key={index} className={styles['table-item']}></div>
 							))}
 						</div>
 					</section>
@@ -51,8 +51,8 @@ export default function MainPage() {
 							Уведомления
 						</Title>
 						<div className={styles['notice-wrap']}>
-							{[...Array(2)].map((item) => (
-								<div className={styles.notice}>
+							{[...Array(2)].map((_, index) => (
+								<div key={index} className={styles.notice}>
 									<p className={styles['notice-text']}>
 										Михаил выполнил все задания
 									</p>
@@ -72,8 +72,8 @@ export default function MainPage() {
 							<Title tag="h2" className={styles.subtitle}>
 								Расписание
 							</Title>
-							{[...Array(3)].map((item) => (
-								<div className={styles['timetable-wrap']}>
+							{[...Array(3)].map((_, index) => (
+								<div key={index} className={styles['timetable-wrap']}>
 									<div className={styles['general_met_timetable_item']}>
 										<p className={styles['general_met_timetable_item_descr']}>
 											<span className={styles['gen_timetable_diff_color']}>

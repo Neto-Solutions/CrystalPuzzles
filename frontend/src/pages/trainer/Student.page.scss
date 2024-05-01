@@ -1,55 +1,45 @@
+@use '../../app/styles/mixins.scss' as *;
 
-
-.student_base_cont {
-    display: flex;
-    gap: 20px 20px;
-    flex-wrap: wrap;
-}
- 
-.student {
-    margin-bottom: 27px;
-}
 .additional_header {
-    font-weight: 600;
+	font-weight: 600;
 }
 .student_avatar {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('../../assets/img/methodist_img.jpg');
-    width: 347px;
-    height: 438px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--border-border-primary, #0E1079)
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url('../../assets/img/methodist_img.jpg');
+	width: 347px;
+	height: 438px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	border: 1px solid var(--border-border-primary, #0e1079);
 }
 .student_description_cont {
-    width: 714px;
-    height: 398px;
-    border-radius: 20px;
-    border: 1.5px solid #0E1079;
-    background: #E1F1F8;
-    padding: 30px 30px 23px 30px;
-    font-size: 24px;
-    font-weight: 500;
-    text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+	min-height: 398px;
+	padding: 30px 10px;
+	border-radius: var(--radius);
+	border: var(--border);
+	background: var(--bg-card);
+	font-size: var(--fz-btn);
+	font-weight: var(--fw-medium);
 }
 
 .student_fullname {
-    border: 1px solid #0E1079;
-    background: #E1F1F8;
-    width: 714px;
-    height: 57px;
-    padding: 6px 10px 5px 10px;
-    border-radius: 20px;
-    font-family: Roboto;
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    padding-top: 10px;
+	@include font(var(--ff-first), 24px, 500);
+	border: var(--border);
+	background: #e1f1f8;
+	width: 714px;
+	height: 57px;
+	padding: 6px 10px 5px 10px;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	padding-top: 10px;
 }
 
-.student_btn {
-    width: 347px;
-    margin-bottom: 20px;
+.student_btns_panel {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
 }
-

@@ -1,23 +1,23 @@
 import './Check.in.page.scss';
 import { ReactComponent as Eye } from '@assets/svg/eye_icon.svg';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { registerUser } from '../../api/users.api';
+// import { registerUser } from '../../api/users.api';
 export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
-	const [data, setData] = useState({
-		email: 'user@example.com',
-		password: 'string',
-		firstname: 'string',
-		lastname: 'string',
-		surname: 'string',
-		birthday: '2024-04-26T08:13:59.493Z',
-		is_man: true,
-		contact: 'string'
-	});
+	// const [data] = useState({
+	// 	email: 'user@example.com',
+	// 	password: 'string',
+	// 	firstname: 'string',
+	// 	lastname: 'string',
+	// 	surname: 'string',
+	// 	birthday: '2024-04-26T08:13:59.493Z',
+	// 	is_man: true,
+	// 	contact: 'string'
+	// });
 	async function handleRegistration() {
-		const response = await registerUser(data);
-		console.log(response);
+		// const response = await registerUser(data);
+		// console.log(response);
 	}
 	return (
 		<>

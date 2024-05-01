@@ -1,39 +1,40 @@
 :root {
-  /* Background */
-  --btn-bg-color: #625bff;
-  --btn-bg-hover: #2b2d91;
-  --bg-card: #e1f1f8;
-  --bg-card-second: #E9F2F8;
+	/* Background */
+	--btn-bg-color: #625bff;
+	--btn-bg-hover: #2b2d91;
+	--bg-card: #e1f1f8;
+	--bg-card-second: #e9f2f8;
 
-  /* gradients */
-  --light-gradient: linear-gradient(180deg, #dae8f0 0%, #ffffff 100%);
-  --dark-gradient: linear-gradient(180deg, #dae8f0 8.33%, #ffffff 100%);
+	/* gradients */
+	--light-gradient: linear-gradient(180deg, #dae8f0 0%, #ffffff 100%);
+	--dark-gradient: linear-gradient(180deg, #dae8f0 8.33%, #ffffff 100%);
 
-  /* Colors */
-  --main-color: #000;
-  --accent-color: #0e1079;
+	/* Colors */
+	--main-color: #000;
+	--accent-color: #0e1079;
 
-  /* font-size */
-  --fz-main-heading: 48px;
-  --fz-btn: 24px;
-  --fz-text: 20px;
+	/* font-size */
+	--fz-main-heading: 48px;
+	--fz-btn: 24px;
+	--fz-text: 20px;
 
-  /* font-family */
-  --ff-first: "Roboto", sans-serif;
-  --ff-second: "Rubik", sans-serif;
+	/* font-family */
+	--ff-first: 'Roboto', sans-serif;
+	--ff-second: 'Rubik', sans-serif;
 
-  /* font-weight */
-  --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-semibold: 600;
-  --fw-bold: 700;
+	/* font-weight */
+	--fw-regular: 400;
+	--fw-medium: 500;
+	--fw-semibold: 600;
+	--fw-bold: 700;
 
-  /* Border */
-  --border: 1.5px solid #0e1079;
+	/* Border */
+	--border: 1.5px solid #0e1079;
 
-  /* Radius */
-  --radius: 20px;
+	/* Radius */
+	--radius: 20px;
 
-  /* Padding */
-  --btn-padding: 16px;
+	/* Padding */
+	--btn-padding: 16px;
+	--gap: 20px;
 }

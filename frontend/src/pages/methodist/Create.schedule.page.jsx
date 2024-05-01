@@ -3,7 +3,6 @@ import PageContainer from '../../components/page.container/Page.container';
 import Button from '../../components/button/Button';
 import styles from './Create.schedule.page.module.scss';
 import { Datepicker } from '../../components/datepicker/Datepicker';
-import ChooseButton from '../../components/button/Choose.button';
 
 export default function CreateShedulePage() {
 	return (
@@ -12,15 +11,13 @@ export default function CreateShedulePage() {
 			<PageContainer.Body>
 				<Datepicker />
 				<div className={styles['btns_wrap']}>
-					<ChooseButton
+					<Button
 						title={'Выберите тренера'}
 						downArrow={'calendar_arrow_down.svg'}
-						className={styles.btn}
 					/>
-					<ChooseButton
+					<Button
 						title={'Выберите площадку'}
 						downArrow={'calendar_arrow_down.svg'}
-						className={styles.btn}
 					/>
 					<Button>Отправить расписание</Button>
 				</div>

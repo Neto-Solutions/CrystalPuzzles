@@ -11,7 +11,7 @@ function Header({ title }) {
 	);
 }
 function Body({ children }) {
-	return <div className="body_page_container">{children}</div>;
+	return <main className="body_page_container">{children}</main>;
 }
 
 export default PageContainer;

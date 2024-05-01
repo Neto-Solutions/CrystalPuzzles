@@ -1,0 +1,45 @@
+.container {
+	width: 714px;
+	height: 337px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.header {
+	padding: 20px;
+	background-color: #a1cbf1;
+	border: solid #2b2d91 1px;
+	border-radius: 20px;
+	font-family: 'Rubik';
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 28.44px;
+	text-align: center;
+}
+
+.list {
+	&_item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 15px 30px;
+		background-color: #dae8f0;
+		border: solid #0e1079 1.5px;
+		border-radius: 20px;
+		&_title {
+			font-family: 'Rubik';
+			font-size: 24px;
+			font-weight: 400;
+		}
+		&_checkbox {
+			width: 36px;
+			height: 36px;
+			outline: 1.5px solid #0e1079;
+			border-radius: 10px;
+			-webkit-appearance: none;
+			appearance: none;
+			-moz-appearance: none;
+		}
+	}
+}
