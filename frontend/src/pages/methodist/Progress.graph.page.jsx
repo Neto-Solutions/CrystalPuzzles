@@ -1,4 +1,3 @@
-import './Progress.graph.page.module.scss';
 import Page from '@components/page/Page';
 import UserCard from '@components/user.card/User.card';
 
