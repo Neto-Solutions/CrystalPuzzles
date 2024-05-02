@@ -15,7 +15,8 @@ const methodistRouter = [
 	},
 	{
 		path: '/analytics',
-		element: <AnalyticsPage />
+		element: <AnalyticsPage />,
+		local: 'Аналитика'
 	},
 	{
 		path: '/analytics/view',
@@ -23,11 +24,13 @@ const methodistRouter = [
 	},
 	{
 		path: '/progress',
-		element: <ProgressGraphPage />
+		element: <ProgressGraphPage />,
+		local: 'Графики прогресса'
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage />
+		element: <SchedulePage />,
+		local: 'Расписание'
 	},
 	{
 		path: '/schedule/create',
@@ -35,11 +38,13 @@ const methodistRouter = [
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />
+		element: <FeedbackPage />,
+		local: 'Обратная связь'
 	},
 	{
 		path: '/evaluation',
-		element: <EvaluationTable />
+		element: <EvaluationTable />,
+		local: 'Таблицы'
 	},
 	{
 		path: '/notifications',

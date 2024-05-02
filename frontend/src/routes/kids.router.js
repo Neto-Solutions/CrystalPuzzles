@@ -12,19 +12,23 @@ const kidsRouter = [
 	},
 	{
 		path: '/train',
-		element: <TrainPage />
+		element: <TrainPage />,
+		local: 'Тренировки'
 	},
 	{
 		path: '/check-list',
-		element: <CheckListPage />
+		element: <CheckListPage />,
+		local: 'Чек-листы'
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage />
+		element: <SchedulePage />,
+		local: 'Расписание'
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />
+		element: <FeedbackPage />,
+		local: 'Обратная связь'
 	},
 	{
 		path: '/appraisal',
