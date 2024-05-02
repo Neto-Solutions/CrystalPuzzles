@@ -1,9 +1,9 @@
-import MainPage from '../pages/kids/Main.page';
-import TrainPage from '../pages/kids/Train.page';
-import CheckListPage from '../pages/kids/Check.list.page';
-import SchedulePage from '../pages/kids/Schedule.page';
-import FeedbackPage from '../pages/kids/Feedback.page';
-import AppraisalPage from '../pages/kids/Appraisal.page';
+import MainPage from '@kids/Main.page';
+import TrainPage from '@kids/Train.page';
+import CheckListPage from '@kids/Check.list.page';
+import SchedulePage from '@kids/Schedule.page';
+import FeedbackPage from '@kids/Feedback.page';
+import AppraisalPage from '@kids/Appraisal.page';
 
 const kidsRouter = [
 	{
