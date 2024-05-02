@@ -1,4 +1,4 @@
-import './Feedback.page.scss';
+import styles from './Feedback.page.module.scss';
 import PageContainer from '@components/page.container/Page.container';
 import Button from '@components/button/Button';
 
@@ -7,17 +7,13 @@ export default function FeedbackPage() {
 		<>
 			<PageContainer.Header title="Обратная связь" />
 			<PageContainer.Body>
-				<div className="feedback_form_container">
-					<form className="feedback_form" action="">
-						<div className="trainer_textarea_container">
-							<div className="feedback_form_title">
-								Оставить комментарий методисту
-							</div>
-							<textarea className="feedback_form_textarea" name="" id="" />
-						</div>
-						<Button title="Отправить" className="feedback_form_send_button" />
-					</form>
+				<div className={styles.container}>
+					<div className={styles.title}>
+						Оставить комментарий методисту
+					</div>
+					<textarea className={styles.textarea} name="" id="" />
 				</div>
+				<Button title="Отправить" className={styles.button} />
 			</PageContainer.Body>
 		</>
 	);

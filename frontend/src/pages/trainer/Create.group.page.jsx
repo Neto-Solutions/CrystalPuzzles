@@ -1,4 +1,4 @@
-import './Create.group.page.scss';
+import styles from './Create.group.page.module.scss';
 import PageContainer from '@components/page.container/Page.container';
 import Button from '@components/button/Button';
 
@@ -7,15 +7,15 @@ export default function CreateGroupPage() {
 		<div>
 			<PageContainer.Header title="Создать группу" />
 			<PageContainer.Body>
-				<div className="groups_cont">
-					<div className="qroup_item_create_group">
-						<p>Название группы</p>
-						<input className="group_item_checkbox" type="checkbox" />
-					</div>
+				<div className={styles.input_container}>
+					<input
+						className={styles.input_text}
+						type="text"
+						placeholder="Название группы"
+					/>
+					<input className={styles.input_checkbox} type="checkbox" />
 				</div>
-				<div className="create_group_btn">
-					<Button title="Ученики" className="create_btn" />
-				</div>
+				<Button title="Ученики" width="347px" height="57px" />
 			</PageContainer.Body>
 		</div>
 	);

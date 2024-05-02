@@ -1,47 +1,45 @@
-import './Student.page.scss';
+import styles from './Student.page.module.scss';
 import PageContainer from '@components/page.container/Page.container';
 import Button from '@components/button/Button';
+import avatar from '@assets/img/methodist_img.jpg';
 export default function StudentPage() {
 	return (
 		<>
-			<PageContainer.Header title="Чек-листы" />
+			<PageContainer.Header title="Ученики" />
 			<PageContainer.Body>
-				<section className="fullname_description_cont">
-					<article className="student_fullname">
+				<section className={styles.description_container}>
+					<article className={styles.name}>
 						Дмитриева Анастасия Алексеевна
 					</article>
-					<article className="student_description_cont">
+					<article className={styles.description}>
 						<div className="">
-							<span className="additional_header">Дата рождения :</span>{' '}
-							21.03.2013
+							<span className={styles.title}>Дата рождения :</span> 21.03.2013
 						</div>
 						<div className="">
-							<span className="additional_header">Адрес проживания : </span>
+							<span className={styles.title}>Адрес проживания : </span>
 							г. Москва, ул. Донская, д. 8 стр. 1{' '}
 						</div>
 						<div className="">
-							<span className="additional_header">
-								Родитель или попечитель :
-							</span>{' '}
+							<span className={styles.title}>Родитель или попечитель :</span>{' '}
 							Дмитриева Ангелина Игоревна
 						</div>
 						<div className="">
-							<span className="additional_header">Номер телефона :</span> +7 920
-							111 11 11{' '}
+							<span className={styles.title}>Номер телефона :</span> +7 920 111
+							11 11{' '}
 						</div>
 						<div className="">
-							<span className="additional_header">Особенности развития :</span>{' '}
+							<span className={styles.title}>Особенности развития :</span>{' '}
 						</div>
 						<div className="">
-							<span className="additional_header">Не любит :</span>{' '}
+							<span className={styles.title}>Не любит :</span>{' '}
 						</div>
 					</article>
 				</section>
-				<section className="avatar_btns_cont">
-					<article className="student_avatar_cont">
-						<img className="student_avatar" />
+				<section className={styles.student_panel}>
+					<article className={styles.avatar_container}>
+						<img className={styles.avatar} src={avatar} />
 					</article>
-					<article className="student_btns_panel">
+					<article className={styles.button_container}>
 						<Button title="Добавить в группу" />
 						<Button title="Вернуться" />
 					</article>
