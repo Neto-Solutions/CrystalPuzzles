@@ -74,9 +74,7 @@ jobs:
           aws elasticbeanstalk update-environment \
             --environment-name ${{ env.EB_ENVIROMENT_NAME }} \
             --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t4g.medium \
-            --version-label "Ver-${{ github.sha }}"
-
-            
+            --version-label "Ver-${{ github.sha }}"            
 
       - name: Print message for task end
         run: echo "The deployment task is complete"        
