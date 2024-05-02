@@ -1,5 +1,6 @@
 import './Train.page.scss';
 import Page from '@components/page/Page';
+import { Link } from 'react-router-dom';
 export default function TrainPage() {
 	const tempArray = Array.from({ length: 3 }, () => ({
 		name: 'Дмитриева Анастасия Алексеевна',
@@ -11,7 +12,7 @@ export default function TrainPage() {
 		<Page title="Тренировки">
 			{tempArray.map((item, index) => {
 				return (
-					<div key={index} className="train_card">
+					<Link to={'/feedback'} key={index} className="train_card">
 						<div className="train_card_info">
 							<div className="train_card_info_name">{item.name}</div>
 							<div className="train_card_info_trainer">
@@ -26,7 +27,7 @@ export default function TrainPage() {
 							</div>
 						</div>
 						<div className="train_card_date">{item.date}</div>
-					</div>
+					</Link>
 				);
 			})}
 		</Page>

@@ -7,7 +7,7 @@ import RouterTool from '@utils/Router.tool';
 export default function Root({ sidebar = false }) {
 	return (
 		<>
-			<RouterTool /> {/*Don`t forget to remove it later*/}
+			{/* <RouterTool /> */}
 			<Header />
 			<div className="app_container">
 				{sidebar ? (

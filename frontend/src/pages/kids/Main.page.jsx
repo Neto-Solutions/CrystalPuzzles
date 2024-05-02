@@ -11,17 +11,17 @@ export default function KidsMainPage() {
 					<img className="card_image" src={reward_animal} alt="" />
 				</Card>
 			</Link>
-			<Link to="/#" className="general_kids_link">
+			<Link to="/train" className="general_kids_link">
 				<Card title={'Мои тренировки'}>
 					<span className="card_description">
 						тренер оценил вашу тренировку
 					</span>
 				</Card>
 			</Link>
-			<Link to="/#" className="general_kids_link">
+			<Link to="/check-list" className="general_kids_link">
 				<Card title={'Мои чек-листы'} />
 			</Link>
-			<Link to="/#" className="general_kids_link">
+			<Link to="/schedule" className="general_kids_link">
 				<Card title={'Мои расписание на сегодня'}>
 					<div className="general_kids_shedule">
 						<div className="general_kids_shedule_item">
