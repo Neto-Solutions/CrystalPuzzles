@@ -1,5 +1,5 @@
 import styles from './Teams.page.module.scss';
-import PageContainer from '@components/page.container/Page.container';
+import Page from '@components/page/Page';
 import Button from '@components/button/Button';
 
 export default function TeamsPage() {
@@ -9,18 +9,15 @@ export default function TeamsPage() {
 		{ number: '6', name: 'Лисы' }
 	];
 	return (
-		<div>
-			<PageContainer.Header title="Группы" />
-			<PageContainer.Body>
-				<div className={styles.container}>
-					{tempArray.map((item) => (
-						<div className={styles.group} key={item.number}>
-							{item.number} группа {item.name}
-						</div>
-					))}
-				</div>
-				<Button title="Создать группу" width="347px" height="57px" />
-			</PageContainer.Body>
-		</div>
+		<Page title="Группы">
+			<div className={styles.container}>
+				{tempArray.map((item) => (
+					<div className={styles.group} key={item.number}>
+						{item.number} группа {item.name}
+					</div>
+				))}
+			</div>
+			<Button title="Создать группу" width="347px" height="57px" />
+		</Page>
 	);
 }

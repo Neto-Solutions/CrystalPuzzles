@@ -1,5 +1,5 @@
 import styles from './Students.list.page.module.scss';
-import PageContainer from '@components/page.container/Page.container';
+import Page from '@components/page/Page';
 import { useState, useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
@@ -19,14 +19,11 @@ export default function StudentsListPage() {
 	}, ['search']);
 
 	return (
-		<>
-			<PageContainer.Header title="Ученики" />
-			<PageContainer.Body>
-				<div className={styles.container}>
-					<input ref={inputRef} className={styles.input} type="text"></input>
-					<div className={styles.search_icon}></div>
-				</div>
-			</PageContainer.Body>
-		</>
+		<Page title="Ученики">
+			<div className={styles.container}>
+				<input ref={inputRef} className={styles.input} type="text"></input>
+				<div className={styles.search_icon}></div>
+			</div>
+		</Page>
 	);
 }
