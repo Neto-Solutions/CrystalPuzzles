@@ -7,7 +7,7 @@ from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
 from service.identity.schemas import UserSchemaForTable, UserFilterSchema, UserViewSchemaForPage
-from service.identity.services.auth_service import get_current_user_with_role
+from service.identity.security import get_current_user
 from service.identity.services.user_service import UserService
 from service.identity.dependensies import user_service
 
@@ -19,7 +19,7 @@ admin_panel_router = APIRouter(
 @admin_panel_router.get(
     "/",
     response_model=UserViewSchemaForPage,
-    summary="Возвращает данные пользователя по id",
+    summary="Возвращает данные всех пользователей",
     responses={
         200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
@@ -29,7 +29,7 @@ admin_panel_router = APIRouter(
 async def get_all_users(
         user_service: Annotated[UserService, Depends(user_service)],
         filters: UserFilterSchema = Depends(),
-        user: User = Depends(get_current_user_with_role(["admin"]))
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     try:
         user_list = await user_service.get_all_by_filters(filters)
@@ -51,7 +51,7 @@ async def get_all_users(
 async def get_user_by_id(
         user_id: int,
         user_service: Annotated[UserService, Depends(user_service)],
-        user: User = Depends(get_current_user_with_role(["admin"])),
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     user = await user_service.get(user_id)  # ToDO: With deleted
     if user:

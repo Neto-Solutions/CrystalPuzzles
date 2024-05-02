@@ -7,7 +7,7 @@ from starlette.responses import Response
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
-from service.identity.services.auth_service import get_current_user_with_role
+from service.identity.security import get_current_user
 from service.training.schemas import CreateTrainingSchema, EditTrainingSchema, TrainingSchemaForTable, \
     TrainingViewSchemaForPage, TrainingFilterSchema
 from service.training.service import TrainingService
@@ -32,8 +32,8 @@ training_router = APIRouter(
 async def get_training(
         training_id: int,
         training_service: Annotated[TrainingService, Depends(training_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
-                       ):
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+):
     """ admin, supervisor, trainer """
     try:
         training = await training_service.get(training_id)
@@ -59,7 +59,7 @@ async def get_training(
 async def get_all_training(
         training_service: Annotated[TrainingService, Depends(training_service)],
         filters: TrainingFilterSchema = Depends(),
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """ admin, supervisor, trainer """
     try:
@@ -83,7 +83,7 @@ async def get_all_training(
 async def create_training(
         model: CreateTrainingSchema,
         training_service: Annotated[TrainingService, Depends(training_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     try:
@@ -95,6 +95,7 @@ async def create_training(
     except Exception as e:
         logger.error(e)
         raise HTTPException(status_code=500)
+
 
 @training_router.put(
     "/",
@@ -110,7 +111,7 @@ async def create_training(
 async def edit_training(
         model: EditTrainingSchema,
         training_service: Annotated[TrainingService, Depends(training_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     try:
@@ -122,6 +123,7 @@ async def edit_training(
     except Exception as e:
         logger.error(e)
         raise HTTPException(status_code=500)
+
 
 @training_router.delete(
     "/{training_id}",
@@ -136,7 +138,7 @@ async def edit_training(
 async def delete_group(
         training_id: int,
         training_service: Annotated[TrainingService, Depends(training_service)],
-        user: User = Depends(get_current_user_with_role(["admin"]))
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     """admin, supervisor, trainer"""
     deleted = await training_service.delete(training_id)
@@ -159,7 +161,7 @@ async def delete_group(
 async def remove_training(
         training_id: int,
         training_service: Annotated[TrainingService, Depends(training_service)],
-        user: User = Depends(get_current_user_with_role(["admin"]))
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     """ admin """
     training = await training_service.delete_db(training_id)

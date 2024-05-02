@@ -15,7 +15,8 @@ from service.group.services.group_service import GroupService
 from service.group.dependensies import group_service
 
 from service.identity.dependensies import user_repository
-from service.identity.services.auth_service import get_current_user_with_role
+from service.identity.schemas import UserInfoSchema
+from service.identity.security import get_current_user
 
 group_router = APIRouter(
     prefix="/api/v1/group",
@@ -35,7 +36,7 @@ group_router = APIRouter(
 )
 async def get_group(group_id: int,
                     group_service: Annotated[GroupService, Depends(group_service)],
-                    user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+                    user: UserInfoSchema = Depends(get_current_user(("admin", "supervisor", "trainer")))
                     ):
     """ admin, supervisor, trainer """
     try:
@@ -62,7 +63,8 @@ async def get_group(group_id: int,
 async def get_all_groups(
         group_service: Annotated[GroupService, Depends(group_service)],
         filters: GroupFilterSchema = Depends(),
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        user: UserInfoSchema = Depends(get_current_user(("admin", "supervisor", "trainer")))
+
 ):
     """ admin, supervisor, trainer """
     try:
@@ -87,7 +89,7 @@ async def get_all_groups(
 async def create_group(model: CreateGroupSchema,
                        group_service: Annotated[GroupService, Depends(group_service)],
                        user_repository: Annotated[UserRepository, Depends(user_repository)],
-                       user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+                       user: UserInfoSchema = Depends(get_current_user(("admin", "supervisor", "trainer")))
                        ):
     """ admin, supervisor, trainer """
     try:
@@ -119,7 +121,7 @@ async def edit_group(
         model: EditGroupSchema,
         group_service: Annotated[GroupService, Depends(group_service)],
         user_repository: Annotated[UserRepository, Depends(user_repository)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        user: UserInfoSchema = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     try:
@@ -149,7 +151,7 @@ async def edit_group(
 async def delete_group(
         group_id: int,
         group_service: Annotated[GroupService, Depends(group_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        user: UserInfoSchema = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     deleted = await group_service.delete(group_id)
@@ -172,7 +174,7 @@ async def delete_group(
 async def remove_device(
         group_id: int,
         group_service: Annotated[GroupService, Depends(group_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        user: UserInfoSchema = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor"""
     group = await group_service.delete_db(group_id)

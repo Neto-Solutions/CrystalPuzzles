@@ -5,6 +5,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
 
 from core.database import Base
+from service.group.models import Group
 from service.identity.schemas import UserSchemaForTable
 
 
@@ -54,6 +55,8 @@ class User(Base):
             date_add=self.date_add,
             date_update=self.date_update,
             date=self.date_update.strftime("%y.%m.%d %H:%M:%S"),
+            role=self.role,
+            deleted=self.deleted
         )
 
 

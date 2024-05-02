@@ -5,7 +5,7 @@ from sqlalchemy import select, func
 from core.abstractions.initializer import Initializer
 from core.database import async_session
 from service.identity.models import Role, User
-from service.identity.utils import hash_password
+from service.identity.security import hash_password
 
 
 class RolesInitialize(Initializer):

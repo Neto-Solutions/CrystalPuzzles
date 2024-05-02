@@ -8,7 +8,7 @@ from fastapi.openapi.utils import get_openapi
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from core.config import settings
+from core.config import get_settings
 from core.routers import healthCheckRoute
 from core.utils.healthcheck import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
 from service.identity.initialize import RolesInitialize, BaseUserInitialize
@@ -23,7 +23,10 @@ from service.lesson.routers.lesson_router import lesson_router
 from service.lesson.routers.space_router import space_router
 from service.training.router import training_router
 
-""" Initialize """
+settings = get_settings()
+
+
+# region ------------------------------ initialize ----------------------------------
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await RolesInitialize.initialize()
@@ -31,15 +34,24 @@ async def lifespan(app: FastAPI):
     yield
 
 
+# endregion -------------------------------------------------------------------------
 
-""" Application """
+
+# region ---------------------------- Application -----------------------------------
 app = FastAPI(
     lifespan=lifespan,
     openapi_url=settings.openapi_url,
-    # swagger_ui_init_oauth={"clientId": settings.CLIENT_ID, "clientSecret": settings.CLIENT_SECRET}
+    # swagger_ui_init_oauth={
+    # "clientId": settings.CLIENT_ID,
+    # "clientSecret": settings.CLIENT_SECRET
+    # }
 )
 
-""" Swagger configuration """
+
+# endregion -------------------------------------------------------------------------
+
+# region ------------------------- Swagger configuration ----------------------------
+
 def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
@@ -55,10 +67,12 @@ def custom_openapi():
     app.openapi_schema = openapi_schema
     return app.openapi_schema
 
+
 app.openapi = custom_openapi
+# endregion -------------------------------------------------------------------------
 
+# region ------------------------- CORS configuration -------------------------------
 
-"""CORS configuration"""
 origins = ["*"]
 
 app.add_middleware(
@@ -68,9 +82,9 @@ app.add_middleware(
     allow_headers=["*"],
     allow_credentials=False,
 )
+# endregion -------------------------------------------------------------------------
 
-
-"""Healthcheck"""
+# region ----------------------------- Healthcheck ----------------------------------
 _healthChecks = HealthCheckFactory()
 
 _healthChecks.add(HealthCheckSQLAlchemy(
@@ -79,12 +93,12 @@ _healthChecks.add(HealthCheckSQLAlchemy(
 )
 _healthChecks.add(HealthCheckUri(
     alias='crystal_puzzles_api',
-    connectionUri=f"{settings.BASE_PATH}/swagger/docs/v1.0/devices",
+    connectionUri=f"{settings.base_path}{settings.openapi_url}",
     tags=['crystal_puzzles_api'])
 )
+# endregion -------------------------------------------------------------------------
 
-
-""" Routing """
+# region -------------------------------- Routing -----------------------------------
 all_routers = [
     user_router,
     profile_router,
@@ -97,6 +111,19 @@ all_routers = [
     admin_panel_router
 ]
 
+for router in all_routers:
+    app.include_router(router)
+
+app.add_api_route(
+    '/health',
+    endpoint=healthCheckRoute(factory=_healthChecks),
+    include_in_schema=False
+)
+
+
+# endregion -------------------------------------------------------------------------
+
+# region ------------------------------ Migrations ----------------------------------
 def run_migrations() -> None:
     """
     Подключает Alembic и выполняет миграции БД
@@ -110,20 +137,15 @@ def run_migrations() -> None:
         logging.error(f'Error while running Alembic migrations: {e}')
 
 
-
-for router in all_routers:
-    app.include_router(router)
-
-app.add_api_route('/health', endpoint=healthCheckRoute(factory=_healthChecks), include_in_schema=False)
+# endregion -------------------------------------------------------------------------
 
 if __name__ == '__main__':
-
     run_migrations()
 
     uvicorn.run(
         'main:app',
         host="0.0.0.0",
-        port=8000,
+        port=settings.port,
         reload=True,
-        # loop='uvloop',
+        # loop='uvloop', # работает только на linux
     )

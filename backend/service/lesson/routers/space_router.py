@@ -7,8 +7,8 @@ from fastapi import APIRouter, Depends, HTTPException, Response
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
+from service.identity.security import get_current_user
 
-from service.identity.services.auth_service import get_current_user_with_role
 from service.lesson.schemas.space_schemas import SpaceSchemaForTable, SpaceViewSchemaForPage, SpaceFilterSchema, \
     CreateSpaceSchema, EditSpaceSchema
 from service.lesson.services.space_service import SpaceService
@@ -33,7 +33,7 @@ space_router = APIRouter(
 async def get_space(
         space_id: int,
         space_service: Annotated[SpaceService, Depends(space_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
                        ):
     """ admin, supervisor, trainer """
     try:
@@ -60,7 +60,7 @@ async def get_space(
 async def get_all_spaces(
         space_service: Annotated[SpaceService, Depends(space_service)],
         filters: SpaceFilterSchema = Depends(),
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """ admin, supervisor, trainer """
     try:
@@ -84,7 +84,7 @@ async def get_all_spaces(
 async def create_training(
         model: CreateSpaceSchema,
         space_service: Annotated[SpaceService, Depends(space_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     try:
@@ -111,7 +111,7 @@ async def create_training(
 async def edit_training(
         model: EditSpaceSchema,
         space_service: Annotated[SpaceService, Depends(space_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     try:
@@ -137,7 +137,7 @@ async def edit_training(
 async def delete_group(
         space_id: int,
         space_service: Annotated[SpaceService, Depends(space_service)],
-        user: User = Depends(get_current_user_with_role(["admin"]))
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     """admin, supervisor, trainer"""
     deleted = await space_service.delete(space_id)
@@ -160,7 +160,7 @@ async def delete_group(
 async def remove_training(
         space_id: int,
         space_service: Annotated[SpaceService, Depends(space_service)],
-        user: User = Depends(get_current_user_with_role(["admin"]))
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     """ admin """
     training = await space_service.delete_db(space_id)

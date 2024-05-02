@@ -2,7 +2,6 @@ from typing import List
 
 from pydantic import Field
 
-
 from datetime import datetime
 from typing import Optional
 
@@ -11,6 +10,38 @@ from pydantic import EmailStr, field_validator
 
 from core.schemas.base import BaseModel, BaseFilterSchema
 
+
+# region ---------------------------------- Auth-------------------------------------
+class UserInfoSchema(BaseModel):
+    """ Схема информации о пользователе """
+    id: int
+    email: str
+    deleted: bool
+    password_hash: str
+    role: str
+
+
+class AuthExceptionSchema(BaseModel):
+    """ Схема ошибки """
+    status_code: int
+    detail: str
+    headers: Optional[dict[str, str]] = Field(default=None)
+
+
+class TokenInfoSchema(BaseModel):
+    """Схема информации о токене."""
+    access_token: str
+    token_type: str = Field(default="Bearer")
+
+
+class LogoutResponseSchema(BaseModel):
+    """Ответ при выходе из учетной записи."""
+    message: str = Field(default="Вы успешно вышли из учетной записи.")
+
+
+# endregion -------------------------------------------------------------------------
+
+# region --------------------------------- User -------------------------------------
 
 class CreateUserSchema(BaseModel):
     """ Валидация регистрационных данных """
@@ -25,7 +56,6 @@ class CreateUserSchema(BaseModel):
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
-
     @field_validator('password')
     def validate_password(cls, value):
         if len(value) < 6:
@@ -38,6 +68,7 @@ class CreateUserSchema(BaseModel):
         if value is not None:
             return value.replace(tzinfo=None)
 
+
 class EditUserSchema(BaseModel):
     """ Валидация редактирования данных пользователя """
     firstname: Optional[str] = None
@@ -49,8 +80,6 @@ class EditUserSchema(BaseModel):
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
     email: str | None = Field(default=None, hidden=True)
     id: int | None = Field(default=None, hidden=True)
-
-
 
     @field_validator('birthday')
     def validate_birthday(cls, value):
@@ -69,12 +98,14 @@ class UserShortSchemaForTable(BaseModel):
     is_man: Optional[bool] = True
     contact: Optional[str] = None
 
+
 class UserSchemaForTable(UserShortSchemaForTable):
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
     is_verified: Optional[bool] = False
     role: str
     deleted: bool
+
 
 class UserViewSchemaForPage(BaseModel):
     page: int
@@ -117,6 +148,10 @@ class PhotoReadSchema(BaseModel):
     photo: Optional[bytes] = None
 
 
+# endregion -------------------------------------------------------------------------
+
+# region -------------------------------- Token -------------------------------------
+
 class Token(BaseModel):
     access_token: str
     token_type: str
@@ -124,3 +159,5 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: str | None = None
+
+# endregion -------------------------------------------------------------------------

@@ -10,9 +10,9 @@ from service.identity.models import User
 from service.identity.repositories.user_repository import UserRepository
 
 from service.identity.dependensies import user_repository
+from service.identity.security import get_current_user
 
 from service.lesson.dependensies import lesson_service, space_repository
-from service.identity.services.auth_service import get_current_user_with_role
 from service.lesson.repositories.space_repository import SpaceRepository
 from service.lesson.schemas.lesson_schemas import LessonSchemaForTable, LessonViewSchemaForPage, LessonFilterSchema, \
     CreateLessonSchema, EditLessonSchema
@@ -35,7 +35,7 @@ lesson_router = APIRouter(
 async def get_lesson(
         lesson_id: int,
         lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
                    ):
     """ admin, supervisor, trainer """
     try:
@@ -61,7 +61,7 @@ async def get_lesson(
 async def get_all_lessons(
         lesson_service: Annotated[LessonService, Depends(lesson_service)],
         filters: LessonFilterSchema = Depends(),
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """ admin, supervisor, trainer """
     try:
@@ -86,7 +86,7 @@ async def create_lesson(
         lesson_service: Annotated[LessonService, Depends(lesson_service)],
         user_repository: Annotated[UserRepository, Depends(user_repository)],
         space_repository: Annotated[SpaceRepository, Depends(space_repository)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     try:
@@ -121,7 +121,7 @@ async def edit_training(
         lesson_service: Annotated[LessonService, Depends(lesson_service)],
         user_repository: Annotated[UserRepository, Depends(user_repository)],
         space_repository: Annotated[SpaceRepository, Depends(space_repository)],
-        user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"]))
+        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
 ):
     """admin, supervisor, trainer"""
     try:
@@ -153,7 +153,7 @@ async def edit_training(
 async def delete_group(
         training_id: int,
         lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        user: User = Depends(get_current_user_with_role(["admin"]))
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     """admin, supervisor, trainer"""
     deleted = await lesson_service.delete(training_id)
@@ -176,7 +176,7 @@ async def delete_group(
 async def remove_training(
         training_id: int,
         lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        user: User = Depends(get_current_user_with_role(["admin"]))
+        current_user: User = Depends(get_current_user(("admin",)))
 ):
     """ admin """
     lesson = await lesson_service.delete_db(training_id)
