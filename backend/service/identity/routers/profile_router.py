@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Respons
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
-from service.identity.schemas import UserSchemaForTable, EditUserSchema, PhotoReadSchema
+from service.identity.schemas import UserShortSchemaForTable, EditUserSchema, PhotoReadSchema
 from service.identity.security import get_current_user
 from service.identity.services.user_service import UserService
 from service.identity.dependensies import user_service
@@ -20,7 +20,7 @@ profile_router = APIRouter(
 
 @profile_router.get(
     "/",
-    response_model=UserSchemaForTable,
+    response_model=UserShortSchemaForTable,
     summary="Возвращает данные пользователя",
     responses={
         200: {"description": "Успешная обработка данных"},

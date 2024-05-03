@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import List
 
 from pydantic import Field
@@ -32,7 +33,7 @@ class LogoutResponseSchema(BaseModel):
 
 # endregion -------------------------------------------------------------------------
 
-# region --------------------------------- User -------------------------------------
+# region ------------------------------- Profile ------------------------------------
 
 class CreateUserSchema(BaseModel):
     """ Валидация регистрационных данных """
@@ -88,21 +89,7 @@ class UserShortSchemaForTable(BaseModel):
     birthday: Optional[datetime]
     is_man: Optional[bool] = True
     contact: Optional[str] = None
-
-
-class UserSchemaForTable(UserShortSchemaForTable):
-    is_active: Optional[bool] = True
-    is_superuser: Optional[bool] = False
-    is_verified: Optional[bool] = False
     role: str
-    deleted: bool
-
-
-class UserViewSchemaForPage(BaseModel):
-    page: int
-    max_page_count: int
-    count_records: int
-    records: List[UserSchemaForTable]
 
 
 class UserFilterSchema(BaseFilterSchema):
@@ -122,6 +109,65 @@ class UserChangePasswordSchema(BaseModel):
             return value
 
 
+class PhotoReadSchema(BaseModel):
+    """ Формирует ответ с деталями о фото пользователя """
+    photo: Optional[bytes] = None
+
+
+# endregion -------------------------------------------------------------------------
+
+# region ----------------------------- AdminPanel -----------------------------------
+class RoleEnum(str, Enum):
+    admin = 'admin'
+    supervisor = 'supervisor'
+    trainer = 'trainer'
+    student = 'student'
+
+
+class UserSchemaForTable(UserShortSchemaForTable):
+    is_active: Optional[bool] = True
+    is_superuser: Optional[bool] = False
+    is_verified: Optional[bool] = False
+    deleted: bool
+    date_add: datetime
+    date_update: datetime
+    code: Optional[int]
+
+
+class UserViewSchemaForPage(BaseModel):
+    page: int
+    max_page_count: int
+    count_records: int
+    records: List[UserSchemaForTable]
+
+
+class AdminPanelEditSchema(BaseModel):
+    """ Валидация редактирования данных пользователя """
+    id: int
+    firstname: Optional[str] = None
+    lastname: Optional[str] = None
+    surname: Optional[str] = None
+    birthday: Optional[datetime] = None
+    is_man: Optional[bool] = None
+    contact: Optional[str] = None
+    is_active: Optional[bool] = None
+    is_superuser: Optional[bool] = None
+    is_verified: Optional[bool] = None
+    deleted: Optional[bool] = False
+    role: Optional[RoleEnum] = None
+    date_update: datetime = Field(default_factory=datetime.now, hidden=True)
+
+
+
+
+    @field_validator('birthday')
+    def validate_birthday(cls, value):
+        if value is not None:
+            return value.replace(tzinfo=None)
+
+# endregion -------------------------------------------------------------------------
+
+# region ------------------------------- Verified -----------------------------------
 class UserVerifiedEmailCode(BaseModel):
     """ Валидация кода верификации email """
     code: int
@@ -132,11 +178,4 @@ class UserVerifiedEmailCode(BaseModel):
             raise HTTPException(status_code=400, detail={"error": "Code must be 4 digits"})
         else:
             return value
-
-
-class PhotoReadSchema(BaseModel):
-    """ Формирует ответ с деталями о фото пользователя """
-    photo: Optional[bytes] = None
-
-
 # endregion -------------------------------------------------------------------------

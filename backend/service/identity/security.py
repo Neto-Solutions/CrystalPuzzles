@@ -6,7 +6,6 @@ import sqlalchemy as sa
 from fastapi import Depends, HTTPException
 import bcrypt
 
-
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
 from jwt import ExpiredSignatureError, DecodeError, MissingRequiredClaimError
@@ -36,6 +35,8 @@ def verify_password(plain_password: str, hashed_password: bytes) -> bool:
     """Сравнивает хэшированный пароль с паролем из БД"""
     password_byte_enc = plain_password.encode('utf-8')
     return bcrypt.checkpw(password=password_byte_enc, hashed_password=hashed_password)
+
+
 # endregion -------------------------------------------------------------------------
 
 # region ---------------------------------- JWT -------------------------------------

@@ -31,10 +31,10 @@ class UserService(BaseService):
     async def change_password(self, data: UserChangePasswordSchema, user: User):
         if verify_password(data.old_password, user.hashed_password):
             data = {
-                    "id": user.id,
-                    "hashed_password": hash_password(data.new_password),
-                    "date_update": datetime.now()
-                }
+                "id": user.id,
+                "hashed_password": hash_password(data.new_password),
+                "date_update": datetime.now()
+            }
             res = await self.repo.edit(data)
             return res
         return None
