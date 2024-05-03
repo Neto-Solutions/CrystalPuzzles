@@ -16,7 +16,7 @@ class User(Base):
     date_update: Mapped[datetime] = mapped_column(sa.DateTime)
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     email: Mapped[str] = mapped_column(sa.String(254), nullable=False)
-    hashed_password: Mapped[int] = mapped_column(sa.String(128), nullable=False)
+    hashed_password: Mapped[bytes] = mapped_column(sa.LargeBinary, nullable=False)
     is_superuser: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     is_active: Mapped[bool] = mapped_column(sa.Boolean, default=True, nullable=False)
     is_verified: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)

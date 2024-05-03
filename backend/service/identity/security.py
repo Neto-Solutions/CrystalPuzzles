@@ -4,6 +4,8 @@ from datetime import timedelta, datetime
 from typing import Any, Optional, Union, Callable, Coroutine
 import sqlalchemy as sa
 from fastapi import Depends, HTTPException
+import bcrypt
+
 
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
@@ -16,22 +18,24 @@ from core.database import async_session
 from service.identity.models import User
 from service.identity.schemas import AuthExceptionSchema
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login/", scheme_name="JWT")
 
 settings = get_settings()
 
 
 # region --------------------------------- Password ---------------------------------
-def hash_password(password: str) -> str:
+def hash_password(password: str) -> bytes:
     """ Хэширует пароль при регитсрации """
-    return pwd_context.hash(password)
+    pwd_bytes = password.encode('utf-8')
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password=pwd_bytes, salt=salt)
+    return hashed_password
 
 
-def verify_password(password: str, hashed_password: str) -> bool:
+def verify_password(plain_password: str, hashed_password: bytes) -> bool:
     """Сравнивает хэшированный пароль с паролем из БД"""
-    return pwd_context.verify(password, hashed_password)
+    password_byte_enc = plain_password.encode('utf-8')
+    return bcrypt.checkpw(password=password_byte_enc, hashed_password=hashed_password)
 # endregion -------------------------------------------------------------------------
 
 # region ---------------------------------- JWT -------------------------------------

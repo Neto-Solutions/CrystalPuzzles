@@ -28,7 +28,7 @@ class UserService(BaseService):
             return None
         return await super().edit(user)
 
-    async def change_password(self, data: UserChangePasswordSchema, user: User):  # ToDo: ???
+    async def change_password(self, data: UserChangePasswordSchema, user: User):
         if verify_password(data.old_password, user.hashed_password):
             data = {
                     "id": user.id,

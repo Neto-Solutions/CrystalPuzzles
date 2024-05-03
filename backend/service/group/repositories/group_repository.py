@@ -27,7 +27,6 @@ class GroupRepository(BaseRepository):
                 .options(joinedload(self.model.students).joinedload(StudentGroup.student))
                 .filter(self.model.deleted == False)
             )
-            # ToDo: поиск по имени ученика
             if search_string:
                 stmt = stmt.filter(or_(
                     (self.model.name.ilike(f"%{search_string}%")),

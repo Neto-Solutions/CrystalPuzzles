@@ -110,8 +110,12 @@ async def set_photo(
 ):
     """ authorized """
     try:
+        if file.size <= 0 or file.content_type not in ["image/jpeg", "image/png"]:
+            logger.error(f"Invalid image file. Expected format: FastAPI.UploadFile, "
+                         f"Content-type: image/jpeg, but got {file.content_type}")
+            return Response(status_code=400)
         contents = await file.read()
-        encoded_file = base64.b64encode(contents)  # ToDo: проверка на размер и формат
+        encoded_file = base64.b64encode(contents)
         result = await user_service.set_photo(encoded_file, current_user.id)
         if result:
             return result
