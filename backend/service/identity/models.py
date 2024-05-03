@@ -31,33 +31,34 @@ class User(Base):
     rank_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("Ranks.id"), nullable=True)
     contact: Mapped[str] = mapped_column(sa.String, nullable=True)
 
-    group = relationship("Group", back_populates="trainer", lazy="subquery")
-    # lessons = relationship("Lesson", back_populates="trainer", lazy="subquery")
+    group = relationship("Group", back_populates="trainer")
+    student_group = relationship("StudentGroup", back_populates="student")
+    lessons = relationship("Lesson", back_populates="trainer")
 
 
-    @property
-    def is_student(self) -> bool:
-        if self.role == "student":
-            return True
-        return False
-
-    @property
-    def to_read_model(self) -> UserSchemaForTable:
-        return UserSchemaForTable(
-            id=self.id,
-            email=self.email,
-            firstname=self.firstname,
-            lastname=self.lastname,
-            surnam=self.surname,
-            birthday=self.birthday,
-            is_man=self.is_man,
-            contact=self.contact,
-            date_add=self.date_add,
-            date_update=self.date_update,
-            date=self.date_update.strftime("%y.%m.%d %H:%M:%S"),
-            role=self.role,
-            deleted=self.deleted
-        )
+    # @property
+    # def is_student(self) -> bool:
+    #     if self.role == "student":
+    #         return True
+    #     return False
+    #
+    # @property
+    # def to_read_model(self) -> UserSchemaForTable:
+    #     return UserSchemaForTable(
+    #         id=self.id,
+    #         email=self.email,
+    #         firstname=self.firstname,
+    #         lastname=self.lastname,
+    #         surnam=self.surname,
+    #         birthday=self.birthday,
+    #         is_man=self.is_man,
+    #         contact=self.contact,
+    #         date_add=self.date_add,
+    #         date_update=self.date_update,
+    #         date=self.date_update.strftime("%y.%m.%d %H:%M:%S"),
+    #         role=self.role,
+    #         deleted=self.deleted
+    #     )
 
 
 class Role(Base):

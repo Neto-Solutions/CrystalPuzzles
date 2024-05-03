@@ -5,7 +5,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 
 from core.config import get_settings
-from service.identity.schemas import UserInfoSchema, AuthExceptionSchema
+from service.identity.models import User
+from service.identity.schemas import AuthExceptionSchema
 from service.identity.security import get_user_by_email, verify_password, jwt_decode, get_data_user
 
 settings = get_settings()
@@ -15,7 +16,7 @@ class AuthService:
     """Сервис для работы аутентификации."""
 
     @staticmethod
-    async def authenticate_user(form_data: OAuth2PasswordRequestForm) -> UserInfoSchema:
+    async def authenticate_user(form_data: OAuth2PasswordRequestForm) -> User:
         """Аутентификация пользователя для создания токенов."""
         data_user = await get_user_by_email(form_data.username)
         if not data_user:
@@ -32,7 +33,7 @@ class AuthService:
         return data_user
 
     @staticmethod
-    async def get_user_for_update_tokens(refresh_token: str) -> UserInfoSchema:
+    async def get_user_for_update_tokens(refresh_token: str) -> User:
         """Получить пользователя для обновления токенов."""
         payload = jwt_decode(refresh_token, settings.refresh_secret_key, settings.algorithm)
 
@@ -46,7 +47,7 @@ class AuthService:
     @staticmethod
     async def get_data_user(
             token: str, roles: Optional[tuple[str, ...]]
-    ) -> Union[UserInfoSchema, AuthExceptionSchema]:
+    ) -> Union[User, AuthExceptionSchema]:
         """Получить данные текущего пользователя."""
         data_user = await get_data_user(roles, token)
         return data_user

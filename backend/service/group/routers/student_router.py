@@ -70,7 +70,7 @@ async def delete_student_for_group(
             logger.error("Group not found")
         else:
             result = await student_service.delete_student(items)
-            if result:
+            if not result:
                 return Response(status_code=HTTPStatus.NO_CONTENT.value)
         logger.error("Student not found")
         return Response(status_code=HTTPStatus.BAD_REQUEST.value)

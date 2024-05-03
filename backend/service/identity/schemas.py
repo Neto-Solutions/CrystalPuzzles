@@ -12,15 +12,6 @@ from core.schemas.base import BaseModel, BaseFilterSchema
 
 
 # region ---------------------------------- Auth-------------------------------------
-class UserInfoSchema(BaseModel):
-    """ Схема информации о пользователе """
-    id: int
-    email: str
-    deleted: bool
-    password_hash: str
-    role: str
-
-
 class AuthExceptionSchema(BaseModel):
     """ Схема ошибки """
     status_code: int
@@ -147,17 +138,5 @@ class PhotoReadSchema(BaseModel):
     """ Формирует ответ с деталями о фото пользователя """
     photo: Optional[bytes] = None
 
-
-# endregion -------------------------------------------------------------------------
-
-# region -------------------------------- Token -------------------------------------
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-
-class TokenData(BaseModel):
-    username: str | None = None
 
 # endregion -------------------------------------------------------------------------

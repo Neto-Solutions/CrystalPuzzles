@@ -2,8 +2,7 @@ from datetime import datetime
 
 from core.service import BaseService
 from service.identity.models import User
-from service.identity.schemas import CreateUserSchema, UserFilterSchema, EditUserSchema, UserChangePasswordSchema, \
-    UserInfoSchema
+from service.identity.schemas import CreateUserSchema, UserFilterSchema, EditUserSchema, UserChangePasswordSchema
 from service.identity.security import hash_password, generated_code, verify_password
 
 

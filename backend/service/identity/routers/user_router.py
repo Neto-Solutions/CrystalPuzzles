@@ -5,7 +5,8 @@ from fastapi import APIRouter, Depends, HTTPException, Response
 
 from core.schemas.base import Message
 from core.utils.logger import logger
-from service.identity.schemas import CreateUserSchema, UserChangePasswordSchema, UserInfoSchema
+from service.identity.models import User
+from service.identity.schemas import CreateUserSchema, UserChangePasswordSchema
 from service.identity.security import get_current_user
 from service.identity.services.user_service import UserService
 from service.identity.dependensies import user_service
@@ -53,7 +54,7 @@ async def register(
 # async def email_verify(
 #         data: UserVerifiedEmailCode,
 #         user_service: Annotated[UserService, Depends(user_service)],
-#         user: UserInfoSchema = Depends(get_current_user(()))
+#         user: User = Depends(get_current_user(()))
 # ):
 #     """ authenticate """
 #     try:
@@ -80,7 +81,7 @@ async def register(
 async def change_user_password(
         data: UserChangePasswordSchema,
         user_service: Annotated[UserService, Depends(user_service)],
-        current_user: UserInfoSchema = Depends(get_current_user())
+        current_user: User = Depends(get_current_user())
 ):
     """ authenticate """
     try:

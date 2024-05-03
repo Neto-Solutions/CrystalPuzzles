@@ -17,8 +17,8 @@ class Lesson(Base):
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
 
-    # trainer = relationship("User", back_populates="lessons")
-    # space = relationship("Space", back_populates="lessons")
+    trainer = relationship("User", back_populates="lessons")
+    space = relationship("Space", back_populates="lessons")
     # check = relationship("Check", back_populates="lesson")
 
 
@@ -30,7 +30,7 @@ class Space(Base):
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
 
-    # lessons = relationship("Lesson", back_populates="space")
+    lessons = relationship("Lesson", back_populates="space")
 
 
 class Check(Base):
@@ -39,7 +39,7 @@ class Check(Base):
     student_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
 
     lesson_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
-    # lesson = relationship("Lesson", back_populates="check", lazy="subquery")
+    # lesson = relationship("Lesson", back_populates="check")
 
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)

@@ -1,4 +1,3 @@
-from typing import Annotated
 
 from service.identity.repositories.user_repository import UserRepository
 from service.identity.services.user_service import UserService

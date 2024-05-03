@@ -12,9 +12,8 @@ class UserRepository(BaseRepository):
 
     async def get_by_email(self, email: str) -> User | None:
         async with async_session() as session:
-            stmt = select(self.model).where(self.model.email == email)
-            res = await session.execute(stmt)
-            return res.scalar_one_or_none()
+            stmt = select(self.model).filter(self.model.email == email)
+            return (await session.execute(stmt)).scalar_one_or_none()
 
     async def get_all_user_by_filter(self, search_string: str, page_number: int, page_size: int):
         async with async_session() as session:

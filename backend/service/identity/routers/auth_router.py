@@ -8,7 +8,7 @@ from starlette.responses import Response
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
-from service.identity.schemas import TokenInfoSchema, LogoutResponseSchema, UserInfoSchema
+from service.identity.schemas import TokenInfoSchema, LogoutResponseSchema
 from service.identity.security import create_access_token, create_refresh_token, get_current_user
 from service.identity.services.auth_service import AuthService
 from service.identity.dependensies import auth_service

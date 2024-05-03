@@ -1,13 +1,11 @@
 import math
 
-from datetime import datetime
 from sqlalchemy import select, func
 
 from core.database import async_session
 from core.repository import BaseRepository
-from service.group.models import Group
 from service.identity.models import User
-from service.lesson.models import Lesson, Space
+from service.lesson.models import Space
 
 
 class SpaceRepository(BaseRepository):
@@ -29,7 +27,7 @@ class SpaceRepository(BaseRepository):
                     (self.model.id.ilike(f"%{search_string}%"))
                 )
 
-            count_records = (await session.execute(select(func.count('*')).select_from(stmt))).scalar_one()
+            count_records = (await session.execute(select(func.count(stmt.c.id)))).scalar_one()
             if count_records != 0:
                 records = (await session.execute(
                     stmt.order_by(self.model.date_update.desc()).offset(page_number * page_size).limit(

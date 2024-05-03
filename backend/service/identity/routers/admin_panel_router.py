@@ -16,6 +16,7 @@ admin_panel_router = APIRouter(
     tags=["AdminPanel"]
 )
 
+
 @admin_panel_router.get(
     "/",
     response_model=UserViewSchemaForPage,
@@ -38,6 +39,7 @@ async def get_all_users(
         logger.error(e)
         raise HTTPException(status_code=500)
 
+
 @admin_panel_router.get(
     "/{user_id}",
     response_model=UserSchemaForTable,
@@ -58,7 +60,6 @@ async def get_user_by_id(
         return user
     logger.error({"user_id": user_id, "message": "User not exist"})
     return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-
 
 # @admin_panel_router
 # async def edit_user():

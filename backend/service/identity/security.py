@@ -14,7 +14,7 @@ from passlib.context import CryptContext
 from core.config import get_settings
 from core.database import async_session
 from service.identity.models import User
-from service.identity.schemas import UserChangePasswordSchema, UserInfoSchema, AuthExceptionSchema
+from service.identity.schemas import AuthExceptionSchema
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

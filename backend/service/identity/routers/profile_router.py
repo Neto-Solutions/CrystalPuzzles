@@ -7,9 +7,8 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Respons
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
-from service.identity.schemas import UserSchemaForTable, EditUserSchema, PhotoReadSchema, UserInfoSchema
+from service.identity.schemas import UserSchemaForTable, EditUserSchema, PhotoReadSchema
 from service.identity.security import get_current_user
-from service.identity.services.auth_service import AuthService
 from service.identity.services.user_service import UserService
 from service.identity.dependensies import user_service
 
@@ -49,7 +48,7 @@ async def account(
 async def edit_account(
         data: EditUserSchema,
         user_service: Annotated[UserService, Depends(user_service)],
-        current_user: UserInfoSchema = Depends(get_current_user())
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
@@ -76,7 +75,7 @@ async def edit_account(
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
 async def edit_account_view(
-        current_user: UserInfoSchema = Depends(get_current_user())
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     return current_user
@@ -107,7 +106,7 @@ async def edit_account_view(
 async def set_photo(
         user_service: Annotated[UserService, Depends(user_service)],
         file: UploadFile = File(...),
-        current_user: UserInfoSchema = Depends(get_current_user())
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
@@ -135,7 +134,7 @@ async def set_photo(
 )
 async def remove_photo(
         user_service: Annotated[UserService, Depends(user_service)],
-        current_user: UserInfoSchema = Depends(get_current_user())
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
@@ -161,7 +160,7 @@ async def remove_photo(
 )
 async def get_photo(
         user_service: Annotated[UserService, Depends(user_service)],
-        current_user: UserInfoSchema = Depends(get_current_user())
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
