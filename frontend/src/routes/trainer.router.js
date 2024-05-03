@@ -1,12 +1,12 @@
-import MainPage from '../pages/trainer/Main.page';
-import NotificationPage from '../pages/trainer/Notification.page';
-import CheckListPage from '../pages/trainer/Check.list.page';
-import SchefulePage from '../pages/trainer/Schedule.page';
-import TeamsPage from '../pages/trainer/Teams.page';
-import CreateGroupPage from '../pages/trainer/Create.group.page';
-import StudentsList from '../pages/trainer/Students.list.page';
-import StudentPage from '../pages/trainer/Student.page';
-import FeedbackPage from '../pages/trainer/Feedback.page';
+import MainPage from '@trainer/Main.page';
+import NotificationPage from '@trainer/Notification.page';
+import CheckListPage from '@trainer/Check.list.page';
+import SchefulePage from '@trainer/Schedule.page';
+import TeamsPage from '@trainer/Teams.page';
+import CreateGroupPage from '@trainer/Create.group.page';
+import StudentsList from '@trainer/Students.list.page';
+import StudentPage from '@trainer/Student.page';
+import FeedbackPage from '@trainer/Feedback.page';
 
 const trainerRouter = [
 	{
@@ -15,15 +15,18 @@ const trainerRouter = [
 	},
 	{
 		path: '/notification',
-		element: <NotificationPage />
+		element: <NotificationPage />,
+		local: 'Уведомления'
 	},
 	{
 		path: '/check-list',
-		element: <CheckListPage />
+		element: <CheckListPage />,
+		local: 'Чек-листы'
 	},
 	{
 		path: '/schedule',
-		element: <SchefulePage />
+		element: <SchefulePage />,
+		local: 'Расписание'
 	},
 	{
 		path: '/teams',
@@ -31,11 +34,13 @@ const trainerRouter = [
 	},
 	{
 		path: '/group/create',
-		element: <CreateGroupPage />
+		element: <CreateGroupPage />,
+		local: 'Группы'
 	},
 	{
 		path: '/students',
-		element: <StudentsList />
+		element: <StudentsList />,
+		local: 'Ученики'
 	},
 	{
 		path: '/student',
@@ -43,7 +48,8 @@ const trainerRouter = [
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />
+		element: <FeedbackPage />,
+		local: 'Обратная связь'
 	}
 ];
 
