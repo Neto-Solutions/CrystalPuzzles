@@ -1,7 +1,12 @@
 .app_container {
+	width: 100%;
+	max-width: 1448px;
+	margin: auto;
 	display: flex;
+	justify-content: space-between;
 }
 
 .page_container {
-	margin-left: 142px;
+	width: 100%;
+	max-width: 1081px;
 }
