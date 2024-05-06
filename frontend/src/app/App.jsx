@@ -8,7 +8,7 @@ import RouterTool from '@utils/Router.tool';
 export default function App({ sidebar = false }) {
 	return (
 		<div className={styles.app}>
-			<RouterTool />
+			{/* <RouterTool /> */}
 			<Header />
 			<Suspense fallback={<div>Loading...</div>}>
 				<div className={styles.page_container}>
