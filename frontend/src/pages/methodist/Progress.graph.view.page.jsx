@@ -13,9 +13,9 @@ export default function ProgressGraphViewPage() {
 				<UserCard name="Дмитриева Анастасия Алексеевна">
 					<div className={styles.link}>Показать</div>
 				</UserCard>
-				<Button className={`${styles.btn} ${styles.calendar}`}>
-					<span className={styles.date}>02.10.23 - 08.10.23</span>
-					<img className={styles['date-icon']} src={calendar_icon} alt="" />
+				<Button>
+					<span>02.10.23 - 08.10.23</span>
+					<img src={calendar_icon} alt="" />
 				</Button>
 
 				<Button title="Выгрузить" />

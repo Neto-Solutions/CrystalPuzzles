@@ -15,10 +15,10 @@ export default function AnalyticsViewPage() {
 			<div className={styles.comment}>
 				<p>Комментарий тренера</p>
 			</div>
-			<div className={styles['btns-content']}>
+			<div className={styles['btns_content']}>
 				<Link className={`${styles.btn} ${styles.calendar}`}>
 					<span className={styles.date}>02.10.23 - 08.10.23</span>
-					<img className={styles['date-icon']} src={calendar_icon} alt="" />
+					<img className={styles['date_icon']} src={calendar_icon} alt="" />
 				</Link>
 				{/* <Link className='btn'>Выгрузить</Link>
           <Link className='btn'>Открыть в Google doc</Link> */}

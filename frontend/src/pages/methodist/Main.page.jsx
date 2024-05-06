@@ -18,87 +18,75 @@ export default function MainPage() {
 				</section>
 			</Link>
 
-			<Link to="/analytic" className={styles['link-route']}>
+			<Link to="/analytic" className={styles['link_route']}>
 				<section className={styles.content}>
 					<Title tag="h2" className={styles.subtitle}>
 						Аналитика
 					</Title>
-					<img className={styles['section-image']} src={analitic} alt="" />
+					<img className={styles['section_image']} src={analitic} alt="" />
 				</section>
 			</Link>
 
-			<Link to="/effective_table" className={styles['link-route']}>
+			<Link to="/effective_table" className={styles['link_route']}>
 				<section className={styles.content}>
 					<Title
 						tag="h2"
-						className={`${styles.subtitle} ${styles['table-subtitle']}`}
+						className={`${styles.subtitle} ${styles['table_subtitle']}`}
 					>
 						Таблицы
 					</Title>
-					<div className={styles['table-wrap']}>
+					<div className={styles['table_wrap']}>
 						{[...Array(9)].map((_, index) => (
-							<div key={index} className={styles['table-item']}></div>
+							<div key={index} className={styles['table_item']}></div>
 						))}
 					</div>
 				</section>
 			</Link>
 
 			<Link to="/notifications" className={styles['link-route']}>
-				<section className={styles['notifications-wrapper']}>
-					<Title tag="h2" className={styles['title-notice']}>
-						Уведомления
-					</Title>
-					<div className={styles['notice-wrap']}>
+				<section className={styles['notifications_wrapper']}>
+					<Title tag="h2">Уведомления</Title>
+					<div className={styles['notice_wrap']}>
 						{[...Array(2)].map((_, index) => (
 							<div key={index} className={styles.notice}>
-								<p className={styles['notice-text']}>
+								<p className={styles['notice_text']}>
 									Михаил выполнил все задания
 								</p>
-								<Button className={styles['btn-notice']}>Открыть</Button>
+								<Button className={styles['btn_notice']}>Открыть</Button>
 							</div>
 						))}
-						<Button className={`${styles['btn-notice']} ${styles.btn}`}>
+						<Button className={`${styles['btn_notice']} ${styles.btn}`}>
 							Показать все
 						</Button>
 					</div>
 				</section>
 			</Link>
 
-			<Link to="/timetable_methodist" className={styles['link-route']}>
-				<section className={styles['schedule-wrap']}>
-					<div className={styles['content-wrap']}>
+			<Link to="/timetable_methodist" className={styles['link_route']}>
+				<section className={styles['schedule_wrap']}>
+					<div className={styles['content_wrap']}>
 						<Title tag="h2" className={styles.subtitle}>
 							Расписание
 						</Title>
 						{[...Array(3)].map((_, index) => (
-							<div key={index} className={styles['timetable-wrap']}>
-								<div className={styles['general_met_timetable_item']}>
-									<p className={styles['general_met_timetable_item_descr']}>
-										<span className={styles['gen_timetable_diff_color']}>
-											17/10
-										</span>{' '}
-										площадка номер 1{' '}
-										<span className={styles['gen_timetable_diff_color']}>
-											14:00
-										</span>{' '}
-										- 5 группа, тренер Дмитриева А.
+							<div key={index} className={styles['timetable_wrap']}>
+								<div className={styles['text_wrap']}>
+									<p className={styles.text}>
+										<span>17/10</span>
+										площадка номер 1
+									</p>
+									<p className={styles.text}>
+										<span>14:00</span>- 5 группа, тренер Дмитриева А.
 									</p>
 								</div>
-
-								<div
-									className={styles['general_met_timetable_decor_line']}
-								></div>
+								<div className={styles['text_line']}></div>
 							</div>
 						))}
 					</div>
 
-					<div className={styles['btns-wrap']}>
-						<Button className={styles['general_met_timetable_btn']}>
-							Тренеры
-						</Button>
-						<Button className={styles['general_met_timetable_btn']}>
-							Ученики
-						</Button>
+					<div className={styles['btns_wrap']}>
+						<Button>Тренеры</Button>
+						<Button>Ученики</Button>
 					</div>
 				</section>
 			</Link>

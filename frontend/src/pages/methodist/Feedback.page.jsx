@@ -6,8 +6,8 @@ import styles from './Feedback.page.module.scss';
 export default function FeedbackPage() {
 	return (
 		<Page title="Обратная связь">
-			<div className={styles['feedback-wrap']}>
-				<Title tag="h2" className={styles['second-title']}>
+			<div className={styles['feedback_wrap']}>
+				<Title tag="h2" className={styles['second_title']}>
 					Оставить комментарий методисту
 				</Title>
 				<textarea className={styles.textaria}>
@@ -15,7 +15,7 @@ export default function FeedbackPage() {
 					стоматолога.
 				</textarea>
 			</div>
-			<Button className={styles['send-btn']}>Отправить</Button>
+			<Button className={styles['send_btn']}>Отправить</Button>
 		</Page>
 	);
 }

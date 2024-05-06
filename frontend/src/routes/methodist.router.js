@@ -16,21 +16,21 @@ const methodistRouter = [
 	},
 	{
 		path: '/analytics',
-		element: <AnalyticsPage />,
-		local: 'Аналитика'
+		element: <AnalyticsPage />
 	},
 	{
 		path: '/analytics/view',
-		element: <AnalyticsViewPage />
+		element: <AnalyticsViewPage />,
+		local: 'Аналитика'
 	},
 	{
 		path: '/progress',
-		element: <ProgressGraphPage />,
-		local: 'Графики прогресса'
+		element: <ProgressGraphPage />
 	},
 	{
 		path: '/progress/view',
-		element: <ProgressGraphViewPage />
+		element: <ProgressGraphViewPage />,
+		local: 'Графики прогресса'
 	},
 	{
 		path: '/schedule',

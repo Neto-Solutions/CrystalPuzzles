@@ -1,53 +1,35 @@
-
-.notifications_met_cont {
-    width: 714px;
-    padding: 31px 30px 0px 30px;
-    background-color: #E1F1F8;
-    border: 1.5px solid #2B2D91;
-    border-radius: 20px;
+.component {
+	width: 714px;
+	padding: 30px 30px 16px;
+	background-color: var(--bg-card);
+	border: var(--border);
+	border-radius: var(--radius);
 }
 
-.notifications_met_header {
-    font-family: Roboto;
-    font-size: 24px;
-    font-weight: 500;
-    text-align: left;
-    margin-bottom: 62px;
+.heading {
+	margin-bottom: 62px;
+	font-family: var(--ff-first);
+	font-size: var(--fz-btn);
+	font-weight: var(--fw-medium);
 }
 
-.notifications_met_item {
-    display: flex;
-    border-bottom: solid #0E1079 1px;
-    justify-content: space-between;
-    padding-bottom: 13px;
-    margin-bottom: 62px;
+.item {
+	margin-bottom: 62px;
+	padding-bottom: 13px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--accent-color);
+
+	&:last-child {
+		margin-bottom: 0px;
+	}
 }
 
-.notifications_met_item:last-child {
-    margin-bottom: 0px;
+.desc {
+	font-family: var(--ff-second);
+	font-size: 22px;
 }
 
-.notifications_met_description {
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: 400;
-    text-align: left;
-}
-
-.notifications_met_open_link {
-    padding: 15.5px 28px 15.5px 28px;
-    border-radius: 20px;
-    border: 1px solid #2B2D91;
-    background-color: white;
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: 500;
-    text-decoration: none;
-    color: #2B2D91;
-    transition: color 0.5s, background-color 0.5s;
-}
-
-.notifications_met_open_link:hover {
-    background-color: #0E1079;
-    color: white;
+.btn {
+	background-color: #fff;
 }

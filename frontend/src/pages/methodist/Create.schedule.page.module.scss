@@ -1,6 +1,6 @@
 .btns_wrap {
 	display: flex;
-	gap: 20px;
+	gap: var(--gap);
 }
 
 .btn {

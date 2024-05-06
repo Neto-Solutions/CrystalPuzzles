@@ -11,10 +11,12 @@ export default function CreateShedulePage() {
 				<Button
 					title={'Выберите тренера'}
 					downArrow={'calendar_arrow_down.svg'}
+					className={styles.btn}
 				/>
 				<Button
 					title={'Выберите площадку'}
 					downArrow={'calendar_arrow_down.svg'}
+					className={styles.btn}
 				/>
 				<Button>Отправить расписание</Button>
 			</div>
