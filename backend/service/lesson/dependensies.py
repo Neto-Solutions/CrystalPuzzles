@@ -1,7 +1,3 @@
-from service.group.repositories.group_repository import GroupRepository
-from service.group.repositories.student_repository import StudentRepository
-from service.group.services.group_service import GroupService
-from service.group.services.student_service import StudentService
 from service.lesson.repositories.check_repository import CheckRepository
 from service.lesson.repositories.lesson_repository import LessonRepository
 from service.lesson.repositories.space_repository import SpaceRepository
@@ -15,8 +11,14 @@ from service.lesson.services.training_check_service import TrainingCheckService
 def lesson_service():
     return LessonService(LessonRepository)
 
+def lesson_repository():
+    return LessonRepository()
+
 def space_service():
     return SpaceService(SpaceRepository)
+
+def space_repository():
+    return SpaceRepository()
 
 def check_service():
     return CheckService(CheckRepository)

@@ -7,8 +7,8 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Respons
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
-from service.identity.schemas import UserSchemaForTable, EditUserSchema, PhotoReadSchema
-from service.identity.services.auth_service import AuthService
+from service.identity.schemas import UserShortSchemaForTable, EditUserSchema, PhotoReadSchema
+from service.identity.security import get_current_user
 from service.identity.services.user_service import UserService
 from service.identity.dependensies import user_service
 
@@ -20,7 +20,7 @@ profile_router = APIRouter(
 
 @profile_router.get(
     "/",
-    response_model=UserSchemaForTable,
+    response_model=UserShortSchemaForTable,
     summary="Возвращает данные пользователя",
     responses={
         200: {"description": "Успешная обработка данных"},
@@ -29,10 +29,10 @@ profile_router = APIRouter(
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
 async def account(
-        user: User = Depends(AuthService().get_current_user)
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
-    return user.to_read_model
+    return current_user
 
 
 @profile_router.put(
@@ -48,16 +48,16 @@ async def account(
 async def edit_account(
         data: EditUserSchema,
         user_service: Annotated[UserService, Depends(user_service)],
-        user: User = Depends(AuthService().get_current_user),
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
-        data.email = user.email
-        data.id = user.id
+        data.email = current_user.email
+        data.id = current_user.id
         result = await user_service.edit(data)
         if result:
             return result
-        logger.error({"user_id": user.id, "message": "Incorrect code"})
+        logger.error({"user_id": current_user.id, "message": "Incorrect code"})
         return Response(status_code=HTTPStatus.BAD_REQUEST.value)
     except Exception as e:
         logger.error(e)
@@ -75,10 +75,10 @@ async def edit_account(
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
 async def edit_account_view(
-        user: User = Depends(AuthService().get_current_user)
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
-    return user
+    return current_user
 
 
 # @profile_router.put('/remove/')
@@ -106,16 +106,20 @@ async def edit_account_view(
 async def set_photo(
         user_service: Annotated[UserService, Depends(user_service)],
         file: UploadFile = File(...),
-        user: User = Depends(AuthService().get_current_user),
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
+        if file.size <= 0 or file.content_type not in ["image/jpeg", "image/png"]:
+            logger.error(f"Invalid image file. Expected format: FastAPI.UploadFile, "
+                         f"Content-type: image/jpeg, but got {file.content_type}")
+            return Response(status_code=400)
         contents = await file.read()
-        encoded_file = base64.b64encode(contents)  # ToDo: проверка на размер и формат
-        result = await user_service.set_photo(encoded_file, user.id)
+        encoded_file = base64.b64encode(contents)
+        result = await user_service.set_photo(encoded_file, current_user.id)
         if result:
             return result
-        logger.error({"user_id": user.id, "message": "Invalid page"})
+        logger.error({"user_id": current_user.id, "message": "Invalid page"})
         return Response(status_code=HTTPStatus.BAD_REQUEST.value)
     except Exception as e:
         logger.error(e)
@@ -134,14 +138,14 @@ async def set_photo(
 )
 async def remove_photo(
         user_service: Annotated[UserService, Depends(user_service)],
-        user: User = Depends(AuthService().get_current_user)
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
-        result = await user_service.delete_photo(user.id)
+        result = await user_service.delete_photo(current_user.id)
         if result:
             return result
-        logger.error({"user_id": user.id, "message": "Invalid operation"})
+        logger.error({"user_id": current_user.id, "message": "Invalid operation"})
         return Response(status_code=HTTPStatus.BAD_REQUEST.value)
     except Exception as e:
         logger.error(e)
@@ -160,14 +164,14 @@ async def remove_photo(
 )
 async def get_photo(
         user_service: Annotated[UserService, Depends(user_service)],
-        user: User = Depends(AuthService().get_current_user)
+        current_user: User = Depends(get_current_user())
 ):
     """ authorized """
     try:
-        result = await user_service.get_photo(user.id)
+        result = await user_service.get_photo(current_user.id)
         if result or result is None:
             return PhotoReadSchema(photo=result)
-        logger.error({"user_id": user.id, "message": "Invalid"})
+        logger.error({"user_id": current_user.id, "message": "Invalid"})
         return Response(status_code=HTTPStatus.BAD_REQUEST.value)
     except Exception as e:
         logger.error(e)
