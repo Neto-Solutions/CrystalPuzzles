@@ -1,7 +1,7 @@
 name: Ci-Cd-Pipeline-to-AWS
 
 env:
-  EB_PACKAGE_S3_BUCKET_NAME: "crystall-fastapi-app-packages"  # Corrected spelling
+  EB_PACKAGE_S3_BUCKET_NAME: "crystall-fastapi-app-packages"  
   EB_APPLICATION_NAME: "FastApiCr"
   EB_ENVIROMENT_NAME:  "FastApiCr-env-1"
   DEPLOY_PACKAGE_NAME:  "CrystalPuzzles_${{ github.sha }}.zip"
@@ -10,7 +10,7 @@ env:
 on:
   push:
     branches:
-      - release  # Correct trigger syntax
+      - prod
       
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello World  # Correct indentation
+      - name: Say Hello World 
         run: echo "Hello World"  
         
         
