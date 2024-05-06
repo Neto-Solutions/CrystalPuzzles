@@ -1,6 +1,6 @@
 import styles from './Check.list.module.scss';
 export default function CheckList() {
-	const tempArray = Array.from({ length: 5 }, () => 1);
+	const tempArray = Array.from({ length: 6 }, () => 1);
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>Чек-листы</div>

@@ -1,0 +1,25 @@
+.container {
+	position: relative;
+}
+
+.bunny,
+.hedgehog,
+.raccoon {
+	position: absolute;
+}
+
+.bunny {
+	top: 25px;
+	left: 6px;
+	z-index: 1;
+}
+
+.hedgehog {
+	top: 45px;
+	left: 100px;
+}
+
+.raccoon {
+	top: 40px;
+	left: 200px;
+}

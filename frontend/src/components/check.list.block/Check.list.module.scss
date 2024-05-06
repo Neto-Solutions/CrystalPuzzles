@@ -1,44 +1,41 @@
+@use '../../app/styles/mixins' as *;
 .container {
-	width: 714px;
-	height: 337px;
+	width: 100%;
+	max-width: 714px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
+.header,
+.list_item {
+	height: 57px;
+	display: flex;
+	align-items: center;
+	border: var(--border);
+	border-radius: var(--radius);
+}
+
 .header {
-	padding: 20px;
+	@include font(var(--ff-second), 24px, 400);
 	background-color: #a1cbf1;
-	border: solid #2b2d91 1px;
-	border-radius: 20px;
-	font-family: 'Rubik';
-	font-size: 24px;
-	font-weight: 400;
-	line-height: 28.44px;
-	text-align: center;
+	justify-content: center;
 }
 
 .list {
 	&_item {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
 		padding: 15px 30px;
+		justify-content: space-between;
 		background-color: #dae8f0;
-		border: solid #0e1079 1.5px;
-		border-radius: 20px;
 		&_title {
-			font-family: 'Rubik';
-			font-size: 24px;
-			font-weight: 400;
+			@include font(var(--ff-second), 24px, 400);
 		}
 		&_checkbox {
 			width: 36px;
 			height: 36px;
-			outline: 1.5px solid #0e1079;
-			border-radius: 10px;
+			border: solid #0e1079 2px;
+			border-radius: 6px;
 			-webkit-appearance: none;
-			appearance: none;
 			-moz-appearance: none;
 		}
 	}
