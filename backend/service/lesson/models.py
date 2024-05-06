@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
 
 from core.database import Base
@@ -17,6 +17,10 @@ class Lesson(Base):
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
 
+    trainer = relationship("User", back_populates="lessons")
+    space = relationship("Space", back_populates="lessons")
+    # check = relationship("Check", back_populates="lesson")
+
 
 class Space(Base):
     __tablename__ = "Spaces"
@@ -26,17 +30,31 @@ class Space(Base):
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
 
+    lessons = relationship("Lesson", back_populates="space")
+
 
 class Check(Base):
     __tablename__ = "Checks"
     id: Mapped[int] = mapped_column(sa.Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)
-    student_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), primary_key=True)
+    student_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
+
+    lesson_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
+    # lesson = relationship("Lesson", back_populates="check")
+
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
+
+    training_data = relationship("TrainingCheck", back_populates="check")
 
 
 class TrainingCheck(Base):
     __tablename__ = "TrainingChecks"
     check_id: Mapped[int] = mapped_column(sa.ForeignKey("Checks.id"), primary_key=True)
+    check = relationship("Check", back_populates="training_data")
+
     training_id: Mapped[int] = mapped_column(sa.ForeignKey("Trainings.id"), primary_key=True)
+    training = relationship("Training", back_populates="check_data")
+
+    repetitions: Mapped[int] = mapped_column(sa.Integer)
+    assessment: Mapped[int] = mapped_column(sa.Integer)
