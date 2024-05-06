@@ -1,5 +1,5 @@
 import Page from '@components/page/Page';
-import { Datepicker } from '@components/datepicker/Datepicker';
+import { Datepicker } from '@components/calendar/datepicker/Datepicker';
 import Button from '@components/button/Button';
 import styles from './Schedule.page.module.scss';
 

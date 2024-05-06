@@ -1,5 +1,5 @@
 import Page from '@components/page/Page';
-import UserCard from '@components/user.card/User.card';
+import UserCard from '@components/cards/user.card/User.card';
 
 export default function ProgressGraphPage() {
 	const tempArray = Array.from(

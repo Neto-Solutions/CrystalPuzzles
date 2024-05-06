@@ -1,8 +1,8 @@
 import styles from './Main.page.module.scss';
 import reward_animal from '@assets/svg/reward_animal.svg';
-import CardLink from '@components/card/Card.link';
+import CardLink from '@components/cards/card.link/Card.link';
 import Page from '@components/page/Page';
-import Feedback from '@components/feedback.block.kids/Feedback';
+import Feedback from '@components/feedback.kids/Feedback';
 export default function KidsMainPage() {
 	const tempArray = Array(2).fill(0);
 	return (

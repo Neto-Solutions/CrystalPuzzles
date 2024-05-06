@@ -1,8 +1,8 @@
 import Page from '@components/page/Page';
 import Button from '@components/button/Button';
-import Notification from '@components/notification.block/Notification';
-import Schedule from '@components/schedule.block/Schedule';
-import CheckList from '@components/check.list.block/Check.list';
+import Notification from '@components/notification/Notification';
+import Schedule from '@components/schedule/schedule.card/Schedule';
+import CheckList from '@components/check.list/Check.list';
 
 export default function MainPage() {
 	return (

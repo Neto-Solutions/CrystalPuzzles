@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Root from '../pages/Root';
+import App from '../app/App';
 import kidsRouter from './kids.router';
 import methodistRouter from './methodist.router';
 import trainerRouter from './trainer.router';
@@ -9,7 +9,7 @@ export default function createRouter(role) {
 	return createBrowserRouter([
 		{
 			path: '/',
-			element: <Root sidebar />,
+			element: <App sidebar />,
 			loader: () => {
 				return null;
 			}, // loader to fetch data before render
@@ -20,7 +20,7 @@ export default function createRouter(role) {
 		},
 		{
 			path: '/',
-			element: <Root />,
+			element: <App />,
 			children: checkInRouter
 		}
 	]);

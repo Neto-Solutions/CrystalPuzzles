@@ -1,4 +1,4 @@
-import UserCard from '@components/user.card/User.card';
+import UserCard from '@components/cards/user.card/User.card';
 import Page from '@components/page/Page';
 
 export default function AnalyticsPage() {

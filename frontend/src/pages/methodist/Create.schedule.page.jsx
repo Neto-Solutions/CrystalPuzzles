@@ -1,7 +1,7 @@
 import Page from '@components/page/Page';
 import Button from '@components/button/Button';
 import styles from './Create.schedule.page.module.scss';
-import { Datepicker } from '@components/datepicker/Datepicker';
+import { Datepicker } from '@components/calendar/datepicker/Datepicker';
 
 export default function CreateShedulePage() {
 	return (

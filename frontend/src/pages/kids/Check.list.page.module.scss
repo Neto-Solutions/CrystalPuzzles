@@ -1,7 +1,3 @@
-.container {
-	position: relative;
-}
-
 .bunny,
 .hedgehog,
 .raccoon {
@@ -9,17 +5,17 @@
 }
 
 .bunny {
-	top: 25px;
+	top: 110px;
 	left: 6px;
 	z-index: 1;
 }
 
 .hedgehog {
-	top: 45px;
+	top: 130px;
 	left: 100px;
 }
 
 .raccoon {
-	top: 40px;
+	top: 120px;
 	left: 200px;
 }

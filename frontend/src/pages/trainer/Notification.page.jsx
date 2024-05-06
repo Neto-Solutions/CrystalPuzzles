@@ -1,6 +1,6 @@
 import './Notification.page.scss';
 import Page from '@components/page/Page';
-import Notification from '@components/notification.block/Notification';
+import Notification from '@components/notification/Notification';
 
 export default function NotificationPage() {
 	return (

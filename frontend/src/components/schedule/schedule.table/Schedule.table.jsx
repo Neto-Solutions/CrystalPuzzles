@@ -7,9 +7,9 @@ export default function ScheduleTable() {
 	return (
 		<div className={styles.table}>
 			{tempArray.map((item, index) => (
-				<div key={index} className={styles.table_row}>
-					<div className={styles.table_col}>{item.time}</div>
-					<div className={styles.table_col}>{item.name}</div>
+				<div key={index} className={styles.row}>
+					<div className={styles.col}>{item.time}</div>
+					<div className={styles.col}>{item.name}</div>
 				</div>
 			))}
 		</div>

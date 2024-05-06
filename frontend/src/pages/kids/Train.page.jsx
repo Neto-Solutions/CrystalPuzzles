@@ -20,9 +20,7 @@ export default function TrainPage() {
 								{item.trainer}
 							</div>
 							<div className={styles.combination}>
-								<span className={styles.combination_title}>
-									Комбинация 1
-								</span>
+								<span className={styles.combination_title}>Комбинация 1</span>
 								{item.combination}
 							</div>
 						</div>

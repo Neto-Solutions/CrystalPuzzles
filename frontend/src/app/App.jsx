@@ -1,18 +1,31 @@
-import './App.scss';
-import { useMemo } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import createRouter from '../routes';
-import { useSelector } from 'react-redux';
+import styles from './App.module.scss';
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import Header from '@components/app/header/Header';
+import Sidebar from '@components/app/sidebar/Sidebar';
+import RouterTool from '@utils/Router.tool';
 
-export default function App() {
-	const role = useSelector((state) => state.user.role);
-
-	const router = useMemo(() => {
-		return createRouter(role);
-	}, [role]);
+export default function App({ sidebar = false }) {
 	return (
-		<div className="app">
-			<RouterProvider router={router} />
+		<div className={styles.app}>
+			<RouterTool />
+			<Header />
+			<Suspense fallback={<div>Loading...</div>}>
+				<div className={styles.page_container}>
+					{sidebar ? (
+						<>
+							<Sidebar />
+							<div className={styles.page}>
+								<Outlet />
+							</div>
+						</>
+					) : (
+						<>
+							<Outlet />
+						</>
+					)}
+				</div>
+			</Suspense>
 		</div>
 	);
 }
