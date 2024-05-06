@@ -1,4 +1,4 @@
-import './Schedule.page.scss';
+import styles from './Schedule.page.module.scss';
 import Page from '@components/page/Page';
 import Calendar from '@components/calendar/Calendar';
 import Button from '@components/button/Button';
@@ -9,15 +9,15 @@ export default function SchedulePage() {
 	}));
 	return (
 		<Page title="Расписание">
-			<div className="schedule_table">
+			<div className={styles.table}>
 				{tempArray.map((item, index) => (
-					<div key={index} className="schedule_table_row">
-						<div className="schedule_table_row_item_time">{item.time}</div>
-						<div className="schedule_table_row_item_name">{item.name}</div>
+					<div key={index} className={styles.row}>
+						<div className={styles.col}>{item.time}</div>
+						<div className={styles.col}>{item.name}</div>
 					</div>
 				))}
 			</div>
-			<div className="shedule_page_calendar_container">
+			<div className={styles.calendar}>
 				<Calendar />
 				<Button title="Записаться" />
 			</div>
