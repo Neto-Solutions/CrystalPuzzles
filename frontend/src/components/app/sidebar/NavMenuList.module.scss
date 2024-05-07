@@ -1,0 +1,16 @@
+.dropdown {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	display: none;
+}
+.item:nth-last-child(1) {
+	margin-bottom: 30px;
+}
+
+.link {
+	margin-left: 15px;
+	font-family: var(--ff-first);
+	font-weight: var(--medium);
+	font-size: 20px;
+}

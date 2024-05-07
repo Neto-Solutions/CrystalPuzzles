@@ -1,12 +1,13 @@
-import MainPage from '../pages/methodist/Main.page';
-import AnalyticsPage from '../pages/methodist/Analytics.page';
-import AnalyticsViewPage from '../pages/methodist/Analytics.view.page';
-import ProgressGraphPage from '../pages/methodist/Progress.graph.page';
-import SchedulePage from '../pages/methodist/Schedule.page';
-import CreateSchedulePage from '../pages/methodist/Create.schedule.page';
-import FeedbackPage from '../pages/methodist/Feedback.page';
-import EvaluationTable from '../pages/methodist/Evaluation.table.page';
-import NotificationPage from '../pages/methodist/Notification.page';
+import MainPage from '@methodist/Main.page';
+import AnalyticsPage from '@methodist/Analytics.page';
+import AnalyticsViewPage from '@methodist/Analytics.view.page';
+import ProgressGraphPage from '@methodist/Progress.graph.page';
+import ProgressGraphViewPage from '@methodist/Progress.graph.view.page';
+import SchedulePage from '@methodist/Schedule.page';
+import CreateSchedulePage from '@methodist/Create.schedule.page';
+import FeedbackPage from '@methodist/Feedback.page';
+import EvaluationTable from '@methodist/Evaluation.table.page';
+import NotificationPage from '@methodist/Notification.page';
 
 const methodistRouter = [
 	{
@@ -15,7 +16,8 @@ const methodistRouter = [
 	},
 	{
 		path: '/analytics',
-		element: <AnalyticsPage />
+		element: <AnalyticsPage />,
+		local: 'Аналитика'
 	},
 	{
 		path: '/analytics/view',
@@ -23,11 +25,17 @@ const methodistRouter = [
 	},
 	{
 		path: '/progress',
-		element: <ProgressGraphPage />
+		element: <ProgressGraphPage />,
+		local: 'Графики прогресса'
+	},
+	{
+		path: '/progress/view',
+		element: <ProgressGraphViewPage />
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage />
+		element: <SchedulePage />,
+		local: 'Расписание'
 	},
 	{
 		path: '/schedule/create',
@@ -35,11 +43,13 @@ const methodistRouter = [
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />
+		element: <FeedbackPage />,
+		local: 'Обратная связь'
 	},
 	{
 		path: '/evaluation',
-		element: <EvaluationTable />
+		element: <EvaluationTable />,
+		local: 'Таблицы'
 	},
 	{
 		path: '/notifications',

@@ -4,6 +4,8 @@ import Cookie from 'js-cookie';
 const mainReducer = (
 	prevState = {
 		user: {
+			name: Cookie.get('name') || 'Антонина',
+			avatar: Cookie.get('avatar') || 'avatar.png',
 			role: Cookie.get('role') || 'methodist'
 		}
 	},

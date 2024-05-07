@@ -5,12 +5,14 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from core.config import settings
-
 from service.identity.models import User, Role, Rank, Task
 from service.group.models import Group, StudentGroup
+from service.lesson.models import Lesson, Check, TrainingCheck, Space
+from service.training.models import Training
+from core.config import get_settings
 from core.database import Base
 
+settings = get_settings()
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -19,11 +21,11 @@ section = config.config_ini_section
 # значение, заданное здесь, будет переопределять значение, заданное в alembic.ini
 # значение передается в `ConfigParser.set`,
 # который поддерживает интерполяцию переменных с помощью pyformat (например, `%(some_value)s`).
-config.set_section_option(section, "PG_HOST", settings.PG_HOST)
-config.set_section_option(section, "PG_PORT", settings.PG_PORT)
-config.set_section_option(section, "PG_USER", settings.PG_USER)
-config.set_section_option(section, "PG_NAME", settings.PG_DATABASE)
-config.set_section_option(section, "PG_PASS", settings.PG_PASSWORD)
+config.set_section_option(section, "PG_HOST", settings.pg_host)
+config.set_section_option(section, "PG_PORT", str(settings.pg_port))
+config.set_section_option(section, "PG_USER", settings.pg_user)
+config.set_section_option(section, "PG_NAME", settings.pg_database)
+config.set_section_option(section, "PG_PASS", settings.pg_password)
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
