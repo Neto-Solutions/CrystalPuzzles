@@ -1,5 +1,5 @@
-import UserCard from '../../components/user.card/User.card';
-import PageContainer from '../../components/page.container/Page.container';
+import UserCard from '@components/cards/user.card/User.card';
+import Page from '@components/page/Page';
 
 export default function AnalyticsPage() {
 	const tempArray = Array.from(
@@ -8,13 +8,10 @@ export default function AnalyticsPage() {
 	);
 
 	return (
-		<>
-			<PageContainer.Header title="Аналитика тренеров" />
-			<PageContainer.Body>
-				{tempArray.map((item, index) => {
-					return <UserCard key={index} name={item} />;
-				})}
-			</PageContainer.Body>
-		</>
+		<Page title="Аналитика тренеров">
+			{tempArray.map((item, index) => {
+				return <UserCard key={index} name={item} />;
+			})}
+		</Page>
 	);
 }

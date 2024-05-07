@@ -18,3 +18,6 @@ def user_repository():
 
 def admin_service():
     return AdminService(UserRepository)
+
+def admin_service():
+    return AdminService(UserRepository)
