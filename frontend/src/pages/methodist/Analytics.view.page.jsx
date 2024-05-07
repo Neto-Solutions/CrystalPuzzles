@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import calendar_icon from '@assets/svg/calendar_icon.svg';
-import UserCard from '@components/user.card/User.card';
+import UserCard from '@components/cards/user.card/User.card';
 import Page from '@components/page/Page';
 import Button from '@components/button/Button';
 import styles from './Analytics.view.page.module.scss';

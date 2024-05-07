@@ -1,4 +1,4 @@
-import os
+# import os
 from functools import lru_cache
 from typing import Union, Optional, Any
 
@@ -10,11 +10,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Настройки окружения."""
     # region ---------------------------- Database ----------------------------------
-    pg_host: str = Field(env="PG_HOST")
-    pg_user: str = Field(env="PG_USER")
-    pg_password: str = Field(env="PG_PASSWORD")
-    pg_database: str = Field(env="PG_DATABASE")
-    pg_port: int = Field(env="PG_PORT")
+    pg_host: str = Field(alias="POSTGRES_HOST")
+    pg_user: str = Field(alias="POSTGRES_USER")
+    pg_password: str = Field(alias="POSTGRES_PASSWORD")
+    pg_database: str = Field(alias="POSTGRES_DB_NAME")
+    pg_port: int = Field(alias="POSTGRES_PORT")
     async_database_uri: Union[PostgresDsn, str] = Field(
         default="", env="ASYNC_DATABASE_URI",
     )
@@ -26,11 +26,11 @@ class Settings(BaseSettings):
     # token_url: HttpUrl = Field(env="TOKEN_URL")
     # private_key_path: Path = Field(env="PRIVATE_KEY_PATH")
     # public_key_path: Path = Field(env="PUBLIC_KEY_PATH")
-    secret_key: str = Field(env='SECRET_KEY', default="secret_key")
-    refresh_secret_key: str = Field(env='REFRESH_SECRET_KEY', default="refresh_secret_key")
-    access_token_expire_minutes: int = Field(env="ACCESS_TOKEN_EXPIRE_MINUTES")
-    refresh_token_expire_minutes: int = Field(env="REFRESH_TOKEN_EXPIRE_MINUTES")
-    algorithm: str = Field(env="ALGORITHM")
+    secret_key: str = Field(alias='SECRET_KEY', default="secret_key")
+    refresh_secret_key: str = Field(alias='REFRESH_SECRET_KEY', default="refresh_secret_key")
+    access_token_expire_minutes: int = Field(alias="ACCESS_TOKEN_EXPIRE_MINUTES")
+    refresh_token_expire_minutes: int = Field(alias="REFRESH_TOKEN_EXPIRE_MINUTES")
+    algorithm: str = Field(alias="ALGORITHM")
     # endregion ---------------------------------------------------------------------
 
     port: int = Field(env="PORT")
@@ -41,10 +41,10 @@ class Settings(BaseSettings):
 
     page_size: int = Field(env="PAGE_SIZE", default=10)
 
-    model_config = SettingsConfigDict(
-        env_file=os.path.expanduser("../.env"),
-        env_file_encoding="utf-8",
-    )
+    # model_config = SettingsConfigDict(
+    #     env_file=os.path.expanduser("../.env"),
+    #     env_file_encoding="utf-8",
+    # )
 
     @field_validator("async_database_uri")
     def assemble_db_async_connection(

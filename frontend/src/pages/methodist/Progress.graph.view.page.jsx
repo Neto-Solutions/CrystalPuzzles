@@ -1,6 +1,6 @@
 import styles from './Progress.graph.view.page.module.scss';
 import Page from '@components/page/Page';
-import UserCard from '@components/user.card/User.card';
+import UserCard from '@components/cards/user.card/User.card';
 import Button from '@components/button/Button';
 import calendar_icon from '@assets/svg/calendar_icon.svg';
 import { ReactComponent as Chart } from '@assets/svg/chart.svg';

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { NavMenuList } from './NavMenuList';
 import styles from './Sidebar.module.scss';
-import kidsRouter from '../../routes/kids.router';
-import methodistRouter from '../../routes/methodist.router';
-import trainerRouter from '../../routes/trainer.router';
-import checkInRouter from '../../routes/check.in.router';
+import kidsRouter from '../../../routes/kids.router';
+import methodistRouter from '../../../routes/methodist.router';
+import trainerRouter from '../../../routes/trainer.router';
+import checkInRouter from '../../../routes/check.in.router';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Arrow } from '@assets/svg/calendar_arrow_down.svg';
 

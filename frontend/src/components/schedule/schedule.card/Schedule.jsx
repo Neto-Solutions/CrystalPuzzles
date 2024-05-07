@@ -1,5 +1,5 @@
 import styles from './Schedule.module.scss';
-import Title from '../title/Title';
+import Title from '../../title/Title';
 
 export default function Schedule({ children }) {
 	return (
