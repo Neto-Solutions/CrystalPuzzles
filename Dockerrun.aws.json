@@ -1,0 +1,10 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "volumes": [],
+  "containerDefinitions": [],
+  "dockerComposeFileName": "docker-compose.yml",
+  "options": {
+    "awslogs-stream-prefix": "eb",
+    "awslogs-region": "eu-central-1"
+  }
+}
