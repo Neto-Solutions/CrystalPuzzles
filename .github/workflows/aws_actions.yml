@@ -38,11 +38,10 @@ jobs:
         uses: docker/setup-buildx-action@v2  # Настроить Docker
 
       - name: Set up Docker Compose
-        uses: docker/setup-docker-compose-action@v2  # Настроить Docker Compose
-
+        run: sudo apt-get update && sudo apt-get install docker-compose 
       - name: Build and Start Docker Compose
         run: |
-          docker-compose -f docker-compose.yml up -d 
+          docker compose up -d 
           
       # - name: Check Current Directory
       #   run: |
