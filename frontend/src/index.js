@@ -1,4 +1,3 @@
-import './index.scss';
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider, useSelector } from 'react-redux';

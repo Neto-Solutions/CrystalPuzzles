@@ -1,0 +1,16 @@
+.footer {
+	margin-top: auto;
+	padding: 25px 0;
+	border-top: solid black 1px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	.netology {
+		width: 48px;
+		height: 48px;
+	}
+	.socials {
+		display: flex;
+		gap: var(--gap);
+	}
+}

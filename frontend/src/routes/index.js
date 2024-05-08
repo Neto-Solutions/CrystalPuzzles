@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
 import App from '../app/App';
 import kidsRouter from './kids.router';
 import methodistRouter from './methodist.router';
@@ -9,10 +9,10 @@ export default function createRouter(role) {
 	return createBrowserRouter([
 		{
 			path: '/',
-			element: <App sidebar />,
+			element: <App />,
 			loader: () => {
-				return null;
-			}, // loader to fetch data before render
+				return !role && redirect('/login');
+			},
 			children:
 				(role === 'kids' && kidsRouter) ||
 				(role === 'methodist' && methodistRouter) ||
@@ -20,7 +20,7 @@ export default function createRouter(role) {
 		},
 		{
 			path: '/',
-			element: <App />,
+			element: <App check_in />,
 			children: checkInRouter
 		}
 	]);

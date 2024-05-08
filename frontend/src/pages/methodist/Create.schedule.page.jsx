@@ -1,12 +1,12 @@
 import Page from '@components/page/Page';
 import Button from '@components/button/Button';
 import styles from './Create.schedule.page.module.scss';
-import { Datepicker } from '@components/calendar/datepicker/Datepicker';
+import CalendarTable from '@components/calendar/calendar.table/Calendar.table';
 
 export default function CreateShedulePage() {
 	return (
 		<Page title="Составить расписание тренеров">
-			<Datepicker />
+			<CalendarTable />
 			<div className={styles['btns_wrap']}>
 				<Button
 					title={'Выберите тренера'}
