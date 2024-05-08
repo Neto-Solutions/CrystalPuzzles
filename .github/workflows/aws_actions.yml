@@ -47,7 +47,7 @@ jobs:
       - name: Check postgres
         run: nc -z "127.0.0.1" "5432" && echo "postgres is available" || exit 1
       - name: Check front
-        run: nc -z "127.0.0.1" "3000" && echo "front is available" || exit 1
+        run: nc -z "127.0.0.1" "8080" && echo "front is available" || exit 1
       - name: Check redis
         run: nc -z "127.0.0.1" "6379" && echo "redis is available" || exit 1      
         
