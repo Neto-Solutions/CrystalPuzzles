@@ -34,10 +34,6 @@ class StudentForGroupViewSchema(BaseModel):
     group_id: int
 
 
-
-
-
-
 class CreateGroupSchema(BaseModel):
     """ Создание группы """
     name: str
@@ -54,7 +50,6 @@ class DataRangeBaseFilterSchema(BaseFilterSchema):
 class GroupFilterSchema(DataRangeBaseFilterSchema):
     """ Фильтрация и пагинация """
     trainer: int | None = Query(default=None, description="Тренер")
-
 
 
 class GroupViewSchemaForTable(BaseModel):
