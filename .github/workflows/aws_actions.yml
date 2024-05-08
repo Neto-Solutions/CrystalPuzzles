@@ -111,7 +111,4 @@ jobs:
             --version-label "Ver-${{ github.sha }}"            
 
       - name: Print message for task end
-        run: echo "The deployment task is complete"        
-
-      
-      
+        run: echo "The deployment task is complete" 
