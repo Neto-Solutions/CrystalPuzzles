@@ -28,7 +28,7 @@ jobs:
         run: ls -R $GITHUB_WORKSPACE 
       - name: Check teh current directory
         run: ls -a
-      - name: Find and Print docker-compose.yml
+      - name: find_docker_compose
         run: |
           result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
           if [ -z "$result" ]; then
@@ -36,7 +36,8 @@ jobs:
             exit 1  # Завершить выполнение
           else
             echo "Found docker-compose.yml at: $result"
-            echo "::set-output name=docker_compose_path::$result"
+            # echo "::set-output name=docker_compose_path::$result"
+            echo "docker_compose_path=$result" >> $GITHUB_OUTPUT
           fi
 
       - name: Check services healthiness
@@ -44,7 +45,7 @@ jobs:
         with:
           filename: 'docker-compose.yml'
           timeout: '60'
-          workdir: $GITHUB_WORKSPACE
+          workdir: ${{ steps.find_docker_compose.outputs.docker_compose_path }}
       - name: Check Services
         run: |
           docker-compose ps
