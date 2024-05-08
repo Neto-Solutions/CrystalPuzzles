@@ -1,7 +1,7 @@
 name: Ci-Cd-Pipeline-to-AWS
 
 env:
-  EB_PACKAGE_S3_BUCKET_NAME: "crystall-fastapi-app-packages"  
+  EB_PACKAGE_S3_BUCKET_NAME: "crystall-fastapi-app-packages"  # Corrected spelling
   EB_APPLICATION_NAME: "FastApiCr"
   EB_ENVIROMENT_NAME:  "FastApiCr-env-1"
   DEPLOY_PACKAGE_NAME:  "CrystalPuzzles_${{ github.sha }}.zip"
@@ -11,15 +11,49 @@ on:
   push:
     branches:
       - prod
-      
 
 jobs:
   tests:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello World 
-        run: echo "Hello World"  
+      - name: Checkout Repository from specific branch
+        uses: actions/checkout@v3
+        with:
+          ref: release
+      - name: find_docker_compose
+        run: |
+          result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
+          if [ -z "$result" ]; then
+            echo "docker-compose.yml not found"
+            exit 1  # Завершить выполнение
+          else
+            directory=$(dirname "$result")
+            echo "Found docker-compose.yml at: $result"
+            echo "Directory path is: $directory"
+            echo "docker_compose_path=$directory" >> $GITHUB_OUTPUT
+          fi
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up Docker Compose
+        run: sudo apt-get update && sudo apt-get install docker-compose
+      - name: Build and Start Docker Compose
+        run: docker compose up -d
+      - name: Check Services list
+        run: docker-compose ps
+      - name: Check api
+        run: nc -z "127.0.0.1" "8001" && echo "api is available" || exit 1
+      - name: Check postgres
+        run: nc -z "127.0.0.1" "5432" && echo "postgres is available" || exit 1
+      - name: Check front
+        run: nc -z "127.0.0.1" "8080" && echo "front is available" || exit 1
+      - name: Check redis
+        run: nc -z "127.0.0.1" "6379" && echo "redis is available" || exit 1
+
+      - name: Shut Down Docker Compose
+        if: always()
+        run: docker-compose -f docker-compose.yml down
         
         
   integration:
@@ -74,9 +108,7 @@ jobs:
           aws elasticbeanstalk update-environment \
             --environment-name ${{ env.EB_ENVIROMENT_NAME }} \
             --option-settings Namespace=aws:autoscaling:launchconfiguration,OptionName=InstanceType,Value=t4g.medium \
-            --version-label "Ver-${{ github.sha }}"
-
-            
+            --version-label "Ver-${{ github.sha }}"            
 
       - name: Print message for task end
         run: echo "The deployment task is complete"        
