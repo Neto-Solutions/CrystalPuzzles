@@ -25,9 +25,7 @@ jobs:
         with:
           ref: release  
       - name: Check workspace contents
-        run: ls -R $GITHUB_WORKSPACE
-      - name: Check workspace folder
-        run: ls /home/runner/work/CrystalPuzzles        
+        run: ls -R $GITHUB_WORKSPACE      
       - name: Find and Print docker-compose.yml
         run: |
           result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
@@ -44,7 +42,7 @@ jobs:
         with:
           filename: 'docker-compose.yml'
           timeout: '60'
-          workdir: ${{ steps.find_docker_compose.outputs.docker_compose_path }}
+          workdir: $GITHUB_WORKSPACE
         
         
   # integration:
