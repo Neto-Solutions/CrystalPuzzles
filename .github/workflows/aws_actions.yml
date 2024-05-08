@@ -43,7 +43,7 @@ jobs:
       - name: Check Services list
         run: docker-compose ps
       - name: Check api
-        run: nc -z "127.0.0.1" "8000" && echo "api is available" || exit 1
+        run: nc -z "127.0.0.1" "8001" && echo "api is available" || exit 1
       - name: Check postgres
         run: nc -z "127.0.0.1" "5432" && echo "postgres is available" || exit 1
       - name: Check front
