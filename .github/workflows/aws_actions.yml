@@ -57,9 +57,9 @@ jobs:
       - name: Check Services
         run: |
           docker-compose ps
-          nc -z "127.0.0.1" "6379" && { echo "redis is available" } || exit 1
-          nc -z "127.0.0.1" "3000" && { echo "redis is available" } || exit 1
-          nc -z "127.0.0.1" "8000" && { echo "api is available" } || exit 1
+          nc -z "127.0.0.1" "6379" || exit 1
+          nc -z "127.0.0.1" "3000" || exit 1
+          nc -z "127.0.0.1" "8000" || exit 1
       - name: Shut Down Docker Compose
         if: always() 
         run: docker-compose -f docker-compose.yml down
