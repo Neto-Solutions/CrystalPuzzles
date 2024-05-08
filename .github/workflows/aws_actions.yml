@@ -23,10 +23,10 @@ jobs:
       - name: Check workspace contents
         run: ls -R $GITHUB_WORKSPACE
       - name: Check workspace folder
-        run: ls /home/runner/work/CrystalPuzzles/CrystalPuzzles        
+        run: ls /home/runner/work/CrystalPuzzles        
       - name: Find and Print docker-compose.yml
         run: |
-          result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
+          result=$(find / -name "docker-compose.yml")
           if [ -z "$result" ]; then
             echo "docker-compose.yml not found"
             exit 1  # Завершить выполнение
