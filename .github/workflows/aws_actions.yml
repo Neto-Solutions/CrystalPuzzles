@@ -21,7 +21,9 @@ jobs:
       - name: Say Hello World  # Correct indentation
         run: echo "Hello World"  
       - name: Check workspace contents
-        run: ls -R $GITHUB_WORKSPACE  # Показывает все содержимое рабочей директории
+        run: ls -R $GITHUB_WORKSPACE
+      - name: Check workspace folder
+        run: ls /home/runner/work/CrystalPuzzles/CrystalPuzzles        
       - name: Find and Print docker-compose.yml
         run: |
           result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
