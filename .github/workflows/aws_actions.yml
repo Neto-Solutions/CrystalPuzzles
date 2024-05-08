@@ -34,20 +34,33 @@ jobs:
             echo "Directory path is: $directory"
             echo "docker_compose_path=$directory" >> $GITHUB_OUTPUT
           fi
-      - name: Check Current Directory
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2  # Настроить Docker
+
+      - name: Set up Docker Compose
+        uses: docker/setup-docker-compose-action@v2  # Настроить Docker Compose
+
+      - name: Build and Start Docker Compose
         run: |
-          echo "Check directory:"
-          ls ${{ steps.find_docker_compose.outputs.docker_compose_path }}
-      - name: Check services healthiness
-        uses: thegabriele97/dockercompose-health-action@main
-        with:
-          filename: 'docker-compose.yml'
-          timeout: '60'
-          # workdir: ${{ steps.find_docker_compose.outputs.docker_compose_path }}
-          workdir: /home/runner/work/CrystalPuzzles/CrystalPuzzles
+          docker-compose -f docker-compose.yml up -d 
+          
+      # - name: Check Current Directory
+      #   run: |
+      #     echo "Check directory:"
+      #     ls ${{ steps.find_docker_compose.outputs.docker_compose_path }}
+      # - name: Check services healthiness
+      #   uses: thegabriele97/dockercompose-health-action@main
+      #   with:
+      #     filename: 'docker-compose.yml'
+      #     timeout: '60'
+      #     # workdir: ${{ steps.find_docker_compose.outputs.docker_compose_path }}
+      #     workdir: /home/runner/work/CrystalPuzzles/CrystalPuzzles
       - name: Check Services
         run: |
           docker-compose ps
+          nc -z "127.0.0.1" "6379" && { echo "redis is available" } || exit 1
+          nc -z "127.0.0.1" "3000" && { echo "redis is available" } || exit 1
+          nc -z "127.0.0.1" "8000" && { echo "api is available" } || exit 1
       - name: Shut Down Docker Compose
         if: always() 
         run: docker-compose -f docker-compose.yml down
