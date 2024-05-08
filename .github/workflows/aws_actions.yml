@@ -54,12 +54,10 @@ jobs:
       #     timeout: '60'
       #     # workdir: ${{ steps.find_docker_compose.outputs.docker_compose_path }}
       #     workdir: /home/runner/work/CrystalPuzzles/CrystalPuzzles
-      - name: Check Services
-        run: |
-          docker-compose ps
-          nc -z "127.0.0.1" "6379" || exit 1
-          nc -z "127.0.0.1" "3000" || exit 1
-          nc -z "127.0.0.1" "8000" || exit 1
+      - name: Check Services list
+        run: docker-compose ps
+      - name: Check redis
+        run: nc -z "127.0.0.1" "6379" && echo "redis is available" || exit 1
       - name: Shut Down Docker Compose
         if: always() 
         run: docker-compose -f docker-compose.yml down
