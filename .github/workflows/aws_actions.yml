@@ -25,7 +25,7 @@ jobs:
         with:
           filename: 'docker-compose.yml'
           timeout: '60'
-          workdir: '.'
+          workdir: 'src'
         
         
   # integration:
