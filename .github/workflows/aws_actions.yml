@@ -35,9 +35,10 @@ jobs:
             echo "docker-compose.yml not found"
             exit 1  # Завершить выполнение
           else
+            directory=$(dirname "$result")
             echo "Found docker-compose.yml at: $result"
-            # echo "::set-output name=docker_compose_path::$result"
-            echo "docker_compose_path=$result" >> $GITHUB_OUTPUT
+            echo "Directory path is: $directory"
+            echo "docker_compose_path=$directory" >> $GITHUB_OUTPUT
           fi
 
       - name: Check services healthiness
