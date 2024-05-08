@@ -1,12 +1,13 @@
-import logo from '@assets/svg/header_logo.svg';
-import './Header.scss';
+import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '@assets/logo.svg';
 
 export default function Header() {
 	return (
-		<header className="checkin_header">
-			<div className="logo_container">
-				<img src={logo} alt="" />
-			</div>
+		<header className={styles.header}>
+			<Link to="/">
+				<Logo />
+			</Link>
 		</header>
 	);
 }

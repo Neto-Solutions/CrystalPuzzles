@@ -1,11 +1,11 @@
+import styles from './Calendar.table.module.scss';
 import moment from 'moment';
 import 'moment/locale/ru';
 import React, { useState } from 'react';
 import arrowLeft from '@assets/svg/calendar_arrow_left.svg';
 import arrowRight from '@assets/svg/calendar_arrow_right.svg';
-import styles from './Datepicker.module.scss';
 
-export const Datepicker = () => {
+const CalendarTable = () => {
 	const [startDate, setStartDate] = useState(moment());
 
 	window.moment = moment;
@@ -77,3 +77,5 @@ export const Datepicker = () => {
 		</div>
 	);
 };
+
+export default CalendarTable;
