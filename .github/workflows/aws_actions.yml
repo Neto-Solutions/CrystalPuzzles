@@ -42,10 +42,10 @@ jobs:
         with:
           filename: 'docker-compose.yml'
           timeout: '60'
-          workdir: "{{ $GITHUB_WORKSPACE }}"
+          # workdir: "{{ $GITHUB_WORKSPACE }}"
       - name: Check Services
         run: |
-          docker-compose -f docker-compose.yml ps
+          docker-compose ps
       - name: Shut Down Docker Compose
         if: always() 
         run: docker-compose -f docker-compose.yml down
