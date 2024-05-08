@@ -18,16 +18,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello World  # Correct indentation
-        run: echo "Hello World"  
       - name: Checkout Repository from specific branch
         uses: actions/checkout@v3
         with:
-          ref: release  
-      - name: Check workspace contents
-        run: ls -R $GITHUB_WORKSPACE 
-      - name: Check teh current directory
-        run: ls -a
+          ref: release 
       - name: find_docker_compose
         run: |
           result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
@@ -40,7 +34,11 @@ jobs:
             echo "Directory path is: $directory"
             echo "docker_compose_path=$directory" >> $GITHUB_OUTPUT
           fi
-
+      - name: Check Current Directory
+        run: |
+            pwd
+            ls -l  # Посмотреть все файлы в текущей директории
+            ls ${{ steps.find_docker_compose.outputs.docker_compose_path }}
       - name: Check services healthiness
         uses: thegabriele97/dockercompose-health-action@main
         with:
