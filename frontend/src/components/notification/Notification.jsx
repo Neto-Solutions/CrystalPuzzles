@@ -1,10 +1,13 @@
 import styles from './Notification.module.scss';
 import Title from '../title/Title';
 import Button from '../button/Button';
+import { useNavigate } from 'react-router-dom';
+
 export default function Notification({
 	array = Array(2).fill(''),
 	isPage = false
 }) {
+	const navigate = useNavigate();
 	return (
 		<section className={styles.container}>
 			<Title tag="h2" className={styles.title}>
@@ -20,7 +23,13 @@ export default function Notification({
 					</div>
 				))}
 			</div>
-			{!isPage && <Button title="Показать все" className={styles.button} />}
+			{!isPage && (
+				<Button
+					title="Показать все"
+					className={styles.button}
+					onClick={() => navigate('/notifications')}
+				/>
+			)}
 		</section>
 	);
 }

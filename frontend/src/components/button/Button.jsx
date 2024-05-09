@@ -17,13 +17,16 @@ export default function Button({
 			style={{ width, height }}
 			{...props}
 		>
-			{title ? (
+			{downArrow ? (
 				<>
 					{title}
-					{downArrow && <DownArrow />}
+					{<DownArrow />}
 				</>
 			) : (
-				<>{children}</>
+				<>
+					{title}
+					{children}
+				</>
 			)}
 		</button>
 	);

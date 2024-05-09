@@ -7,16 +7,10 @@ export default function CreateShedulePage() {
 	return (
 		<Page title="Составить расписание тренеров">
 			<CalendarTable />
-			<div className={styles['btns_wrap']}>
-				<Button
-					title={'Выберите тренера'}
-					downArrow={'calendar_arrow_down.svg'}
-				/>
-				<Button
-					title={'Выберите площадку'}
-					downArrow={'calendar_arrow_down.svg'}
-				/>
-				<Button>Отправить расписание</Button>
+			<div className={styles.buttons_container}>
+				<Button title="Выберите тренера" downArrow />
+				<Button title="Выберите площадку" downArrow />
+				<Button title="Отправить расписание" />
 			</div>
 		</Page>
 	);

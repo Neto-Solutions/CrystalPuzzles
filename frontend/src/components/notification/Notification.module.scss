@@ -1,10 +1,15 @@
 .container {
+	width: 714px;
+	height: fit-content;
+
+	padding: 31px 30px 31px 30px;
+
 	display: flex;
 	flex-direction: column;
-	width: 714px;
-	border-radius: 20px;
+
 	border: var(--border);
-	padding: 31px 30px 31px 30px;
+	border-radius: var(--radius);
+
 	background-color: #e1f1f8;
 }
 .title {
@@ -35,4 +40,7 @@
 	margin-left: auto;
 	font-size: 20px;
 	background-color: white;
+}
+.container > .button {
+	margin-top: 80px;
 }

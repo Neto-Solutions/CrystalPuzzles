@@ -1,9 +1,10 @@
 import styles from './Schedule.module.scss';
 import Title from '../../title/Title';
+import { Link } from 'react-router-dom';
 
-export default function Schedule({ children }) {
+export default function Schedule({ children, to }) {
 	return (
-		<section className={styles['schedule-wrap']}>
+		<Link to={to} className={styles['schedule-wrap']}>
 			<div className={styles['content-wrap']}>
 				<Title tag="h2" className={styles.subtitle}>
 					Расписание
@@ -29,6 +30,6 @@ export default function Schedule({ children }) {
 			</div>
 
 			<div className={styles['btns-wrap']}>{children}</div>
-		</section>
+		</Link>
 	);
 }

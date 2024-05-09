@@ -1,0 +1,16 @@
+@use '../../app/styles/mixins' as *;
+.card {
+	@include font(var(--ff-first), 20px, 500);
+
+	width: 347px;
+	height: fit-content;
+	min-height: 138px;
+
+	display: flex;
+	align-items: center;
+
+	border: var(--border);
+	border-radius: var(--radius);
+
+	background-color: #e1f1f8;
+}
