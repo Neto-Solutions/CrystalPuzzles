@@ -1,20 +1,14 @@
-import avatar from '@assets/svg/avatar.svg';
 import help from '@assets/svg/help_icon.svg';
 import exit from '@assets/svg/exit_icon.svg';
 import { Link } from 'react-router-dom';
 import { NavMenuList } from './NavMenu';
+import { Account } from './Account';
 import styles from './Sidebar.module.scss';
 
 export default function Sidebar() {
 	return (
 		<aside className={styles.sidebar}>
-			<div className={styles.accaunt_wrap}>
-				<img src={avatar} className={styles.avatar} alt="" />
-				<div>
-					<p className={styles.profession}>методист</p>
-					<p className={styles.name}>Антонина</p>
-				</div>
-			</div>
+			<Account />
 			<div className={styles.line}></div>
 			<NavMenuList />
 			<div className={styles.line}></div>

@@ -6,7 +6,7 @@ import trainerRouter from '../../../routes/trainer.router';
 import checkInRouter from '../../../routes/check.in.router';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import styles from './NavMenuList.module.scss';
+import styles from './NavMenu.module.scss';
 
 export const NavMenuList = () => {
 	const [isOpen, setOpen] = useState(false);

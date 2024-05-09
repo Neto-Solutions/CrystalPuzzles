@@ -1,0 +1,24 @@
+.accaunt_wrap {
+	display: flex;
+	margin: 24px 0;
+}
+
+.avatar {
+	width: 44px;
+	height: 44px;
+	// border-radius: 50%;
+	margin-right: 12px;
+}
+
+.profession {
+	font-family: var(--ff-first);
+	font-size: var(--fz-text);
+	font-weight: var(--medium);
+	text-transform: uppercase;
+	padding-bottom: 5px;
+}
+
+.name {
+	font-family: var(--ff-second);
+	font-size: 22px;
+}
