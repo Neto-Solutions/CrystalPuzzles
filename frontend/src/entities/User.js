@@ -1,4 +1,4 @@
-class User {
+export default class User {
 	name = null;
 	avatar = null;
 	_role = null;
@@ -12,5 +12,3 @@ class User {
 		return this._role;
 	}
 }
-
-export default User;
