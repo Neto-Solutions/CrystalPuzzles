@@ -25,12 +25,12 @@ const methodistRouter = [
 	},
 	{
 		path: '/progress',
-		element: <ProgressGraphPage />
+		element: <ProgressGraphPage />,
+		local: 'Графики прогресса'
 	},
 	{
 		path: '/progress/view',
-		element: <ProgressGraphViewPage />,
-		local: 'Графики прогресса'
+		element: <ProgressGraphViewPage />
 	},
 	{
 		path: '/schedule',
