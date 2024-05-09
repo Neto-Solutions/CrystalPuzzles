@@ -1,7 +1,7 @@
 import styles from './Notification.module.scss';
 import Title from '../title/Title';
 import Button from '../button/Button';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Notification({
@@ -32,6 +32,7 @@ export default function Notification({
 
 function NotificationItem() {
 	const [isOpen, setIsOpen] = useState(false);
+	const ref = useRef(null);
 	return (
 		<>
 			<div className={styles.notification_item}>
@@ -39,17 +40,20 @@ function NotificationItem() {
 					Михаил выполнил все задания
 				</p>
 				<Button
-					title="Открыть"
+					title={isOpen ? 'Ответить' : 'Открыть'}
 					className={styles.button}
-					onClick={() => setIsOpen(!isOpen)}
+					onClick={() => {
+						isOpen ? ref.current.focus() : setIsOpen(!isOpen);
+					}}
 				/>
 			</div>
 			{isOpen && (
 				<textarea
+					ref={ref}
 					name=""
 					id=""
 					className={styles.textarea}
-					value="Михаил из группы “Пингвинята” выполнил задание 1ой сложности "
+					placeholder="Михаил из группы “Пингвинята” выполнил задание 1ой сложности "
 				/>
 			)}
 		</>
