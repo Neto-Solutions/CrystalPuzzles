@@ -1,6 +1,6 @@
 import styles from './Check.list.page.module.scss';
 import Page from '@components/page/Page';
-import Card from '@components/cards/card.link/Card.link';
+import Card from '@components/card/card.link/Card.link';
 import bunny from '@assets/svg/bunny.svg';
 import hedgehog from '@assets/svg/hedgehog.svg';
 import raccoon from '@assets/svg/raccoon.svg';

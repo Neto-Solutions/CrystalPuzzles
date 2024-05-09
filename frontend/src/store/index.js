@@ -1,31 +1,28 @@
 import { configureStore } from '@reduxjs/toolkit';
-import Cookie from 'js-cookie';
 
 const mainReducer = (
 	prevState = {
-		user: {
-			name: Cookie.get('name') || 'Антонина',
-			avatar: Cookie.get('avatar') || 'avatar.png',
-			role: Cookie.get('role') || 'methodist'
-		}
+		user: {}
 	},
 	action
 ) => {
 	const { type, payload } = action;
 
 	switch (type) {
-		case 'SET_ROLE':
-			Cookie.set('role', payload);
+		case 'SET_USER':
 			return {
 				...prevState,
-				user: {
-					...prevState.user,
-					role: payload
-				}
+				user: payload
 			};
 		default:
 			return prevState;
 	}
 };
 
-export default configureStore({ reducer: mainReducer });
+export default configureStore({
+	reducer: mainReducer,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false
+		})
+});

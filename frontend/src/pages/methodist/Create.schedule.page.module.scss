@@ -1,8 +1,9 @@
-.btns_wrap {
-	display: flex;
-	gap: var(--gap);
-}
-
-.btn {
-	background-color: #dae8f0;
+.buttons_container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	button {
+		width: 100%;
+	}
 }

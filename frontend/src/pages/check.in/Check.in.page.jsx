@@ -1,23 +1,27 @@
 import './Check.in.page.scss';
 import { ReactComponent as Eye } from '@assets/svg/eye_icon.svg';
-// import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-// import { registerUser } from '../../api/users.api';
+import { useDispatch, useSelector } from 'react-redux';
+import User from '@entities/User';
+import { useEffect } from 'react';
 export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
-	// const [data] = useState({
-	// 	email: 'user@example.com',
-	// 	password: 'string',
-	// 	firstname: 'string',
-	// 	lastname: 'string',
-	// 	surname: 'string',
-	// 	birthday: '2024-04-26T08:13:59.493Z',
-	// 	is_man: true,
-	// 	contact: 'string'
-	// });
-	async function handleRegistration() {
-		// const response = await registerUser(data);
-		// console.log(response);
+	const dispatch = useDispatch();
+	const role = useSelector((state) => state.user.role);
+
+	useEffect(() => {
+		role !== undefined && navigate('/');
+	}, [role]);
+
+	async function handleSubmit() {
+		dispatch({
+			type: 'SET_USER',
+			payload: new User({
+				name: 'Антонина',
+				avatar: 'avatar.png',
+				role: 'methodist'
+			})
+		});
 	}
 	return (
 		<>
@@ -91,7 +95,7 @@ export default function CheckInPage({ login = false }) {
 							</Link>
 						</p>
 					</label>
-					<div className="check_in_submit_btn" onClick={handleRegistration}>
+					<div className="check_in_submit_btn" onClick={() => handleSubmit()}>
 						{login ? 'Войти' : 'Зарегистрироваться'}
 					</div>
 				</form>

@@ -1,23 +1,19 @@
 import styles from './Progress.graph.view.page.module.scss';
 import Page from '@components/page/Page';
-import UserCard from '@components/cards/user.card/User.card';
+import UserCard from '@components/card/user.card/User.card';
 import Button from '@components/button/Button';
-import calendar_icon from '@assets/svg/calendar_icon.svg';
 import { ReactComponent as Chart } from '@assets/svg/chart.svg';
+import avatar from '@assets/img/methodist_img.jpg';
+import CalendarButton from '@components/button/calendar';
 
 export default function ProgressGraphViewPage() {
 	return (
 		<Page title="График прогресса">
 			<Chart />
 			<div className={styles.buttons_container}>
-				<UserCard name="Дмитриева Анастасия Алексеевна">
-					<div className={styles.link}>Показать</div>
-				</UserCard>
-				<Button>
-					<span>02.10.23 - 08.10.23</span>
-					<img src={calendar_icon} alt="" />
-				</Button>
+				<UserCard img={avatar} name="Дмитриева Анастасия Алексеевна" />
 
+				<CalendarButton />
 				<Button title="Выгрузить" />
 				<Button title="Открыть в Google doc" />
 			</div>

@@ -1,55 +1,19 @@
-.link {
-	position: absolute;
-	bottom: 10px;
-	right: 15px;
-	font-family: var(--ff-first);
-	font-size: var(--fz-text);
-	cursor: pointer;
-
-	&:hover {
-		text-decoration: underline;
-	}
-}
-
-.comment {
-	width: 347px;
-	height: 138px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: var(--bg-card);
-	font-family: var(--ff-first);
-	font-size: var(--fz-text);
-	font-weight: var(--fw-medium);
-	border-radius: var(--radius);
-	border: var(--border);
-}
-
-.btns_content {
+.list {
 	display: flex;
 	flex-direction: column;
-	gap: var(--gap);
+	padding: 25px 50px;
+	gap: 20px;
+	li {
+		list-style: disc;
+	}
 }
-
-.btn {
-	width: 347px;
-	padding: var(--btn-padding);
-	display: flex;
+.comment {
 	justify-content: center;
-	font-family: var(--ff-first);
-	font-size: var(--fz-text);
-	font-weight: var(--fw-medium);
-	color: var(--accent-color);
-	align-items: center;
-	border: var(--border);
-	border-radius: var(--radius);
+	cursor: pointer;
 }
 
-.calendar {
-	gap: 68px;
-}
-
-.date_icon {
-	width: 40px;
-	height: 40px;
+.buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }

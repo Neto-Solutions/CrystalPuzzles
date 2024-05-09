@@ -1,6 +1,6 @@
 import MainPage from '@methodist/Main.page';
-import AnalyticsPage from '@methodist/Analytics.page';
-import AnalyticsViewPage from '@methodist/Analytics.view.page';
+import AnalyticPage from '@methodist/Analytic.page';
+import AnalyticViewPage from '@methodist/Analytic.view.page';
 import ProgressGraphPage from '@methodist/Progress.graph.page';
 import ProgressGraphViewPage from '@methodist/Progress.graph.view.page';
 import SchedulePage from '@methodist/Schedule.page';
@@ -15,13 +15,13 @@ const methodistRouter = [
 		element: <MainPage />
 	},
 	{
-		path: '/analytics',
-		element: <AnalyticsPage />
+		path: '/analytic',
+		element: <AnalyticPage />,
+		local: 'Аналитика'
 	},
 	{
-		path: '/analytics/view',
-		element: <AnalyticsViewPage />,
-		local: 'Аналитика'
+		path: '/analytic/view',
+		element: <AnalyticViewPage />
 	},
 	{
 		path: '/progress',
