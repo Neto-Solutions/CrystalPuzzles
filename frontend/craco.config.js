@@ -11,7 +11,8 @@ module.exports = {
 			'@methodist': path.resolve(__dirname, 'src/pages/methodist'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
 			'@kids': path.resolve(__dirname, 'src/pages/kids'),
-			'@check.in': path.resolve(__dirname, 'src/pages/check.in')
+			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
+			'@entities': path.resolve(__dirname, 'src/entities')
 		}
 	}
 };

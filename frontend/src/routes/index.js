@@ -22,6 +22,10 @@ export default function createRouter(role) {
 			path: '/',
 			element: <App check_in />,
 			children: checkInRouter
+		},
+		{
+			path: '*',
+			loader: () => redirect('/')
 		}
 	]);
 }
