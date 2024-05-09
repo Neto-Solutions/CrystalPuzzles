@@ -1,6 +1,7 @@
 import styles from './Notification.module.scss';
 import Title from '../title/Title';
 import Button from '../button/Button';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Notification({
@@ -15,12 +16,7 @@ export default function Notification({
 			</Title>
 			<div className={styles.notifications}>
 				{array.map((_, index) => (
-					<div key={index} className={styles.notification_item}>
-						<p className={styles.notification_item_text}>
-							Михаил выполнил все задания
-						</p>
-						<Button title="Открыть" className={styles.button} />
-					</div>
+					<NotificationItem key={index} />
 				))}
 			</div>
 			{!isPage && (
@@ -31,5 +27,31 @@ export default function Notification({
 				/>
 			)}
 		</section>
+	);
+}
+
+function NotificationItem() {
+	const [isOpen, setIsOpen] = useState(false);
+	return (
+		<>
+			<div className={styles.notification_item}>
+				<p className={styles.notification_item_text}>
+					Михаил выполнил все задания
+				</p>
+				<Button
+					title="Открыть"
+					className={styles.button}
+					onClick={() => setIsOpen(!isOpen)}
+				/>
+			</div>
+			{isOpen && (
+				<textarea
+					name=""
+					id=""
+					className={styles.textarea}
+					value="Михаил из группы “Пингвинята” выполнил задание 1ой сложности "
+				/>
+			)}
+		</>
 	);
 }
