@@ -1,15 +1,15 @@
 class User {
 	name = null;
 	avatar = null;
-	#role = null;
+	_role = null;
 	constructor(data) {
 		if (!data) return;
 		const { role, ...rest } = data;
-		this.#role = role;
+		this._role = role;
 		Object.assign(this, rest);
 	}
 	get role() {
-		return this.#role;
+		return this._role;
 	}
 }
 
