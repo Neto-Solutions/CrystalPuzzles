@@ -1,5 +1,5 @@
-import styles from './Feedback.module.scss';
-import Button from '../button/Button';
+import styles from './feedback.module.scss';
+import Button from '../../button/Button';
 export default function Feedback() {
 	return (
 		<div className={styles.container}>
