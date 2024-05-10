@@ -17,15 +17,14 @@
 	"plugins": ["react"],
 	"rules": {
 		"prettier/prettier": "warn",
+		"linebreak-style": "off", // avoid error in Windows
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
 		"react/jsx-key": "warn",
 		"no-console": "warn",
 		"no-alert": "warn",
 		"no-unused-vars": "warn",
-		"no-empty": "warn",
-		"for-direction": "error",
-		"no-ex-assign": "error"
+		"no-empty": "warn"
 	},
 	"settings": {
 		"react": {

@@ -1,5 +1,5 @@
-import CheckInPage from '../pages/check.in/Check.in.page';
-import ConfidencePage from '../pages/check.in/Confidence.page';
+import CheckInPage from '@check.in/Check.in.page';
+import ConfidencePage from '@check.in/Confidence.page';
 
 const checkInRouter = [
 	{

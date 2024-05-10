@@ -1,0 +1,294 @@
+.input,
+.input_select,
+.input_option {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 470px;
+    margin: auto;
+}
+
+.header {
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 47px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    color: #2b2d91;
+    font-family: Rubik;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.input_select {
+    padding: 12px 0px 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #0e1079;
+    width: 470px;
+    background-color: white;
+}
+
+.input_container {
+    margin-bottom: 20px;
+}
+
+.input_description {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    color: #2b2d91;
+}
+
+.input {
+    width: 433px;
+    padding: 12px 0px 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #0e1079;
+    width: 470px;
+    background-color: white;
+}
+
+
+.input_password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input_password_eye {
+    position: absolute;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+}
+
+.forget_password {
+    text-align: end;
+    margin-bottom: 28px;
+}
+
+.forget_password_link,
+.btn_label {
+    color: #2b2d91;
+    text-decoration: underline;
+}
+
+.input_checkbox_container {
+    display: flex;
+}
+
+.input_checkbox {
+    width: 38px;
+    height: 24px;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+.confidence_politic_link {
+    color: inherit;
+    font-weight: 500;
+}
+
+.submit_btn {
+    margin-bottom: 36px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    width: 470px;
+    height: 53px;
+    padding: 15.5px 28px 15.5px 28px;
+    border-radius: 20px;
+    border: solid #2b2d91 2px;
+    color: inherit;
+    background-color: inherit;
+}
+
+.btn_container {
+    margin: auto;
+    text-align: center;
+}
+
+.btn {
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 500;
+    color: #e1f1f8;
+    background-color: #2b2d91;
+    padding: 15.5px 28px 15.5px 28px;
+    border-radius: 20px;
+}
+
+.btn:hover,
+.input_checkbox:hover,
+.submit_btn:hover,
+.input_select:hover {
+    cursor: pointer;
+}
+@media (max-width: 375px) {
+.input,
+.input_select,
+.input_option {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+}
+
+.header {
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 42px;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    color: #2b2d91;
+    font-family: Rubik;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.input_select {
+    padding: 12px 0px 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #0e1079;
+    width: 100%;
+    background-color: white;
+}
+
+.input_container {
+    margin-bottom: 20px;
+    
+}
+
+.input_description {
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: inherit;
+    color: #2b2d91;
+    margin-bottom: 4px;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 0px 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #0e1079;
+    background-color: white;
+}
+
+
+.input_password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input_password_eye {
+    position: absolute;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+}
+
+.forget_password {
+    text-align: end;
+    margin-bottom: 28px;
+}
+
+.forget_password_link,
+.btn_label {
+    color: #2b2d91;
+    text-decoration: underline;
+    font-family: 'Rubik';
+    font-size: 12px;
+}
+
+.input_checkbox_container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.input_checkbox {
+    width: 38px;
+    height: 24px;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+.confidence_politic_link {
+    color: inherit;
+    font-weight: 500;
+}
+
+.submit_btn {
+    margin-bottom: 21px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    height: 42px;
+    padding: 0px 28px 0px 28px;
+    border-radius: 20px;
+    border: solid #2b2d91 2px;
+    color: inherit;
+    background-color: inherit;
+}
+
+.btn_container {
+    margin: auto;
+    text-align: right;
+    width: 100%;
+}
+
+.btn {
+    width: 100%;
+    margin-bottom: 25px;
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 500;
+    color: #2b2d91;
+    background-color: inherit;
+    padding: 15.5px 28px 15.5px 28px;
+    border-radius: 20px;
+}
+
+.btn:hover,
+.input_checkbox:hover,
+.submit_btn:hover,
+.input_select:hover {
+    cursor: pointer;
+}
+}

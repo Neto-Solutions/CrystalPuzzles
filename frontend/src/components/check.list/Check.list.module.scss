@@ -1,0 +1,42 @@
+@use '../../app/styles/mixins' as *;
+.container {
+	width: 100%;
+	max-width: 714px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.header,
+.list_item {
+	height: 57px;
+	display: flex;
+	align-items: center;
+	border: var(--border);
+	border-radius: var(--radius);
+}
+
+.header {
+	@include font(var(--ff-second), 24px, 400);
+	background-color: #a1cbf1;
+	justify-content: center;
+}
+
+.list {
+	&_item {
+		padding: 15px 30px;
+		justify-content: space-between;
+		background-color: #dae8f0;
+		&_title {
+			@include font(var(--ff-second), 24px, 400);
+		}
+		&_checkbox {
+			width: 36px;
+			height: 36px;
+			border: solid #0e1079 2px;
+			border-radius: 6px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+	}
+}

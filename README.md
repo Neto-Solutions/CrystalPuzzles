@@ -42,4 +42,3 @@ Cоздание и запуск web-приложения для автомати
 ## Документация от заказчика
 
 [Прочая документация по проекту](https://drive.google.com/drive/folders/1lU9UZHjw3fyrvtpevFBboy60657imGDL)
-
