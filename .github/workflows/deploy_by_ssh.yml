@@ -1,5 +1,10 @@
 name: Deploy by ssh
 
+env:
+  SSH_USERNAME: "ubuntu"  
+  SSH_HOST_NAME: "ec2-35-157-192-134.eu-central-1.compute.amazonaws.com"
+  SSH_PORT: "22"
+
 on:
   push:
     branches:
@@ -15,20 +20,20 @@ jobs:
       - name: Change directory permitions
         uses: appleboy/ssh-action@master
         with:
-          host: ec2-3-122-254-89.eu-central-1.compute.amazonaws.com
-          username: ubuntu
+          host: ${{ env.SSH_HOST_NAME }}
+          username: ${{ env.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: 22
+          port: ${{ env.SSH_PORT }}
           script: |
             sudo chmod 777 -R /home/ubuntu/Crystall/
 
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
         with:
-          host: ec2-3-122-254-89.eu-central-1.compute.amazonaws.com
-          username: ubuntu
+          host: ${{ env.SSH_HOST_NAME }}
+          username: ${{ env.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: 22
+          port: ${{ env.SSH_PORT }}
           script: |
             docker stop $(docker ps -aq) && \
             docker system prune --all --force
@@ -40,20 +45,14 @@ jobs:
       - name: Sync Repository via SSH    
         run: |
           rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
-          . ubuntu@ec2-3-122-254-89.eu-central-1.compute.amazonaws.com:Crystall
+          . ubuntu@ec2-35-157-192-134.eu-central-1.compute.amazonaws.com:Crystall
       - name: Start docker compose
         uses: appleboy/ssh-action@master
         with:
-          host: ec2-3-122-254-89.eu-central-1.compute.amazonaws.com
-          username: ubuntu
+          host: ${{ env.SSH_HOST_NAME }}
+          username: ${{ env.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: 22
+          port: ${{ env.SSH_PORT }}
           script: |
             docker compose -f /home/ubuntu/Crystall/docker-compose.yml up -d
 
-      # - name: stop docker
-      #   run: docker compose -f /home/ubuntu/Crystall/docker-compose.yml down
-      # - name: clean images
-      #   run: docker system prune --all --force
-      # - name: up docker compose
-      #   run: docker compose -f /home/ubuntu/Crystall/docker-compose.yml up -d
