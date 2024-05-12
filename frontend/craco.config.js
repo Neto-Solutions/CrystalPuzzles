@@ -12,7 +12,8 @@ module.exports = {
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
 			'@kids': path.resolve(__dirname, 'src/pages/kids'),
 			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
-			'@entities': path.resolve(__dirname, 'src/entities')
+			'@entities': path.resolve(__dirname, 'src/entities'),
+			'@store': path.resolve(__dirname, 'src/store')
 		}
 	}
 };
