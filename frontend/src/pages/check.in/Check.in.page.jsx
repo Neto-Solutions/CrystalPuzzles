@@ -35,7 +35,7 @@ export default function CheckInPage({ login = false }) {
 						<>
 							<label className={styles.input_container}>
 								<p className={styles.input_description}>ФИО</p>
-								<input className="input" type="text" />
+								<input className={styles.input} type="text" />
 							</label>
 						</>
 					)}

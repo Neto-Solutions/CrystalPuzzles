@@ -52,6 +52,7 @@
     font-weight: 400;
     font-size: 14px;
     color: #2b2d91;
+   
 }
 
 .input {
@@ -86,10 +87,13 @@
 .btn_label {
     color: #2b2d91;
     text-decoration: underline;
+    font-family: 'Rubik';
+    font-size: 14px;
 }
 
 .input_checkbox_container {
     display: flex;
+    margin-bottom: 20px;
 }
 
 .input_checkbox {
@@ -133,7 +137,10 @@
     background-color: #2b2d91;
     padding: 15.5px 28px 15.5px 28px;
     border-radius: 20px;
+    margin-top: 15px;
+    width: 470px;
 }
+
 
 .btn:hover,
 .input_checkbox:hover,
@@ -232,6 +239,7 @@
     text-decoration: underline;
     font-family: 'Rubik';
     font-size: 12px;
+    
 }
 
 .input_checkbox_container {
@@ -271,13 +279,15 @@
     margin: auto;
     text-align: right;
     width: 100%;
+    
 }
 
 .btn {
     width: 100%;
+    margin-top: 15px;
     margin-bottom: 25px;
     font-family: 'Roboto';
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
     color: #2b2d91;
     background-color: inherit;
