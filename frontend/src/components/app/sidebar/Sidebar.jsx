@@ -6,6 +6,10 @@ import { Account } from './Account';
 import styles from './Sidebar.module.scss';
 
 export default function Sidebar() {
+	function handleExit() {
+		localStorage.clear();
+		window.location.reload();
+	}
 	return (
 		<aside className={styles.sidebar}>
 			<Account />
@@ -19,7 +23,7 @@ export default function Sidebar() {
 				</Link>
 				<Link to="./#" className={`${styles.sidebar_link} ${styles.exit}`}>
 					<img src={exit} className={styles.link_icon} alt="" />
-					<span>Выйти</span>
+					<span onClick={handleExit}>Выйти</span>
 				</Link>
 			</div>
 		</aside>

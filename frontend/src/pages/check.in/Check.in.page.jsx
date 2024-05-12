@@ -1,17 +1,14 @@
 import './Check.in.page.scss';
 import { ReactComponent as Eye } from '@assets/svg/eye_icon.svg';
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useRef } from 'react';
 import User from '@entities/User';
-import { useEffect } from 'react';
+
 export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const role = useSelector((state) => state.user.role);
-
-	useEffect(() => {
-		role !== undefined && navigate('/');
-	}, [role]);
+	const ref = useRef(null);
 
 	async function handleSubmit() {
 		dispatch({
@@ -19,10 +16,11 @@ export default function CheckInPage({ login = false }) {
 			payload: new User({
 				name: 'Антонина',
 				avatar: 'avatar.png',
-				role: 'methodist'
+				role: ref.current.value
 			})
 		});
 	}
+
 	return (
 		<>
 			<div className="check_in_container">
@@ -40,12 +38,15 @@ export default function CheckInPage({ login = false }) {
 					)}
 					<label className="input_container">
 						<p className="input_description">Выберите вашу специальность</p>
-						<select className="input_select" defaultValue="student">
-							<option className="input_option" value="student">
+						<select ref={ref} className="input_select" defaultValue="student">
+							<option className="input_option" value="kids">
 								Ученик
 							</option>
 							<option className="input_option" value="trainer">
 								Тренер
+							</option>
+							<option className="input_option" value="methodist">
+								Методист
 							</option>
 						</select>
 					</label>
