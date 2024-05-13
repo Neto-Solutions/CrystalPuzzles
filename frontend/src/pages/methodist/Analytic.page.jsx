@@ -1,7 +1,7 @@
 import UserCard from '@components/card/user.card/User.card';
 import Page from '@components/page/Page';
 import { Link } from 'react-router-dom';
-import avatar from '@assets/img/methodist_img.jpg';
+import avatar from '@assets/avatar/methodist.png';
 
 export default function AnalyticPage() {
 	const tempArray = Array.from(

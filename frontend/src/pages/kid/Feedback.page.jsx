@@ -1,7 +1,7 @@
 import styles from './Feedback.page.module.scss';
 import Page from '@components/page/Page';
 import Button from '@components/button/Button';
-import Feedback from '@components/feedback/kids/';
+import Feedback from '@components/feedback/kid/';
 export default function FeedbackPage() {
 	return (
 		<Page title="Обратная связь">

@@ -1,11 +1,11 @@
-import MainPage from '@kids/Main.page';
-import TrainPage from '@kids/Train.page';
-import CheckListPage from '@kids/Check.list.page';
-import SchedulePage from '@kids/Schedule.page';
-import FeedbackPage from '@kids/Feedback.page';
-import AppraisalPage from '@kids/Appraisal.page';
+import MainPage from '@kid/Main.page';
+import TrainPage from '@kid/Train.page';
+import CheckListPage from '@kid/Check.list.page';
+import SchedulePage from '@kid/Schedule.page';
+import FeedbackPage from '@kid/Feedback.page';
+import AppraisalPage from '@kid/Appraisal.page';
 
-const kidsRouter = [
+const kidRouter = [
 	{
 		path: '/',
 		element: <MainPage />
@@ -36,4 +36,4 @@ const kidsRouter = [
 	}
 ];
 
-export default kidsRouter;
+export default kidRouter;

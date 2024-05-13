@@ -1,6 +1,6 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import App from '../app/App';
-import kidsRouter from './kids.router';
+import kidRouter from './kid.router';
 import methodistRouter from './methodist.router';
 import trainerRouter from './trainer.router';
 import checkInRouter from './check.in.router';
@@ -14,7 +14,7 @@ export default function createRouter(role) {
 				return !role && redirect('/login');
 			},
 			children:
-				(role === 'kids' && kidsRouter) ||
+				(role === 'kid' && kidRouter) ||
 				(role === 'methodist' && methodistRouter) ||
 				(role === 'trainer' && trainerRouter)
 		},

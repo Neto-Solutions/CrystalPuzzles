@@ -1,6 +1,6 @@
 import Page from '@components/page/Page';
 import UserCard from '@components/card/user.card/User.card';
-import avatar from '@assets/img/methodist_img.jpg';
+import avatar from '@assets/avatar/methodist.png';
 import { Link } from 'react-router-dom';
 
 export default function ProgressGraphPage() {

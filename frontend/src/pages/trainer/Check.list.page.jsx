@@ -1,12 +1,13 @@
 import styles from './Check.list.page.module.scss';
 import Page from '@components/page/Page';
 import Button from '@components/button/Button';
+import avatar from '@assets/avatar/methodist.png';
 export default function CheckListPage() {
 	const tempArray = Array.from({ length: 5 });
 	return (
 		<Page title="Чек-листы">
 			<section className={styles.avatar}>
-				<img src={require('@assets/img/methodist_img.jpg')} alt="" />
+				<img src={avatar} alt="" />
 			</section>
 
 			<section className={styles.levels}>

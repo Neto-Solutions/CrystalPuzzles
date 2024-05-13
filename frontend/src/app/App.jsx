@@ -9,10 +9,11 @@ import Footer from '../components/app/footer/Footer';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { selectUser } from '@entities/User/slice';
 
 export default function App({ check_in = false }) {
 	const navigate = useNavigate();
-	const role = useSelector((state) => state.user.role);
+	const { role } = useSelector(selectUser);
 	useEffect(() => {
 		role !== undefined && navigate('/');
 	}, [role]);

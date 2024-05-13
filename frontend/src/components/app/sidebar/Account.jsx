@@ -1,13 +1,29 @@
-import avatar from '@assets/svg/avatar.svg';
 import styles from './Account.module.scss';
+import { useMemo } from 'react';
 
-export const Account = () => {
+export const Account = ({ user }) => {
+	const position = useMemo(() => {
+		switch (user.role) {
+			case 'kid':
+				return 'ученик';
+
+			case 'methodist':
+				return 'методист';
+
+			case 'trainer':
+				return 'тренер';
+		}
+	}, [user]);
 	return (
 		<div className={styles.accaunt_wrap}>
-			<img src={avatar} className={styles.avatar} alt="" />
+			<img
+				src={require(`@assets/avatar/${user.avatar}`)}
+				className={styles.avatar}
+				alt=""
+			/>
 			<div>
-				<p className={styles.profession}>методист</p>
-				<p className={styles.name}>Антонина</p>
+				<p className={styles.profession}>{position}</p>
+				<p className={styles.name}>{user.name}</p>
 			</div>
 		</div>
 	);

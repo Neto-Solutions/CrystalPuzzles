@@ -1,7 +1,7 @@
 import styles from './Student.page.module.scss';
 import Page from '@components/page/Page';
 import Button from '@components/button/Button';
-import avatar from '@assets/img/methodist_img.jpg';
+import avatar from '@assets/avatar/methodist.png';
 export default function StudentPage() {
 	return (
 		<Page title="Ученики">

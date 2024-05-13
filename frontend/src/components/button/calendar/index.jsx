@@ -8,7 +8,7 @@ export default function CalendarButton() {
 	return (
 		<>
 			{calendar ? (
-				<Calendar />
+				<Calendar onHide={() => setCalendar(false)} />
 			) : (
 				<Button
 					title="02.10.23 - 08.10.23"

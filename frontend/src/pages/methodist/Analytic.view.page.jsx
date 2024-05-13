@@ -3,7 +3,7 @@ import Page from '@components/page/Page';
 import Button from '@components/button/Button';
 import styles from './Analytics.view.page.module.scss';
 import Card from '@components/card/';
-import avatar from '@assets/img/methodist_img.jpg';
+import avatar from '@assets/avatar/methodist.png';
 import { useState } from 'react';
 import CalendarButton from '../../components/button/calendar';
 

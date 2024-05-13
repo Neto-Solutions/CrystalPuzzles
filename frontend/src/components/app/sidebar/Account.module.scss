@@ -1,13 +1,15 @@
 .accaunt_wrap {
 	display: flex;
+	align-items: center;
 	margin: 24px 0;
+	gap: 12px;
 }
 
 .avatar {
 	width: 44px;
 	height: 44px;
-	// border-radius: 50%;
-	margin-right: 12px;
+	object-fit: cover;
+	border-radius: 50%;
 }
 
 .profession {

@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useRef } from 'react';
 import User from '@entities/User';
+import { setUser } from '@entities/User/slice';
 
 export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
@@ -11,14 +12,15 @@ export default function CheckInPage({ login = false }) {
 	const ref = useRef(null);
 
 	async function handleSubmit() {
-		dispatch({
-			type: 'SET_USER',
-			payload: new User({
-				name: 'Антонина',
-				avatar: 'avatar.png',
-				role: ref.current.value
-			})
-		});
+		dispatch(
+			setUser(
+				new User({
+					name: 'Антонина',
+					avatar: ref.current.value + '.png',
+					role: ref.current.value
+				})
+			)
+		);
 	}
 
 	return (
@@ -39,7 +41,7 @@ export default function CheckInPage({ login = false }) {
 					<label className="input_container">
 						<p className="input_description">Выберите вашу специальность</p>
 						<select ref={ref} className="input_select" defaultValue="student">
-							<option className="input_option" value="kids">
+							<option className="input_option" value="kid">
 								Ученик
 							</option>
 							<option className="input_option" value="trainer">

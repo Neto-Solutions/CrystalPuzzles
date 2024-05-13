@@ -2,10 +2,10 @@
 	width: 347px;
 	height: 347px;
 	padding: 20px;
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 	border: solid #0e1079 1.5px;
 	border-radius: 20px;
-	box-shadow: 8px 3px 22px 10px #9696961C;
+	box-shadow: 8px 3px 22px 10px #9696961c;
 	user-select: none;
 }
 
@@ -13,7 +13,7 @@
 	height: 25px;
 	display: flex;
 	justify-content: space-between;
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-size: 14px;
 	font-weight: 600;
 	text-align: center;
@@ -21,10 +21,12 @@
 
 .calendar_header_date {
 	display: flex;
+	flex-grow: 1;
 	align-items: center;
 	text-transform: uppercase;
-	color: #0E1079;
+	color: #0e1079;
 	padding: 0 20px;
+	cursor: pointer;
 }
 
 .calendar_header_date_btn_container {
@@ -46,7 +48,7 @@
 }
 
 .calendar_body_day_name_container {
-	border-top: solid #E4E5E7 1.5px;
+	border-top: solid #e4e5e7 1.5px;
 	padding: 15px 0;
 }
 
@@ -57,20 +59,18 @@
 	gap: 16px;
 }
 
-
 .calendar_body_day_name {
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-size: 14px;
 	font-weight: 500;
 	text-align: center;
-
 }
 
 .calendar_body_day {
 	cursor: pointer;
 	width: 24px;
 	height: 24px;
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-size: 14px;
 	font-weight: 500;
 	display: flex;
@@ -78,8 +78,8 @@
 	align-items: center;
 }
 
-.calendar_body_day[data-active="true"] {
-	color: #C4E5F1;
-	background-color: #2B2D91;
+.calendar_body_day[data-active='true'] {
+	color: #c4e5f1;
+	background-color: #2b2d91;
 	border-radius: 40px;
 }

@@ -5,7 +5,7 @@ import { ReactComponent as LeftArrow } from '@assets/svg/small_calendar_arrow_le
 import { ReactComponent as RightArrow } from '@assets/svg/small_calendar_arrow_right.svg';
 import moment from 'moment';
 
-export default function Calendar() {
+export default function Calendar({ onHide }) {
 	const [date, setDate] = useState(moment());
 	const [days, setDays] = useState([]);
 	const [activeDay, setActiveDay] = useState();
@@ -39,7 +39,7 @@ export default function Calendar() {
 	return (
 		<div className="calendar">
 			<div className="calendar_header">
-				<div className="calendar_header_date">
+				<div className="calendar_header_date" onClick={onHide}>
 					{monthsOfYear[date.month()] + ' ' + date.year()}
 				</div>
 				<div className="calendar_header_date_btn_container">
@@ -76,7 +76,7 @@ export default function Calendar() {
 						return (
 							<div
 								key={index}
-								data-active={activeDay === day}
+								data-active={activeDay == day}
 								{...(Number(day) && {
 									className: 'calendar_body_day',
 									onClick: () => setActiveDay(day)

@@ -1,22 +1,20 @@
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Arrow } from '@assets/svg/calendar_arrow_down.svg';
-import kidsRouter from '../../../routes/kids.router';
+import kidRouter from '../../../routes/kid.router';
 import methodistRouter from '../../../routes/methodist.router';
 import trainerRouter from '../../../routes/trainer.router';
 import checkInRouter from '../../../routes/check.in.router';
-import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import styles from './NavMenu.module.scss';
 
-export const NavMenuList = () => {
+export const NavMenuList = ({ role }) => {
 	const [isOpen, setOpen] = useState(false);
 	const [list, setList] = useState([]);
-	const role = useSelector((state) => state.user.role);
 
 	useEffect(() => {
 		setList(() =>
 			checkInRouter.concat(
-				(role === 'kids' && kidsRouter) ||
+				(role === 'kid' && kidRouter) ||
 					(role === 'methodist' && methodistRouter) ||
 					(role === 'trainer' && trainerRouter)
 			)

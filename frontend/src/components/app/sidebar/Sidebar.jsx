@@ -4,17 +4,22 @@ import { Link } from 'react-router-dom';
 import { NavMenuList } from './NavMenu';
 import { Account } from './Account';
 import styles from './Sidebar.module.scss';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@entities/User/slice';
 
 export default function Sidebar() {
+	const user = useSelector(selectUser);
+
 	function handleExit() {
 		localStorage.clear();
 		window.location.reload();
 	}
+
 	return (
 		<aside className={styles.sidebar}>
-			<Account />
+			<Account user={user} />
 			<div className={styles.line}></div>
-			<NavMenuList />
+			<NavMenuList role={user.role} />
 			<div className={styles.line}></div>
 			<div className={styles.links}>
 				<Link to="./#" className={`${styles.sidebar_link} ${styles.help}`}>
