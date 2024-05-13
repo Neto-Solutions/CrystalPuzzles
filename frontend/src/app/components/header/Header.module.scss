@@ -1,18 +1,20 @@
 .header {
-	padding: 40px 0;
 	display: flex;
 	justify-content: flex-end;
-	background-image: url('../../../assets/svg/logo.svg');
 	background-repeat: no-repeat;
 	background-position: right;
+	&::after {
+		content: 'ХРУСТАЛЬНЫЕ ПАЗЛЫ';
+		font-family: 'Rubik';
+		font-weight: 500;
+		font-size: 24px;
+		line-height: 28px;
+		color: #0e1079;
+		margin-left: 20px;
+		width: min-content;
+	}
 }
 @media (max-width: 425px) {
-.header {
-	padding: 40px 0;
-	display: flex;
-	justify-content: flex-end;
-	background-image: url('../../../assets/svg/mini_logo.svg');
-	background-repeat: no-repeat;
-	background-position: right;
-}
+	.header {
+	}
 }
