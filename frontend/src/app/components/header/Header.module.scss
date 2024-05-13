@@ -1,5 +1,18 @@
 .header {
-	padding: 20px 0;
+	padding: 40px 0;
 	display: flex;
 	justify-content: flex-end;
+	background-image: url('../../../assets/svg/logo.svg');
+	background-repeat: no-repeat;
+	background-position: right;
+}
+@media (max-width: 425px) {
+.header {
+	padding: 40px 0;
+	display: flex;
+	justify-content: flex-end;
+	background-image: url('../../../assets/svg/mini_logo.svg');
+	background-repeat: no-repeat;
+	background-position: right;
+}
 }
