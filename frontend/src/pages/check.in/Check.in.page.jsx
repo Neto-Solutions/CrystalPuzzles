@@ -4,8 +4,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useRef } from 'react';
 import User from '@entities/User';
-import { useEffect } from 'react';
-import Button from '@components/button/Button'
+import { setUser } from '@entities/User/slice';
+import Button from '@components/button/Button';
+
 export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -39,9 +40,15 @@ export default function CheckInPage({ login = false }) {
 						</>
 					)}
 					<label className={styles.input_container}>
-						<p className={styles.input_description}>Выберите вашу специальность</p>
-						<select className={styles.input_select} defaultValue="student">
-							<option className={styles.input_option} value="student">
+						<p className={styles.input_description}>
+							Выберите вашу специальность
+						</p>
+						<select
+							ref={ref}
+							className={styles.input_select}
+							defaultValue="student"
+						>
+							<option className={styles.input_option} value="kid">
 								Ученик
 							</option>
 							<option className={styles.input_option} value="trainer">
@@ -55,7 +62,9 @@ export default function CheckInPage({ login = false }) {
 					{!login && (
 						<>
 							<label className={styles.input_container}>
-								<p className={styles.input_description}>Введите дату рождения</p>
+								<p className={styles.input_description}>
+									Введите дату рождения
+								</p>
 								<input className={styles.input} type="text" />
 							</label>
 							<label className={styles.input_container}>
@@ -89,10 +98,7 @@ export default function CheckInPage({ login = false }) {
 					<label className={styles.input_checkbox_container}>
 						<p className={styles.input_description}>
 							Подтверждая, вы соглашаетесь на обработку персональных данных и c
-							<Link
-								to="/confidence"
-								className={styles.confidence_politic_link}
-							>
+							<Link to="/politics" className={styles.confidence_politic_link}>
 								политикой конфиденциальности
 							</Link>
 						</p>
@@ -105,13 +111,15 @@ export default function CheckInPage({ login = false }) {
 				{login ? (
 					<>
 						<div className={styles.btn_container}>
-							<Button onClick={() => navigate('/registration')} className={styles.btn}>
+							<Button
+								onClick={() => navigate('/registration')}
+								className={styles.btn}
+							>
 								Зарегистрироваться
 							</Button>
 							<a href="/#" className={styles.btn_label}>
 								Нет аккаунта?
 							</a>
-
 						</div>
 					</>
 				) : (

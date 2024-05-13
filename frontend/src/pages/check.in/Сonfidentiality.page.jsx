@@ -1,4 +1,3 @@
-
 import styles from './Сonfidentiality.page.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -10,19 +9,14 @@ export default function СonfidentialityPage() {
 			</h1>
 			<form className={styles.form}>
 				<label className={styles.data_treatment_cont}>
-					<input
-						className={styles.data_treatment_checkbox}
-						type="checkbox"
-					/>
+					<input className={styles.data_treatment_checkbox} type="checkbox" />
 					<p className={styles.data_treatment_descr}>
-						Согласие на обработку данных 
+						Согласие на обработку данных
 					</p>
 				</label>
 				<label className={styles.politic_cont}>
 					<input className={styles.politic_checkbox} type="checkbox" />
-					<p className={styles.politic_descr}>
-						Согласие с политикой компании{' '}
-					</p>
+					<p className={styles.politic_descr}>Согласие с политикой компании </p>
 				</label>
 				<div className={styles.btn_cont}>
 					<Link to="/" className={styles.btn}>
