@@ -5,8 +5,10 @@ import { ReactComponent as Logo } from '@assets/logo.svg';
 export default function Header() {
 	return (
 		<header className={styles.header}>
-			<Link to="/" className={styles.logo}>
-				<Logo />
+			<Link to="/">
+				<div className={styles.logo}>
+					<Logo />
+				</div>
 			</Link>
 		</header>
 	);

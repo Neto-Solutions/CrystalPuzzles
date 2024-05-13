@@ -23,7 +23,6 @@ export default function CheckInPage({ login = false }) {
 			)
 		);
 	}
-
 	return (
 		<>
 			<div className={styles.container}>
@@ -111,15 +110,15 @@ export default function CheckInPage({ login = false }) {
 				{login ? (
 					<>
 						<div className={styles.btn_container}>
+							<a href="/#" className={styles.btn_label}>
+								Нет аккаунта?
+							</a>
 							<Button
 								onClick={() => navigate('/registration')}
 								className={styles.btn}
 							>
 								Зарегистрироваться
 							</Button>
-							<a href="/#" className={styles.btn_label}>
-								Нет аккаунта?
-							</a>
 						</div>
 					</>
 				) : (

@@ -1,20 +1,26 @@
+@use '../../../app/styles/_mixins.scss' as *;
+
 .header {
 	display: flex;
 	justify-content: flex-end;
-	background-repeat: no-repeat;
-	background-position: right;
+}
+
+.logo {
+	margin: 20px 0;
+	display: flex;
 	&::after {
-		content: 'ХРУСТАЛЬНЫЕ ПАЗЛЫ';
-		font-family: 'Rubik';
-		font-weight: 500;
-		font-size: 24px;
-		line-height: 28px;
-		color: #0e1079;
-		margin-left: 20px;
-		width: min-content;
+		content: url('../../../assets/logo_title.svg');
+		margin-left: 10px;
+		display: flex;
+		flex-wrap: nowrap;
+		margin-top: auto;
 	}
 }
-@media (max-width: 425px) {
-	.header {
+
+@include sm() {
+	.logo {
+		&::after {
+			display: none;
+		}
 	}
 }
