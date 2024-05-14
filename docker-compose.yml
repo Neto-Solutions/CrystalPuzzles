@@ -5,7 +5,7 @@ services:
     container_name: ${POSTGRES_HOST}
     image: postgres:latest
     env_file:
-    #  - .env
+      #  - .env
       - .env.template # для быстрого локального запуска
     environment:
       POSTGRES_DB: ${POSTGRES_DB_NAME}
@@ -26,7 +26,7 @@ services:
       - 5432:${POSTGRES_PORT}
     networks:
       - backend
-      
+
   redis:
     container_name: redis
     image: redis:latest
@@ -40,7 +40,7 @@ services:
     container_name: api
     build: ./backend/
     env_file:
-      #  - .env
+      - .env
       - .env.template # для быстрого локального запуска
     depends_on:
       - db
