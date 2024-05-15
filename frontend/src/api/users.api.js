@@ -1,17 +1,15 @@
 import { $authHost, $host } from '.';
 
-const registerUser = async (user) => {
-	const {
-		email,
-		password,
-		firstname,
-		lastname,
-		surname,
-		birthday,
-		is_man,
-		contact
-	} = user;
-
+const registerUser = async ({
+	email,
+	password,
+	firstname,
+	lastname,
+	surname,
+	birthday,
+	is_man,
+	contact
+}) => {
 	const { data } = await $host.post('/user/register', {
 		email,
 		password,

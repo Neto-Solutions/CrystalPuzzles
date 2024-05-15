@@ -4,19 +4,11 @@ import User from './';
 const userSlice = createSlice({
 	name: 'user',
 	initialState: {
-		user: new User({
-			name: localStorage.getItem('name'),
-			avatar: localStorage.getItem('avatar'),
-			role: localStorage.getItem('role')
-		})
+		user: new User({ role: null })
 	},
 	reducers: {
 		setUser: (state, action) => {
 			state.user = action.payload;
-			//Temporary
-			localStorage.setItem('name', action.payload.name);
-			localStorage.setItem('avatar', action.payload.avatar);
-			localStorage.setItem('role', action.payload.role);
 		}
 	}
 });

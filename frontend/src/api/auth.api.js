@@ -1,8 +1,14 @@
 import { $host, $authHost } from './';
+import Cookies from 'js-cookie';
 
-const authUser = async (user) => {
-	const { username, password } = user;
-	const { data } = await $host.post('/auth/login', { username, password });
+const authUser = async ({ username, password }) => {
+	const formData = new FormData();
+	formData.append('username', username);
+	formData.append('password', password);
+
+	const { data } = await $host
+		.post('/auth/login', formData)
+		.then((res) => Cookies.set('token', res.data.access_token));
 	return data;
 };
 
