@@ -2,7 +2,7 @@ import './Router.tool.scss';
 import checkInRoutes from '../routes/check.in.router';
 import methodistRoutes from '../routes/methodist.router';
 import trainerRoutes from '../routes/trainer.router';
-import kidRoutes from '../routes/kid.router';
+import studentRoutes from '../routes/student.router';
 import { useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ export default function RouterTool() {
 	useLayoutEffect(() => {
 		setRoutes(() => {
 			return checkInRoutes.concat(
-				(role === 'kid' && kidRoutes) ||
+				(role === 'student' && studentRoutes) ||
 					(role === 'methodist' && methodistRoutes) ||
 					(role === 'trainer' && trainerRoutes)
 			);

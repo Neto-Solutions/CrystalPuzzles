@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Arrow } from '@assets/svg/calendar_arrow_down.svg';
-import kidRouter from '../../../routes/kid.router';
+import studentRouter from '../../../routes/student.router';
 import methodistRouter from '../../../routes/methodist.router';
 import trainerRouter from '../../../routes/trainer.router';
 import checkInRouter from '../../../routes/check.in.router';
@@ -14,7 +14,7 @@ export const NavMenuList = ({ role }) => {
 	useEffect(() => {
 		setList(() =>
 			checkInRouter.concat(
-				(role === 'kid' && kidRouter) ||
+				(role === 'student' && studentRouter) ||
 					(role === 'methodist' && methodistRouter) ||
 					(role === 'trainer' && trainerRouter)
 			)

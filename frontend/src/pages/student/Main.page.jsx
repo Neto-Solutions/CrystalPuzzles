@@ -2,8 +2,8 @@ import styles from './Main.page.module.scss';
 import reward_animal from '@assets/svg/reward_animal.svg';
 import CardLink from '@components/card/card.link/Card.link';
 import Page from '@components/page/Page';
-import Feedback from '@components/feedback/kid/';
-export default function kidMainPage() {
+import Feedback from '@components/feedback/student/';
+export default function studentMainPage() {
 	const tempArray = Array(2).fill(0);
 	return (
 		<Page title="Главная страница">

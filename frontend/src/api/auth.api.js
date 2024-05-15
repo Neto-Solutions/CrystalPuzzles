@@ -6,7 +6,7 @@ const authUser = async ({ username, password }) => {
 	formData.append('username', username);
 	formData.append('password', password);
 
-	const { data } = await $host
+	const data = await $host
 		.post('/auth/login', formData)
 		.then((res) => Cookies.set('token', res.data.access_token));
 	return data;
