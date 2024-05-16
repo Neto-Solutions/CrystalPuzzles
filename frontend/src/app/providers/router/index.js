@@ -1,9 +1,12 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
-import App from '../app/App';
-import studentRouter from './student.router';
-import methodistRouter from './methodist.router';
-import trainerRouter from './trainer.router';
-import checkInRouter from './check.in.router';
+import App from '@app/App';
+import {
+	checkInRouter,
+	methodistRouter,
+	studentRouter,
+	trainerRouter
+} from '@shared/const/routes';
+
 function createRouter(role) {
 	return createBrowserRouter([
 		{

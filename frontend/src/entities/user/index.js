@@ -1,5 +1,5 @@
 import { authUser, updateToken, registerUser, getProfile } from './api';
-export class User {
+class User {
 	_role = null;
 	constructor(data) {
 		if (!data) return;
@@ -21,3 +21,6 @@ export class User {
 		});
 	}
 }
+
+export { User };
+export * from './model/slice';

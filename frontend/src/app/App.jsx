@@ -1,18 +1,15 @@
-import './styles/index.scss';
 import styles from './App.module.scss';
-import { Outlet } from 'react-router-dom';
-import Header from './components/header/Header';
-import Sidebar from './components/sidebar/Sidebar';
-import Footer from './components/footer/Footer';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUser } from '@entities/User/slice';
-import { useState } from 'react';
-import ComponentLoading from '../shared/Component.loading';
-import { getProfile } from '@api/profile.api';
-import { setUser } from '@entities/User/slice';
-import User from '@entities/User';
+
+import Header from '@widgets/header/Header';
+import Sidebar from '@widgets/sidebar/Sidebar';
+import Footer from '@widgets/footer/Footer';
+
+import ComponentLoading from '@shared/ui/Component.loading';
+
+import { User, setUser, selectUser } from '@entities/user';
 import { updateToken } from '../api/auth.api';
 
 export default function App({ check_in = false }) {
@@ -22,10 +19,10 @@ export default function App({ check_in = false }) {
 	const { role } = useSelector(selectUser);
 
 	useEffect(() => {
-		getProfile()
-			.then((res) => dispatch(setUser(new User(res))))
-			.catch(() => navigate('/login'))
-			.finally(() => setLoading(false));
+		// getProfile()
+		// 	.then((res) => dispatch(setUser(new User(res))))
+		// 	.catch(() => navigate('/login'))
+		// 	.finally(() => setLoading(false));
 	}, []);
 
 	useEffect(() => {
