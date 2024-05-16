@@ -14,10 +14,12 @@ if check_command docker; then
         echo "Docker daemon is running."
     else
         echo "Docker daemon is not running. Please start Docker."
+        exit 1
     fi
 else
     echo "Docker is not installed. Please install Docker."
     ./install_docker_docker-compose.sh
+    exit 1
 fi
 
 #  Check the Docker Compose
@@ -27,5 +29,6 @@ elif check_command docker compose; then
     echo "Docker Compose (new version) is installed."
 else
     echo "Docker Compose is not installed. Please install Docker Compose."
+    exit 1
 fi
 
