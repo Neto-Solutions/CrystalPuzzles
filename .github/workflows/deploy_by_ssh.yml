@@ -47,7 +47,7 @@ jobs:
           port: ${{ env.SSH_PORT }}
           script: |
             sudo chmod -R 777 /home/${{ env.SSH_USERNAME }}/Crystall/devops \
-            && ll /home/${{ env.SSH_USERNAME }}/Crystall/devops
+            && ls -l /home/${{ env.SSH_USERNAME }}/Crystall/devops
 
       - name: Check docker and docker-compose
         uses: appleboy/ssh-action@master
