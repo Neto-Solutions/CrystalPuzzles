@@ -1,17 +1,12 @@
 import styles from './Check.in.page.module.scss';
 import { ReactComponent as Eye } from '@assets/svg/eye_icon.svg';
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import User from '@entities/User';
-import { setUser } from '@entities/User/slice';
 import Button from '@components/button/Button';
 import { registerUser } from '../../api/users.api';
 import { authUser } from '../../api/auth.api';
-import { getProfile } from '../../api/profile.api';
 
 export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -23,31 +18,17 @@ export default function CheckInPage({ login = false }) {
 				data[key] = e.target[i].value;
 			}
 		}
-		let userInfo = new Promise((resolve, reject) => {
-			if (login) {
-				authUser(data)
-					.then(() =>
-						getProfile()
-							.then((res) => resolve(res))
-							.catch((err) => reject(err))
-					)
-					.catch((err) => reject(err));
-			} else {
-				registerUser(data)
+		(login
+			? authUser(data).catch((err) => err)
+			: registerUser(data)
 					.then(() =>
 						authUser({
 							username: data.email,
 							password: data.password
 						})
 					)
-					.then(() => getProfile())
-					.then((res) => resolve(res))
-					.catch((err) => reject(err));
-			}
-		});
-		userInfo.then((res) => {
-			dispatch(setUser(new User(res)));
-		});
+					.catch((err) => err)
+		).then(() => location.reload('/'));
 	}
 	return (
 		<>
