@@ -25,7 +25,18 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            sudo chmod 777 -R /home/${{ env.SSH_USERNAME }}/Crystall/
+            [[ -f /home/${{ env.SSH_USERNAME }}/Crystall/ ]] \
+            && sudo chmod 777 -R /home/${{ env.SSH_USERNAME }}/Crystall/ \
+            || echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+            
+      - name: Refresh content
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+      - name: Sync Repository via SSH
+        run: |
+          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
+          . ${{ env.SSH_USERNAME }}@${{ env.SSH_HOST_NAME }}:Crystall
 
       - name: Check docker and docker-compose
         uses: appleboy/ssh-action@master
@@ -50,14 +61,6 @@ jobs:
             sudo docker system prune --all --force \
             || echo "No docker conteiners are running"
 
-      - name: Refresh content
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
-      - name: Sync Repository via SSH
-        run: |
-          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
-          . ${{ env.SSH_USERNAME }}@${{ env.SSH_HOST_NAME }}:Crystall
       - name: Start docker compose
         uses: appleboy/ssh-action@master
         with:
