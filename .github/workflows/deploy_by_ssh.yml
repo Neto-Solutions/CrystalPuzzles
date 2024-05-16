@@ -2,7 +2,7 @@ name: Deploy by ssh
 
 env:
   SSH_USERNAME: "ubuntu"
-  SSH_HOST_NAME: "ec2-35-157-192-134.eu-central-1.compute.amazonaws.com"
+  SSH_HOST_NAME: "ec2-52-29-207-95.eu-central-1.compute.amazonaws.com"
   SSH_PORT: "22"
 
 on:
@@ -27,6 +27,17 @@ jobs:
           script: |
             sudo chmod 777 -R /home/${{ env.SSH_USERNAME }}/Crystall/
 
+      - name: Check docker and docker-compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.SSH_HOST_NAME }}
+          username: ${{ env.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ env.SSH_PORT }}
+          script: |
+             /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
+             /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh
+
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
         with:
@@ -35,8 +46,8 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            docker stop $(docker ps -aq) && \
-            docker system prune --all --force \
+            sudo docker stop $(docker ps -aq) && \
+            sudo docker system prune --all --force \
             || echo "No docker conteiners are running"
 
       - name: Refresh content
@@ -55,5 +66,5 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            docker compose -f /home/${{ env.SSH_USERNAME }}/Crystall/docker-compose.yml up -d
+            sudo docker compose -f /home/${{ env.SSH_USERNAME }}/Crystall/docker-compose.yml up -d
 
