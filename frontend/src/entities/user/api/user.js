@@ -1,4 +1,4 @@
-import { $authHost, $host } from '.';
+import { $authHost, $host } from '@shared/api/axios.instances';
 
 const registerUser = async ({
 	email,

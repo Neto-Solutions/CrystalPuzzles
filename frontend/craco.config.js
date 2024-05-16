@@ -5,17 +5,11 @@ module.exports = {
 		alias: {
 			'@src': path.resolve(__dirname, 'src'),
 			'@app': path.resolve(__dirname, 'src/app'),
-			'@api': path.resolve(__dirname, 'src/api'),
-			'@components': path.resolve(__dirname, 'src/components'),
 			'@pages': path.resolve(__dirname, 'src/pages'),
-			'@assets': path.resolve(__dirname, 'src/assets'),
-			'@utils': path.resolve(__dirname, 'src/utils'),
-			'@methodist': path.resolve(__dirname, 'src/pages/methodist'),
-			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
-			'@student': path.resolve(__dirname, 'src/pages/student'),
-			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
+			'@widgets': path.resolve(__dirname, 'src/widgets'),
+			'@features': path.resolve(__dirname, 'src/features'),
 			'@entities': path.resolve(__dirname, 'src/entities'),
-			'@store': path.resolve(__dirname, 'src/store')
+			'@shared': path.resolve(__dirname, 'src/shared')
 		}
 	}
 };

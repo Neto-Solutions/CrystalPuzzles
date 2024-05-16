@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import User from './';
+import { User } from '../../../../entities/User';
 
 const userSlice = createSlice({
 	name: 'user',
@@ -12,7 +12,7 @@ const userSlice = createSlice({
 		}
 	}
 });
+const selectUser = (state) => state.user.user;
+const { setUser } = userSlice.actions;
 
-export const selectUser = (state) => state.user.user;
-export const { setUser } = userSlice.actions;
-export default userSlice;
+export { userSlice, setUser, selectUser };

@@ -1,12 +1,15 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
-import userReducer from '@entities/User/slice';
+import userSlice from '../../../entities/user/model/slice';
 
-const mainReducer = combineSlices(userReducer);
+const mainReducer = combineSlices(userSlice);
 
-export default configureStore({
+const store = configureStore({
 	reducer: mainReducer,
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
 			serializableCheck: false
 		})
 });
+
+export { store };
+export * from './slices/user';

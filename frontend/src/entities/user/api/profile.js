@@ -1,7 +1,12 @@
-import { $authHost } from '.';
+import { $authHost } from '../../../api';
 
 const getProfile = async () => {
-	const { data } = await $authHost.get('/profile');
+	let data = null;
+	try {
+		data = await $authHost.get('/profile');
+	} catch (error) {
+		data = error;
+	}
 	return data;
 };
 

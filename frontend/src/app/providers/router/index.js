@@ -4,8 +4,7 @@ import studentRouter from './student.router';
 import methodistRouter from './methodist.router';
 import trainerRouter from './trainer.router';
 import checkInRouter from './check.in.router';
-
-export default function createRouter(role) {
+function createRouter(role) {
 	return createBrowserRouter([
 		{
 			path: '/',
@@ -26,3 +25,5 @@ export default function createRouter(role) {
 		}
 	]);
 }
+
+export { createRouter };

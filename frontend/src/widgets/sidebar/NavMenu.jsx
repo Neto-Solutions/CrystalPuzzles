@@ -1,9 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Arrow } from '@assets/svg/calendar_arrow_down.svg';
-import studentRouter from '../../../routes/student.router';
-import methodistRouter from '../../../routes/methodist.router';
-import trainerRouter from '../../../routes/trainer.router';
-import checkInRouter from '../../../routes/check.in.router';
+import studentRouter from '../../routes/student.router';
+import methodistRouter from '../../routes/methodist.router';
+import trainerRouter from '../../routes/trainer.router';
+import checkInRouter from '../../routes/check.in.router';
 import { useEffect, useState } from 'react';
 import styles from './NavMenu.module.scss';
 
