@@ -46,9 +46,8 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            [[ -f /home/${{ env.SSH_USERNAME }}/Crystall/ ]] \
-            && sudo chmod 777 -R /home/${{ env.SSH_USERNAME }}/Crystall/ \
-            || echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+            sudo chmod 777 -r /home/${{ env.SSH_USERNAME }}/Crystall/devops \
+            && ll /home/${{ env.SSH_USERNAME }}/Crystall/devops
 
       - name: Check docker and docker-compose
         uses: appleboy/ssh-action@master
