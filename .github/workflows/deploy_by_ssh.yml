@@ -46,8 +46,8 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-             /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
-             /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh
+             sudo /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
+             sudo /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh
 
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
