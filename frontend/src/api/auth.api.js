@@ -13,7 +13,9 @@ const authUser = async ({ username, password }) => {
 };
 
 const updateToken = async () => {
-	const { data } = await $authHost.post('/auth/refresh-token');
+	const { data } = await $authHost
+		.post('/auth/refresh-token')
+		.then((res) => Cookies.set('token', res.data.access_token));
 	return data;
 };
 

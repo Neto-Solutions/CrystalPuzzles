@@ -10,9 +10,6 @@ export default function createRouter(role) {
 		{
 			path: '/',
 			element: <App />,
-			loader: () => {
-				return !role && redirect('/login');
-			},
 			children:
 				(role === 'student' && studentRouter) ||
 				(role === 'methodist' && methodistRouter) ||
