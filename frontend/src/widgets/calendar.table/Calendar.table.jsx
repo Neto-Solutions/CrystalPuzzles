@@ -2,8 +2,8 @@ import styles from './Calendar.table.module.scss';
 import moment from 'moment';
 import 'moment/locale/ru';
 import React, { useState } from 'react';
-import arrowLeft from '@assets/svg/calendar_arrow_left.svg';
-import arrowRight from '@assets/svg/calendar_arrow_right.svg';
+import arrow from '@shared/assets/svg/circle_arrow.svg';
+
 
 const CalendarTable = () => {
 	const [startDate, setStartDate] = useState(moment());
@@ -55,11 +55,11 @@ const CalendarTable = () => {
 		<div className={styles.datepicker}>
 			<header className={styles.top}>
 				<button onClick={prevTwoWeeks} className={styles.btn}>
-					<img className={styles.arrow} src={arrowLeft} />
+					<img className={styles.arrow} src={arrow} />
 				</button>
 				<h3 className={styles['month_title']}>{generateHeader(startDate)}</h3>
 				<button onClick={nextTwoWeeks} className={styles.btn}>
-					<img className={styles.arrow} src={arrowRight} />
+					<img className={styles.arrow} src={arrow} />
 				</button>
 			</header>
 			<div className={`${styles['grid_wrap']}`}>

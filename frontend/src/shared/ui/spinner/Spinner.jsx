@@ -1,4 +1,5 @@
-export default function ComponentLoading({ children, isLoading }) {
+import styles from './Spinner.module.scss';
+export default function Spinner({ children, isLoading }) {
 	return (
 		<>
 			{isLoading ? (

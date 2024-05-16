@@ -1,12 +1,12 @@
 import styles from './Students.list.page.module.scss';
-import Page from '@components/page/Page';
+import Page from '@shared/ui/page/Page';
 import { useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
 export default function StudentsListPage() {
 	const inputRef = useRef();
 
-	function search() {}
+	function search() { }
 
 	useEffect(() => {
 		const subscription = fromEvent(inputRef.current, 'keyup')

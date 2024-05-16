@@ -1,5 +1,5 @@
-import UserCard from '@components/card/user.card/User.card';
-import Page from '@components/page/Page';
+import UserCard from '@shared/card/user.card/User.card';
+import Page from '@shared/ui/page/Page';
 import { Link } from 'react-router-dom';
 import avatar from '@assets/avatar/methodist.png';
 

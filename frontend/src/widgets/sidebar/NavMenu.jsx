@@ -1,11 +1,11 @@
 import { Link, NavLink } from 'react-router-dom';
-import { ReactComponent as Arrow } from '@assets/svg/calendar_arrow_down.svg';
+import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
 import {
 	checkInRouter,
 	methodistRouter,
 	studentRouter,
 	trainerRouter
-} from '@shared/const/routes/index.js';
+} from '@shared/const/routes';
 import { useEffect, useState } from 'react';
 import styles from './NavMenu.module.scss';
 
@@ -17,8 +17,8 @@ export const NavMenuList = ({ role }) => {
 		setList(() =>
 			checkInRouter.concat(
 				(role === 'student' && studentRouter) ||
-					(role === 'methodist' && methodistRouter) ||
-					(role === 'trainer' && trainerRouter)
+				(role === 'methodist' && methodistRouter) ||
+				(role === 'trainer' && trainerRouter)
 			)
 		);
 	}, [role]);

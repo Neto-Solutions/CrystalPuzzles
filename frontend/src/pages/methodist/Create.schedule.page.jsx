@@ -1,7 +1,7 @@
-import Page from '@components/page/Page';
-import Button from '@components/button/Button';
+import Page from '@shared/ui/page/Page';
+import Button from '@shared/ui/button/Button';
 import styles from './Create.schedule.page.module.scss';
-import CalendarTable from '@components/calendar/calendar.table/Calendar.table';
+import CalendarTable from '@shared/calendar/calendar.table/Calendar.table';
 
 export default function CreateShedulePage() {
 	return (

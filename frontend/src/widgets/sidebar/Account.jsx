@@ -19,11 +19,7 @@ export const Account = ({ user }) => {
 	}, [user]);
 	return (
 		<div className={styles.accaunt_wrap}>
-			<img
-				src={require(`@assets/avatar/methodist.png`)}
-				className={styles.avatar}
-				alt=""
-			/>
+			<img src={user.avatar} className={styles.avatar} alt="" />
 			<div>
 				<p className={styles.profession}>{position}</p>
 				<p className={styles.name}>{user.name}</p>

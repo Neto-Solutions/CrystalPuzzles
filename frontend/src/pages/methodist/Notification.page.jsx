@@ -1,5 +1,5 @@
 // import styles from './Notification.page.module.scss';
-import Page from '@components/page/Page';
+import Page from '@shared/ui/page/Page';
 import Notification from '../../components/notification/Notification';
 
 export default function NotificationPage() {

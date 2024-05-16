@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Button.module.scss';
-import { ReactComponent as DownArrow } from '@assets/svg/calendar_arrow_down.svg';
+import { ReactComponent as DownArrow } from '@shared/assets/svg/arrow.svg';
 
 export default function Button({
 	title = false,

@@ -1,7 +1,7 @@
 import styles from './Check.in.page.module.scss';
 import { ReactComponent as Eye } from '@assets/svg/eye_icon.svg';
 import { useNavigate, Link } from 'react-router-dom';
-import Button from '@components/button/Button';
+import Button from '@shared/ui/button/Button';
 import { registerUser } from '../../api/users.api';
 import { authUser } from '../../api/auth.api';
 
@@ -21,13 +21,13 @@ export default function CheckInPage({ login = false }) {
 		(login
 			? authUser(data).catch((err) => err)
 			: registerUser(data)
-					.then(() =>
-						authUser({
-							username: data.email,
-							password: data.password
-						})
-					)
-					.catch((err) => err)
+				.then(() =>
+					authUser({
+						username: data.email,
+						password: data.password
+					})
+				)
+				.catch((err) => err)
 		).then(() => location.reload('/'));
 	}
 	return (

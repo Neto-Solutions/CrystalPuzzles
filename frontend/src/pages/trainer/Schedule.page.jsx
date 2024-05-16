@@ -1,8 +1,8 @@
 import styles from './Schedule.page.module.scss';
-import Page from '@components/page/Page';
-import Calendar from '@components/calendar/calendar.block/Calendar';
-import Button from '@components/button/Button';
-import ScheduleTable from '@components/schedule/schedule.table/Schedule.table';
+import Page from '@shared/ui/page/Page';
+import Calendar from '@features/calendar.block/Calendar';
+import Button from '@shared/ui/button/Button';
+import ScheduleTable from '@widgets/schedule/schedule.table/Schedule.table';
 
 export default function SchedulePage() {
 	return (

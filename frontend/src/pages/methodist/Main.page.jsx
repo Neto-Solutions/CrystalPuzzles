@@ -1,6 +1,6 @@
 import styles from './Main.page.module.scss';
-import Page from '@components/page/Page';
-import Notification from '@components/notification/Notification';
+import Page from '@shared/ui/page/Page';
+import Notification from '@shared/notification/Notification';
 import CardLink from '../../components/card/card.link/Card.link';
 import Schedule from '../../components/schedule/schedule.card/Schedule';
 

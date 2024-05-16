@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { ReactComponent as CalendarIcon } from '@assets/svg/calendar_icon.svg';
-import Button from '@components/button/Button';
-import Calendar from '@components/calendar/calendar.block/Calendar';
+import { ReactComponent as CalendarIcon } from '@shared/assets/svg/calendar_icon.svg';
+import Button from '@shared/ui/button/Button';
+import Calendar from './calendar.block/Calendar';
 
 export default function CalendarButton() {
 	const [calendar, setCalendar] = useState(false);

@@ -1,8 +1,8 @@
-import UserCard from '@components/card/user.card/User.card';
-import Page from '@components/page/Page';
-import Button from '@components/button/Button';
+import UserCard from '@shared/card/user.card/User.card';
+import Page from '@shared/ui/page/Page';
+import Button from '@shared/ui/button/Button';
 import styles from './Analytics.view.page.module.scss';
-import Card from '@components/card/';
+import Card from '@shared/card/';
 import avatar from '@assets/avatar/methodist.png';
 import { useState } from 'react';
 import CalendarButton from '../../components/button/calendar';

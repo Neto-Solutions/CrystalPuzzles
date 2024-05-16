@@ -1,5 +1,5 @@
 import styles from './Train.page.module.scss';
-import Page from '@components/page/Page';
+import Page from '@shared/ui/page/Page';
 import { Link } from 'react-router-dom';
 export default function TrainPage() {
 	const tempArray = Array.from({ length: 3 }, () => ({

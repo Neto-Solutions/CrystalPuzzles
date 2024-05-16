@@ -1,9 +1,8 @@
 import styles from './Footer.module.scss';
-// import { ReactComponent as NetologyLogo } from '@assets/socials/netology-logo.svg';
 import { ReactComponent as Vk } from './assets/vk.svg';
 import { ReactComponent as Tg } from './assets/tg.svg';
 import { ReactComponent as Ok } from './assets/ok.svg';
-import neto from '@assets/socials/neto.png';
+import neto from './assets/neto.png';
 
 export default function Footer() {
 	return (

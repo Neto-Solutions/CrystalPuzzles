@@ -1,5 +1,5 @@
-import Page from '@components/page/Page';
-import Feedback from '@components/feedback/';
+import Page from '@shared/ui/page/Page';
+import Feedback from '@shared/feedback/';
 
 export default function FeedbackPage() {
 	return (

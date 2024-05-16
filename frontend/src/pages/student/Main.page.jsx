@@ -1,15 +1,12 @@
 import styles from './Main.page.module.scss';
-import reward_animal from '@assets/svg/reward_animal.svg';
-import CardLink from '@components/card/card.link/Card.link';
-import Page from '@components/page/Page';
-import Feedback from '@components/feedback/student/';
+import CardLink from '@features/card/card.link/Card.link';
+import Page from '@shared/ui/page/Page';
+import Feedback from '@widgets/feedback/student/';
 export default function studentMainPage() {
 	const tempArray = Array(2).fill(0);
 	return (
 		<Page title="Главная страница">
-			<CardLink to="/rewards" title={'Мои награды'}>
-				<img className={styles.reward_img} src={reward_animal} alt="" />
-			</CardLink>
+			<CardLink to="/rewards" title={'Мои награды'} />
 			<CardLink to="/train" title={'Мои тренировки'}>
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>

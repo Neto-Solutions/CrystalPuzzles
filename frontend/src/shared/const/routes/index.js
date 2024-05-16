@@ -1,4 +1,4 @@
-export { default as checkInRouter } from './routes/check.in.router';
-export { default as methodistRouter } from './routes/methodist.router';
-export { default as trainerRouter } from './routes/trainer.router';
-export { default as studentRouter } from './routes/student.router';
+export { default as checkInRouter } from './check.in.router';
+export { default as methodistRouter } from './methodist.router';
+export { default as trainerRouter } from './trainer.router';
+export { default as studentRouter } from './student.router';
