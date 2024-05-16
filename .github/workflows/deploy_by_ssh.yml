@@ -38,6 +38,18 @@ jobs:
           rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
           . ${{ env.SSH_USERNAME }}@${{ env.SSH_HOST_NAME }}:Crystall
 
+      - name: Change directory permitions again
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.SSH_HOST_NAME }}
+          username: ${{ env.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ env.SSH_PORT }}
+          script: |
+            [[ -f /home/${{ env.SSH_USERNAME }}/Crystall/ ]] \
+            && sudo chmod 777 -R /home/${{ env.SSH_USERNAME }}/Crystall/ \
+            || echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+
       - name: Check docker and docker-compose
         uses: appleboy/ssh-action@master
         with:
@@ -46,8 +58,8 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-             sudo /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
-             sudo /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh
+             /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
+             /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh
 
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
