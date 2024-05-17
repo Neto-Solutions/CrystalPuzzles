@@ -1,7 +1,7 @@
 import styles from './Main.page.module.scss';
-import CardLink from '@features/card/card.link/Card.link';
+import { CardLink } from '@features/card';
 import Page from '@shared/ui/page/Page';
-import Feedback from '@widgets/feedback/student/';
+import { StudentFeedback } from '@widgets/feedback/';
 export default function studentMainPage() {
 	const tempArray = Array(2).fill(0);
 	return (
@@ -28,7 +28,7 @@ export default function studentMainPage() {
 					))}
 				</div>
 			</CardLink>
-			<Feedback />
+			<StudentFeedback />
 		</Page>
 	);
 }

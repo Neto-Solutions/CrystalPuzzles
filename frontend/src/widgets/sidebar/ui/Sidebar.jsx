@@ -2,7 +2,7 @@ import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
 import { Link } from 'react-router-dom';
 import { NavMenuList } from './NavMenu';
-import { Account } from './Account';
+import { Account } from '@entities/user/ui/Account';
 import styles from './Sidebar.module.scss';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@entities/user';

@@ -1,4 +1,4 @@
-import Politics from '@widgets/politics';
+import { Politics } from '@widgets/politics';
 
 export default function СonfidentialityPage() {
 	return (

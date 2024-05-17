@@ -1,16 +1,16 @@
 import Page from '@shared/ui/page/Page';
 import Button from '@shared/ui/button/Button';
-import Notification from '@widgets/notification/Notification';
-import Schedule from '@widgets/schedule/schedule.card/Schedule';
-import CheckList from '@widgets/check.list/Check.list';
+import { Notification } from '@widgets/notification';
+import { ScheduleCard } from '@widgets/schedule';
+import CheckList from '@widgets/check.list';
 
 export default function MainPage() {
 	return (
 		<Page title="Главная страница">
 			<Notification />
-			<Schedule>
+			<ScheduleCard>
 				<Button title="Сформировать чек-лист" />
-			</Schedule>
+			</ScheduleCard>
 			<CheckList />
 		</Page>
 	);

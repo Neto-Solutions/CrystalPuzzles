@@ -1,4 +1,4 @@
-@use '../../app/styles/mixins' as *;
+@use '../../../app/styles/mixins' as *;
 
 .header {
 	display: flex;
@@ -9,7 +9,7 @@
 	margin: 20px 0;
 	display: flex;
 	&::after {
-		content: url('./assets/logo_title.svg');
+		content: url('../assets/logo_title.svg');
 		margin-left: 10px;
 		display: flex;
 		flex-wrap: nowrap;

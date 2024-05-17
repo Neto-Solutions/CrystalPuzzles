@@ -1,8 +1,8 @@
 import styles from './Main.page.module.scss';
 import Page from '@shared/ui/page/Page';
-import Notification from '@widgets/notification/Notification';
-import CardLink from '@features/card/card.link/Card.link';
-import Schedule from '@widgets/schedule/schedule.card/Schedule';
+import { Notification } from '@widgets/notification';
+import { CardLink } from '@features/card';
+import { ScheduleCard } from '@widgets/schedule';
 
 export default function MainPage() {
 	return (
@@ -19,7 +19,7 @@ export default function MainPage() {
 				className={styles.evaluation}
 			/>
 			<Notification />
-			<Schedule to={'/schedule'} />
+			<ScheduleCard to={'/schedule'} />
 		</Page>
 	);
 }

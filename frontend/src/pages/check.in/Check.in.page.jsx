@@ -1,4 +1,4 @@
-import LogRegForm from '@widgets/log.reg.form';
+import { LogRegForm } from '@widgets/log.reg.form';
 
 export default function CheckInPage({ login = false }) {
 	return (

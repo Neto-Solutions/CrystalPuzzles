@@ -1,8 +1,8 @@
 import styles from './Progress.graph.view.page.module.scss';
 import Page from '@shared/ui/page/Page';
-import UserCard from '@features/card/user.card/User.card';
+import { UserCard } from '@features/card';
 import Button from '@shared/ui/button/Button';
-import CalendarButton from '@features/calendar.button';
+import { CalendarButton } from '@features/calendar';
 
 export default function ProgressGraphViewPage() {
 	return (

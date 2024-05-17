@@ -1,15 +1,15 @@
 import styles from './Schedule.page.module.scss';
 import Page from '@shared/ui/page/Page';
-import Calendar from '@features/calendar.block/Calendar';
+import { CalendarButton } from '@features/calendar';
 import Button from '@shared/ui/button/Button';
-import ScheduleTable from '@widgets/schedule/schedule.table/Schedule.table';
+import { ScheduleTable } from '@widgets/schedule';
 
 export default function SchedulePage() {
 	return (
 		<Page title="Расписание">
 			<ScheduleTable />
 			<aside className={styles.calendar}>
-				<Calendar />
+				<CalendarButton />
 				<Button title="Записаться" />
 			</aside>
 		</Page>

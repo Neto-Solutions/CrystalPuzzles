@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Header from '@widgets/header/Header';
-import Sidebar from '@widgets/sidebar/Sidebar';
-import Footer from '@widgets/footer/Footer';
+import { Header } from '@widgets/header';
+import Sidebar from '@widgets/sidebar';
+import { Footer } from '@widgets/footer';
 
 import Spinner from '@shared/ui/spinner/Spinner';
 
