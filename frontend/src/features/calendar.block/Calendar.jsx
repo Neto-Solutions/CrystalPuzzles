@@ -1,8 +1,7 @@
 import './Calendar.scss';
 
 import { useEffect, useState } from 'react';
-import { ReactComponent as LeftArrow } from '@assets/svg/small_calendar_arrow_left.svg';
-import { ReactComponent as RightArrow } from '@assets/svg/small_calendar_arrow_right.svg';
+import { ReactComponent as Arrow } from '@shared/assets/svg/small_arrow.svg';
 import moment from 'moment';
 
 export default function Calendar({ onHide }) {
@@ -49,7 +48,7 @@ export default function Calendar({ onHide }) {
 							setDate(date.clone().subtract(1, 'month'));
 						}}
 					>
-						<LeftArrow />
+						<Arrow />
 					</div>
 					<div
 						className="calendar_header_date_btn"
@@ -57,7 +56,7 @@ export default function Calendar({ onHide }) {
 							setDate(date.clone().add(1, 'month'));
 						}}
 					>
-						<RightArrow />
+						<Arrow />
 					</div>
 				</div>
 			</div>

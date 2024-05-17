@@ -7,10 +7,9 @@ import Header from '@widgets/header/Header';
 import Sidebar from '@widgets/sidebar/Sidebar';
 import Footer from '@widgets/footer/Footer';
 
-import ComponentLoading from '@shared/ui/Component.loading';
+import Spinner from '@shared/ui/spinner/Spinner';
 
-import { User, setUser, selectUser } from '@entities/user';
-import { updateToken } from '../api/auth.api';
+import { User, setUser, selectUser, updateToken } from '@entities/user';
 
 export default function App({ check_in = false }) {
 	const [loading, setLoading] = useState(true);
@@ -35,7 +34,7 @@ export default function App({ check_in = false }) {
 		<div className={styles.app}>
 			{/* <RouterTool /> */}
 			<Header />
-			<ComponentLoading isLoading={loading}>
+			<Spinner isLoading={loading}>
 				<div className={styles.page_container}>
 					{check_in ? (
 						<>
@@ -51,7 +50,7 @@ export default function App({ check_in = false }) {
 					)}
 				</div>
 				{!check_in && <Footer />}
-			</ComponentLoading>
+			</Spinner>
 		</div>
 	);
 }

@@ -6,7 +6,7 @@ export default function CheckListPage() {
 	return (
 		<Page title="Чек-листы">
 			<section className={styles.avatar}>
-				<img src='' alt="" />
+				<img src="" alt="" />
 			</section>
 
 			<section className={styles.levels}>

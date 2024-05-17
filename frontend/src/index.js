@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { Provider, useSelector } from 'react-redux';
-import store from '@app/store';
+import { store } from '@app/providers/store';
 
 import { RouterProvider as Router } from 'react-router-dom';
-import createRouter from './app/providers/router';
+import { createRouter } from '@app/providers/router';
 
-import { selectUser } from '@entities/User/slice';
+import { selectUser } from '@entities/user';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

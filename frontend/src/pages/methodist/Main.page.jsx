@@ -1,8 +1,8 @@
 import styles from './Main.page.module.scss';
 import Page from '@shared/ui/page/Page';
-import Notification from '@shared/notification/Notification';
-import CardLink from '../../components/card/card.link/Card.link';
-import Schedule from '../../components/schedule/schedule.card/Schedule';
+import Notification from '@widgets/notification/Notification';
+import CardLink from '@features/card/card.link/Card.link';
+import Schedule from '@widgets/schedule/schedule.card/Schedule';
 
 export default function MainPage() {
 	return (

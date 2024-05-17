@@ -4,7 +4,6 @@ import 'moment/locale/ru';
 import React, { useState } from 'react';
 import arrow from '@shared/assets/svg/circle_arrow.svg';
 
-
 const CalendarTable = () => {
 	const [startDate, setStartDate] = useState(moment());
 

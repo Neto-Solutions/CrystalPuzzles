@@ -17,8 +17,8 @@ export const NavMenuList = ({ role }) => {
 		setList(() =>
 			checkInRouter.concat(
 				(role === 'student' && studentRouter) ||
-				(role === 'methodist' && methodistRouter) ||
-				(role === 'trainer' && trainerRouter)
+					(role === 'methodist' && methodistRouter) ||
+					(role === 'trainer' && trainerRouter)
 			)
 		);
 	}, [role]);

@@ -6,7 +6,7 @@ import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 export default function StudentsListPage() {
 	const inputRef = useRef();
 
-	function search() { }
+	function search() {}
 
 	useEffect(() => {
 		const subscription = fromEvent(inputRef.current, 'keyup')

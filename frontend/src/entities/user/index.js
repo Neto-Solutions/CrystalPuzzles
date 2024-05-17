@@ -24,3 +24,4 @@ class User {
 
 export { User };
 export * from './model/slice';
+export * from './api'; // temp

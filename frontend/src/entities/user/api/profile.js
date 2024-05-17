@@ -1,4 +1,4 @@
-import { $authHost } from '../../../api';
+import { $authHost } from '@shared/api/axios.instances';
 
 const getProfile = async () => {
 	let data = null;

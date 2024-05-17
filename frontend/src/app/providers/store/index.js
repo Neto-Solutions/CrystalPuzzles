@@ -1,5 +1,5 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
-import userSlice from '../../../entities/user/model/slice';
+import { userSlice } from '@entities/user';
 
 const mainReducer = combineSlices(userSlice);
 
@@ -12,4 +12,3 @@ const store = configureStore({
 });
 
 export { store };
-export * from './slices/user';
