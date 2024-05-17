@@ -1,3 +1,4 @@
+import '@app/styles/index.scss';
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 

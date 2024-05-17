@@ -1,3 +1,5 @@
+import styles from './NavMenu.module.scss';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
 import {
@@ -6,8 +8,6 @@ import {
 	studentRouter,
 	trainerRouter
 } from '@shared/const/routes';
-import { useEffect, useState } from 'react';
-import styles from './NavMenu.module.scss';
 
 export const NavMenuList = ({ role }) => {
 	const [isOpen, setOpen] = useState(false);

@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '@entities/user';
 
 const userSlice = createSlice({
 	name: 'user',
 	initialState: {
-		user: new User({ role: null })
+		user: { role: null }
 	},
 	reducers: {
 		setUser: (state, action) => {

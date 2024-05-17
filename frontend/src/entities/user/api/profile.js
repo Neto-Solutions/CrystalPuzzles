@@ -1,12 +1,7 @@
 import { $authHost } from '@shared/api/axios.instances';
 
 const getProfile = async () => {
-	let data = null;
-	try {
-		data = await $authHost.get('/profile');
-	} catch (error) {
-		data = error;
-	}
+	const { data } = await $authHost.get('/profile');
 	return data;
 };
 

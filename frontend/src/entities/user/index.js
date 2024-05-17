@@ -1,4 +1,3 @@
-import { authUser, updateToken, registerUser, getProfile } from './api';
 class User {
 	_role = null;
 	constructor(data) {
@@ -9,16 +8,6 @@ class User {
 	}
 	get role() {
 		return this._role;
-	}
-
-	async login({ username, password }) {
-		await authUser({ username, password }).then(function () {
-			getProfile().then(function (data) {
-				const { role, ...rest } = data;
-				this._role = role;
-				Object.assign(this, rest);
-			});
-		});
 	}
 }
 
