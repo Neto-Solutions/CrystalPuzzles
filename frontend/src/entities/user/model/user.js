@@ -1,5 +1,5 @@
 export class User {
-	_role = null;
+	_role = 'methodist';
 	constructor(data) {
 		if (!data) return;
 		const { role, ...rest } = data;
