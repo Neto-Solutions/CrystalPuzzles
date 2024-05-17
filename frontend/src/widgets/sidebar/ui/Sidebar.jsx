@@ -14,11 +14,11 @@ export default function Sidebar() {
 
 	async function handleExit() {
 		await logout()
-			.catch((err) => err)
-			.finally(() => {
+			.then(() => {
 				Cookies.remove('token');
 				location.reload();
-			});
+			})
+			.catch(() => location.reload());
 	}
 
 	return (
