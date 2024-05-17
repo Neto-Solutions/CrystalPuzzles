@@ -2,7 +2,7 @@ import styles from './Main.page.module.scss';
 import Page from '@shared/ui/page/Page';
 import { Notification } from '@widgets/notification';
 import { CardLink } from '@features/card';
-import { ScheduleCard } from '@widgets/schedule';
+import { ScheduleCard } from '@features/schedule';
 
 export default function MainPage() {
 	return (
