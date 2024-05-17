@@ -9,13 +9,7 @@ import Footer from '@widgets/footer/Footer';
 
 import Spinner from '@shared/ui/spinner/Spinner';
 
-import {
-	User,
-	setUser,
-	selectUser,
-	updateToken,
-	getProfile
-} from '@entities/user';
+import { User, setUser, selectUser, getProfile } from '@entities/user';
 
 export default function App({ check_in = false }) {
 	const [loading, setLoading] = useState(true);
@@ -32,7 +26,7 @@ export default function App({ check_in = false }) {
 
 	useEffect(() => {
 		if (role === null) return;
-		updateToken().catch(() => null);
+		navigate('/');
 	}, [role]);
 
 	return (
