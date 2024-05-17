@@ -12,16 +12,16 @@ import Spinner from '@shared/ui/spinner/Spinner';
 import { User, setUser, selectUser, getProfile } from '@entities/user';
 
 export default function App({ check_in = false }) {
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { role } = useSelector(selectUser);
 
 	useEffect(() => {
-		// getProfile()
-		// 	.then((res) => dispatch(setUser(new User(res))))
-		// 	.catch(() => navigate('/login'))
-		// 	.finally(() => setLoading(false));
+		getProfile()
+			.then((res) => dispatch(setUser(new User(res))))
+			.catch(() => navigate('/login'))
+			.finally(() => setLoading(false));
 	}, []);
 
 	useEffect(() => {

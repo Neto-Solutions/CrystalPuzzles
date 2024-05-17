@@ -1,18 +1,24 @@
+import styles from './Sidebar.module.scss';
+
 import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
 import { Link } from 'react-router-dom';
 import { NavMenuList } from './NavMenu';
 import { Account } from '@entities/user/ui/Account';
-import styles from './Sidebar.module.scss';
 import { useSelector } from 'react-redux';
-import { selectUser } from '@entities/user';
+import { selectUser, logout } from '@entities/user';
+import Cookies from 'js-cookie';
 
 export default function Sidebar() {
 	const user = useSelector(selectUser);
 
-	function handleExit() {
-		localStorage.clear();
-		window.location.reload();
+	async function handleExit() {
+		await logout()
+			.catch((err) => err)
+			.finally(() => {
+				Cookies.remove('token');
+				location.reload();
+			});
 	}
 
 	return (

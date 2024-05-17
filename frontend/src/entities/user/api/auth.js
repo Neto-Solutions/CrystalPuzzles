@@ -19,4 +19,9 @@ const updateToken = async () => {
 	return data;
 };
 
-export { authUser, updateToken };
+const logout = async () => {
+	const { data } = await $authHost.post('/auth/logout');
+	return data;
+};
+
+export { authUser, updateToken, logout };
