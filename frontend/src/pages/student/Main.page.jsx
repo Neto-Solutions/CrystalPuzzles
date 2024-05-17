@@ -6,7 +6,11 @@ export default function studentMainPage() {
 	const tempArray = Array(2).fill(0);
 	return (
 		<Page title="Главная страница">
-			<CardLink to="/rewards" title={'Мои награды'} />
+			<CardLink
+				to="/rewards"
+				title={'Мои награды'}
+				className={styles.reward_img}
+			/>
 			<CardLink to="/train" title={'Мои тренировки'}>
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>

@@ -1,6 +1,9 @@
 @use '../../app/styles/mixins' as *;
 .reward_img {
-	margin-left: 1rem;
+	background-image: url('../../shared/assets/card.background/reward_animal.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-position-x: 55%;
 }
 .train_text {
 	@include font(var(--ff-first), 24px, 500);
