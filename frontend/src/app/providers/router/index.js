@@ -12,6 +12,7 @@ function createRouter(role) {
 		{
 			path: '/',
 			element: <App />,
+			loader: () => !role && redirect('/login'),
 			children:
 				(role === 'student' && studentRouter) ||
 				(role === 'methodist' && methodistRouter) ||
