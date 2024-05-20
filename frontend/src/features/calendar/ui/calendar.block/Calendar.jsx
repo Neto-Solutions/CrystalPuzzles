@@ -56,7 +56,7 @@ export default function Calendar({ onHide }) {
 							setDate(date.clone().add(1, 'month'));
 						}}
 					>
-						<Arrow />
+						<Arrow className="arrow_right" />
 					</div>
 				</div>
 			</div>
