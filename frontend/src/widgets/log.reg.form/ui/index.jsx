@@ -1,4 +1,4 @@
-import styles from './styles.module.scss';
+import styles from './log.reg.form.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Button from '@shared/ui/button/Button';
 import { authUser, registerUser, mapUserForm } from '@entities/user';

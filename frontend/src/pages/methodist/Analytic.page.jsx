@@ -1,4 +1,4 @@
-import { UserCard } from '@features/card';
+import { UserCard } from '@shared/card';
 import Page from '@shared/ui/page/Page';
 import { Link } from 'react-router-dom';
 

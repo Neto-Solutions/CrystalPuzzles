@@ -1,5 +1,5 @@
 import Page from '@shared/ui/page/Page';
-import { UserCard } from '@features/card';
+import { UserCard } from '@shared/card';
 import { Link } from 'react-router-dom';
 
 export default function ProgressGraphPage() {

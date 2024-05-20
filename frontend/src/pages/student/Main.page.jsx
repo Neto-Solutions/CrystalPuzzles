@@ -1,5 +1,5 @@
 import styles from './Main.page.module.scss';
-import { CardLink } from '@features/card';
+import { CardLink } from '@shared/card';
 import Page from '@shared/ui/page/Page';
 import { StudentFeedback } from '@features/feedback/';
 export default function studentMainPage() {
