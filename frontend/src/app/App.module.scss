@@ -10,9 +10,11 @@
 	flex-direction: column;
 
 	.page_container {
-		display: flex;
+		display: flex ;
+		align-self: center;
 		justify-content: space-between;
 		margin-bottom: 40px;
+		flex-grow: 1;
 
 		.page {
 			width: 100%;
