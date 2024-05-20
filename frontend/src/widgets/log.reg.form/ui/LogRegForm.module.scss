@@ -44,6 +44,12 @@
 	align-items: center;
 	gap: 20px;
 }
+.register_btn {
+	width: fit-content;
+	height: 53px;
+	color: white;
+	background-color: var(--btn-bg-hover);
+}
 
 @media (max-width: 425px) {
 	.container {

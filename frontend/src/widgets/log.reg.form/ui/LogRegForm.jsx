@@ -84,8 +84,7 @@ export default function LogRegForm({ login = false }) {
 								title="Зарегистрироваться"
 								id="registration"
 								onClick={() => navigate('/registration')}
-								width="fit-content"
-								height="53px"
+								className={styles.register_btn}
 							/>
 						</>
 					)}
