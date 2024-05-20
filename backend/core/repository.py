@@ -63,7 +63,11 @@ class BaseRepository(AbstractRepository):
     async def delete(self, object_id: int) -> bool:
         async with async_session() as session:
             try:
-                stmt = update(self.model).where(self.model.id == object_id).where(self.model.deleted == False).values(deleted=True, date_update=datetime.now()).returning(self.model.id)
+                stmt = (update(self.model)
+                        .where(self.model.id == object_id)
+                        .where(self.model.deleted == False)
+                        .values(deleted=True, date_update=datetime.now())
+                        .returning(self.model.id))
                 res = await session.execute(stmt)
                 await session.commit()
                 return res.scalar_one_or_none()

@@ -1,8 +1,9 @@
 from http import HTTPStatus
 
-from typing import Annotated
+from typing import Annotated, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi.responses import JSONResponse
 
 from core.schemas.base import Message
 from core.utils.logger import logger
@@ -26,11 +27,9 @@ group_router = APIRouter(
 @group_router.get(
     "/{group_id}",
     summary="Получение группы по Id",
-    response_model=GroupResponseModel,
+    response_model=Optional[GroupResponseModel],
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
-        400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
 async def get_group(group_id: int,
@@ -39,14 +38,14 @@ async def get_group(group_id: int,
                     ):
     """ admin, supervisor, trainer """
     try:
-        group = await group_service.get(group_id)
+        group = await group_service.get_with_students(group_id)
         if group:
             return group
         logger.error("Group not found")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+        return None
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @group_router.get(
@@ -54,16 +53,13 @@ async def get_group(group_id: int,
     summary=" Получение всех групп",
     response_model=GroupViewSchemaForPage,
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
-        400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
 async def get_all_groups(
         group_service: Annotated[GroupService, Depends(group_service)],
         filters: GroupFilterSchema = Depends(),
         user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
-
 ):
     """ admin, supervisor, trainer """
     try:
@@ -71,7 +67,7 @@ async def get_all_groups(
         return group_list
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @group_router.post(
@@ -79,7 +75,6 @@ async def get_all_groups(
     summary="Создание группы",
     response_model=int,
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         409: {"model": Message, "description": "Конфликт данных"},
@@ -94,15 +89,15 @@ async def create_group(model: CreateGroupSchema,
     try:
         if not await user_repository.trainer_exists(model.trainer_id):
             logger.error("Trainer not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+            return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Trainer not found")
         group_id = await group_service.add(model)
         if group_id:
             return group_id
         logger.error("Group existing")
-        return Response(status_code=HTTPStatus.CONFLICT.value)
+        return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Group existing")
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @group_router.put(
@@ -110,7 +105,6 @@ async def create_group(model: CreateGroupSchema,
     summary="Изменение группы",
     response_model=bool,
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         409: {"model": Message, "description": "Конфликт данных"},
@@ -126,15 +120,18 @@ async def edit_group(
     try:
         if not await user_repository.trainer_exists(model.trainer_id):
             logger.error("Trainer not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+            return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Trainer not found")
         result = await group_service.edit(model)
         if result:
             return result
+        elif result.__eq__(False):
+            logger.error("Group not found")
+            return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")
         logger.error("Group already exists")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+        return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Group already exists")
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @group_router.delete(
@@ -157,12 +154,12 @@ async def delete_group(
     if deleted:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
     logger.error("Group not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")
 
 
 @group_router.delete(
     "/remove/{group_id}",
-    summary="Удаление устройства из базы",
+    summary="Удаление группы из базы данных",
     status_code=HTTPStatus.NO_CONTENT.value,
     responses={
         204: {"description": "Нет данных"},
@@ -173,11 +170,11 @@ async def delete_group(
 async def remove_device(
         group_id: int,
         group_service: Annotated[GroupService, Depends(group_service)],
-        user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        user: User = Depends(get_current_user(("admin", )))
 ):
-    """admin, supervisor"""
+    """admin"""
     group = await group_service.delete_db(group_id)
     if group:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Device not found")
-    raise HTTPException(status_code=400)
+    logger.error("Group not found")
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")

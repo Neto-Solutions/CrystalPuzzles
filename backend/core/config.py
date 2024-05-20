@@ -41,10 +41,6 @@ class Settings(BaseSettings):
 
     page_size: int = Field(env="PAGE_SIZE", default=10)
 
-    model_config = SettingsConfigDict(
-        env_file=os.path.expanduser("../.env"),
-        env_file_encoding="utf-8",
-    )
 
     @field_validator("async_database_uri")
     def assemble_db_async_connection(

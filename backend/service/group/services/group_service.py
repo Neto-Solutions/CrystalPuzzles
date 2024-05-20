@@ -8,16 +8,19 @@ class GroupService(BaseService):
 
     async def add(self, group: create_schema):
         check = await self.repo.get_by_name(group.name)
-        if check is None or check.deleted:
-            return await super().add(group)
-        return None
+        if check:
+            return None
+        return await super().add(group)
 
     async def edit(self, group: edit_schema):
         check = await self.repo.get_by_name(group.name)
-        if check is None or (check.id == group.id and not check.deleted):
+        if check is None or check.id == group.id:
             return await super().edit(group)
         return None
 
+    async def get_with_students(self, group_id: int):
+        return await self.repo.get_with_students(group_id)
+
     async def get_all_by_filters(self, filters: GroupFilterSchema):
-        return await self.repo.get_all_group_by_filter(filters.search_string, filters.date_begin, filters.date_end,
+        return await self.repo.get_all_group_by_filter(filters.search_string,
                                                        filters.trainer, filters.page_number, filters.page_size)

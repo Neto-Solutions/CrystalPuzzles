@@ -18,16 +18,6 @@ class Group(Base):
     trainer = relationship("User", back_populates="group")
     students = relationship("StudentGroup", back_populates="group")
 
-    def to_read_model(self) -> GroupViewSchemaForTable:
-        return GroupViewSchemaForTable(
-            id=self.id,
-            name=self.name,
-            date_add=self.date_add,
-            date_update=self.date_update,
-            trainer_id=self.trainer_id,
-            date=self.date_update.strftime("%y.%m.%d %H:%M:%S")
-        )
-
 
 class StudentGroup(Base):
     __tablename__ = "StudentGroups"

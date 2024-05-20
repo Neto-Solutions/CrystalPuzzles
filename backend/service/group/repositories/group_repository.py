@@ -1,6 +1,8 @@
 import math
 
 from datetime import datetime
+from typing import Optional
+
 from sqlalchemy import select, func, or_
 from sqlalchemy.orm import joinedload
 
@@ -13,19 +15,32 @@ from service.identity.models import User
 class GroupRepository(BaseRepository):
     model = Group
 
-    async def get_by_name(self, name: str) -> Group | None:
+    async def get_with_students(self, object_id: int) -> Optional[User]:
         async with async_session() as session:
-            stmt = select(self.model).filter(self.model.name == name).filter(self.model.deleted.__eq__(True))
+            stmt = (select(self.model)
+                    .options(joinedload(self.model.students).joinedload(StudentGroup.student))
+                    .filter(
+                        self.model.deleted.__eq__(False),
+                        self.model.id.__eq__(object_id)
+                            ))
+            res = (await session.execute(stmt)).unique().scalar_one_or_none()
+            return res
+
+    async def get_by_name(self, name: str) -> Optional[Group]:
+        async with async_session() as session:
+            stmt = (select(self.model)
+                    .filter(self.model.name.__eq__(name),
+                            self.model.deleted.__eq__(False)))
             return (await session.execute(stmt)).scalar_one_or_none()
 
-    async def get_all_group_by_filter(self, search_string: str, date_begin: datetime, date_end: datetime,
+    async def get_all_group_by_filter(self, search_string: str,
                                 trainer: int, page_number: int, page_size: int):
         async with async_session() as session:
             stmt = (
                 select(self.model)
                 .options(joinedload(self.model.trainer))
                 .options(joinedload(self.model.students).joinedload(StudentGroup.student))
-                .filter(self.model.deleted == False)
+                .filter(self.model.deleted.__eq__(False))
             )
             if search_string:
                 stmt = stmt.filter(or_(
@@ -34,12 +49,8 @@ class GroupRepository(BaseRepository):
                     (self.model.students.any(StudentGroup.student.has(User.lastname.ilike(f"%{search_string}%")))),
                     (self.model.students.any(StudentGroup.student.has(User.surname.ilike(f"%{search_string}%"))))
                 ))
-            if date_begin:
-                stmt = stmt.filter(self.model.date_update >= date_begin.date())
-            if date_end:
-                stmt = stmt.filter(self.model.date_update <= date_end.date())
             if trainer:
-                stmt = stmt.filter(self.model.trainer_id == trainer)
+                stmt = stmt.filter(self.model.trainer_id.__eq__(trainer))
 
             count_records = (await session.execute(select(func.count(stmt.c.id)))).scalar_one()
             if count_records != 0:

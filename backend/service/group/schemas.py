@@ -19,13 +19,12 @@ class StudentViewModel(BaseModel):
 class StudentForGroupViewModel(BaseModel):
     student: StudentViewModel
 
-
 class GroupResponseModel(BaseModel):
     """ Ответ на создание и редактирование групп """
     id: int
     name: str
     trainer_id: int
-    students: Optional[List[StudentForGroupViewModel]]
+    students: List[StudentForGroupViewModel]
 
 
 class StudentForGroupViewSchema(BaseModel):
@@ -42,12 +41,7 @@ class CreateGroupSchema(BaseModel):
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
 
-class DataRangeBaseFilterSchema(BaseFilterSchema):
-    date_begin: datetime | None = Query(default=None, description="Дата начала")
-    date_end: datetime | None = Query(default=None, description="Дата конца")
-
-
-class GroupFilterSchema(DataRangeBaseFilterSchema):
+class GroupFilterSchema(BaseFilterSchema):
     """ Фильтрация и пагинация """
     trainer: int | None = Query(default=None, description="Тренер")
 
