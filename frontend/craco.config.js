@@ -11,7 +11,7 @@ module.exports = {
 			'@entities': path.resolve(__dirname, 'src/entities'),
 			'@shared': path.resolve(__dirname, 'src/shared'),
 			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
-			'@methodist': path.resolve(__dirname, 'src/pages/methodist'),
+			'@supervisor': path.resolve(__dirname, 'src/pages/supervisor'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
 			'@student': path.resolve(__dirname, 'src/pages/student')
 		}

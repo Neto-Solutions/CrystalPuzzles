@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
 import {
 	checkInRouter,
-	methodistRouter,
+	supervisorRouter,
 	studentRouter,
 	trainerRouter
 } from '@shared/const/routes';
@@ -17,7 +17,7 @@ export const NavMenuList = ({ role }) => {
 		setList(() =>
 			checkInRouter.concat(
 				(role === 'student' && studentRouter) ||
-					(role === 'methodist' && methodistRouter) ||
+					(role === 'supervisor' && supervisorRouter) ||
 					(role === 'trainer' && trainerRouter)
 			)
 		);

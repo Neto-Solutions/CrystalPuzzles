@@ -1,15 +1,15 @@
-import MainPage from '@methodist/Main.page';
-import AnalyticPage from '@methodist/Analytic.page';
-import AnalyticViewPage from '@methodist/Analytic.view.page';
-import ProgressGraphPage from '@methodist/Progress.graph.page';
-import ProgressGraphViewPage from '@methodist/Progress.graph.view.page';
-import SchedulePage from '@methodist/Schedule.page';
-import CreateSchedulePage from '@methodist/Create.schedule.page';
-import FeedbackPage from '@methodist/Feedback.page';
-import EvaluationTable from '@methodist/Evaluation.table.page';
-import NotificationPage from '@methodist/Notification.page';
+import MainPage from '@supervisor/Main.page';
+import AnalyticPage from '@supervisor/Analytic.page';
+import AnalyticViewPage from '@supervisor/Analytic.view.page';
+import ProgressGraphPage from '@supervisor/Progress.graph.page';
+import ProgressGraphViewPage from '@supervisor/Progress.graph.view.page';
+import SchedulePage from '@supervisor/Schedule.page';
+import CreateSchedulePage from '@supervisor/Create.schedule.page';
+import FeedbackPage from '@supervisor/Feedback.page';
+import EvaluationTable from '@supervisor/Evaluation.table.page';
+import NotificationPage from '@supervisor/Notification.page';
 
-const methodistRouter = [
+const supervisorRouter = [
 	{
 		path: '/',
 		element: <MainPage />
@@ -57,4 +57,4 @@ const methodistRouter = [
 	}
 ];
 
-export default methodistRouter;
+export default supervisorRouter;

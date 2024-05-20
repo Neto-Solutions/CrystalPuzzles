@@ -7,7 +7,7 @@ export const Account = ({ user }) => {
 			case 'student':
 				return 'ученик';
 
-			case 'methodist':
+			case 'supervisor':
 				return 'методист';
 
 			case 'trainer':

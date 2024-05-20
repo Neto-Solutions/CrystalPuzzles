@@ -3,11 +3,12 @@
 	width: 297px;
 }
 
-.sidebar_link {
+.sidebar_btn {
 	display: flex;
 	gap: 12px;
 	padding: 10px 12px;
 	margin-bottom: 15px;
+	cursor: pointer;
 }
 
 .help {
