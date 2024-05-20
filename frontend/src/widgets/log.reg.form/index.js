@@ -1,1 +1,1 @@
-export { default as LogRegForm } from './ui/index';
+export { default as LogRegForm } from './ui/LogRegForm';

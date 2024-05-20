@@ -1,5 +1,5 @@
 import styles from './User.card.module.scss';
-import Card from '../card';
+import Card from '../card/Card';
 import { useState } from 'react';
 
 export default function UserCard({ img, name, children, showBtn = false }) {

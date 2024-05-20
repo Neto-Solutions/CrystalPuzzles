@@ -1,5 +1,6 @@
+import styles from './Password.module.scss';
 import Input from '../input/Input';
-import styles from './styles.module.scss';
+
 import { ReactComponent as Eye } from '@shared/assets/svg/eye_icon.svg';
 export default function Password() {
 	return (

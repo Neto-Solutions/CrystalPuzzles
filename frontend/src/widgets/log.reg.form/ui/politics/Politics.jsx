@@ -1,4 +1,4 @@
-import styles from './styles.module.scss';
+import styles from './Politics.module.scss';
 import { Link } from 'react-router-dom';
 
 export default function Politics() {

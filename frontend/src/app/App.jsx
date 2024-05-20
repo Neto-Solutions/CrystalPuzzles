@@ -33,7 +33,7 @@ export default function App({ check_in = false }) {
 		<div className={styles.app}>
 			<Header />
 			<Spinner isLoading={loading}>
-				<div className={styles.page_container}>
+				<div className={styles.router_container}>
 					{check_in ? (
 						<>
 							<Outlet />
@@ -41,7 +41,7 @@ export default function App({ check_in = false }) {
 					) : (
 						<>
 							<Sidebar />
-							<div className={styles.page}>
+							<div className={styles.page_container}>
 								<Outlet />
 							</div>
 						</>
