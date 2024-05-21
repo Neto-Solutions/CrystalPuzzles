@@ -1,5 +1,5 @@
 import styles from './Students.list.page.module.scss';
-import Page from '@components/page/Page';
+import Page from '@shared/ui/page/Page';
 import { useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
