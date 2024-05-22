@@ -1,0 +1,26 @@
+@use '../../../../app/styles/mixins' as *;
+.card {
+	width: 347px;
+	height: 347px;
+	padding: 18px 10px;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	border: var(--border);
+	border-radius: var(--radius);
+	background-color: var(--bg-card);
+	.title {
+		@include font(var(--ff-second), 24px, 400);
+		padding: 0 30px;
+		text-align: center;
+		position: absolute;
+	}
+	.content {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+}
