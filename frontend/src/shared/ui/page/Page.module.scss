@@ -1,0 +1,15 @@
+.header {
+	margin-bottom: 45px;
+	&_title {
+		font-family: 'Roboto';
+		font-size: 48px;
+		font-weight: 400;
+	}
+}
+
+.body {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}

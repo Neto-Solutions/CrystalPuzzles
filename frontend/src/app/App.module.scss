@@ -2,21 +2,18 @@
 	width: 100%;
 	max-width: 1448px;
 	min-height: 100vh;
-
 	margin: 0 auto;
 	padding: 0 20px;
-
-	display: flex;
 	flex-direction: column;
 
-	.page_container {
-		margin-bottom: 100px;
+	.router_container {
 		display: flex;
-		justify-content: space-between;
-
-		.page {
+		margin-bottom: 40px;
+		min-height: 85vh;
+		.page_container {
 			width: 100%;
 			max-width: 1081px;
+			margin: 0 auto;
 		}
 	}
 }

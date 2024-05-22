@@ -1,0 +1,26 @@
+@use '../../../app/styles/mixins' as *;
+
+.header {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.logo {
+	margin: 20px 0;
+	display: flex;
+	&::after {
+		content: url('../assets/logo_title.svg');
+		margin-left: 10px;
+		display: flex;
+		flex-wrap: nowrap;
+		margin-top: auto;
+	}
+}
+
+@include sm() {
+	.logo {
+		&::after {
+			display: none;
+		}
+	}
+}

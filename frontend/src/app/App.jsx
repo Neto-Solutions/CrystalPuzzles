@@ -1,19 +1,39 @@
-import './styles/index.scss';
 import styles from './App.module.scss';
-import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
-import Header from '@components/app/header/Header';
-import Sidebar from '@components/app/sidebar/Sidebar';
-// import RouterTool from '@utils/Router.tool';
-import Footer from '../components/app/footer/Footer';
+import { useEffect, useState } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { Header } from '@widgets/header';
+import Sidebar from '@widgets/sidebar';
+import { Footer } from '@widgets/footer';
+
+import Spinner from '@shared/ui/spinner/Spinner';
+
+import { User, setUser, selectUser, getProfile } from '@entities/user';
 
 export default function App({ check_in = false }) {
+	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { role } = useSelector(selectUser);
+
+	useEffect(() => {
+		getProfile()
+			.then((res) => dispatch(setUser(new User(res))))
+			.catch(() => navigate('/login'))
+			.finally(() => setLoading(false));
+	}, []);
+
+	useEffect(() => {
+		if (role === null) return;
+		navigate('/');
+	}, [role]);
+
 	return (
 		<div className={styles.app}>
-			{/* <RouterTool /> */}
 			<Header />
-			<Suspense fallback={<div>Loading...</div>}>
-				<div className={styles.page_container}>
+			<Spinner isLoading={loading}>
+				<div className={styles.router_container}>
 					{check_in ? (
 						<>
 							<Outlet />
@@ -21,14 +41,14 @@ export default function App({ check_in = false }) {
 					) : (
 						<>
 							<Sidebar />
-							<div className={styles.page}>
+							<div className={styles.page_container}>
 								<Outlet />
 							</div>
 						</>
 					)}
 				</div>
-			</Suspense>
-			{!check_in && <Footer />}
+				{!check_in && <Footer />}
+			</Spinner>
 		</div>
 	);
 }
