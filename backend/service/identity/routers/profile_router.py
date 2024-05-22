@@ -3,11 +3,12 @@ from http import HTTPStatus
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Response
+from starlette.responses import JSONResponse
 
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
-from service.identity.schemas import UserShortSchemaForTable, EditUserSchema, PhotoReadSchema
+from service.identity.schemas import UserShortSchemaForTable, EditUserSchema, PhotoReadSchema, EditViewSchema
 from service.identity.security import get_current_user
 from service.identity.services.user_service import UserService
 from service.identity.dependensies import user_service
@@ -23,9 +24,7 @@ profile_router = APIRouter(
     response_model=UserShortSchemaForTable,
     summary="Возвращает данные пользователя",
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
-        400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
 async def account(
@@ -40,7 +39,6 @@ async def account(
     summary="Редактирование данных пользователя",
     response_model=bool,
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
@@ -57,21 +55,19 @@ async def edit_account(
         result = await user_service.edit(data)
         if result:
             return result
-        logger.error({"user_id": current_user.id, "message": "Incorrect code"})
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+        logger.error({"user_id": current_user.id, "message": "Incorrect data"})
+        return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Incorrect data")
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @profile_router.get(
     '/edit/',
-    response_model=EditUserSchema,
+    response_model=EditViewSchema,
     summary="Возвращает данные пользователя для редактирования",
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
-        400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
 async def edit_account_view(
@@ -98,7 +94,6 @@ async def edit_account_view(
     response_model=bool,
     summary=" Установить фото пользователя",
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
@@ -113,25 +108,30 @@ async def set_photo(
         if file.size <= 0 or file.content_type not in ["image/jpeg", "image/png"]:
             logger.error(f"Invalid image file. Expected format: FastAPI.UploadFile, "
                          f"Content-type: image/jpeg, but got {file.content_type}")
-            return Response(status_code=400)
+            return JSONResponse(
+                status_code=HTTPStatus.BAD_REQUEST.value,
+                content=f"Invalid image file. Expected format: FastAPI.UploadFile, "
+                        f"Content-type: image/jpeg, but got {file.content_type}")
         contents = await file.read()
         encoded_file = base64.b64encode(contents)
         result = await user_service.set_photo(encoded_file, current_user.id)
         if result:
             return result
-        logger.error({"user_id": current_user.id, "message": "Invalid page"})
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+        logger.error({"user_id": current_user.id, "message": "Invalid file"})
+        return JSONResponse(
+            status_code=HTTPStatus.BAD_REQUEST.value,
+            content=f"Invalid image file")
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @profile_router.delete(
     "/remove-photo/",
-    response_model=bool,
     summary="Удалить фото пользователя",
+    status_code=HTTPStatus.NO_CONTENT.value,
     responses={
-        200: {"description": "Успешная обработка данных"},
+        204: {"description": "Нет данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
@@ -142,14 +142,14 @@ async def remove_photo(
 ):
     """ authorized """
     try:
-        result = await user_service.delete_photo(current_user.id)
-        if result:
-            return result
-        logger.error({"user_id": current_user.id, "message": "Invalid operation"})
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+        if not current_user.photo:
+            logger.error({"user_id": current_user.id, "message": "Invalid operation"})
+            return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Photo not found")
+        await user_service.delete_photo(current_user.id)
+        return Response(status_code=HTTPStatus.NO_CONTENT.value)
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @profile_router.get(
