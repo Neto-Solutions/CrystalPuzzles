@@ -23,7 +23,7 @@ class BaseService:
         return result
 
     async def get(self, obj_id: int):
-        obj = await self.repo.get_with_deleted(obj_id)
+        obj = await self.repo.get(obj_id)
         return obj
 
     async def get_all(self):
