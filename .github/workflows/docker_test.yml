@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Repository from specific branch
         uses: actions/checkout@v3
         with:
-          ref: release 
+          ref: test 
       - name: find_docker_compose
         run: |
           result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
