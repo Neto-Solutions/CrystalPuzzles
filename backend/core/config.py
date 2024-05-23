@@ -10,11 +10,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Настройки окружения."""
     # region ---------------------------- Database ----------------------------------
-    pg_host: str = Field(alias="POSTGRES_HOST")
-    pg_user: str = Field(alias="POSTGRES_USER")
-    pg_password: str = Field(alias="POSTGRES_PASSWORD")
-    pg_database: str = Field(alias="POSTGRES_DB_NAME")
-    pg_port: int = Field(alias="POSTGRES_PORT")
+    pg_host: str = Field(alias="PG_HOST")
+    pg_user: str = Field(alias="PG_USER")
+    pg_password: str = Field(alias="PG_PASSWORD")
+    pg_database: str = Field(alias="PG_DATABASE")
+    pg_port: int = Field(alias="PG_PORT")
     async_database_uri: Union[PostgresDsn, str] = Field(
         default="", env="ASYNC_DATABASE_URI",
     )
@@ -41,10 +41,6 @@ class Settings(BaseSettings):
 
     page_size: int = Field(env="PAGE_SIZE", default=10)
 
-    # model_config = SettingsConfigDict(
-    #     env_file=os.path.expanduser("../.env"),
-    #     env_file_encoding="utf-8",
-    # )
 
     @field_validator("async_database_uri")
     def assemble_db_async_connection(

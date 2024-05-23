@@ -54,7 +54,15 @@ async def add_student_for_group(items: StudentForGroupViewSchema,
         raise HTTPException(status_code=500)
 
 
-@student_router.delete("/delete-student/")
+@student_router.delete(
+    "/delete-student/",
+    summary="Удаление студента из группы",
+    status_code=HTTPStatus.NO_CONTENT.value,
+    responses={
+        401: {"description": "Не авторизованный пользователь"},
+        400: {"model": Message, "description": "Некорректные данные"},
+        500: {"model": Message, "description": "Серверная ошибка"}}
+)
 async def delete_student_for_group(
                                 items: StudentForGroupViewSchema,
                                 user_repository: Annotated[UserRepository, Depends(user_repository)],
@@ -76,4 +84,4 @@ async def delete_student_for_group(
         return Response(status_code=HTTPStatus.BAD_REQUEST.value)
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
