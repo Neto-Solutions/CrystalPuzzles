@@ -1,25 +1,20 @@
 import styles from './Account.module.scss';
-import { useMemo } from 'react';
+import avatar from '@shared/assets/img/avatar.jpg';
+import roleAdaptor from '../helpers/role.adaptor';
+import { useEffect, useMemo, useState } from 'react';
+import { getProfileAvatar } from '../api/profile';
 
 export const Account = ({ user }) => {
-	const position = useMemo(() => {
-		switch (user.role) {
-			case 'student':
-				return 'ученик';
-
-			case 'supervisor':
-				return 'методист';
-
-			case 'trainer':
-				return 'тренер';
-
-			default:
-				return 'error';
-		}
+	const [userPhoto, setUserPhoto] = useState(avatar);
+	const position = useMemo(() => roleAdaptor(user.role), [user]);
+	useEffect(() => {
+		getProfileAvatar()
+			.then(({ photo }) => photo !== null && setUserPhoto(photo))
+			.catch(() => setUserPhoto(avatar));
 	}, [user]);
 	return (
 		<div className={styles.accaunt_wrap}>
-			<img src={user.avatar} className={styles.avatar} alt="" />
+			<img src={userPhoto} className={styles.avatar} alt="" />
 			<div>
 				<p className={styles.profession}>{position}</p>
 				<p className={styles.name}>{user.firstname}</p>
