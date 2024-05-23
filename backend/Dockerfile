@@ -1,8 +1,12 @@
-FROM python:3.11
-
-RUN pip3 install pipenv
+FROM python:3.11-alpine
 
 WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONFAULTHANDLER 1
+
+RUN pip install --upgrade pip
+RUN  pip install pipenv
 
 COPY Pipfile ./
 RUN pipenv lock
