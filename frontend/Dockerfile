@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:22.1.0-alpine
 WORKDIR /app
 COPY package.json ./
 ENV NODE_OPTIONS="--max-old-space-size=4096"
