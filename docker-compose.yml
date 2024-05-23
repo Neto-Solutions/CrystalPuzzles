@@ -27,14 +27,14 @@ services:
     networks:
       - backend
 
-  redis:
-    container_name: redis
-    image: redis:latest
-    restart: unless-stopped
-    ports:
-      - 6379:6379
-    networks:
-      - backend
+#  redis:
+#    container_name: redis
+#    image: redis:latest
+#    restart: unless-stopped
+#    ports:
+#      - 6379:6379
+#    networks:
+#      - backend
 
   api:
     container_name: api
@@ -44,26 +44,26 @@ services:
       - .env.template # для быстрого локального запуска
     depends_on:
       - db
-      - redis
+#      - redis
     ports:
       - 8001:8000
     networks:
       - backend
-      - frontend
+#      - frontend
 
-  front:
-    container_name: front
-    build: ./frontend/
-    depends_on:
-      - api
-    ports:
-      - 8080:3000
-    networks:
-      - frontend
+#  front:
+#    container_name: front
+#    build: ./frontend/
+#    depends_on:
+#      - api
+#    ports:
+#      - 8080:3000
+#    networks:
+#      - frontend
 
 networks:
   backend:
     driver: bridge
 
-  frontend:
-    driver: bridge
+#  frontend:
+#    driver: bridge
