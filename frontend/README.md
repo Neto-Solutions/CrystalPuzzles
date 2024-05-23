@@ -1,4 +1,4 @@
-# required serverUrl in config.json
+# Необходимо передать
 
 # login and password for auth
 

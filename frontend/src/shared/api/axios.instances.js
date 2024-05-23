@@ -1,8 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { serverUrl } from '../../../config.json';
 
-axios.defaults.baseURL = serverUrl;
+axios.defaults.baseURL = window.API_URL;
 
 const $host = axios.create();
 
