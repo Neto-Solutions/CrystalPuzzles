@@ -54,8 +54,6 @@ services:
   front:
     container_name: front
     build: ./frontend/
-    environment:
-      - REACT_APP_SERVER_API=http://47.237.78.128:8001/api/v1/
     depends_on:
       - api
     ports:

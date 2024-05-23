@@ -22,7 +22,7 @@ export const Account = ({ user }) => {
 			<img src={user.avatar} className={styles.avatar} alt="" />
 			<div>
 				<p className={styles.profession}>{position}</p>
-				<p className={styles.name}>{user.name}</p>
+				<p className={styles.name}>{user.firstname}</p>
 			</div>
 		</div>
 	);
