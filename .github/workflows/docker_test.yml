@@ -1,6 +1,7 @@
 name: Docker-compose test
 
 on:
+  pull_request:
   push:
     branches:
       - test 
