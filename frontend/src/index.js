@@ -12,11 +12,9 @@ import { selectUser } from '@entities/user';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<RouterProvider />
-		</Provider>
-	</React.StrictMode>
+	<Provider store={store}>
+		<RouterProvider />
+	</Provider>
 );
 
 function RouterProvider() {

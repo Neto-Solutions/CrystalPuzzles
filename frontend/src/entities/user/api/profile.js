@@ -24,8 +24,10 @@ const updateProfile = async (profile) => {
 };
 
 const updateProfileAvatar = async (avatar) => {
-	// multipart/form-data
-	const { data } = await $authHost.put('/profile/set-photo', avatar);
+	const formData = new FormData();
+	formData.append('file', avatar);
+
+	const { data } = await $authHost.put('/profile/set-photo', formData);
 	return data;
 };
 
