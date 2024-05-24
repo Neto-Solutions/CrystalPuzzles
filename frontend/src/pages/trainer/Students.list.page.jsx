@@ -1,10 +1,9 @@
 import styles from './Students.list.page.module.scss';
-import Page from '@components/page/Page';
-import { useState, useEffect, useRef } from 'react';
+import Page from '@shared/ui/page/Page';
+import { useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
 export default function StudentsListPage() {
-	const [students, setStudents] = useState([]);
 	const inputRef = useRef();
 
 	function search() {}

@@ -36,31 +36,6 @@ class User(Base):
     lessons = relationship("Lesson", back_populates="trainer")
 
 
-    # @property
-    # def is_student(self) -> bool:
-    #     if self.role == "student":
-    #         return True
-    #     return False
-    #
-    # @property
-    # def to_read_model(self) -> UserSchemaForTable:
-    #     return UserSchemaForTable(
-    #         id=self.id,
-    #         email=self.email,
-    #         firstname=self.firstname,
-    #         lastname=self.lastname,
-    #         surnam=self.surname,
-    #         birthday=self.birthday,
-    #         is_man=self.is_man,
-    #         contact=self.contact,
-    #         date_add=self.date_add,
-    #         date_update=self.date_update,
-    #         date=self.date_update.strftime("%y.%m.%d %H:%M:%S"),
-    #         role=self.role,
-    #         deleted=self.deleted
-    #     )
-
-
 class Role(Base):
     __tablename__ = "Roles"
     id: Mapped[int] = mapped_column(sa.Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)

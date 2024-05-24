@@ -1,0 +1,33 @@
+.chart {
+	width: 714px;
+	height: 359px;
+	padding: 24px;
+	border: var(--border);
+	border-radius: var(--radius);
+}
+.point_wrap {
+	width: 100%;
+	margin-top: 12px;
+	display: flex;
+	gap: var(--gap);
+}
+
+.point {
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	margin-right: 6px;
+	border-radius: 50%;
+}
+
+.point_group {
+	background-color: var(--graphic-line);
+}
+
+.point_private {
+	background-color: var(--accent-color);
+}
+
+.text {
+	font: var(--fw-regular) 12px var(--ff-second);
+}

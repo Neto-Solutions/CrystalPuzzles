@@ -1,7 +1,7 @@
 import styles from './Student.page.module.scss';
-import Page from '@components/page/Page';
-import Button from '@components/button/Button';
-import avatar from '@assets/img/methodist_img.jpg';
+import Page from '@shared/ui/page/Page';
+import Button from '@shared/ui/button/Button';
+
 export default function StudentPage() {
 	return (
 		<Page title="Ученики">
@@ -35,7 +35,7 @@ export default function StudentPage() {
 			</section>
 			<section className={styles.student_panel}>
 				<article className={styles.avatar_container}>
-					<img className={styles.avatar} src={avatar} />
+					<img className={styles.avatar} />
 				</article>
 				<article className={styles.button_container}>
 					<Button title="Добавить в группу" />

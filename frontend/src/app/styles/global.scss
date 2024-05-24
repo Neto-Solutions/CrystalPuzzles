@@ -1,9 +1,29 @@
 @font-face {
 	font-family: 'Roboto';
-	src: url('../../fonts/Roboto-Medium.ttf');
+	src: url('../fonts/Roboto-Medium.ttf');
 }
 
 @font-face {
 	font-family: 'Rubik';
-	src: url('../../fonts/Rubik-VariableFont_wght.ttf');
+	src: url('../fonts/Rubik-VariableFont_wght.ttf');
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	list-style: none;
+	color: var(--main-color);
+}
+
+ul,
+li {
+	list-style-type: none;
+}
+
+body {
+	background: var(--dark-gradient) fixed;
 }

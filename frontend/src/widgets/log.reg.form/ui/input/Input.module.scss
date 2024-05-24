@@ -1,0 +1,34 @@
+.container {
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.label {
+	font-family: 'Rubik';
+	font-weight: 400;
+	font-size: 14px;
+	color: #2b2d91;
+}
+
+.input {
+	font-family: 'Rubik';
+	font-weight: 400;
+	font-size: 18px;
+	width: 470px;
+	padding: 12px 8px;
+	border-radius: 10px;
+	border: var(--border);
+	background-color: white;
+	outline: none;
+}
+
+@media (max-width: 425px) {
+	.container {
+		font-size: inherit;
+		margin-bottom: 4px;
+	}
+
+	.input {
+		width: 100%;
+	}
+}

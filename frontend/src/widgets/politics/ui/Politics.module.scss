@@ -1,0 +1,120 @@
+.main_container {
+	margin: 80px auto 0 auto;
+}
+
+.main_container_header {
+	margin-bottom: 500px;
+}
+
+.main_container_header {
+	font-family: Roboto;
+	font-size: 40px;
+	font-weight: 400;
+	line-height: 47px;
+	letter-spacing: 0em;
+	text-align: center;
+}
+
+.form {
+	max-width: 470px;
+	margin: auto;
+}
+
+.data_treatment_cont,
+.politic_cont {
+	display: flex;
+	margin-bottom: 24px;
+}
+
+.politic_checkbox,
+.data_treatment_checkbox {
+	width: 28px;
+	height: 28px;
+	border-radius: 5px;
+	border: 1px solid black;
+	margin-right: 11px;
+}
+
+.btn {
+	display: inline-block;
+	text-decoration: none;
+	width: 224px;
+	height: 53px;
+	padding: 15.5px 28px 15.5px 28px;
+	border-radius: 20px;
+	background-color: #2b2d91;
+	color: white;
+	font-family: Roboto;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 23px;
+	letter-spacing: 0em;
+	text-align: center;
+	-moz-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+
+.btn_cont {
+	text-align: center;
+}
+
+.politic_descr,
+.data_treatment_descr {
+	font-family: Roboto;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	letter-spacing: 0em;
+	text-align: center;
+	color: black;
+}
+@media (max-width: 425px) {
+	.main_container_header {
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 28.13px;
+		margin-bottom: 329px;
+		word-break: break-word;
+	}
+
+	.main_container {
+		margin: auto;
+	}
+	.form {
+		max-width: 470px;
+		margin: auto;
+	}
+
+	.data_treatment_cont,
+	.politic_cont {
+		margin-bottom: 20px;
+	}
+
+	.politic_checkbox,
+	.data_treatment_checkbox {
+		width: 22px;
+		height: 22px;
+		margin-right: 35px;
+	}
+
+	.btn {
+		width: 107px;
+		height: 42px;
+		padding: 12px 0px 0px 0px;
+		border-radius: 10px;
+		font-size: 14px;
+		line-height: 16px;
+		text-align: center;
+		-moz-appearance: none;
+		-o-appearance: none;
+		appearance: none;
+	}
+	.politic_descr,
+	.data_treatment_descr {
+		font-family: Rubik;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 16px;
+	}
+}
