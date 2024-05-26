@@ -32,7 +32,7 @@ const updateProfileAvatar = async (avatar) => {
 };
 
 const deleteProfileAvatar = async () => {
-	const { data } = await $authHost.delete('/profile/set-photo');
+	const { data } = await $authHost.delete('/profile/remove-photo');
 	return data;
 };
 

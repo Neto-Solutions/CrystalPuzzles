@@ -1,5 +1,4 @@
 import styles from './Sidebar.module.scss';
-
 import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
 import { NavMenuList } from './NavMenu';
@@ -15,9 +14,9 @@ export default function Sidebar() {
 		logout()
 			.then(() => {
 				Cookies.remove('token');
-				location.reload();
+				localStorage.clear();
 			})
-			.catch(() => location.reload());
+			.finally(() => location.reload());
 	}
 
 	return (
