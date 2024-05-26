@@ -17,12 +17,11 @@ export default function AvatarForm() {
 		if (!preview && !userPhoto && userPhoto !== 'null') {
 			deleteProfileAvatar().then(() => {
 				localStorage.removeItem('avatar');
+				location.reload();
 			});
-			location.reload();
 			return;
 		}
 		updateProfileAvatar(preview).then(() => {
-			localStorage.setItem('avatar', preview);
 			location.reload();
 		});
 	}
