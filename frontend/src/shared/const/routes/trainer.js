@@ -7,6 +7,7 @@ import CreateGroupPage from '@trainer/Create.group.page';
 import StudentsList from '@trainer/Students.list.page';
 import StudentPage from '@trainer/Student.page';
 import FeedbackPage from '@trainer/Feedback.page';
+import AvatarPage from '@trainer/Avatar.form.page';
 
 const trainerRouter = [
 	{
@@ -50,6 +51,10 @@ const trainerRouter = [
 		path: '/feedback',
 		element: <FeedbackPage />,
 		local: 'Обратная связь'
+	},
+	{
+		path: '/avatar',
+		element: <AvatarPage />
 	}
 ];
 
