@@ -1,25 +1,23 @@
 import styles from './Account.module.scss';
-import avatar from '@shared/assets/img/avatar.jpg';
+import avatar from '@shared/assets/avatar/0.png';
 import roleAdaptor from '../helpers/role.adaptor';
 import { useEffect, useMemo, useState } from 'react';
 import { getProfileAvatar } from '../api/profile';
+import LS from '@shared/lib/localStorage';
 
 export const Account = ({ user }) => {
-	const [userPhoto, setUserPhoto] = useState(
-		localStorage.getItem('avatar') || null
-	);
+	const [userPhoto, setUserPhoto] = useState(LS.get('avatar'));
 	const position = useMemo(() => roleAdaptor(user.role), [user]);
 
 	useEffect(() => {
-		let cachedAvatar = localStorage.getItem('avatar');
-		if (cachedAvatar !== 'null' && cachedAvatar !== null) return;
+		if (LS.get('avatar')) return;
 		getProfileAvatar()
 			.then(({ photo }) => {
 				setUserPhoto(photo);
 				return photo;
 			})
 			.then((photo) => {
-				localStorage.setItem('avatar', photo);
+				LS.set('avatar', photo);
 			})
 			.catch(() => setUserPhoto(null));
 	}, [user]);

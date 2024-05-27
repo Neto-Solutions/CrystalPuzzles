@@ -43,6 +43,10 @@
 
 .container_images{
 	margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	place-items: center;
+	gap: 20px;
 	.img {
 		width: 136px;
 		height: 136px;
