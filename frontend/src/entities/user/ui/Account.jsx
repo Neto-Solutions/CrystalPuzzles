@@ -3,7 +3,6 @@ import avatar from '@shared/assets/img/avatar.jpg';
 import roleAdaptor from '../helpers/role.adaptor';
 import { useEffect, useMemo, useState } from 'react';
 import { getProfileAvatar } from '../api/profile';
-import { Link } from 'react-router-dom';
 
 export const Account = ({ user }) => {
 	const [userPhoto, setUserPhoto] = useState(
@@ -27,17 +26,16 @@ export const Account = ({ user }) => {
 
 	return (
 		<div className={styles.accaunt_wrap}>
-			<Link to="/avatar">
-				<img
-					src={
-						userPhoto !== 'null' && userPhoto !== null
-							? 'data:image/png;base64,' + userPhoto
-							: avatar
-					}
-					className={styles.avatar}
-					alt=""
-				/>
-			</Link>
+			<img
+				src={
+					userPhoto !== 'null' && userPhoto !== null
+						? 'data:image/png;base64,' + userPhoto
+						: avatar
+				}
+				className={styles.avatar}
+				alt=""
+			/>
+
 			<div>
 				<p className={styles.profession}>{position}</p>
 				<p className={styles.name}>{user.firstname}</p>
