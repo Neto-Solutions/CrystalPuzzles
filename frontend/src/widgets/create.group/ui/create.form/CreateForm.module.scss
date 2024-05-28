@@ -1,0 +1,13 @@
+.input_container {
+	width: 714px;
+	height: 483px;
+	padding: 0 30px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	border: var(--border);
+	border-radius: var(--radius);
+	background: #dae8f0;
+}
+
