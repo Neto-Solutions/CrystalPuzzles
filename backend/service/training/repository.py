@@ -27,7 +27,7 @@ class TrainingRepository(BaseRepository):
                     (self.model.description.ilike(f"%{search_string}%"))
                 )
 
-            count_records = (await session.execute(select(func.count('*')).select_from(stmt))).scalar_one()
+            count_records = (await session.execute(select(func.count(stmt.c.id)))).scalar_one()
             if count_records != 0:
                 records = (await session.execute(
                     stmt.order_by(self.model.date_update.desc()).offset(page_number * page_size).limit(

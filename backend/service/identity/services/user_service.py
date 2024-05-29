@@ -1,8 +1,10 @@
 from datetime import datetime
+from typing import Optional
 
 from core.service import BaseService
-from service.identity.schemas import CreateUserSchema, UserFilterSchema, EditUserSchema
-from service.identity.utils import hash_password, generated_code
+from service.identity.models import User
+from service.identity.schemas import CreateUserSchema, UserFilterSchema, EditUserSchema, UserChangePasswordSchema
+from service.identity.security import hash_password, generated_code, verify_password
 
 
 class UserService(BaseService):
@@ -15,15 +17,22 @@ class UserService(BaseService):
             data = user.model_dump()
             password = data.pop("password")
             data["hashed_password"] = hash_password(password)
-            data["code"] = int(generated_code())
+            # data["code"] = int(generated_code())  # ToDo: Реализовать после создания метода подтверждения почты
+            data["is_verified"] = True
+            data["is_active"] = True
             return await self.repo.add(data)
         return None
 
-    async def edit(self, user: create_schema):
-        check = await self.repo.get_by_email(user.email)
-        if check is None or check.deleted:
-            return None
-        return await super().edit(user)
+    async def change_password(self, data: UserChangePasswordSchema, user: User):
+        if verify_password(data.old_password, user.hashed_password):
+            data = {
+                "id": user.id,
+                "hashed_password": hash_password(data.new_password),
+                "date_update": datetime.now()
+            }
+            res = await self.repo.edit(data)
+            return res
+        return None
 
     async def verify(self, user_id: int):
         data = {
@@ -34,8 +43,8 @@ class UserService(BaseService):
         }
         return await self.repo.edit(data)
 
-    async def get_all_by_filters(self, filters: UserFilterSchema):
-        return await self.repo.get_all_user_by_filter(filters.search_string, filters.page_number, filters.page_size)
+    async def get_all_by_filters(self, filters: UserFilterSchema, deleted: Optional[bool]):
+        return await self.repo.get_all_user_by_filter(filters.search_string, filters.page_number, filters.page_size, deleted)
 
     async def set_photo(self, photo, user_id: int):
         data = {

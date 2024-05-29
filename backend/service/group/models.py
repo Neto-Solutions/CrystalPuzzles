@@ -15,18 +15,8 @@ class Group(Base):
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     name: Mapped[str] = mapped_column(sa.String, nullable=False)
     trainer_id: Mapped[int] = mapped_column(sa.ForeignKey('Users.id', use_alter=True), nullable=True)
-    trainer = relationship("User", back_populates="group", lazy="subquery")
-    students = relationship("StudentGroup", back_populates="group", lazy="subquery")
-
-    def to_read_model(self) -> GroupViewSchemaForTable:
-        return GroupViewSchemaForTable(
-            id=self.id,
-            name=self.name,
-            date_add=self.date_add,
-            date_update=self.date_update,
-            trainer_id=self.trainer_id,
-            date=self.date_update.strftime("%y.%m.%d %H:%M:%S")
-        )
+    trainer = relationship("User", back_populates="group")
+    students = relationship("StudentGroup", back_populates="group")
 
 
 class StudentGroup(Base):
@@ -34,6 +24,6 @@ class StudentGroup(Base):
     student_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), unique=True, primary_key=True)
     group_id: Mapped[int] = mapped_column(sa.ForeignKey("Groups.id"), primary_key=True)
 
-    # student = relationship("User", foreign_keys=student_id, backref="students")
-    group = relationship("Group", back_populates="students", lazy="subquery")
+    student = relationship("User", back_populates="student_group")
+    group = relationship("Group", back_populates="students")
 

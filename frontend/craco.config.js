@@ -4,14 +4,16 @@ module.exports = {
 	webpack: {
 		alias: {
 			'@src': path.resolve(__dirname, 'src'),
-			'@components': path.resolve(__dirname, 'src/components'),
+			'@app': path.resolve(__dirname, 'src/app'),
 			'@pages': path.resolve(__dirname, 'src/pages'),
-			'@assets': path.resolve(__dirname, 'src/assets'),
-			'@utils': path.resolve(__dirname, 'src/utils'),
-			'@methodist': path.resolve(__dirname, 'src/pages/methodist'),
+			'@widgets': path.resolve(__dirname, 'src/widgets'),
+			'@features': path.resolve(__dirname, 'src/features'),
+			'@entities': path.resolve(__dirname, 'src/entities'),
+			'@shared': path.resolve(__dirname, 'src/shared'),
+			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
+			'@supervisor': path.resolve(__dirname, 'src/pages/supervisor'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
-			'@kids': path.resolve(__dirname, 'src/pages/kids'),
-			'@check.in': path.resolve(__dirname, 'src/pages/check.in')
+			'@student': path.resolve(__dirname, 'src/pages/student')
 		}
 	}
 };

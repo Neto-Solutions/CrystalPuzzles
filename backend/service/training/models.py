@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
 
 from core.database import Base
@@ -14,3 +14,5 @@ class Training(Base):
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
+
+    check_data = relationship("TrainingCheck", back_populates="training")

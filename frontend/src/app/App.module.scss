@@ -1,0 +1,19 @@
+.app {
+	width: 100%;
+	max-width: 1448px;
+	min-height: 100vh;
+	margin: 0 auto;
+	padding: 0 20px;
+	flex-direction: column;
+
+	.router_container {
+		display: flex;
+		margin-bottom: 40px;
+		min-height: 85vh;
+		.page_container {
+			width: 100%;
+			max-width: 1081px;
+			margin: 0 auto;
+		}
+	}
+}

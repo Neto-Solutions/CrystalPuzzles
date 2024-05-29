@@ -7,7 +7,7 @@ from core.schemas.base import Message
 from core.utils.logger import logger
 from service.group.schemas import StudentForGroupViewSchema
 from service.identity.models import User
-from service.identity.services.auth_service import get_current_user_with_role
+from service.identity.security import get_current_user
 from service.identity.repositories.user_repository import UserRepository
 from service.identity.dependensies import user_repository
 from service.group.dependensies import group_repository, student_service
@@ -35,7 +35,7 @@ async def add_student_for_group(items: StudentForGroupViewSchema,
                                 user_repository: Annotated[UserRepository, Depends(user_repository)],
                                 group_repository: Annotated[GroupRepository, Depends(group_repository)],
                                 student_service: Annotated[StudentService, Depends(student_service)],
-                                user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"])),
+                                current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
                                 ):
     """ admin, supervisor, trainer """
     try:
@@ -54,14 +54,22 @@ async def add_student_for_group(items: StudentForGroupViewSchema,
         raise HTTPException(status_code=500)
 
 
-@student_router.delete("/delete-student/")
+@student_router.delete(
+    "/delete-student/",
+    summary="Удаление студента из группы",
+    status_code=HTTPStatus.NO_CONTENT.value,
+    responses={
+        401: {"description": "Не авторизованный пользователь"},
+        400: {"model": Message, "description": "Некорректные данные"},
+        500: {"model": Message, "description": "Серверная ошибка"}}
+)
 async def delete_student_for_group(
                                 items: StudentForGroupViewSchema,
                                 user_repository: Annotated[UserRepository, Depends(user_repository)],
                                 group_repository: Annotated[GroupRepository, Depends(group_repository)],
                                 student_service: Annotated[StudentService, Depends(student_service)],
-                                user: User = Depends(get_current_user_with_role(["admin", "supervisor", "trainer"])),
-                                ):
+                                current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+):
     """ Удаление студента из группы """
     try:
         if not await user_repository.student_exists(items.student_id):
@@ -70,10 +78,10 @@ async def delete_student_for_group(
             logger.error("Group not found")
         else:
             result = await student_service.delete_student(items)
-            if result:
+            if not result:
                 return Response(status_code=HTTPStatus.NO_CONTENT.value)
         logger.error("Student not found")
         return Response(status_code=HTTPStatus.BAD_REQUEST.value)
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())

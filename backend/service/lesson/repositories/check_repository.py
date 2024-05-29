@@ -12,3 +12,5 @@ from service.lesson.models import Lesson, Check
 
 class CheckRepository(BaseRepository):
     model = Check
+
+

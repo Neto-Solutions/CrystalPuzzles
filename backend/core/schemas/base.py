@@ -1,10 +1,13 @@
+from datetime import datetime
+
 from fastapi import Query
 from pydantic import AfterValidator
 from typing_extensions import Annotated
 from pydantic import BaseModel as _BaseModel
 
-from core.config import settings
+from core.config import get_settings
 
+settings = get_settings()
 
 class ExtendedTypes:
 
@@ -42,5 +45,10 @@ class Message(BaseModel):
 
 class BaseFilterSchema(BaseModel):
     page_number: int = Query(ge=0, default=0, description="Номер страницы")
-    page_size: int = Query(ge=1, le=100, default=settings.PAGE_SIZE, description="Размер страницы")
+    page_size: int = Query(ge=1, le=100, default=settings.page_size, description="Размер страницы")
     search_string: str | None = Query(default=None, description="Строка поиска")
+
+
+class DataRangeBaseFilterSchema(BaseFilterSchema):
+    date_begin: datetime | None = Query(default=None, description="Дата начала")
+    date_end: datetime | None = Query(default=None, description="Дата конца")

@@ -1,60 +1,29 @@
 @font-face {
 	font-family: 'Roboto';
-	src: url('../../fonts/Roboto-Medium.ttf');
+	src: url('../fonts/Roboto-Medium.ttf');
 }
 
 @font-face {
 	font-family: 'Rubik';
-	src: url('../../fonts/Rubik-VariableFont_wght.ttf');
+	src: url('../fonts/Rubik-VariableFont_wght.ttf');
 }
 
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
 	margin: 0;
-}
-
-a {
+	padding: 0;
+	box-sizing: border-box;
 	text-decoration: none;
+	list-style: none;
 	color: var(--main-color);
 }
 
 ul,
 li {
-	padding: 0;
-	margin: 0;
 	list-style-type: none;
 }
 
 body {
-	width: 100%;
-	// max-width: 1440px;
-	margin: 0 auto;
-	padding: 0 30px 30px 30px;
-	background: var(--dark-gradient) no-repeat;
-	color: var(--main-color);
+	background: var(--dark-gradient) fixed;
 }
-
-/* body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  } */
