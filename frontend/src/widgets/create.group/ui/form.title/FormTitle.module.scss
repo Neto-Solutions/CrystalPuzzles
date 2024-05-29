@@ -14,3 +14,11 @@
 	font-family: Rubik;
 	text-decoration: underline;
 }
+.container {
+	width: inherit;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	margin-top: 20px;
+
+}

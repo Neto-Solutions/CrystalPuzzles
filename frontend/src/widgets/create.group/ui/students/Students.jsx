@@ -5,8 +5,14 @@ export default function Students() {
 
 	
 	return (
-		<div className={styles.input_container}>
-			
+		<div className={styles.container}>
+			<div className={styles.fullname}>
+				ФИО ученика
+			</div>
+			<input
+				className={styles.input_checkbox}
+				type='checkbox'
+			/>
 		</div>
 
 	);

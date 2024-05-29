@@ -1,12 +1,22 @@
 
+.container {
+	width: 491px;
+	height: 80px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
 .input_checkbox {
-	width: 36px;
-	height: 36px;
-
+	width: 30px;
+	height: 30px;
 	border: var(--border);
 	border-radius: 6px;
-
 	// -moz-appearance: none;
 	// -webkit-appearance: none;
+}
+
+.fullname {
+	font-family: Rubik;
+	font-size: 15px;
 }
 
