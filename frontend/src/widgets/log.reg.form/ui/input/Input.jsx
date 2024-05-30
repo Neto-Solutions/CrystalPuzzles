@@ -1,6 +1,5 @@
 import styles from './Input.module.scss';
 
-
 export default function Input({ label, dataKey, type, required, children }) {
 	return (
 		<div className={styles.container}>

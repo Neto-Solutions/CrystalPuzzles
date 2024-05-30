@@ -1,9 +1,6 @@
 import styles from './GroupName.module.scss';
 
-
 export default function CreateForm() {
-
-	
 	return (
 		<div className={styles.input_container}>
 			<input
@@ -13,6 +10,5 @@ export default function CreateForm() {
 			/>
 			<input className={styles.input_checkbox} type="checkbox" />
 		</div>
-
 	);
 }
