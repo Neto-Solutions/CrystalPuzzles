@@ -7,7 +7,7 @@ const isLocalhost = Boolean(
 		)
 );
 
-function register(config) {
+export function register(config) {
 	if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
 		const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
 		if (publicUrl.origin !== window.location.origin) {
@@ -28,6 +28,7 @@ function register(config) {
 			}
 		});
 	}
+	return;
 }
 
 function registerValidSW(swUrl, config) {
@@ -87,4 +88,14 @@ function checkValidServiceWorker(swUrl, config) {
 		});
 }
 
-register();
+export function unregister() {
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.ready
+			.then((registration) => {
+				registration.unregister();
+			})
+			.catch((error) => {
+				console.error(error.message);
+			});
+	}
+}

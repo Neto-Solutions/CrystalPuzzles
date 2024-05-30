@@ -1,4 +1,5 @@
 import '@app/styles/index.scss';
+import * as serviceWorker from './serviceWorkerRegistration';
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider, useSelector } from 'react-redux';
@@ -21,3 +22,5 @@ function RouterProvider() {
 	}, [role]);
 	return <Router router={router} />;
 }
+
+serviceWorker.register();
