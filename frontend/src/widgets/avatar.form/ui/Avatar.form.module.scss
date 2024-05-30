@@ -1,56 +1,52 @@
 .container {
-	display: grid;
-	gap: 20px;
 	width: 100%;
+	max-width: 636px;
+	padding: 20px;
+	display: grid;
+	gap: 60px;
+	border: var(--border);
+	border-radius: 20px;
+	background-color: #e1f1f8;
 }
 
 .container_preview {
 	display: flex;
-	gap: 40px;
+	justify-content: space-between;
 	& > * {
 		margin-top: auto;
 	}
 }
 
-.button {
-	height: 57px;
-	border-radius: 13px;
-	color: black;
-	flex-direction: row-reverse;
-	padding-left: 20px;
-	padding-right: 20px;
+.buttons {
+	display: flex;
 	gap: 20px;
-	min-width: fit-content;
+	.button {
+		height: 57px;
+		border-radius: 13px;
+		flex-direction: row-reverse;
+		padding-left: 20px;
+		padding-right: 20px;
+		gap: 20px;
+		min-width: fit-content;
+	}
 }
 
 .img {
-	width: 200px;
-	height: 200px;
+	width: 134px;
+	height: 134px;
 	border: var(--border);
 	border-radius: 20px;
 	padding: 8px;
 	object-fit: cover;
 }
 
-.gallery {
-	padding: 20px;
+.container_images {
 	width: 100%;
-	max-width: 714px;
-	border: var(--border);
-	border-radius: 20px;
-	background-color: #E1F1F8;
-}
-
-.container_images{
-	margin-bottom: 20px;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	place-items: center;
-	gap: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	row-gap: 20px;
 	.img {
-		width: 136px;
-		height: 136px;
-		border-radius: 15px;
 		padding: 0;
 		cursor: pointer;
 	}
