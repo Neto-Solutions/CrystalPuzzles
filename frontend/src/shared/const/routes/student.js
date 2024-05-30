@@ -4,6 +4,7 @@ import CheckListPage from '@student/Check.list.page';
 import SchedulePage from '@student/Schedule.page';
 import FeedbackPage from '@student/Feedback.page';
 import AppraisalPage from '@student/Appraisal.page';
+import AvatarPage from '@student/Avatar.form.page';
 
 const studentRouter = [
 	{
@@ -33,6 +34,10 @@ const studentRouter = [
 	{
 		path: '/appraisal',
 		element: <AppraisalPage />
+	},
+	{
+		path: '/avatar',
+		element: <AvatarPage />
 	}
 ];
 

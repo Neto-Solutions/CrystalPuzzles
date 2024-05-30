@@ -8,6 +8,7 @@ import CreateSchedulePage from '@supervisor/Create.schedule.page';
 import FeedbackPage from '@supervisor/Feedback.page';
 import EvaluationTable from '@supervisor/Evaluation.table.page';
 import NotificationPage from '@supervisor/Notification.page';
+import AvatarPage from '@supervisor/Avatar.form.page';
 
 const supervisorRouter = [
 	{
@@ -54,6 +55,10 @@ const supervisorRouter = [
 	{
 		path: '/notifications',
 		element: <NotificationPage />
+	},
+	{
+		path: '/avatar',
+		element: <AvatarPage />
 	}
 ];
 
