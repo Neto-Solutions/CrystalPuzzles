@@ -1,6 +1,6 @@
 import styles from './Progress.graph.view.page.module.scss';
 import Page from '@shared/ui/page/Page';
-import { UserCard } from '@shared/card';
+import { UserCard } from '@shared/ui/card';
 import Button from '@shared/ui/button/Button';
 import { CalendarButton } from '@features/calendar';
 import { Graph } from '@widgets/graph/ui/Graph';
