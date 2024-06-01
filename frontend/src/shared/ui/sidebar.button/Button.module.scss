@@ -1,0 +1,23 @@
+.btn {
+	// width: 347px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: var(--btn-padding) 30px;
+	background-color: transparent;
+	font-family: var(--ff-first);
+	font-weight: var(--medium);
+	font-size: var(--fz-btn);
+	color: var(--accent-color);
+	border: var(--border);
+	border-radius: var(--radius);
+	cursor: pointer;
+	gap: 15px;
+	stroke: #000;
+
+	&:hover {
+		background-color: var(--accent-color);
+		color: #fff;
+		stroke: #fff;
+	}
+}

@@ -17,3 +17,11 @@
 		}
 	}
 }
+@media (max-width: 425px) {
+	.app {
+		min-height: 100%;
+		.router_container {
+			min-height: 100%;
+		}
+	}
+}
