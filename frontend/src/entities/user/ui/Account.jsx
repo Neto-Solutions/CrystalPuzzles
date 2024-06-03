@@ -6,9 +6,7 @@ import { getProfileAvatar } from '../api/profile';
 import LS from '@shared/lib/localStorage';
 
 export const Account = ({ user, className, isMobile }) => {
-	const [userPhoto, setUserPhoto] = useState(avatar);
-	// const [userPhoto, setUserPhoto] = useState(LS.get('avatar'));
-
+	const [userPhoto, setUserPhoto] = useState(LS.get('avatar'));
 	const position = useMemo(() => roleAdaptor(user.role), [user]);
 
 	useEffect(() => {
@@ -26,19 +24,6 @@ export const Account = ({ user, className, isMobile }) => {
 
 	return (
 		<div className={`${styles.accaunt_wrap} ${className}`}>
-			<img src={userPhoto} className={styles.avatar} alt="" />
-			{!isMobile && (
-				<div>
-					<p className={styles.profession}>{position}</p>
-					<p className={styles.name}>{user.firstname}</p>
-				</div>
-			)}
-		</div>
-	);
-};
-
-{
-	/* <div className={styles.accaunt_wrap}>
 			<img
 				src={
 					userPhoto !== 'null' && userPhoto !== null
@@ -48,9 +33,12 @@ export const Account = ({ user, className, isMobile }) => {
 				className={styles.avatar}
 				alt=""
 			/>
-
-			<div>
-				<p className={styles.profession}>{position}</p>
-				<p className={styles.name}>{user.firstname}</p>
-			</div> */
-}
+			{!isMobile && (
+				<div>
+					<p className={styles.profession}>{position}</p>
+					<p className={styles.name}>{user.firstname}</p>
+				</div>
+			)}
+		</div>
+	);
+};

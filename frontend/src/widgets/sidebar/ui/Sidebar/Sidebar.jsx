@@ -35,7 +35,6 @@ export default function Sidebar() {
 
 	return (
 		// открыть или закрыть свайпом - посмотреть как делать
-		// onClick={setOpen((prev) => !prev)}
 		<div className={styles.wrapper}>
 			<button
 				className={styles.arrow_wrapp}
