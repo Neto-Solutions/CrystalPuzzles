@@ -8,7 +8,7 @@ import GroupName from './group.name/GroupName';
 
 export default function CreateGroup() {
 	const [showForm, setShowForm] = useState(false);
-	const [student, setStudent] = useState([1, 2, 3]);
+	const [student] = useState([1, 2, 3]);
 	const navigate = useNavigate();
 
 	return (
