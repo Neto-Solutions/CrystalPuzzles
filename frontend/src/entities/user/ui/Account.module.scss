@@ -3,6 +3,10 @@
 	align-items: center;
 	margin: 24px 0;
 	gap: 12px;
+
+	@media (max-width: 375px) {
+		justify-content: center;
+	}
 }
 
 .avatar {

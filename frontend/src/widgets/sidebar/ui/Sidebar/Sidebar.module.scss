@@ -1,0 +1,76 @@
+.wrapper {
+	position: relative;
+}
+
+.sidebar {
+	width: 297px;
+	@media (max-width: 375px) {
+		width: 92px;
+		position: absolute;
+		top: 80px;
+		left: -110px;
+		padding: 20px;
+		z-index: 99;
+		transition: all 0.3s ease-in-out;
+	}
+}
+
+.open {
+	width: 92px;
+	height: 100vh;
+	padding: 20px;
+	position: absolute;
+	top: 80px;
+	left: -20px;
+	border: 1px solid red;
+	background-color: hsla(198, 62%, 93%, 0.76);
+	backdrop-filter: blur(6px);
+	z-index: 99;
+	transition: left 0.3s ease-in-out;
+}
+
+.sidebar_btn {
+	display: flex;
+	gap: 12px;
+	padding: 10px 12px;
+	margin-bottom: 15px;
+	cursor: pointer;
+
+	@media (max-width: 375px) {
+		margin-bottom: 10px;
+	}
+}
+
+.help {
+	margin-top: 20px;
+	span {
+		color: #989898;
+	}
+}
+
+.exit span {
+	color: #2b2d91;
+}
+
+.link_icon {
+	width: 20px;
+	height: 20px;
+}
+.arrow_wrapp {
+	position: absolute;
+	top: 135px;
+	left: 106px;
+	width: 28px;
+	height: 28px;
+	display: grid;
+	place-content: center;
+	background-color: #0e1079;
+	border-radius: 8px;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	z-index: 99;
+}
+.icon {
+	transform: rotate(90deg);
+}

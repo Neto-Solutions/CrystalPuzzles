@@ -4,7 +4,7 @@ import roleAdaptor from '../helpers/role.adaptor';
 import { useEffect, useMemo, useState } from 'react';
 import { getProfileAvatar } from '../api/profile';
 
-export const Account = ({ user }) => {
+export const Account = ({ user, className, isMobile }) => {
 	const [userPhoto, setUserPhoto] = useState(avatar);
 	const position = useMemo(() => roleAdaptor(user.role), [user]);
 	useEffect(() => {
@@ -13,12 +13,14 @@ export const Account = ({ user }) => {
 			.catch(() => setUserPhoto(avatar));
 	}, [user]);
 	return (
-		<div className={styles.accaunt_wrap}>
+		<div className={`${styles.accaunt_wrap} ${className}`}>
 			<img src={userPhoto} className={styles.avatar} alt="" />
-			<div>
-				<p className={styles.profession}>{position}</p>
-				<p className={styles.name}>{user.firstname}</p>
-			</div>
+			{!isMobile && (
+				<div>
+					<p className={styles.profession}>{position}</p>
+					<p className={styles.name}>{user.firstname}</p>
+				</div>
+			)}
 		</div>
 	);
 };
