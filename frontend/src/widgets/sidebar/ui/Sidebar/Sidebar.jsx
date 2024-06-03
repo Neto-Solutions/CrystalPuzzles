@@ -38,12 +38,14 @@ export default function Sidebar() {
 		// открыть или закрыть свайпом - доделать
 		<div className={styles.wrapper}>
 			<aside className={isOpen ? styles.sidebar_open : styles.sidebar}>
-				<button
-					className={isOpen ? styles.arrow_close : styles.arrow_open}
-					onClick={() => setIsOpen((prev) => !prev)}
-				>
-					<Arrow className={styles.arrow_svg} />
-				</button>
+				{isMobile && (
+					<button
+						className={isOpen ? styles.arrow_close : styles.arrow_open}
+						onClick={() => setIsOpen((prev) => !prev)}
+					>
+						<Arrow className={styles.arrow_svg} />
+					</button>
+				)}
 				<Account user={user} className={styles.account} isMobile={isMobile} />
 				<NavMenuList role={user.role} isMobile={isMobile} />
 				<div className={styles.links}>
