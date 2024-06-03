@@ -1,8 +1,3 @@
-
-.container {
-	margin-top: 51px;
-}
-
 .input_text {
 	height: 41px;
 	width: 654px;
@@ -10,7 +5,7 @@
 	font-size: 24px;
 	font-weight: 500;
 	border: var(--border);
-	border-radius: var(--radius);
+	border-radius: 10px;
 	background-color: white;
 	padding-left: 30px;
 	background-image: url( '../../../../shared/assets/svg/search.svg');

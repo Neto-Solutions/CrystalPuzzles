@@ -1,7 +1,7 @@
 import styles from './CreateForm.module.scss';
 import FormTitle from '../form.title/FormTitle';
-import Search from '../input/Search';
-import Students from '../students/Students';
+import Search from '../search/Search';
+import Students from '../student/Student';
 import Button from '@shared/ui/button/Button';
 export default function CreateForm() {
 	return (

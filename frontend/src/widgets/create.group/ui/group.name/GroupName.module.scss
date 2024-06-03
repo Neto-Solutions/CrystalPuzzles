@@ -1,17 +1,8 @@
 .input_container {
-	width: 714px;
-	height: 57px;
-	padding: 0 30px;
-
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
-	border: var(--border);
-	border-radius: var(--radius);
-
-	background: #dae8f0;
-
 .input {
 	&_text {
 		height: 36px;

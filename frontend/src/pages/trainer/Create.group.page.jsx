@@ -1,9 +1,9 @@
 import Page from '@shared/ui/page/Page';
-import TrainCreateGroup from '@widgets/create.group/ui/TrainCreateGroup';
+import CreateGroup from '@widgets/create.group';
 export default function CreateGroupPage() {
 	return (
 		<Page title="Создать группу">
-			<TrainCreateGroup />
+			<CreateGroup />
 		</Page>
 	);
 }

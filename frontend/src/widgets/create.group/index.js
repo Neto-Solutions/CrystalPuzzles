@@ -1,1 +1,1 @@
-export { default as TrainCreateGroup } from './ui/TrainCreateGroup';
+export { default } from './ui/CreateGroup';

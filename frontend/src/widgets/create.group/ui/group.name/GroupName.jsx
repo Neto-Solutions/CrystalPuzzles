@@ -1,6 +1,6 @@
 import styles from './GroupName.module.scss';
 
-export default function CreateForm() {
+export default function CreateForm({ setShowForm }) {
 	return (
 		<div className={styles.input_container}>
 			<input
@@ -8,7 +8,11 @@ export default function CreateForm() {
 				type="text"
 				placeholder="Название группы"
 			/>
-			<input className={styles.input_checkbox} type="checkbox" />
+			<input
+				className={styles.input_checkbox}
+				onChange={() => setShowForm((prev) => !prev)}
+				type="checkbox"
+			/>
 		</div>
 	);
 }
