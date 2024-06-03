@@ -1,0 +1,24 @@
+
+.input_checkbox {
+	width: 36px;
+	height: 36px;
+
+	border: var(--border);
+	border-radius: 6px;
+
+	// -moz-appearance: none;
+	// -webkit-appearance: none;
+}
+.form_title {
+	font-size: 24px;
+	font-family: Rubik;
+	text-decoration: underline;
+}
+.container {
+	width: inherit;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	margin-top: 20px;
+
+}

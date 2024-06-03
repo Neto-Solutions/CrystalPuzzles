@@ -14,6 +14,7 @@ import tables from '../../assets/svg/sidebar/tables.svg';
 import schedule from '../../assets/svg/sidebar/schedule.svg';
 import feedback from '../../assets/svg/sidebar/Feedback.svg';
 import home from '../../assets/svg/sidebar/home.svg';
+import AvatarPage from '@supervisor/Avatar.form.page';
 
 const supervisorRouter = [
 	{
@@ -66,6 +67,10 @@ const supervisorRouter = [
 	{
 		path: '/notifications',
 		element: <NotificationPage />
+	},
+	{
+		path: '/avatar',
+		element: <AvatarPage />
 	}
 ];
 

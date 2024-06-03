@@ -9,6 +9,7 @@ import checkList from '../../assets/svg/sidebar/check list.svg';
 import schedule from '../../assets/svg/sidebar/schedule.svg';
 import feedback from '../../assets/svg/sidebar/Feedback.svg';
 import home from '../../assets/svg/sidebar/home.svg';
+import AvatarPage from '@student/Avatar.form.page';
 
 const studentRouter = [
 	{
@@ -43,6 +44,10 @@ const studentRouter = [
 	{
 		path: '/appraisal',
 		element: <AppraisalPage />
+	},
+	{
+		path: '/avatar',
+		element: <AvatarPage />
 	}
 ];
 

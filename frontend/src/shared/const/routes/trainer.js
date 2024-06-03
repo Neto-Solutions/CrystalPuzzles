@@ -13,6 +13,7 @@ import schedule from '../../assets/svg/sidebar/schedule.svg';
 import group from '../../assets/svg/sidebar/group.svg';
 import students from '../../assets/svg/sidebar/students.svg';
 import home from '../../assets/svg/sidebar/home.svg';
+import AvatarPage from '@trainer/Avatar.form.page';
 
 const trainerRouter = [
 	{
@@ -62,6 +63,10 @@ const trainerRouter = [
 		element: <FeedbackPage />,
 		local: 'Обратная связь',
 		img: feedback
+	},
+	{
+		path: '/avatar',
+		element: <AvatarPage />
 	}
 ];
 

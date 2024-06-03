@@ -14,7 +14,8 @@ export default function Politics() {
 			<label className={styles.label} htmlFor="checkbox">
 				Подтверждая, вы соглашаетесь на обработку персональных данных и c
 				<Link to="/politics" className={styles.politic_link}>
-					<t /> политикой конфиденциальности
+					{' '}
+					политикой конфиденциальности
 				</Link>
 			</label>
 		</div>

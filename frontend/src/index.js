@@ -1,22 +1,18 @@
 import '@app/styles/index.scss';
+import * as serviceWorker from './serviceWorkerRegistration';
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
-
 import { Provider, useSelector } from 'react-redux';
 import { store } from '@app/providers/store';
-
 import { RouterProvider as Router } from 'react-router-dom';
 import { createRouter } from '@app/providers/router';
-
 import { selectUser } from '@entities/user';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<RouterProvider />
-		</Provider>
-	</React.StrictMode>
+	<Provider store={store}>
+		<RouterProvider />
+	</Provider>
 );
 
 function RouterProvider() {
@@ -26,3 +22,5 @@ function RouterProvider() {
 	}, [role]);
 	return <Router router={router} />;
 }
+
+serviceWorker.register();

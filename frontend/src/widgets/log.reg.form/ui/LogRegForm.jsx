@@ -77,9 +77,9 @@ export default function LogRegForm({ login = false }) {
 
 					{login && (
 						<>
-							<label htmlFor="registration" className={styles.link}>
+							<div htmlFor="registration" className={styles.link}>
 								Нет аккаунта?
-							</label>
+							</div>
 							<Button
 								title="Зарегистрироваться"
 								id="registration"
