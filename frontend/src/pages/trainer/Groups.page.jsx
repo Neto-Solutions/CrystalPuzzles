@@ -1,5 +1,4 @@
-import Page from '@shared/ui/page';
-import Button from '@shared/ui/button';
+import { Page, Button } from '@shared/ui';
 import { GroupsList } from '@widgets/group';
 import { useNavigate } from 'react-router-dom';
 export default function TeamsPage() {

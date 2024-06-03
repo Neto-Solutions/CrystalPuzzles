@@ -1,5 +1,5 @@
 import styles from './Groups.list.module.scss';
-import Spinner from '@shared/ui/spinner';
+import { Spinner } from '@shared/ui';
 import { useEffect, useState } from 'react';
 import { getAllGroups } from '@entities/group/api/group.api';
 import { useNavigate } from 'react-router-dom';

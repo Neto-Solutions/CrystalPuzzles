@@ -1,9 +1,7 @@
 import styles from './Main.page.module.scss';
-import { CardLink } from '@shared/ui/card';
-import Page from '@shared/ui/page/Page';
+import { CardLink, Page, RewardsPopup } from '@shared/ui';
 import { StudentFeedback } from '@features/feedback/';
 import { useState } from 'react';
-import { RewardsPopup } from '@shared/ui/popups';
 
 export default function studentMainPage() {
 	const [reward, setReward] = useState(false);

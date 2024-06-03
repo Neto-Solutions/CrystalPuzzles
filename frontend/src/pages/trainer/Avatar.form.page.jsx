@@ -1,4 +1,4 @@
-import Page from '@shared/ui/page';
+import { Page } from '@shared/ui';
 import { AvatarForm } from '@widgets/avatar.form';
 export default function AvatarPage() {
 	return (

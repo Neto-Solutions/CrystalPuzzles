@@ -1,4 +1,4 @@
-import Page from '@shared/ui/page';
+import { Page } from '@shared/ui';
 import { GroupForm } from '@widgets/group';
 export default function CreateGroupPage() {
 	return (
