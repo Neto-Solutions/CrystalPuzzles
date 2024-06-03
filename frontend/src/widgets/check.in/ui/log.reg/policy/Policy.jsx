@@ -1,7 +1,7 @@
-import styles from './Politics.module.scss';
+import styles from './Policy.module.scss';
 import { Link } from 'react-router-dom';
 
-export default function Politics() {
+export default function Policy() {
 	return (
 		<div className={styles.container}>
 			<input

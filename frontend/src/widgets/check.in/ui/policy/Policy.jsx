@@ -1,6 +1,6 @@
-import styles from './Politics.module.scss';
+import styles from './Policy.module.scss';
 import { Link } from 'react-router-dom';
-export default function Politics() {
+export default function Policy() {
 	return (
 		<div className={styles.main_container}>
 			<h1 className={styles.main_container_header}>

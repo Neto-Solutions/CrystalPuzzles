@@ -1,9 +1,8 @@
 import styles from './Page.module.scss';
-import Spinner from '../spinner/Spinner';
 
-export default function Page({ title, children, isLoading = false }) {
+export default function Page({ title, children }) {
 	return (
-		<Spinner isLoading={isLoading}>
+		<>
 			{title && (
 				<>
 					<header className={styles.header}>
@@ -12,6 +11,6 @@ export default function Page({ title, children, isLoading = false }) {
 				</>
 			)}
 			<main className={styles.body}>{children}</main>
-		</Spinner>
+		</>
 	);
 }

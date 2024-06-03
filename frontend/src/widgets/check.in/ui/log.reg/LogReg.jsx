@@ -1,10 +1,10 @@
-import styles from './LogRegForm.module.scss';
+import styles from './LogReg.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Button from '@shared/ui/button/Button';
 import { authUser, registerUser, mapUserForm } from '@entities/user';
 import Input from './input/Input';
 import Password from './password/Password';
-import Politics from './politics/Politics';
+import Politics from './policy/Policy';
 
 export default function LogRegForm({ login = false }) {
 	const navigate = useNavigate();
