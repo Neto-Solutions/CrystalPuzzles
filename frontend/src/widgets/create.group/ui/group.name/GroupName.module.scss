@@ -1,10 +1,11 @@
-.input_container {
+.container {
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 .input {
 	&_text {
+		width: calc(100% - 30px);
 		height: 36px;
 
 		font-family: Roboto;
@@ -16,8 +17,8 @@
 		outline: none;
 	}
 	&_checkbox {
-		width: 36px;
-		height: 36px;
+		width: 30px;
+		height: 30px;
 
 		border: var(--border);
 		border-radius: 6px;

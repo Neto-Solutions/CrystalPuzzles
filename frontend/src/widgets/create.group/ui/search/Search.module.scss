@@ -1,15 +1,23 @@
+.container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	position: relative;
+}
+.container::after {
+	content: url('../../../../shared/assets/svg/search.svg');
+	position: absolute;
+	display: inline-block;
+	right: 5px;
+}
+
 .input_text {
-	height: 41px;
-	width: 654px;
+	padding: 5px 10px 5px 30px;
+	width: 100%;
 	font-family: Roboto;
 	font-size: 24px;
 	font-weight: 500;
 	border: var(--border);
 	border-radius: 10px;
-	background-color: white;
-	padding-left: 30px;
-	background-image: url( '../../../../shared/assets/svg/search.svg');
-	background-repeat: no-repeat;
-	background-position: 99% 50%;
-	background-size: 36px 36px;
 }

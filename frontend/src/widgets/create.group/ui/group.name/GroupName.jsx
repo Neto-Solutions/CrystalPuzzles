@@ -2,7 +2,7 @@ import styles from './GroupName.module.scss';
 
 export default function CreateForm({ setShowForm }) {
 	return (
-		<div className={styles.input_container}>
+		<div className={styles.container}>
 			<input
 				className={styles.input_text}
 				type="text"

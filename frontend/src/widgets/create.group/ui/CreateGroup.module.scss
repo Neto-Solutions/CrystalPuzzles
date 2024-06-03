@@ -1,4 +1,4 @@
-.input_container {
+.container {
 	width: 100%;
 	max-width: 714px;
 	padding: 20px;
@@ -6,9 +6,12 @@
 	border-radius: var(--radius);
 	background: #dae8f0;
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
-	align-items: center;
 	gap: var(--gap);
+	&[data-form=false] {
+		padding: 0 20px;
+	}
 }
 .btn {
 	height: 49px;
