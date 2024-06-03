@@ -4,29 +4,82 @@
 
 .sidebar {
 	width: 297px;
+
 	@media (max-width: 375px) {
+		border-radius: 12px;
 		width: 92px;
-		position: absolute;
-		top: 80px;
-		left: -110px;
+		position: fixed;
+		top: 74px;
+		left: -90px;
 		padding: 20px;
+		background-color: hsla(198, 62%, 93%, 0.76);
+		backdrop-filter: blur(6px);
 		z-index: 99;
-		transition: all 0.3s ease-in-out;
+		transition: left 0.5s ease-in-out;
 	}
 }
 
-.open {
+.sidebar_open {
 	width: 92px;
-	height: 100vh;
+	height: fit-content;
 	padding: 20px;
-	position: absolute;
-	top: 80px;
-	left: -20px;
-	border: 1px solid red;
+	position: fixed;
+	top: 74px;
+	left: 0px;
+	border-radius: 12px;
 	background-color: hsla(198, 62%, 93%, 0.76);
 	backdrop-filter: blur(6px);
 	z-index: 99;
-	transition: left 0.3s ease-in-out;
+	transition: left 0.5s ease-in-out;
+}
+
+.arrow_svg {
+	fill: #fff;
+}
+
+.arrow_open,
+.arrow_close {
+	position: absolute;
+	top: 30px;
+	left: 84px;
+	width: 28px;
+	height: 28px;
+	display: grid;
+	place-content: center;
+	background-color: #0e1079;
+	border-radius: 8px;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	z-index: 199;
+	transition: left 0.5s ease-in-out;
+}
+.arrow_open {
+	animation: sidebar_open 0.5s ease-in-out;
+	transform: rotate(-90deg);
+}
+.arrow_close {
+	transform: rotate(90deg);
+	animation: sidebar_close 0.5s ease-in-out;
+}
+
+@keyframes sidebar_open {
+	from {
+		transform: rotate(90deg);
+	}
+
+	to {
+		transform: rotate(-90deg);
+	}
+}
+
+@keyframes sidebar_close {
+	from {
+		transform: rotate(-90deg);
+	}
+	to {
+		transform: rotate(90deg);
+	}
 }
 
 .sidebar_btn {
@@ -55,22 +108,4 @@
 .link_icon {
 	width: 20px;
 	height: 20px;
-}
-.arrow_wrapp {
-	position: absolute;
-	top: 135px;
-	left: 106px;
-	width: 28px;
-	height: 28px;
-	display: grid;
-	place-content: center;
-	background-color: #0e1079;
-	border-radius: 8px;
-	cursor: pointer;
-	border: none;
-	outline: none;
-	z-index: 99;
-}
-.icon {
-	transform: rotate(90deg);
 }
