@@ -1,4 +1,4 @@
-import { $host, $authHost } from '@shared/api/axios.instances';
+import { $authHost } from '@shared/api/axios.instances';
 
 const createGroup = async (group) => {
 	const { data } = await $authHost.post('/group', group);
@@ -6,7 +6,7 @@ const createGroup = async (group) => {
 };
 
 const getAllGroups = async () => {
-	const { data } = await $host.get('/group');
+	const { data } = await $authHost.get('/group');
 	return data;
 };
 

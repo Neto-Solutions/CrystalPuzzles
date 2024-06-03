@@ -6,16 +6,22 @@ const authUser = async ({ username, password }) => {
 	formData.append('username', username);
 	formData.append('password', password);
 
-	const data = await $host
-		.post('/auth/login', formData)
-		.then((res) => Cookies.set('token', res.data.access_token, { expires: 1 }));
+	const data = await $host.post('/auth/login', formData).then((res) =>
+		Cookies.set('token', res.data.access_token, {
+			expires: 1,
+			sameSite: 'strict'
+		})
+	);
 	return data;
 };
 
 const updateToken = async () => {
-	const { data } = await $authHost
-		.post('/auth/refresh-token')
-		.then((res) => Cookies.set('token', res.data.access_token, { expires: 1 }));
+	const { data } = await $authHost.post('/auth/refresh-token').then((res) =>
+		Cookies.set('token', res.data.access_token, {
+			expires: 1,
+			sameSite: 'strict'
+		})
+	);
 	return data;
 };
 
