@@ -1,12 +1,7 @@
-import { $host, $authHost } from '.';
+import { $host, $authHost } from '@shared/api/axios.instances';
 
-const getGroup = async (group_id) => {
-	const { data } = await $authHost.get(`/group/${group_id}`);
-	return data;
-};
-
-const deleteGroup = async (group_id) => {
-	const { data } = await $authHost.delete(`/group/${group_id}`);
+const createGroup = async (group) => {
+	const { data } = await $authHost.post('/group', group);
 	return data;
 };
 
@@ -15,8 +10,8 @@ const getAllGroups = async () => {
 	return data;
 };
 
-const createGroup = async (group) => {
-	const { data } = await $authHost.post('/group', group);
+const getGroup = async (group_id) => {
+	const { data } = await $authHost.get(`/group/${group_id}`);
 	return data;
 };
 
@@ -26,16 +21,32 @@ const updateGroup = async (group) => {
 	return data;
 };
 
-const deleteDevice = async (group_id) => {
-	const { data } = await $authHost.delete(`/group/remove/${group_id}`);
+const deleteGroup = async (group_id) => {
+	const { data } = await $authHost.delete(`/group/${group_id}`);
+	return data;
+};
+
+const addStudent = async (student_id, group_id) => {
+	const { data } = await $authHost.post('/group/add-student', {
+		student_id,
+		group_id
+	});
+	return data;
+};
+const removeStudent = async (student_id, group_id) => {
+	const { data } = await $authHost.post('/group/delete-student', {
+		student_id,
+		group_id
+	});
 	return data;
 };
 
 export {
-	getGroup,
-	deleteGroup,
-	getAllGroups,
 	createGroup,
+	getAllGroups,
+	getGroup,
 	updateGroup,
-	deleteDevice
+	deleteGroup,
+	addStudent,
+	removeStudent
 };

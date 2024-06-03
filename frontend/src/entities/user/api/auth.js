@@ -1,4 +1,4 @@
-import { $host, $authHost } from '../../../shared/api/axios.instances';
+import { $host, $authHost } from '@shared/api/axios.instances';
 import Cookies from 'js-cookie';
 
 const authUser = async ({ username, password }) => {
