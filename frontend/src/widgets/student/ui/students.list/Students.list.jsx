@@ -1,9 +1,8 @@
 import styles from './Students.list.module.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
 export default function StudentsList() {
-	const [students, setStudents] = useState([]);
 	const inputRef = useRef();
 
 	function search() {}
