@@ -7,12 +7,19 @@ import CreateGroupPage from '@trainer/Create.group.page';
 import StudentsList from '@trainer/Students.list.page';
 import StudentPage from '@trainer/Student.page';
 import FeedbackPage from '@trainer/Feedback.page';
+import feedback from '../../assets/svg/sidebar/Feedback.svg';
+import checkList from '../../assets/svg/sidebar/check list.svg';
+import schedule from '../../assets/svg/sidebar/schedule.svg';
+import group from '../../assets/svg/sidebar/group.svg';
+import students from '../../assets/svg/sidebar/students.svg';
+import home from '../../assets/svg/sidebar/home.svg';
 import AvatarPage from '@trainer/Avatar.form.page';
 
 const trainerRouter = [
 	{
 		path: '/',
-		element: <MainPage />
+		element: <MainPage />,
+		img: home
 	},
 	{
 		path: '/notifications',
@@ -22,12 +29,14 @@ const trainerRouter = [
 	{
 		path: '/check-list',
 		element: <CheckListPage />,
-		local: 'Чек-листы'
+		local: 'Чек-листы',
+		img: checkList
 	},
 	{
 		path: '/schedule',
 		element: <SchefulePage />,
-		local: 'Расписание'
+		local: 'Расписание',
+		img: schedule
 	},
 	{
 		path: '/teams',
@@ -36,12 +45,14 @@ const trainerRouter = [
 	{
 		path: '/group/create',
 		element: <CreateGroupPage />,
-		local: 'Группы'
+		local: 'Группы',
+		img: group
 	},
 	{
 		path: '/students',
 		element: <StudentsList />,
-		local: 'Ученики'
+		local: 'Ученики',
+		img: students
 	},
 	{
 		path: '/student',
@@ -50,7 +61,8 @@ const trainerRouter = [
 	{
 		path: '/feedback',
 		element: <FeedbackPage />,
-		local: 'Обратная связь'
+		local: 'Обратная связь',
+		img: feedback
 	},
 	{
 		path: '/avatar',
