@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getProfileAvatar } from '../api/profile';
 import LS from '@shared/lib/localStorage';
 
-export const Account = ({ user }) => {
+export const Account = ({ user, className, isMobile }) => {
 	const [userPhoto, setUserPhoto] = useState(LS.get('avatar'));
 	const position = useMemo(() => roleAdaptor(user.role), [user]);
 
@@ -23,7 +23,7 @@ export const Account = ({ user }) => {
 	}, [user]);
 
 	return (
-		<div className={styles.accaunt_wrap}>
+		<div className={`${styles.accaunt_wrap} ${className}`}>
 			<img
 				src={
 					userPhoto !== 'null' && userPhoto !== null
@@ -33,11 +33,12 @@ export const Account = ({ user }) => {
 				className={styles.avatar}
 				alt=""
 			/>
-
-			<div>
-				<p className={styles.profession}>{position}</p>
-				<p className={styles.name}>{user.firstname}</p>
-			</div>
+			{!isMobile && (
+				<div>
+					<p className={styles.profession}>{position}</p>
+					<p className={styles.name}>{user.firstname}</p>
+				</div>
+			)}
 		</div>
 	);
 };

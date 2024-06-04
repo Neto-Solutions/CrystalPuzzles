@@ -5,6 +5,19 @@
 	width: 225px;
 	height: 2px;
 	background-color: #0e1079;
+
+	@media (max-width: 375px) {
+		width: 44px;
+	}
+}
+
+.nav {
+	@media (max-width: 375px) {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		align-items: center;
+	}
 }
 
 .dropdown_wrap {
@@ -60,4 +73,15 @@
 	&:hover {
 		border-bottom: 2px solid #0e1079;
 	}
+}
+
+.mobile_list {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.role {
+	font: var(--fw-regular) 12px var(--ff-second);
+	text-transform: uppercase;
 }
