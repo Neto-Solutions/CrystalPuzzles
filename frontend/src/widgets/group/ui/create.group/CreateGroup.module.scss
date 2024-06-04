@@ -1,0 +1,23 @@
+.container {
+	width: 100%;
+	max-width: 714px;
+	padding: 20px;
+	border: var(--border);
+	border-radius: var(--radius);
+	background: #dae8f0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	gap: var(--gap);
+	&[data-form=false] {
+		padding: 0 20px;
+	}
+}
+.btn {
+	height: 49px;
+	margin-left: auto;
+	padding: 13px 24px;
+	border-radius: 10px;
+}
+
+

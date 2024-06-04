@@ -1,9 +1,9 @@
-import { Politics } from '@widgets/politics';
+import { Policy } from '@widgets/check.in';
 
 export default function СonfidentialityPage() {
 	return (
 		<>
-			<Politics />
+			<Policy />
 		</>
 	);
 }

@@ -1,6 +1,6 @@
 import styles from './Check.list.page.module.scss';
 import Page from '@shared/ui/page/Page';
-import { CardLink } from '@shared/card';
+import { CardLink } from '@shared/ui/card';
 import { CheckList } from '@features/check.list';
 
 export default function CheckListPage() {
