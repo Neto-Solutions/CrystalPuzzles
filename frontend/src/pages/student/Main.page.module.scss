@@ -25,3 +25,29 @@
 		}
 	}
 }
+.sidebar_btn {
+	display: none;
+}
+@media (max-width: 425px) {
+
+.reward_img {
+	background-position-y: 85%;
+	background-size: 44px 66px;
+}
+.card_cont {
+	max-width: 162px;
+	height: 120px;
+}
+.train_text {
+	display: none;
+}
+	
+.schedule_container {
+	display: none;
+}
+.btn {
+	color: black;
+	font-size: 16px;
+	background-color: #e1f1f8;
+}
+}
