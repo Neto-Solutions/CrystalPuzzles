@@ -1,7 +1,7 @@
 import Page from '@shared/ui/page/Page';
 import Button from '@shared/ui/button/Button';
 import styles from './Analytics.view.page.module.scss';
-import { Card, UserCard } from '@shared/card';
+import { Card, UserCard } from '@shared/ui/card';
 import { useState } from 'react';
 import { CalendarButton } from '@features/calendar';
 

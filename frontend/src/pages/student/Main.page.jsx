@@ -1,22 +1,20 @@
 import styles from './Main.page.module.scss';
-import { CardLink } from '@shared/card';
-import Page from '@shared/ui/page/Page';
-import Button from '@shared/ui/button/Button';
+import { CardLink, Page, RewardsPopup } from '@shared/ui';
 import { StudentFeedback } from '@features/feedback/';
+import { useState } from 'react';
+
 export default function studentMainPage() {
+	const [reward, setReward] = useState(false);
 	const tempArray = Array(2).fill(0);
 	return (
 		<Page  title="Главная страница">
 			<CardLink
-				to="/rewards"
 				title={'Мои награды'}
-				className={`${styles.card_cont} ${styles.reward_img}`}
+				className={styles.reward_img}
+				onClick={() => setReward(true)}
 			/>
-			<CardLink 
-				to="/train" 
-				title={'Мои тренировки'}
-				className={styles.card_cont}
-			>
+			{reward && <RewardsPopup onHide={() => setReward(false)} />}
+			<CardLink to="/train" title={'Мои тренировки'}>
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>
 			<CardLink 

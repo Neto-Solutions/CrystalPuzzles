@@ -1,0 +1,30 @@
+.container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+.input {
+	&_text {
+		width: calc(100% - 30px);
+		height: 36px;
+
+		font-family: Roboto;
+		font-size: 24px;
+		font-weight: 500;
+
+		background-color: inherit;
+		border: none;
+		outline: none;
+	}
+	&_checkbox {
+		width: 30px;
+		height: 30px;
+
+		border: var(--border);
+		border-radius: 6px;
+
+		// -moz-appearance: none;
+		// -webkit-appearance: none;
+	}
+}
+}

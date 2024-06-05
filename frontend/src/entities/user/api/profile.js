@@ -24,13 +24,15 @@ const updateProfile = async (profile) => {
 };
 
 const updateProfileAvatar = async (avatar) => {
-	// multipart/form-data
-	const { data } = await $authHost.put('/profile/set-photo', avatar);
+	const formData = new FormData();
+	formData.append('file', avatar);
+
+	const { data } = await $authHost.put('/profile/set-photo', formData);
 	return data;
 };
 
 const deleteProfileAvatar = async () => {
-	const { data } = await $authHost.delete('/profile/set-photo');
+	const { data } = await $authHost.delete('/profile/remove-photo');
 	return data;
 };
 

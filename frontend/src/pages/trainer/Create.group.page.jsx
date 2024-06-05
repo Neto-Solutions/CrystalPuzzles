@@ -1,10 +1,9 @@
-import styles from './Create.group.page.module.scss';
-import Page from '@shared/ui/page/Page';
-import TrainCreateGroup from '@widgets/create.group/ui/TrainCreateGroup'
+import { Page } from '@shared/ui';
+import { GroupForm } from '@widgets/group';
 export default function CreateGroupPage() {
 	return (
 		<Page title="Создать группу">
-			<TrainCreateGroup/>
+			<GroupForm />
 		</Page>
 	);
 }
