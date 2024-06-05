@@ -24,6 +24,9 @@
 }
 
 .list {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 	&_item {
 		padding: 15px 30px;
 		justify-content: space-between;
@@ -41,3 +44,14 @@
 		}
 	}
 }
+@media (max-width: 425px) { 
+	.header {
+		font-size: 14px;
+	}
+	.list {
+		 &_item_title {
+			@include font(var(--ff-second), 16px, 400);
+		 }
+		}
+	}
+

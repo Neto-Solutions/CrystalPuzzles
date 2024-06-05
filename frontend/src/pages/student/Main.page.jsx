@@ -11,11 +11,14 @@ export default function studentMainPage() {
 		<Page  title="Главная страница">
 			<CardLink
 				title={'Мои награды'}
-				className={styles.reward_img}
+				className={styles.reward_img + ' ' + styles.card_cont}
 				onClick={() => setReward(true)}
 			/>
 			{reward && <RewardsPopup onHide={() => setReward(false)} />}
-			<CardLink to="/train" title={'Мои тренировки'}>
+			<CardLink 
+				to="/train" 
+				title={'Мои тренировки'}
+				className={styles.card_cont}>	
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>
 			<CardLink 
