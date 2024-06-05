@@ -2,9 +2,7 @@
 .card {
 	width: 100%;
 	max-width: 958px;
-
 	padding: 30px;
-
 	display: flex;
 	justify-content: space-between;
 
@@ -35,4 +33,29 @@
 
 .date {
 	@include font(var(--ff-first), 24px, 500);
+}
+
+
+@media (max-width: 425px) {
+	.card {
+		max-width: 335px;
+		padding: 10px;
+		text-align: center;
+		flex-direction: column;
+		.info {
+			gap: 10px;
+		}
+		.name {
+			font-size: 16px;
+		}
+	
+		.trainer,
+		.combination {
+			font-size: 16px;
+		}
+	}
+	.date {
+		font-size: 16px;
+		margin-top: 8px;
+	}
 }
