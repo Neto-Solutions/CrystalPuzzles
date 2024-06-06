@@ -5,7 +5,7 @@
 .sidebar {
 	width: 297px;
 
-	@media (max-width: 375px) {
+	@media (max-width: 425px) {
 		border-radius: 12px;
 		width: 92px;
 		position: fixed;
@@ -89,7 +89,7 @@
 	margin-bottom: 15px;
 	cursor: pointer;
 
-	@media (max-width: 375px) {
+	@media (max-width: 425px) {
 		margin-bottom: 10px;
 	}
 }

@@ -9,7 +9,7 @@ export default function SchedulePage() {
 			<ScheduleTable />
 			<div className={styles.calendar}>
 				<CalendarBlock />
-				<Button title="Записаться" />
+				<Button className={styles.btn} title="Записаться" />
 			</div>
 		</Page>
 	);
