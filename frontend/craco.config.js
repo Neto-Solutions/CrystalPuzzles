@@ -1,4 +1,5 @@
 const path = require('path');
+const { create } = require('sass-alias');
 
 module.exports = {
 	webpack: {
@@ -14,6 +15,25 @@ module.exports = {
 			'@supervisor': path.resolve(__dirname, 'src/pages/supervisor'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
 			'@student': path.resolve(__dirname, 'src/pages/student')
+		},
+		module: {
+			rules: [
+				{
+					test: /^.*\.(sass|scss)$/,
+					use: [
+						{
+							loader: 'sass-loader',
+							options: {
+								sassOptions: {
+									importer: create({
+										styles: path.join(__dirname, 'src/app/styles')
+									})
+								}
+							}
+						}
+					]
+				}
+			]
 		}
 	}
 };
