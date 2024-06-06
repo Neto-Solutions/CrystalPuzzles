@@ -10,4 +10,3 @@ export default function CardLink({ title, children, to, className, ...props }) {
 		</Tag>
 	);
 }
-
