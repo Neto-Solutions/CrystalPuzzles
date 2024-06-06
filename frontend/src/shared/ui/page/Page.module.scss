@@ -1,3 +1,6 @@
+@use '~styles/mixins' as *; 
+
+ 
 .header {
 	margin-bottom: 45px;
 	&_title {

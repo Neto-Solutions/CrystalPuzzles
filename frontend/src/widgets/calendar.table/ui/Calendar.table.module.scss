@@ -1,3 +1,6 @@
+@use '~styles/mixins' as *; 
+
+ 
 .datepicker {
 	min-width: 1078px;
 	border: var(--border);

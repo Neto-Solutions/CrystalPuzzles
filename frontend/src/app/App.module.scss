@@ -1,3 +1,5 @@
+@use '~styles/mixins' as *; 
+
 .app {
 	width: 100%;
 	max-width: 1448px;

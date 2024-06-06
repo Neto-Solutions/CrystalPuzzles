@@ -1,3 +1,6 @@
+@use '~styles/mixins' as *; 
+
+ 
 .h1 {
   font-family: var(--ff-first);
   font-size: var(--fz-main-heading);

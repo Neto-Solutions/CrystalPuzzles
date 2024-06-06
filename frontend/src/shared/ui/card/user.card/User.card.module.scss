@@ -1,3 +1,6 @@
+@use '~styles/mixins' as *; 
+
+ 
 .card_wrapper {
 	display: flex;
 	flex-direction: column;

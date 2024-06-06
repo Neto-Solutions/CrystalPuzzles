@@ -1,4 +1,7 @@
-@use '~styles/mixins' as *;
+@use '~styles/mixins' as *; 
+
+ 
+ 
 .card {
 	@include font(var(--ff-first), 20px, 500);
 
