@@ -30,3 +30,8 @@
 	flex-direction: column;
 	gap: 20px;
 }
+@media(max-width: 425px) {
+	.table {
+		width: 347px;
+	}
+}

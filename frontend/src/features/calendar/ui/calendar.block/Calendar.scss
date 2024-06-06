@@ -86,3 +86,8 @@
 .arrow_right {
 	rotate: 180deg;
 }
+@media(max-width: 425px) {
+	.calendar {
+		width: 100%;
+	}
+}
