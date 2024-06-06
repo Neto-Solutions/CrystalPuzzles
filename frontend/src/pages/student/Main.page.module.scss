@@ -1,6 +1,6 @@
-@use '../../app/styles/mixins' as *;
+@use '~styles/mixins' as *;
 .reward_img {
-	background-image: url('../../shared/assets/card.background/reward_animal.svg');
+	background-image: url('~assets/card.background/reward_animal.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-position-x: 55%;

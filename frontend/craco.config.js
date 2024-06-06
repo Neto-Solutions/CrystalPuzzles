@@ -1,5 +1,5 @@
+/* eslint-disable prettier/prettier */
 const path = require('path');
-const { create } = require('sass-alias');
 
 module.exports = {
 	webpack: {
@@ -14,26 +14,9 @@ module.exports = {
 			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
 			'@supervisor': path.resolve(__dirname, 'src/pages/supervisor'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
-			'@student': path.resolve(__dirname, 'src/pages/student')
-		},
-		module: {
-			rules: [
-				{
-					test: /^.*\.(sass|scss)$/,
-					use: [
-						{
-							loader: 'sass-loader',
-							options: {
-								sassOptions: {
-									importer: create({
-										styles: path.join(__dirname, 'src/app/styles')
-									})
-								}
-							}
-						}
-					]
-				}
-			]
+			'@student': path.resolve(__dirname, 'src/pages/student'),
+			'assets': path.resolve(__dirname, 'src/shared/assets'),
+			'styles' : path.resolve(__dirname, 'src/app/styles')
 		}
 	}
 };

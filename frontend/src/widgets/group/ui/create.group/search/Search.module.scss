@@ -6,7 +6,7 @@
 	position: relative;
 }
 .container::after {
-	content: url('../../../../../shared/assets/svg/search.svg');
+	content: url('~assets/svg/search.svg');
 	position: absolute;
 	display: inline-block;
 	right: 5px;
