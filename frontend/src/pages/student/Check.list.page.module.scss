@@ -1,5 +1,7 @@
+@use '~styles/mixins' as *;
+
 .rewart_trio {
-	background-image: url('../../shared/assets/card.background/trio_animals.svg');
+	background-image: url('~assets/card.background/trio_animals.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-position-y: 80%;

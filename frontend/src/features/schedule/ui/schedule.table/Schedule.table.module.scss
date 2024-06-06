@@ -1,20 +1,24 @@
-@use '../../../../app/styles/mixins' as *;
+@use '~styles/mixins' as *;
+ 
 .table {
 	width: 100%;
 	max-width: 714px;
 	height: min-content;
 	border: var(--border);
 	border-radius: var(--radius);
+
 	.row {
 		@include font(var(--ff-second), 24px, 400);
 		height: 57px;
 		display: grid;
 		grid-template-columns: 100px 1fr;
 		border-bottom: var(--border);
+		
 		&:last-child {
 			border-bottom: none;
 		}
 	}
+
 	.col {
 		&:first-child {
 			display: flex;

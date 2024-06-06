@@ -13,7 +13,9 @@ module.exports = {
 			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
 			'@supervisor': path.resolve(__dirname, 'src/pages/supervisor'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
-			'@student': path.resolve(__dirname, 'src/pages/student')
+			'@student': path.resolve(__dirname, 'src/pages/student'),
+			assets: path.resolve(__dirname, 'src/shared/assets'),
+			styles: path.resolve(__dirname, 'src/app/styles')
 		}
 	}
 };

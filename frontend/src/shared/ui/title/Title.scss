@@ -1,8 +1,10 @@
+@use '~styles/mixins' as *;
+
 .h1 {
   font-family: var(--ff-first);
   font-size: var(--fz-main-heading);
   font-weight: var(--fw-regular);
-
+  
   @media (max-width: 375px) {
     font-size: var(--fz-btn);
   }
