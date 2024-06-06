@@ -6,3 +6,10 @@
 	background-position: center;
 	background-position-y: 80%;
 }
+
+@media (max-width: 425px) {
+	.rewart_trio {
+		order: -1;
+		width: 100%;
+	}
+}

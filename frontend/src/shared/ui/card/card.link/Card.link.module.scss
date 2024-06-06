@@ -27,3 +27,13 @@
 		justify-content: center;
 	}
 }
+@media (max-width: 425px) { 
+.card {	
+	height: 120px;
+	align-items: center;
+	.title {
+		@include font(var(--ff-second), 16px, 600);
+	}
+}
+
+}

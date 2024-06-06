@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Button.module.scss';
 import { ReactComponent as DownArrow } from '@shared/assets/svg/arrow.svg';
 
