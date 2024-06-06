@@ -1,9 +1,9 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
- 
 .schedule-wrap {
 	width: 347px;
 }
+
 .content-wrap {
 	border: var(--border);
 	border-radius: var(--radius);
@@ -38,6 +38,7 @@
 	background-color: #2b2d91;
 	margin-bottom: 20px;
 }
+
 .timetable-wrap {
 	margin-top: 20px;
 }
@@ -62,6 +63,7 @@
 	display: grid;
 	gap: 20px;
 }
+
 .general_met_timetable_btn {
 	width: 100%;
 	padding: 15.5px 28px 15.5px 28px;

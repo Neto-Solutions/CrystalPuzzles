@@ -1,25 +1,22 @@
-@use '~styles/mixins' as *; 
-
- 
-@use '~styles/mixins.scss' as *;
+@use '~styles/mixins' as *;
 
 .description_container {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+
 	.name {
 		@include font(var(--ff-first), 24px, 500);
 		width: 714px;
 		height: 57px;
-
 		border: var(--border);
 		border-radius: var(--radius);
 		background: #e1f1f8;
-
 		padding: 0 17px;
 		display: flex;
 		align-items: center;
 	}
+
 	.description {
 		display: flex;
 		flex-direction: column;
@@ -31,17 +28,21 @@
 		background: var(--bg-card);
 		font-size: var(--fz-btn);
 		font-weight: var(--fw-medium);
+
 		.title {
 			font-weight: 600;
 		}
 	}
 }
+
 .student_panel {
 	display: flex;
 	flex-direction: column;
 	gap: var(--gap);
+
 	.avatar_container {
 		display: flex;
+
 		.avatar {
 			width: 347px;
 			height: 438px;
@@ -49,6 +50,7 @@
 			border-radius: 10px;
 		}
 	}
+	
 	.button_container {
 		display: flex;
 		flex-direction: column;

@@ -1,6 +1,4 @@
-@use '~styles/mixins' as *; 
-
- 
+@use '~styles/mixins' as *;
  
 .reward_img {
 	background-image: url('~assets/card.background/reward_animal.svg');
@@ -8,6 +6,7 @@
 	background-position: center;
 	background-position-x: 55%;
 }
+
 .train_text {
 	@include font(var(--ff-first), 24px, 500);
 	text-align: center;
@@ -21,8 +20,10 @@
 	flex-direction: column;
 	gap: var(--gap);
 	overflow: hidden;
+
 	.shedule_item {
 		@include font(var(--ff-second), 22px, 400);
+		
 		.shedule_item_time {
 			@include font(var(--ff-first), 24px, 500);
 		}

@@ -14,6 +14,7 @@
 .container_preview {
 	display: flex;
 	justify-content: space-between;
+
 	& > * {
 		margin-top: auto;
 	}
@@ -22,6 +23,7 @@
 .buttons {
 	display: flex;
 	gap: 20px;
+
 	.button {
 		height: 57px;
 		border-radius: 13px;
@@ -48,6 +50,7 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	row-gap: 20px;
+	
 	.img {
 		padding: 0;
 		cursor: pointer;

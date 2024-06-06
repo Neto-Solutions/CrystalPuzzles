@@ -1,8 +1,8 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
- 
 .header {
 	margin-bottom: 45px;
+	
 	&_title {
 		font-family: 'Roboto';
 		font-size: 48px;

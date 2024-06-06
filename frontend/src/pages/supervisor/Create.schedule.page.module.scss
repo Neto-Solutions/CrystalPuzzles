@@ -1,11 +1,11 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
- 
 .buttons_container {
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 20px;
+	
 	button {
 		width: 100%;
 	}

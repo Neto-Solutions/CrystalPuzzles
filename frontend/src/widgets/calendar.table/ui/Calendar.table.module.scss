@@ -1,6 +1,5 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
- 
 .datepicker {
 	min-width: 1078px;
 	border: var(--border);
@@ -61,6 +60,7 @@
 	.weeks_item {
 		padding: 12px;
 		align-self: center;
+
 		&:nth-child(n):not(:last-child) {
 			border-right: var(--border);
 		}
@@ -69,6 +69,7 @@
 
 .days {
 	grid-template-rows: repeat(2, 154px);
+
 	.days_item {
 		padding: 12px;
 		cursor: pointer;
@@ -77,10 +78,12 @@
 			border-right: var(--border);
 			border-bottom: var(--border);
 		}
+
 		&:nth-child(7),
 		&:last-child {
 			border-right: none;
 		}
+		
 		&:nth-child(n + 8) {
 			border-bottom: none;
 		}
