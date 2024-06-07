@@ -1,5 +1,5 @@
-import Page from '@shared/ui/page/Page';
-import Button from '@shared/ui/button/Button';
+import { Page } from '@shared/ui';
+import { Button } from '@shared/ui';
 import { Notification } from '@widgets/notification';
 import { ScheduleCard } from '@features/schedule';
 import { CheckList } from '@features/check.list';

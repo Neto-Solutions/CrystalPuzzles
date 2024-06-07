@@ -1,7 +1,7 @@
 import styles from './Schedule.page.module.scss';
-import Page from '@shared/ui/page/Page';
+import { Page } from '@shared/ui';
 import { CalendarButton } from '@features/calendar';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 import { ScheduleTable } from '@features/schedule';
 
 export default function SchedulePage() {

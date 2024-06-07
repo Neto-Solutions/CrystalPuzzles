@@ -1,8 +1,8 @@
 import styles from './Account.module.scss';
 import avatar from '@shared/assets/avatar/0.png';
-import roleAdaptor from '../helpers/role.adaptor';
+import roleAdaptor from '@entities/user/helpers/role.adaptor';
 import { useEffect, useMemo, useState } from 'react';
-import { getProfileAvatar } from '../api/profile';
+import { getProfileAvatar } from '@entities/user/api/profile';
 import LS from '@shared/lib/localStorage';
 
 export const Account = ({ user, className, isMobile }) => {

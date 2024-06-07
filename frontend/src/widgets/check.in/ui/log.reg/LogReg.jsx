@@ -1,6 +1,6 @@
 import styles from './LogReg.module.scss';
 import { useNavigate } from 'react-router-dom';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 import { authUser, registerUser, mapUserForm } from '@entities/user';
 import Input from './input/Input';
 import Password from './password/Password';

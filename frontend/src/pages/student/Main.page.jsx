@@ -1,7 +1,7 @@
 import styles from './Main.page.module.scss';
 import { CardLink, Page, RewardsPopup } from '@shared/ui';
 import { StudentFeedback } from '@features/feedback/';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 import { useState } from 'react';
 
 export default function studentMainPage() {

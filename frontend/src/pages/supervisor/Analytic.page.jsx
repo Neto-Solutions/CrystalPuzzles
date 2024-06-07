@@ -1,5 +1,5 @@
 import { UserCard } from '@shared/ui/card';
-import Page from '@shared/ui/page/Page';
+import { Page } from '@shared/ui';
 import { Link } from 'react-router-dom';
 
 export default function AnalyticPage() {

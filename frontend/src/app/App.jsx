@@ -2,13 +2,10 @@ import styles from './App.module.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { Header } from '@widgets/header';
 import Sidebar from '@widgets/sidebar';
 import { Footer } from '@widgets/footer';
-
-import Spinner from '@shared/ui/spinner/Spinner';
-
+import { Spinner } from '@shared/ui';
 import { User, setUser, selectUser, getProfile } from '@entities/user';
 
 export default function App({ check_in = false }) {

@@ -3,7 +3,7 @@ import change from '@shared/assets/svg/change_icon.svg';
 import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
 import { NavMenuList } from './NavMenu';
-import { Account } from '@entities/user/ui/Account';
+import { Account } from '../ui/Accaunt/Account';
 import { useSelector } from 'react-redux';
 import { selectUser, logout } from '@entities/user';
 import Cookies from 'js-cookie';

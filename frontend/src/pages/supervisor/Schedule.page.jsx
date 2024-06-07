@@ -1,6 +1,6 @@
-import Page from '@shared/ui/page/Page';
+import { Page } from '@shared/ui';
 import CalendarTable from '@widgets/calendar.table';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 import { CalendarButton } from '@features/calendar';
 import styles from './Schedule.page.module.scss';
 

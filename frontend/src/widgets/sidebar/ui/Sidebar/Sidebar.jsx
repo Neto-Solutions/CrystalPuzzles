@@ -1,5 +1,5 @@
 import { NavMenuList } from './NavMenu';
-import { Account } from '@entities/user/ui/Account';
+import { Account } from '../Accaunt/Account';
 import { useSelector } from 'react-redux';
 import { selectUser, logout } from '@entities/user';
 import Cookies from 'js-cookie';

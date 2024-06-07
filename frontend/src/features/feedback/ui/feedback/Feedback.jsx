@@ -1,5 +1,5 @@
 import styles from './Feedback.module.scss';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 export default function Feedback({ placeholder }) {
 	return (
 		<>
