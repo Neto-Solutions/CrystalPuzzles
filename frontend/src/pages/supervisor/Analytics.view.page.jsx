@@ -1,9 +1,7 @@
+import styles from './Analytics.view.page.module.scss';
+import { Page, Button, UserCard } from '@shared/ui';
 import { Link } from 'react-router-dom';
 import calendar_icon from '@assets/svg/calendar_icon.svg';
-import UserCard from '@features/cards/user.card/User.card';
-import { Page } from '@shared/ui';
-import { Button } from '@shared/ui';
-import styles from './Analytics.view.page.module.scss';
 
 export default function AnalyticsViewPage() {
 	return (

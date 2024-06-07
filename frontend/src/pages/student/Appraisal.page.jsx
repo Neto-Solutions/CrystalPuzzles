@@ -1,6 +1,6 @@
 import styles from './Appraisal.page.module.scss';
-import { Page } from '@shared/ui';
-import { Button } from '@shared/ui';
+import { Page, Button } from '@shared/ui';
+
 export default function AppraisalPage() {
 	return (
 		<Page title="Оценка">

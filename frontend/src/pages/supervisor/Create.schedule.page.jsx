@@ -1,6 +1,5 @@
-import { Page } from '@shared/ui';
-import { Button } from '@shared/ui';
 import styles from './Create.schedule.page.module.scss';
+import { Page, Button } from '@shared/ui';
 import CalendarTable from '@widgets/calendar.table';
 
 export default function CreateShedulePage() {

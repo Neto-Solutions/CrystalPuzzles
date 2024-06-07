@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectUser, logout } from '@entities/user';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
 import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
@@ -14,6 +15,8 @@ export default function Sidebar() {
 	const user = useSelector(selectUser);
 	const [isOpen, setIsOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleResize = (event) => {
@@ -48,16 +51,21 @@ export default function Sidebar() {
 				)}
 				<Account user={user} className={styles.account} isMobile={isMobile} />
 				<NavMenuList role={user.role} isMobile={isMobile} />
+
 				<div className={styles.links}>
 					<div className={`${styles.sidebar_btn} ${styles.help}`}>
 						<img src={help} className={styles.link_icon} />
 						{!isMobile && <span>Помощь</span>}
 					</div>
-					{isMobile && (
-						<div className={styles.sidebar_btn}>
-							<img src={edit} className={styles.link_icon} />
-						</div>
-					)}
+
+					<div
+						className={`${styles.sidebar_btn} ${styles.help}`}
+						onClick={() => navigate('/avatar')}
+					>
+						<img src={edit} className={styles.link_icon} />
+						{!isMobile && <span>Изменить аватарку</span>}
+					</div>
+
 					<div
 						className={`${styles.sidebar_btn} ${styles.exit}`}
 						onClick={handleExit}

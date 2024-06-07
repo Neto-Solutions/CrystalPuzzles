@@ -1,6 +1,5 @@
-import { Page } from '@shared/ui';
-import { Button } from '@shared/ui';
 import styles from './Evaluation.table.page.module.scss';
+import { Page, Button } from '@shared/ui';
 
 export default function EvaluationTablePage() {
 	return (
