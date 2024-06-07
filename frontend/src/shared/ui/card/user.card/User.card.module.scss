@@ -3,6 +3,9 @@
 .card_wrapper {
 	display: flex;
 	flex-direction: column;
+	@media (max-width: 375px) {
+		max-width: 164px;
+	}
 }
 
 .card {
@@ -32,6 +35,9 @@
 	}
 
 	&_name {
+		@media (max-width: 375px) {
+			font-size: 14px;
+		}
 	}
 
 	&_btn {
