@@ -1,4 +1,3 @@
-import './Notification.page.scss';
 import { Page } from '@shared/ui';
 import { Notification } from '@widgets/notification';
 

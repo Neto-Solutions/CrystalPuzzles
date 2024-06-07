@@ -1,8 +1,5 @@
 @use '~styles/mixins' as *; 
 
- 
- 
-
 .container {
 	width: 100%;
 	max-width: 714px;
@@ -64,9 +61,8 @@
 .cont_bottom_decor {
 	display: none;
 }
-@media(max-width: 425px) {
-
-
+@include md() {
+	
 .container {
 	width: 100%;
 	padding: 10px 0px;
