@@ -1,6 +1,5 @@
 import styles from './Notification.module.scss';
-import Title from '@shared/ui/title/Title';
-import Button from '@shared/ui/button/Button';
+import { Title, Button } from '@shared/ui';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

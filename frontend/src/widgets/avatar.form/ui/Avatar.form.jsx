@@ -1,6 +1,6 @@
 import styles from './Avatar.form.module.scss';
 import { useState } from 'react';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 import { updateProfileAvatar, deleteProfileAvatar } from '@entities/user';
 import { ReactComponent as UploadIcon } from '@shared/assets/svg/upload.svg';
 import LS from '@shared/lib/localStorage';
