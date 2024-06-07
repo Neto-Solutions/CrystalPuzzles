@@ -2,11 +2,34 @@
 
 .header {
 	margin-bottom: 45px;
-	
+
 	&_title {
 		font-family: 'Roboto';
 		font-size: 48px;
 		font-weight: 400;
+		@include md() {
+			display: inline-block;
+			margin: auto;
+			padding-left: 38px;
+			font-size: 32px;
+			font-weight: 500;
+		}
+		@include sm() {
+			padding: 0;
+			font-size: 24px;
+		}
+	}
+
+	@include md() {
+		margin-bottom: 22px;
+		padding: 10px;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		justify-content: space-between;
+		&::after {
+			content: url('~assets/header/logo.svg');
+		}
 	}
 }
 

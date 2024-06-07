@@ -1,4 +1,4 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
 .nav::before,
 .nav::after {
@@ -8,13 +8,13 @@
 	height: 2px;
 	background-color: #0e1079;
 
-	@media (max-width: 375px) {
+	@include md() {
 		width: 44px;
 	}
 }
 
 .nav {
-	@media (max-width: 375px) {
+	@include md() {
 		display: flex;
 		flex-direction: column;
 		gap: 30px;

@@ -13,11 +13,11 @@ import styles from './Sidebar.module.scss';
 export default function Sidebar() {
 	const user = useSelector(selectUser);
 	const [isOpen, setIsOpen] = useState(false);
-	const [isMobile, setIsMobile] = useState(window.innerWidth < 375);
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
 	useEffect(() => {
 		const handleResize = (event) => {
-			setIsMobile(event.target.innerWidth < 375);
+			setIsMobile(event.target.innerWidth <= 768);
 		};
 		window.addEventListener('resize', handleResize);
 		return () => {

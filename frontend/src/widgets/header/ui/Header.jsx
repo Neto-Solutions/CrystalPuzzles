@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../assets/logo.svg';
+import { ReactComponent as Logo } from '@shared/assets/header/logo.svg';
 
 export default function Header() {
 	return (
