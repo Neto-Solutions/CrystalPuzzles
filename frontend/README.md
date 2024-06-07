@@ -1,23 +1,31 @@
-# Необходимо передать API_URL в public/index.html чтобы передать адрес сервера
+## Необходимое для запуска ПО
+    Node: "~22.1.0"
 
-# login and password for auth
 
-trainer@crystal.com
-trainerpass
+## Инструкция по запуску DEV
+	- Указать IP address в public/index.html (переменная  window.API_URL) или в .env (корневая директория) переменную REACT_APP_SERVER_API
+	
+	- Выполнить команды
+		1. npm install
+		2. npm run start
 
----
 
-student@crystal.com
-studentpass
+## Инструкция по запуску PROD
+	- Указать IP address в index.html (переменная  window.API_URL)
 
----
+	- Выполнить команды
+		1. npm install
+		2. npm run serve
 
-supervisor@crystal.com
-supervisorpass
+## Аккаунты для доступа по ролям 
+	trainer@crystal.com
+	trainerpass
 
----
+	student@crystal.com
+	studentpass
 
-admin@crystal.com
-adminpass
+	supervisor@crystal.com
+	supervisorpass
 
----
+	admin@crystal.com
+	adminpass
