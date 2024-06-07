@@ -1,14 +1,13 @@
 import styles from './Main.page.module.scss';
-import { CardLink, Page, RewardsPopup } from '@shared/ui';
+import { CardLink, Page, RewardsPopup, Button } from '@shared/ui';
 import { StudentFeedback } from '@features/feedback/';
-import Button from '@shared/ui/button/Button'
 import { useState } from 'react';
 
 export default function studentMainPage() {
 	const [reward, setReward] = useState(false);
 	const tempArray = Array(2).fill(0);
 	return (
-		<Page  title="Главная страница">
+		<Page title="Главная страница">
 			<CardLink
 				title={'Мои награды'}
 				className={styles.reward_img + ' ' + styles.card_cont}
@@ -21,13 +20,13 @@ export default function studentMainPage() {
 				className={styles.card_cont}>	
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>
-			<CardLink 
-				to="/check-list" 
-				title={'Мои чек-листы'} 
+			<CardLink
+				to="/check-list"
+				title={'Мои чек-листы'}
 				className={styles.card_cont}
 			/>
-			<CardLink 
-				to="/schedule" 
+			<CardLink
+				to="/schedule"
 				title={'Мои расписание на сегодня'}
 				className={styles.card_cont}
 			>
@@ -45,11 +44,11 @@ export default function studentMainPage() {
 			</CardLink>
 			<StudentFeedback />
 			<Button
-						title={'Написать тренеру'}
-						width="334px"
-						height="64px"
-						className={styles.btn}
-					/>
+				title={'Написать тренеру'}
+				width="334px"
+				height="64px"
+				className={styles.btn}
+			/>
 		</Page>
 	);
 }

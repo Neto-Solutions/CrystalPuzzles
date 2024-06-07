@@ -1,3 +1,5 @@
+@use '~styles/mixins' as *; 
+
 .calendar {
 	display: flex;
 	flex-direction: column;

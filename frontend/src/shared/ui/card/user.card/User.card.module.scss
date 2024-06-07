@@ -1,11 +1,18 @@
+@use '~styles/mixins' as *;
+
 .card_wrapper {
 	display: flex;
 	flex-direction: column;
+	@media (max-width: 375px) {
+		max-width: 164px;
+	}
 }
+
 .card {
 	display: flex;
 	gap: 20px;
 	max-height: 138px;
+
 	&_img {
 		height: 100%;
 		max-height: inherit;
@@ -14,26 +21,35 @@
 		border-right: var(--border);
 		border-radius: var(--radius);
 	}
+
 	&_show {
 		max-height: calc(138px + 30px);
 		align-items: center;
 		text-align: center;
 	}
+
 	&_content {
 		padding: 12px 12px 12px 0;
 		display: flex;
 		flex-direction: column;
 	}
+
 	&_name {
+		@media (max-width: 375px) {
+			font-size: 14px;
+		}
 	}
+
 	&_btn {
 		margin-top: auto;
 		text-align: end;
+
 		&:hover {
 			cursor: pointer;
 		}
 	}
 }
+
 .card_description {
 	border-top: var(--border);
 	width: 100%;

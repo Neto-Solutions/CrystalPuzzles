@@ -1,5 +1,5 @@
 import styles from './CreateGroup.module.scss';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from './search/Search';

@@ -1,4 +1,4 @@
-import Page from '@shared/ui/page/Page';
+import { Page } from '@shared/ui';
 import { StudentsList } from '@widgets/student';
 export default function StudentsListPage() {
 	return (

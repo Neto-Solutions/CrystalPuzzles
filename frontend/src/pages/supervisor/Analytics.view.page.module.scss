@@ -1,12 +1,16 @@
+@use '~styles/mixins' as *;
+
 .list {
 	display: flex;
 	flex-direction: column;
 	padding: 25px 50px;
 	gap: 20px;
+
 	li {
 		list-style: disc;
 	}
 }
+
 .comment {
 	justify-content: center;
 	cursor: pointer;

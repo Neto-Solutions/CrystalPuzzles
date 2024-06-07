@@ -1,4 +1,5 @@
-import Page from '@shared/ui/page/Page';
+import './Notification.page.scss';
+import { Page } from '@shared/ui';
 import { Notification } from '@widgets/notification';
 
 export default function NotificationPage() {

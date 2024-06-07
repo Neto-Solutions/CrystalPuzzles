@@ -1,8 +1,7 @@
-import Page from '@shared/ui/page/Page';
-import CalendarTable from '@widgets/calendar.table';
-import Button from '@shared/ui/button/Button';
-import { CalendarButton } from '@features/calendar';
 import styles from './Schedule.page.module.scss';
+import { Page, Button } from '@shared/ui';
+import CalendarTable from '@widgets/calendar.table';
+import { CalendarButton } from '@features/calendar';
 
 export default function SchedulePage() {
 	return (

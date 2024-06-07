@@ -1,11 +1,11 @@
-@use '../../app/styles/mixins' as *;
+@use '~styles/mixins' as *;
+
 .card {
 	width: 100%;
 	max-width: 958px;
 	padding: 30px;
 	display: flex;
 	justify-content: space-between;
-
 	border: var(--border);
 	border-radius: var(--radius);
 	background-color: #dae8f0;
@@ -16,6 +16,7 @@
 		justify-content: space-between;
 		gap: var(--gap);
 	}
+
 	.name {
 		@include font(var(--ff-second), 22px, 500);
 	}
@@ -23,6 +24,7 @@
 	.trainer,
 	.combination {
 		@include font(var(--ff-second), 24px, 400);
+		
 		.trainer_title,
 		.combination_title {
 			margin-right: 5px;

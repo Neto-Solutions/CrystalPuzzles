@@ -1,3 +1,5 @@
+@use '~styles/mixins' as *;
+
 .wrapper {
 	position: relative;
 }
@@ -5,7 +7,7 @@
 .sidebar {
 	width: 297px;
 
-	@media (max-width: 425px) {
+	@include md() {
 		border-radius: 12px;
 		width: 92px;
 		position: fixed;
@@ -89,7 +91,7 @@
 	margin-bottom: 15px;
 	cursor: pointer;
 
-	@media (max-width: 425px) {
+	@include md() {
 		margin-bottom: 10px;
 	}
 }

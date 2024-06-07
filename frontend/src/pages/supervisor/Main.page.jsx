@@ -1,5 +1,5 @@
 import styles from './Main.page.module.scss';
-import Page from '@shared/ui/page/Page';
+import { Page } from '@shared/ui';
 import { Notification } from '@widgets/notification';
 import { CardLink } from '@shared/ui/card';
 import { ScheduleCard } from '@features/schedule';
