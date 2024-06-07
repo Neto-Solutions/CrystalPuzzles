@@ -11,3 +11,4 @@ export {
 	deleteProfileAvatar,
 	getProfileAvatar
 } from './api/profile';
+export { default as roleAdaptor } from './helpers/role.adaptor';
