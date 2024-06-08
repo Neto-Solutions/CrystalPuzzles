@@ -14,13 +14,13 @@ import styles from './Sidebar.module.scss';
 export default function Sidebar() {
 	const user = useSelector(selectUser);
 	const [isOpen, setIsOpen] = useState(false);
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 1440);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleResize = (event) => {
-			setIsMobile(event.target.innerWidth <= 768);
+			setIsMobile(event.target.innerWidth <= 1440);
 		};
 		window.addEventListener('resize', handleResize);
 		return () => {

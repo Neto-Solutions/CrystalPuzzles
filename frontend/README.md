@@ -1,31 +1,33 @@
 ## Необходимое для запуска ПО
+
     Node: "~22.1.0"
 
-
 ## Инструкция по запуску DEV
-	- Указать IP address в public/index.html (переменная  window.API_URL) или в .env (корневая директория) переменную REACT_APP_SERVER_API
-	
-	- Выполнить команды
-		1. npm install
-		2. npm run start
 
+    - Указать IP address в public/index.html (переменная  window.API_URL) или в .env (корневая директория) переменную REACT_APP_SERVER_API
+
+    - Выполнить команды
+    	1. npm install
+    	2. npm run start
 
 ## Инструкция по запуску PROD
-	- Указать IP address в index.html (переменная  window.API_URL)
 
-	- Выполнить команды
-		1. npm install
-		2. npm run serve
+    - Указать IP address в index.html (переменная  window.API_URL)
 
-## Аккаунты для доступа по ролям 
-	trainer@crystal.com
-	trainerpass
+    - Выполнить команды
+    	1. npm install
+    	2. npm run serve
 
-	student@crystal.com
-	studentpass
+## Аккаунты для доступа по ролям
 
-	supervisor@crystal.com
-	supervisorpass
+    trainer@crystal.com
+    trainerpass
 
-	admin@crystal.com
-	adminpass
+    student@crystal.com
+    studentpass
+
+    supervisor@crystal.com
+    supervisorpass
+
+    admin@crystal.com
+    adminpass
