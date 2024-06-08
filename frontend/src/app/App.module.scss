@@ -1,17 +1,17 @@
 @use '~styles/mixins' as *; 
 
-.app {
+.container {
 	width: 100%;
 	max-width: 1448px;
 	min-height: 100vh;
 	margin: 0 auto;
 	padding: 0 20px;
 	flex-direction: column;
-	.router_container {
+	.app {
 		display: flex;
 		margin-bottom: 40px;
 		min-height: 85vh;
-		.page_container {
+		.page {
 			width: 100%;
 			max-width: 1081px;
 			margin: 0 auto;
@@ -19,9 +19,9 @@
 	}
 }
 @media (max-width: 425px) {
-	.app {
+	.container {
 		min-height: 100%;
-		.router_container {
+		.app {
 			min-height: 100%;
 		}
 	}
