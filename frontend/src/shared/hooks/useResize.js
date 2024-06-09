@@ -10,7 +10,7 @@ export default function useResize(size) {
 
 	const handleResize = (size) => {
 		const width = window.innerWidth;
-		if (width < size) {
+		if (width <= size) {
 			setState(true);
 			return;
 		}
