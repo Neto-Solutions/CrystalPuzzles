@@ -9,7 +9,7 @@
 	border: var(--border);
 	border-radius: var(--radius);
 	background-color: #dae8f0;
-
+    margin-bottom: 15px;
 	.info {
 		display: flex;
 		flex-direction: column;
@@ -38,7 +38,7 @@
 }
 
 
-@media (max-width: 425px) {
+@include sm() {
 	.card {
 		max-width: 335px;
 		padding: 10px;

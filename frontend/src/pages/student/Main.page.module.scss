@@ -32,7 +32,7 @@
 .sidebar_btn {
 	display: none;
 }
-@media (max-width: 425px) {
+@include sm() {
 
 .reward_img {
 	background-position-y: 85%;
@@ -51,7 +51,7 @@
 }
 .btn {
 	color: black;
-	font-size: 16px;
+	font-size: 1em; 
 	background-color: #e1f1f8;
 }
 }

@@ -15,7 +15,7 @@
 	font-size: var(--fz-btn);
 	font-weight: var(--fw-regular);
 
-	@media (max-width: 375px) {
+	@include xs() {
 		font-size: 14px;
 	}
 }
