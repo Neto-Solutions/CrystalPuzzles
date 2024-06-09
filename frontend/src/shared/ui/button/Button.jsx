@@ -13,9 +13,9 @@ export default function Button({
 	return (
 		<button
 			className={`${styles.btn} ${className}`}
-			style={{ 
-				width, 
-				height,
+			style={{
+				width,
+				height
 			}}
 			{...props}
 		>

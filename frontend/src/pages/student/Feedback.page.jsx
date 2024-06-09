@@ -1,11 +1,15 @@
 import { Page, Button } from '@shared/ui';
-import { StudentFeedback } from '@features/feedback';
-
+import { Feedback } from '@features/feedback';
+import { Wrapper } from '@shared/ui';
 export default function FeedbackPage() {
 	return (
 		<Page title="Обратная связь">
-			<StudentFeedback />
-			<Button width='387px' title="Выберите тренера" downArrow />
+			<Wrapper width="100%" max_width="714px">
+				<Feedback>Оставить комментарий тренеру</Feedback>
+				<Button title="Отправить комментрарий" width="100%" />
+			</Wrapper>
+
+			<Button width="347px" height="57px" title="Выберите тренера" downArrow />
 		</Page>
 	);
 }
