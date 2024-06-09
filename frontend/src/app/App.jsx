@@ -10,7 +10,6 @@ import { User, setUser, getProfile } from '@entities/user';
 
 export default function App() {
 	const [loading, setLoading] = useState(true);
-
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
