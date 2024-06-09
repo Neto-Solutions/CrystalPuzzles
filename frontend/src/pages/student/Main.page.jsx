@@ -7,7 +7,7 @@ export default function studentMainPage() {
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 	const [reward, setReward] = useState(false);
 	const tempArray = Array(2).fill(0);
-	console.log(window.innerWidth)
+
 	useEffect(() => {
 		const handleResize = () => {
 			setIsMobile(window.innerWidth <= 425);
@@ -16,7 +16,7 @@ export default function studentMainPage() {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [])
+	}, []);
 	return (
 		<Page title="Главная страница">
 			<CardLink
@@ -25,10 +25,11 @@ export default function studentMainPage() {
 				onClick={() => setReward(true)}
 			/>
 			{reward && <RewardsPopup onHide={() => setReward(false)} />}
-			<CardLink 
-				to="/train" 
+			<CardLink
+				to="/train"
 				title={'Мои тренировки'}
-				className={styles.card_cont}>	
+				className={styles.card_cont}
+			>
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>
 			<CardLink
@@ -53,9 +54,9 @@ export default function studentMainPage() {
 					))}
 				</div>
 			</CardLink>
-			{!isMobile && <StudentFeedback/> }
+			{!isMobile && <StudentFeedback />}
 			<Button
-				title='Написать тренеру'
+				title="Написать тренеру"
 				width="334px"
 				height="64px"
 				className={styles.btn}

@@ -3,9 +3,9 @@
 .container {
 	display: flex;
 	flex-direction: column;
+	height: fit-content;
+	margin: 0 auto;
 	max-width: 470px;
-	margin: auto;
-	height: 100%;
 }
 
 .header {

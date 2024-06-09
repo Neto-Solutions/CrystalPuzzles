@@ -5,7 +5,7 @@ export default function FeedbackPage() {
 	return (
 		<Page title="Обратная связь">
 			<StudentFeedback />
-			<Button width='387px' title="Выберите тренера" downArrow />
+			<Button width="387px" title="Выберите тренера" downArrow />
 		</Page>
 	);
 }
