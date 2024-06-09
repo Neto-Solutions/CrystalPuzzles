@@ -6,7 +6,7 @@ export default function FeedbackPage() {
 		<Page title="Обратная связь">
 			<Wrapper width="100%" max_width="714px">
 				<Feedback>Оставить комментарий тренеру</Feedback>
-				<Button title="Отправить комментрарий" width="100%" />
+				<Button title="Отправить комментарий" width="100%" />
 			</Wrapper>
 
 			<Button width="347px" height="57px" title="Выберите тренера" downArrow />
