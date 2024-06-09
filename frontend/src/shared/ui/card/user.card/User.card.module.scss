@@ -3,7 +3,7 @@
 .card_wrapper {
 	display: flex;
 	flex-direction: column;
-	@media (max-width: 375px) {
+	@include xs() {
 		max-width: 164px;
 	}
 }
@@ -35,7 +35,7 @@
 	}
 
 	&_name {
-		@media (max-width: 375px) {
+		@include xs() {
 			font-size: 14px;
 		}
 	}

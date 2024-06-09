@@ -1,20 +1,34 @@
 import styles from './Main.page.module.scss';
 import { CardLink, Page, RewardsPopup, Button } from '@shared/ui';
 import { StudentFeedback } from '@features/feedback/';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function studentMainPage() {
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 	const [reward, setReward] = useState(false);
 	const tempArray = Array(2).fill(0);
+	console.log(window.innerWidth)
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 425);
+		};
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, [])
 	return (
 		<Page title="Главная страница">
 			<CardLink
 				title={'Мои награды'}
-				className={styles.reward_img}
+				className={styles.reward_img + ' ' + styles.card_cont}
 				onClick={() => setReward(true)}
 			/>
 			{reward && <RewardsPopup onHide={() => setReward(false)} />}
-			<CardLink to="/train" title={'Мои тренировки'}>
+			<CardLink 
+				to="/train" 
+				title={'Мои тренировки'}
+				className={styles.card_cont}>	
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>
 			<CardLink
@@ -39,9 +53,9 @@ export default function studentMainPage() {
 					))}
 				</div>
 			</CardLink>
-			<StudentFeedback />
+			{!isMobile && <StudentFeedback/> }
 			<Button
-				title={'Написать тренеру'}
+				title='Написать тренеру'
 				width="334px"
 				height="64px"
 				className={styles.btn}

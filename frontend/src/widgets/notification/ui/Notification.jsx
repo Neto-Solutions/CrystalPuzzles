@@ -18,6 +18,7 @@ export default function Notification({
 					<NotificationItem key={index} />
 				))}
 			</div>
+			<div className={styles.cont_bottom_decor}></div>
 			{!isPage && (
 				<Button
 					title="Показать все"

@@ -89,3 +89,8 @@
 .arrow_right {
 	rotate: 180deg;
 }
+@include sm() {
+	.calendar {
+		width: 335px;
+	}
+}

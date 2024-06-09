@@ -34,3 +34,8 @@
 	flex-direction: column;
 	gap: 20px;
 }
+@include sm() {
+	.table {
+		max-width: 335px;
+	}
+}

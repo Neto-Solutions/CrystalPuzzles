@@ -18,8 +18,8 @@
 		}
 	}
 }
-@media (max-width: 425px) {
-	.container {
+@include sm() {
+	.app {
 		min-height: 100%;
 		.app {
 			min-height: 100%;
