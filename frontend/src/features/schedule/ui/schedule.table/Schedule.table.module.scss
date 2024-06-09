@@ -34,7 +34,7 @@
 	flex-direction: column;
 	gap: 20px;
 }
-@media(max-width: 425px) {
+@include sm() {
 	.table {
 		max-width: 335px;
 	}

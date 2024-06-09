@@ -89,7 +89,7 @@
 .arrow_right {
 	rotate: 180deg;
 }
-@media(max-width: 425px) {
+@include sm() {
 	.calendar {
 		width: 335px;
 	}

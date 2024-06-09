@@ -7,7 +7,7 @@
 	background-position-y: 80%;
 }
 
-@include md() {
+@include sm() {
 	.rewart_trio {
 		order: -1;
 		width: 100%;

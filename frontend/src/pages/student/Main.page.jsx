@@ -7,7 +7,7 @@ export default function studentMainPage() {
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 	const [reward, setReward] = useState(false);
 	const tempArray = Array(2).fill(0);
-
+	console.log(window.innerWidth)
 	useEffect(() => {
 		const handleResize = () => {
 			setIsMobile(window.innerWidth <= 425);
@@ -53,7 +53,7 @@ export default function studentMainPage() {
 					))}
 				</div>
 			</CardLink>
-			{isMobile ? (<></>):(<StudentFeedback/>) }
+			{!isMobile && <StudentFeedback/> }
 			<Button
 				title='Написать тренеру'
 				width="334px"

@@ -53,7 +53,7 @@
 	background-color: var(--btn-bg-hover);
 }
 
-@include md() {
+@include sm() {
 	.container {
 		width: 100%;
 	}

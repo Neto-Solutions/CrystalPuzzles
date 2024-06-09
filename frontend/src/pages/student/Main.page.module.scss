@@ -32,7 +32,7 @@
 .sidebar_btn {
 	display: none;
 }
-@include md() {
+@include sm() {
 
 .reward_img {
 	background-position-y: 85%;
