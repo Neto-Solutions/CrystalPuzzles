@@ -31,8 +31,8 @@ export default function App() {
 						<Outlet />
 					</div>
 				</div>
+				<Footer />
 			</Spinner>
-			<Footer />
 		</div>
 	);
 }
