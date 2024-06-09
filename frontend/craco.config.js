@@ -14,6 +14,7 @@ module.exports = {
 			'@supervisor': path.resolve(__dirname, 'src/pages/supervisor'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
 			'@student': path.resolve(__dirname, 'src/pages/student'),
+			'@hooks': path.resolve(__dirname, 'src/shared/hooks'),
 			assets: path.resolve(__dirname, 'src/shared/assets'),
 			styles: path.resolve(__dirname, 'src/app/styles')
 		}
