@@ -53,7 +53,7 @@
 	background-color: var(--btn-bg-hover);
 }
 
-@media (max-width: 425px) {
+@include md() {
 	.container {
 		width: 100%;
 	}

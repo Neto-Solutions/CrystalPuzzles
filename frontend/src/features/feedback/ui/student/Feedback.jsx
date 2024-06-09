@@ -1,6 +1,8 @@
 import styles from './Feedback.module.scss';
 import { Button } from '@shared/ui';
 export default function Feedback() {
+	
+	
 	return (
 		<div className={styles.container}>
 			<div className={styles.textarea_container}>

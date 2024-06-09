@@ -1,11 +1,22 @@
 import styles from './Main.page.module.scss';
 import { CardLink, Page, RewardsPopup, Button } from '@shared/ui';
 import { StudentFeedback } from '@features/feedback/';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function studentMainPage() {
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 	const [reward, setReward] = useState(false);
 	const tempArray = Array(2).fill(0);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 425);
+		};
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, [])
 	return (
 		<Page title="Главная страница">
 			<CardLink
@@ -42,9 +53,9 @@ export default function studentMainPage() {
 					))}
 				</div>
 			</CardLink>
-			<StudentFeedback />
+			{isMobile ? (<></>):(<StudentFeedback/>) }
 			<Button
-				title={'Написать тренеру'}
+				title='Написать тренеру'
 				width="334px"
 				height="64px"
 				className={styles.btn}
