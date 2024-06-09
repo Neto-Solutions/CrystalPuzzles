@@ -10,6 +10,7 @@ import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
 import edit from '@shared/assets/svg/sidebar/edit.svg';
 import styles from './Sidebar.module.scss';
+import { useSwipe } from '@hooks';
 
 export default function Sidebar() {
 	const user = useSelector(selectUser);
@@ -27,6 +28,8 @@ export default function Sidebar() {
 			window.removeEventListener('resize', handleResize);
 		};
 	}, []);
+
+	useSwipe((isOpen) => setIsOpen(isOpen));
 
 	function handleExit() {
 		logout()
