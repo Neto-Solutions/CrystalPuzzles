@@ -16,7 +16,9 @@
 	cursor: pointer;
 	gap: 15px;
 	stroke: #000;
-
+	@include sm() {
+		font-size: var(--fz-mob-btn);
+	}
 	&:hover {
 		background-color: var(--accent-color);
 		color: #fff;
