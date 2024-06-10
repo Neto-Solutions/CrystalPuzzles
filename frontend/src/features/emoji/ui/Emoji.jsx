@@ -5,9 +5,9 @@ export default function AppraisalPage() {
 	return (
 		<>
 			<div className={styles.buttons_container}>
-				<Button title="Добавить эмоцию" />
+				<Button width="335px" title="Добавить эмоцию" />
 				<div className={styles.emoji}></div>
-				<Button title="Отправить комментарий" />
+				<Button width="335px" title="Отправить комментарий" />
 			</div>
 		</>
 	);
