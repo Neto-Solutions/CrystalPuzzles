@@ -17,11 +17,7 @@ function createRouter(role) {
 				(role === 'supervisor' && supervisorRouter) ||
 				(role === 'trainer' && trainerRouter)
 		},
-		{
-			path: '/',
-			element: <App check_in />,
-			children: checkInRouter
-		},
+		...checkInRouter,
 		{
 			path: '*',
 			loader: () => redirect('/')

@@ -13,16 +13,16 @@ export default function LogRegForm({ login = false }) {
 		e.preventDefault();
 		const data = mapUserForm(e);
 		(login
-			? authUser(data).catch((err) => err)
-			: registerUser(data)
-					.then(() =>
-						authUser({
-							username: data.email,
-							password: data.password
-						})
-					)
-					.catch((err) => err)
-		).then(() => location.reload('/'));
+			? authUser(data)
+			: registerUser(data).then(() =>
+					authUser({
+						username: data.email,
+						password: data.password
+					})
+				)
+		)
+			.then(() => navigate('/'))
+			.catch(() => null);
 	}
 	return (
 		<div className={styles.container}>

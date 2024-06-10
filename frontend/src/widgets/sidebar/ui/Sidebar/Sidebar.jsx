@@ -10,23 +10,26 @@ import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
 import edit from '@shared/assets/svg/sidebar/edit.svg';
 import styles from './Sidebar.module.scss';
+import { useSwipe } from '@hooks';
 
 export default function Sidebar() {
 	const user = useSelector(selectUser);
 	const [isOpen, setIsOpen] = useState(false);
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 1440);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 768);
+			setIsMobile(window.innerWidth <= 1440);
 		};
 		window.addEventListener('resize', handleResize);
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
 	}, []);
+
+	useSwipe((isOpen) => setIsOpen(isOpen));
 
 	function handleExit() {
 		logout()
