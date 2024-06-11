@@ -38,7 +38,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
-	@include sm(){
+	@include lg(){
 		justify-content: center;
 		gap: 5px;
 	} 
