@@ -1,4 +1,5 @@
 import styles from './LogReg.module.scss';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@shared/ui';
 import { authUser, registerUser, mapUserForm } from '@entities/user';
@@ -8,6 +9,7 @@ import Politics from './policy/Policy';
 
 export default function LogRegForm({ login = false }) {
 	const navigate = useNavigate();
+	const [err, setErr] = useState(null);
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -22,7 +24,7 @@ export default function LogRegForm({ login = false }) {
 				)
 		)
 			.then(() => navigate('/'))
-			.catch(() => null);
+			.catch((err) => setErr(err.response.data.detail));
 	}
 	return (
 		<div className={styles.container}>
@@ -58,6 +60,8 @@ export default function LogRegForm({ login = false }) {
 				/>
 
 				<Password />
+
+				{err && <div className={styles.error}>{err}</div>}
 
 				<div className={styles.forget_password}>
 					<a href="/#" className={styles.link}>
