@@ -63,11 +63,13 @@ export default function LogRegForm({ login = false }) {
 
 				{err && <div className={styles.error}>{err}</div>}
 
-				<div className={styles.forget_password}>
-					<a href="/#" className={styles.link}>
-						Забыли пароль?
-					</a>
-				</div>
+				{login && (
+					<div className={styles.forget_password}>
+						<a href="/#" className={styles.link}>
+							Забыли пароль?
+						</a>
+					</div>
+				)}
 
 				<Politics />
 
@@ -87,7 +89,10 @@ export default function LogRegForm({ login = false }) {
 							<Button
 								title="Зарегистрироваться"
 								id="registration"
-								onClick={() => navigate('/registration')}
+								onClick={() => {
+									setErr(null);
+									navigate('/registration');
+								}}
 								className={styles.register_btn}
 							/>
 						</>
