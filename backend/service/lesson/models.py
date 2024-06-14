@@ -25,7 +25,7 @@ class Lesson(Base):
 class Space(Base):
     __tablename__ = "Spaces"
     id: Mapped[int] = mapped_column(sa.Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)
-    name: Mapped[str] = mapped_column(sa.String(10), nullable=True)
+    name: Mapped[str] = mapped_column(sa.String(255), nullable=True)
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)

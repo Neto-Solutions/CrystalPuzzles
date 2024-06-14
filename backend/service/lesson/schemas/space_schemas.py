@@ -13,7 +13,7 @@ from core.schemas.base import BaseModel, BaseFilterSchema
 
 class CreateSpaceSchema(BaseModel):
     """ Схема создания моделей кабинетов """
-    name: str
+    name: str = Field(max_length=255)
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
