@@ -14,13 +14,13 @@ from service.group.dependensies import group_repository, student_service
 from service.group.repositories.group_repository import GroupRepository
 from service.group.services.student_service import StudentService
 
-student_router = APIRouter(
+student_group_router = APIRouter(
     prefix="/api/v1/group",
     tags=["StudentGroup"]
 )
 
 
-@student_router.post(
+@student_group_router.post(
     "/add-student/",
     summary="Добавление студента в группу",
     status_code=HTTPStatus.CREATED.value,
@@ -54,7 +54,7 @@ async def add_student_for_group(items: StudentForGroupViewSchema,
         raise HTTPException(status_code=500)
 
 
-@student_router.delete(
+@student_group_router.delete(
     "/delete-student/",
     summary="Удаление студента из группы",
     status_code=HTTPStatus.NO_CONTENT.value,

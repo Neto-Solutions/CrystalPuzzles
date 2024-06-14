@@ -3,12 +3,14 @@ from http import HTTPStatus
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Response
+from pydantic import Field
 from starlette.responses import JSONResponse
 
 from core.schemas.base import Message
 from core.utils.logger import logger
 from service.identity.models import User
-from service.identity.schemas import UserShortSchemaForTable, EditUserSchema, PhotoReadSchema, EditViewSchema
+from service.identity.schemas import UserShortSchemaForTable, EditUserSchema, PhotoReadSchema, EditViewSchema, \
+    AvatarSchema
 from service.identity.security import get_current_user
 from service.identity.services.user_service import UserService
 from service.identity.dependensies import user_service
@@ -176,3 +178,23 @@ async def get_photo(
     except Exception as e:
         logger.error(e)
         raise HTTPException(status_code=500)
+
+
+@profile_router.post(
+    "/set-avatar/",
+    response_model=bool,
+    summary="Выбрать дефолтный аватар",
+    responses={
+        200: {"description": "Успешная обработка данных"},
+        401: {"description": "Не авторизованный пользователь"},
+        400: {"model": Message, "description": "Некорректные данные"},
+        500: {"model": Message, "description": "Серверная ошибка"}},
+)
+async def set_avatar(
+        user_service: Annotated[UserService, Depends(user_service)],
+        avatar_schema: AvatarSchema,
+        current_user: User = Depends(get_current_user())
+):
+    """ authorized """
+    result = await user_service.set_avatar(avatar_schema, current_user.id)
+    return result
