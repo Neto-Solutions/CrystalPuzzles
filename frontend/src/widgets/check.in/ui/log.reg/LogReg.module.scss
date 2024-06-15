@@ -1,4 +1,4 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
 .container {
 	display: flex;
@@ -27,6 +27,15 @@
 	font-weight: 400;
 }
 
+.error {
+	margin-top: -15px;
+	color: red;
+	&::before {
+		content: '* ';
+		color: red;
+	}
+}
+
 .forget_password {
 	text-align: end;
 	margin-bottom: 28px;
@@ -46,11 +55,12 @@
 	align-items: center;
 	gap: 20px;
 }
+
 .register_btn {
 	width: fit-content;
 	height: 53px;
-	color: white;
-	background-color: var(--btn-bg-hover);
+	color: white !important;
+	background-color: #0e1079 !important;
 }
 
 @include sm() {

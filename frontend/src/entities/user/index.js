@@ -12,3 +12,4 @@ export {
 	getProfileAvatar
 } from './api/profile';
 export { default as roleAdaptor } from './helpers/role.adaptor';
+export { default as splitName } from './helpers/split.name';
