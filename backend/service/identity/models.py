@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from sqlalchemy import CheckConstraint
 from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
@@ -25,6 +26,7 @@ class User(Base):
     surname: Mapped[str] = mapped_column(sa.String, nullable=True)
     code: Mapped[int] = mapped_column(nullable=True)
     birthday: Mapped[datetime] = mapped_column(sa.DateTime, nullable=True)
+    avatar: Mapped[int] = mapped_column(sa.Integer, CheckConstraint('avatar >= 1 AND avatar <= 8'), nullable=True)
     photo: Mapped[bytes] = mapped_column(BYTEA, nullable=True)
     role: Mapped[str] = mapped_column(sa.String, sa.ForeignKey("Roles.name"), nullable=True, default="student")
     is_man: Mapped[bool] = mapped_column(sa.Boolean, nullable=False, default=True)
