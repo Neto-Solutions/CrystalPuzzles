@@ -1,9 +1,11 @@
 import styles from './User.card.module.scss';
 import Card from '../card/Card';
 import { useState } from 'react';
+// import useResize from '../../../hooks/useResize';
 
 export default function UserCard({ img, name, children, showBtn = false }) {
 	const [show, setShow] = useState(false);
+	// const isMobile = useResize('sm');
 	return (
 		<Card className={styles.card_wrapper}>
 			<div className={styles.card + ' ' + (show ? styles.card_show : '')}>

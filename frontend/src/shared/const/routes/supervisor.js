@@ -1,4 +1,4 @@
-import MainPage from '@supervisor/Main.page';
+import MainPage from '../../../pages/supervisor/MainPage/ui/MainPage';
 import AnalyticPage from '@supervisor/Analytic.page';
 import AnalyticViewPage from '@supervisor/Analytic.view.page';
 import ProgressGraphPage from '@supervisor/Progress.graph.page';

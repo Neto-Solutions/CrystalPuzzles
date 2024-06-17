@@ -37,7 +37,7 @@ function NotificationItem() {
 		<>
 			<div className={styles.notification_item}>
 				<p className={styles.notification_item_text}>
-					Михаил выполнил все задания
+					<span>Михаил</span> выполнил все задания
 				</p>
 				<Button
 					title={isOpen ? 'Ответить' : 'Открыть'}
