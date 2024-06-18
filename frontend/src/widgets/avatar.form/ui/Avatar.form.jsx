@@ -20,8 +20,7 @@ export default function AvatarForm() {
 			});
 			return;
 		}
-		if (userPhoto) return;
-		updateProfileAvatar(preview).then(() => {
+		updateProfileAvatar(preview || userPhoto).then(() => {
 			navigate('/', { replace: true });
 		});
 	}
