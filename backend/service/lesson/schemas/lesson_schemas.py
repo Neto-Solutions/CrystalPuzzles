@@ -38,6 +38,7 @@ class TrainerShortSchema(BaseModel):
     firstname: Optional[str] = None
     lastname: Optional[str] = None
     surname: Optional[str] = None
+    avatar: Optional[int]
 
 
 class LessonSchemaForTable(BaseModel):

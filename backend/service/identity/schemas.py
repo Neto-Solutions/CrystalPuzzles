@@ -93,6 +93,7 @@ class UserShortSchemaForTable(BaseModel):
     is_man: Optional[bool] = True
     contact: Optional[str] = None
     role: str
+    avatar: Optional[int]
 
 
 class UserFilterSchema(BaseFilterSchema):
@@ -138,6 +139,7 @@ class UserSchemaForTable(UserShortSchemaForTable):
     deleted: bool
     date_add: datetime
     date_update: datetime
+    avatar: Optional[int]
     # code: Optional[int]
 
 
