@@ -1,11 +1,12 @@
-import styles from './User.card.module.scss';
-import Card from '../card/Card';
 import { useState } from 'react';
-// import useResize from '../../../hooks/useResize';
+import Card from '../card/Card';
+import useResize from '@shared/hooks/useResize';
+// import AvatarImage from '@shared/assets/avatar/3.png'; //удалить потом
+import styles from './User.card.module.scss';
 
 export default function UserCard({ img, name, children, showBtn = false }) {
 	const [show, setShow] = useState(false);
-	// const isMobile = useResize('sm');
+	const isMobile = useResize('sm');
 	return (
 		<Card className={styles.card_wrapper}>
 			<div className={styles.card + ' ' + (show ? styles.card_show : '')}>

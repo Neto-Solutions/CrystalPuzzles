@@ -7,7 +7,7 @@
 .sidebar {
 	width: 297px;
 
-	@include lg() {
+	@include md() {
 		border-radius: 12px;
 		width: 92px;
 		position: fixed;
@@ -91,7 +91,7 @@
 	margin-bottom: 15px;
 	cursor: pointer;
 
-	@include lg() {
+	@include md() {
 		margin-bottom: 10px;
 	}
 }

@@ -15,13 +15,13 @@ import { useSwipe } from '@hooks';
 export default function Sidebar() {
 	const user = useSelector(selectUser);
 	const [isOpen, setIsOpen] = useState(false);
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 1440);
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 1440);
+			setIsMobile(window.innerWidth <= 425);
 		};
 		window.addEventListener('resize', handleResize);
 		return () => {
@@ -41,7 +41,6 @@ export default function Sidebar() {
 	}
 
 	return (
-		// открыть или закрыть свайпом - доделать
 		<div className={styles.wrapper}>
 			<aside className={isOpen ? styles.sidebar_open : styles.sidebar}>
 				{isMobile && (
@@ -56,17 +55,16 @@ export default function Sidebar() {
 				<NavMenuList role={user.role} isMobile={isMobile} />
 
 				<div className={styles.links}>
-					<div className={`${styles.sidebar_btn} ${styles.help}`}>
-						<img src={help} className={styles.link_icon} />
-						{!isMobile && <span>Помощь</span>}
-					</div>
-
 					<div
 						className={`${styles.sidebar_btn} ${styles.help}`}
 						onClick={() => navigate('/avatar')}
 					>
 						<img src={edit} className={styles.link_icon} />
 						{!isMobile && <span>Изменить аватарку</span>}
+					</div>
+					<div className={`${styles.sidebar_btn} ${styles.help}`}>
+						<img src={help} className={styles.link_icon} />
+						{!isMobile && <span>Помощь</span>}
 					</div>
 
 					<div

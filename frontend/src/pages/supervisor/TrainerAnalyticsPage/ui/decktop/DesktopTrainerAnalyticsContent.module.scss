@@ -1,0 +1,12 @@
+@use '~styles/mixins' as *;
+
+.cards_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+
+	@include sm() {
+		gap: 10px 8px;
+		justify-content: center;
+	}
+}

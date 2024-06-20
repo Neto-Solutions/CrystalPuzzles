@@ -1,6 +1,6 @@
-import MainPage from '../../../pages/supervisor/MainPage/ui/MainPage';
-import AnalyticPage from '@supervisor/Analytic.page';
-import AnalyticViewPage from '@supervisor/Analytic.view.page';
+import { MainPage } from '@supervisor/MainPage/ui/MainPage';
+import { TrainerAnalyticsPage } from '@supervisor/TrainerAnalyticsPage/ui/TrainerAnalyticsPage';
+import { DetailedAnalyticsPage } from '@supervisor/DetailedAnalyticsPage/ui/DetailedAnalyticsPage';
 import ProgressGraphPage from '@supervisor/Progress.graph.page';
 import ProgressGraphViewPage from '@supervisor/Progress.graph.view.page';
 import SchedulePage from '@supervisor/Schedule.page';
@@ -33,14 +33,14 @@ const supervisorRouter = [
 		element: <ProgressGraphViewPage />
 	},
 	{
-		path: '/analytic',
-		element: <AnalyticPage />,
+		path: '/analytic', //заменить
+		element: <TrainerAnalyticsPage />,
 		local: 'Аналитика',
 		img: analytics
 	},
 	{
-		path: '/analytic/view',
-		element: <AnalyticViewPage />
+		path: '/analytic/view', //заменить
+		element: <DetailedAnalyticsPage />
 	},
 	{
 		path: '/evaluation',

@@ -1,6 +1,5 @@
 @use '~styles/mixins' as *;
 
-
 .list {
 	display: flex;
 	flex-direction: column;
@@ -15,11 +14,11 @@
 	justify-content: center;
 	cursor: pointer;
 
-	@include sm() {
-		max-width: 163px ;
-		height: 210px;
-		text-align: center;
-	}
+	// @include sm() {
+	// 	max-width: 163px ;
+	// 	height: 210px;
+	// 	text-align: center;
+	// }
 }
 
 .buttons {

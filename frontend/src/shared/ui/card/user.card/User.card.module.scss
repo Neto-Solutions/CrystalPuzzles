@@ -2,9 +2,11 @@
 
 .card_wrapper {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 	@include sm() {
+		flex-direction: column;
 		max-width: 164px;
+		height: 210px;
 	}
 }
 
@@ -15,7 +17,6 @@
 
 	@include sm() {
 		flex-direction: column;
-		max-height: 210px;
 		gap: 10px;
 	}
 
@@ -50,12 +51,19 @@
 			text-align: center;
 			padding: 0;
 		}
-
 	}
 
 	&_name {
-		@include xs() {
+		@include sm() {
 			font-size: 14px;
+			&::after {
+				content: '';
+				display: block;
+				margin: 4px auto 0;
+				width: 120px;
+				height: 1px;
+				background-color: var(--accent-color);
+			}
 		}
 	}
 
