@@ -13,6 +13,20 @@ from service.lesson.models import Lesson, Space
 class LessonRepository(BaseRepository):
     model = Lesson
 
+    async def get(self, lesson_id: int):
+        async with async_session() as session:
+            stmt = (
+                select(self.model)
+                .filter(
+                    self.model.id == lesson_id,
+                    self.model.deleted.__eq__(False))
+                .options(
+                    joinedload(self.model.trainer),
+                    joinedload(self.model.space))
+            )
+            res = await session.execute(stmt)
+            return res.scalar_one_or_none()
+
     async def get_by_start_time_and_space(self, space: int, startime: datetime) -> Lesson | None:
         async with async_session() as session:
             stmt = select(self.model).where(self.model.space_id == space).where(self.model.start == startime)
