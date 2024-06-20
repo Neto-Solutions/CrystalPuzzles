@@ -24,10 +24,14 @@ const updateProfile = async (profile) => {
 };
 
 const updateProfileAvatar = async (avatar) => {
-	const formData = new FormData();
-	formData.append('file', avatar);
-
-	const { data } = await $authHost.put('/profile/set-photo', formData);
+	let data;
+	if (avatar > 0 && avatar < 10) {
+		data = await $authHost.post('profile/set-avatar', { avatar_id: avatar });
+	} else {
+		const formData = new FormData();
+		formData.append('file', avatar);
+		data = await $authHost.put('/profile/set-photo', formData);
+	}
 	return data;
 };
 

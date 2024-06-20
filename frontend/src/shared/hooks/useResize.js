@@ -6,7 +6,7 @@ const config = { xs: 375, sm: 425, md: 768, lg: 1440, xl: 1920 };
  * @param {string} size
  */
 export default function useResize(size) {
-	const [state, setState] = useState(false);
+	const [state, setState] = useState(window.innerWidth <= config[size]);
 
 	const handleResize = (size) => {
 		const width = window.innerWidth;

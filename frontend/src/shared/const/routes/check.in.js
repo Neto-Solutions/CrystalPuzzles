@@ -1,5 +1,4 @@
 import CheckInPage from '@check.in/Check.in.page';
-import СonfidentialityPage from '@check.in/Сonfidentiality.page';
 
 const checkInRouter = [
 	{
@@ -9,10 +8,6 @@ const checkInRouter = [
 	{
 		path: 'registration',
 		element: <CheckInPage />
-	},
-	{
-		path: 'politics',
-		element: <СonfidentialityPage />
 	}
 ];
 

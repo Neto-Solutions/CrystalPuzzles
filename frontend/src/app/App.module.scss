@@ -12,16 +12,9 @@
 	.app {
 		display: flex;
 		margin-bottom: 40px;
-
 		.page {
 			width: 100%;
 			max-width: 1081px;
-			margin: 0 auto;
 		}
-	}
-}
-@include sm() {
-	.app {
-		min-height: 100%;
 	}
 }
