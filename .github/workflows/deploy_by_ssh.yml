@@ -2,7 +2,7 @@ name: Deploy by ssh
 
 env:
   SSH_USERNAME: "ubuntu"
-  SSH_HOST_NAME: "ec2-52-29-207-95.eu-central-1.compute.amazonaws.com"
+  SSH_HOST_NAME: "ec2-18-196-119-43.eu-central-1.compute.amazonaws.com"
   SSH_PORT: "22"
 
 on:
