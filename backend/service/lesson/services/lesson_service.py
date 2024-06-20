@@ -20,6 +20,10 @@ class LessonService(BaseService):
             return await super().edit(lesson)
         return None
 
+    async def get(self, lesson_id: int):
+        return await self.repo.get(lesson_id)
+
+
     async def get_all_by_filters(self, filters: LessonFilterSchema):
         return await self.repo.get_all_lesson_by_filter(filters.search_string, filters.page_number,
                                                         filters.page_size, filters.date_begin, filters.trainer)
