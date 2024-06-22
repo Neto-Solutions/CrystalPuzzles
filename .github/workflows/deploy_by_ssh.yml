@@ -25,12 +25,14 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            if [[ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]]; then
-              sudo chmod -R 777 /home/${{ env.SSH_USERNAME }}/Crystall/
-              sudo chown -R ${{ env.SSH_USERNAME }}:${{ env.SSH_USERNAME }} /home/${{ env.SSH_USERNAME }}/Crystall/
+            bash
+            if [ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]; then
+              sudo chmod -R 777 /home/${{ env.SSH_USERNAME }}/Crystall/ && echo "chmod done"
+              sudo chown -R ${{ env.SSH_USERNAME }}:${{ env.SSH_USERNAME }} /home/${{ env.SSH_USERNAME }}/Crystall/ && echo "chown done"
             else
               echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
             fi
+       
             
       - name: Refresh content
         uses: webfactory/ssh-agent@v0.5.4
@@ -49,7 +51,7 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            if [[ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]]; then
+            if [ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]; then
               sudo chmod -R 755 /home/${{ env.SSH_USERNAME }}/Crystall/
               sudo chown -R ${{ env.SSH_USERNAME }}:${{ env.SSH_USERNAME }} /home/${{ env.SSH_USERNAME }}/Crystall/
             else
@@ -63,7 +65,7 @@ jobs:
           username: ${{ env.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
-          script: |
+          run: |
              /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
              /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
               echo "Did not check Docker"
