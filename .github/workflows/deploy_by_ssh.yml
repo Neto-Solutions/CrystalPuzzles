@@ -1,8 +1,8 @@
 name: Deploy by ssh
 
 env:
-  SSH_USERNAME: "ubuntu"
-  SSH_HOST_NAME: "ec2-52-29-207-95.eu-central-1.compute.amazonaws.com"
+  SSH_USERNAME: "admin"
+  SSH_HOST_NAME: "203.31.40.34"
   SSH_PORT: "22"
 
 on:
@@ -80,5 +80,4 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            sudo docker compose -f /home/${{ env.SSH_USERNAME }}/Crystall/docker-compose.yml up -d
-
+            sudo docker compose -f /home/${{ env.SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
