@@ -25,34 +25,21 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            [[ -f /home/${{ env.SSH_USERNAME }}/Crystall/ ]] \
-            && sudo chmod -R 777 /home/${{ env.SSH_USERNAME }}/Crystall/ \
-            || echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+            if [[ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]]; then
+              sudo chmod -R 777 /home/${{ env.SSH_USERNAME }}/Crystall/
+              sudo chown -R ${{ env.SSH_USERNAME }}:${{ env.SSH_USERNAME }} /home/${{ env.SSH_USERNAME }}/Crystall/
+            else
+              echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+            fi
             
-      # - name: Refresh content
-      #   uses: webfactory/ssh-agent@v0.5.4
-      #   with:
-      #     ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
-      # - name: Sync Repository via SSH
-      #   run: |
-      #     rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
-      #     . ${{ env.SSH_USERNAME }}@${{ env.SSH_HOST_NAME }}:Crystall
-
-      - name: Setup SSH
+      - name: Refresh content
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
-
-      - name: Add known hosts
+      - name: Sync Repository via SSH
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-    
-      - name: Refresh content
-        run: |
-          rsync -e "ssh -o StrictHostKeyChecking=no" --archive --compress --delete \
+          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
           . ${{ env.SSH_USERNAME }}@${{ env.SSH_HOST_NAME }}:Crystall
-      # ________________
 
       - name: Change directory permitions again
         uses: appleboy/ssh-action@master
@@ -62,8 +49,12 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ env.SSH_PORT }}
           script: |
-            sudo chmod -R 777 /home/${{ env.SSH_USERNAME }}/Crystall/devops \
-            && ls -l /home/${{ env.SSH_USERNAME }}/Crystall/devops
+            if [[ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]]; then
+              sudo chmod -R 755 /home/${{ env.SSH_USERNAME }}/Crystall/
+              sudo chown -R ${{ env.SSH_USERNAME }}:${{ env.SSH_USERNAME }} /home/${{ env.SSH_USERNAME }}/Crystall/
+            else
+              echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+            fi
 
       - name: Check docker and docker-compose
         uses: appleboy/ssh-action@master
@@ -74,7 +65,8 @@ jobs:
           port: ${{ env.SSH_PORT }}
           script: |
              /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
-             /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh
+             /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
+              echo "Did not check Docker"
 
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
