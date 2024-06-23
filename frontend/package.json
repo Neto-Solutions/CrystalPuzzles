@@ -34,6 +34,7 @@
 		"serve": "serve -s build",
 		"test": "craco test",
 		"eject": "craco eject",
+		"set:env": "node --env-file=.env set.env.js",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
@@ -56,6 +57,7 @@
 		"@testing-library/jest-dom": "~5.17.0",
 		"@testing-library/react": "~13.4.0",
 		"@testing-library/user-event": "~13.5.0",
+		"ejs": "^3.1.10",
 		"eslint": "~8.57.0",
 		"eslint-config-prettier": "~9.1.0",
 		"eslint-plugin-prettier": "~5.1.3",
