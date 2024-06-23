@@ -30,7 +30,7 @@
 	},
 	"scripts": {
 		"start": "craco start",
-		"build": "craco build",
+		"build": "npm run set:env && craco build",
 		"serve": "serve -s build",
 		"test": "craco test",
 		"eject": "craco eject",
