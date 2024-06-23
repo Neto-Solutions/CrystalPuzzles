@@ -1,14 +1,15 @@
 const ejs = require('ejs');
 const fs = require('fs');
+const { exit } = require('process');
 
-fs.existsSync('./origin') || fs.mkdirSync('./origin');
-fs.existsSync('./origin/index.html') ||
-	fs.copyFileSync('./public/index.html', './origin/index.html');
+require('dotenv').config();
 
-let originHtml = fs.readFileSync('./origin/index.html', 'utf8');
+fs.existsSync('./build/index.html') || exit('build folder not exist');
+
+let originHtml = fs.readFileSync('./build/index.html', 'utf8');
 
 let newHtml = ejs.render(originHtml, {
 	REACT_APP_SERVER_API: process.env.REACT_APP_SERVER_API
 });
 
-fs.writeFileSync('./public/index.html', newHtml);
+fs.writeFileSync('./build/index.html', newHtml);
