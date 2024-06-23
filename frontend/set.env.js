@@ -1,8 +1,7 @@
+require('dotenv').config();
 const ejs = require('ejs');
 const fs = require('fs');
 const { exit } = require('process');
-
-require('dotenv').config();
 
 fs.existsSync('./build/index.html') || exit('build folder not exist');
 
