@@ -1,13 +1,13 @@
 const ejs = require('ejs');
 const fs = require('fs');
 
-fs.existsSync('./old') || fs.mkdirSync('./old');
-fs.existsSync('./old/index.html') ||
-	fs.copyFileSync('./public/index.html', './old/index.html');
+fs.existsSync('./origin') || fs.mkdirSync('./origin');
+fs.existsSync('./origin/index.html') ||
+	fs.copyFileSync('./public/index.html', './origin/index.html');
 
-let oldHtml = fs.readFileSync('./old/index.html', 'utf8');
+let originHtml = fs.readFileSync('./origin/index.html', 'utf8');
 
-let newHtml = ejs.render(oldHtml, {
+let newHtml = ejs.render(originHtml, {
 	REACT_APP_SERVER_API: process.env.REACT_APP_SERVER_API
 });
 
