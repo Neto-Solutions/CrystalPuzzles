@@ -2,7 +2,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { redirect } from 'react-router-dom';
 
-axios.defaults.baseURL = window.API_URL || process.env.REACT_APP_SERVER_API;
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_API || window.API_URL;
+
 const $host = axios.create();
 
 const $authHost = axios.create();
