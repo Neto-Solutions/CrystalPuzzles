@@ -31,7 +31,7 @@
 	"scripts": {
 		"start": "craco start",
 		"build": "craco build",
-		"serve": "node set.env.js && serve -s build",
+		"serve": "node set.env.js && serve -s build -p 3000",
 		"test": "craco test",
 		"eject": "craco eject",
 		"lint": "eslint .",
