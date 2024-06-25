@@ -1,0 +1,23 @@
+{
+  "name": "crystalpuzzles",
+  "version": "1.0.0",
+  "description": "## Цель проекта:",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "husky": "^9.0.11"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo 'pre-commit' && npx lint-staged"
+    }
+  }
+}
