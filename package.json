@@ -7,17 +7,13 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "husky": "^9.0.11"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "echo 'pre-commit run' && npx lint-staged"
-    }
+  "devDependencies": {
+    "husky": "^8.0.0"
   }
 }
