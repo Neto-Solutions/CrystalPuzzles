@@ -33,5 +33,8 @@ export default function App() {
 				<Footer />
 			</Spinner>
 		</div>
+
+
+
 	);
 }
