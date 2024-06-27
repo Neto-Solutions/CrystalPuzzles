@@ -40,7 +40,7 @@ jobs:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
       - name: Sync Repository via SSH
         run: |
-          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
+          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p 22156" --archive --compress --delete \
           . ${{ env.SSH_USERNAME }}@${{ env.SSH_HOST_NAME }}:Crystall
 
       - name: Change directory permitions again
