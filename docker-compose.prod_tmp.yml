@@ -56,6 +56,9 @@ services:
   front:
     container_name: front
     build: ./frontend/
+    env_file:
+      # - .env
+      - .env.template # для быстрого локального запуска
     depends_on:
       - api
     ports:
