@@ -1,7 +1,7 @@
 name: Deploy by ssh
 
 env:
-  SSH_USERNAME: "admin"
+  SSH_USERNAME: "crystall_admin"
   SSH_HOST_NAME: "203.31.40.34"
   SSH_PORT: "22"
 
