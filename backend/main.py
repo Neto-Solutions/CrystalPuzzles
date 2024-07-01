@@ -11,14 +11,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from core.config import get_settings
 from core.routers import healthCheckRoute
 from core.utils.healthcheck import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
+from service.group.routers.group_router import group_router
 from service.identity.initialize import RolesInitialize, BaseUserInitialize
 
-from service.group.routers.group_router import group_router
 from service.identity.routers.admin_panel_router import admin_panel_router
 from service.identity.routers.auth_router import auth_routers
+from service.identity.routers.students_router import student_router
 from service.identity.routers.user_router import user_router
 from service.identity.routers.profile_router import profile_router
-from service.group.routers.student_router import student_router
+from service.group.routers.student_group_router import student_group_router
 from service.lesson.routers.lesson_router import lesson_router
 from service.lesson.routers.space_router import space_router
 from service.training.router import training_router
@@ -102,9 +103,10 @@ _healthChecks.add(HealthCheckUri(
 all_routers = [
     user_router,
     profile_router,
+    student_router,
     auth_routers,
     group_router,
-    student_router,
+    student_group_router,
     training_router,
     space_router,
     lesson_router,
@@ -147,5 +149,5 @@ if __name__ == '__main__':
         host="0.0.0.0",
         port=settings.port,
         reload=True,
-        # loop='uvloop', # работает только на linux
+        loop='uvloop', # работает только на linux
     )

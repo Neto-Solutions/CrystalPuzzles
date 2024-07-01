@@ -1,6 +1,5 @@
 import styles from './Feedback.page.module.scss';
-import Page from '@components/page/Page';
-import Button from '@components/button/Button';
+import { Page, Button } from '@shared/ui';
 
 export default function FeedbackPage() {
 	return (

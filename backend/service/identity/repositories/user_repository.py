@@ -1,4 +1,5 @@
 import math
+from typing import Optional
 
 from fastapi import HTTPException
 from sqlalchemy import select, func, update
@@ -35,7 +36,7 @@ class UserRepository(BaseRepository):
                 await session.rollback()
                 raise HTTPException(status_code=500, detail=str(e))
 
-    async def get_all_user_by_filter(self, search_string: str, page_number: int, page_size: int):
+    async def get_all_user_by_filter(self, search_string: str, page_number: int, page_size: int, deleted: Optional[bool]):
         async with async_session() as session:
             stmt = select(self.model)
 
@@ -46,8 +47,9 @@ class UserRepository(BaseRepository):
                     (self.model.lastname.ilike(f"%{search_string}%")) |
                     (self.model.surname.ilike(f"%{search_string}%"))
                 )
-
-            count_records = (await session.execute(select(func.count('*')).select_from(stmt))).scalar_one()
+            if deleted is not None:
+                stmt = stmt.filter(self.model.deleted.__eq__(deleted))
+            count_records = (await session.execute(select(func.count(stmt.c.id)))).scalar_one()
             if count_records != 0:
                 records = (await session.execute(
                     stmt.order_by(self.model.date_update.desc()).offset(page_number * page_size).limit(
@@ -71,3 +73,30 @@ class UserRepository(BaseRepository):
         if trainer and trainer.role == "student":
             return True
         return False
+
+    async def get_all_students_by_filter(self, search_string: str, page_number: int, page_size: int):
+        async with async_session() as session:
+            stmt = select(self.model).filter(
+                self.model.deleted.__eq__(False),
+                self.model.role.__eq__("student")
+            )
+
+            if search_string:
+                stmt = stmt.filter(
+                    (self.model.email.ilike(f"%{search_string}%")) |
+                    (self.model.firstname.ilike(f"%{search_string}%")) |
+                    (self.model.lastname.ilike(f"%{search_string}%")) |
+                    (self.model.surname.ilike(f"%{search_string}%"))
+                )
+            count_records = (await session.execute(select(func.count(stmt.c.id)))).scalar_one()
+            if count_records != 0:
+                records = (await session.execute(
+                    stmt.order_by(self.model.date_update.desc()).offset(page_number * page_size).limit(
+                        page_size))).scalars()
+            response = {
+                "page": page_number,
+                "max_page_count": math.ceil(count_records / page_size) - 1,
+                "count_records": count_records,
+                "records": [row for row in records] if count_records != 0 else []
+            }
+        return response

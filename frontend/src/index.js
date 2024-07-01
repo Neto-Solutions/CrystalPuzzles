@@ -1,24 +1,26 @@
-import './index.scss';
+import '@app/styles/index.scss';
+import * as serviceWorker from './serviceWorkerRegistration';
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider, useSelector } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
-import store from './store';
-import createRouter from './routes';
+import { store } from '@app/providers/store';
+import { RouterProvider as Router } from 'react-router-dom';
+import { createRouter } from '@app/providers/router';
+import { selectUser } from '@entities/user';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<Root />
-		</Provider>
-	</React.StrictMode>
+	<Provider store={store}>
+		<RouterProvider />
+	</Provider>
 );
 
-function Root() {
-	const role = useSelector((state) => state.user.role);
+function RouterProvider() {
+	const { role } = useSelector(selectUser);
 	const router = useMemo(() => {
 		return createRouter(role);
 	}, [role]);
-	return <RouterProvider router={router} />;
+	return <Router router={router} />;
 }
+
+serviceWorker.register();

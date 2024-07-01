@@ -7,10 +7,8 @@ from fastapi import Depends, HTTPException
 import bcrypt
 
 from fastapi.security import OAuth2PasswordBearer
-from jose import jwt
+import jwt
 from jwt import ExpiredSignatureError, DecodeError, MissingRequiredClaimError
-
-from passlib.context import CryptContext
 
 from core.config import get_settings
 from core.database import async_session

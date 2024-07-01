@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import Query
 from pydantic import AfterValidator
 from typing_extensions import Annotated
@@ -45,3 +47,8 @@ class BaseFilterSchema(BaseModel):
     page_number: int = Query(ge=0, default=0, description="Номер страницы")
     page_size: int = Query(ge=1, le=100, default=settings.page_size, description="Размер страницы")
     search_string: str | None = Query(default=None, description="Строка поиска")
+
+
+class DataRangeBaseFilterSchema(BaseFilterSchema):
+    date_begin: datetime | None = Query(default=None, description="Дата начала")
+    date_end: datetime | None = Query(default=None, description="Дата конца")

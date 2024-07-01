@@ -1,7 +1,8 @@
 from http import HTTPStatus
-from typing import Annotated
+from typing import Annotated, Optional
 
-from fastapi import APIRouter, Depends, Response, HTTPException
+from fastapi import APIRouter, Depends, Response, HTTPException, Query
+from fastapi.responses import JSONResponse
 
 from core.schemas.base import Message
 from core.utils.logger import logger
@@ -9,8 +10,7 @@ from service.identity.models import User
 from service.identity.schemas import UserSchemaForTable, UserFilterSchema, UserViewSchemaForPage, AdminPanelEditSchema
 from service.identity.security import get_current_user
 from service.identity.services.admin_service import AdminService
-from service.identity.services.user_service import UserService
-from service.identity.dependensies import user_service, admin_service
+from service.identity.dependensies import admin_service
 
 admin_panel_router = APIRouter(
     prefix="/api/v1/admin-panel",
@@ -23,7 +23,6 @@ admin_panel_router = APIRouter(
     response_model=UserViewSchemaForPage,
     summary="Возвращает данные всех пользователей",
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
@@ -31,14 +30,15 @@ admin_panel_router = APIRouter(
 async def get_all_users(
         admin_service: Annotated[AdminService, Depends(admin_service)],
         filters: UserFilterSchema = Depends(),
+        deleted: bool = Query(default=None, description="Удаленные пользователи"),
         current_user: User = Depends(get_current_user(("admin",)))
 ):
     try:
-        user_list = await admin_service.get_all_by_filters(filters)
+        user_list = await admin_service.get_all_by_filters(filters, deleted)
         return user_list
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @admin_panel_router.get(
@@ -46,7 +46,6 @@ async def get_all_users(
     response_model=UserSchemaForTable,
     summary="Возвращает данные пользователя по id",
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
@@ -56,18 +55,21 @@ async def get_user_by_id(
         admin_service: Annotated[AdminService, Depends(admin_service)],
         current_user: User = Depends(get_current_user(("admin",)))
 ):
-    user = await admin_service.get_with_deleted(user_id)  # ToDO: With deleted
-    if user:
-        return user
-    logger.error({"user_id": user_id, "message": "User not exist"})
-    return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+    try:
+        user = await admin_service.get_with_deleted(user_id)
+        if user:
+            return user
+        logger.error({"user_id": user_id, "message": "User not exist"})
+        return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="User not exist")
+    except Exception as e:
+        logger.error(e)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 @admin_panel_router.put(
     "/users/",
     response_model=bool,
     summary="Редактирование пользователей",
     responses={
-        200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
@@ -82,11 +84,11 @@ async def edit_user(
         result = await admin_service.edit(data)
         if result:
             return result
-        logger.error({"user_id": current_user.id, "message": "User not found"})
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
+        logger.error({"user_id": current_user.id, "message": "User not exist"})
+        return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="User not exist")
     except Exception as e:
         logger.error(e)
-        raise HTTPException(status_code=500)
+        raise HTTPException(status_code=500, detail=e.__str__())
 
 
 @admin_panel_router.delete(
@@ -108,8 +110,8 @@ async def delete_user(
     deleted = await admin_service.delete(user_id)
     if deleted:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("User not found")
-    raise HTTPException(status_code=400)
+    logger.error("User not exist")
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="User not exist")
 
 
 @admin_panel_router.delete(
@@ -132,4 +134,4 @@ async def remove_user(
     if group:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
     logger.error("User not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="User not exist")

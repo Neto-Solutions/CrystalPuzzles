@@ -3,3 +3,33 @@
 	font-weight: $fw;
 	font-size: $fs;
 }
+
+@mixin xs() {
+	@media (max-width: 375px) {
+		@content;
+	}
+}
+
+@mixin sm() {
+	@media (max-width: 425px) {
+		@content;
+	}
+}
+
+@mixin md() {
+	@media (max-width: 768px) {
+		@content;
+	}
+}
+
+@mixin lg() {
+	@media (max-width: 1440px) {
+		@content;
+	}
+}
+
+@mixin xl() {
+	@media (max-width: 1920px) {
+		@content;
+	}
+}

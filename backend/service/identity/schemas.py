@@ -61,7 +61,7 @@ class CreateUserSchema(BaseModel):
             return value.replace(tzinfo=None)
 
 
-class EditUserSchema(BaseModel):
+class EditViewSchema(BaseModel):
     """ Валидация редактирования данных пользователя """
     firstname: Optional[str] = None
     lastname: Optional[str] = None
@@ -69,8 +69,11 @@ class EditUserSchema(BaseModel):
     birthday: Optional[datetime] = None
     is_man: Optional[bool] = True
     contact: Optional[str] = None
+
+
+class EditUserSchema(EditViewSchema):
+    """ Валидация редактирования данных пользователя """
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
-    email: str | None = Field(default=None, hidden=True)
     id: int | None = Field(default=None, hidden=True)
 
     @field_validator('birthday')
@@ -90,6 +93,7 @@ class UserShortSchemaForTable(BaseModel):
     is_man: Optional[bool] = True
     contact: Optional[str] = None
     role: str
+    avatar: Optional[int]
 
 
 class UserFilterSchema(BaseFilterSchema):
@@ -114,6 +118,10 @@ class PhotoReadSchema(BaseModel):
     photo: Optional[bytes] = None
 
 
+class AvatarSchema(BaseModel):
+    avatar_id: int = Field(..., description="ID аватара", ge=1, le=8)
+
+
 # endregion -------------------------------------------------------------------------
 
 # region ----------------------------- AdminPanel -----------------------------------
@@ -131,7 +139,8 @@ class UserSchemaForTable(UserShortSchemaForTable):
     deleted: bool
     date_add: datetime
     date_update: datetime
-    code: Optional[int]
+    avatar: Optional[int]
+    # code: Optional[int]
 
 
 class UserViewSchemaForPage(BaseModel):
@@ -139,6 +148,13 @@ class UserViewSchemaForPage(BaseModel):
     max_page_count: int
     count_records: int
     records: List[UserSchemaForTable]
+
+
+class UserShortViewSchemaForPage(BaseModel):
+    page: int
+    max_page_count: int
+    count_records: int
+    records: List[UserShortSchemaForTable]
 
 
 class AdminPanelEditSchema(BaseModel):
@@ -157,13 +173,11 @@ class AdminPanelEditSchema(BaseModel):
     role: Optional[RoleEnum] = None
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
-
-
-
     @field_validator('birthday')
     def validate_birthday(cls, value):
         if value is not None:
             return value.replace(tzinfo=None)
+
 
 # endregion -------------------------------------------------------------------------
 
