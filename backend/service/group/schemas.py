@@ -4,7 +4,7 @@ from typing import Optional, List
 from fastapi import Query
 from pydantic import Field
 
-from core.schemas.base import BaseModel, BaseFilterSchema
+from common.schema.base_schemas import BaseModel, BaseFilterSchema
 
 
 class StudentViewModel(BaseModel):

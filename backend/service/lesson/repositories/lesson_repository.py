@@ -6,7 +6,7 @@ from sqlalchemy.orm import joinedload
 
 from core.database import async_session
 from core.repository import BaseRepository
-from service.identity.models import User
+from service.users.models import User
 from service.lesson.models import Lesson, Space
 
 

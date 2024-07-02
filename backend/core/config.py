@@ -1,14 +1,14 @@
-# import os
 from functools import lru_cache
 from typing import Union, Optional, Any
 
-from pydantic import Field, PostgresDsn, field_validator, HttpUrl
+from pydantic import Field, PostgresDsn, field_validator
 from pydantic_core.core_schema import FieldValidationInfo
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
     """Настройки окружения."""
+
     # region ---------------------------- Database ----------------------------------
     pg_host: str = Field(alias="PG_HOST")
     pg_user: str = Field(alias="PG_USER")
@@ -22,6 +22,7 @@ class Settings(BaseSettings):
         default="", env="ASYNC_DATABASE_URI",
     )
     # endregion ---------------------------------------------------------------------
+
     # region -------------------------------- Auth ----------------------------------
     # token_url: HttpUrl = Field(env="TOKEN_URL")
     # private_key_path: Path = Field(env="PRIVATE_KEY_PATH")
@@ -33,6 +34,8 @@ class Settings(BaseSettings):
     algorithm: str = Field(alias="ALGORITHM")
     # endregion ---------------------------------------------------------------------
 
+    # region ------------------------- Application ----------------------------
+
     port: int = Field(env="PORT")
 
     openapi_url: str = Field(env="OPENAPI_URL", default="/swagger/docs/v1.0/crystal")
@@ -41,6 +44,7 @@ class Settings(BaseSettings):
 
     page_size: int = Field(env="PAGE_SIZE", default=10)
 
+    # endregion ---------------------------------------------------------------------
 
     @field_validator("async_database_uri")
     def assemble_db_async_connection(

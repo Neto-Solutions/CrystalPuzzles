@@ -12,7 +12,7 @@ from jwt import ExpiredSignatureError, DecodeError, MissingRequiredClaimError
 
 from core.config import get_settings
 from core.database import async_session
-from service.identity.models import User
+from service.users.models import User
 from service.identity.schemas import AuthExceptionSchema
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login/", scheme_name="JWT")

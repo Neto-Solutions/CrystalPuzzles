@@ -1,6 +1,5 @@
 import math
 
-from datetime import datetime
 from typing import Optional
 
 from sqlalchemy import select, func, or_
@@ -9,7 +8,7 @@ from sqlalchemy.orm import joinedload
 from core.database import async_session
 from core.repository import BaseRepository
 from service.group.models import Group, StudentGroup
-from service.identity.models import User
+from service.users.models import User
 
 
 class GroupRepository(BaseRepository):

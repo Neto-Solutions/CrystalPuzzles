@@ -5,12 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from service.identity.models import User, Role, Rank, Task
-from service.group.models import Group, StudentGroup
-from service.lesson.models import Lesson, Check, TrainingCheck, Space
-from service.training.models import Training
+from common.model.base_model import Base
 from core.config import get_settings
-from core.database import Base
 
 settings = get_settings()
 # this is the Alembic Config object, which provides

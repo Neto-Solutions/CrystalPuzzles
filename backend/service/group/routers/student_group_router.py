@@ -4,11 +4,11 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Response, HTTPException
 
 from core.schemas.base import Message
-from core.utils.logger import logger
+from core.logger import logger
 from service.group.schemas import StudentForGroupViewSchema
-from service.identity.models import User
+from service.users.models import User
 from service.identity.security import get_current_user
-from service.identity.repositories.user_repository import UserRepository
+from service.users.repository import UserRepository
 from service.identity.dependensies import user_repository
 from service.group.dependensies import group_repository, student_service
 from service.group.repositories.group_repository import GroupRepository

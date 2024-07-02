@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
 
-from core.database import Base
+from common.model.base_model import Base
 
 
 class Lesson(Base):
@@ -19,7 +19,7 @@ class Lesson(Base):
 
     trainer = relationship("User", back_populates="lessons")
     space = relationship("Space", back_populates="lessons")
-    # check = relationship("Check", back_populates="lesson")
+    check = relationship("Check", back_populates="lessons")
 
 
 class Space(Base):
@@ -39,13 +39,13 @@ class Check(Base):
     student_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
 
     lesson_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
-    # lesson = relationship("Lesson", back_populates="check")
+    lesson = relationship("Lesson", back_populates="check")
 
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
 
-    training_data = relationship("TrainingCheck", back_populates="check")
+    training_data_id = relationship("TrainingCheck", back_populates="check")
 
 
 class TrainingCheck(Base):

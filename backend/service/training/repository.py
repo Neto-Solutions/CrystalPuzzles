@@ -3,7 +3,7 @@ import math
 from sqlalchemy import select, func
 
 from core.database import async_session
-from service.identity.models import User
+from service.users.models import User
 from core.repository import BaseRepository
 from service.training.models import Training
 

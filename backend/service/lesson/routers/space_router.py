@@ -5,8 +5,8 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Response
 
 from core.schemas.base import Message
-from core.utils.logger import logger
-from service.identity.models import User
+from core.logger import logger
+from service.users.models import User
 from service.identity.security import get_current_user
 
 from service.lesson.schemas.space_schemas import SpaceSchemaForTable, SpaceViewSchemaForPage, SpaceFilterSchema, \

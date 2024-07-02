@@ -6,9 +6,9 @@ from fastapi import APIRouter, Depends, HTTPException, Response
 from fastapi.responses import JSONResponse
 
 from core.schemas.base import Message
-from core.utils.logger import logger
-from service.identity.models import User
-from service.identity.repositories.user_repository import UserRepository
+from core.logger import logger
+from service.users.models import User
+from service.users.repository import UserRepository
 
 from service.group.schemas import GroupFilterSchema, GroupViewSchemaForPage, CreateGroupSchema, EditGroupSchema, \
     GroupResponseModel

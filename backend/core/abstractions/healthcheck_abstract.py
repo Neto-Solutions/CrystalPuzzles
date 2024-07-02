@@ -1,34 +1,40 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from core.schemas.healthcheck import HealthCheckStatusEnum
+from service.healthcheck.schemas import HealthCheckStatusEnum
 
 
 class AbstractHealthCheck(ABC):
-    _connectionUri: str
+    _connection_uri: str
     _alias: str
     _tags: List[str]
 
     @abstractmethod
-    def setConnectionUri(self, value: str) -> None:
-        """ConnectionUri will be the value that is requested to check the health of an endpoint."""
+    def set_connection_uri(self, value: str) -> None:
+        """
+        ConnectionUri will be the value that
+        is requested to check the health of an endpoint.
+        """
         pass
 
     @abstractmethod
-    def setName(self, value: str) -> None:
+    def set_name(self, value: str) -> None:
         """The Name is the friendly name of the health object."""
         pass
 
     @abstractmethod
-    def getService(self) -> str:
-        """The Service is a definition of what kind of endpoint we are checking on."""
+    def get_service(self) -> str:
+        """
+        The Service is a definition of
+        what kind of endpoint we are checking on.
+        """
         pass
 
     @abstractmethod
-    def getTags(self) -> List[str]:
+    def get_tags(self) -> List[str]:
         pass
 
     @abstractmethod
-    def __checkHealth__(self) -> HealthCheckStatusEnum:
+    def __check_health__(self) -> HealthCheckStatusEnum:
         """Requests data from the endpoint to validate health."""
         pass

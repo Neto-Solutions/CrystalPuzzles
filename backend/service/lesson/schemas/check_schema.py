@@ -12,12 +12,17 @@ from core.schemas.base import BaseModel, BaseFilterSchema
 from service.lesson.schemas.space_schemas import SpaceSchemaForTable
 
 
+class TrainingCheck(BaseModel):
+    """ Схема оценки выполнения упражнения """
+    training_id: int
+    repetitions: int = Field(ge=1)
+    assessment: Optional[int] = Field(default=None, le=10, ge=1)
+
+
 class CreateCheckSchema(BaseModel):
     """ Схема создания моделей занятий """
-    space_id: int
-    trainer_id: int
-    trainer_comments: Optional[str]
-    start: datetime
+    student_id: int
+    training_check: TrainingCheck
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 

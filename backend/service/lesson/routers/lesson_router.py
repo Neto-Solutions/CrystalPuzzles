@@ -5,9 +5,9 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Response
 
 from core.schemas.base import Message
-from core.utils.logger import logger
-from service.identity.models import User
-from service.identity.repositories.user_repository import UserRepository
+from core.logger import logger
+from service.users.models import User
+from service.users.repository import UserRepository
 
 from service.identity.dependensies import user_repository
 from service.identity.security import get_current_user

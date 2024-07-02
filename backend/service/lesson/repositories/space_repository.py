@@ -4,7 +4,7 @@ from sqlalchemy import select, func
 
 from core.database import async_session
 from core.repository import BaseRepository
-from service.identity.models import User
+from service.users.models import User
 from service.lesson.models import Space
 
 
