@@ -1,17 +1,13 @@
 from http import HTTPStatus
-from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException
-from starlette.responses import Response
+from fastapi import APIRouter
+from starlette.responses import Response, JSONResponse
 
-from core.schemas.base import Message
-from core.logger import logger
-from service.users.models import User
-from service.identity.security import get_current_user
+from common.dependensies import TrainerSupervisorAdminDep, AdminDep
+from common.schema.base_schemas import Message
+from service.training.dependensies import TrainingUOWDep, TrainingServiceDep, TrainingFilterDep
 from service.training.schemas import CreateTrainingSchema, EditTrainingSchema, TrainingSchemaForTable, \
-    TrainingViewSchemaForPage, TrainingFilterSchema
-from service.training.service import TrainingService
-from service.training.dependensies import training_service
+    TrainingViewSchemaForPage
 
 training_router = APIRouter(
     prefix="/api/v1/training",
@@ -31,19 +27,15 @@ training_router = APIRouter(
 )
 async def get_training(
         training_id: int,
-        training_service: Annotated[TrainingService, Depends(training_service)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: TrainingUOWDep,
+        training_service: TrainingServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """ admin, supervisor, trainer """
-    try:
-        training = await training_service.get(training_id)
-        if training:
-            return training
-        logger.error("Training not found")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    training = await training_service.get(uow, training_id)
+    if training:
+        return training
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Training not found")
 
 
 @training_router.get(
@@ -57,23 +49,20 @@ async def get_training(
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
 async def get_all_training(
-        training_service: Annotated[TrainingService, Depends(training_service)],
-        filters: TrainingFilterSchema = Depends(),
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        filters: TrainingFilterDep,
+        uow: TrainingUOWDep,
+        training_service: TrainingServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """ admin, supervisor, trainer """
-    try:
-        training_list = await training_service.get_all_by_filters(filters)
-        return training_list
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    training_list = await training_service.get_all_by_filters(uow, filters)
+    return training_list
 
 
 @training_router.post(
     "/",
     summary="Создание тренировки",
-    # response_model=
+    response_model=int,
     responses={
         200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
@@ -82,19 +71,15 @@ async def get_all_training(
 )
 async def create_training(
         model: CreateTrainingSchema,
-        training_service: Annotated[TrainingService, Depends(training_service)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: TrainingUOWDep,
+        training_service: TrainingServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        training_id = await training_service.add(model)
-        if training_id:
-            return training_id
-        logger.error("Training existing")
-        return Response(status_code=HTTPStatus.CONFLICT.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    training_id = await training_service.add(uow, model)
+    if training_id:
+        return training_id
+    return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Training existing")
 
 
 @training_router.put(
@@ -110,19 +95,17 @@ async def create_training(
 )
 async def edit_training(
         model: EditTrainingSchema,
-        training_service: Annotated[TrainingService, Depends(training_service)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: TrainingUOWDep,
+        training_service: TrainingServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        result = await training_service.edit(model)
-        if result:
-            return result
-        logger.error("Training already exists")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await training_service.edit(uow, model)
+    if result:
+        return result
+    elif result is False:
+        return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Training not found")
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Training already exists")
 
 
 @training_router.delete(
@@ -137,15 +120,15 @@ async def edit_training(
 )
 async def delete_group(
         training_id: int,
-        training_service: Annotated[TrainingService, Depends(training_service)],
-        current_user: User = Depends(get_current_user(("admin",)))
+        uow: TrainingUOWDep,
+        training_service: TrainingServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    deleted = await training_service.delete(training_id)
+    deleted = await training_service.delete(uow, training_id)
     if deleted:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Training not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Training not found")
 
 
 @training_router.delete(
@@ -160,12 +143,12 @@ async def delete_group(
 )
 async def remove_training(
         training_id: int,
-        training_service: Annotated[TrainingService, Depends(training_service)],
-        current_user: User = Depends(get_current_user(("admin",)))
+        uow: TrainingUOWDep,
+        training_service: TrainingServiceDep,
+        current_user: AdminDep
 ):
     """ admin """
-    training = await training_service.delete_db(training_id)
+    training = await training_service.delete_db(uow, training_id)
     if training:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Training not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=400, content="Training not found")
