@@ -10,13 +10,18 @@ export const Account = ({ user, className, isMobile }) => {
 	const position = useMemo(() => roleAdaptor(user.role), [user]);
 
 	useEffect(() => {
+		if (user.avatar) {
+			setUserPhoto(require(`@shared/assets/avatar/${user.avatar}.png`));
+			return;
+		}
+
 		if (LS.get('avatar')) return;
+
 		getProfileAvatar()
 			.then(({ photo }) => {
 				if (!photo) return;
-				setUserPhoto(photo);
 				LS.set('avatar', photo);
-				return photo;
+				setUserPhoto(LS.get('avatar'));
 			})
 			.catch(() => setUserPhoto(avatar));
 	}, [user]);

@@ -1,42 +1,32 @@
 import styles from './Avatar.form.module.scss';
 import { useState } from 'react';
 import { Button } from '@shared/ui';
-import { updateProfileAvatar, deleteProfileAvatar } from '@entities/user';
+import { updateProfileAvatar } from '@entities/user';
 import { ReactComponent as UploadIcon } from '@shared/assets/svg/upload.svg';
 import LS from '@shared/lib/localStorage';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@entities/user';
 
 export default function AvatarForm() {
-	const [preview, setPreview] = useState(null);
-	const [userPhoto, setUserPhoto] = useState(LS.get('avatar'));
-	const navigate = useNavigate();
+	const { avatar } = useSelector(selectUser);
+	const [preview, setPreview] = useState(
+		LS.get('avatar') || require(`@shared/assets/avatar/${avatar}.png`)
+	);
+	const [userPhoto, setUserPhoto] = useState(null);
 
 	function submitForm(e) {
 		e.preventDefault();
-		if (!preview && !userPhoto) {
-			deleteProfileAvatar().then(() => {
-				LS.remove('avatar');
-				navigate('/', { replace: true });
-			});
-			return;
-		}
-		if (userPhoto) return;
-		updateProfileAvatar(preview).then(() => {
-			navigate('/', { replace: true });
+		if (!userPhoto) return;
+		LS.remove('avatar');
+		updateProfileAvatar(userPhoto).then(() => {
+			location.reload();
 		});
 	}
 
 	return (
 		<form onSubmit={submitForm} className={styles.container}>
 			<div className={styles.container_preview}>
-				<img
-					src={
-						preview
-							? URL.createObjectURL(preview)
-							: require('@shared/assets/avatar/' + userPhoto + '.png')
-					}
-					className={styles.img}
-				/>
+				<img src={preview} className={styles.img} />
 				<div className={styles.buttons}>
 					<Button title="Сохранить" type="submit" className={styles.button} />
 					<input
@@ -44,7 +34,10 @@ export default function AvatarForm() {
 						type="file"
 						accept="image/*"
 						hidden
-						onChange={(e) => setPreview(e.target.files[0])}
+						onChange={(e) => {
+							setUserPhoto(e.target.files[0]);
+							setPreview(URL.createObjectURL(e.target.files[0]));
+						}}
 					/>
 					<Button
 						title="Загрузить"
@@ -65,7 +58,10 @@ export default function AvatarForm() {
 							key={index}
 							src={require('@shared/assets/avatar/' + index + '.png')}
 							className={styles.img}
-							onClick={() => setUserPhoto(index)}
+							onClick={() => {
+								setUserPhoto(index);
+								setPreview(require('@shared/assets/avatar/' + index + '.png'));
+							}}
 						/>
 					);
 				})}
