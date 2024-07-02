@@ -20,6 +20,7 @@ class StudentViewModel(BaseModel):
 class StudentForGroupViewModel(BaseModel):
     student: StudentViewModel
 
+
 class GroupResponseModel(BaseModel):
     """ Ответ на создание и редактирование групп """
     id: int

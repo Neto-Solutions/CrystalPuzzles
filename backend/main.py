@@ -9,6 +9,8 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
 
 from core.config import get_settings
+from service.group.routers.group_router import group_router
+from service.group.routers.student_group_router import student_group_router
 from service.healthcheck.routers import health_check_route
 from service.healthcheck.healthcheck_factory import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
 from service.users.initialize import RolesInitialize, BaseUserInitialize
@@ -101,9 +103,9 @@ all_routers = [
     profile_router,
     student_router,
     admin_panel_router,
+    group_router,
+    student_group_router,
 
-    # group_router,
-    # student_group_router,
     # training_router,
     # space_router,
     # lesson_router,

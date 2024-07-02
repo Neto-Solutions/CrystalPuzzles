@@ -67,7 +67,7 @@ class BaseRepository(AbstractRepository):
                 .order_by(self.model.date_update.desc())
                 .offset(filters.page_number * filters.page_size)
                 .limit(filters.page_size)
-            )).scalars()
+            )).unique().scalars()
             return records
 
     async def _add_filters(

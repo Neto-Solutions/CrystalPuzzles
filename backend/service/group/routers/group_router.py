@@ -1,22 +1,17 @@
 from http import HTTPStatus
 
-from typing import Annotated, Optional
+from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Response
 from fastapi.responses import JSONResponse
 
-from core.schemas.base import Message
-from core.logger import logger
-from service.users.models import User
-from service.users.repository import UserRepository
+from common.dependensies import TrainerSupervisorAdminDep, AdminDep
+from common.schema.base_schemas import Message
+from service.group.dependensies import GroupUOWDep, GroupServiceDep, GroupFilterDep
+from service.users.dependensies import UserUOWDep
 
-from service.group.schemas import GroupFilterSchema, GroupViewSchemaForPage, CreateGroupSchema, EditGroupSchema, \
+from service.group.schemas import GroupViewSchemaForPage, CreateGroupSchema, EditGroupSchema, \
     GroupResponseModel
-from service.group.services.group_service import GroupService
-from service.group.dependensies import group_service
-
-from service.identity.dependensies import user_repository
-from service.identity.security import get_current_user
 
 group_router = APIRouter(
     prefix="/api/v1/group",
@@ -32,20 +27,17 @@ group_router = APIRouter(
         401: {"description": "Не авторизованный пользователь"},
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
-async def get_group(group_id: int,
-                    group_service: Annotated[GroupService, Depends(group_service)],
-                    user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
-                    ):
+async def get_group(
+        group_id: int,
+        uow: GroupUOWDep,
+        group_service: GroupServiceDep,
+        current_user: TrainerSupervisorAdminDep,
+):
     """ admin, supervisor, trainer """
-    try:
-        group = await group_service.get_with_students(group_id)
-        if group:
-            return group
-        logger.error("Group not found")
-        return None
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500, detail=str(e))
+    result = await group_service.get_with_students(uow, group_id)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")
 
 
 @group_router.get(
@@ -57,17 +49,14 @@ async def get_group(group_id: int,
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
 async def get_all_groups(
-        group_service: Annotated[GroupService, Depends(group_service)],
-        filters: GroupFilterSchema = Depends(),
-        user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: GroupUOWDep,
+        group_service: GroupServiceDep,
+        filters: GroupFilterDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """ admin, supervisor, trainer """
-    try:
-        group_list = await group_service.get_all_by_filters(filters)
-        return group_list
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500, detail=e.__str__())
+    result = await group_service.get_all_by_filters(uow, filters)
+    return result
 
 
 @group_router.post(
@@ -80,24 +69,18 @@ async def get_all_groups(
         409: {"model": Message, "description": "Конфликт данных"},
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
-async def create_group(model: CreateGroupSchema,
-                       group_service: Annotated[GroupService, Depends(group_service)],
-                       user_repository: Annotated[UserRepository, Depends(user_repository)],
-                       user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
-                       ):
+async def create_group(
+        model: CreateGroupSchema,
+        uow: GroupUOWDep,
+        user_uow: UserUOWDep,
+        group_service: GroupServiceDep,
+        current_user: TrainerSupervisorAdminDep
+):
     """ admin, supervisor, trainer """
-    try:
-        if not await user_repository.trainer_exists(model.trainer_id):
-            logger.error("Trainer not found")
-            return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Trainer not found")
-        group_id = await group_service.add(model)
-        if group_id:
-            return group_id
-        logger.error("Group existing")
-        return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Group existing")
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500, detail=e.__str__())
+    result = await group_service.add(uow, model, user_uow=user_uow)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Group existing")
 
 
 @group_router.put(
@@ -112,26 +95,18 @@ async def create_group(model: CreateGroupSchema,
 )
 async def edit_group(
         model: EditGroupSchema,
-        group_service: Annotated[GroupService, Depends(group_service)],
-        user_repository: Annotated[UserRepository, Depends(user_repository)],
-        user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: GroupUOWDep,
+        user_uow: UserUOWDep,
+        group_service: GroupServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        if not await user_repository.trainer_exists(model.trainer_id):
-            logger.error("Trainer not found")
-            return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Trainer not found")
-        result = await group_service.edit(model)
-        if result:
-            return result
-        elif result.__eq__(False):
-            logger.error("Group not found")
-            return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")
-        logger.error("Group already exists")
-        return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Group already exists")
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500, detail=e.__str__())
+    result = await group_service.edit(uow, model, user_uow=user_uow)
+    if result:
+        return result
+    elif result.__eq__(False):
+        return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")
+    return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Group already exists")
 
 
 @group_router.delete(
@@ -146,14 +121,14 @@ async def edit_group(
 )
 async def delete_group(
         group_id: int,
-        group_service: Annotated[GroupService, Depends(group_service)],
-        user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: GroupUOWDep,
+        group_service: GroupServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    deleted = await group_service.delete(group_id)
+    deleted = await group_service.delete(uow, group_id)
     if deleted:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Group not found")
     return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")
 
 
@@ -169,12 +144,12 @@ async def delete_group(
 )
 async def remove_device(
         group_id: int,
-        group_service: Annotated[GroupService, Depends(group_service)],
-        user: User = Depends(get_current_user(("admin", )))
+        uow: GroupUOWDep,
+        group_service: GroupServiceDep,
+        current_user: AdminDep
 ):
     """admin"""
-    group = await group_service.delete_db(group_id)
+    group = await group_service.delete_db(uow, group_id)
     if group:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Group not found")
     return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Group not found")
