@@ -31,9 +31,14 @@
 	"scripts": {
 		"start": "craco start",
 		"build": "craco build",
+<<<<<<< HEAD
+		"serve": "npm run set:env && serve -s build",
+=======
 		"serve": "node set.env.js && serve -s build -p 3000",
+>>>>>>> origin/release
 		"test": "craco test",
 		"eject": "craco eject",
+		"set:env": "node set.env.js",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
