@@ -5,7 +5,13 @@ from sqlalchemy import pool
 
 from alembic import context
 
+from service.users.models import *
+from service.group.models import *
+from service.training.models import *
+from service.lesson.models import *
+
 from common.model.base_model import Base
+
 from core.config import get_settings
 
 settings = get_settings()
