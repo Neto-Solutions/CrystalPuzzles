@@ -28,6 +28,13 @@ VNUM3=$((VNUM3+1))
 #create new tag
 NEW_TAG="v$VNUM1.$VNUM2.$VNUM3"
 
+#create new tag
+NEW_TAG="$V$VNUM1.$VNUM2.$VNUM3"
+
+if [ $NEW_TAG = "..1" ]; then
+    NEW_TAG="v0.0.1"
+fi
+
 echo "Updating $VERSION to $NEW_TAG"
 
 #get current hash and see if it already has a tag

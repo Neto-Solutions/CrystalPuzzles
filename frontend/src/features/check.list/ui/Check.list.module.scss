@@ -1,4 +1,5 @@
-@use '../../../app/styles/mixins' as *;
+@use '~styles/mixins' as *;
+
 .container {
 	width: 100%;
 	max-width: 714px;
@@ -14,6 +15,7 @@
 	align-items: center;
 	border: var(--border);
 	border-radius: var(--radius);
+	margin-bottom: 5px
 }
 
 .header {
@@ -23,6 +25,9 @@
 }
 
 .list {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 	&_item {
 		padding: 15px 30px;
 		justify-content: space-between;
@@ -40,3 +45,14 @@
 		}
 	}
 }
+@include sm() { 
+	.header {
+		font-size: 14px;
+	}
+	.list {
+		 &_item_title {
+			@include font(var(--ff-second), 16px, 400);
+		 }
+		}
+	}
+

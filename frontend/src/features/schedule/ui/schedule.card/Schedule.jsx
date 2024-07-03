@@ -1,5 +1,5 @@
 import styles from './Schedule.module.scss';
-import Title from '@shared/ui/title/Title';
+import { Title } from '@shared/ui';
 import { Link } from 'react-router-dom';
 
 export default function Schedule({ children, to }) {

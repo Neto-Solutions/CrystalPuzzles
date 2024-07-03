@@ -1,16 +1,10 @@
-import styles from './Check.list.page.module.scss';
-import Page from '@shared/ui/page/Page';
-import { CardLink } from '@shared/card';
-import { CheckList } from '@features/check.list';
+import { List } from '@features/check.list.student';
+import { Page } from '@shared/ui';
 
 export default function CheckListPage() {
 	return (
 		<Page title="Чек-листы">
-			<CheckList />
-			<CardLink
-				title="Получи награду за выполнение уровня"
-				className={styles.rewart_trio}
-			/>
+			<List />
 		</Page>
 	);
 }

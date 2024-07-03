@@ -1,3 +1,5 @@
+@use '~styles/mixins' as *; 
+
 .btn {
 	// width: 347px;
 	display: flex;
@@ -14,10 +16,13 @@
 	cursor: pointer;
 	gap: 15px;
 	stroke: #000;
-
+	@include sm() {
+		font-size: var(--fz-mob-btn);
+	}
 	&:hover {
 		background-color: var(--accent-color);
 		color: #fff;
 		stroke: #fff;
+		fill: #fff;
 	}
 }

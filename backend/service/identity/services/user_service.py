@@ -44,13 +44,18 @@ class UserService(BaseService):
         return await self.repo.edit(data)
 
     async def get_all_by_filters(self, filters: UserFilterSchema, deleted: Optional[bool]):
-        return await self.repo.get_all_user_by_filter(filters.search_string, filters.page_number, filters.page_size, deleted)
+        return await self.repo.get_all_user_by_filter(filters.search_string, filters.page_number, filters.page_size,
+                                                      deleted)
+
+    async def get_all_students_by_filter(self, filters: UserFilterSchema):
+        return await self.repo.get_all_students_by_filter(filters.search_string, filters.page_number, filters.page_size)
 
     async def set_photo(self, photo, user_id: int):
         data = {
             "id": user_id,
             "photo": photo,
-            "date_update": datetime.now()
+            "date_update": datetime.now(),
+            "avatar": None
         }
         return await self.repo.edit(data)
 
@@ -65,3 +70,12 @@ class UserService(BaseService):
     async def get_photo(self, user_id: int):
         user = await self.repo.get(user_id)
         return user.photo
+
+    async def set_avatar(self, avatar_schema, user_id: int):
+        data = {
+            "id": user_id,
+            "avatar": avatar_schema.avatar_id,
+            "date_update": datetime.now(),
+            "photo": None
+        }
+        return await self.repo.edit(data)

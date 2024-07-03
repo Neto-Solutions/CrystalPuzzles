@@ -1,19 +1,20 @@
-.app {
+@use '~styles/mixins' as *; 
+
+.container {
 	width: 100%;
 	max-width: 1448px;
 	min-height: 100vh;
 	margin: 0 auto;
 	padding: 0 20px;
+	display: flex;
 	flex-direction: column;
-
-	.router_container {
+	justify-content: space-between;
+	.app {
 		display: flex;
 		margin-bottom: 40px;
-		min-height: 85vh;
-		.page_container {
+		.page {
 			width: 100%;
 			max-width: 1081px;
-			margin: 0 auto;
 		}
 	}
 }

@@ -14,6 +14,7 @@ class StudentViewModel(BaseModel):
     lastname: Optional[str] = None
     is_man: bool
     birthday: Optional[datetime] = None
+    avatar: Optional[int]
 
 
 class StudentForGroupViewModel(BaseModel):

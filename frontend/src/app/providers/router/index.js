@@ -12,17 +12,12 @@ function createRouter(role) {
 		{
 			path: '/',
 			element: <App />,
-			loader: () => !role && redirect('/login'),
 			children:
 				(role === 'student' && studentRouter) ||
 				(role === 'supervisor' && supervisorRouter) ||
 				(role === 'trainer' && trainerRouter)
 		},
-		{
-			path: '/',
-			element: <App check_in />,
-			children: checkInRouter
-		},
+		...checkInRouter,
 		{
 			path: '*',
 			loader: () => redirect('/')

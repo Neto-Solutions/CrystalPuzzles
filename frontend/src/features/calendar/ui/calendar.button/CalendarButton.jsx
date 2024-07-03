@@ -1,6 +1,6 @@
 import { useState } from 'react';
 //import { ReactComponent as CalendarIcon } from '@shared/assets/svg/calendar_icon.svg';
-import Button from '@shared/ui/button/Button';
+import { Button } from '@shared/ui';
 import Calendar from '../calendar.block/Calendar';
 
 export default function CalendarButton() {

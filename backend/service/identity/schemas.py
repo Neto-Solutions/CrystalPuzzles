@@ -93,6 +93,7 @@ class UserShortSchemaForTable(BaseModel):
     is_man: Optional[bool] = True
     contact: Optional[str] = None
     role: str
+    avatar: Optional[int]
 
 
 class UserFilterSchema(BaseFilterSchema):
@@ -117,6 +118,10 @@ class PhotoReadSchema(BaseModel):
     photo: Optional[bytes] = None
 
 
+class AvatarSchema(BaseModel):
+    avatar_id: int = Field(..., description="ID аватара", ge=1, le=8)
+
+
 # endregion -------------------------------------------------------------------------
 
 # region ----------------------------- AdminPanel -----------------------------------
@@ -134,6 +139,7 @@ class UserSchemaForTable(UserShortSchemaForTable):
     deleted: bool
     date_add: datetime
     date_update: datetime
+    avatar: Optional[int]
     # code: Optional[int]
 
 
@@ -142,6 +148,13 @@ class UserViewSchemaForPage(BaseModel):
     max_page_count: int
     count_records: int
     records: List[UserSchemaForTable]
+
+
+class UserShortViewSchemaForPage(BaseModel):
+    page: int
+    max_page_count: int
+    count_records: int
+    records: List[UserShortSchemaForTable]
 
 
 class AdminPanelEditSchema(BaseModel):

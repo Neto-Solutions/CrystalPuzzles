@@ -1,9 +1,10 @@
-import { LogRegForm } from '@widgets/log.reg.form';
+import { LogReg } from '@widgets/check.in';
+import { Wrapper } from '@widgets/check.in';
 
 export default function CheckInPage({ login = false }) {
 	return (
-		<>
-			<LogRegForm login={login} />
-		</>
+		<Wrapper>
+			<LogReg login={login} />
+		</Wrapper>
 	);
 }
