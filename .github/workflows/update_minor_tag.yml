@@ -1,13 +1,9 @@
 name: Push a new tag with minor update
 
 on:
-  workflow_run:
-    workflows: ["Docker-compose test"]
-    types:
-      - completed
   push:
     branches:
-      - release
+      [prod]
 
 jobs:
   release:
@@ -22,7 +18,7 @@ jobs:
         id: bump-semver
         with:
           current_version: ${{ steps.get-latest-tag.outputs.tag }}
-          level: patch
+          level: minor
 
       - uses: actions-ecosystem/action-push-tag@v1
         with:
