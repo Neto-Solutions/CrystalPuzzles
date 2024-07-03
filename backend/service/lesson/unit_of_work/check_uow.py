@@ -8,17 +8,17 @@ from fastapi import HTTPException
 from jwt import ExpiredSignatureError, DecodeError, MissingRequiredClaimError
 
 from common.unit_of_work.base_uow import BaseUnitOfWork
-from service.training.repository import TrainingRepository
+from service.lesson.repositories.check_repository import CheckRepository
 
 
-class TrainingUOW(BaseUnitOfWork):
+class CheckUOW(BaseUnitOfWork):
     """Класс для работы с транзакциями устройств."""
-    repo = TrainingRepository
+    repo = CheckRepository
 
-    async def __aenter__(self):  # -> TrainingRepository:
+    async def __aenter__(self):  # -> CheckRepository:
         """Вход в контекстного менеджера."""
         await super().__aenter__()
-        self.repo = TrainingRepository(self._session)
+        self.repo = CheckRepository(self._session)
         return self
 
     async def __aexit__(

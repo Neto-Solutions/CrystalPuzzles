@@ -1,6 +1,7 @@
 from typing import Optional
 
 from sqlalchemy import select, update, or_
+from sqlalchemy.orm import joinedload
 
 from common.repository.base_repository import BaseRepository
 from service.users.models import User
@@ -81,7 +82,6 @@ class UserRepository(BaseRepository):
                 self.model.role.__eq__("student")
             )
         )
-
         if filters.search_string:
             stmt = stmt.filter(
                 (self.model.email.ilike(f"%{filters.search_string}%")) |

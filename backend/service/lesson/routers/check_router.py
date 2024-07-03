@@ -8,11 +8,9 @@ from core.logger import logger
 from service.users.models import User
 from service.users.repository import UserRepository
 
-from service.identity.dependensies import user_repository
 from service.identity.security import get_current_user
 from service.lesson.repositories.lesson_repository import LessonRepository
 from service.lesson.schemas.check_schema import CreateCheckSchema
-from service.lesson.dependensies import lesson_repository
 
 check_router = APIRouter(
     prefix="/api/v1/check",

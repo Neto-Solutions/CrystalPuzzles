@@ -32,9 +32,11 @@ class User(Base):
     rank_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("Ranks.id"), nullable=True)
     contact: Mapped[str] = mapped_column(sa.String, nullable=True)
 
+    # ссылка для тренера на список групп, в которых он числиться преподователем
     group = relationship("Group", back_populates="trainer")
+    # ссылка для студентов на группу, которой он пренадлежит
     student_group = relationship("StudentGroup", back_populates="student")
-    # lessons = relationship("Lesson", back_populates="trainer")
+    lessons = relationship("Lesson")
 
 
 class Role(Base):

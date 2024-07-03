@@ -1,5 +1,8 @@
 from datetime import datetime
+from http import HTTPStatus
 from typing import Optional
+
+from fastapi import HTTPException
 
 from common.service.base_service import BaseService
 from service.users.models import User
@@ -9,6 +12,24 @@ from service.users.unit_of_work import UserUOW
 
 
 class UserService(BaseService):
+    @staticmethod
+    async def trainer_check(uow: UserUOW, trainer_id: int):
+        async with uow:
+            if not await uow.repo.trainer_exists(trainer_id):
+                raise HTTPException(
+                    status_code=HTTPStatus.BAD_REQUEST.value,
+                    detail="Trainer not found"
+                )
+
+    @staticmethod
+    async def student_check(uow: UserUOW, student_id: int):
+        async with uow:
+            if not await uow.repo.student_exists(student_id):
+                raise HTTPException(
+                    status_code=HTTPStatus.BAD_REQUEST.value,
+                    detail="Student not found"
+                )
+
     @staticmethod
     async def get_by_email(
         uow: UserUOW,

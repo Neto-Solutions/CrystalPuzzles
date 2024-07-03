@@ -15,4 +15,4 @@ class Training(Base):
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
 
-    # check_data = relationship("TrainingCheck", back_populates="training")
+    check_data = relationship("TrainingCheck")

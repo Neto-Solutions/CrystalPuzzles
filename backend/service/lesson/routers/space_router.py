@@ -1,18 +1,14 @@
 from http import HTTPStatus
 
-from typing import Annotated
+from fastapi import APIRouter, Response
+from starlette.responses import JSONResponse
 
-from fastapi import APIRouter, Depends, HTTPException, Response
+from common.dependensies import TrainerSupervisorAdminDep, AdminDep
+from common.schema.base_schemas import Message
+from service.lesson.dependensies import SpaceServiceDep, SpaceFilterDep, SpaceUOWDep
 
-from core.schemas.base import Message
-from core.logger import logger
-from service.users.models import User
-from service.identity.security import get_current_user
-
-from service.lesson.schemas.space_schemas import SpaceSchemaForTable, SpaceViewSchemaForPage, SpaceFilterSchema, \
+from service.lesson.schemas.space_schemas import SpaceSchemaForTable, SpaceViewSchemaForPage, \
     CreateSpaceSchema, EditSpaceSchema
-from service.lesson.services.space_service import SpaceService
-from service.lesson.dependensies import space_service
 
 space_router = APIRouter(
     prefix="/api/v1/space",
@@ -32,19 +28,15 @@ space_router = APIRouter(
 )
 async def get_space(
         space_id: int,
-        space_service: Annotated[SpaceService, Depends(space_service)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
-                       ):
+        uow: SpaceUOWDep,
+        space_service: SpaceServiceDep,
+        current_user: TrainerSupervisorAdminDep
+):
     """ admin, supervisor, trainer """
-    try:
-        space = await space_service.get(space_id)
-        if space:
-            return space
-        logger.error("Space not found")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await space_service.get(uow, space_id)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Space not found")
 
 
 @space_router.get(
@@ -58,23 +50,20 @@ async def get_space(
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
 async def get_all_spaces(
-        space_service: Annotated[SpaceService, Depends(space_service)],
-        filters: SpaceFilterSchema = Depends(),
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: SpaceUOWDep,
+        space_service: SpaceServiceDep,
+        filters: SpaceFilterDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """ admin, supervisor, trainer """
-    try:
-        space_list = await space_service.get_all_by_filters(filters)
-        return space_list
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await space_service.get_all_by_filters(uow, filters)
+    return result
 
 
 @space_router.post(
     "/",
     summary="Создание кабинета занятия",
-    # response_model=
+    response_model=int,
     responses={
         200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
@@ -83,19 +72,16 @@ async def get_all_spaces(
 )
 async def create_training(
         model: CreateSpaceSchema,
-        space_service: Annotated[SpaceService, Depends(space_service)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: SpaceUOWDep,
+        space_service: SpaceServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        space_id = await space_service.add(model)
-        if space_id:
-            return space_id
-        logger.error("Space existing")
-        return Response(status_code=HTTPStatus.CONFLICT.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await space_service.add(uow, model)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Space existing")
+
 
 @space_router.put(
     "/",
@@ -110,19 +96,16 @@ async def create_training(
 )
 async def edit_training(
         model: EditSpaceSchema,
-        space_service: Annotated[SpaceService, Depends(space_service)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: SpaceUOWDep,
+        space_service: SpaceServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        result = await space_service.edit(model)
-        if result:
-            return result
-        logger.error("Space already exists")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await space_service.edit(uow, model)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Space already exists")
+
 
 @space_router.delete(
     "/{space_id}",
@@ -136,15 +119,15 @@ async def edit_training(
 )
 async def delete_group(
         space_id: int,
-        space_service: Annotated[SpaceService, Depends(space_service)],
-        current_user: User = Depends(get_current_user(("admin",)))
+        uow: SpaceUOWDep,
+        space_service: SpaceServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    deleted = await space_service.delete(space_id)
-    if deleted:
+    result = await space_service.delete(uow, space_id)
+    if result:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Space not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Space not found")
 
 
 @space_router.delete(
@@ -159,12 +142,12 @@ async def delete_group(
 )
 async def remove_training(
         space_id: int,
-        space_service: Annotated[SpaceService, Depends(space_service)],
-        current_user: User = Depends(get_current_user(("admin",)))
+        uow: SpaceUOWDep,
+        space_service: SpaceServiceDep,
+        current_user: AdminDep
 ):
     """ admin """
-    training = await space_service.delete_db(space_id)
-    if training:
+    result = await space_service.delete_db(uow, space_id)
+    if result:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Space not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Space not found")

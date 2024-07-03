@@ -13,6 +13,8 @@ from service.group.routers.group_router import group_router
 from service.group.routers.student_group_router import student_group_router
 from service.healthcheck.routers import health_check_route
 from service.healthcheck.healthcheck_factory import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
+from service.lesson.routers.lesson_router import lesson_router
+from service.lesson.routers.space_router import space_router
 from service.training.router import training_router
 from service.users.initialize import RolesInitialize, BaseUserInitialize
 
@@ -107,8 +109,8 @@ all_routers = [
     group_router,
     student_group_router,
     training_router,
-    # space_router,
-    # lesson_router,
+    space_router,
+    lesson_router
 ]
 
 for router in all_routers:
