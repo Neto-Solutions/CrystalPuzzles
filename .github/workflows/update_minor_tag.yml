@@ -1,6 +1,10 @@
 name: Push a new tag with minor update
 
 on:
+  workflow_run:
+    workflows: ["Docker-compose test"]
+    types:
+      - completed
   push:
     branches:
       - release
@@ -24,3 +28,4 @@ jobs:
         with:
           tag: ${{ steps.bump-semver.outputs.new_version }}
           message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
+  
