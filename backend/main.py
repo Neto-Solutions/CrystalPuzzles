@@ -149,5 +149,5 @@ if __name__ == '__main__':
         host="0.0.0.0",
         port=settings.port,
         reload=True,
-        #loop='uvloop', # работает только на linux
+        loop='uvloop',  # работает только на linux
     )
