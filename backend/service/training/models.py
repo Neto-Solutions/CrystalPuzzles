@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
 
-from core.database import Base
+from common.model.base_model import Base
 
 
 class Training(Base):
@@ -15,4 +15,4 @@ class Training(Base):
     date_add: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
     date_update: Mapped[datetime] = mapped_column(sa.DateTime, nullable=False)
 
-    check_data = relationship("TrainingCheck", back_populates="training")
+    check_data = relationship("TrainingCheck")

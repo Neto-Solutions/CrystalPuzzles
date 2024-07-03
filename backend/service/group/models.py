@@ -3,8 +3,7 @@ from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 import sqlalchemy as sa
 
-from core.database import Base
-from service.group.schemas import GroupViewSchemaForTable
+from common.model.base_model import Base
 
 
 class Group(Base):

@@ -1,11 +1,25 @@
-from core.service import BaseService
+from common.service.base_service import BaseService
 from service.group.schemas import StudentForGroupViewSchema
+from service.group.services.group_service import GroupService
+from service.group.unit_of_work.student_uow import StudentUOW
+from service.users.services.user_service import UserService
 
 
 class StudentService(BaseService):
-    create_schema = StudentForGroupViewSchema
-    async def add_student(self, items: create_schema):
-        return await self.repo.add(items.model_dump())
+    @staticmethod
+    async def add_student(uow: StudentUOW, items: StudentForGroupViewSchema, **kwargs):
+        await UserService.student_check(kwargs.get("user_uow"), items.student_id)
+        await GroupService.group_check(kwargs.get("group_uow"), items.group_id)
+        async with uow:
+            result = await uow.repo.add(items.model_dump())
+            await uow.commit()
+            return result
 
-    async def delete_student(self, items: create_schema):
-        return await self.repo.delete(items.model_dump())
+    @staticmethod
+    async def delete_student(uow: StudentUOW, items: StudentForGroupViewSchema, **kwargs):
+        await UserService.student_check(kwargs.get("user_uow"), items.student_id)
+        await GroupService.group_check(kwargs.get("group_uow"), items.group_id)
+        async with uow:
+            result = await uow.repo.delete(items.model_dump())
+            await uow.commit()
+            return result
