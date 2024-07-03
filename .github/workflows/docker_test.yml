@@ -14,10 +14,10 @@ jobs:
       - name: Checkout Repository from specific branch
         uses: actions/checkout@v3
         with:
-          ref: test 
+          ref: release 
       - name: find_docker_compose
         run: |
-          result=$(find $GITHUB_WORKSPACE -name "docker-compose.yml")
+          result=$(find $GITHUB_WORKSPACE -name "docker-compose.prod.yml")
           if [ -z "$result" ]; then
             echo "docker-compose.yml not found"
             exit 1  # Завершить выполнение
