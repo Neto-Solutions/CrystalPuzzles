@@ -1,21 +1,21 @@
-# name: Deploy by ssh
+name: Deploy by ssh
 
-# env:
-#   SSH_USERNAME: "crystall_admin"
-#   SSH_HOST_NAME: "203.31.40.34"
-#   #SSH_PORT: "22"
+env:
+  SSH_USERNAME: "crystall_admin"
+  SSH_HOST_NAME: "203.31.40.34"
+  #SSH_PORT: "22"
 
-# on:
-#   push:
-#     branches:
-#       - release
+on:
+  push:
+    branches:
+      - release
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v3
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
 #       - name: Change directory permitions
 #         uses: appleboy/ssh-action@master
