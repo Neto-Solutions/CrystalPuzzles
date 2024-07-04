@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import useResize from '@shared/hooks/useResize';
 import { UserCard } from '@shared/ui/card';
 import { Page } from '@shared/ui';
-import { data } from '../../../mock/data'; //потом удалить
-import styles from './DesktopTrainerAnalyticsContent.module.scss';
+import { data } from '../../../mock/data'; // TODO: потом удалить
+import styles from './AnalyticsContent.module.scss';
 
-export const DesktopTrainerAnalyticsContent = () => {
+export const AnalyticsContent = () => {
 	const isMobile = useResize('sm');
 	return (
 		<Page title="Аналитика тренеров">

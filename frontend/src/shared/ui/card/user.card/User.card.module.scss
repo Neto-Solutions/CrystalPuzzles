@@ -75,6 +75,13 @@
 		&:hover {
 			cursor: pointer;
 		}
+		@include sm() {
+			text-align: center;
+			font:
+				400 12px 'Rubik',
+				sans-serif;
+			padding-top: 5px;
+		}
 	}
 }
 
@@ -82,4 +89,8 @@
 	border-top: var(--border);
 	width: 100%;
 	cursor: pointer;
+	
+	@include sm() {
+		border-top: none;
+	}
 }

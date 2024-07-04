@@ -1,5 +1,5 @@
-import { DesktopTrainerAnalyticsContent } from './decktop/DesktopTrainerAnalyticsContent';
+import { AnalyticsContent } from './decktop/AnalyticsContent';
 
 export const TrainerAnalyticsPage = () => {
-	return <DesktopTrainerAnalyticsContent />;
+	return <AnalyticsContent />;
 };

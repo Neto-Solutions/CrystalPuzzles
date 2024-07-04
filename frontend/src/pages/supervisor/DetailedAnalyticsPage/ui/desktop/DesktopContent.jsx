@@ -1,14 +1,17 @@
-import styles from './Analytics.view.page.module.scss';
-import { Card, UserCard, Page, Button } from '@shared/ui';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Card, UserCard, Page, Button } from '@shared/ui';
 import { CalendarButton } from '@features/calendar';
+import styles from './DesktopContent.module.scss';
 
-export default function AnalyticViewPage() {
+export const DesktopContent = () => {
 	const [comment, setComment] = useState(false);
+	const location = useLocation();
+	const { img, firstname, surname, lastname } = location.state;
 
 	return (
 		<Page title="Аналитика">
-			<UserCard img={''} name="Дмитриева Анастасия Алексеевна" showBtn>
+			<UserCard img={img} name={`${firstname} ${lastname} ${surname}`} showBtn>
 				<ul className={styles.list}>
 					<li>Часов обучения</li>
 					<li>Количество учеников</li>
@@ -27,4 +30,4 @@ export default function AnalyticViewPage() {
 			</div>
 		</Page>
 	);
-}
+};
