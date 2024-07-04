@@ -20,20 +20,22 @@ jobs:
           current_version: ${{ steps.get-latest-tag.outputs.tag }}
           level: patch
 
-      # - uses: actions-ecosystem/action-push-tag@v1
-      #   with:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      #     tag: ${{ steps.bump-semver.outputs.new_version }}
-      #     message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Push new tag
+      - uses: actions-ecosystem/action-push-tag@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          git tag ${{ steps.bump-semver.outputs.new_version }}
-          git push origin ${{ steps.bump-semver.outputs.new_version }}
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
+          message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
+        
+          
+      # - name: Configure Git
+      #   run: |
+      #     git config --global user.name "github-actions[bot]"
+      #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # - name: Push new tag
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        # run: |
+        #   git tag ${{ steps.bump-semver.outputs.new_version }}
+        #   git push origin ${{ steps.bump-semver.outputs.new_version }}
