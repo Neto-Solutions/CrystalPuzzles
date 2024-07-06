@@ -1,27 +1,22 @@
 from http import HTTPStatus
 
-from typing import Annotated
+from fastapi import APIRouter, Response
+from starlette.responses import JSONResponse
 
-from fastapi import APIRouter, Depends, HTTPException, Response
+from common.dependensies import TrainerSupervisorAdminDep, AdminDep
+from common.schema.base_schemas import Message
+from service.lesson.dependensies import LessonServiceDep, LessonUOWDep, LessonFilterDep, SpaceUOWDep
+from service.users.dependensies import UserUOWDep
 
-from core.schemas.base import Message
-from core.utils.logger import logger
-from service.identity.models import User
-from service.identity.repositories.user_repository import UserRepository
-
-from service.identity.dependensies import user_repository
-from service.identity.security import get_current_user
-
-from service.lesson.dependensies import lesson_service, space_repository
-from service.lesson.repositories.space_repository import SpaceRepository
-from service.lesson.schemas.lesson_schemas import LessonSchemaForTable, LessonViewSchemaForPage, LessonFilterSchema, \
+from service.lesson.schemas.lesson_schemas import LessonSchemaForTable, LessonViewSchemaForPage, \
     CreateLessonSchema, EditLessonSchema
-from service.lesson.services.lesson_service import LessonService
 
 lesson_router = APIRouter(
     prefix="/api/v1/lesson",
     tags=["Lesson"]
 )
+
+
 @lesson_router.get(
     "/{lesson_id}",
     summary="Получение занятия по Id",
@@ -34,19 +29,16 @@ lesson_router = APIRouter(
 )
 async def get_lesson(
         lesson_id: int,
-        lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
-                   ):
+        uow: LessonUOWDep,
+        lesson_service: LessonServiceDep,
+        current_user: TrainerSupervisorAdminDep,
+):
     """ admin, supervisor, trainer """
-    try:
-        lesson = await lesson_service.get(lesson_id)
-        if lesson:
-            return lesson
-        logger.error("Lesson not found")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await lesson_service.get(uow, lesson_id)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Lesson not found")
+
 
 @lesson_router.get(
     "/",
@@ -59,17 +51,15 @@ async def get_lesson(
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
 async def get_all_lessons(
-        lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        filters: LessonFilterSchema = Depends(),
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: LessonUOWDep,
+        lesson_service: LessonServiceDep,
+        filters: LessonFilterDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """ admin, supervisor, trainer """
-    try:
-        lessons_list = await lesson_service.get_all_by_filters(filters)
-        return lessons_list
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await lesson_service.get_all_by_filters(uow, filters)
+    return result
+
 
 @lesson_router.post(
     "/",
@@ -83,27 +73,18 @@ async def get_all_lessons(
 )
 async def create_lesson(
         model: CreateLessonSchema,
-        lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        user_repository: Annotated[UserRepository, Depends(user_repository)],
-        space_repository: Annotated[SpaceRepository, Depends(space_repository)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: LessonUOWDep,
+        user_uow: UserUOWDep,
+        space_uow: SpaceUOWDep,
+        lesson_service: LessonServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        if not await user_repository.trainer_exists(model.trainer_id):
-            logger.error("Trainer not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-        if not await space_repository.exist(model.space_id):
-            logger.error("Space not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-        lesson_id = await lesson_service.add(model)
-        if lesson_id:
-            return lesson_id
-        logger.error("Lesson existing")
-        return Response(status_code=HTTPStatus.CONFLICT.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await lesson_service.add(uow, model, user_uow=user_uow, space_uow=space_uow)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Lesson existing")
+
 
 @lesson_router.put(
     "/",
@@ -116,29 +97,20 @@ async def create_lesson(
         409: {"model": Message, "description": "Конфликт данных"},
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
-async def edit_training(
+async def edit_lesson(
         model: EditLessonSchema,
-        lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        user_repository: Annotated[UserRepository, Depends(user_repository)],
-        space_repository: Annotated[SpaceRepository, Depends(space_repository)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: LessonUOWDep,
+        user_uow: UserUOWDep,
+        space_uow: SpaceUOWDep,
+        lesson_service: LessonServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        if not await user_repository.trainer_exists(model.trainer_id):
-            logger.error("Trainer not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-        if not await space_repository.exist(model.space_id):
-            logger.error("Space not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-        result = await lesson_service.edit(model)
-        if result:
-            return result
-        logger.error("Lesson already exists")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await lesson_service.edit(uow, model, user_uow=user_uow, space_uow=space_uow)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Lesson already exists")
+
 
 @lesson_router.delete(
     "/{lesson_id}",
@@ -150,17 +122,17 @@ async def edit_training(
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
-async def delete_group(
-        training_id: int,
-        lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        current_user: User = Depends(get_current_user(("admin",)))
+async def delete_lesson(
+        lesson_id: int,
+        uow: LessonUOWDep,
+        lesson_service: LessonServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    deleted = await lesson_service.delete(training_id)
-    if deleted:
+    result = await lesson_service.delete(uow, lesson_id)
+    if result:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Lesson not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Lesson not found")
 
 
 @lesson_router.delete(
@@ -173,14 +145,14 @@ async def delete_group(
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
-async def remove_training(
-        training_id: int,
-        lesson_service: Annotated[LessonService, Depends(lesson_service)],
-        current_user: User = Depends(get_current_user(("admin",)))
+async def remove_lesson(
+        lesson_id: int,
+        uow: LessonUOWDep,
+        lesson_service: LessonServiceDep,
+        current_user: AdminDep
 ):
     """ admin """
-    lesson = await lesson_service.delete_db(training_id)
-    if lesson:
+    result = await lesson_service.delete_db(uow, lesson_id)
+    if result:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
-    logger.error("Lesson not found")
-    raise HTTPException(status_code=400)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Lesson not found")

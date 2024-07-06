@@ -1,20 +1,21 @@
+from typing import Annotated
 
-from service.identity.repositories.user_repository import UserRepository
-from service.identity.services.admin_service import AdminService
-from service.identity.services.user_service import UserService
-from service.identity.services.auth_service import AuthService
+from fastapi import Depends, Cookie
+from fastapi.security import OAuth2PasswordRequestForm
 
-
-def user_service():
-    return UserService(UserRepository)
+from service.identity.service import AuthService
 
 
-def auth_service():
-    return AuthService()
+# region ------------------------------- Service ------------------------------------
+AuthServiceDep = Annotated[AuthService, Depends(AuthService)]
+# endregion -------------------------------------------------------------------------
 
 
-def user_repository():
-    return UserRepository()
+# region ----------------------------- Auth form ------------------------------------
+OAuth2PasswordDep = Annotated[OAuth2PasswordRequestForm, Depends()]
+# endregion -------------------------------------------------------------------------
 
-def admin_service():
-    return AdminService(UserRepository)
+
+# region ------------------------------- Cookie -------------------------------------
+RefreshDep = Annotated[str, Cookie(alias="refresh_token", include_in_schema=False)]
+# endregion -------------------------------------------------------------------------
