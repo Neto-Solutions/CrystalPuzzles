@@ -25,6 +25,7 @@ from service.users.routers.profile_router import profile_router
 from service.users.routers.students_router import student_router
 from service.users.routers.user_router import user_router
 from service.identity.routers import auth_routers
+from service.notifications.routers.notifications_router import notification_router
 
 settings = get_settings()
 
@@ -114,6 +115,7 @@ all_routers = [
     training_router,
     space_router,
     lesson_router,
+    notification_router,
     # check_router
 ]
 
