@@ -1,10 +1,10 @@
 @use '~styles/mixins' as *;
- 
+
 .reward_img {
-	background-image: url('~assets/card.background/reward_animal.svg');
+	background-image: url('~assets/gifs/smile-with-eyes.gif');
 	background-repeat: no-repeat;
 	background-position: center;
-	background-position-x: 55%;
+	background-size: 60% 60%;
 }
 
 .train_text {
@@ -23,34 +23,29 @@
 
 	.shedule_item {
 		@include font(var(--ff-second), 22px, 400);
-		
+
 		.shedule_item_time {
 			@include font(var(--ff-first), 24px, 500);
 		}
 	}
 }
-.sidebar_btn {
-	display: none;
-}
 @include sm() {
+	.reward_img {
+		background-position-y: 85%;
+	}
+	.card_cont {
+		max-width: 162px;
+		height: 120px;
+	}
+	.train_text {
+		display: none;
+	}
 
-.reward_img {
-	background-position-y: 85%;
-	background-size: 44px 66px;
-}
-.card_cont {
-	max-width: 162px;
-	height: 120px;
-}
-.train_text {
-	display: none;
-}
-	
-.schedule_container {
-	display: none;
-}
-.btn {
-	color: black;
-	background-color: #e1f1f8;
-}
+	.schedule_container {
+		display: none;
+	}
+	.btn {
+		color: black;
+		background-color: #e1f1f8;
+	}
 }

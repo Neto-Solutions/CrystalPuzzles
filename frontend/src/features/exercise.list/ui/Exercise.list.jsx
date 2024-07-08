@@ -1,5 +1,5 @@
-import styles from './Check.list.module.scss';
-export default function CheckList() {
+import styles from './Exercise.list.module.scss';
+export default function ExerciseList() {
 	const tempArray = Array.from({ length: 6 }, () => 1);
 	return (
 		<div className={styles.container}>
