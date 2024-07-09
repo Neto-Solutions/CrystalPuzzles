@@ -1,5 +1,5 @@
 import { useState } from 'react';
-//import { ReactComponent as CalendarIcon } from '@shared/assets/svg/calendar_icon.svg';
+import { ReactComponent as CalendarIcon } from '@shared/assets/svg/calendar_icon.svg';
 import { Button } from '@shared/ui';
 import Calendar from '../calendar.block/Calendar';
 
@@ -13,8 +13,10 @@ export default function CalendarButton() {
 				<Button
 					title="02.10.23 - 08.10.23"
 					onClick={() => setCalendar(!calendar)}
+					width="347px"
+					height="57px"
 				>
-					{/* <CalendarIcon /> */}
+					<CalendarIcon />
 				</Button>
 			)}
 		</>

@@ -3,7 +3,7 @@ import { Workout } from '@features/student.workout';
 
 export default function TrainPage() {
 	return (
-		<Page title="Тренировки">
+		<Page title="Мои тренировки">
 			<Workout />
 		</Page>
 	);

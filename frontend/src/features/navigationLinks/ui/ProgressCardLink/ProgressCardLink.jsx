@@ -9,4 +9,4 @@ export const ProgressCardLink = () => {
 			className={styles.progress_graph}
 		/>
 	);
-}
+};

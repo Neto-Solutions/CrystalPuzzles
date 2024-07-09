@@ -1,22 +1,14 @@
-import { Feedback } from '@features/feedback/';
-import { useState, useEffect } from 'react';
+import styles from './General.module.scss';
+import { useState } from 'react';
+import { Feedback } from '@features/feedback';
 import { Wrapper } from '@shared/ui';
 import { CardLink, RewardsPopup, Button } from '@shared/ui';
-import styles from './General.module.scss';
+import { useResize } from '@shared/hooks';
+
 export default function General() {
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 	const [reward, setReward] = useState(false);
 	const tempArray = Array(2).fill(0);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 425);
-		};
-		window.addEventListener('resize', handleResize);
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
+	const isMobile = useResize('sm');
 	return (
 		<>
 			<CardLink
@@ -32,11 +24,6 @@ export default function General() {
 			>
 				<span className={styles.train_text}>тренер оценил вашу тренировку</span>
 			</CardLink>
-			<CardLink
-				to="/check-list"
-				title={'Мои чек-листы'}
-				className={styles.card_cont}
-			/>
 			<CardLink
 				to="/schedule"
 				title={'Мои расписание на сегодня'}
@@ -54,19 +41,18 @@ export default function General() {
 					))}
 				</div>
 			</CardLink>
-			{!isMobile && (
-				<Wrapper width="100%" max_width="714px">
-					<Feedback>Оставить комментарий тренеру</Feedback>
-					<Button title="Отправить комментарий" width="100%" />
-				</Wrapper>
-			)}
-			{isMobile && (
+			{isMobile ? (
 				<Button
 					title="Написать тренеру"
 					width="334px"
 					height="64px"
 					className={styles.btn}
 				/>
+			) : (
+				<Wrapper width="100%" max_width="714px">
+					<Feedback>Обратная связь</Feedback>
+					<Button title="Отправить комментарий" width="100%" />
+				</Wrapper>
 			)}
 		</>
 	);
