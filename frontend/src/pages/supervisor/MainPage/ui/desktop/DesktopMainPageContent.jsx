@@ -18,8 +18,8 @@ export const DesktopMainPageContent = () => {
 			<Notification />
 			<div className={styles.wrapper}>
 				<ScheduleCard to={'/schedule'} />
-				<Button title="Ученики" width='100%' />
-				<Button title="Тренеры" width='100%' />
+				<Button title="Ученики" width="100%" />
+				<Button title="Тренеры" width="100%" />
 			</div>
 		</Page>
 	);
