@@ -29,7 +29,7 @@
 }
 @include sm() { 
 .card {	
-	height: 120px;
+	height: 147px;
 	align-items: center;
 	.title {
 		@include font(var(--ff-second), 16px, 600);

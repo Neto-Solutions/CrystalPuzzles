@@ -10,6 +10,7 @@
 		@include md() {
 			display: inline-block;
 			margin: auto;
+			text-align: center;
 			padding-left: 38px;
 			font-size: 32px;
 			font-weight: 500;
@@ -25,7 +26,7 @@
 		padding: 10px;
 		display: flex;
 		align-items: center;
-		gap: 5px;
+		gap: 10px 7px;
 		justify-content: space-between;
 		&::after {
 			content: url('~assets/header/logo.svg');
@@ -38,8 +39,8 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
-	@include lg(){
+
+	@include lg() {
 		justify-content: center;
-		gap: 5px;
-	} 
+	}
 }

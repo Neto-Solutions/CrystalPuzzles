@@ -1,0 +1,31 @@
+.wrapper {
+	display: flex;
+	gap: 8px;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font:
+		500 14px 'Rubik',
+		sans-serif;
+
+	li {
+		list-style-type: disc;
+	}
+}
+.comment {
+	width: 163px;
+	height: 210px;
+	font:
+		500 16px 'Rubik',
+		sans-serif;
+	text-align: center;
+}
+.buttons {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}

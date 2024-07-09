@@ -1,12 +1,12 @@
-import MainPage from '@supervisor/Main.page';
-import AnalyticPage from '@supervisor/Analytic.page';
-import AnalyticViewPage from '@supervisor/Analytic.view.page';
+import { MainPage } from '@supervisor/MainPage/ui/MainPage';
+import { TrainerAnalyticsPage } from '@supervisor/TrainerAnalyticsPage/ui/TrainerAnalyticsPage';
+import { DetailedAnalyticsPage } from '@supervisor/DetailedAnalyticsPage/ui/DetailedAnalyticsPage';
+import { EvaluationTablePage } from '@supervisor/EvaluationTablePage/ui/EvaluationTablePage';
 import ProgressGraphPage from '@supervisor/Progress.graph.page';
 import ProgressGraphViewPage from '@supervisor/Progress.graph.view.page';
 import SchedulePage from '@supervisor/Schedule.page';
 import CreateSchedulePage from '@supervisor/Create.schedule.page';
 import FeedbackPage from '@supervisor/Feedback.page';
-import EvaluationTable from '@supervisor/Evaluation.table.page';
 import NotificationPage from '@supervisor/Notification.page';
 import analytics from '../../assets/svg/sidebar/analytics.svg';
 import progress from '../../assets/svg/sidebar/progress.svg';
@@ -33,18 +33,18 @@ const supervisorRouter = [
 		element: <ProgressGraphViewPage />
 	},
 	{
-		path: '/analytic',
-		element: <AnalyticPage />,
+		path: '/analytic', //заменить
+		element: <TrainerAnalyticsPage />,
 		local: 'Аналитика',
 		img: analytics
 	},
 	{
-		path: '/analytic/view',
-		element: <AnalyticViewPage />
+		path: '/analytic/view', //заменить
+		element: <DetailedAnalyticsPage />
 	},
 	{
-		path: '/evaluation',
-		element: <EvaluationTable />,
+		path: '/evaluation', //заменить
+		element: <EvaluationTablePage />,
 		local: 'Таблицы',
 		img: tables
 	},
