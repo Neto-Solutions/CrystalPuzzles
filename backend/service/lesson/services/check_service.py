@@ -1,5 +1,4 @@
-from core.service import BaseService
-from service.group.schemas import CreateGroupSchema, EditGroupSchema, GroupFilterSchema
+from common.service.base_service import BaseService
 
 
 class CheckService(BaseService):
