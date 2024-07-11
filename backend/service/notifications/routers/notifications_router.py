@@ -12,4 +12,4 @@ notifications_router = APIRouter(
                            response_model=CreateNotificationSchema
                            )
 def create_notification(text: str):
-    return CreateNotificationSchema(text=text)
+    return CreateNotificationSchema(text=text, status=True)

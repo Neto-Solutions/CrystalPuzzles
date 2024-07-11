@@ -7,7 +7,8 @@ from fastapi import Query
 from common.schema.base_schemas import BaseModel, BaseFilterSchema
 from service.lesson.schemas.space_schemas import SpaceSchemaForTable
 
+
 class CreateNotificationSchema(BaseModel):
-    Text: str
-    Status: bool
+    text: str
+    status: bool
 
