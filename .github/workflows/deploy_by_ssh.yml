@@ -2,7 +2,7 @@ name: Deploy by ssh
 
 env:
   SSH_USERNAME: "ubuntu"
-  SSH_HOST_NAME: "35.159.126.229"
+  SSH_HOST_NAME: "3.68.232.223"
   SSH_PORT: "22"
 
 on:
