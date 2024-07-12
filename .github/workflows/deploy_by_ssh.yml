@@ -1,10 +1,5 @@
 name: Deploy by ssh
 
-# env:
-#   SSH_USERNAME: "ubuntu"
-  # SSH_HOST_NAME: "3.79.44.50"
-  #SSH_PORT: "22"
-
 on:
   push:
     branches:
@@ -71,10 +66,6 @@ jobs:
             else
               /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh && echo "Docker installed" || echo "Failed to install Docker"
             fi
-          # run: |
-          #    /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
-          #    /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
-          #     echo "Did not check Docker"
 
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
