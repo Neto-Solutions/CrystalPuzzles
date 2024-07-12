@@ -65,10 +65,16 @@ jobs:
           username: ${{ env.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          run: |
-             /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
-             /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
-              echo "Did not check Docker"
+          script: |
+            if /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/check_docker.sh; then
+              echo "Docker is already installed"
+            else
+              /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh && echo "Docker installed" || echo "Failed to install Docker"
+            fi
+          # run: |
+          #    /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
+          #    /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
+          #     echo "Did not check Docker"
 
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
