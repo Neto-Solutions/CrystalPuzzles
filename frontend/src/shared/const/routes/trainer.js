@@ -1,7 +1,6 @@
 import MainPage from '@trainer/Main.page';
 import NotificationPage from '@trainer/Notification.page';
 import CheckListPage from '@trainer/Check.list.page';
-import SchefulePage from '@trainer/Schedule.page';
 import GroupsPage from '@trainer/Groups.page';
 import CreateGroupPage from '@trainer/Create.group.page';
 import StudentsList from '@trainer/Students.list.page';
@@ -13,7 +12,7 @@ import schedule from '../../assets/svg/sidebar/schedule.svg';
 import group from '../../assets/svg/sidebar/group.svg';
 import students from '../../assets/svg/sidebar/students.svg';
 import home from '../../assets/svg/sidebar/home.svg';
-import AvatarPage from '@trainer/Avatar.form.page';
+import { AvatarPage, SchedulePage } from '@pages/shared';
 
 const trainerRouter = [
 	{
@@ -34,7 +33,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/schedule',
-		element: <SchefulePage />,
+		element: <SchedulePage />,
 		local: 'Расписание',
 		img: schedule
 	},

@@ -1,16 +1,18 @@
-import styles from './Workout.module.scss';
+import styles from './Train.module.scss';
+import { Page } from '@shared/ui';
 import { Link } from 'react-router-dom';
 import { CalendarButton } from '@features/calendar';
 
-export default function Workout() {
+export default function TrainPage() {
 	const tempArray = Array.from({ length: 3 }, () => ({
 		name: 'Дмитриева Анастасия Алексеевна',
 		trainer: 'Анастасия',
 		combination: '(жетон 1)',
 		date: '12/11/22'
 	}));
+
 	return (
-		<>
+		<Page title="Мои тренировки">
 			<CalendarButton />
 			{tempArray.map((item, index) => {
 				return (
@@ -30,6 +32,6 @@ export default function Workout() {
 					</Link>
 				);
 			})}
-		</>
+		</Page>
 	);
 }

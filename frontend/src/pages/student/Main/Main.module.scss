@@ -1,0 +1,74 @@
+@use '~styles/mixins' as *;
+
+.reward_card {
+	background-image: url('~assets/gifs/smile-with-eyes.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60% 60%;
+	grid-area: reward;
+	aspect-ratio: 1;
+	@include sm() {
+		width: 100%;
+		background-image: none;
+	}
+}
+.train_card {
+	grid-area: train;
+	aspect-ratio: 1;
+	@include sm() {
+		width: 100%;
+	}
+
+	.train_text {
+		@include font(var(--ff-first), 24px, 500);
+		text-align: center;
+	}
+}
+
+.schedule_card {
+	grid-area: schedule;
+	@include xxl() {
+		aspect-ratio: 1;
+	}
+	@include sm() {
+		width: 100%;
+	}
+}
+
+.feedback {
+	grid-area: feedback;
+}
+.btn {
+	grid-area: btn;
+	@include sm() {
+		width: 	100%;
+		color: black;
+	}
+}
+
+.wrapper {
+	display: grid;
+	gap: var(--gap);
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas:
+		'reward train schedule'
+		'feedback feedback schedule'
+		'btn btn .';
+
+	@include xxl() {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas:
+			'reward train'
+			'. schedule'
+			'feedback feedback'
+			'btn btn';
+	}
+
+	@include sm() {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas:
+			'reward schedule'
+			'train btn';
+			gap: 8px;
+	}
+}

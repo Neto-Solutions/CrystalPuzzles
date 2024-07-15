@@ -2,6 +2,7 @@ import { Page, Button, Wrapper } from '@shared/ui';
 import { CalendarBlock } from '@features/calendar';
 import { ScheduleTable } from '@features/schedule';
 import { useState, useEffect } from 'react';
+
 export default function SchedulePage() {
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 	useEffect(() => {
@@ -13,6 +14,7 @@ export default function SchedulePage() {
 			window.removeEventListener('resize', handleResize);
 		};
 	}, []);
+
 	return (
 		<Page title="Расписание">
 			{isMobile ? (
