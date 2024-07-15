@@ -1,37 +1,29 @@
+import styles from './Schedule.module.scss';
 import { Page, Button, Wrapper } from '@shared/ui';
 import { CalendarBlock } from '@features/calendar';
-import { ScheduleTable } from '@features/schedule';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getAllLessons } from '@entities/lesson/api';
 
 export default function SchedulePage() {
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
-	useEffect(() => {
-		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 425);
-		};
-		window.addEventListener('resize', handleResize);
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
+	const [lessons, setLessons] = useState([]);
+	useEffect(async () => {
+		await getAllLessons().then(setLessons);
 	}, []);
 
 	return (
 		<Page title="Расписание">
-			{isMobile ? (
-				<Wrapper>
-					<CalendarBlock />
-					<ScheduleTable />
-					<Button width="335px" title="Выберите тренера" downArrow />
-				</Wrapper>
-			) : (
-				<>
-					<ScheduleTable />
-					<Wrapper>
-						<CalendarBlock />
-						<Button width="335px" title="Выберите тренера" downArrow />
-					</Wrapper>
-				</>
-			)}
+			<div className={styles.table}>
+				{lessons.map((item, index) => (
+					<div key={index} className={styles.row}>
+						<div className={styles.col}>{item.time}</div>
+						<div className={styles.col}>{item.name}</div>
+					</div>
+				))}
+			</div>
+			<Wrapper>
+				<CalendarBlock />
+				<Button width="100%" title="Выберите тренера" downArrow />
+			</Wrapper>
 		</Page>
 	);
 }
