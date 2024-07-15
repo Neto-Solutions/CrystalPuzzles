@@ -26,9 +26,11 @@ export default function studentMainPage() {
 					title={'Мои тренировки'}
 					className={styles.train_card}
 				>
-					{!isMobile && <span className={styles.train_text}>
-						тренер оценил вашу тренировку
-					</span>}
+					{!isMobile && (
+						<span className={styles.train_text}>
+							тренер оценил вашу тренировку
+						</span>
+					)}
 				</CardLink>
 
 				<CardLink
