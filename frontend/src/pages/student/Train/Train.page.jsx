@@ -1,7 +1,6 @@
 import styles from './Train.module.scss';
 import { Page } from '@shared/ui';
 import { Link } from 'react-router-dom';
-import { CalendarButton } from '@features/calendar';
 
 export default function TrainPage() {
 	const tempArray = Array.from({ length: 3 }, () => ({
@@ -13,7 +12,6 @@ export default function TrainPage() {
 
 	return (
 		<Page title="Мои тренировки">
-			<CalendarButton />
 			{tempArray.map((item, index) => {
 				return (
 					<Link to="/exercise" key={index} className={styles.card}>

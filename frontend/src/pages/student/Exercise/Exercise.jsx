@@ -6,12 +6,16 @@ export default function ExercisePage() {
 	return (
 		<Page title="Мои занятия">
 			<div className={styles.container}>
-				<div className={styles.header}>Чек-листы</div>
+				<div className={styles.date_picker}>
+					{new Date().toLocaleDateString()}
+				</div>
 				<ul className={styles.list}>
 					{tempArray.map((item, index) => (
-						<li key={index} className={styles.list_item}>
-							<span className={styles.list_item_title}>{item} уровень</span>
-							<input className={styles.list_item_checkbox} type="checkbox" />
+						<li key={index} className={styles.item}>
+							<div className={styles.number}>{index + 1}</div>
+							<img className={styles.img} />
+							<span className={styles.text}>{item}</span>
+							<input className={styles.checkbox} type="checkbox" />
 						</li>
 					))}
 				</ul>
