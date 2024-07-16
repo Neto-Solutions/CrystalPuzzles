@@ -25,7 +25,7 @@ from service.users.routers.profile_router import profile_router
 from service.users.routers.students_router import student_router
 from service.users.routers.user_router import user_router
 from service.identity.routers import auth_routers
-from service.notifications.routers.notifications_router import notifications_router
+from service.notification.routers.notification_router import notifications_router
 
 settings = get_settings()
 

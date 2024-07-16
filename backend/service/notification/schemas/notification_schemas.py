@@ -11,4 +11,5 @@ from service.lesson.schemas.space_schemas import SpaceSchemaForTable
 class CreateNotificationSchema(BaseModel):
     text: str
     status: bool
+    receiver: int
 

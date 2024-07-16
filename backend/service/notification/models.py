@@ -9,10 +9,7 @@ class Notification(Base):
     id: Mapped[int] = mapped_column(sa.Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)
     text: Mapped[str] = mapped_column(sa.Text, nullable=False)
     status: Mapped[bool] = mapped_column(sa.Boolean, default=False)
-    # user
-
-
-    # receiver: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
+    receiver: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
 
 
 
