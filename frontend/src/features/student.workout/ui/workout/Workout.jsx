@@ -1,5 +1,6 @@
 import styles from './Workout.module.scss';
 import { Link } from 'react-router-dom';
+import { CalendarButton } from '@features/calendar';
 
 export default function Workout() {
 	const tempArray = Array.from({ length: 3 }, () => ({
@@ -10,9 +11,10 @@ export default function Workout() {
 	}));
 	return (
 		<>
+			<CalendarButton />
 			{tempArray.map((item, index) => {
 				return (
-					<Link to="/appraisal" key={index} className={styles.card}>
+					<Link to="/exercise" key={index} className={styles.card}>
 						<div className={styles.info}>
 							<div className={styles.name}>{item.name}</div>
 							<div className={styles.trainer}>

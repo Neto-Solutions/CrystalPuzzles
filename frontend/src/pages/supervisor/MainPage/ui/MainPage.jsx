@@ -7,4 +7,4 @@ export const MainPage = () => {
 	return (
 		<>{isMobile ? <MobileMainPageContent /> : <DesktopMainPageContent />}</>
 	);
-}
+};
