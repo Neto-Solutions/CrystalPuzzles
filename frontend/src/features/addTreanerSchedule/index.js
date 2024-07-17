@@ -1,1 +1,1 @@
-export { AddTreanerSchedule } from "./ui/AddTreanerSchedule";
+export { AddTreanerSchedule } from './ui/AddTreanerSchedule';
