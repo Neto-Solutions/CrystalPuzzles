@@ -1,0 +1,64 @@
+import { useState } from 'react';
+import classNames from 'classnames';
+import moment from 'moment';
+import 'moment/locale/ru';
+import { ScheduleHeader } from '../../schedule/ui/ScheduleHeader/ScheduleHeader';
+import { DropdownButton } from '../../dropdownButton/DropdownButton';
+import styles from './AddTreanerSchedule.module.scss';
+
+import { trainers, platforms } from '../Mockdata/data';
+import Button from '../../../shared/ui/button/Button';
+import { postData } from '../../../entities/schedule/api/schedule';
+
+export const AddTreanerSchedule = () => {
+	const [openTrainers, setOpenTrainers] = useState(false); //открыть-зыкрыть
+	const [openPlatform, setopenPlatform] = useState(false);
+	const [test, setTest] = useState({
+		space_id: null,
+		trainer_id: null,
+		trainer_comments: '',
+		start: new Date()
+	});
+
+	const setTrainer = (id) => {
+		setTest((prev) => {
+			return { ...prev, trainer_id: id };
+		});
+	};
+
+	const setSpace = (id) => {
+		setTest((prev) => {
+			return { ...prev, space_id: id };
+		});
+	};
+
+	const handleSubmit = async () => {
+		postData(test).then(console.log).catch(console.log);
+	};
+// TODO: доделать функциoнал
+	return (
+		<div className={styles.component}>
+			<ScheduleHeader date={'heute'} className={styles.header} />
+			<main className={styles.main}>
+				<DropdownButton
+					title={'Выберите тренера'}
+					onClick={() => setOpenTrainers((prev) => !prev)}
+					width={'347px'}
+					data={trainers}
+					open={openTrainers}
+					setState={setTrainer}
+				/>
+				<DropdownButton
+					title={'Выберите площадку'}
+					onClick={() => setopenPlatform((prev) => !prev)}
+					width={'347px'}
+					data={platforms}
+					open={openPlatform}
+					setState={setSpace}
+				/>
+
+				<Button onClick={handleSubmit}>Отправить</Button>
+			</main>
+		</div>
+	);
+};

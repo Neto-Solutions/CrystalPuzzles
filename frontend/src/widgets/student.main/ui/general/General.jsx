@@ -24,7 +24,7 @@ export default function General() {
 				className={styles.reward_img + ' ' + styles.card_cont}
 				onClick={() => setReward(true)}
 			/>
-			{reward && <RewardsPopup onHide={() => setReward(false)} />}
+			{/* {reward && <RewardsPopup onHide={() => setReward(false)} />} // TODO: добавить компонент Modal */}
 			<CardLink
 				to="/train"
 				title={'Мои тренировки'}
