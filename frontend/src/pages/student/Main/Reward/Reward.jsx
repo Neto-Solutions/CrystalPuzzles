@@ -1,4 +1,4 @@
-import styles from './Rewards.module.scss';
+import styles from './Reward.module.scss';
 export default function RewardsPopup({ onHide }) {
 	return (
 		<div className={styles.container} onClick={onHide}>

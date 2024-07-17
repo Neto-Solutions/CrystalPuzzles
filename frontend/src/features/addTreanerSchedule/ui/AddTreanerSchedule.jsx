@@ -35,7 +35,7 @@ export const AddTreanerSchedule = () => {
 	const handleSubmit = async () => {
 		postData(test).then(console.log).catch(console.log);
 	};
-// TODO: доделать функциoнал
+	// TODO: доделать функциoнал
 	return (
 		<div className={styles.component}>
 			<ScheduleHeader date={'heute'} className={styles.header} />
