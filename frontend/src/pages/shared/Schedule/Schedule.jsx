@@ -6,9 +6,9 @@ import { getAllLessons } from '@entities/lesson/api';
 
 export default function SchedulePage() {
 	const [lessons, setLessons] = useState([]);
-	useEffect(async () => {
-		await getAllLessons().then(setLessons);
-	}, []);
+	// useEffect(async () => {
+	// 	await getAllLessons().then(setLessons);
+	// }, []);
 
 	return (
 		<Page title="Расписание">
