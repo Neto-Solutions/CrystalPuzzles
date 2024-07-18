@@ -1,0 +1,108 @@
+@use '~styles/mixins' as *;
+
+.component {
+	width: 560px;
+	height: 317px;
+	padding: 12px;
+	display: grid;
+	background-color: var(--bg-popup);
+	border-radius: var(--radius);
+	overflow: hidden;
+
+	@include md() {
+		width: 335px;
+	}
+}
+
+.title {
+	padding-bottom: 50px;
+	align-self: end;
+	text-align: center;
+	font: var(--fw-semibold) 32px var(--ff-first);
+
+	@include md() {
+		font-size: 22px;
+	}
+}
+
+.wrapper {
+	position: relative;
+}
+
+.object {
+	position: absolute;
+}
+
+.line_one {
+	top: 25px;
+	left: 40px;
+	@include md() {
+		display: none;
+	}
+}
+
+.line_two {
+	top: 60px;
+	right: 10px;
+	transform: rotate(-95deg);
+
+	@include md() {
+		top: 50px;
+		right: 20px;
+		transform: rotate(-115deg);
+	}
+}
+
+.line_three {
+	top: -90px;
+	right: 110px;
+	transform: rotate(85deg) scale(1.3);
+
+	@include md() {
+		display: none;
+	}
+}
+
+.envelope_one {
+	top: 100px;
+	left: 182px;
+	animation: env-one 1.5s ease-in-out infinite;
+
+	@include md() {
+		top: 30px;
+		left: 0px;
+		animation: none;
+	}
+}
+
+.envelope_two {
+	top: 85px;
+	right: 140px;
+
+	@include md() {
+		top: 140px;
+		left: 100px;
+		animation: env-one 1.5s ease-in-out infinite;
+	}
+}
+
+.envelope_three {
+	width: 62px;
+	top: 20px;
+	right: 112px;
+	transform: rotate(-55deg);
+	@include md() {
+		top: 0px;
+		right: 50px;
+	}
+}
+
+@keyframes env-one {
+	0% {
+	}
+	50% {
+		transform: rotate(-30deg);
+	}
+	100% {
+	}
+}
