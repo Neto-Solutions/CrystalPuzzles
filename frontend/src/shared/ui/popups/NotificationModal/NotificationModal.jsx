@@ -6,7 +6,6 @@ import line from '../../../assets/svg/wavy_line.svg';
 import styles from './NotificationModal.module.scss';
 
 export const NotificationModal = () => {
-	
 	return (
 		<div className={styles.component}>
 			<div className={styles.wrapper}>
