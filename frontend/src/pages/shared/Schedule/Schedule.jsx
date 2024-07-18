@@ -1,11 +1,10 @@
 import styles from './Schedule.module.scss';
 import { Page, Button, Wrapper } from '@shared/ui';
 import { CalendarBlock } from '@features/calendar';
-import { useEffect, useState } from 'react';
-import { getAllLessons } from '@entities/lesson/api';
+import { useState } from 'react';
 
 export default function SchedulePage() {
-	const [lessons, setLessons] = useState([]);
+	const [lessons] = useState(Array(7).fill({ name: 'Тренер', time: '10:00' }));
 	// useEffect(async () => {
 	// 	await getAllLessons().then(setLessons);
 	// }, []);

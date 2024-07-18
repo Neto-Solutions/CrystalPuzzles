@@ -5,13 +5,12 @@ import classNames from 'classnames';
 import { CalendarAddButton } from './CalendarAddButton/CalendarAddButton';
 import { ScheduleHeader } from '../../../features/schedule/ui/ScheduleHeader/ScheduleHeader';
 import styles from './Calendar.table.module.scss';
-import Button from '../../../shared/ui/button/Button';
 import { Modal } from '../../../shared/ui/modal/Modal';
 import { AddTreanerSchedule } from '../../../features/addTreanerSchedule/ui/AddTreanerSchedule';
 
 const CalendarTable = () => {
 	const [startDate, setStartDate] = useState(moment());
-	const [data, setData] = useState(false);
+	const [data] = useState(false);
 	const [modalActive, setModalActive] = useState(false);
 
 	window.moment = moment;

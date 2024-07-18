@@ -1,4 +1,4 @@
-import styles from './Check.list.page.module.scss';
+import styles from './CheckList.module.scss';
 import { Page, Button } from '@shared/ui';
 
 export default function CheckListPage() {
