@@ -1,23 +1,25 @@
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Response, WebSocket,  WebSocketDisconnect
 from service.notification.schemas.notification_schemas import CreateNotificationSchema
 from service.notification.repositories.notification_repository import NotificationsRepository
 from service.notification.dependensies import NotificationServiceDep, NotificationUOWDep
 from core.database import async_session
 
-notifications_router = APIRouter(
-    prefix="/api/v1/notification",
-    tags=["Notifications"]
+notification_router = APIRouter(
+    prefix="/notification",
 )
 
 
-@notifications_router.post("/{create_notification}",
-                           status_code=201,
-                           response_model=int,
-                           )
-async def create_notification(text: CreateNotificationSchema,
-                              uow: NotificationUOWDep,
-                              notification_service: NotificationServiceDep):
-    # repository = NotificationsRepository(async_session())
-    # result = await repository.add(text.model_dump())
-    result = await notification_service.add(uow, text)
-    return result
+@notification_router.websocket("/ws")
+async def notification_websocket(websocket: WebSocket,
+                                 uow: NotificationUOWDep,
+                                 notification_service: NotificationServiceDep):
+    await websocket.accept()
+    while True:
+        try:
+            data = await websocket.receive_text()
+            valid_data = CreateNotificationSchema.parse_raw(data)
+            result = await notification_service.add(uow, valid_data)
+            await websocket.send_text(str(result))
+        except WebSocketDisconnect:
+            await websocket.close()
+            break
