@@ -4,7 +4,7 @@ import { CalendarBlock } from '@features/calendar';
 import { useState } from 'react';
 
 export default function SchedulePage() {
-	const [lessons] = useState(Array(50).fill({ name: 'Тренер', time: '10:00' }));
+	const [lessons] = useState(Array(7).fill({ name: 'Тренер', time: '10:00' }));
 	// useEffect(async () => {
 	// 	await getAllLessons().then(setLessons);
 	// }, []);
