@@ -1,4 +1,9 @@
-import { FeedbackPage, NotificationPage } from '@pages/shared';
+import {
+	FeedbackPage,
+	NotificationPage,
+	ProfilePage,
+	ProfileListPage
+} from '@pages/shared';
 
 import { MainPage } from '@supervisor/MainPage/ui/MainPage';
 import { TrainerAnalyticsPage } from '@supervisor/TrainerAnalyticsPage/ui/TrainerAnalyticsPage';
@@ -8,6 +13,7 @@ import ProgressGraphPage from '@supervisor/Progress.graph.page';
 import ProgressGraphViewPage from '@supervisor/Progress.graph.view.page';
 import SchedulePage from '@supervisor/Schedule.page';
 import CreateSchedulePage from '@supervisor/Create.schedule.page';
+
 import analytics from '../../assets/svg/sidebar/analytics.svg';
 import progress from '../../assets/svg/sidebar/progress.svg';
 import tables from '../../assets/svg/sidebar/tables.svg';
@@ -71,6 +77,22 @@ const supervisorRouter = [
 	{
 		path: '/avatar',
 		element: <AvatarPage />
+	},
+	{
+		path: '/students',
+		element: <ProfileListPage title="Ученики" />
+	},
+	{
+		path: '/students/:id',
+		element: <ProfilePage title="Ученики" />
+	},
+	{
+		path: '/trainers',
+		element: <ProfileListPage title="Тренеры" />
+	},
+	{
+		path: '/trainers/:id',
+		element: <ProfilePage title="Тренеры" />
 	}
 ];
 

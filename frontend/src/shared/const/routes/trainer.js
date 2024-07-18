@@ -2,7 +2,7 @@ import {
 	FeedbackPage,
 	NotificationPage,
 	ProfilePage,
-	ProfileList
+	ProfileListPage
 } from '@pages/shared';
 import {
 	MainPage,
@@ -54,7 +54,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/students',
-		element: <ProfileList />,
+		element: <ProfileListPage />,
 		local: 'Ученики',
 		img: students
 	},
