@@ -1,4 +1,4 @@
-import styles from './Student.page.module.scss';
+import styles from './Profile.module.scss';
 import { Page, Button } from '@shared/ui';
 
 export default function StudentPage() {

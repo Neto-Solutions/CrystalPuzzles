@@ -1,11 +1,16 @@
-import MainPage from '@trainer/Main.page';
-import NotificationPage from '@trainer/Notification.page';
-import CheckListPage from '@trainer/Check.list.page';
-import GroupsPage from '@trainer/Groups.page';
-import CreateGroupPage from '@trainer/Create.group.page';
-import StudentsList from '@trainer/Students.list.page';
-import StudentPage from '@trainer/Student.page';
-import FeedbackPage from '@trainer/Feedback.page';
+import {
+	FeedbackPage,
+	NotificationPage,
+	ProfilePage,
+	ProfileList
+} from '@pages/shared';
+import {
+	MainPage,
+	CheckListPage,
+	GroupListPage,
+	CreateGroupPage
+} from '@trainer';
+
 import feedback from '../../assets/svg/sidebar/Feedback.svg';
 import checkList from '../../assets/svg/sidebar/check list.svg';
 import schedule from '../../assets/svg/sidebar/schedule.svg';
@@ -39,7 +44,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/groups',
-		element: <GroupsPage />,
+		element: <GroupListPage />,
 		local: 'Группы',
 		img: group
 	},
@@ -49,13 +54,13 @@ const trainerRouter = [
 	},
 	{
 		path: '/students',
-		element: <StudentsList />,
+		element: <ProfileList />,
 		local: 'Ученики',
 		img: students
 	},
 	{
 		path: '/student',
-		element: <StudentPage />
+		element: <ProfilePage />
 	},
 	{
 		path: '/feedback',

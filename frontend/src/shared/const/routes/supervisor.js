@@ -1,3 +1,5 @@
+import { FeedbackPage, NotificationPage } from '@pages/shared';
+
 import { MainPage } from '@supervisor/MainPage/ui/MainPage';
 import { TrainerAnalyticsPage } from '@supervisor/TrainerAnalyticsPage/ui/TrainerAnalyticsPage';
 import { DetailedAnalyticsPage } from '@supervisor/DetailedAnalyticsPage/ui/DetailedAnalyticsPage';
@@ -6,8 +8,6 @@ import ProgressGraphPage from '@supervisor/Progress.graph.page';
 import ProgressGraphViewPage from '@supervisor/Progress.graph.view.page';
 import SchedulePage from '@supervisor/Schedule.page';
 import CreateSchedulePage from '@supervisor/Create.schedule.page';
-import FeedbackPage from '@supervisor/Feedback.page';
-import NotificationPage from '@supervisor/Notification.page';
 import analytics from '../../assets/svg/sidebar/analytics.svg';
 import progress from '../../assets/svg/sidebar/progress.svg';
 import tables from '../../assets/svg/sidebar/tables.svg';
