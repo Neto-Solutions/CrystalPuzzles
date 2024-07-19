@@ -12,16 +12,28 @@
 		background-image: none;
 	}
 }
+
 .train_card {
 	grid-area: train;
+	overflow: hidden;
 	aspect-ratio: 1;
 	@include sm() {
 		width: 100%;
 	}
 
-	.train_text {
-		@include font(var(--ff-first), 24px, 500);
-		text-align: center;
+	.train_text_container {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.train_text {
+			@include font(var(--ff-first), 24px, 500);
+			text-align: center;
+			align-self: center;
+			justify-self: center;
+		}
 	}
 }
 
@@ -41,7 +53,7 @@
 .btn {
 	grid-area: btn;
 	@include sm() {
-		width: 	100%;
+		width: 100%;
 		color: black;
 	}
 }
@@ -69,6 +81,6 @@
 		grid-template-areas:
 			'reward schedule'
 			'train btn';
-			gap: 8px;
+		gap: 8px;
 	}
 }
