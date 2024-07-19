@@ -12,7 +12,7 @@ import { postData } from '../../../entities/schedule/api/schedule';
 
 export const AddTreanerSchedule = () => {
 	const [openTrainers, setOpenTrainers] = useState(false); //открыть-зыкрыть
-	const [openPlatform, setopenPlatform] = useState(false);
+	const [openPlatform, setOpenPlatform] = useState(false);
 	const [test, setTest] = useState({
 		space_id: null,
 		trainer_id: null,
@@ -43,20 +43,19 @@ export const AddTreanerSchedule = () => {
 				<DropdownButton
 					title={'Выберите тренера'}
 					onClick={() => setOpenTrainers((prev) => !prev)}
-					width={'347px'}
+					// width={'347px'}
 					data={trainers}
 					open={openTrainers}
 					setState={setTrainer}
 				/>
 				<DropdownButton
 					title={'Выберите площадку'}
-					onClick={() => setopenPlatform((prev) => !prev)}
-					width={'347px'}
+					onClick={() => setOpenPlatform((prev) => !prev)}
+					// width={'347px'}
 					data={platforms}
 					open={openPlatform}
 					setState={setSpace}
 				/>
-
 				<Button onClick={handleSubmit}>Отправить</Button>
 			</main>
 		</div>

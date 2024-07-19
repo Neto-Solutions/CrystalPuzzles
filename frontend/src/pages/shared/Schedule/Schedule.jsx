@@ -22,6 +22,7 @@ export default function SchedulePage() {
 			</div>
 			<Wrapper>
 				<CalendarBlock />
+				{/* TODO: заменить на dropdownButton */}
 				<Button width="100%" title="Выберите тренера" downArrow />
 			</Wrapper>
 		</Page>
