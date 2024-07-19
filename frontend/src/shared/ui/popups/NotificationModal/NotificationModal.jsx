@@ -1,11 +1,11 @@
 import classNames from 'classnames';
+import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
 import Title from '../../title/Title';
 import envelopeIcon from '../../../assets/svg/envelope.svg';
 import envelopeSecondIcon from '../../../assets/svg/envelope-2.svg';
 import line from '../../../assets/svg/wavy_line.svg';
 import styles from './NotificationModal.module.scss';
-import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
 
 export const NotificationModal = ({ onHide }) => {
 	useEffect(() => {

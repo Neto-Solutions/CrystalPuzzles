@@ -3,7 +3,7 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import classNames from 'classnames';
 import { CalendarAddButton } from './CalendarAddButton/CalendarAddButton';
-import { ScheduleHeader } from '../../../features/schedule/ui/ScheduleHeader/ScheduleHeader';
+import { ScheduleHeader } from '../../../features/scheduleHeader/ScheduleHeader';
 import styles from './Calendar.table.module.scss';
 import { Modal } from '../../../shared/ui/modal/Modal';
 import { AddTreanerSchedule } from '../../../features/addTreanerSchedule/ui/AddTreanerSchedule';

@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Notification({
 	array = Array(2).fill(''),
-	isPage = false
+	isPage = false,
+	className
 }) {
 	const navigate = useNavigate();
 	return (
-		<section className={styles.container}>
+		<section className={styles.container + ' ' + className}>
 			<Title tag="h2" className={styles.title}>
 				Уведомления
 			</Title>
