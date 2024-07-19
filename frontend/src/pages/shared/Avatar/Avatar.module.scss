@@ -3,10 +3,10 @@
 .container {
 	width: fit-content;
 	max-width: 636px;
-	padding: 20px;
+	padding: var(--gap);
 	border: var(--border);
-	border-radius: 20px;
-	background-color: #e1f1f8;
+	border-radius: var(--radius);
+	background-color: var(--bg-card);
 	display: grid;
 	gap: 60px;
 }
@@ -25,7 +25,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: end;
-	gap: 20px;
+	gap: var(--gap);
 
 	@include md() {
 		gap: 10px;
@@ -35,9 +35,9 @@
 		height: 57px;
 		border-radius: 13px;
 		flex-direction: row-reverse;
-		padding-left: 20px;
-		padding-right: 20px;
-		gap: 20px;
+		padding-left: var(--gap);
+		padding-right: var(--gap);
+		gap: var(--gap);
 		min-width: fit-content;
 
 		@include md() {
@@ -52,7 +52,7 @@
 	width: 134px;
 	height: 134px;
 	border: var(--border);
-	border-radius: 20px;
+	border-radius: var(--radius);
 	padding: 8px;
 	object-fit: cover;
 	@include md() {
@@ -65,7 +65,7 @@
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 20px;
+	gap: var(--gap);
 	place-items: center;
 
 	@include md() {

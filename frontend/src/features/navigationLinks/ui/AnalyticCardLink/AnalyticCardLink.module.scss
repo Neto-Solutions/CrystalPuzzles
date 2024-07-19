@@ -1,6 +1,8 @@
 @use '~styles/mixins' as *;
 
 .analitic {
+	width: 347px;
+	height: 347px;
 	background-image: url('~assets/card.background/analitic.svg');
 	background-repeat: no-repeat;
 	background-position: bottom;
