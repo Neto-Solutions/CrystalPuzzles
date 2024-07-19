@@ -1,8 +1,8 @@
-import styles from './Students.list.module.scss';
+import styles from './Search.module.scss';
 import { useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
-export default function StudentsList() {
+export default function Search() {
 	const inputRef = useRef();
 
 	function search() {}

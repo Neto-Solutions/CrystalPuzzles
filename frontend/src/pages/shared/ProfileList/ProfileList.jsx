@@ -1,10 +1,10 @@
 import { Page } from '@shared/ui';
-import { StudentsList } from '@widgets/student';
+import Search from './search/Search';
 
 export default function ProfileList({ title }) {
 	return (
 		<Page title={title}>
-			<StudentsList />
+			<Search />
 		</Page>
 	);
 }
