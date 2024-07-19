@@ -39,9 +39,7 @@
 
 .schedule_card {
 	grid-area: schedule;
-	@include xxl() {
-		aspect-ratio: 1;
-	}
+
 	@include sm() {
 		width: 100%;
 	}
@@ -67,17 +65,18 @@
 		'feedback feedback schedule'
 		'btn btn .';
 
-	@include xxl() {
-		grid-template-columns: 1fr 1fr;
+	@include lg() {
+		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'reward train'
-			'. schedule'
+			'schedule schedule'
 			'feedback feedback'
 			'btn btn';
+		gap: 8px;
 	}
 
 	@include sm() {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'reward schedule'
 			'train btn';

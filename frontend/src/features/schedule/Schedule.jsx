@@ -2,7 +2,7 @@ import styles from './Schedule.module.scss';
 import { useState } from 'react';
 
 export default function Schedule() {
-	const [data, setData] = useState(Array(3).fill(1));
+	const [data] = useState(Array(3).fill(1));
 	return (
 		<>
 			{data.map((_, index) => (
