@@ -29,30 +29,16 @@ export const DropdownButton = ({
 					<div
 						className={styles.list_item}
 						key={item.id}
-						onClick={() => setState(item.id)}
+						onClick={(e) => {
+							e.stopPropagation();
+							setState(item.id);
+						}}
 					>
 						<label htmlFor={item.name}>{item.name}</label>
-						<input type="radio" className={styles.checkbox} id={item.name} />
+						<input type="checkbox" className={styles.checkbox} id={item.name} />
 					</div>
 				))}
 			</form>
 		</div>
 	);
 };
-
-{
-	/* <form>
-
-    <legend>Choose your favorite monster</legend>
-
-    <input type="radio" id="kraken" name="monster" value="K" />
-    <label for="kraken">Kraken</label><br />
-
-    <input type="radio" id="sasquatch" name="monster" value="S" />
-    <label for="sasquatch">Sasquatch</label><br />
-
-    <input type="radio" id="mothman" name="monster" value="M" />
-    <label for="mothman">Mothman</label>
-  </fieldset>
-</form> */
-}
