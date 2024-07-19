@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import classNames from 'classnames';
-import moment from 'moment';
 import 'moment/locale/ru';
 import { ScheduleHeader } from '../../schedule/ui/ScheduleHeader/ScheduleHeader';
 import { DropdownButton } from '../../dropdownButton/DropdownButton';
@@ -33,7 +31,7 @@ export const AddTreanerSchedule = () => {
 	};
 
 	const handleSubmit = async () => {
-		postData(test).then(console.log).catch(console.log);
+		postData(test);
 	};
 	// TODO: доделать функциoнал
 	return (

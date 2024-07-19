@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Card from '../card/Card';
-import useResize from '@shared/hooks/useResize';
+// import useResize from '@shared/hooks/useResize';
 import styles from './User.card.module.scss';
 
 export default function UserCard({ img, name, children, showBtn = false }) {

@@ -1,9 +1,9 @@
-import styles from './Student.page.module.scss';
+import styles from './Profile.module.scss';
 import { Page, Button } from '@shared/ui';
 
-export default function StudentPage() {
+export default function StudentPage({ title }) {
 	return (
-		<Page title="Ученики">
+		<Page title={title}>
 			<section className={styles.description_container}>
 				<article className={styles.name}>
 					Дмитриева Анастасия Алексеевна
