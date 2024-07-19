@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Feedback } from '@features/feedback';
 import { CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
-import Schedule from './Schedule/Schedule';
+import Schedule from '@features/schedule/Schedule';
 import RewardsPopup from './Reward/Reward';
 
 export default function studentMainPage() {

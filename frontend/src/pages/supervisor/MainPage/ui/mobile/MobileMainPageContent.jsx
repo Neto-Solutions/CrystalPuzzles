@@ -1,7 +1,7 @@
 import styles from './MobileMainPageContent.module.scss';
 import { Page } from '@shared/ui';
 import { Notification } from '@widgets/notification';
-import { ScheduleCard } from '@features/schedule';
+// import { ScheduleCard } from '@features/schedule';
 import { Button } from '@shared/ui';
 import {
 	ProgressCardLink,
@@ -15,7 +15,7 @@ export const MobileMainPageContent = () => {
 			<div className={styles.wrapper}>
 				<Notification />
 				<div className={styles.schedule_wrapper}>
-					<ScheduleCard to={'/schedule'} />
+					{/* <ScheduleCard to={'/schedule'} /> */}
 					<Button title="Ученики" />
 					<Button title="Тренеры" />
 				</div>

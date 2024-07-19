@@ -1,6 +1,5 @@
 import { Page } from '@shared/ui';
 import { Notification } from '@widgets/notification';
-import { ScheduleCard } from '@features/schedule';
 import { Button } from '@shared/ui';
 import {
 	EvaluationCardLink,
@@ -19,7 +18,7 @@ export const DesktopMainPageContent = () => {
 			<EvaluationCardLink />
 			<Notification />
 			<div className={styles.wrapper}>
-				<ScheduleCard to={'/schedule'} />
+				{/* <ScheduleCard to={'/schedule'} /> */}
 				<Button
 					title="Ученики"
 					width="100%"

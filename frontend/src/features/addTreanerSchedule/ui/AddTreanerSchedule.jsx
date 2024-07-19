@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import 'moment/locale/ru';
-import { ScheduleHeader } from '../../schedule/ui/ScheduleHeader/ScheduleHeader';
+import { ScheduleHeader } from '../../scheduleHeader/ScheduleHeader';
 import { DropdownButton } from '../../dropdownButton/DropdownButton';
 import styles from './AddTreanerSchedule.module.scss';
 

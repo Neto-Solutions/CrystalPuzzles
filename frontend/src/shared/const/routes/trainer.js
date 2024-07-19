@@ -54,7 +54,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/students',
-		element: <ProfileListPage />,
+		element: <ProfileListPage title="Ученики" />,
 		local: 'Ученики',
 		img: students
 	},
