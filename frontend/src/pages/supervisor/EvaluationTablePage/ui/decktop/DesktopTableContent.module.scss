@@ -1,0 +1,14 @@
+@use '~styles/mixins' as *;
+
+.btn_wrap {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+
+	@include lg() {
+		max-width: 347px;
+		margin-right: auto;
+		flex-direction: column;
+	}
+}

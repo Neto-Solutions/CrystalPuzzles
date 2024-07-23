@@ -1,0 +1,12 @@
+@use '~styles/mixins' as *;
+
+.evaluation {
+	width: 347px;
+	height: 347px;
+	background-image: url('~assets/card.background/table.svg');
+	background-size: cover;
+	@include sm() {
+		width: 100%;
+		height: 154px;
+	}
+}
