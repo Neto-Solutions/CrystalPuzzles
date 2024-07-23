@@ -1,4 +1,4 @@
-@use '../../../app/styles/mixins' as *;
+@use '~styles/mixins' as *; 
 
 .container {
 	width: 100%;
@@ -57,4 +57,46 @@
 	resize: none;
 	border: var(--border);
 	border-radius: 16px;
+}
+.cont_bottom_decor {
+	display: none;
+}
+@include md() {
+	
+.container {
+	width: 100%;
+	padding: 10px 0px;
+	text-align: center;
+}
+.title  {
+	display: none;
+}
+.notifications {
+	width: 100%;
+}
+.notification_item {
+	padding-left:  16px;
+	padding-right:  16px;
+	flex-direction: column;
+	&_text {
+		font-size: 14px;
+	}
+	&:first-child {
+		border-top: var(--border);
+		margin-top: 10px;
+	}
+}
+.button {
+	width: 90px;
+	height: 24px;
+	font-size: 14px;
+}
+.cont_bottom_decor {
+	width: 100%;
+	height: 1.5px;
+	border-top: var(--border);
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 }

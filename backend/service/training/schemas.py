@@ -5,10 +5,7 @@ from pydantic import Field
 from datetime import datetime
 from typing import Optional
 
-from fastapi import HTTPException
-from pydantic import EmailStr, field_validator
-
-from core.schemas.base import BaseModel, BaseFilterSchema
+from common.schema.base_schemas import BaseModel, BaseFilterSchema
 
 
 class CreateTrainingSchema(BaseModel):
@@ -31,7 +28,7 @@ class TrainingSchemaForTable(BaseModel):
     """ Схема деталей моделей тренировок """
     id: int
     name: str
-    description: str
+    description: Optional[str]
 
 
 class TrainingViewSchemaForPage(BaseModel):

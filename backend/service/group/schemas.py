@@ -4,7 +4,7 @@ from typing import Optional, List
 from fastapi import Query
 from pydantic import Field
 
-from core.schemas.base import BaseModel, BaseFilterSchema
+from common.schema.base_schemas import BaseModel, BaseFilterSchema
 
 
 class StudentViewModel(BaseModel):
@@ -14,10 +14,12 @@ class StudentViewModel(BaseModel):
     lastname: Optional[str] = None
     is_man: bool
     birthday: Optional[datetime] = None
+    avatar: Optional[int]
 
 
 class StudentForGroupViewModel(BaseModel):
     student: StudentViewModel
+
 
 class GroupResponseModel(BaseModel):
     """ Ответ на создание и редактирование групп """

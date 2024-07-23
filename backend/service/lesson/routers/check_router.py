@@ -3,45 +3,43 @@ from http import HTTPStatus
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Response
+from starlette.responses import JSONResponse
 
-from core.utils.logger import logger
-from service.identity.models import User
-from service.identity.repositories.user_repository import UserRepository
+from common.dependensies import TrainerSupervisorAdminDep
+from common.schema.base_schemas import Message
+from core.logger import logger
+from service.lesson.dependensies import CheckUOWDep, CheckServiceDep
+from service.users.models import User
+from service.users.repository import UserRepository
 
-
-
-from service.identity.dependensies import user_repository
 from service.identity.security import get_current_user
 from service.lesson.repositories.lesson_repository import LessonRepository
-from service.lesson.repositories.space_repository import SpaceRepository
 from service.lesson.schemas.check_schema import CreateCheckSchema
-from service.lesson.dependensies import lesson_repository, space_repository
 
 check_router = APIRouter(
     prefix="/api/v1/check",
     tags=["Check"]
 )
 
-async def create_lesson(
+
+@check_router.post(
+    "/",
+    summary="Создание Чек-листа",
+    response_model=int,
+    responses={
+        200: {"description": "Успешная обработка данных"},
+        401: {"description": "Не авторизованный пользователь"},
+        400: {"model": Message, "description": "Некорректные данные"},
+        500: {"model": Message, "description": "Серверная ошибка"}},
+)
+async def create_check(
         model: CreateCheckSchema,
-        lesson_repository: Annotated[LessonRepository, Depends(lesson_repository)],
-        user_repository: Annotated[UserRepository, Depends(user_repository)],
-        space_repository: Annotated[SpaceRepository, Depends(space_repository)],
-        current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        uow: CheckUOWDep,
+        check_service: CheckServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """admin, supervisor, trainer"""
-    try:
-        if not await user_repository.trainer_exists(model.trainer_id):
-            logger.error("Student not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-        if not await space_repository.exist(model.space_id):
-            logger.error("Space not found")
-            return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-        lesson_id = await lesson_repository.add(model)
-        if lesson_id:
-            return lesson_id
-        logger.error("Lesson existing")
-        return Response(status_code=HTTPStatus.CONFLICT.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await check_service.add(uow, model)
+    if result:
+        return result
+    return JSONResponse(status_code=HTTPStatus.CONFLICT.value, content="Check existing")

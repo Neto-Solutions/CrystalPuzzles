@@ -1,15 +1,21 @@
-@use '../../../app/styles/mixins' as *;
+@use '~styles/mixins' as *;
 
 .header {
 	display: flex;
 	justify-content: flex-end;
 }
 
+.header[data-check-in='false'] {
+	@include md() {
+		display: none;
+	}
+}
+
 .logo {
 	margin: 20px 0;
 	display: flex;
 	&::after {
-		content: url('../assets/logo_title.svg');
+		content: url('~assets/header/logo_title.svg');
 		margin-left: 10px;
 		display: flex;
 		flex-wrap: nowrap;

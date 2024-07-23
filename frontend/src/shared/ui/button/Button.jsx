@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Button.module.scss';
 import { ReactComponent as DownArrow } from '@shared/assets/svg/arrow.svg';
 
@@ -14,7 +13,10 @@ export default function Button({
 	return (
 		<button
 			className={`${styles.btn} ${className}`}
-			style={{ width, height }}
+			style={{
+				width,
+				height
+			}}
 			{...props}
 		>
 			{downArrow ? (

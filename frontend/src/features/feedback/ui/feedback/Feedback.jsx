@@ -1,10 +1,9 @@
 import styles from './Feedback.module.scss';
-import Button from '@shared/ui/button/Button';
-export default function Feedback({ placeholder }) {
+export default function Feedback({ placeholder, children }) {
 	return (
-		<>
-			<div className={styles.container}>
-				<div className={styles.title}>Оставить комментарий методисту</div>
+		<div className={styles.container}>
+			<div className={styles.textarea_container}>
+				<div className={styles.title}>{children}</div>
 				<textarea
 					className={styles.textarea}
 					name=""
@@ -12,7 +11,6 @@ export default function Feedback({ placeholder }) {
 					placeholder={placeholder}
 				/>
 			</div>
-			<Button title="Отправить" className={styles.button} />
-		</>
+		</div>
 	);
 }

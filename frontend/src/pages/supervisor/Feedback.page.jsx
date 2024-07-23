@@ -1,4 +1,4 @@
-import Page from '@shared/ui/page/Page';
+import { Page } from '@shared/ui';
 import { Feedback } from '@features/feedback';
 
 export default function FeedbackPage() {
