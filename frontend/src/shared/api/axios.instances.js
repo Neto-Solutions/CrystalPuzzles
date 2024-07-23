@@ -9,7 +9,12 @@ const $host = axios.create();
 const $authHost = axios.create();
 
 $authHost.interceptors.request.use((config) => {
-	config.headers.authorization = `Bearer ${Cookies.get('token')}`;
+	const token = Cookies.get('token');
+	if (!token) {
+		return config;
+	}
+
+	config.headers.authorization = `Bearer ${token}`;
 	return config;
 });
 

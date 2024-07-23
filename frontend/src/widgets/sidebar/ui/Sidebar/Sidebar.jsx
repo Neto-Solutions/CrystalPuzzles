@@ -21,13 +21,14 @@ export default function Sidebar() {
 
 	useSwipe((isOpen) => setIsOpen(isOpen));
 
-	function handleExit() {
-		logout()
-			.then(() => {
-				Cookies.remove('token');
-				location.reload();
-			})
-			.catch(() => location.reload());
+	async function handleExit() {
+		try {
+			await Cookies.remove('token');
+			await logout();
+			location.reload();
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	return (
