@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Notification({
 	array = Array(2).fill(''),
-	isPage = false
+	isPage = false,
+	className
 }) {
 	const navigate = useNavigate();
 	return (
-		<section className={styles.container}>
+		<section className={styles.container + ' ' + className}>
 			<Title tag="h2" className={styles.title}>
 				Уведомления
 			</Title>
@@ -37,7 +38,7 @@ function NotificationItem() {
 		<>
 			<div className={styles.notification_item}>
 				<p className={styles.notification_item_text}>
-					Михаил выполнил все задания
+					<span>Михаил</span> выполнил все задания
 				</p>
 				<Button
 					title={isOpen ? 'Ответить' : 'Открыть'}

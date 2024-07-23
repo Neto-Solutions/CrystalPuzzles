@@ -1,0 +1,19 @@
+@use '~styles/mixins' as *;
+
+.analitic {
+	width: 347px;
+	height: 347px;
+	background-image: url('~assets/card.background/analitic.svg');
+	background-repeat: no-repeat;
+	background-position: bottom;
+
+	&:hover {
+		background-image: url('~assets/card.background/analitic_hover.svg');
+	}
+
+	@include sm() {
+		width: 164px;
+		height: 147px;
+		background-size: cover;
+	}
+}
