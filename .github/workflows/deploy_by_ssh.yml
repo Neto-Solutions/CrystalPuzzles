@@ -1,8 +1,8 @@
 name: Deploy by ssh
 
-env:
-  SSH_USERNAME: "crystall_admin"
-  SSH_HOST_NAME: "203.31.40.34"
+# env:
+#   SSH_USERNAME: "crystall_admin"
+#   SSH_HOST_NAME: "203.31.40.34"
 
 on:
   push:
@@ -21,17 +21,17 @@ jobs:
       - name: Change directory permitions
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SSH_HOST_NAME }}
-          username: ${{ env.SSH_USERNAME }}
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             bash
-            if [ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]; then
-              sudo chmod -R 777 /home/${{ env.SSH_USERNAME }}/Crystall/ && echo "chmod done"
-              sudo chown -R ${{ env.SSH_USERNAME }}:${{ env.SSH_USERNAME }} /home/${{ env.SSH_USERNAME }}/Crystall/ && echo "chown done"
+            if [ -d /home/${{ secrets.SSH_USERNAME }}/Crystall/ ]; then
+              sudo chmod -R 777 /home/${{ secrets.SSH_USERNAME }}/Crystall/ && echo "chmod done"
+              sudo chown -R ${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_USERNAME }} /home/${{ secrets.SSH_USERNAME }}/Crystall/ && echo "chown done"
             else
-              echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+              echo "/home/${{ secrets.SSH_USERNAME }}/Crystall/ not found"
             fi
        
             
@@ -42,40 +42,40 @@ jobs:
       - name: Sync Repository via SSH
         run: |
           rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }}" --archive --compress --delete \
-          . ${{ env.SSH_USERNAME }}@${{ env.SSH_HOST_NAME }}:Crystall
+          . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST_NAME }}:Crystall
 
       - name: Change directory permitions again
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SSH_HOST_NAME }}
-          username: ${{ env.SSH_USERNAME }}
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            if [ -d /home/${{ env.SSH_USERNAME }}/Crystall/ ]; then
-              sudo chmod -R 755 /home/${{ env.SSH_USERNAME }}/Crystall/
-              sudo chown -R ${{ env.SSH_USERNAME }}:${{ env.SSH_USERNAME }} /home/${{ env.SSH_USERNAME }}/Crystall/
+            if [ -d /home/${{ secrets.SSH_USERNAME }}/Crystall/ ]; then
+              sudo chmod -R 755 /home/${{ secrets.SSH_USERNAME }}/Crystall/
+              sudo chown -R ${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_USERNAME }} /home/${{ secrets.SSH_USERNAME }}/Crystall/
             else
-              echo "/home/${{ env.SSH_USERNAME }}/Crystall/ not found"
+              echo "/home/${{ secrets.SSH_USERNAME }}/Crystall/ not found"
             fi
 
       - name: Check docker and docker-compose
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SSH_HOST_NAME }}
-          username: ${{ env.SSH_USERNAME }}
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           run: |
-             /home/${{ env.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
-             /home/${{ env.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
+             /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
+             /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
               echo "Did not check Docker"
 
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SSH_HOST_NAME }}
-          username: ${{ env.SSH_USERNAME }}
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
@@ -86,9 +86,9 @@ jobs:
       - name: Start docker compose
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SSH_HOST_NAME }}
-          username: ${{ env.SSH_USERNAME }}
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker compose -f /home/${{ env.SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
+            sudo docker compose -f /home/${{ secrets.SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
