@@ -5,14 +5,27 @@ import { useState, useEffect } from 'react';
 import { getAllData } from '@entities/schedule';
 import moment from 'moment';
 
-export default function SchedulePage() {
+export default function SchedulePage({ isStudent = false }) {
 	const [data, setData] = useState([]);
 	const [date, setDate] = useState();
 	// eslint-disable-next-line no-unused-vars
 	const [err, setErr] = useState(null);
 
 	useEffect(() => {
-		getAllData(date).then(setData).catch(setErr);
+		getAllData(date, 10)
+			.then((data) => {
+				if (data.length) {
+					setData(data);
+				} else {
+					setData([
+						{
+							start: new Date(new Date().setHours(0, 0, 0)).toISOString(),
+							place: { name: '' }
+						}
+					]);
+				}
+			})
+			.catch(setErr);
 	}, [date]);
 
 	return (
@@ -25,7 +38,7 @@ export default function SchedulePage() {
 						</div>
 						<div className={styles.col}>
 							<span className={styles.col_content}>
-								Место - {item.place.name}
+								{item.place.name && `Место - ${item.place.name}`}
 							</span>
 						</div>
 					</div>
@@ -34,7 +47,9 @@ export default function SchedulePage() {
 			<Wrapper>
 				<CalendarBlock setNewDate={setDate} />
 				{/* TODO: заменить на dropdownButton */}
-				<Button width="100%" title="Выберите тренера" downArrow />
+				{isStudent && (
+					<Button width="100%" title="Выберите тренера" downArrow />
+				)}
 			</Wrapper>
 		</Page>
 	);
