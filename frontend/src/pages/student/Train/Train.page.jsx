@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Page } from '@shared/ui';
 import { Link } from 'react-router-dom';
 import { getAllData } from '@entities/schedule';
+import moment from 'moment';
 
 export default function TrainPage() {
 	const [data, setData] = useState([]);
@@ -19,21 +20,29 @@ export default function TrainPage() {
 				return (
 					<Link to="/exercise" key={index} className={styles.card}>
 						<div className={styles.info}>
-							<div className={styles.name}>{item.name}</div>
-							<div className={styles.trainer}>
+							<div className={styles.trainer_container}>
 								<span className={styles.trainer_title}>Тренер:</span>
-								{item.trainer.surname +
-									' ' +
-									item.trainer.firstname +
-									' ' +
-									item.trainer.lastname}
+								<span className={styles.trainer_content}>
+									{item.trainer.surname +
+										' ' +
+										item.trainer.firstname +
+										' ' +
+										item.trainer.lastname}
+								</span>
 							</div>
-							<div className={styles.combination}>
-								<span className={styles.combination_title}>Комбинация 1</span>
-								{item.combination}
+							<div className={styles.place_container}>
+								<span className={styles.place_title}>Место:</span>
+								<span className={styles.place_content}>{item.place.name}</span>
+							</div>
+							<div className={styles.comment_container}>
+								<span className={styles.comment}>
+									{'"' + item.trainer_comment + '"'}
+								</span>
 							</div>
 						</div>
-						<div className={styles.date}>{item.date}</div>
+						<div className={styles.date}>
+							{moment(item.date).format('DD.MM.YYYY')}
+						</div>
 					</Link>
 				);
 			})}
