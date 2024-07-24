@@ -15,12 +15,20 @@
 .item {
 	margin-bottom: 10px;
 	width: 275px;
-}
-.content {
 	font-family: Roboto;
 	font-size: 20px;
 	font-weight: 500;
-}
-.time {
-	color: #2b2d91;
+	.place_container {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		.time {
+			color: #2b2d91;
+		}
+		.place {
+		}
+	}
+	.trainer {
+		text-align: center;
+	}
 }
