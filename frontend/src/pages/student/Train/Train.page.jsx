@@ -6,6 +6,7 @@ import { getAllData } from '@entities/schedule';
 
 export default function TrainPage() {
 	const [data, setData] = useState([]);
+	// eslint-disable-next-line no-unused-vars
 	const [err, setErr] = useState(null);
 
 	useEffect(() => {

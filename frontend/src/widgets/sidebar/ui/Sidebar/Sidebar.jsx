@@ -15,6 +15,8 @@ import styles from './Sidebar.module.scss';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen] = useState(false);
+	// eslint-disable-next-line no-unused-vars
+	const [err, setErr] = useState(false);
 	const user = useSelector(selectUser);
 	const navigate = useNavigate();
 	const isMobile = useResize('md');
@@ -27,7 +29,7 @@ export default function Sidebar() {
 			await logout();
 			location.reload();
 		} catch (error) {
-			console.log(error);
+			setErr(error);
 		}
 	}
 
