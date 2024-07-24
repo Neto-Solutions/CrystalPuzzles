@@ -1,7 +1,7 @@
 import { $authHost } from '@shared/api/axios.instances';
 
-const getAllData = async () => {
-	const { data } = await $authHost.get(`/lesson`);
+const getAllData = async (start, limit) => {
+	const { data } = await $authHost.get(`/lesson`, { params: { start, limit } });
 	return data;
 };
 

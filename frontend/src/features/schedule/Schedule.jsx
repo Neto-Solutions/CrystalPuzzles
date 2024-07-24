@@ -20,10 +20,11 @@ export default function Schedule() {
 							<span className={styles.time}>
 								{moment(item.start).format('HH:mm')}
 							</span>
+							<span> - </span>
 							<span className={styles.place}>{item.place.name}</span>
 						</div>
 						<div className={styles.trainer}>
-							Тренер:{' '}
+							Тренер -{' '}
 							{item.trainer.surname +
 								' ' +
 								item.trainer.firstname +

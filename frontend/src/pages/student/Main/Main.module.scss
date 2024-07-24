@@ -3,10 +3,10 @@
 .reward_card {
 	background-image: url('~assets/gifs/smile-with-eyes.gif');
 	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 60% 60%;
+	background-position: bottom;
+	background-size: 50%;
+	background-position-y: 80%;
 	grid-area: reward;
-	aspect-ratio: 1;
 	@include sm() {
 		width: 100%;
 		background-image: none;
@@ -16,23 +16,23 @@
 .train_card {
 	grid-area: train;
 	overflow: hidden;
-	aspect-ratio: 1;
+	height: 100%;
+	min-height: 238px;
+	// aspect-ratio: 1;
 	@include sm() {
 		width: 100%;
+		min-height: auto;
 	}
 
 	.train_text_container {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		justify-content: center;
-		align-items: center;
 
 		.train_text {
 			@include font(var(--ff-first), 24px, 500);
 			text-align: center;
-			align-self: center;
-			justify-self: center;
+			margin-top: auto;
 		}
 	}
 }
