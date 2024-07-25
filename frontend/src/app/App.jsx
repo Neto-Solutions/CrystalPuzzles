@@ -11,7 +11,7 @@ import { NotificationModal } from '../shared/ui/popups/NotificationModal/Notific
 
 export default function App() {
 	const [loading, setLoading] = useState(true);
-	const [notification, setNotification] = useState(true);
+	const [notification, setNotification] = useState(false);
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
