@@ -24,7 +24,11 @@ export default function LogRegForm({ login = false }) {
 				)
 		)
 			.then(() => navigate('/'))
-			.catch((err) => setErr(err.response.data.detail));
+			.catch(() =>
+				setErr(
+					'Что-то пошло не так. Возможно вы ввели неверный email или пароль'
+				)
+			);
 	}
 	return (
 		<div className={styles.container}>

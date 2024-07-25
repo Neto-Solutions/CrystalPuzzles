@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import App from '@app/App';
 import {
 	checkInRouter,
@@ -12,16 +12,13 @@ function createRouter(role) {
 		{
 			path: '/',
 			element: <App />,
+			errorElement: <div>Error 404</div>,
 			children:
 				(role === 'student' && studentRouter) ||
 				(role === 'supervisor' && supervisorRouter) ||
 				(role === 'trainer' && trainerRouter)
 		},
-		...checkInRouter,
-		{
-			path: '*',
-			loader: () => redirect('/')
-		}
+		...checkInRouter
 	]);
 }
 
