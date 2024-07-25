@@ -11,14 +11,16 @@ export default function TrainPage() {
 	const [err, setErr] = useState(null);
 
 	useEffect(() => {
-		getAllData().then(setData).catch(setErr);
+		getAllData(moment().startOf('week').toISOString(), 7)
+			.then(setData)
+			.catch(setErr);
 	}, []);
 
 	return (
 		<Page title="Мои тренировки">
 			{data.map((item, index) => {
 				return (
-					<Link to="/exercise" key={index} className={styles.card}>
+					<Link to={`/train/${item._id}`} key={index} className={styles.card}>
 						<div className={styles.info}>
 							<div className={styles.trainer_container}>
 								<span className={styles.trainer_title}>Тренер:</span>
@@ -41,7 +43,7 @@ export default function TrainPage() {
 							</div>
 						</div>
 						<div className={styles.date}>
-							{moment(item.date).format('DD.MM.YYYY')}
+							{moment(item.start).format('DD.MM.YYYY')}
 						</div>
 					</Link>
 				);
