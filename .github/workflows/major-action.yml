@@ -81,8 +81,8 @@ jobs:
             || echo "No docker conteiners are running"
 
   start_docker:
-    needs: check_docker_and_compose
-    # needs: clean_docker_conteiners_and_images
+    #needs: check_docker_and_compose
+    needs: clean_docker_conteiners_and_images
     runs-on: ubuntu-latest
     steps:
       - name: Start docker compose
