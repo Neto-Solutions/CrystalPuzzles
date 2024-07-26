@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v3
   
   refresh_content:
+    needs: Checkout_Repository
     runs-on: ubuntu-latest
     steps:
       - name: Change directory permitions
@@ -62,6 +63,7 @@ jobs:
             fi
 
   check_docker_and_compose:
+    needs: refresh_content
     runs-on: ubuntu-latest
     steps:
       - name: Check docker and docker-compose
@@ -77,6 +79,7 @@ jobs:
               echo "Did not check Docker"
 
   clean_docker_conteiners_and_images:
+    needs: check_docker_and_compose
     runs-on: ubuntu-latest
     steps:
       - name: Stop docker conteiners and clean docker images
@@ -92,6 +95,7 @@ jobs:
             || echo "No docker conteiners are running"
 
   start_docker:
+    needs: clean_docker_conteiners_and_images
     runs-on: ubuntu-latest
     steps:
       - name: Start docker compose
