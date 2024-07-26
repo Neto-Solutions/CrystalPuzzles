@@ -7,6 +7,8 @@ import { ReactComponent as UploadIcon } from '@shared/assets/svg/upload.svg';
 import LS from '@shared/lib/localStorage';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@entities/user';
+import { useNavigate } from 'react-router-dom';
+
 export default function AvatarPage() {
 	const { avatar } = useSelector(selectUser);
 	const [preview, setPreview] = useState(
@@ -15,12 +17,14 @@ export default function AvatarPage() {
 	const [userPhoto, setUserPhoto] = useState(null);
 	const [err, setErr] = useState(null);
 
+	const navigate = useNavigate();
+
 	function submitForm(e) {
 		e.preventDefault();
 		if (!userPhoto) return;
 		LS.remove('avatar');
 		updateProfileAvatar(userPhoto).then(() => {
-			location.reload();
+			navigate('/');
 		});
 	}
 	return (

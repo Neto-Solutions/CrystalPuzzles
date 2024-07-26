@@ -6,13 +6,14 @@ import {
 	studentRouter,
 	trainerRouter
 } from '@shared/const/routes';
+import { ErrorPage } from '@pages/shared';
 
 function createRouter(role) {
 	return createBrowserRouter([
 		{
 			path: '/',
 			element: <App />,
-			errorElement: <div>Error 404</div>,
+			errorElement: <ErrorPage />,
 			children:
 				(role === 'student' && studentRouter) ||
 				(role === 'supervisor' && supervisorRouter) ||
