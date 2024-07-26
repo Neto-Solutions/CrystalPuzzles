@@ -12,12 +12,15 @@ on:
       - main
 
 jobs:
-  deploy:
+  Checkout_Repository:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
+  
+  refresh_content:
+    runs-on: ubuntu-latest
+    steps:
       - name: Change directory permitions
         uses: appleboy/ssh-action@master
         with:
@@ -32,8 +35,7 @@ jobs:
               sudo chown -R ${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_USERNAME }} /home/${{ secrets.SSH_USERNAME }}/Crystall/ && echo "chown done"
             else
               echo "/home/${{ secrets.SSH_USERNAME }}/Crystall/ not found"
-            fi
-       
+            fi       
             
       - name: Refresh content
         uses: webfactory/ssh-agent@v0.5.4
@@ -59,6 +61,9 @@ jobs:
               echo "/home/${{ secrets.SSH_USERNAME }}/Crystall/ not found"
             fi
 
+  check_docker_and_compose:
+    runs-on: ubuntu-latest
+    steps:
       - name: Check docker and docker-compose
         uses: appleboy/ssh-action@master
         with:
@@ -66,11 +71,14 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          run: |
+          script: |
              /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
              /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
               echo "Did not check Docker"
 
+  clean_docker_conteiners_and_images:
+    runs-on: ubuntu-latest
+    steps:
       - name: Stop docker conteiners and clean docker images
         uses: appleboy/ssh-action@master
         with:
@@ -83,6 +91,9 @@ jobs:
             sudo docker system prune --all --force \
             || echo "No docker conteiners are running"
 
+  start_docker:
+    runs-on: ubuntu-latest
+    steps:
       - name: Start docker compose
         uses: appleboy/ssh-action@master
         with:
