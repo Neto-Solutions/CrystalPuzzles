@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set nginx log files
-        uses: ./.github/workflows/set_nginx_logs.yml
+        uses: ./set_nginx_logs.yml
         # uses: appleboy/ssh-action@master
         # with:
         #   host: ${{ secrets.SSH_HOST_NAME }}
