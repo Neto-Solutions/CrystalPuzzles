@@ -32,20 +32,21 @@ export default function SchedulePage({ link = false }) {
 	return (
 		<Page title="Расписание">
 			<div className={styles.table}>
-				{data.map((item, index) => (
-					<Link key={index} to={!link ? null : `/schedule/${item._id}`}>
-						<div className={styles.row}>
-							<div className={styles.col}>
-								{moment(item.start).format('HH:mm')}
+				{data &&
+					data.map((item, index) => (
+						<Link key={index} to={!link ? null : `/schedule/${item._id}`}>
+							<div className={styles.row}>
+								<div className={styles.col}>
+									{moment(item.start).format('HH:mm')}
+								</div>
+								<div className={styles.col}>
+									<span className={styles.col_content}>
+										{item.place.name && `Место - ${item.place.name}`}
+									</span>
+								</div>
 							</div>
-							<div className={styles.col}>
-								<span className={styles.col_content}>
-									{item.place.name && `Место - ${item.place.name}`}
-								</span>
-							</div>
-						</div>
-					</Link>
-				))}
+						</Link>
+					))}
 			</div>
 			<Wrapper>
 				<CalendarBlock setNewDate={setDate} />
