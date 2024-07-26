@@ -48,6 +48,7 @@ jobs:
         run: docker compose down
   
   update_tag:
+    needs: tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
