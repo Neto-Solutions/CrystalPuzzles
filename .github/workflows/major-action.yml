@@ -3,8 +3,7 @@ name: Deploy by ssh
 on:
   push:
     branches:
-      - prod
-      - release
+      - main
 
 jobs:
   refresh_content:
@@ -65,21 +64,21 @@ jobs:
              /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
               echo "Did not check Docker"
 
-  # clean_docker_conteiners_and_images:
-  #   needs: check_docker_and_compose
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Stop docker conteiners and clean docker images
-  #       uses: appleboy/ssh-action@master
-  #       with:
-  #         host: ${{ secrets.SSH_HOST_NAME }}
-  #         username: ${{ secrets.SSH_USERNAME }}
-  #         key: ${{ secrets.DEPLOY_SSH_KEY }}
-  #         port: ${{ secrets.SSH_PORT }}
-  #         script: |
-  #           sudo docker stop $(docker ps -aq) && \
-  #           sudo docker system prune --all --force \
-  #           || echo "No docker conteiners are running"
+  clean_docker_conteiners_and_images:
+    needs: check_docker_and_compose
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stop docker conteiners and clean docker images
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            sudo docker stop $(docker ps -aq) && \
+            sudo docker system prune --all --force \
+            || echo "No docker conteiners are running"
 
   start_docker:
     needs: check_docker_and_compose
@@ -109,7 +108,7 @@ jobs:
         id: bump-semver
         with:
           current_version: ${{ steps.get-latest-tag.outputs.tag }}
-          level: major
+          level: minor
 
       - uses: actions-ecosystem/action-push-tag@v1
         with:
