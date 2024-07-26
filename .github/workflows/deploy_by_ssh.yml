@@ -23,20 +23,12 @@ jobs:
           ssh_port: ${{ secrets.SSH_PORT }}
         
       - name: Change directory permitions
-        uses: appleboy/ssh-action@master
+        uses: ./.github/actions/change-directory-permissions
         with:
           host: ${{ secrets.SSH_HOST_NAME }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            bash
-            if [ -d /home/${{ secrets.SSH_USERNAME }}/Crystall/ ]; then
-              sudo chmod -R 777 /home/${{ secrets.SSH_USERNAME }}/Crystall/ && echo "chmod done"
-              sudo chown -R ${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_USERNAME }} /home/${{ secrets.SSH_USERNAME }}/Crystall/ && echo "chown done"
-            else
-              echo "/home/${{ secrets.SSH_USERNAME }}/Crystall/ not found"
-            fi       
+          port: ${{ secrets.SSH_PORT }}              
             
       - name: Refresh content
         uses: webfactory/ssh-agent@v0.5.4
@@ -48,19 +40,12 @@ jobs:
           . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST_NAME }}:Crystall
 
       - name: Change directory permitions again
-        uses: appleboy/ssh-action@master
+        uses: ./.github/actions/change-directory-permissions
         with:
           host: ${{ secrets.SSH_HOST_NAME }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: |
-            if [ -d /home/${{ secrets.SSH_USERNAME }}/Crystall/ ]; then
-              sudo chmod -R 755 /home/${{ secrets.SSH_USERNAME }}/Crystall/
-              sudo chown -R ${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_USERNAME }} /home/${{ secrets.SSH_USERNAME }}/Crystall/
-            else
-              echo "/home/${{ secrets.SSH_USERNAME }}/Crystall/ not found"
-            fi
 
   check_docker_and_compose:
     needs: refresh_content

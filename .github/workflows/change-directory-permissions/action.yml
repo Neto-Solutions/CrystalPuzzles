@@ -1,0 +1,33 @@
+name: "Change Directory Permissions"
+description: "Change permissions and ownership of a directory"
+
+inputs:
+  ssh_host:
+    description: "SSH Host"
+    required: true
+  ssh_username:
+    description: "SSH Username"
+    required: true
+  deploy_ssh_key:
+    description: "SSH Key"
+    required: true
+  ssh_port:
+    description: "SSH Port"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Change directory permissions
+      shell: bash
+      run: |
+        echo "${{ inputs.deploy_ssh_key }}" > /tmp/deploy_key
+        chmod 600 /tmp/deploy_key
+        ssh -o StrictHostKeyChecking=no -i /tmp/deploy_key -p ${{ inputs.ssh_port }} ${{ inputs.ssh_username }}@${{ inputs.ssh_host }} <<'EOF'
+          if [ -d /home/${{ inputs.ssh_username }}/Crystall/ ]; then
+            sudo chmod -R 777 /home/${{ inputs.ssh_username }}/Crystall/ && echo "chmod done"
+            sudo chown -R ${{ inputs.ssh_username }}:${{ inputs.ssh_username }} /home/${{ inputs.ssh_username }}/Crystall/ && echo "chown done"
+          else
+            echo "/home/${{ inputs.ssh_username }}/Crystall/ not found"
+          fi
+        EOF
