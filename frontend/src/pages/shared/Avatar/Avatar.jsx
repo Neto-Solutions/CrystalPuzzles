@@ -13,13 +13,14 @@ export default function AvatarPage() {
 		LS.get('avatar') || require(`@shared/assets/avatar/${avatar}.png`)
 	);
 	const [userPhoto, setUserPhoto] = useState(null);
+	const [err, setErr] = useState(null);
 
 	function submitForm(e) {
 		e.preventDefault();
 		if (!userPhoto) return;
 		LS.remove('avatar');
 		updateProfileAvatar(userPhoto).then(() => {
-			location.reload();
+			location.replace('/');
 		});
 	}
 	return (
@@ -32,9 +33,14 @@ export default function AvatarPage() {
 						<input
 							id="input_file"
 							type="file"
-							accept="image/*"
+							accept="image/png, image/jpeg"
 							hidden
 							onChange={(e) => {
+								if (e.target.files[0].size > 5 * 1024 * 1024) {
+									setErr('Фото должно быть меньше 5 МБ');
+									return;
+								}
+								setErr(null);
 								setUserPhoto(e.target.files[0]);
 								setPreview(URL.createObjectURL(e.target.files[0]));
 							}}
@@ -47,6 +53,7 @@ export default function AvatarPage() {
 						>
 							<UploadIcon />
 						</Button>
+						{err && <div className={styles.error}>{err}</div>}
 					</div>
 				</div>
 
