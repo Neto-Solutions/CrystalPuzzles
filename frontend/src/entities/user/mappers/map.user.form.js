@@ -9,7 +9,7 @@ export function mapUserForm(e) {
 			Object.assign(data, name);
 			continue;
 		}
-		if (key) {
+		if (key && e.target[i].value) {
 			data[key] = e.target[i].value;
 		}
 	}

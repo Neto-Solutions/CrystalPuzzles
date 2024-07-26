@@ -48,11 +48,6 @@ export default function LogRegForm({ login = false }) {
 							dataKey="birthday"
 							type="date"
 						/>
-						<Input
-							label="Введите номер вашей группы или имя тренера"
-							dataKey="group"
-							type="text"
-						/>
 					</>
 				)}
 
