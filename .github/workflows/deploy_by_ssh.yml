@@ -12,16 +12,12 @@ on:
       - main
 
 jobs:
-  Checkout_Repository:
+  refresh_content:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-  
-  refresh_content:
-    needs: Checkout_Repository
-    runs-on: ubuntu-latest
-    steps:
+        
       - name: Change directory permitions
         uses: appleboy/ssh-action@master
         with:
