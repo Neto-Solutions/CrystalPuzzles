@@ -1,0 +1,117 @@
+name: Deploy by ssh
+
+on:
+  push:
+    branches:
+      - prod
+      - release
+
+jobs:
+  refresh_content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set nginx log files
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            sudo touch /var/log/nginx/error.log 2>/dev/null
+            sudo touch /var/log/nginx/access.log 2>/dev/null
+        
+      - name: Change directory permitions
+        uses: ./.github/workflows/change-directory-permissions
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}              
+            
+      - name: Refresh content
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+      - name: Sync Repository via SSH
+        run: |
+          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }}" --archive --compress --delete \
+          . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST_NAME }}:Crystall
+
+      - name: Change directory permitions again
+        uses: ./.github/workflows/change-directory-permissions
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+
+  check_docker_and_compose:
+    needs: refresh_content
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check docker and docker-compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+             /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
+             /home/${{ secrets.SSH_USERNAME }}/Crystall/devops/install_docker_docker-compose.sh ||
+              echo "Did not check Docker"
+
+  # clean_docker_conteiners_and_images:
+  #   needs: check_docker_and_compose
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Stop docker conteiners and clean docker images
+  #       uses: appleboy/ssh-action@master
+  #       with:
+  #         host: ${{ secrets.SSH_HOST_NAME }}
+  #         username: ${{ secrets.SSH_USERNAME }}
+  #         key: ${{ secrets.DEPLOY_SSH_KEY }}
+  #         port: ${{ secrets.SSH_PORT }}
+  #         script: |
+  #           sudo docker stop $(docker ps -aq) && \
+  #           sudo docker system prune --all --force \
+  #           || echo "No docker conteiners are running"
+
+  start_docker:
+    needs: check_docker_and_compose
+    # needs: clean_docker_conteiners_and_images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start docker compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            sudo docker compose -f /home/${{ secrets.SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
+
+  update_tag:
+    needs: start_docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+
+      - uses: actions-ecosystem/action-bump-semver@v1
+        id: bump-semver
+        with:
+          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+          level: minor
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
+          message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
