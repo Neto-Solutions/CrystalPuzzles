@@ -18,19 +18,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Debug Information
-      shell: bash
-      run: |
-        echo "SSH Host: ${{ inputs.ssh_host }}"
-        echo "SSH Username: ${{ inputs.ssh_username }}"
-        echo "SSH Port: ${{ inputs.ssh_port }}"
-        echo "${{ inputs.deploy_ssh_key }}" > /tmp/deploy_key
-        chmod 600 /tmp/deploy_key
-
     - name: Change directory permissions
       shell: bash
       run: |
-        ssh -vvv -o StrictHostKeyChecking=no -i /tmp/deploy_key -p ${{ inputs.ssh_port }} ${{ inputs.ssh_username }}@${{ inputs.ssh_host }} <<'EOF'
+        echo "${{ inputs.deploy_ssh_key }}" > /tmp/deploy_key
+        chmod 600 /tmp/deploy_key
+        ssh -o StrictHostKeyChecking=no -i /tmp/deploy_key -p ${{ inputs.ssh_port }} ${{ inputs.ssh_username }}@${{ inputs.ssh_host }} <<'EOF'
           if [ -d /home/${{ inputs.ssh_username }}/Crystall/ ]; then
             sudo chmod -R 777 /home/${{ inputs.ssh_username }}/Crystall/ && echo "chmod done"
             sudo chown -R ${{ inputs.ssh_username }}:${{ inputs.ssh_username }} /home/${{ inputs.ssh_username }}/Crystall/ && echo "chown done"
