@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set nginx log files
-        uses: ./.github/actions/set-nginx-logs
+        uses: ./.github/workflows/set-nginx-logs
         with:
           ssh_host: ${{ secrets.SSH_HOST_NAME }}
           ssh_username: ${{ secrets.SSH_USERNAME }}
@@ -23,7 +23,7 @@ jobs:
           ssh_port: ${{ secrets.SSH_PORT }}
         
       - name: Change directory permitions
-        uses: ./.github/actions/change-directory-permissions
+        uses: ./.github/workflows/change-directory-permissions
         with:
           host: ${{ secrets.SSH_HOST_NAME }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -40,7 +40,7 @@ jobs:
           . ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST_NAME }}:Crystall
 
       - name: Change directory permitions again
-        uses: ./.github/actions/change-directory-permissions
+        uses: ./.github/workflows/change-directory-permissions
         with:
           host: ${{ secrets.SSH_HOST_NAME }}
           username: ${{ secrets.SSH_USERNAME }}
