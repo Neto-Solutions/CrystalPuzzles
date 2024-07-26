@@ -1,11 +1,12 @@
 import styles from './Schedule.module.scss';
-import { Page, Button, Wrapper } from '@shared/ui';
-import { CalendarBlock } from '@features/calendar';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Page, Wrapper } from '@shared/ui';
+import { CalendarBlock } from '@features/calendar';
 import { getAllData } from '@entities/schedule';
 import moment from 'moment';
 
-export default function SchedulePage({ isStudent = false }) {
+export default function SchedulePage({ link = false }) {
 	const [data, setData] = useState([]);
 	const [date, setDate] = useState();
 	// eslint-disable-next-line no-unused-vars
@@ -32,24 +33,22 @@ export default function SchedulePage({ isStudent = false }) {
 		<Page title="Расписание">
 			<div className={styles.table}>
 				{data.map((item, index) => (
-					<div key={index} className={styles.row}>
-						<div className={styles.col}>
-							{moment(item.start).format('HH:mm')}
+					<Link key={index} to={!link ? null : `/schedule/${item._id}`}>
+						<div className={styles.row}>
+							<div className={styles.col}>
+								{moment(item.start).format('HH:mm')}
+							</div>
+							<div className={styles.col}>
+								<span className={styles.col_content}>
+									{item.place.name && `Место - ${item.place.name}`}
+								</span>
+							</div>
 						</div>
-						<div className={styles.col}>
-							<span className={styles.col_content}>
-								{item.place.name && `Место - ${item.place.name}`}
-							</span>
-						</div>
-					</div>
+					</Link>
 				))}
 			</div>
 			<Wrapper>
 				<CalendarBlock setNewDate={setDate} />
-				{/* TODO: заменить на dropdownButton */}
-				{isStudent && (
-					<Button width="100%" title="Выберите тренера" downArrow />
-				)}
 			</Wrapper>
 		</Page>
 	);

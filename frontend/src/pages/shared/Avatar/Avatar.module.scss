@@ -22,6 +22,7 @@
 }
 
 .buttons {
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: end;
@@ -45,6 +46,13 @@
 			width: 100%;
 			font-size: 14px;
 		}
+	}
+
+	.error {
+		color: red;
+		position: absolute;
+		bottom: -50%;
+		right: 0;
 	}
 }
 
