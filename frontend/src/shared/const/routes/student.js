@@ -17,7 +17,7 @@ const studentRouter = [
 		img: training
 	},
 	{
-		path: '/exercise',
+		path: '/train/:id',
 		element: <ExercisePage />
 	},
 	{

@@ -10,7 +10,7 @@ const addStudent = async (params) => {
 };
 
 const getStudents = async (search_string) => {
-	const { data } = await $authHost.get(`/student`, { search_string });
+	const { data } = await $authHost.get(`/users`, { search_string }); // student by actual api
 	return data;
 };
 

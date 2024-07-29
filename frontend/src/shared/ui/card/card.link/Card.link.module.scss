@@ -7,14 +7,14 @@
 	border: var(--border);
 	border-radius: var(--radius);
 	background-color: var(--bg-card);
+	overflow: hidden;
 
 	.title {
 		@include font(var(--ff-second), 24px, 400);
 		padding: 0 30px;
 		text-align: center;
-		
 	}
-	
+
 	.content {
 		height: 100%;
 		width: 100%;
@@ -22,14 +22,13 @@
 		flex-direction: column;
 		align-items: center;
 	}
-}
-@include sm() { 
-.card {	
-	height: 147px;
-	align-items: center;
-	.title {
-		@include font(var(--ff-second), 16px, 600);
-	}
-}
 
+	@include sm() {
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		.title {
+			@include font(var(--ff-second), 16px, 600);
+		}
+	}
 }

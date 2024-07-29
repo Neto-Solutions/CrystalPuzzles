@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ReactComponent as Arrow } from '@shared/assets/svg/small_arrow.svg';
 import moment from 'moment';
 
-export default function Calendar({ onHide }) {
+export default function Calendar({ onHide, setNewDate }) {
 	const [date, setDate] = useState(moment());
 	const [days, setDays] = useState([]);
 	const [activeDay, setActiveDay] = useState();
@@ -78,7 +78,12 @@ export default function Calendar({ onHide }) {
 								data-active={activeDay == day}
 								{...(Number(day) && {
 									className: 'calendar_body_day',
-									onClick: () => setActiveDay(day)
+									onClick: () => {
+										setActiveDay(day);
+										setNewDate(() =>
+											date.clone().date(day).startOf('day').toISOString()
+										);
+									}
 								})}
 							>
 								{day}
