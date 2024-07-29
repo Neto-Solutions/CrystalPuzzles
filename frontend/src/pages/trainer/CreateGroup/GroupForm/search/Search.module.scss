@@ -8,12 +8,6 @@
 	justify-content: end;
 	position: relative;
 }
-.container::after {
-	content: url('~assets/svg/search.svg');
-	position: absolute;
-	display: inline-block;
-	right: 5px;
-}
 
 .input_text {
 	padding: 5px 10px 5px 30px;
