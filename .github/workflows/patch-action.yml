@@ -9,7 +9,6 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository from specific branch
         uses: actions/checkout@v3
