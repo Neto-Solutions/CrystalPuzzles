@@ -20,8 +20,10 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            sudo mkdir /var/log/nginx 2>/dev/null
             sudo touch /var/log/nginx/error.log 2>/dev/null
             sudo touch /var/log/nginx/access.log 2>/dev/null
+            ls -la /var/log/nginx
         
       - name: Change directory permitions
         uses: ./.github/workflows/change-directory-permissions
