@@ -28,7 +28,7 @@ class TrainingSchemaForTable(BaseModel):
     """ Схема деталей моделей тренировок """
     id: int
     name: str
-    description: str
+    description: Optional[str]
 
 
 class TrainingViewSchemaForPage(BaseModel):
