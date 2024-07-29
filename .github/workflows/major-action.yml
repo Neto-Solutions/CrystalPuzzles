@@ -109,7 +109,7 @@ jobs:
         id: bump-semver
         with:
           current_version: ${{ steps.get-latest-tag.outputs.tag }}
-          level: minor
+          level: major
 
       - uses: actions-ecosystem/action-push-tag@v1
         with:
