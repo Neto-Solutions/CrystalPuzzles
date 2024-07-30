@@ -1,3 +1,5 @@
+@use '~styles/mixins' as *;
+
 .checkbox {
 	position: absolute;
 	-webkit-appearance: none;
@@ -18,13 +20,22 @@
 	border: 2px solid var(--accent-color);
 	border-radius: 6px;
 	background-color: transparent;
+
+	@include md() {
+		width: 20px;
+		height: 20px;
+	}
 }
 
-.input_icon {
+.icon {
 	opacity: 0;
 	transition: 0.2s;
+	
+	@include md() {
+		width: 9px;
+	}
 }
 
-.checkbox:checked + .input_icon {
+.checkbox:checked + .icon {
 	opacity: 1;
 }

@@ -1,17 +1,18 @@
-import { useLocation } from 'react-router-dom';
-import styles from './Exercise.module.scss';
-import { Page } from '@shared/ui';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import useResize from '@shared/hooks/useResize';
+import { Page } from '@shared/ui';
 import { getDataById } from '@entities/schedule';
-import { DateChanger } from '../../../features/DateChanger/DateChanger';
-import exerciseOneIcon from '../../../shared/assets/exercise/1.svg';
-import ExerciseItem from '../../../shared/ui/ExerciseItem/ExerciseItem';
+import { DateChanger } from '@features/DateChanger/DateChanger';
+import ExerciseItem from '@shared/ui/ExerciseItem/ExerciseItem';
+import styles from './Exercise.module.scss';
 
 export default function ExercisePage() {
 	const [data, setData] = useState(null);
 	// eslint-disable-next-line no-unused-vars
 	const [err, setErr] = useState(null);
 	const { pathname } = useLocation();
+	const isTablet = useResize('md');
 
 	useEffect(() => {
 		getDataById(pathname.split('/').pop()).then(setData).catch(setErr);
@@ -19,32 +20,51 @@ export default function ExercisePage() {
 
 	return (
 		<Page title="Мои занятия">
-			<div className={styles.container}>
-				<DateChanger className={styles.date} />
-				<ul className={styles.list}>
-					{data &&
-						data.exercises.map(eckbox}
-									type="checkbox"
-									checked={item.isComplete}
-								/>(item, index) => (
-							<li key={index} className={styles.item}>
-								<div className={styles.number}>{index + 1}</div>
-								<img className={styles.img} />
-								<span className={styles.text}>{item.name}</span>
-								<input
-									className={styles.ch
-							</li>
-						))}
-					{tempArray.map((item, index) => (
-						<ExerciseItem
-							key={item}
-							text={'какое-то упражнение'}
-							id={index + 1}
-							img={exerciseOneIcon}
-						/>
-					))}
-				</ul>
-			</div>
+			{isTablet ? (
+				<>
+					<DateChanger className={styles.date} />
+					<div className={styles.container}>
+						<div className={styles.reward_wrapper}>
+							<span>Мои награды</span>
+						</div>
+						<ul className={styles.list}>
+							{data &&
+								data.exercises.map((item, index) => (
+									<ExerciseItem
+										key={item._id}
+										text={item.name}
+										id={index + 1}
+										img={item.img}
+										defaultChecked={item.isComplete}
+										// disabled={}
+									/>
+								))}
+						</ul>
+					</div>
+				</>
+			) : (
+				<div className={styles.container}>
+					<div>
+						<DateChanger className={styles.date} />
+						<ul className={styles.list}>
+							{data &&
+								data.exercises.map((item, index) => (
+									<ExerciseItem
+										key={item._id}
+										text={item.name}
+										id={index + 1}
+										img={item.img}
+										defaultChecked={item.isComplete}
+										// disabled={}
+									/>
+								))}
+						</ul>
+					</div>
+					<div className={styles.reward_wrapper}>
+						<span>Мои награды</span>
+					</div>
+				</div>
+			)}
 		</Page>
 	);
 }

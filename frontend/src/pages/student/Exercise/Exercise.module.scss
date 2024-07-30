@@ -1,8 +1,24 @@
 @use '~styles/mixins' as *;
 
+.container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: var(--gap);
+
+	@include md() {
+		grid-template-columns: 196px 1fr;
+	}
+
+	@include sm() {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
 .date {
-	padding: 16px 34px;
-	width: 714px;
+	padding: var(--btn-padding) 34px;
+	width: 100%;
 	background-color: var(--bg-date-picker);
 	border-radius: var(--radius);
 	border: var(--border);
@@ -13,82 +29,25 @@
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+
+	@include md() {
+		margin-top: 0;
+	}
 }
 
+.reward_wrapper {
+	height: 347px;
+	display: grid;
+	place-content: center;
+	background-color: var(--btn-bg-color);
+	border: var(--border);
+	border-radius: var(--radius);
 
-// .date_wrapper {
-// 	width: 714px;
-// 	display: flex;
-// 	justify-content: space-between;
-// 	gap: 30px;
-// 	background-color: var(--bg-date-picker);
-// 	border-radius: var(--radius);
-// 	border: var(--border);
-// }
-// .date_picker {
-// 	font:
-// 		500 24px 'Roboto',
-// 		sans-serif;
-// }
+	@include md() {
+		height: 195px;
+	}
 
-// .arrow {
-// 	transform: rotate(180deg);
-// }
-
-
-
-// .container {
-// 	width: 100%;
-// 	max-width: 714px;
-// 	display: flex;
-// 	flex-direction: column;
-// 	gap: 10px;
-// }
-
-// .header,
-// .list_item {
-// 	height: 57px;
-// 	display: flex;
-// 	align-items: center;
-// 	border: var(--border);
-// 	border-radius: var(--radius);
-// 	margin-bottom: 5px
-// }
-
-// .header {
-// 	@include font(var(--ff-second), 24px, 400);
-// 	background-color: #a1cbf1;
-// 	justify-content: center;
-// }
-
-// .list {
-// 	display: flex;
-// 	flex-direction: column;
-// 	gap: 5px;
-// 	&_item {
-// 		padding: 15px 30px;
-// 		justify-content: space-between;
-// 		background-color: #dae8f0;
-// 		&_title {
-// 			@include font(var(--ff-second), 24px, 400);
-// 		}
-// 		&_checkbox {
-// 			width: 36px;
-// 			height: 36px;
-// 			border: solid #0e1079 2px;
-// 			border-radius: 6px;
-// 			-webkit-appearance: none;
-// 			-moz-appearance: none;
-// 		}
-// 	}
-// }
-// @include sm() {
-// 	.header {
-// 		font-size: 14px;
-// 	}
-// 	.list {
-// 		 &_item_title {
-// 			@include font(var(--ff-second), 16px, 400);
-// 		 }
-// 		}
-// 	}
+	span {
+		font: var(--fw-medium) var(--fz-btn) var(--ff-first);
+	}
+}
