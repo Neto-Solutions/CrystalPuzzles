@@ -14,39 +14,33 @@ export default function SchedulePage({ link = false }) {
 
 	useEffect(() => {
 		getAllData(date, 10)
-			.then((data) => {
-				if (data.length) {
-					setData(data);
-				} else {
-					setData([
-						{
-							start: new Date(new Date().setHours(0, 0, 0)).toISOString(),
-							place: { name: '' }
-						}
-					]);
-				}
-			})
+			.then((data) => setData(data))
 			.catch(setErr);
 	}, [date]);
 
 	return (
 		<Page title="Расписание">
 			<div className={styles.table}>
-				{data &&
-					data.map((item, index) => (
-						<Link key={index} to={!link ? null : `/schedule/${item._id}`}>
-							<div className={styles.row}>
-								<div className={styles.col}>
-									{moment(item.start).format('HH:mm')}
+				{data.length
+					? data.map((item, index) => (
+							<Link
+								key={index}
+								to={!link ? null : `/schedule/${item._id}`}
+								className={styles.link}
+							>
+								<div className={styles.row}>
+									<div className={styles.col}>
+										{moment(item.start).format('HH:mm')}
+									</div>
+									<div className={styles.col}>
+										<span className={styles.col_content}>
+											{item.place.name && `Место - ${item.place.name}`}
+										</span>
+									</div>
 								</div>
-								<div className={styles.col}>
-									<span className={styles.col_content}>
-										{item.place.name && `Место - ${item.place.name}`}
-									</span>
-								</div>
-							</div>
-						</Link>
-					))}
+							</Link>
+						))
+					: null}
 			</div>
 			<Wrapper>
 				<CalendarBlock setNewDate={setDate} />
