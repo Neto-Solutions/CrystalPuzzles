@@ -1,15 +1,9 @@
-from typing import List
-
 from pydantic import Field
 
 from datetime import datetime
 from typing import Optional
 
-from fastapi import HTTPException, Query
-from pydantic import EmailStr, field_validator
-
-from core.schemas.base import BaseModel, BaseFilterSchema
-from service.lesson.schemas.space_schemas import SpaceSchemaForTable
+from common.schema.base_schemas import BaseModel
 
 
 class TrainingCheck(BaseModel):
@@ -22,7 +16,8 @@ class TrainingCheck(BaseModel):
 class CreateCheckSchema(BaseModel):
     """ Схема создания моделей занятий """
     student_id: int
-    training_check: TrainingCheck
+    lesson_id: int
+    training_check: list[TrainingCheck]
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 

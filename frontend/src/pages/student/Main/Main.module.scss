@@ -3,10 +3,10 @@
 .reward_card {
 	background-image: url('~assets/gifs/smile-with-eyes.gif');
 	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 60% 60%;
+	background-position: bottom;
+	background-size: 50%;
+	background-position-y: 80%;
 	grid-area: reward;
-	aspect-ratio: 1;
 	@include sm() {
 		width: 100%;
 		background-image: none;
@@ -16,32 +16,30 @@
 .train_card {
 	grid-area: train;
 	overflow: hidden;
-	aspect-ratio: 1;
+	height: 100%;
+	min-height: 238px;
+	// aspect-ratio: 1;
 	@include sm() {
 		width: 100%;
+		min-height: auto;
 	}
 
 	.train_text_container {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		justify-content: center;
-		align-items: center;
 
 		.train_text {
 			@include font(var(--ff-first), 24px, 500);
 			text-align: center;
-			align-self: center;
-			justify-self: center;
+			margin-top: auto;
 		}
 	}
 }
 
 .schedule_card {
 	grid-area: schedule;
-	@include xxl() {
-		aspect-ratio: 1;
-	}
+
 	@include sm() {
 		width: 100%;
 	}
@@ -52,9 +50,15 @@
 }
 .btn {
 	grid-area: btn;
+	background-color: #2b2d91;
+	color: white;
 	@include sm() {
 		width: 100%;
+		background-color: transparent;
 		color: black;
+	}
+	&:hover {
+		background-color: #2b2d91;
 	}
 }
 
@@ -65,19 +69,20 @@
 	grid-template-areas:
 		'reward train schedule'
 		'feedback feedback schedule'
-		'btn btn .';
+		'btn btn schedule';
 
-	@include xxl() {
-		grid-template-columns: 1fr 1fr;
+	@include lg() {
+		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'reward train'
-			'. schedule'
+			'schedule schedule'
 			'feedback feedback'
 			'btn btn';
+		gap: 8px;
 	}
 
 	@include sm() {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'reward schedule'
 			'train btn';

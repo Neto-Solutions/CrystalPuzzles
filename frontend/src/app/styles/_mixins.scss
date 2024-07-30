@@ -4,44 +4,20 @@
 	font-size: $fs;
 }
 
-@mixin xs() {
-	@media (max-width: 375px) {
-		@content;
-	}
-}
-
 @mixin sm() {
-	@media (max-width: 425px) {
+	@media (max-width: 440px) {
 		@content;
 	}
 }
 
 @mixin md() {
-	@media (max-width: 768px) {
+	@media (max-width: 840px) {
 		@content;
 	}
 }
 
 @mixin lg() {
-	@media (max-width: 834px) {  // tablet vertical
-		@content;
-	}
-}
-
-@mixin xl() {
-	@media (max-width: 1024px) {
-		@content;
-	}
-}
-
-@mixin xxl() {
 	@media (max-width: 1200px) {
-		@content;
-	}
-}
-
-@mixin xxxl() {
-	@media (max-width: 1400px) {
 		@content;
 	}
 }

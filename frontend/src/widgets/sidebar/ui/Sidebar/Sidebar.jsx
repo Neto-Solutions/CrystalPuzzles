@@ -15,19 +15,22 @@ import styles from './Sidebar.module.scss';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen] = useState(false);
+	// eslint-disable-next-line no-unused-vars
+	const [err, setErr] = useState(false);
 	const user = useSelector(selectUser);
 	const navigate = useNavigate();
 	const isMobile = useResize('md');
 
 	useSwipe((isOpen) => setIsOpen(isOpen));
 
-	function handleExit() {
-		logout()
-			.then(() => {
-				Cookies.remove('token');
-				location.reload();
-			})
-			.catch(() => location.reload());
+	async function handleExit() {
+		try {
+			await Cookies.remove('token');
+			await logout();
+			location.reload();
+		} catch (error) {
+			setErr(error);
+		}
 	}
 
 	return (

@@ -12,7 +12,6 @@ import {
 } from '@trainer';
 
 import feedback from '../../assets/svg/sidebar/Feedback.svg';
-import checkList from '../../assets/svg/sidebar/check list.svg';
 import schedule from '../../assets/svg/sidebar/schedule.svg';
 import group from '../../assets/svg/sidebar/group.svg';
 import students from '../../assets/svg/sidebar/students.svg';
@@ -31,16 +30,14 @@ const trainerRouter = [
 		local: 'Уведомления'
 	},
 	{
-		path: '/check-list',
-		element: <CheckListPage />,
-		local: 'Чек-листы',
-		img: checkList
-	},
-	{
 		path: '/schedule',
-		element: <SchedulePage />,
+		element: <SchedulePage link />,
 		local: 'Расписание',
 		img: schedule
+	},
+	{
+		path: '/schedule/:id',
+		element: <CheckListPage />
 	},
 	{
 		path: '/groups',

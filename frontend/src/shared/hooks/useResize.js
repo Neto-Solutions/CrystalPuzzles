@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const config = { xs: 375, sm: 425, md: 768, lg: 1440, xl: 1920 };
+const config = { sm: 440, md: 840, lg: 1200 };
 
 /**
  * @param {string} size

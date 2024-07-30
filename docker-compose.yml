@@ -23,7 +23,7 @@ services:
       start_period: 30s
     restart: unless-stopped
     ports:
-      - ${PG_PORT}:5432
+      - 5432:5432
     networks:
       - backend
 

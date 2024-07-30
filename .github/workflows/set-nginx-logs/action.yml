@@ -1,0 +1,45 @@
+name: "Set nginx log files"
+description: "Create nginx log files"
+
+inputs:
+  ssh_host:
+    description: "SSH Host"
+    required: true
+  ssh_username:
+    description: "SSH Username"
+    required: true
+  deploy_ssh_key:
+    description: "SSH Key"
+    required: true
+  ssh_port:
+    description: "SSH Port"
+    required: true
+
+runs:  
+  uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            bash
+            sudo touch /var/log/nginx/error.log 2>/dev/null
+            sudo touch /var/log/nginx/access.log 2>/dev/null
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  # using: "composite"
+  # steps:
+  #   - name: Set nginx log files
+  #     shell: bash
+  #     run: |
+  #       echo "${{ inputs.deploy_ssh_key }}" > /tmp/deploy_key
+  #       chmod 600 /tmp/deploy_key
+  #       ssh -o StrictHostKeyChecking=no -i /tmp/deploy_key -p ${{ inputs.ssh_port }} ${{ inputs.ssh_username }}@${{ inputs.ssh_host }} "sudo touch /var/log/nginx/error.log && sudo touch /var/log/nginx/access.log"
