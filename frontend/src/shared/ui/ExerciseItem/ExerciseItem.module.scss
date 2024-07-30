@@ -1,0 +1,68 @@
+.component {
+	padding: 0 34px 0 11px;
+
+	display: flex;
+	align-items: center;
+	border: var(--border);
+	border-radius: var(--radius);
+	background-color: var(--bg-card);
+}
+
+.number {
+	margin-right: 30px;
+	width: 20px;
+	height: 20px;
+	display: grid;
+	place-content: center;
+	font: var(--fw-medium) 12px var(--ff-second);
+	color: var(--bg-card-second);
+	background-color: var(--accent-color);
+	border-radius: 50%;
+}
+.icon_wrapper {
+	margin-right: 40px;
+	width: 67px;
+	height: 67px;
+	display: grid;
+	place-content: center;
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius: 13px;
+}
+.icon {
+	width: 40px;
+}
+
+.text {
+	font: var(--fw-regular) 22px var(--ff-second);
+}
+
+// .checkbox {
+// 	position: absolute;
+// 	-webkit-appearance: none;
+// 	-moz-appearance: none;
+// 	appearance: none;
+// 	width: 0;
+// 	height: 0;
+// }
+
+// .label {
+// 	margin-left: auto;
+// 	cursor: pointer;
+// 	position: relative;
+// 	display: grid;
+// 	place-content: center;
+// 	width: 36px;
+// 	height: 36px;
+// 	border: 2px solid var(--accent-color);
+// 	border-radius: 6px;
+// 	background-color: transparent;
+// }
+
+// .input_icon {
+// 	opacity: 0;
+// 	transition: 0.2s;
+// }
+
+// .checkbox:checked + .input_icon {
+// 	opacity: 1;
+// }

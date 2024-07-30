@@ -7,8 +7,10 @@ import styles from './AddTreanerSchedule.module.scss';
 import { trainers, platforms } from '../Mockdata/data';
 import Button from '../../../shared/ui/button/Button';
 import { postData } from '../../../entities/schedule/api/schedule';
+import { DateChanger } from '../../DateChanger/DateChanger';
 
-export const AddTreanerSchedule = () => {
+
+export const AddTreanerSchedule = ({day}) => {
 	const [openTrainers, setOpenTrainers] = useState(false); //открыть-зыкрыть
 	const [openPlatform, setOpenPlatform] = useState(false);
 	const [test, setTest] = useState({
@@ -36,7 +38,8 @@ export const AddTreanerSchedule = () => {
 	// TODO: доделать функциoнал
 	return (
 		<div className={styles.component}>
-			<ScheduleHeader date={'heute'} className={styles.header} />
+			{/* <ScheduleHeader date={'heute'} className={styles.header} /> */}
+			<DateChanger day={day} className={styles.header}/>
 			<main className={styles.main}>
 				<DropdownButton
 					title={'Выберите тренера'}

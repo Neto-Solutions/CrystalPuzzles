@@ -1,0 +1,30 @@
+.checkbox {
+	position: absolute;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 0;
+	height: 0;
+}
+
+.label {
+	margin-left: auto;
+	cursor: pointer;
+	position: relative;
+	display: grid;
+	place-content: center;
+	width: 36px;
+	height: 36px;
+	border: 2px solid var(--accent-color);
+	border-radius: 6px;
+	background-color: transparent;
+}
+
+.input_icon {
+	opacity: 0;
+	transition: 0.2s;
+}
+
+.checkbox:checked + .input_icon {
+	opacity: 1;
+}

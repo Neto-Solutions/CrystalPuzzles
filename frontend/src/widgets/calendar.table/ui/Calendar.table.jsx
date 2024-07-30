@@ -34,7 +34,12 @@ const CalendarTable = () => {
 				<li key={index} className={styles.days_item}>
 					{currentDate.format('D')}
 					{!data && (
-						<CalendarAddButton className={styles.add_btn} onclick={openModal} />
+						<CalendarAddButton
+							className={styles.add_btn}
+							onclick={() => {
+								setModalActive(currentDate.format('D'));
+							}}
+						/>
 					)}
 				</li>
 			);
@@ -59,9 +64,9 @@ const CalendarTable = () => {
 		}
 	};
 
-	const openModal = () => {
-		setModalActive(true);
-	};
+	// const openModal = () => {
+	// 	setModalActive(true);
+	// };
 
 	return (
 		<>
@@ -85,7 +90,7 @@ const CalendarTable = () => {
 				</div>
 			</div>
 			<Modal active={modalActive} setActive={setModalActive} width={'1078px'}>
-				<AddTreanerSchedule />
+				<AddTreanerSchedule day={modalActive} />
 			</Modal>
 		</>
 	);
