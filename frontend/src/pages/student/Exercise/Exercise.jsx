@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useResize from '@shared/hooks/useResize';
-import { Page } from '@shared/ui';
+import { Page, Spinner } from '@shared/ui';
 import { getDataById } from '@entities/schedule';
 import { DateChanger } from '@features/DateChanger/DateChanger';
 import ExerciseItem from '@shared/ui/ExerciseItem/ExerciseItem';
 import styles from './Exercise.module.scss';
 
 export default function ExercisePage() {
+	const [isLoading, setIsLoading] = useState(true);
 	const [data, setData] = useState(null);
 	// eslint-disable-next-line no-unused-vars
 	const [err, setErr] = useState(null);
@@ -15,7 +16,10 @@ export default function ExercisePage() {
 	const isTablet = useResize('md');
 
 	useEffect(() => {
-		getDataById(pathname.split('/').pop()).then(setData).catch(setErr);
+		getDataById(pathname.split('/').pop())
+			.then(setData)
+			.then(() => setIsLoading(false))
+			.catch(setErr);
 	}, [pathname]);
 
 	return (
@@ -28,17 +32,19 @@ export default function ExercisePage() {
 							<span>Мои награды</span>
 						</div>
 						<ul className={styles.list}>
-							{data &&
-								data.exercises.map((item, index) => (
-									<ExerciseItem
-										key={item._id}
-										text={item.name}
-										id={index + 1}
-										img={item.img}
-										defaultChecked={item.isComplete}
-										// disabled={}
-									/>
-								))}
+							<Spinner isLoading={isLoading}>
+								{data &&
+									data.exercises.map((item, index) => (
+										<ExerciseItem
+											key={item._id}
+											text={item.name}
+											id={index + 1}
+											img={item.img}
+											defaultChecked={item.isComplete}
+											// disabled={}
+										/>
+									))}
+							</Spinner>
 						</ul>
 					</div>
 				</>
@@ -47,17 +53,19 @@ export default function ExercisePage() {
 					<div>
 						<DateChanger className={styles.date} />
 						<ul className={styles.list}>
-							{data &&
-								data.exercises.map((item, index) => (
-									<ExerciseItem
-										key={item._id}
-										text={item.name}
-										id={index + 1}
-										img={item.img}
-										defaultChecked={item.isComplete}
-										// disabled={}
-									/>
-								))}
+							<Spinner isLoading={isLoading}>
+								{data &&
+									data.exercises.map((item, index) => (
+										<ExerciseItem
+											key={item._id}
+											text={item.name}
+											id={index + 1}
+											img={item.img}
+											defaultChecked={item.isComplete}
+											// disabled={}
+										/>
+									))}
+							</Spinner>
 						</ul>
 					</div>
 					<div className={styles.reward_wrapper}>
