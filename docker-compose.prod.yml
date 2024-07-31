@@ -48,6 +48,7 @@ services:
     depends_on:
       - db
       - redis
+    restart: always
     ports:
       - 8001:8000
     networks:
@@ -62,6 +63,7 @@ services:
       - .env.template # для быстрого локального запуска
     depends_on:
       - api
+    restart: always
     ports:
       - 8080:3000
     networks:
@@ -80,6 +82,7 @@ services:
     depends_on:
       - api
       - front
+    restart: always
     networks:
       - frontend
       - backend

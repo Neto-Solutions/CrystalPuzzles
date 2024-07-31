@@ -24,21 +24,21 @@ jobs:
       - name: Create ZIP deployment package
         run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          aws-access-key-id: ${{ secrets.MY_AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.MY_AWS_SECRET_KEY }}
-          aws-region: ${{ env.AWS_REGION_NAME }}
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v3
+      #   with:
+      #     aws-access-key-id: ${{ secrets.MY_AWS_ACCESS_KEY }}
+      #     aws-secret-access-key: ${{ secrets.MY_AWS_SECRET_KEY }}
+      #     aws-region: ${{ env.AWS_REGION_NAME }}
 
-      - name: Debug environment variables
-        run: echo ${{ env.EB_PACKAGE_S3_BUCKET_NAME }}
+      # - name: Debug environment variables
+      #   run: echo ${{ env.EB_PACKAGE_S3_BUCKET_NAME }}
 
-      - name: Copy Deployment package to S3 bucket
-        run: aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.EB_PACKAGE_S3_BUCKET_NAME }}/
+      # - name: Copy Deployment package to S3 bucket
+      #   run: aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.EB_PACKAGE_S3_BUCKET_NAME }}/
 
-      - name: Print message for task end
-        run: echo "Task for S3 complete"
+      # - name: Print message for task end
+      #   run: echo "Task for S3 complete"
 
 
   # deployment:

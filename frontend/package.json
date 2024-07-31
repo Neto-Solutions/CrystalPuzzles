@@ -16,6 +16,7 @@
 		"react-scripts": "5.0.1",
 		"rxjs": "~7.8.1",
 		"serve": "~14.2.3",
+		"uuid": "^10.0.0",
 		"workbox-background-sync": "~7.1.0",
 		"workbox-broadcast-update": "~7.1.0",
 		"workbox-cacheable-response": "~7.1.0",
@@ -35,6 +36,7 @@
 		"serve": "node set.env.js && serve -s build -p 3000",
 		"test": "craco test",
 		"eject": "craco eject",
+		"set:env": "node set.env.js",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
