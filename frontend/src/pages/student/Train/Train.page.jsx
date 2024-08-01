@@ -2,7 +2,7 @@ import styles from './Train.module.scss';
 import { useEffect, useState } from 'react';
 import { Page, Spinner } from '@shared/ui';
 import { Link } from 'react-router-dom';
-import { getAllData } from '@entities/schedule';
+import { getAllData } from '@entities/lesson';
 import moment from 'moment';
 
 export default function TrainPage() {

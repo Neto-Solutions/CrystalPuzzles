@@ -4,13 +4,14 @@ import Checkbox from '../checkbox/Checkbox';
 export default function ExerciseItem({
 	text,
 	img,
+	index,
 	id,
 	defaultChecked = false,
 	disabled = false
 }) {
 	return (
 		<li className={styles.component}>
-			<div className={styles.number}>{id}</div>
+			<div className={styles.number}>{index}</div>
 			<div className={styles.icon_wrapper}>
 				<img
 					className={styles.icon}
@@ -18,7 +19,7 @@ export default function ExerciseItem({
 				/>
 			</div>
 			<span className={styles.text}>{text}</span>
-			<Checkbox disabled={disabled} defaultChecked={defaultChecked} />
+			<Checkbox disabled={disabled} defaultChecked={defaultChecked} id={id} />
 		</li>
 	);
 }

@@ -5,7 +5,7 @@ import styles from './AddTreanerSchedule.module.scss';
 
 import { trainers, platforms } from '../Mockdata/data';
 import Button from '../../../shared/ui/button/Button';
-import { postData } from '../../../entities/schedule/api/schedule';
+import { postData } from '@entities/lesson';
 import { DateChanger } from '../../DateChanger/DateChanger';
 
 export const AddTreanerSchedule = ({ day }) => {

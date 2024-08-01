@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Page, Wrapper } from '@shared/ui';
 import { CalendarBlock } from '@features/calendar';
-import { getAllData } from '@entities/schedule';
+import { getAllData } from '@entities/lesson';
 import moment from 'moment';
 
 export default function SchedulePage({ link = false }) {

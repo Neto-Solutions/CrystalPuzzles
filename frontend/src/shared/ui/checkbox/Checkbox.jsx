@@ -6,9 +6,9 @@ export default function Checkbox({ defaultChecked, disabled, id = uuidv4() }) {
 	return (
 		<label className={styles.label} htmlFor={id}>
 			<input
-				className={styles.checkbox}
 				id={id}
 				type="checkbox"
+				className={styles.checkbox}
 				defaultChecked={defaultChecked}
 				disabled={disabled}
 			/>

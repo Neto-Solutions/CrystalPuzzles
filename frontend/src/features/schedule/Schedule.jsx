@@ -1,6 +1,6 @@
 import styles from './Schedule.module.scss';
 import { useState, useEffect } from 'react';
-import { getAllData } from '@entities/schedule';
+import { getAllData } from '@entities/lesson';
 import moment from 'moment';
 
 export default function Schedule() {

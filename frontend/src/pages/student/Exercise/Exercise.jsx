@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useResize from '@shared/hooks/useResize';
 import { Page, Spinner } from '@shared/ui';
-import { getDataById } from '@entities/schedule';
+import { getDataById } from '@entities/lesson';
 import { DateChanger } from '@features/DateChanger/DateChanger';
 import ExerciseItem from '@shared/ui/ExerciseItem/ExerciseItem';
 import styles from './Exercise.module.scss';
