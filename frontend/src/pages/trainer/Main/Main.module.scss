@@ -4,11 +4,9 @@
 
 .schedule_card {
 	grid-area: schedule;
+	padding: 20px 35px;
 }
 
-.button_container {
-	grid-area: button;
-}
 
 .wrapper {
 	display: grid;
@@ -16,5 +14,5 @@
 	grid-template-columns: 714px 1fr;
 	grid-template-areas:
 		'notifications schedule'
-		'notifications button';
+		'notifications schedule';
 }

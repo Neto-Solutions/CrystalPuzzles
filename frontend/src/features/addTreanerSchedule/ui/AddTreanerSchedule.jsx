@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import 'moment/locale/ru';
-import { ScheduleHeader } from '../../scheduleHeader/ScheduleHeader';
 import { DropdownButton } from '../../dropdownButton/DropdownButton';
 import styles from './AddTreanerSchedule.module.scss';
 
@@ -37,7 +36,6 @@ export const AddTreanerSchedule = ({ day }) => {
 	// TODO: доделать функциoнал
 	return (
 		<div className={styles.component}>
-			{/* <ScheduleHeader date={'heute'} className={styles.header} /> */}
 			<DateChanger day={day} className={styles.header} />
 			<main className={styles.main}>
 				<DropdownButton
