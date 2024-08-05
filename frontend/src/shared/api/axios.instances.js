@@ -16,13 +16,17 @@ $authHost.interceptors.request.use((config) => {
 	return config;
 });
 
-// $authHost.interceptors.response.use(
-// 	(res) => res,
-// 	async (error) => {
-// 		if (error.response.status === 403) {
-// 			redirect('/login');
-// 		}
-// 	}
-// );
+$authHost.interceptors.response.use(
+	(res) => res,
+	async () => {
+		// if err
+		if (
+			location.pathname !== '/login' &&
+			location.pathname !== '/registration'
+		) {
+			location.href = '/login';
+		}
+	}
+);
 
 export { $host, $authHost };

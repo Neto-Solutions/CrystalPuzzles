@@ -23,7 +23,9 @@ export default function LogRegForm({ login = false }) {
 					})
 				)
 		)
-			.then(() => navigate('/', { replace: true }))
+			.then(() => {
+				location.replace('/');
+			})
 			.catch(() =>
 				setErr(
 					'Что-то пошло не так. Возможно вы ввели неверный email или пароль'

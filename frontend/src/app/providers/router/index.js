@@ -12,10 +12,13 @@ export default function RouterProvider() {
 	const dispatch = useDispatch();
 
 	useLayoutEffect(() => {
-		if (role) return;
-		User.get().then((res) => {
-			dispatch(setUser(new Profile(res)));
-		});
+		if (!role) {
+			User.get()
+				.then((res) => {
+					dispatch(setUser(new Profile(res)));
+				})
+				.catch(() => null);
+		}
 	}, []);
 
 	return <Router router={createBrowserRouter(MainRouter(role))} />;
