@@ -11,14 +11,13 @@ import {
 	CreateGroupPage
 } from '@trainer';
 
-import feedback from '../../assets/svg/sidebar/Feedback.svg';
-import schedule from '../../assets/svg/sidebar/schedule.svg';
-import group from '../../assets/svg/sidebar/group.svg';
-import students from '../../assets/svg/sidebar/students.svg';
-import home from '../../assets/svg/sidebar/home.svg';
+import feedback from 'assets/svg/sidebar/Feedback.svg';
+import schedule from 'assets/svg/sidebar/schedule.svg';
+import group from 'assets/svg/sidebar/group.svg';
+import students from 'assets/svg/sidebar/students.svg';
+import home from 'assets/svg/sidebar/home.svg';
 import { AvatarPage, SchedulePage } from '@pages/shared';
 import { getDataById } from '@entities/lesson';
-// import { store } from '../../../app/providers/store';
 
 const trainerRouter = [
 	{

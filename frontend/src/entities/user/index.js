@@ -5,8 +5,6 @@ export { registerUser, verifyEmail, changePassword } from './api/user';
 export { authUser, updateToken, logout } from './api/auth';
 export {
 	getProfile,
-	getProfileEdit,
-	updateProfile,
 	updateProfileAvatar,
 	deleteProfileAvatar,
 	getProfileAvatar

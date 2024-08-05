@@ -14,12 +14,12 @@ import ProgressGraphViewPage from '@supervisor/Progress.graph.view.page';
 import SchedulePage from '@supervisor/Schedule.page';
 import CreateSchedulePage from '@supervisor/Create.schedule.page';
 
-import analytics from '../../assets/svg/sidebar/analytics.svg';
-import progress from '../../assets/svg/sidebar/progress.svg';
-import tables from '../../assets/svg/sidebar/tables.svg';
-import schedule from '../../assets/svg/sidebar/schedule.svg';
-import feedback from '../../assets/svg/sidebar/Feedback.svg';
-import home from '../../assets/svg/sidebar/home.svg';
+import analytics from 'assets/svg/sidebar/analytics.svg';
+import progress from 'assets/svg/sidebar/progress.svg';
+import tables from 'assets/svg/sidebar/tables.svg';
+import schedule from 'assets/svg/sidebar/schedule.svg';
+import feedback from 'assets/svg/sidebar/Feedback.svg';
+import home from 'assets/svg/sidebar/home.svg';
 import { AvatarPage } from '@pages/shared';
 
 const supervisorRouter = [

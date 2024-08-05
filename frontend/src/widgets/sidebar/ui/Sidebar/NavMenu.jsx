@@ -8,7 +8,7 @@ import {
 	supervisorRouter,
 	studentRouter,
 	trainerRouter
-} from '@shared/const/routes';
+} from '@shared/routes';
 import { roleAdaptor } from '@entities/user';
 
 export const NavMenuList = ({ role, isMobile }) => {

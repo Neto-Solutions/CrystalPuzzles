@@ -1,26 +1,22 @@
+import { useLayoutEffect } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import App from '@app/App';
-import {
-	checkInRouter,
-	supervisorRouter,
-	studentRouter,
-	trainerRouter
-} from '@shared/const/routes';
-import { ErrorPage } from '@pages/shared';
+import { RouterProvider as Router } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser, setUser, User as Profile } from '@entities/user';
+import { MainRouter } from '@shared/routes';
+import { useDispatch } from 'react-redux';
+import User from '@shared/api/user';
 
-function createRouter(role) {
-	return createBrowserRouter([
-		{
-			path: '/',
-			element: <App />,
-			errorElement: <ErrorPage />,
-			children:
-				(role === 'student' && studentRouter) ||
-				(role === 'supervisor' && supervisorRouter) ||
-				(role === 'trainer' && trainerRouter)
-		},
-		...checkInRouter
-	]);
+export default function RouterProvider() {
+	const { role } = useSelector(selectUser);
+	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		if (role) return;
+		User.get().then((res) => {
+			dispatch(setUser(new Profile(res)));
+		});
+	}, []);
+
+	return <Router router={createBrowserRouter(MainRouter(role))} />;
 }
-
-export { createRouter };
