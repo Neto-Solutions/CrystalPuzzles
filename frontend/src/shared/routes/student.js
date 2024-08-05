@@ -1,6 +1,5 @@
 import { AvatarPage, SchedulePage } from '@pages/shared';
 import { MainPage, ExercisePage, TrainPage, SurveyPage } from '@student';
-import User from '../api/user';
 import training from 'assets/svg/sidebar/Training.svg';
 import schedule from 'assets/svg/sidebar/schedule.svg';
 import home from 'assets/svg/sidebar/home.svg';
@@ -9,12 +8,7 @@ const studentRouter = [
 	{
 		path: '/',
 		element: <MainPage />,
-		img: home,
-		loader: () => {
-			return User.get()
-				.then((data) => [data, null])
-				.catch((error) => [null, error]);
-		}
+		img: home
 	},
 	{
 		path: '/train',
