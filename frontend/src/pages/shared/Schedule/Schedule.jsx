@@ -1,22 +1,15 @@
 import styles from './Schedule.module.scss';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Page, Wrapper } from '@shared/ui';
 import { CalendarBlock } from '@features/calendar';
-import { getAllData } from '@entities/lesson';
 import moment from 'moment';
 
 export default function SchedulePage({ link = false }) {
-	const [data, setData] = useState([]);
-	const [date, setDate] = useState();
 	// eslint-disable-next-line no-unused-vars
-	const [err, setErr] = useState(null);
-
-	useEffect(() => {
-		getAllData(date, 10)
-			.then((data) => setData(data))
-			.catch(setErr);
-	}, [date]);
+	const [data, setData] = useState([]);
+	// eslint-disable-next-line no-unused-vars
+	const [date, setDate] = useState();
 
 	return (
 		<Page title="Расписание">

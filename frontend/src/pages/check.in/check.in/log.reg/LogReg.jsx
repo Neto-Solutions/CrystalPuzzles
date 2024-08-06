@@ -2,7 +2,7 @@ import styles from './LogReg.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@shared/ui';
-import { authUser, registerUser, mapUserForm } from '@entities/user';
+import { mapUserForm } from '@entities/user';
 import Input from './input/Input';
 import Password from './password/Password';
 import Politics from './policy/Policy';
@@ -14,23 +14,7 @@ export default function LogRegForm({ login = false }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const data = mapUserForm(e);
-		(login
-			? authUser(data)
-			: registerUser(data).then(() =>
-					authUser({
-						username: data.email,
-						password: data.password
-					})
-				)
-		)
-			.then(() => {
-				location.replace('/');
-			})
-			.catch(() =>
-				setErr(
-					'Что-то пошло не так. Возможно вы ввели неверный email или пароль'
-				)
-			);
+		return data;
 	}
 	return (
 		<div className={styles.container}>

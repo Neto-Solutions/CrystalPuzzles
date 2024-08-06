@@ -1,5 +1,6 @@
-import splitName from '../helpers/split.name';
-export function mapUserForm(e) {
+import { splitName } from './';
+
+export default function mapUserForm(e) {
 	const data = {};
 
 	for (let i = 0; i < e.target.length; i++) {

@@ -1,4 +1,4 @@
-export class User {
+export class Profile {
 	_role = null;
 	constructor(data) {
 		if (!data) return;

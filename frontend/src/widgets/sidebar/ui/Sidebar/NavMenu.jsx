@@ -9,7 +9,7 @@ import {
 	studentRouter,
 	trainerRouter
 } from '@shared/routes';
-import { roleAdaptor } from '@entities/user';
+import { roleAdapter } from '@entities/user';
 
 export const NavMenuList = ({ role, isMobile }) => {
 	const [isOpen, setOpen] = useState(false);
@@ -29,7 +29,7 @@ export const NavMenuList = ({ role, isMobile }) => {
 		<>
 			{isMobile ? (
 				<nav className={styles.nav}>
-					<div className={styles.role}>{roleAdaptor(role)}</div>
+					<div className={styles.role}>{roleAdapter(role)}</div>
 					<ul className={styles.mobile_list}>
 						<li>
 							<Link to="/">

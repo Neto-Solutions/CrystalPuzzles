@@ -1,14 +1,9 @@
 import styles from './Exercises.module.scss';
-import { useState, useEffect } from 'react';
 import ExerciseItem from '@shared/ui/ExerciseItem/ExerciseItem';
-import { getExercises } from '@entities/exercise/api';
-import { updateData } from '../../../../entities/lesson/api/lesson';
+import { useLoaderData } from 'react-router-dom';
 
-export default function Exercises({ className, formId, lessonId, ...props }) {
-	const [exercises, setExercises] = useState([]);
-	useEffect(() => {
-		getExercises().then(setExercises);
-	}, []);
+export default function Exercises({ className, formId, ...props }) {
+	const exercises = useLoaderData();
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -22,7 +17,6 @@ export default function Exercises({ className, formId, lessonId, ...props }) {
 				});
 			}
 		}
-		updateData(lessonId, { exercises: result });
 	}
 
 	return (

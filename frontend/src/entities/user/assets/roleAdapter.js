@@ -1,4 +1,4 @@
-export default function roleAdaptor(role) {
+export default function roleAdapter(role) {
 	switch (role) {
 		case 'student':
 			return 'ученик';

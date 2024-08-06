@@ -1,7 +1,6 @@
 import styles from './GroupForm.module.scss';
 import { Button } from '@shared/ui';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { createGroup } from '@entities/group';
 import Student from './student/Student';
 import GroupName from './group.name/GroupName';
 import Search from './search/Search';
@@ -14,7 +13,7 @@ export default function GroupForm() {
 
 	function handleSubmit() {
 		const data = students.map((item) => item._id);
-		createGroup({ name: name, students: data });
+		// createGroup({ name: name, students: data });
 	}
 
 	useEffect(() => {

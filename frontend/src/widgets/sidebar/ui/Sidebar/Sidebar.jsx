@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import useResize from '@shared/hooks/useResize';
 import { useSwipe } from '@hooks';
 import { NavMenuList } from './NavMenu';
 import { Account } from '../Accaunt/Account';
-import { selectUser, logout } from '@entities/user';
+import { selectProfile } from '@entities/user';
 import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
 import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
@@ -15,22 +14,14 @@ import styles from './Sidebar.module.scss';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen] = useState(false);
-	// eslint-disable-next-line no-unused-vars
-	const [err, setErr] = useState(false);
-	const user = useSelector(selectUser);
+	const user = useSelector(selectProfile);
 	const navigate = useNavigate();
 	const isMobile = useResize('md');
 
 	useSwipe((isOpen) => setIsOpen(isOpen));
 
 	async function handleExit() {
-		try {
-			await Cookies.remove('token');
-			await logout();
-			location.reload();
-		} catch (error) {
-			setErr(error);
-		}
+		return null;
 	}
 
 	return (

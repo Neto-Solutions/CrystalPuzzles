@@ -1,16 +1,10 @@
 import styles from './Schedule.module.scss';
-import { useState, useEffect } from 'react';
-import { getAllData } from '@entities/lesson';
+import { useState } from 'react';
 import moment from 'moment';
 
 export default function Schedule() {
-	const [data, setData] = useState([]);
 	// eslint-disable-next-line no-unused-vars
-	const [err, setErr] = useState(null);
-
-	useEffect(() => {
-		getAllData().then(setData).catch(setErr);
-	}, []);
+	const [data, setData] = useState([]);
 
 	return (
 		<>

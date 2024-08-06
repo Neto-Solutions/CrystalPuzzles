@@ -1,8 +1,8 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
-import { userSlice } from '@entities/user';
+import { profileSlice } from '@entities/user';
 import { appSlice } from './app';
 
-const mainReducer = combineSlices(userSlice, appSlice);
+const mainReducer = combineSlices(profileSlice, appSlice);
 
 const store = configureStore({
 	reducer: mainReducer,

@@ -2,13 +2,12 @@ import styles from './Avatar.module.scss';
 import { Page } from '@shared/ui';
 import { useState } from 'react';
 import { Button } from '@shared/ui';
-import { updateProfileAvatar } from '@entities/user';
 import { ReactComponent as UploadIcon } from '@shared/assets/svg/upload.svg';
 import LS from '@shared/lib/localStorage';
 import { useSelector } from 'react-redux';
-import { selectUser } from '@entities/user';
+import { selectProfile } from '@entities/user';
 export default function AvatarPage() {
-	const { avatar } = useSelector(selectUser);
+	const { avatar } = useSelector(selectProfile);
 	const [preview, setPreview] = useState(
 		LS.get('avatar') || require(`@shared/assets/avatar/${avatar}.png`)
 	);
@@ -19,9 +18,6 @@ export default function AvatarPage() {
 		e.preventDefault();
 		if (!userPhoto) return;
 		LS.remove('avatar');
-		updateProfileAvatar(userPhoto).then(() => {
-			location.replace('/');
-		});
 	}
 	return (
 		<Page title="Изменить аватарку">

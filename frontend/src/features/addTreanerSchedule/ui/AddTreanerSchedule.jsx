@@ -5,12 +5,12 @@ import styles from './AddTreanerSchedule.module.scss';
 
 import { trainers, platforms } from '../Mockdata/data';
 import Button from '../../../shared/ui/button/Button';
-import { postData } from '@entities/lesson';
 import { DateChanger } from '../../DateChanger/DateChanger';
 
 export const AddTreanerSchedule = ({ day }) => {
 	const [openTrainers, setOpenTrainers] = useState(false); //открыть-зыкрыть
 	const [openPlatform, setOpenPlatform] = useState(false);
+	// eslint-disable-next-line no-unused-vars
 	const [test, setTest] = useState({
 		space_id: null,
 		trainer_id: null,
@@ -31,9 +31,8 @@ export const AddTreanerSchedule = ({ day }) => {
 	};
 
 	const handleSubmit = async () => {
-		postData(test);
+		return null;
 	};
-	// TODO: доделать функциoнал
 	return (
 		<div className={styles.component}>
 			<DateChanger day={day} className={styles.header} />

@@ -17,7 +17,6 @@ import group from 'assets/svg/sidebar/group.svg';
 import students from 'assets/svg/sidebar/students.svg';
 import home from 'assets/svg/sidebar/home.svg';
 import { AvatarPage, SchedulePage } from '@pages/shared';
-import { getDataById } from '@entities/lesson';
 
 const trainerRouter = [
 	{
@@ -38,12 +37,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/schedule/:id',
-		element: <CheckListPage />,
-		loader: ({ params: { id } }) => {
-			return getDataById(id)
-				.then((data) => ({ data, err: null }))
-				.catch((error) => ({ data: null, err: error }));
-		}
+		element: <CheckListPage />
 	},
 	{
 		path: '/groups',

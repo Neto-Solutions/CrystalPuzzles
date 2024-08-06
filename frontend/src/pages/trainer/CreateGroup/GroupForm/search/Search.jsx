@@ -1,13 +1,8 @@
 import styles from './Search.module.scss';
-import { getStudents } from '@entities/student';
 
 export default function Search({ setInit }) {
 	function handleSearch(e) {
-		const value = e.target.value.trim();
-		if (!value) return;
-		getStudents(value).then((res) => {
-			setInit(res);
-		});
+		setInit(e.target.value);
 	}
 
 	return (
