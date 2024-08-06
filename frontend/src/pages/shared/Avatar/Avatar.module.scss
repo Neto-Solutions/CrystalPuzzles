@@ -1,0 +1,88 @@
+@use '~styles/mixins' as *;
+
+.container {
+	width: fit-content;
+	max-width: 636px;
+	padding: var(--gap);
+	border: var(--border);
+	border-radius: var(--radius);
+	background-color: var(--bg-card);
+	display: grid;
+	gap: 60px;
+}
+
+.container_preview {
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+
+	& > * {
+		margin-top: auto;
+	}
+}
+
+.buttons {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: end;
+	gap: var(--gap);
+
+	@include md() {
+		gap: 10px;
+	}
+
+	.button {
+		height: 57px;
+		border-radius: 13px;
+		flex-direction: row-reverse;
+		padding-left: var(--gap);
+		padding-right: var(--gap);
+		gap: var(--gap);
+		min-width: fit-content;
+
+		@include md() {
+			height: 37px;
+			width: 100%;
+			font-size: 14px;
+		}
+	}
+
+	.error {
+		color: red;
+		position: absolute;
+		bottom: -50%;
+		right: 0;
+	}
+}
+
+.img {
+	width: 134px;
+	height: 134px;
+	border: var(--border);
+	border-radius: var(--radius);
+	padding: 8px;
+	object-fit: cover;
+	@include md() {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+.container_images {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--gap);
+	place-items: center;
+
+	@include md() {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 5px;
+	}
+
+	.img {
+		padding: 0;
+		cursor: pointer;
+	}
+}

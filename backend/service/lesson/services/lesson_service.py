@@ -1,29 +1,40 @@
-from core.service import BaseService
-from service.lesson.schemas.lesson_schemas import CreateLessonSchema, LessonFilterSchema  #, EditLessonSchema
-from service.lesson.schemas.lesson_schemas import LessonFilterSchema
+from datetime import datetime
+
+from common.service.base_service import BaseService
+from service.lesson.schemas.lesson_schemas import CreateLessonSchema, LessonFilterSchema, EditLessonSchema
+from service.lesson.services.space_service import SpaceService
+from service.lesson.unit_of_work.lesson_uow import LessonUOW
+from service.users.services.user_service import UserService
 
 
 class LessonService(BaseService):
-    create_schema = CreateLessonSchema
-    edit_schema = LessonFilterSchema
-    async def add(self, lesson: create_schema):
+
+    @staticmethod
+    async def get_by_start_time_and_space(uow: LessonUOW, space_id: int, lesson_start_time: datetime):
+        async with uow:
+            result = await uow.repo.get_by_start_time_and_space(space_id, lesson_start_time)
+            return result
+
+    async def add(self, uow: LessonUOW, lesson: CreateLessonSchema, **kwargs):
+        await UserService.trainer_check(kwargs.get("user_uow"), lesson.trainer_id)
+        await SpaceService.space_exists(kwargs.get("space_uow"), lesson.space_id)
         lesson.start = lesson.start.replace(tzinfo=None)
-        check = await self.repo.get_by_start_time_and_space(lesson.space_id, lesson.start)
+        check = await self.get_by_start_time_and_space(uow, lesson.space_id, lesson.start)
         if check is None or check.deleted:
-            return await super().add(lesson)
+            result = await super().add(uow, lesson)
+            return result
         return None
 
-    async def edit(self, lesson: edit_schema):
+    async def edit(self, uow: LessonUOW, lesson: EditLessonSchema, **kwargs):
         lesson.start = lesson.start.replace(tzinfo=None)
-        check = await self.repo.get_by_start_time_and_space(lesson.space_id, lesson.start)
+        check = await self.get_by_start_time_and_space(uow, lesson.space_id, lesson.start)
         if check is None or (check.id == lesson.id and not check.deleted):
-            return await super().edit(lesson)
+            result = await super().edit(uow, lesson)
+            return result
         return None
 
-    async def get(self, lesson_id: int):
-        return await self.repo.get(lesson_id)
-
-
-    async def get_all_by_filters(self, filters: LessonFilterSchema):
-        return await self.repo.get_all_lesson_by_filter(filters.search_string, filters.page_number,
-                                                        filters.page_size, filters.date_begin, filters.trainer)
+    @staticmethod
+    async def get_all_by_filters(uow: LessonUOW, filters: LessonFilterSchema):
+        async with uow:
+            result = await uow.repo.get_all_lesson_by_filter(filters)
+            return result

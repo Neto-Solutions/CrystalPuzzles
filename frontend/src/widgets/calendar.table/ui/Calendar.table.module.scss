@@ -4,38 +4,7 @@
 	min-width: 1078px;
 	border: var(--border);
 	border-radius: var(--radius);
-}
-
-.top {
-	height: 48px;
-	padding: 0 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: var(--bg-card);
-	border-top-left-radius: var(--radius);
-	border-top-right-radius: var(--radius);
-	font-family: var(--ff-first);
-	font-size: var(--fz-btn);
-	font-weight: var(--fw-medium);
-}
-
-.arrow {
-	width: 32px;
-	height: 32px;
-}
-
-.btn {
-	background: transparent;
-	border: none;
-	outline: none;
-	cursor: pointer;
-}
-
-.month_title {
-	font-family: var(--ff-first);
-	font-weight: var(--fw-medium);
-	font-size: var(--fz-btn);
+	overflow: hidden;
 }
 
 .grid_wrap {
@@ -67,12 +36,23 @@
 	}
 }
 
+.add_btn {
+	display: none;
+	background-color: var(--bg-card);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	inset: 0;
+	z-index: -1;
+}
+
 .days {
 	grid-template-rows: repeat(2, 154px);
-
 	.days_item {
+		position: relative;
 		padding: 12px;
-		cursor: pointer;
+		// cursor: pointer;
+		z-index: 99;
 
 		&:nth-child(n) {
 			border-right: var(--border);
@@ -83,9 +63,15 @@
 		&:last-child {
 			border-right: none;
 		}
-		
+
 		&:nth-child(n + 8) {
 			border-bottom: none;
+		}
+
+		&:hover {
+			.add_btn {
+				display: block;
+			}
 		}
 	}
 }

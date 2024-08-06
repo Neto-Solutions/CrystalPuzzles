@@ -1,1 +1,1 @@
-export { default as RewardsPopup } from './rewards/Rewards';
+export { NotificationModal } from './NotificationModal/NotificationModal';

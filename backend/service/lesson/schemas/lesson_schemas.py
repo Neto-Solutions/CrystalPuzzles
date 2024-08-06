@@ -5,10 +5,9 @@ from pydantic import Field
 from datetime import datetime
 from typing import Optional
 
-from fastapi import HTTPException, Query
-from pydantic import EmailStr, field_validator
+from fastapi import Query
 
-from core.schemas.base import BaseModel, BaseFilterSchema
+from common.schema.base_schemas import BaseModel, BaseFilterSchema
 from service.lesson.schemas.space_schemas import SpaceSchemaForTable
 
 
@@ -22,8 +21,6 @@ class CreateLessonSchema(BaseModel):
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
 
-#
-#
 class EditLessonSchema(BaseModel):
     """ Схема изменения моделей занятий """
     id: int
@@ -60,7 +57,7 @@ class LessonViewSchemaForPage(BaseModel):
 
 class LessonFilterSchema(BaseFilterSchema):
     """ Фильтрация и пагинация """
-    date_begin: datetime | None = Query(default=None, description="Дата начала занятия")
+    start_date: datetime | None = Query(default=None, description="Дата начала занятия")
     trainer: int | None = Query(default=None, description="Тренер")
 
 

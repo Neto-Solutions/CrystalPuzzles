@@ -6,7 +6,7 @@
 	margin: 24px 0;
 	gap: 12px;
 
-	@include xs() {
+	@include sm() {
 		justify-content: center;
 	}
 }

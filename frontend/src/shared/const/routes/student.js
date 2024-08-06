@@ -1,15 +1,8 @@
-import MainPage from '@student/Main.page';
-import TrainPage from '@student/Train.page';
-import CheckListPage from '@student/Check.list.page';
-import SchedulePage from '@student/Schedule.page';
-import FeedbackPage from '@student/Feedback.page';
-import AppraisalPage from '@student/Appraisal.page';
+import { AvatarPage, SchedulePage } from '@pages/shared';
+import { MainPage, ExercisePage, TrainPage, SurveyPage } from '@student';
 import training from '../../assets/svg/sidebar/Training.svg';
-import checkList from '../../assets/svg/sidebar/check list.svg';
 import schedule from '../../assets/svg/sidebar/schedule.svg';
-import feedback from '../../assets/svg/sidebar/Feedback.svg';
 import home from '../../assets/svg/sidebar/home.svg';
-import AvatarPage from '@student/Avatar.form.page';
 
 const studentRouter = [
 	{
@@ -24,10 +17,8 @@ const studentRouter = [
 		img: training
 	},
 	{
-		path: '/check-list',
-		element: <CheckListPage />,
-		local: 'Чек-листы',
-		img: checkList
+		path: '/train/:id',
+		element: <ExercisePage />
 	},
 	{
 		path: '/schedule',
@@ -36,18 +27,14 @@ const studentRouter = [
 		img: schedule
 	},
 	{
-		path: '/feedback',
-		element: <FeedbackPage />,
-		local: 'Обратная связь',
-		img: feedback
-	},
-	{
-		path: '/appraisal',
-		element: <AppraisalPage />
-	},
-	{
 		path: '/avatar',
 		element: <AvatarPage />
+	},
+	{
+		path: '/survey',
+		element: <SurveyPage />,
+		local: 'Анкета',
+		img: 'feedback'
 	}
 ];
 

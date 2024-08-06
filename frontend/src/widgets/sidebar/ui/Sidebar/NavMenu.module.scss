@@ -8,13 +8,13 @@
 	height: 2px;
 	background-color: #0e1079;
 
-	@include lg() {
+	@include md() {
 		width: 44px;
 	}
 }
 
 .nav {
-	@include lg() {
+	@include md() {
 		display: flex;
 		flex-direction: column;
 		gap: 30px;

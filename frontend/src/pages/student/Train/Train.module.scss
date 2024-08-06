@@ -1,0 +1,63 @@
+@use '~styles/mixins' as *;
+
+.card {
+	width: 100%;
+	max-width: 958px;
+	padding: 30px;
+	display: flex;
+	justify-content: space-between;
+	border: var(--border);
+	border-radius: var(--radius);
+	background-color: #dae8f0;
+	margin-bottom: 15px;
+	.info {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: var(--gap);
+	}
+
+	.name {
+		@include font(var(--ff-second), 22px, 500);
+	}
+
+	.trainer_container,
+	.comment_container,
+	.place_container {
+		@include font(var(--ff-second), 24px, 400);
+
+		.trainer_title,
+		.place_title {
+			margin-right: 5px;
+			font-weight: 500;
+		}
+	}
+}
+
+.date {
+	@include font(var(--ff-first), 24px, 500);
+}
+
+@include sm() {
+	.card {
+		max-width: 335px;
+		padding: 10px;
+		text-align: center;
+		flex-direction: column;
+		.info {
+			gap: 10px;
+		}
+		.name {
+			font-size: 16px;
+		}
+
+		.trainer,
+		.combination {
+			font-size: 16px;
+		}
+	}
+	.date {
+		font-size: 16px;
+		margin-top: 8px;
+	}
+}

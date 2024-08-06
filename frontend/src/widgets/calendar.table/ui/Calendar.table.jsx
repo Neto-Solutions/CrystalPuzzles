@@ -1,11 +1,17 @@
-import styles from './Calendar.table.module.scss';
+import React, { useState } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
-import React, { useState } from 'react';
-import arrow from '@shared/assets/svg/circle_arrow.svg';
+import classNames from 'classnames';
+import { CalendarAddButton } from './CalendarAddButton/CalendarAddButton';
+import { ScheduleHeader } from '../../../features/scheduleHeader/ScheduleHeader';
+import styles from './Calendar.table.module.scss';
+import { Modal } from '../../../shared/ui/modal/Modal';
+import { AddTreanerSchedule } from '../../../features/addTreanerSchedule/ui/AddTreanerSchedule';
 
 const CalendarTable = () => {
 	const [startDate, setStartDate] = useState(moment());
+	const [data] = useState(false);
+	const [modalActive, setModalActive] = useState(false);
 
 	window.moment = moment;
 	moment.updateLocale('ru', { week: { dow: 1 } });
@@ -25,8 +31,16 @@ const CalendarTable = () => {
 		return [...Array(14)].map((_, index) => {
 			const currentDate = startDate.clone().add(index, 'days');
 			return (
-				<li key={index} className={styles['days_item']}>
+				<li key={index} className={styles.days_item}>
 					{currentDate.format('D')}
+					{!data && (
+						<CalendarAddButton
+							className={styles.add_btn}
+							onclick={() => {
+								setModalActive(currentDate.format('D'));
+							}}
+						/>
+					)}
 				</li>
 			);
 		});
@@ -50,30 +64,35 @@ const CalendarTable = () => {
 		}
 	};
 
+	// const openModal = () => {
+	// 	setModalActive(true);
+	// };
+
 	return (
-		<div className={styles.datepicker}>
-			<header className={styles.top}>
-				<button onClick={prevTwoWeeks} className={styles.btn}>
-					<img className={styles.arrow} src={arrow} />
-				</button>
-				<h3 className={styles['month_title']}>{generateHeader(startDate)}</h3>
-				<button onClick={nextTwoWeeks} className={styles.btn}>
-					<img className={styles.arrow} src={arrow} />
-				</button>
-			</header>
-			<div className={`${styles['grid_wrap']}`}>
-				<ul className={`${styles.grid} ${styles.weeks}`}>
-					{daysOfWeek.map((item) => (
-						<li key={item} className={styles['weeks_item']}>
-							{item}
-						</li>
-					))}
-				</ul>
-				<ul className={`${styles.grid} ${styles.days}`}>
-					{renderCalendarDays()}
-				</ul>
+		<>
+			<div className={styles.datepicker}>
+				<ScheduleHeader
+					date={generateHeader(startDate)}
+					onPrevClick={prevTwoWeeks}
+					onNextClick={nextTwoWeeks}
+				/>
+				<div className={styles.grid_wrap}>
+					<ul className={classNames(styles.grid, styles.weeks)}>
+						{daysOfWeek.map((item) => (
+							<li key={item} className={styles.weeks_item}>
+								{item}
+							</li>
+						))}
+					</ul>
+					<ul className={classNames(styles.grid, styles.days)}>
+						{renderCalendarDays()}
+					</ul>
+				</div>
 			</div>
-		</div>
+			<Modal active={modalActive} setActive={setModalActive} width={'1078px'}>
+				<AddTreanerSchedule day={modalActive} />
+			</Modal>
+		</>
 	);
 };
 

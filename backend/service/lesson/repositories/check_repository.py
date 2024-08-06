@@ -1,16 +1,13 @@
-import math
+from sqlalchemy import insert
 
-from datetime import datetime
-from sqlalchemy import select, func
-
-from core.database import async_session
-from core.repository import BaseRepository
-from service.group.models import Group
-from service.identity.models import User
-from service.lesson.models import Lesson, Check
+from common.repository.base_repository import BaseRepository
+from service.lesson.models import Check
 
 
 class CheckRepository(BaseRepository):
     model = Check
 
-
+    async def add(self, data: dict):
+        stmt = insert(self.model).values(**data).returning(self.model.id)
+        result = (await self.session.execute(stmt)).scalar_one_or_none()
+        return result

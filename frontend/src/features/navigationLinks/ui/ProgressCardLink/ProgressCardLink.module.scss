@@ -1,0 +1,17 @@
+@use '~styles/mixins' as *;
+
+.progress_graph {
+	width: 347px;
+	height: 347px;
+	background-image: url('~assets/card.background/progress_shedule.svg');
+	background-repeat: no-repeat;
+	background-position-y: calc(100% - 28px);
+
+	&:hover {
+		background-image: url('~assets/card.background/progress_hover.svg');
+	}
+	@include sm() {
+		width: 164px;
+		height: 147px;
+	}
+}

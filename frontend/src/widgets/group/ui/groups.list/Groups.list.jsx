@@ -2,22 +2,18 @@ import styles from './Groups.list.module.scss';
 import { Spinner } from '@shared/ui';
 import { useEffect, useState } from 'react';
 import { getAllGroups } from '@entities/group/api/group.api';
-import { useNavigate } from 'react-router-dom';
 
 export default function GroupsList() {
 	const [groups, setGroups] = useState({});
+	// eslint-disable-next-line no-unused-vars
+	const [err, setErr] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		getAllGroups()
-			.then((res) => {
-				setGroups(res);
-			})
+			.then(setGroups)
 			.then(() => setLoading(false))
-			.catch(() =>
-				navigate('/login', { state: { from: window.location.pathname } })
-			);
+			.catch(setErr);
 	}, []);
 
 	return (

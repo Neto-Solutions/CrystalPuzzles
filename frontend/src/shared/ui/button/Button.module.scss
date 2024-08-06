@@ -22,7 +22,9 @@
 	&:hover {
 		background-color: var(--accent-color);
 		color: #fff;
-		stroke: #fff;
 		fill: #fff;
+		svg {
+			stroke: #fff;
+		}
 	}
 }

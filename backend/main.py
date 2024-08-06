@@ -9,20 +9,23 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
 
 from core.config import get_settings
-from core.routers import healthCheckRoute
-from core.utils.healthcheck import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
 from service.group.routers.group_router import group_router
-from service.identity.initialize import RolesInitialize, BaseUserInitialize
-
-from service.identity.routers.admin_panel_router import admin_panel_router
-from service.identity.routers.auth_router import auth_routers
-from service.identity.routers.students_router import student_router
-from service.identity.routers.user_router import user_router
-from service.identity.routers.profile_router import profile_router
 from service.group.routers.student_group_router import student_group_router
+from service.healthcheck.routers import health_check_route
+from service.healthcheck.healthcheck_factory import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
+from service.lesson.routers.check_router import check_router
 from service.lesson.routers.lesson_router import lesson_router
 from service.lesson.routers.space_router import space_router
+from service.training.initialize import TrainingLevelInitialize
 from service.training.router import training_router
+from service.users.initialize import RolesInitialize, BaseUserInitialize
+
+from service.users.routers.admin_panel_router import admin_panel_router
+from service.users.routers.profile_router import profile_router
+from service.users.routers.students_router import student_router
+from service.users.routers.user_router import user_router
+from service.identity.routers import auth_routers
+from service.notification.routers.notification_router import notification_router
 
 settings = get_settings()
 
@@ -32,6 +35,7 @@ settings = get_settings()
 async def lifespan(app: FastAPI):
     await RolesInitialize.initialize()
     await BaseUserInitialize.initialize()
+    await TrainingLevelInitialize.initialize()
     yield
 
 
@@ -86,31 +90,33 @@ app.add_middleware(
 # endregion -------------------------------------------------------------------------
 
 # region ----------------------------- Healthcheck ----------------------------------
-_healthChecks = HealthCheckFactory()
+_health_checks = HealthCheckFactory()
 
-_healthChecks.add(HealthCheckSQLAlchemy(
+_health_checks.add(HealthCheckSQLAlchemy(
     alias='crystal_puzzles_db',
     tags=['crystal_puzzles_db'])
 )
-_healthChecks.add(HealthCheckUri(
+_health_checks.add(HealthCheckUri(
     alias='crystal_puzzles_api',
-    connectionUri=f"{settings.base_path}{settings.openapi_url}",
+    connection_uri=f"{settings.base_path}{settings.openapi_url}",
     tags=['crystal_puzzles_api'])
 )
 # endregion -------------------------------------------------------------------------
 
 # region -------------------------------- Routing -----------------------------------
 all_routers = [
+    auth_routers,
     user_router,
     profile_router,
     student_router,
-    auth_routers,
+    admin_panel_router,
     group_router,
     student_group_router,
     training_router,
     space_router,
     lesson_router,
-    admin_panel_router
+    notification_router,
+    # check_router
 ]
 
 for router in all_routers:
@@ -118,7 +124,7 @@ for router in all_routers:
 
 app.add_api_route(
     '/health',
-    endpoint=healthCheckRoute(factory=_healthChecks),
+    endpoint=health_check_route(factory=_health_checks),
     include_in_schema=False
 )
 
@@ -149,5 +155,5 @@ if __name__ == '__main__':
         host="0.0.0.0",
         port=settings.port,
         reload=True,
-        loop='uvloop', # работает только на linux
+        loop='uvloop',  # работает только на linux
     )

@@ -1,18 +1,14 @@
 from http import HTTPStatus
-from typing import Annotated
 
-from fastapi import APIRouter, Depends, Response, HTTPException
+from fastapi import APIRouter, Response
 
-from core.schemas.base import Message
-from core.utils.logger import logger
+from starlette.responses import JSONResponse
+
+from common.dependensies import TrainerSupervisorAdminDep
+from common.schema.base_schemas import Message
 from service.group.schemas import StudentForGroupViewSchema
-from service.identity.models import User
-from service.identity.security import get_current_user
-from service.identity.repositories.user_repository import UserRepository
-from service.identity.dependensies import user_repository
-from service.group.dependensies import group_repository, student_service
-from service.group.repositories.group_repository import GroupRepository
-from service.group.services.student_service import StudentService
+from service.users.dependensies import UserUOWDep
+from service.group.dependensies import GroupUOWDep, StudentUOWDep, StudentServiceDep
 
 student_group_router = APIRouter(
     prefix="/api/v1/group",
@@ -31,27 +27,20 @@ student_group_router = APIRouter(
         409: {"model": Message, "description": "Конфликт данных"},
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
-async def add_student_for_group(items: StudentForGroupViewSchema,
-                                user_repository: Annotated[UserRepository, Depends(user_repository)],
-                                group_repository: Annotated[GroupRepository, Depends(group_repository)],
-                                student_service: Annotated[StudentService, Depends(student_service)],
-                                current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
-                                ):
+async def add_student_for_group(
+        items: StudentForGroupViewSchema,
+        user_uow: UserUOWDep,
+        group_uow: GroupUOWDep,
+        uow: StudentUOWDep,
+        student_service: StudentServiceDep,
+        current_user: TrainerSupervisorAdminDep
+):
     """ admin, supervisor, trainer """
-    try:
-        if not await user_repository.student_exists(items.student_id):
-            logger.error("Student not found")
-        elif not await group_repository.exist(items.group_id):
-            logger.error("Group not found")
-        else:
-            result = await student_service.add_student(items)
-            if result:
-                return Response(status_code=HTTPStatus.CREATED.value)
-        logger.error("The student already belongs to the group")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500)
+    result = await student_service.add_student(uow, items, user_uow=user_uow, group_uow=group_uow)
+    if result:
+        return Response(status_code=HTTPStatus.CREATED.value)
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="The student already belongs to the group")
+
 
 
 @student_group_router.delete(
@@ -64,24 +53,14 @@ async def add_student_for_group(items: StudentForGroupViewSchema,
         500: {"model": Message, "description": "Серверная ошибка"}}
 )
 async def delete_student_for_group(
-                                items: StudentForGroupViewSchema,
-                                user_repository: Annotated[UserRepository, Depends(user_repository)],
-                                group_repository: Annotated[GroupRepository, Depends(group_repository)],
-                                student_service: Annotated[StudentService, Depends(student_service)],
-                                current_user: User = Depends(get_current_user(("admin", "supervisor", "trainer")))
+        items: StudentForGroupViewSchema,
+        user_uow: UserUOWDep,
+        group_uow: GroupUOWDep,
+        uow: StudentUOWDep,
+        student_service: StudentServiceDep,
+        current_user: TrainerSupervisorAdminDep
 ):
     """ Удаление студента из группы """
-    try:
-        if not await user_repository.student_exists(items.student_id):
-            logger.error("Student not found")
-        elif not await group_repository.exist(items.group_id):
-            logger.error("Group not found")
-        else:
-            result = await student_service.delete_student(items)
-            if not result:
-                return Response(status_code=HTTPStatus.NO_CONTENT.value)
-        logger.error("Student not found")
-        return Response(status_code=HTTPStatus.BAD_REQUEST.value)
-    except Exception as e:
-        logger.error(e)
-        raise HTTPException(status_code=500, detail=e.__str__())
+    result = await student_service.delete_student(uow, items, user_uow=user_uow, group_uow=group_uow)
+    if not result:
+        return Response(status_code=HTTPStatus.NO_CONTENT.value)

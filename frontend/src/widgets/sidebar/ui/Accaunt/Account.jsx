@@ -15,7 +15,7 @@ export const Account = ({ user, className, isMobile }) => {
 			return;
 		}
 
-		if (LS.get('avatar')) return;
+		if (LS.has('avatar')) return;
 
 		getProfileAvatar()
 			.then(({ photo }) => {
@@ -24,7 +24,7 @@ export const Account = ({ user, className, isMobile }) => {
 				setUserPhoto(LS.get('avatar'));
 			})
 			.catch(() => setUserPhoto(avatar));
-	}, [user]);
+	}, [user, LS.get('avatar')]);
 
 	return (
 		<div className={`${styles.accaunt_wrap} ${className}`}>
