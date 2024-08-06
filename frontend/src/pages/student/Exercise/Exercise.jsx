@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLoaderData, useLocation } from 'react-router-dom';
 import useResize from '@shared/hooks/useResize';
 import { Page, Spinner } from '@shared/ui';
 import { getDataById } from '@entities/lesson';
@@ -10,17 +10,18 @@ import styles from './Exercise.module.scss';
 export default function ExercisePage() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [data, setData] = useState(null);
+	const { lesson, checkList} = useLoaderData();
 	// eslint-disable-next-line no-unused-vars
 	const [err, setErr] = useState(null);
-	const { pathname } = useLocation();
+	// const { pathname } = useLocation();
 	const isTablet = useResize('md');
 
-	useEffect(() => {
-		getDataById(pathname.split('/').pop())
-			.then(setData)
-			.then(() => setIsLoading(false))
-			.catch(setErr);
-	}, [pathname]);
+	// useEffect(() => {
+	// 	getDataById(pathname.split('/').pop())
+	// 		.then(setData)
+	// 		.then(() => setIsLoading(false))
+	// 		.catch(setErr);
+	// }, [pathname]);
 
 	return (
 		<Page title="Мои занятия">

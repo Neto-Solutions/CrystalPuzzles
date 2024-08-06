@@ -3,6 +3,7 @@ import { MainPage, ExercisePage, TrainPage, SurveyPage } from '@student';
 import training from 'assets/svg/sidebar/Training.svg';
 import schedule from 'assets/svg/sidebar/schedule.svg';
 import home from 'assets/svg/sidebar/home.svg';
+import { Lesson, CheckList } from '../api';
 
 const studentRouter = [
 	{
@@ -18,7 +19,12 @@ const studentRouter = [
 	},
 	{
 		path: '/train/:id',
-		element: <ExercisePage />
+		element: <ExercisePage />,
+		loader: async ({ params }) => {
+			const checkList = await CheckList.get({ lessonId: params.id });
+			const lesson = await Lesson.getById({ id: params.id });
+			return { checkList, lesson };
+		}
 	},
 	{
 		path: '/schedule',

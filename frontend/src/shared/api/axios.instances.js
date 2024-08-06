@@ -17,15 +17,16 @@ $authHost.interceptors.request.use((config) => {
 
 $authHost.interceptors.response.use(
 	(res) => res,
-	// async () => {
-	// 	// if err
-	// 	if (
-	// 		location.pathname !== '/login' &&
-	// 		location.pathname !== '/registration'
-	// 	) {
-	// 		location.href = '/login';
-	// 	}
-	// }
+	async (err) => {
+		// if err
+		if (
+			err.response.data.error == 'Unauthorized' &&
+			location.pathname !== '/login' &&
+			location.pathname !== '/registration'
+		) {
+			location.href = '/login';
+		}
+	}
 );
 
 export { $host, $authHost };

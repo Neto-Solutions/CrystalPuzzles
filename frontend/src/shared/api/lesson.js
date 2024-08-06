@@ -1,7 +1,7 @@
-import { $authhost } from './axios.instances';
+import { $authHost } from './axios.instances';
 
 class Lesson {
-	#host = $authhost;
+	#host = $authHost;
 
 	async add(params) {
 		const { space_id, trainer_id, trainer_comments, start } = params;
