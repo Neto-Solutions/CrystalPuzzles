@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-// import { redirect } from 'react-router-dom';
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_API || window.API_URL;
 
@@ -18,15 +17,15 @@ $authHost.interceptors.request.use((config) => {
 
 $authHost.interceptors.response.use(
 	(res) => res,
-	async () => {
-		// if err
-		if (
-			location.pathname !== '/login' &&
-			location.pathname !== '/registration'
-		) {
-			location.href = '/login';
-		}
-	}
+	// async () => {
+	// 	// if err
+	// 	if (
+	// 		location.pathname !== '/login' &&
+	// 		location.pathname !== '/registration'
+	// 	) {
+	// 		location.href = '/login';
+	// 	}
+	// }
 );
 
 export { $host, $authHost };
