@@ -1,4 +1,4 @@
-import CheckInPage from '@check.in/Check.in.page';
+import CheckInPage from '@checkIn/CheckIn';
 
 const checkInRouter = [
 	{

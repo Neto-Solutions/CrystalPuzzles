@@ -6,11 +6,5 @@ import { selectProfile } from '@store/profile';
 
 export default function RouterProvider() {
 	const { role } = useSelector(selectProfile);
-	if (
-		!role &&
-		location.pathname !== '/login' &&
-		location.pathname !== '/registration'
-	)
-		location.replace('/login');
 	return <Router router={createBrowserRouter(MainRouter(role))} />;
 }

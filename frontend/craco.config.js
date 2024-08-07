@@ -10,7 +10,7 @@ module.exports = {
 			'@features': path.resolve(__dirname, 'src/features'),
 			'@entities': path.resolve(__dirname, 'src/entities'),
 			'@shared': path.resolve(__dirname, 'src/shared'),
-			'@check.in': path.resolve(__dirname, 'src/pages/check.in'),
+			'@checkIn': path.resolve(__dirname, 'src/pages/checkIn'),
 			'@supervisor': path.resolve(__dirname, 'src/pages/supervisor'),
 			'@trainer': path.resolve(__dirname, 'src/pages/trainer'),
 			'@student': path.resolve(__dirname, 'src/pages/student'),
