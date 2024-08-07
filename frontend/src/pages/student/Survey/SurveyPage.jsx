@@ -8,19 +8,19 @@ export default function SurveyPage() {
 			<div className={styles.section}>
 				<div className={styles.wrapper}>
 					<div>Обязательная анкета при регистрации</div>
-					<button className={styles.btn} onClick={() => console.log('file')}>
+					<a href="#" target="_blank" className={styles.link}>
 						<File />
 						<span>Pdf</span>
-					</button>
+					</a>
 				</div>
 			</div>
 			<div className={styles.section}>
 				<div className={styles.wrapper}>
 					<div>Обязательная анкета при регистрации</div>
-					<button className={styles.btn} onClick={() => console.log('file')}>
+					<a href="#" target="_blank" className={styles.link}>
 						<File />
 						<span>Pdf</span>
-					</button>
+					</a>
 				</div>
 			</div>
 		</Page>
