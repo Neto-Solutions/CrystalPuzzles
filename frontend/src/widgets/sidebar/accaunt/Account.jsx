@@ -2,11 +2,12 @@ import styles from './Account.module.scss';
 import avatar from '@shared/assets/avatar/0.png';
 import { roleAdapter } from '@entities/profile';
 import { useMemo, useState } from 'react';
-import LS from '@shared/lib/localStorage';
 
 export const Account = ({ user, className, isMobile }) => {
 	// eslint-disable-next-line no-unused-vars
-	const [userPhoto, setUserPhoto] = useState(LS.get('avatar') || avatar);
+	const [userPhoto] = useState(
+		(user?.avatar && require(`assets/avatar/${user?.avatar}.png`)) || avatar
+	);
 	const position = useMemo(() => roleAdapter(user.role), [user]);
 
 	return (

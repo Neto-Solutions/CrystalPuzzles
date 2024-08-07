@@ -1,9 +1,7 @@
 import styles from './App.module.scss';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from '@widgets/header';
-import Sidebar from '@widgets/sidebar';
-import { Footer } from '@widgets/footer';
+import { Sidebar, Header, Footer } from '@widgets';
 import { NotificationModal } from '../shared/ui/popups/NotificationModal/NotificationModal';
 
 export default function App() {
