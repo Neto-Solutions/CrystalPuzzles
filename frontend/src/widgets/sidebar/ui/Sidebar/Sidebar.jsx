@@ -1,3 +1,4 @@
+import styles from './Sidebar.module.scss';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +11,8 @@ import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
 import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';
 import edit from '@shared/assets/svg/sidebar/edit.svg';
-import styles from './Sidebar.module.scss';
+
+import LS from '@shared/lib/localStorage';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +23,8 @@ export default function Sidebar() {
 	useSwipe((isOpen) => setIsOpen(isOpen));
 
 	async function handleExit() {
+		LS.remove('profile');
+		location.reload();
 		return null;
 	}
 

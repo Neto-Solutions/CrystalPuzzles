@@ -8,7 +8,6 @@ import { NotificationModal } from '../shared/ui/popups/NotificationModal/Notific
 
 export default function App() {
 	const [notification, setNotification] = useState(false);
-
 	return (
 		<>
 			{notification && (

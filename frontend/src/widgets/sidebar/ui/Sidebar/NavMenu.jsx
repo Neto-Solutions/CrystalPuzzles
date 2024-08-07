@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import home from '@shared/assets/svg/sidebar/home.svg';
 import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
-import {
-	checkInRouter,
-	supervisorRouter,
-	studentRouter,
-	trainerRouter
-} from '@shared/routes';
+import { supervisorRouter, studentRouter, trainerRouter } from '@shared/routes';
 import { roleAdapter } from '@entities/profile';
 
 export const NavMenuList = ({ role, isMobile }) => {
@@ -16,12 +11,11 @@ export const NavMenuList = ({ role, isMobile }) => {
 	const [list, setList] = useState([]);
 
 	useEffect(() => {
-		setList(() =>
-			checkInRouter.concat(
+		setList(
+			() =>
 				(role === 'student' && studentRouter) ||
-					(role === 'supervisor' && supervisorRouter) ||
-					(role === 'trainer' && trainerRouter)
-			)
+				(role === 'supervisor' && supervisorRouter) ||
+				(role === 'trainer' && trainerRouter)
 		);
 	}, [role]);
 

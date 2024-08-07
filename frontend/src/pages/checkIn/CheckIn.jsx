@@ -8,6 +8,9 @@ import Politics from './policy/Policy';
 import { Button } from '@shared/ui';
 import { mapUserForm } from '@entities/profile';
 
+import { validateUser } from '@const';
+import LS from '@shared/lib/localStorage';
+
 export default function CheckInPage({ login = false }) {
 	const navigate = useNavigate();
 	const [err, setErr] = useState(null);
@@ -15,8 +18,14 @@ export default function CheckInPage({ login = false }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const data = mapUserForm(e);
-		return data;
+		validateUser(data)
+			.then(async (data) => {
+				LS.set('profile', data);
+				location.replace('/');
+			})
+			.catch(() => setErr('Что-то пошло не так, попробуйте ещё раз'));
 	}
+
 	return (
 		<Wrapper>
 			<div className={styles.container}>

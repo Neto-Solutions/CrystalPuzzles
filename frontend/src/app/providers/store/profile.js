@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Profile } from '@entities/profile';
+import LS from '@shared/lib/localStorage';
 
 const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
-		profile: new Profile()
+		profile: LS.get('profile') || new Profile()
 	},
 	reducers: {
 		setProfile: (state, action) => {
