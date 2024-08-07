@@ -4,21 +4,39 @@ import training from 'assets/sidebar/train.svg';
 import schedule from 'assets/sidebar/schedule.svg';
 import home from 'assets/sidebar/home.svg';
 
+import { lessons } from '../const/lessons';
+
 const studentRouter = [
 	{
 		path: '/',
 		element: <MainPage />,
-		img: home
+		img: home,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/train',
 		element: <TrainPage />,
 		local: 'Тренировки',
-		img: training
+		img: training,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/train/:id',
-		element: <ExercisePage />
+		element: <ExercisePage />,
+		loader: ({ params }) => {
+			return {
+				lessons,
+				id: params.id
+			};
+		}
 	},
 	{
 		path: '/schedule',

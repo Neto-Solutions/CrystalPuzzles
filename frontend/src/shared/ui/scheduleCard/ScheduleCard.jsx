@@ -1,14 +1,10 @@
-import styles from './Schedule.module.scss';
-import { useState } from 'react';
+import styles from './ScheduleCard.module.scss';
 import moment from 'moment';
 
-export default function Schedule() {
-	// eslint-disable-next-line no-unused-vars
-	const [data, setData] = useState([]);
-
+export default function ScheduleCard({ data }) {
 	return (
 		<>
-			{data.length
+			{data
 				? data.map((item, index) => (
 						<div key={index} className={styles.item_container}>
 							<div className={styles.item}>

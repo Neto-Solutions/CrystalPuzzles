@@ -1,13 +1,10 @@
 import styles from './Train.module.scss';
-import { useState } from 'react';
 import { Page } from '@shared/ui';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import moment from 'moment';
 
 export default function TrainPage() {
-	// eslint-disable-next-line no-unused-vars
-	const [data, setData] = useState([]);
-
+	const { lessons: data } = useLoaderData();
 	return (
 		<Page title="Мои тренировки">
 			<div className={styles.wrapper}>

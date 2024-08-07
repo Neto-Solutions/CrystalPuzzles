@@ -1,6 +1,6 @@
+import styles from './Survey.module.scss';
 import { Page } from '@shared/ui';
 import { ReactComponent as File } from '@shared/assets/svg/file.svg';
-import styles from './SurveyPage.module.scss';
 
 export default function SurveyPage() {
 	return (

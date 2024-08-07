@@ -1,12 +1,14 @@
-import useResize from '@shared/hooks/useResize';
+import styles from './Exercise.module.scss';
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { useResize } from '@hooks';
 import { Page } from '@shared/ui';
 import { DateChanger } from '@features/DateChanger/DateChanger';
 import ExerciseItem from '@shared/ui/ExerciseItem/ExerciseItem';
-import styles from './Exercise.module.scss';
-import { useLoaderData } from 'react-router-dom';
 
 export default function ExercisePage() {
-	const data = useLoaderData();
+	const { lessons, id } = useLoaderData();
+	const [data, setData] = useState(lessons.find((item) => item._id === id));
 	const isTablet = useResize('md');
 
 	return (
@@ -20,13 +22,14 @@ export default function ExercisePage() {
 						</div>
 						<ul className={styles.list}>
 							{data &&
-								data.exercises.map((item, index) => (
+								data.checkList.exercises.map((item, index) => (
 									<ExerciseItem
+										disableds={'egegeg'}
 										key={item._id}
 										text={item.name}
 										id={index + 1}
 										img={item.img}
-										defaultChecked={item.isComplete}
+										// defaultChecked={item.isComplete}
 									/>
 								))}
 						</ul>
@@ -38,7 +41,7 @@ export default function ExercisePage() {
 						<DateChanger className={styles.date} />
 						<ul className={styles.list}>
 							{data &&
-								data.exercises.map((item, index) => (
+								data.checkList.exercises.map((item, index) => (
 									<ExerciseItem
 										key={item._id}
 										text={item.name}
