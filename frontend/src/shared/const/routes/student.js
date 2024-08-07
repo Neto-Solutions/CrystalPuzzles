@@ -3,6 +3,7 @@ import { MainPage, ExercisePage, TrainPage, SurveyPage } from '@student';
 import training from '../../assets/svg/sidebar/Training.svg';
 import schedule from '../../assets/svg/sidebar/schedule.svg';
 import home from '../../assets/svg/sidebar/home.svg';
+// import  from '../../../pages/student/Survey/SurveyPage';
 
 const studentRouter = [
 	{
