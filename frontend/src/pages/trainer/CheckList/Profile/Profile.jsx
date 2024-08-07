@@ -1,7 +1,7 @@
 import styles from './Profile.module.scss';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectProfile } from '@entities/user';
+import { selectProfile } from '@store/profile';
 import LS from '@shared/lib/localStorage';
 import avatar from '@shared/assets/avatar/0.png';
 

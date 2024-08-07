@@ -2,7 +2,7 @@ import styles from './LogReg.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@shared/ui';
-import { mapUserForm } from '@entities/user';
+import { mapUserForm } from '@entities/profile';
 import Input from './input/Input';
 import Password from './password/Password';
 import Politics from './policy/Policy';

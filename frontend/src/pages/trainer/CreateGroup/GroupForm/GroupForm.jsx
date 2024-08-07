@@ -8,10 +8,12 @@ import Search from './search/Search';
 export default function GroupForm() {
 	const [students, setStudents] = useState([]);
 	const [init, setInit] = useState([]);
+	// eslint-disable-next-line no-unused-vars
 	const [name, setName] = useState('');
 	const [data, setData] = useState([]);
 
 	function handleSubmit() {
+		// eslint-disable-next-line no-unused-vars
 		const data = students.map((item) => item._id);
 		// createGroup({ name: name, students: data });
 	}

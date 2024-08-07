@@ -1,6 +1,6 @@
 import styles from './Account.module.scss';
 import avatar from '@shared/assets/avatar/0.png';
-import { roleAdapter } from '@entities/user';
+import { roleAdapter } from '@entities/profile';
 import { useMemo, useState } from 'react';
 import LS from '@shared/lib/localStorage';
 

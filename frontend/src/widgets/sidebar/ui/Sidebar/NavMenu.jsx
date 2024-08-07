@@ -9,7 +9,7 @@ import {
 	studentRouter,
 	trainerRouter
 } from '@shared/routes';
-import { roleAdapter } from '@entities/user';
+import { roleAdapter } from '@entities/profile';
 
 export const NavMenuList = ({ role, isMobile }) => {
 	const [isOpen, setOpen] = useState(false);

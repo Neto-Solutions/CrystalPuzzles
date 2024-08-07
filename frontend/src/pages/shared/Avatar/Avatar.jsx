@@ -5,7 +5,7 @@ import { Button } from '@shared/ui';
 import { ReactComponent as UploadIcon } from '@shared/assets/svg/upload.svg';
 import LS from '@shared/lib/localStorage';
 import { useSelector } from 'react-redux';
-import { selectProfile } from '@entities/user';
+import { selectProfile } from '@store/profile';
 export default function AvatarPage() {
 	const { avatar } = useSelector(selectProfile);
 	const [preview, setPreview] = useState(

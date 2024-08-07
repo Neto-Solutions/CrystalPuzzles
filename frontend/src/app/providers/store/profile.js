@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Profile } from './user';
+import { Profile } from '@entities/profile';
 
 const profileSlice = createSlice({
 	name: 'profile',

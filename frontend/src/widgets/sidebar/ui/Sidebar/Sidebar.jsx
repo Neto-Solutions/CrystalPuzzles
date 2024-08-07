@@ -5,7 +5,7 @@ import useResize from '@shared/hooks/useResize';
 import { useSwipe } from '@hooks';
 import { NavMenuList } from './NavMenu';
 import { Account } from '../Accaunt/Account';
-import { selectProfile } from '@entities/user';
+import { selectProfile } from '@store/profile';
 import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
 import help from '@shared/assets/svg/help_icon.svg';
 import exit from '@shared/assets/svg/exit_icon.svg';

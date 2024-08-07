@@ -1,8 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RouterProvider as Router } from 'react-router-dom';
 import { MainRouter } from '@shared/routes';
+import { useSelector } from 'react-redux';
+import { selectProfile } from '@store/profile';
 
 export default function RouterProvider() {
-	const role = localStorage.getItem('role');
+	const { role } = useSelector(selectProfile);
+	if (
+		!role &&
+		location.pathname !== '/login' &&
+		location.pathname !== '/registration'
+	)
+		location.replace('/login');
 	return <Router router={createBrowserRouter(MainRouter(role))} />;
 }
