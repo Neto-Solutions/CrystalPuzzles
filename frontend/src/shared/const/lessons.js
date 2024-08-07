@@ -28,7 +28,7 @@ const lessons = [
 					_id: '66b0cd82c856a75cd22b3b02',
 					name: 'Стойка на месте без посторонней помощи',
 					img: 1,
-					isComplete: false
+					isComplete: true
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b03',
@@ -40,13 +40,13 @@ const lessons = [
 					_id: '66b0cd82c856a75cd22b3b04',
 					name: 'Проезд на 2 ногах',
 					img: 1,
-					isComplete: false
+					isComplete: true
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b05',
 					name: 'Саночки',
 					img: 1,
-					isComplete: false
+					isComplete: true
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b06',

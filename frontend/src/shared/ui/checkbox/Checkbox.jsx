@@ -7,7 +7,6 @@ export default function Checkbox({
 	disabled = false,
 	id = uuidv4()
 }) {
-	console.log("checkbox", disabled);
 	return (
 		<label className={styles.label} htmlFor={id}>
 			<input
