@@ -1,15 +1,12 @@
-import { Page } from '@shared/ui';
-import { Notification } from '@widgets/notification';
-import { Button } from '@shared/ui';
-import {
-	EvaluationCardLink,
-	AnalyticCardLink,
-	ProgressCardLink
-} from '@features/navigationLinks';
-import styles from './DesktopMainPageContent.module.scss';
+import styles from './Main.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { Page, Button } from '@shared/ui';
+import { Notification } from '@widgets/notification';
+import { EvaluationCardLink } from './EvaluationCardLink/EvaluationCardLink';
+import { AnalyticCardLink } from './AnalyticCardLink/AnalyticCardLink';
+import { ProgressCardLink } from './ProgressCardLink/ProgressCardLink';
 
-export const DesktopMainPageContent = () => {
+export const MainPage = () => {
 	const navigate = useNavigate();
 	return (
 		<Page title="Главная страница">
@@ -18,7 +15,6 @@ export const DesktopMainPageContent = () => {
 			<EvaluationCardLink />
 			<Notification />
 			<div className={styles.wrapper}>
-				{/* <ScheduleCard to={'/schedule'} /> */}
 				<Button
 					title="Ученики"
 					width="100%"

@@ -5,7 +5,7 @@ import {
 	UsersSearchPage
 } from '@pages/shared';
 
-import { MainPage } from '@supervisor/MainPage/ui/MainPage';
+import { MainPage } from '@supervisor/Main/Main';
 import { TrainerAnalyticsPage } from '@supervisor/TrainerAnalyticsPage/ui/TrainerAnalyticsPage';
 import { DetailedAnalyticsPage } from '@supervisor/DetailedAnalyticsPage/ui/DetailedAnalyticsPage';
 import { EvaluationTablePage } from '@supervisor/EvaluationTablePage/ui/EvaluationTablePage';
