@@ -1,7 +1,13 @@
 import classNames from 'classnames';
 import styles from './Modal.module.scss';
 
-export const Modal = ({ active, setActive, children, className, width }) => {
+export default function Modal({
+	active,
+	setActive,
+	children,
+	className,
+	width
+}) {
 	return (
 		<div
 			className={classNames(
@@ -20,4 +26,4 @@ export const Modal = ({ active, setActive, children, className, width }) => {
 			</div>
 		</div>
 	);
-};
+}

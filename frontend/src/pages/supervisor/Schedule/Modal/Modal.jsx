@@ -1,17 +1,14 @@
+import styles from './Modal.module.scss';
 import { useState } from 'react';
-import 'moment/locale/ru';
-import { DropdownButton } from '../../dropdownButton/DropdownButton';
-import styles from './AddTreanerSchedule.module.scss';
-
-import { trainers, platforms } from '../Mockdata/data';
-import Button from '../../../shared/ui/button/Button';
-import { DateChanger } from '../../DateChanger/DateChanger';
+import { Button } from '@shared/ui';
+import { DropdownButton } from '@features/dropdownButton/DropdownButton';
+import { DateChanger } from '@features/DateChanger/DateChanger';
 
 export const AddTreanerSchedule = ({ day }) => {
-	const [openTrainers, setOpenTrainers] = useState(false); //открыть-зыкрыть
+	const [openTrainers, setOpenTrainers] = useState(false);
 	const [openPlatform, setOpenPlatform] = useState(false);
-	// eslint-disable-next-line no-unused-vars
-	const [test, setTest] = useState({
+
+	const [data, setData] = useState({
 		space_id: null,
 		trainer_id: null,
 		trainer_comments: '',
@@ -19,19 +16,15 @@ export const AddTreanerSchedule = ({ day }) => {
 	});
 
 	const setTrainer = (id) => {
-		setTest((prev) => {
-			return { ...prev, trainer_id: id };
-		});
+		setData((prev) => ({ ...prev, trainer_id: id }));
 	};
 
 	const setSpace = (id) => {
-		setTest((prev) => {
-			return { ...prev, space_id: id };
-		});
+		setData((prev) => ({ ...prev, space_id: id }));
 	};
 
 	const handleSubmit = async () => {
-		return null;
+		return data;
 	};
 	return (
 		<div className={styles.component}>
@@ -41,7 +34,7 @@ export const AddTreanerSchedule = ({ day }) => {
 					title={'Выберите тренера'}
 					onClick={() => setOpenTrainers((prev) => !prev)}
 					// width={'347px'}
-					data={trainers}
+					// data={trainers}
 					open={openTrainers}
 					setState={setTrainer}
 				/>
@@ -49,7 +42,7 @@ export const AddTreanerSchedule = ({ day }) => {
 					title={'Выберите площадку'}
 					onClick={() => setOpenPlatform((prev) => !prev)}
 					// width={'347px'}
-					data={platforms}
+					// data={platforms}
 					open={openPlatform}
 					setState={setSpace}
 				/>
