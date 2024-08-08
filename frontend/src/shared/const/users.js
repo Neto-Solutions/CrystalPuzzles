@@ -8,7 +8,7 @@ const users = [
 		surname: 'Степанова',
 		birthday: '2010-07-15',
 		is_man: true,
-		contact: '',
+		contact: '89037862447',
 		avatar: 1,
 		role: 'student'
 	},
@@ -21,7 +21,7 @@ const users = [
 		surname: 'Качок',
 		birthday: '1992-07-14',
 		is_man: true,
-		contact: '',
+		contact: '89037865247',
 		avatar: 6,
 		role: 'trainer'
 	},
@@ -34,7 +34,7 @@ const users = [
 		surname: 'Долгих',
 		birthday: '1990-07-16',
 		is_man: true,
-		contact: '',
+		contact: '89038652447',
 		avatar: 4,
 		role: 'supervisor'
 	}

@@ -11,14 +11,9 @@
 	flex-direction: column;
 	gap: 10px;
 	overflow: auto;
+
 	.item {
-		font-size: 20px;
-		font-weight: 400;
-		&:not(:last-child):after {
-			content: '';
-			display: block;
-			margin-top: 10px;
-			border-bottom: 1px solid #0C0D48;
-		}
+		padding: 8px 0;
+		font: var(--fw-medium) var(--fz-btn) var(--ff-first);
 	}
 }

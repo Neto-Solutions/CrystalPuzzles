@@ -2,7 +2,7 @@ import styles from './DaysList.module.scss';
 import classNames from 'classnames';
 import { Button } from '../Button/Button';
 
-export default function DaysList({ date, setModalActive }) {
+export default function DaysList({ date, setModalActive, edit }) {
 	const data = Array(14).fill('');
 
 	return (
@@ -10,12 +10,14 @@ export default function DaysList({ date, setModalActive }) {
 			{data?.map((_, index) => (
 				<li key={index} className={styles.day}>
 					{date.clone().add(index, 'days').format('D')}
-					<Button
-						className={styles.add_btn}
-						onclick={() => {
-							setModalActive(date.clone().add(index, 'days').format('D'));
-						}}
-					/>
+					{edit ? (
+						<Button
+							className={styles.add_btn}
+							onclick={() => {
+								setModalActive(date.clone().add(index, 'days').format('D'));
+							}}
+						/>
+					) : null}
 				</li>
 			))}
 		</ul>

@@ -2,6 +2,7 @@ import styles from './Train.module.scss';
 import { Page } from '@shared/ui';
 import { Link, useLoaderData } from 'react-router-dom';
 import moment from 'moment';
+import CalendarButton from '../../../features/calendar/ui/calendar.button/CalendarButton';
 
 export default function TrainPage() {
 	const { lessons: data } = useLoaderData();
@@ -46,6 +47,7 @@ export default function TrainPage() {
 						);
 					})}
 			</div>
+			<CalendarButton />
 		</Page>
 	);
 }

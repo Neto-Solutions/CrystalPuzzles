@@ -6,7 +6,7 @@ import DaysList from './DaysList/DaysList';
 import Header from './Header/Header';
 import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 
-const Table = ({ setModalActive }) => {
+const Table = ({ setModalActive, edit }) => {
 	const [startDate, setStartDate] = useState(moment());
 
 	return (
@@ -15,7 +15,11 @@ const Table = ({ setModalActive }) => {
 				<Header setStartDate={setStartDate} startDate={startDate} />
 				<div className={styles.grid_wrap}>
 					<DaysOfWeek />
-					<DaysList date={startDate} setModalActive={setModalActive} />
+					<DaysList
+						date={startDate}
+						setModalActive={setModalActive}
+						edit={edit}
+					/>
 				</div>
 			</div>
 		</>

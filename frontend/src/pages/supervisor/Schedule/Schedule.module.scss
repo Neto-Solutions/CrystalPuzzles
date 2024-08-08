@@ -5,8 +5,12 @@
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 20px;
-	
+
 	button {
 		width: 100%;
 	}
+}
+
+.edit_btn {
+	margin-left: auto;
 }
