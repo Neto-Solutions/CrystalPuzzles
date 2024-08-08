@@ -42,10 +42,10 @@ export default function GroupForm() {
 							checked
 						/>
 					))}
-				{data &&
+				{/* {data &&
 					data.map((item) => (
 						<Student key={item._id} data={item} setStudents={setStudents} />
-					))}
+					))} */}
 				<Button title="Создать" className={styles.btn} onClick={handleSubmit} />
 			</div>
 		</>
