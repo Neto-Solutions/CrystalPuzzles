@@ -1,11 +1,12 @@
 import styles from './ScheduleItem.module.scss';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import classNames from 'classnames';
 
-export default function ScheduleItem({ data, link = false }) {
+export default function ScheduleItem({ data, link = false, className }) {
 	return (
 		<Link to={!link ? null : `/schedule/${data._id}`} className={styles.link}>
-			<div className={styles.row}>
+			<div className={classNames(styles.row, className)}>
 				<div className={styles.col}>
 					{data.start ? moment(data.start).format('HH:mm') : null}
 				</div>

@@ -28,7 +28,12 @@ export default function SchedulePage({ link = false }) {
 			<div className={styles.table}>
 				{data
 					? data.map((item, index) => (
-							<ScheduleItem data={item} key={index} link={link} />
+							<ScheduleItem
+								data={item}
+								key={index}
+								link={link}
+								className={index === 0 && styles.last}
+							/>
 						))
 					: null}
 			</div>

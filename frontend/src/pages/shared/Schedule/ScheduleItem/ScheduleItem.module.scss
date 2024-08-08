@@ -6,6 +6,7 @@
 		height: 57px;
 		display: grid;
 		grid-template-columns: 100px 1fr;
+		border-top: var(--border);
 	}
 
 	.col {
