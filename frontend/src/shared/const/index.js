@@ -1,1 +1,1 @@
-export { validateUser } from './users';
+export { validateUser, users } from './users';

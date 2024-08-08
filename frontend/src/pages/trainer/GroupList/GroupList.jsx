@@ -1,11 +1,12 @@
 import { Page, Button } from '@shared/ui';
 import GroupsList from './groups.list/Groups.list';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 export default function TeamsPage() {
+	const { groups } = useLoaderData();
 	const navigate = useNavigate();
 	return (
 		<Page title="Группы">
-			<GroupsList />
+			<GroupsList data={groups} />
 			<Button
 				title="Создать группу"
 				width="347px"

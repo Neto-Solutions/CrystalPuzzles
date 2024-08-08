@@ -2,7 +2,7 @@ import {
 	FeedbackPage,
 	NotificationPage,
 	ProfilePage,
-	ProfileListPage
+	UsersSearchPage
 } from '@pages/shared';
 
 import { MainPage } from '@supervisor/MainPage/ui/MainPage';
@@ -80,7 +80,7 @@ const supervisorRouter = [
 	},
 	{
 		path: '/students',
-		element: <ProfileListPage title="Ученики" />
+		element: <UsersSearchPage title="Ученики" />
 	},
 	{
 		path: '/students/:id',
@@ -88,7 +88,7 @@ const supervisorRouter = [
 	},
 	{
 		path: '/trainers',
-		element: <ProfileListPage title="Тренеры" />
+		element: <UsersSearchPage title="Тренеры" />
 	},
 	{
 		path: '/trainers/:id',

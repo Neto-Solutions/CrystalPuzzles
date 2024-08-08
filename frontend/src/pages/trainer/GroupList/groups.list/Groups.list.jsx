@@ -1,14 +1,10 @@
 import styles from './Groups.list.module.scss';
-import { useState } from 'react';
 
-export default function GroupsList() {
-	// eslint-disable-next-line no-unused-vars
-	const [groups, setGroups] = useState({});
-
+export default function GroupsList({ data }) {
 	return (
 		<div className={styles.container}>
-			{groups.records?.map((item) => (
-				<div className={styles.group} key={item.id}>
+			{data?.map((item) => (
+				<div className={styles.group} key={item._id}>
 					{item.id} группа {item.name}
 				</div>
 			))}

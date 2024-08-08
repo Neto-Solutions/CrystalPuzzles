@@ -1,12 +1,21 @@
 import styles from './Search.module.scss';
 import { useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
+import { users } from '@shared/const';
 
-export default function Search() {
+export default function Search({ setUsers }) {
 	const inputRef = useRef();
 
 	async function search() {
 		if (!inputRef.current.value) return;
+		setUsers(
+			users.filter((user) => {
+				let name = user.surname + ' ' + user.firstname + ' ' + user.lastname;
+				return name
+					.toLowerCase()
+					.includes(inputRef.current.value.toLowerCase());
+			})
+		);
 	}
 
 	useEffect(() => {

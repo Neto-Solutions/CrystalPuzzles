@@ -51,4 +51,4 @@ async function validateUser({ username, password }) {
 	return user;
 }
 
-export { validateUser };
+export { validateUser, users };
