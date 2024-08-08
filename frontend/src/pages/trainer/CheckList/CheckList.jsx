@@ -6,7 +6,7 @@ import Info from './Info/Info';
 import { Exercises } from '@widgets';
 
 export default function CheckListPage() {
-	const { data } = useLoaderData();
+	const data = useLoaderData();
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -43,7 +43,7 @@ export default function CheckListPage() {
 						id="exercises_form"
 						className={styles.exercises}
 					>
-						<Exercises data={data} />
+						<Exercises data={data.checkList.exercises} />
 					</form>
 				</section>
 			</div>

@@ -1,7 +1,7 @@
 import styles from './Progress.module.scss';
 import { Page, Button, UserCard } from '@shared/ui';
 import { CalendarButton } from '@features/calendar';
-import { Graph } from '@widgets/graph/ui/Graph';
+import { Graph } from './graph/Graph';
 import { useLoaderData } from 'react-router-dom';
 
 export default function ProgressPage() {

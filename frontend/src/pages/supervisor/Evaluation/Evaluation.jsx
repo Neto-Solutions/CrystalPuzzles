@@ -1,6 +1,6 @@
 import styles from './Evaluation.module.scss';
 import { Page, Button } from '@shared/ui';
-import { Table } from '@widgets/table/ui/Table';
+import { Table } from './table/Table';
 
 export default function EvaluationPage() {
 	return (
