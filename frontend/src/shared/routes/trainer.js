@@ -51,7 +51,10 @@ const trainerRouter = [
 	},
 	{
 		path: '/schedule/:id',
-		element: <CheckListPage />
+		element: <CheckListPage />,
+		loader: ({ params: { id } }) => {
+			return lessons.find((lesson) => lesson._id == id);
+		}
 	},
 	{
 		path: '/groups',
