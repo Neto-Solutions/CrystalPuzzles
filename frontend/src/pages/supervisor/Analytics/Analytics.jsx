@@ -1,10 +1,10 @@
+import styles from './Analytics.module.scss';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Card, UserCard, Page, Button } from '@shared/ui';
 import { CalendarButton } from '@features/calendar';
-import styles from './DesktopContent.module.scss';
 
-export const DesktopContent = () => {
+export default function AnalyticsPage() {
 	const [comment, setComment] = useState(false);
 	const location = useLocation();
 	const { img, firstname, surname, lastname } = location.state;
@@ -30,4 +30,4 @@ export const DesktopContent = () => {
 			</div>
 		</Page>
 	);
-};
+}

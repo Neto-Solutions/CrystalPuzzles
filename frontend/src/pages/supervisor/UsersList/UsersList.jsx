@@ -2,7 +2,7 @@ import { Page } from '@shared/ui';
 import { UserCard } from '@shared/ui/card';
 import { Link } from 'react-router-dom';
 
-export default function ProgressGraphPage() {
+export default function UsersListPage() {
 	const tempArray = Array.from(
 		{ length: 6 },
 		() => 'Дмитриева Анастасия Алексеевна'

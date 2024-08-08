@@ -1,15 +1,15 @@
-import { Table } from '@widgets/table/ui/Table';
+import styles from './Evaluation.module.scss';
 import { Page, Button } from '@shared/ui';
-import styles from './MobileTableContent.module.scss';
+import { Table } from '@widgets/table/ui/Table';
 
-export const MobileTableContent = () => {
+export default function EvaluationPage() {
 	return (
 		<Page title="Оценочная таблица эффективности">
+			<Table />
 			<div className={styles['btn_wrap']}>
 				<Button>Выгрузить</Button>
 				<Button>Открыть в Google doc</Button>
 			</div>
-			<Table />
 		</Page>
 	);
-};
+}

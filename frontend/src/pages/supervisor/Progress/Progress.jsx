@@ -1,9 +1,9 @@
-import styles from './Progress.graph.view.page.module.scss';
+import styles from './Progress.module.scss';
 import { Page, Button, UserCard } from '@shared/ui';
 import { CalendarButton } from '@features/calendar';
 import { Graph } from '@widgets/graph/ui/Graph';
 
-export default function ProgressGraphViewPage() {
+export default function ProgressPage() {
 	return (
 		<Page title="График прогресса">
 			<Graph />

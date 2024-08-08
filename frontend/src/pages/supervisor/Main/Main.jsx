@@ -6,7 +6,7 @@ import { EvaluationCardLink } from './EvaluationCardLink/EvaluationCardLink';
 import { AnalyticCardLink } from './AnalyticCardLink/AnalyticCardLink';
 import { ProgressCardLink } from './ProgressCardLink/ProgressCardLink';
 
-export const MainPage = () => {
+export default function MainPage() {
 	const navigate = useNavigate();
 	return (
 		<Page title="Главная страница">
@@ -26,10 +26,10 @@ export const MainPage = () => {
 					title="Тренеры"
 					width="100%"
 					onClick={() => {
-						navigate('/trainers/15752');
+						navigate('/trainers');
 					}}
 				/>
 			</div>
 		</Page>
 	);
-};
+}

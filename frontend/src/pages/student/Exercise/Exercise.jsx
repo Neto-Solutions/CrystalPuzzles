@@ -7,7 +7,7 @@ import { Exercises } from '@widgets';
 
 export default function ExercisePage() {
 	const { lessons, id } = useLoaderData();
-	const [data, setData] = useState(lessons.find((item) => item._id === id));
+	const [data] = useState(lessons.find((item) => item._id === id));
 	return (
 		<Page title="Мои занятия">
 			<div className={styles.container}>
