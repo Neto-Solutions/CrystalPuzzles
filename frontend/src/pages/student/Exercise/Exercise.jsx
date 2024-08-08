@@ -1,70 +1,26 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import useResize from '@shared/hooks/useResize';
-import { Page } from '@shared/ui';
-import { getDataById } from '@entities/schedule';
-import { DateChanger } from '@features/DateChanger/DateChanger';
-import ExerciseItem from '@shared/ui/ExerciseItem/ExerciseItem';
 import styles from './Exercise.module.scss';
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { Page } from '@shared/ui';
+import { DateChanger } from '@features/DateChanger/DateChanger';
+import { Exercises } from '@widgets';
 
 export default function ExercisePage() {
-	const [data, setData] = useState(null);
-	// eslint-disable-next-line no-unused-vars
-	const [err, setErr] = useState(null);
-	const { pathname } = useLocation();
-	const isTablet = useResize('md');
-
-	useEffect(() => {
-		getDataById(pathname.split('/').pop()).then(setData).catch(setErr);
-	}, [pathname]);
-
+	const { lessons, id } = useLoaderData();
+	const [data] = useState(lessons.find((item) => item._id === id));
 	return (
 		<Page title="Мои занятия">
-			{isTablet ? (
-				<>
-					<DateChanger className={styles.date} />
-					<div className={styles.container}>
-						<div className={styles.reward_wrapper}>
-							<span>Мои награды</span>
-						</div>
-						<ul className={styles.list}>
-							{data &&
-								data.exercises.map((item, index) => (
-									<ExerciseItem
-										key={item._id}
-										text={item.name}
-										id={index + 1}
-										img={item.img}
-										defaultChecked={item.isComplete}
-										// disabled={}
-									/>
-								))}
-						</ul>
-					</div>
-				</>
-			) : (
-				<div className={styles.container}>
-					<div>
-						<DateChanger className={styles.date} />
-						<ul className={styles.list}>
-							{data &&
-								data.exercises.map((item, index) => (
-									<ExerciseItem
-										key={item._id}
-										text={item.name}
-										id={index + 1}
-										img={item.img}
-										defaultChecked={item.isComplete}
-										// disabled={}
-									/>
-								))}
-						</ul>
-					</div>
-					<div className={styles.reward_wrapper}>
-						<span>Мои награды</span>
-					</div>
+			<div className={styles.container}>
+				<DateChanger className={styles.date} />
+				<Exercises
+					data={data.checkList.exercises}
+					className={styles.list}
+					disabled
+				/>
+				<div className={styles.reward_wrapper}>
+					<span>Мои награды</span>
 				</div>
-			)}
+			</div>
 		</Page>
 	);
 }

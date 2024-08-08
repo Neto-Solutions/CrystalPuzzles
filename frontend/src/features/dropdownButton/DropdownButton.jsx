@@ -7,7 +7,7 @@ export const DropdownButton = ({
 	onClick,
 	className,
 	open,
-	data,
+	data = [],
 	width,
 	setState
 }) => {

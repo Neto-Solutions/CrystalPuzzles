@@ -1,12 +1,10 @@
 import '@app/styles/index.scss';
 import * as serviceWorker from './serviceWorkerRegistration';
-import React, { useMemo } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider, useSelector } from 'react-redux';
-import { store } from '@app/providers/store';
-import { RouterProvider as Router } from 'react-router-dom';
-import { createRouter } from '@app/providers/router';
-import { selectUser } from '@entities/user';
+import { Provider } from 'react-redux';
+import store from '@app/providers/store';
+import RouterProvider from '@app/providers/router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,13 +12,5 @@ root.render(
 		<RouterProvider />
 	</Provider>
 );
-
-function RouterProvider() {
-	const { role } = useSelector(selectUser);
-	const router = useMemo(() => {
-		return createRouter(role);
-	}, [role]);
-	return <Router router={router} />;
-}
 
 serviceWorker.register();

@@ -80,9 +80,7 @@ export default function Calendar({ onHide, setNewDate }) {
 									className: 'calendar_body_day',
 									onClick: () => {
 										setActiveDay(day);
-										setNewDate(() =>
-											date.clone().date(day).startOf('day').toISOString()
-										);
+										setNewDate(() => date.clone().date(day).toDate());
 									}
 								})}
 							>

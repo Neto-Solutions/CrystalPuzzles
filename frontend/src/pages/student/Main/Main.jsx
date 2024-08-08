@@ -1,14 +1,15 @@
 import styles from './Main.module.scss';
-import { Page } from '@shared/ui';
+import { Page, ScheduleCard } from '@shared/ui';
 import { useState } from 'react';
 import { Feedback } from '@features/feedback';
 import { CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
-import Schedule from '@features/schedule/Schedule';
 import RewardsPopup from './Reward/Reward';
+import { useLoaderData } from 'react-router-dom';
 
-export default function studentMainPage() {
+export default function MainPage() {
 	const [reward, setReward] = useState(false);
+	const { lessons } = useLoaderData();
 	const isMobile = useResize('sm');
 
 	return (
@@ -40,7 +41,7 @@ export default function studentMainPage() {
 					title={'Моё расписание на сегодня'}
 					className={styles.schedule_card}
 				>
-					{!isMobile && <Schedule />}
+					{!isMobile && <ScheduleCard data={lessons} />}
 				</CardLink>
 
 				{isMobile ? (

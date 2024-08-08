@@ -1,7 +1,8 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
-import { userSlice } from '@entities/user';
+import { profileSlice } from '@store/profile';
+import { appSlice } from './app';
 
-const mainReducer = combineSlices(userSlice);
+const mainReducer = combineSlices(profileSlice, appSlice);
 
 const store = configureStore({
 	reducer: mainReducer,
@@ -11,4 +12,4 @@ const store = configureStore({
 		})
 });
 
-export { store };
+export default store;

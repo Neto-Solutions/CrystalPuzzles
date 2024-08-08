@@ -1,0 +1,21 @@
+@use '~styles/mixins' as *;
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.weeks {
+	grid-template-rows: 48px;
+	border-bottom: var(--border);
+	border-top: var(--border);
+
+	.week {
+		padding: 12px;
+		align-self: center;
+
+		&:nth-child(n):not(:last-child) {
+			border-right: var(--border);
+		}
+	}
+}

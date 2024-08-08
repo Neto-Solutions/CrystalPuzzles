@@ -1,12 +1,13 @@
 import styles from './Main.module.scss';
-import { Page, Button, CardLink } from '@shared/ui';
+import { Page, CardLink, ScheduleCard } from '@shared/ui';
 import { Notification } from '@widgets/notification';
-import Schedule from '@features/schedule/Schedule';
 import { useResize } from '@hooks';
-// import { ExerciseList } from '@features/exercise.list';
+import { useLoaderData } from 'react-router-dom';
 
 export default function MainPage() {
+	const { lessons } = useLoaderData();
 	const isMobile = useResize('sm');
+
 	return (
 		<Page title="Главная страница">
 			<div className={styles.wrapper}>
@@ -17,13 +18,8 @@ export default function MainPage() {
 					title={'Расписание'}
 					className={styles.schedule_card}
 				>
-					{!isMobile && <Schedule />}
+					{!isMobile && <ScheduleCard data={lessons} />}
 				</CardLink>
-
-				<div className={styles.button_container}>
-					<Button title="Сформировать чек-лист" className={styles.button} />
-				</div>
-				{/* <ExerciseList /> */}
 			</div>
 		</Page>
 	);
