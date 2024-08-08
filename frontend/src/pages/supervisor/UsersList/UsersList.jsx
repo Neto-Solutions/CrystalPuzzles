@@ -1,17 +1,17 @@
 import { Page } from '@shared/ui';
 import { UserCard } from '@shared/ui/card';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
-export default function UsersListPage() {
-	const tempArray = Array.from(
-		{ length: 6 },
-		() => 'Дмитриева Анастасия Алексеевна'
-	);
+export default function UsersListPage({ type }) {
+	const users = useLoaderData();
 	return (
 		<Page title="График прогресса тренеров">
-			{tempArray.map((_, index) => (
-				<Link to="/progress/view" key={index}>
-					<UserCard img={''} name="Дмитриева Анастасия Алексеевна" />
+			{users.map((item, index) => (
+				<Link to={`/${type}/${item._id}`} key={index}>
+					<UserCard
+						img={require(`assets/avatar/${item.avatar}.png`)}
+						name={item.surname + ' ' + item.firstname + ' ' + item.lastname}
+					/>
 				</Link>
 			))}
 		</Page>

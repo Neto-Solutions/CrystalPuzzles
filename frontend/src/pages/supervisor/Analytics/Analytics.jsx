@@ -1,17 +1,20 @@
 import styles from './Analytics.module.scss';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { Card, UserCard, Page, Button } from '@shared/ui';
 import { CalendarButton } from '@features/calendar';
 
 export default function AnalyticsPage() {
 	const [comment, setComment] = useState(false);
-	const location = useLocation();
-	const { img, firstname, surname, lastname } = location.state;
+	const { avatar, firstname, surname, lastname } = useLoaderData();
 
 	return (
 		<Page title="Аналитика">
-			<UserCard img={img} name={`${firstname} ${lastname} ${surname}`} showBtn>
+			<UserCard
+				img={require(`assets/avatar/${avatar}.png`)}
+				name={surname + ' ' + firstname + ' ' + lastname}
+				showBtn
+			>
 				<ul className={styles.list}>
 					<li>Часов обучения</li>
 					<li>Количество учеников</li>

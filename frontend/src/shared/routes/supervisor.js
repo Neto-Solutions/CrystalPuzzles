@@ -32,23 +32,35 @@ const supervisorRouter = [
 	},
 	{
 		path: '/progress',
-		element: <UsersListPage />,
+		element: <UsersListPage type="progress" />,
 		local: 'Графики прогресса',
-		img: progress
+		img: progress,
+		loader: () => {
+			return users;
+		}
 	},
 	{
 		path: '/progress/:id',
-		element: <ProgressPage />
+		element: <ProgressPage />,
+		loader: ({ params: { id } }) => {
+			return users.find((user) => user._id == id);
+		}
 	},
 	{
 		path: '/analytic',
-		element: <UsersListPage />,
+		element: <UsersListPage type="analytic" />,
 		local: 'Аналитика',
-		img: analytics
+		img: analytics,
+		loader: () => {
+			return users;
+		}
 	},
 	{
 		path: '/analytic/:id',
-		element: <AnalyticsPage />
+		element: <AnalyticsPage />,
+		loader: ({ params: { id } }) => {
+			return users.find((user) => user._id == id);
+		}
 	},
 	{
 		path: '/evaluation',
