@@ -1,14 +1,7 @@
 import styles from './ExerciseItem.module.scss';
-import Checkbox from '../checkbox/Checkbox';
+import Checkbox from '../../../shared/ui/checkbox/Checkbox';
 
-export default function ExerciseItem({
-	text,
-	img,
-	index,
-	id,
-	defaultChecked = false,
-	disabled = false
-}) {
+export default function ExerciseItem({ index, img, text, ...props }) {
 	return (
 		<li className={styles.component}>
 			<div className={styles.number}>{index}</div>
@@ -19,7 +12,7 @@ export default function ExerciseItem({
 				/>
 			</div>
 			<span className={styles.text}>{text}</span>
-			<Checkbox disabled={disabled} defaultChecked={defaultChecked} id={id} />
+			<Checkbox {...props} />
 		</li>
 	);
 }

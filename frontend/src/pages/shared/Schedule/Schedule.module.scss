@@ -6,29 +6,6 @@
 	height: min-content;
 	border: var(--border);
 	border-radius: var(--radius);
-	.link {
-		@include font(var(--ff-second), 24px, 400);
-		.row {
-			height: 57px;
-			display: grid;
-			grid-template-columns: 100px 1fr;
-		}
-
-		.col {
-			display: flex;
-			.col_content {
-				color: #0e1079;
-				padding: 0 10px;
-				align-self: center;
-			}
-			&:first-child {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border-right: var(--border);
-			}
-		}
-	}
 }
 
 .calendar {
@@ -36,6 +13,7 @@
 	flex-direction: column;
 	gap: 20px;
 }
+
 @include sm() {
 	.table {
 		max-width: 335px;

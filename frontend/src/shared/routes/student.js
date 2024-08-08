@@ -42,7 +42,12 @@ const studentRouter = [
 		path: '/schedule',
 		element: <SchedulePage />,
 		local: 'Расписание',
-		img: schedule
+		img: schedule,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/avatar',
