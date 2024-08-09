@@ -1,7 +1,7 @@
 import styles from './Main.module.scss';
 import { Page, ScheduleCard } from '@shared/ui';
 import { useState } from 'react';
-import { Feedback } from '@features/feedback';
+import { Feedback } from '@features';
 import { CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
 import RewardsPopup from './Reward/Reward';

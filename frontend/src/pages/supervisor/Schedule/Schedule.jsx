@@ -29,7 +29,8 @@ export default function ShedulePage({ edit = false }) {
 					</Modal>
 				</>
 			) : (
-				<Button className= {styles.edit_btn}
+				<Button
+					className={styles.edit_btn}
 					title="Составить расписание"
 					onClick={() => navigate('./edit')}
 				/>

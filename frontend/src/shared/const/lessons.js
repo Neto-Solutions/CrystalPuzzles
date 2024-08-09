@@ -33,25 +33,25 @@ const lessons = [
 				{
 					_id: '66b0cd82c856a75cd22b3b03',
 					name: 'Самостоятельный подъем после падения',
-					img: 1,
+					img: 2,
 					isComplete: false
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b04',
 					name: 'Проезд на 2 ногах',
-					img: 1,
+					img: 3,
 					isComplete: true
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b05',
 					name: 'Саночки',
-					img: 1,
+					img: 4,
 					isComplete: true
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b06',
 					name: 'Змейка вперед',
-					img: 1,
+					img: 5,
 					isComplete: false
 				}
 			]
@@ -91,25 +91,25 @@ const lessons = [
 				{
 					_id: '66b0cd82c856a75cd22b3b03',
 					name: 'Самостоятельный подъем после падения',
-					img: 1,
+					img: 2,
 					isComplete: false
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b04',
 					name: 'Проезд на 2 ногах',
-					img: 1,
+					img: 3,
 					isComplete: false
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b05',
 					name: 'Саночки',
-					img: 1,
+					img: 4,
 					isComplete: false
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b06',
 					name: 'Змейка вперед',
-					img: 1,
+					img: 5,
 					isComplete: false
 				}
 			]
@@ -149,25 +149,25 @@ const lessons = [
 				{
 					_id: '66b0cd82c856a75cd22b3b03',
 					name: 'Самостоятельный подъем после падения',
-					img: 1,
+					img: 2,
 					isComplete: false
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b04',
 					name: 'Проезд на 2 ногах',
-					img: 1,
+					img: 3,
 					isComplete: false
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b05',
 					name: 'Саночки',
-					img: 1,
+					img: 4,
 					isComplete: false
 				},
 				{
 					_id: '66b0cd82c856a75cd22b3b06',
 					name: 'Змейка вперед',
-					img: 1,
+					img: 5,
 					isComplete: false
 				}
 			]

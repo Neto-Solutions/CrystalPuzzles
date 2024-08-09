@@ -1,9 +1,7 @@
 @use '~styles/mixins' as *;
 
-
 .date {
 	grid-area: date;
-	padding: var(--btn-padding) 34px;
 	width: 100%;
 	background-color: var(--bg-date-picker);
 	border-radius: var(--radius);
@@ -12,11 +10,10 @@
 
 .list {
 	grid-area: list;
-	margin-top: 10px;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	
+
 	@include md() {
 		margin-top: 0;
 	}

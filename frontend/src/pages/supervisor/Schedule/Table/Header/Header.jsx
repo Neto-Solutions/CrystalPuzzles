@@ -1,4 +1,4 @@
-import { ScheduleHeader } from '@features/scheduleHeader/ScheduleHeader';
+import { ScheduleHeader } from '@features';
 
 export default function Header({ startDate, setStartDate }) {
 	const generateHeader = () => {

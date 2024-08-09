@@ -1,8 +1,7 @@
 import styles from './Modal.module.scss';
 import { useState } from 'react';
 import { Button } from '@shared/ui';
-import { DropdownButton } from '@features/dropdownButton/DropdownButton';
-import { DateChanger } from '@features/DateChanger/DateChanger';
+import { DropDownButton, DateChanger } from '@features';
 
 export const AddTreanerSchedule = ({ day }) => {
 	const [openTrainers, setOpenTrainers] = useState(false);
@@ -30,7 +29,7 @@ export const AddTreanerSchedule = ({ day }) => {
 		<div className={styles.component}>
 			<DateChanger day={day} className={styles.header} />
 			<main className={styles.main}>
-				<DropdownButton
+				<DropDownButton
 					title={'Выберите тренера'}
 					onClick={() => setOpenTrainers((prev) => !prev)}
 					// width={'347px'}
@@ -38,7 +37,7 @@ export const AddTreanerSchedule = ({ day }) => {
 					open={openTrainers}
 					setState={setTrainer}
 				/>
-				<DropdownButton
+				<DropDownButton
 					title={'Выберите площадку'}
 					onClick={() => setOpenPlatform((prev) => !prev)}
 					// width={'347px'}

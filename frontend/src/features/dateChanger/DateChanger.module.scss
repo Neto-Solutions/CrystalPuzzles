@@ -1,6 +1,6 @@
 .top {
 	padding: 0 20px;
-	height: 48px;
+	height: 57px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -10,6 +10,7 @@
 }
 
 .arrow_btn {
+	display: flex;
 	background: transparent;
 	border: none;
 	outline: none;

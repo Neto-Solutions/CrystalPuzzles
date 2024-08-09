@@ -10,6 +10,7 @@ export default function GroupForm() {
 	const [init, setInit] = useState([]);
 	// eslint-disable-next-line no-unused-vars
 	const [name, setName] = useState('');
+	// eslint-disable-next-line no-unused-vars
 	const [data, setData] = useState([]);
 
 	function handleSubmit() {

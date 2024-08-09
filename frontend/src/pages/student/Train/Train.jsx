@@ -1,11 +1,17 @@
 import styles from './Train.module.scss';
+import { useState } from 'react';
 import { Page } from '@shared/ui';
 import { Link, useLoaderData } from 'react-router-dom';
 import moment from 'moment';
-import CalendarButton from '../../../features/calendar/ui/calendar.button/CalendarButton';
+import { CalendarButton } from '@features';
 
 export default function TrainPage() {
 	const { lessons: data } = useLoaderData();
+	const [date, setDate] = useState({
+		from: new Date().toISOString(),
+		to: new Date().toISOString()
+	});
+
 	return (
 		<Page title="Мои тренировки">
 			<div className={styles.wrapper}>
@@ -34,11 +40,6 @@ export default function TrainPage() {
 											{item.place.name}
 										</span>
 									</div>
-									<div className={styles.comment_container}>
-										<span className={styles.comment}>
-											{'"' + item.trainer_comment + '"'}
-										</span>
-									</div>
 								</div>
 								<div className={styles.date}>
 									{moment(item.start).format('DD.MM.YYYY')}
@@ -47,7 +48,7 @@ export default function TrainPage() {
 						);
 					})}
 			</div>
-			<CalendarButton />
+			<CalendarButton date={date} setDate={setDate} range />
 		</Page>
 	);
 }

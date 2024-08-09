@@ -2,20 +2,21 @@ import styles from './Schedule.module.scss';
 import { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Page, Wrapper } from '@shared/ui';
-import { CalendarBlock } from '@features/calendar';
+import { CalendarBlock } from '@features';
 import moment from 'moment';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 
 export default function SchedulePage({ link = false }) {
 	const { lessons } = useLoaderData();
 	const [data, setData] = useState([]);
-	const [date, setDate] = useState(
-		new Date(new Date().setHours(0, 0, 0, 0)).toISOString()
-	);
+	const [date, setDate] = useState({
+		from: moment().startOf('day').toISOString(), // from and to are equal for this scenario
+		to: moment().startOf('day').toISOString()
+	});
 
 	useEffect(() => {
 		let filteredLessons = lessons.filter((item) =>
-			moment(item.start).isSame(date, 'day')
+			moment(item.start).isSame(date.from, 'day')
 		);
 		for (let i = 0; filteredLessons.length < 7; i++) {
 			filteredLessons.push({});
@@ -38,7 +39,7 @@ export default function SchedulePage({ link = false }) {
 					: null}
 			</div>
 			<Wrapper>
-				<CalendarBlock setNewDate={setDate} />
+				<CalendarBlock date={date} setDate={setDate} />
 			</Wrapper>
 		</Page>
 	);

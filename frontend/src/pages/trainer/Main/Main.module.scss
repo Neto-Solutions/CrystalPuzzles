@@ -1,13 +1,3 @@
-.notifications {
-	grid-area: notifications;
-}
-
-.schedule_card {
-	grid-area: schedule;
-	padding: 20px 35px;
-}
-
-
 .wrapper {
 	display: grid;
 	gap: 20px;
@@ -15,4 +5,14 @@
 	grid-template-areas:
 		'notifications schedule'
 		'notifications schedule';
+
+	.notifications {
+		grid-area: notifications;
+
+	}
+
+	.schedule_card {
+		grid-area: schedule;
+		padding: 20px 35px;
+	}
 }
