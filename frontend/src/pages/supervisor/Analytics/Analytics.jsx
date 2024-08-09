@@ -2,7 +2,7 @@ import styles from './Analytics.module.scss';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Card, UserCard, Page, Button } from '@shared/ui';
-import { CalendarButton } from '@features/calendar';
+import { CalendarButton } from '@features';
 
 export default function AnalyticsPage() {
 	const [comment, setComment] = useState(false);

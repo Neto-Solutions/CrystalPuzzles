@@ -1,11 +1,9 @@
-import styles from './Calendar.module.scss';
+import styles from './CalendarBlock.module.scss';
 import { useEffect, useState } from 'react';
-import moment from 'moment';
 import Header from './Header/Header';
 import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 
-export default function Calendar({ onHide, setNewDate }) {
-	const [date, setDate] = useState(moment());
+export default function CalendarBlock({ date, setDate, onHide }) {
 	const [days, setDays] = useState([]);
 	const [activeDay, setActiveDay] = useState();
 
@@ -35,7 +33,7 @@ export default function Calendar({ onHide, setNewDate }) {
 									className: { ...styles.day },
 									onClick: () => {
 										setActiveDay(day);
-										setNewDate(() => date.clone().date(day).toDate());
+										setDate(() => date.clone().date(day).toDate());
 									}
 								})}
 							>

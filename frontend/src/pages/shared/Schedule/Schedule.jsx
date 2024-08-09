@@ -2,7 +2,7 @@ import styles from './Schedule.module.scss';
 import { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Page, Wrapper } from '@shared/ui';
-import { CalendarBlock } from '@features/calendar';
+import { CalendarBlock } from '@features';
 import moment from 'moment';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 

@@ -1,6 +1,6 @@
 import styles from './Progress.module.scss';
 import { Page, Button, UserCard } from '@shared/ui';
-import { CalendarButton } from '@features/calendar';
+import { CalendarButton } from '@features';
 import { Graph } from './graph/Graph';
 import { useLoaderData } from 'react-router-dom';
 
