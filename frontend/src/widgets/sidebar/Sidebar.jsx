@@ -8,7 +8,7 @@ import { NavMenuList } from './navMenu/NavMenu';
 import { Account } from './accaunt/Account';
 import { selectProfile } from '@store/profile';
 import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
-import help from 'assets/sidebar/help.svg';
+// import help from 'assets/sidebar/help.svg';
 import exit from 'assets/sidebar/exit.svg';
 import edit from 'assets/sidebar/edit.svg';
 
@@ -50,10 +50,10 @@ export default function Sidebar() {
 						<img src={edit} className={styles.link_icon} />
 						{!isMobile && <span>Изменить аватарку</span>}
 					</div>
-					<div className={`${styles.sidebar_btn} ${styles.help}`}>
+					{/* <div className={`${styles.sidebar_btn} ${styles.help}`}>
 						<img src={help} className={styles.link_icon} />
 						{!isMobile && <span>Помощь</span>}
-					</div>
+					</div> */}
 
 					<div
 						className={`${styles.sidebar_btn} ${styles.exit}`}

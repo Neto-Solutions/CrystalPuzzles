@@ -7,6 +7,10 @@ import { CalendarButton } from '@features';
 export default function AnalyticsPage() {
 	const [comment, setComment] = useState(false);
 	const { avatar, firstname, surname, lastname } = useLoaderData();
+	const [date, setDate] = useState({
+		from: new Date().toISOString(),
+		to: new Date().toISOString()
+	});
 
 	return (
 		<Page title="Аналитика">
@@ -27,7 +31,7 @@ export default function AnalyticsPage() {
 			</Card>
 
 			<div className={styles.buttons}>
-				<CalendarButton />
+				<CalendarButton date={date} setDate={setDate} range />
 				<Button title="Выгрузить" />
 				<Button title="Открыть в Google doc" />
 			</div>
