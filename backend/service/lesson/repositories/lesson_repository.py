@@ -3,19 +3,27 @@ import math
 from datetime import datetime
 from typing import Optional
 
-from sqlalchemy import select, or_
+from sqlalchemy import select, or_, Select
 from sqlalchemy.orm import joinedload
 
 from common.repository.base_repository import BaseRepository
 from service.lesson.schemas.lesson_schemas import LessonFilterSchema
 from service.users.models import User
-from service.lesson.models import Lesson, Space
+from service.lesson.models import Lesson, Space, Check
 
 
 class LessonRepository(BaseRepository):
     model = Lesson
 
-    async def get(self, lesson_id: int):
+    # region ------------------- Вспомагательные методы -----------------------
+
+    async def user_filter(self, stmt: Select, user_id: int) -> Select:
+        stmt = stmt.filter(self.model.check.any(Check.student_id.__eq__(user_id)))
+        return stmt
+
+    # endregion ---------------------------------------------------------------
+
+    async def get(self, lesson_id: int, student_id: Optional[int] = None):
         stmt = (
             select(self.model)
             .filter(
@@ -26,6 +34,8 @@ class LessonRepository(BaseRepository):
                 joinedload(self.model.space)
             )
         )
+        if student_id:
+            stmt = await self.user_filter(stmt, student_id)
         result = (await self.session.execute(stmt)).scalar_one_or_none()
         return result
 
@@ -38,7 +48,7 @@ class LessonRepository(BaseRepository):
         result = (await self.session.execute(stmt)).scalar_one_or_none()
         return result
 
-    async def get_all_lesson_by_filter(self, filters: LessonFilterSchema):
+    async def get_all_lesson_by_filter(self, filters: LessonFilterSchema, student_id: Optional[int] = None):
         stmt = (
             select(self.model)
             .options(joinedload(self.model.trainer))
@@ -57,7 +67,8 @@ class LessonRepository(BaseRepository):
             stmt = stmt.filter(self.model.start >= filters.start_date.date())
         if filters.trainer:
             stmt = await self._add_filters(stmt, trainer_id=filters.trainer)
-
+        if student_id:
+            stmt = await self.user_filter(stmt, student_id)
         count_records = await self._get_count_records(stmt)
         records = await self._get_records(count_records, stmt, filters)
         response = await self._convert_response(count_records, records, filters)

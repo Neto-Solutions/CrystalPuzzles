@@ -3,7 +3,7 @@ from http import HTTPStatus
 from fastapi import APIRouter
 from starlette.responses import Response, JSONResponse
 
-from common.dependensies import TrainerSupervisorAdminDep, AdminDep
+from common.dependensies import TrainerSupervisorAdminDep, AdminDep, SupervisorAdminDep
 from common.schema.base_schemas import Message
 from service.training.dependensies import TrainingUOWDep, TrainingServiceDep, TrainingFilterDep
 from service.training.schemas import CreateTrainingSchema, EditTrainingSchema, TrainingSchemaForTable, \
@@ -73,9 +73,9 @@ async def create_training(
         model: CreateTrainingSchema,
         uow: TrainingUOWDep,
         training_service: TrainingServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     training_id = await training_service.add(uow, model)
     if training_id:
         return training_id
@@ -97,9 +97,9 @@ async def edit_training(
         model: EditTrainingSchema,
         uow: TrainingUOWDep,
         training_service: TrainingServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     result = await training_service.edit(uow, model)
     if result:
         return result
@@ -122,9 +122,9 @@ async def delete_group(
         training_id: int,
         uow: TrainingUOWDep,
         training_service: TrainingServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     deleted = await training_service.delete(uow, training_id)
     if deleted:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)
