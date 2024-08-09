@@ -2,15 +2,8 @@ import classNames from 'classnames';
 import { ReactComponent as SmallArrow } from '@shared/assets/svg/small_arrow.svg';
 import styles from './DropdownButton.module.scss';
 
-export const DropdownButton = ({
-	title,
-	onClick,
-	className,
-	open,
-	data = [],
-	width,
-	setState
-}) => {
+export default function DropdownButton(props) {
+	const { title, onClick, className, open, data = [], width, setState } = props;
 	return (
 		<div
 			className={classNames(styles.dropdown, className)}
@@ -41,4 +34,4 @@ export const DropdownButton = ({
 			</form>
 		</div>
 	);
-};
+}

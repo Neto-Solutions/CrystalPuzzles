@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ReactComponent as Arrow } from '@shared/assets/svg/circle_arrow.svg';
 import styles from './DateChanger.module.scss';
 
-export const DateChanger = ({ className, day }) => {
+export default function DateChanger({ className, day }) {
 	const [date, setDate] = useState(moment().startOf('month'));
 
 	useEffect(() => {
@@ -28,4 +28,4 @@ export const DateChanger = ({ className, day }) => {
 			</button>
 		</header>
 	);
-};
+}

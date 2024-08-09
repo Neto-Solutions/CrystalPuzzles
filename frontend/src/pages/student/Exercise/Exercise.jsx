@@ -2,7 +2,7 @@ import styles from './Exercise.module.scss';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Page } from '@shared/ui';
-import { DateChanger } from '@features/DateChanger/DateChanger';
+import { DateChanger } from '@features';
 import { Exercises } from '@widgets';
 
 export default function ExercisePage() {
