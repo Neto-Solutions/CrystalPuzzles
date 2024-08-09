@@ -1,5 +1,5 @@
 import styles from './Train.module.scss';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Page } from '@shared/ui';
 import { Link, useLoaderData } from 'react-router-dom';
 import moment from 'moment';
@@ -11,11 +11,6 @@ export default function TrainPage() {
 		from: new Date().toISOString(),
 		to: new Date().toISOString()
 	});
-
-	useEffect(() => {
-		// eslint-disable-next-line no-console
-		console.log(date);
-	}, []);
 
 	return (
 		<Page title="Мои тренировки">
@@ -53,7 +48,7 @@ export default function TrainPage() {
 						);
 					})}
 			</div>
-			<CalendarButton date={date} setDate={setDate} />
+			<CalendarButton date={date} setDate={setDate} range />
 		</Page>
 	);
 }
