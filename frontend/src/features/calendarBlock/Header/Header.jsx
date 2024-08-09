@@ -1,4 +1,3 @@
-import moment from 'moment';
 import styles from './Header.module.scss';
 import { ReactComponent as Arrow } from '@shared/assets/svg/small_arrow.svg';
 
