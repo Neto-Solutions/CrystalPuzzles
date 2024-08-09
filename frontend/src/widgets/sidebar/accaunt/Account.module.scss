@@ -3,7 +3,7 @@
 .accaunt_wrap {
 	display: flex;
 	align-items: center;
-	margin: 24px 0;
+	margin: 0 0 24px 0;
 	gap: 12px;
 
 	@include sm() {

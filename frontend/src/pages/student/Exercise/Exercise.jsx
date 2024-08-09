@@ -15,6 +15,7 @@ export default function ExercisePage() {
 				<Exercises
 					data={data.checkList.exercises}
 					className={styles.list}
+					checked
 					disabled
 				/>
 				<div className={styles.reward_wrapper}>

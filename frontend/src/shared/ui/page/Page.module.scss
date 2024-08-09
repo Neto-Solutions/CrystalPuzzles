@@ -1,39 +1,5 @@
 @use '~styles/mixins' as *;
 
-.header {
-	margin-bottom: 45px;
-
-	&_title {
-		font-family: 'Roboto';
-		font-size: 48px;
-		font-weight: 400;
-		@include md() {
-			display: inline-block;
-			margin: auto;
-			text-align: center;
-			padding-left: 38px;
-			font-size: 32px;
-			font-weight: 500;
-		}
-		@include sm() {
-			padding: 0;
-			font-size: 24px;
-		}
-	}
-
-	@include md() {
-		margin-bottom: 22px;
-		padding: 10px;
-		display: flex;
-		align-items: center;
-		gap: 10px 7px;
-		justify-content: space-between;
-		&::after {
-			content: url('~assets/header/logo.svg');
-		}
-	}
-}
-
 .body {
 	width: 100%;
 	display: flex;
