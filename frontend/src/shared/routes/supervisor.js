@@ -2,25 +2,27 @@ import {
 	FeedbackPage,
 	NotificationPage,
 	ProfilePage,
-	ProfileListPage
+	UsersSearchPage
 } from '@pages/shared';
 
-import { MainPage } from '@supervisor/MainPage/ui/MainPage';
-import { TrainerAnalyticsPage } from '@supervisor/TrainerAnalyticsPage/ui/TrainerAnalyticsPage';
-import { DetailedAnalyticsPage } from '@supervisor/DetailedAnalyticsPage/ui/DetailedAnalyticsPage';
-import { EvaluationTablePage } from '@supervisor/EvaluationTablePage/ui/EvaluationTablePage';
-import ProgressGraphPage from '@supervisor/Progress.graph.page';
-import ProgressGraphViewPage from '@supervisor/Progress.graph.view.page';
-import SchedulePage from '@supervisor/Schedule.page';
-import CreateSchedulePage from '@supervisor/Create.schedule.page';
+import {
+	MainPage,
+	ProgressPage,
+	AnalyticsPage,
+	EvaluationPage,
+	UsersListPage,
+	SchedulePage
+} from '@supervisor';
 
-import analytics from 'assets/svg/sidebar/analytics.svg';
-import progress from 'assets/svg/sidebar/progress.svg';
-import tables from 'assets/svg/sidebar/tables.svg';
-import schedule from 'assets/svg/sidebar/schedule.svg';
-import feedback from 'assets/svg/sidebar/Feedback.svg';
-import home from 'assets/svg/sidebar/home.svg';
+import analytics from 'assets/sidebar/analytics.svg';
+import progress from 'assets/sidebar/progress.svg';
+import tables from 'assets/sidebar/tables.svg';
+import schedule from 'assets/sidebar/schedule.svg';
+import feedback from 'assets/sidebar/feedback.svg';
+import home from 'assets/sidebar/home.svg';
 import { AvatarPage } from '@pages/shared';
+
+import { users } from '@shared/const/users';
 
 const supervisorRouter = [
 	{
@@ -30,27 +32,39 @@ const supervisorRouter = [
 	},
 	{
 		path: '/progress',
-		element: <ProgressGraphPage />,
+		element: <UsersListPage type="progress" />,
 		local: 'Графики прогресса',
-		img: progress
+		img: progress,
+		loader: () => {
+			return users;
+		}
 	},
 	{
-		path: '/progress/view',
-		element: <ProgressGraphViewPage />
+		path: '/progress/:id',
+		element: <ProgressPage />,
+		loader: ({ params: { id } }) => {
+			return users.find((user) => user._id == id);
+		}
 	},
 	{
-		path: '/analytic', //заменить
-		element: <TrainerAnalyticsPage />,
+		path: '/analytic',
+		element: <UsersListPage type="analytic" />,
 		local: 'Аналитика',
-		img: analytics
+		img: analytics,
+		loader: () => {
+			return users;
+		}
 	},
 	{
-		path: '/analytic/view', //заменить
-		element: <DetailedAnalyticsPage />
+		path: '/analytic/:id',
+		element: <AnalyticsPage />,
+		loader: ({ params: { id } }) => {
+			return users.find((user) => user._id == id);
+		}
 	},
 	{
-		path: '/evaluation', //заменить
-		element: <EvaluationTablePage />,
+		path: '/evaluation',
+		element: <EvaluationPage />,
 		local: 'Таблицы',
 		img: tables
 	},
@@ -61,8 +75,8 @@ const supervisorRouter = [
 		img: schedule
 	},
 	{
-		path: '/schedule/create',
-		element: <CreateSchedulePage />
+		path: '/schedule/edit',
+		element: <SchedulePage edit />
 	},
 	{
 		path: '/feedback',
@@ -80,19 +94,25 @@ const supervisorRouter = [
 	},
 	{
 		path: '/students',
-		element: <ProfileListPage title="Ученики" />
+		element: <UsersSearchPage title="Ученики" />
 	},
 	{
 		path: '/students/:id',
-		element: <ProfilePage title="Ученики" />
+		element: <ProfilePage title="Ученики" />,
+		loader: ({ params: { id } }) => {
+			return users.find((user) => user._id == id);
+		}
 	},
 	{
 		path: '/trainers',
-		element: <ProfileListPage title="Тренеры" />
+		element: <UsersSearchPage title="Тренеры" />
 	},
 	{
 		path: '/trainers/:id',
-		element: <ProfilePage title="Тренеры" />
+		element: <ProfilePage title="Тренеры" />,
+		loader: ({ params: { id } }) => {
+			return users.find((user) => user._id == id);
+		}
 	}
 ];
 

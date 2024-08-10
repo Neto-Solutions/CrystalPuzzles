@@ -2,7 +2,7 @@ import {
 	FeedbackPage,
 	NotificationPage,
 	ProfilePage,
-	ProfileListPage
+	UsersSearchPage
 } from '@pages/shared';
 import {
 	MainPage,
@@ -11,45 +11,60 @@ import {
 	CreateGroupPage
 } from '@trainer';
 
-import feedback from 'assets/svg/sidebar/Feedback.svg';
-import schedule from 'assets/svg/sidebar/schedule.svg';
-import group from 'assets/svg/sidebar/group.svg';
-import students from 'assets/svg/sidebar/students.svg';
-import home from 'assets/svg/sidebar/home.svg';
+import feedback from 'assets/sidebar/feedback.svg';
+import schedule from 'assets/sidebar//schedule.svg';
+import group from 'assets/sidebar/group.svg';
+import students from 'assets/sidebar/students.svg';
+import home from 'assets/sidebar/home.svg';
 import { AvatarPage, SchedulePage } from '@pages/shared';
-import { getDataById } from '@entities/lesson';
+
+import { lessons } from '../const/lessons';
+import { groups } from '../const/groups';
+import { users } from '../const/users';
 
 const trainerRouter = [
 	{
 		path: '/',
 		element: <MainPage />,
-		img: home
+		img: home,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/notifications',
-		element: <NotificationPage />,
-		local: 'Уведомления'
+		element: <NotificationPage />
 	},
 	{
 		path: '/schedule',
 		element: <SchedulePage link />,
 		local: 'Расписание',
-		img: schedule
+		img: schedule,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/schedule/:id',
 		element: <CheckListPage />,
 		loader: ({ params: { id } }) => {
-			return getDataById(id)
-				.then((data) => ({ data, err: null }))
-				.catch((error) => ({ data: null, err: error }));
+			return lessons.find((lesson) => lesson._id == id);
 		}
 	},
 	{
 		path: '/groups',
 		element: <GroupListPage />,
 		local: 'Группы',
-		img: group
+		img: group,
+		loader: () => {
+			return {
+				groups
+			};
+		}
 	},
 	{
 		path: '/group/create',
@@ -57,13 +72,16 @@ const trainerRouter = [
 	},
 	{
 		path: '/students',
-		element: <ProfileListPage title="Ученики" />,
+		element: <UsersSearchPage title="Ученики" />,
 		local: 'Ученики',
 		img: students
 	},
 	{
-		path: '/student',
-		element: <ProfilePage />
+		path: '/students/:id',
+		element: <ProfilePage />,
+		loader: ({ params: { id } }) => {
+			return users.find((user) => user._id == id);
+		}
 	},
 	{
 		path: '/feedback',

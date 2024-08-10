@@ -1,36 +1,54 @@
 import { AvatarPage, SchedulePage } from '@pages/shared';
 import { MainPage, ExercisePage, TrainPage, SurveyPage } from '@student';
-import training from 'assets/svg/sidebar/Training.svg';
-import schedule from 'assets/svg/sidebar/schedule.svg';
-import home from 'assets/svg/sidebar/home.svg';
-import { Lesson, CheckList } from '../api';
+import training from 'assets/sidebar/train.svg';
+import schedule from 'assets/sidebar/schedule.svg';
+import home from 'assets/sidebar/home.svg';
+import survey from 'assets/sidebar/survey.svg';
+
+import { lessons } from '../const/lessons';
 
 const studentRouter = [
 	{
 		path: '/',
 		element: <MainPage />,
-		img: home
+		img: home,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/train',
 		element: <TrainPage />,
 		local: 'Тренировки',
-		img: training
+		img: training,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/train/:id',
 		element: <ExercisePage />,
-		loader: async ({ params }) => {
-			const checkList = await CheckList.get({ lessonId: params.id });
-			const lesson = await Lesson.getById({ id: params.id });
-			return { checkList, lesson };
+		loader: ({ params }) => {
+			return {
+				lessons,
+				id: params.id
+			};
 		}
 	},
 	{
 		path: '/schedule',
 		element: <SchedulePage />,
 		local: 'Расписание',
-		img: schedule
+		img: schedule,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/avatar',
@@ -40,7 +58,7 @@ const studentRouter = [
 		path: '/survey',
 		element: <SurveyPage />,
 		local: 'Анкета',
-		img: 'feedback'
+		img: survey
 	}
 ];
 

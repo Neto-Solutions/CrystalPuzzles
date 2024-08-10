@@ -1,49 +1,45 @@
 import styles from './Schedule.module.scss';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { Page, Wrapper } from '@shared/ui';
-import { CalendarBlock } from '@features/calendar';
-import { getAllData } from '@entities/lesson';
+import { CalendarBlock } from '@features';
 import moment from 'moment';
+import ScheduleItem from './ScheduleItem/ScheduleItem';
 
 export default function SchedulePage({ link = false }) {
+	const { lessons } = useLoaderData();
 	const [data, setData] = useState([]);
-	const [date, setDate] = useState();
-	// eslint-disable-next-line no-unused-vars
-	const [err, setErr] = useState(null);
+	const [date, setDate] = useState({
+		from: moment().startOf('day').toISOString(), // from and to are equal for this scenario
+		to: moment().startOf('day').toISOString()
+	});
 
 	useEffect(() => {
-		getAllData(date, 10)
-			.then((data) => setData(data))
-			.catch(setErr);
+		let filteredLessons = lessons.filter((item) =>
+			moment(item.start).isSame(date.from, 'day')
+		);
+		for (let i = 0; filteredLessons.length < 7; i++) {
+			filteredLessons.push({});
+		}
+		setData(filteredLessons);
 	}, [date]);
 
 	return (
 		<Page title="Расписание">
 			<div className={styles.table}>
-				{data.length
+				{data
 					? data.map((item, index) => (
-							<Link
+							<ScheduleItem
+								data={item}
 								key={index}
-								to={!link ? null : `/schedule/${item._id}`}
-								className={styles.link}
-							>
-								<div className={styles.row}>
-									<div className={styles.col}>
-										{moment(item.start).format('HH:mm')}
-									</div>
-									<div className={styles.col}>
-										<span className={styles.col_content}>
-											{item.place.name && `Место - ${item.place.name}`}
-										</span>
-									</div>
-								</div>
-							</Link>
+								link={link}
+								className={index === 0 && styles.last}
+							/>
 						))
 					: null}
 			</div>
 			<Wrapper>
-				<CalendarBlock setNewDate={setDate} />
+				<CalendarBlock date={date} setDate={setDate} />
 			</Wrapper>
 		</Page>
 	);

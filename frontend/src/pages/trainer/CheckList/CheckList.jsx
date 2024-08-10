@@ -1,13 +1,26 @@
-/* eslint-disable no-console */
 import styles from './CheckList.module.scss';
 import { Page, Button } from '@shared/ui';
 import { useLoaderData } from 'react-router-dom';
 import Profile from './Profile/Profile';
 import Info from './Info/Info';
-import Exercises from './Exercises/Exercises';
+import { Exercises } from '@widgets';
 
 export default function CheckListPage() {
-	const { data } = useLoaderData();
+	const data = useLoaderData();
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		let result = [];
+		for (const el of e.target) {
+			if (!el.id) continue;
+			if (el.checked) {
+				result.push({
+					id: el.id,
+					isComplete: false
+				});
+			}
+		}
+	}
 
 	return (
 		<Page title="Чек-листы">
@@ -24,11 +37,15 @@ export default function CheckListPage() {
 						form="exercises_form"
 					/>
 				</section>
-				<Exercises
-					className={styles.exercises}
-					formId="exercises_form"
-					lessonId={data._id}
-				/>
+				<section className={styles.exercises}>
+					<form
+						onSubmit={handleSubmit}
+						id="exercises_form"
+						className={styles.exercises}
+					>
+						<Exercises data={data.checkList.exercises} />
+					</form>
+				</section>
 			</div>
 		</Page>
 	);

@@ -1,7 +1,6 @@
 import styles from './GroupForm.module.scss';
 import { Button } from '@shared/ui';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { createGroup } from '@entities/group';
 import Student from './student/Student';
 import GroupName from './group.name/GroupName';
 import Search from './search/Search';
@@ -9,12 +8,15 @@ import Search from './search/Search';
 export default function GroupForm() {
 	const [students, setStudents] = useState([]);
 	const [init, setInit] = useState([]);
+	// eslint-disable-next-line no-unused-vars
 	const [name, setName] = useState('');
+	// eslint-disable-next-line no-unused-vars
 	const [data, setData] = useState([]);
 
 	function handleSubmit() {
+		// eslint-disable-next-line no-unused-vars
 		const data = students.map((item) => item._id);
-		createGroup({ name: name, students: data });
+		// createGroup({ name: name, students: data });
 	}
 
 	useEffect(() => {
@@ -41,10 +43,10 @@ export default function GroupForm() {
 							checked
 						/>
 					))}
-				{data &&
+				{/* {data &&
 					data.map((item) => (
 						<Student key={item._id} data={item} setStudents={setStudents} />
-					))}
+					))} */}
 				<Button title="Создать" className={styles.btn} onClick={handleSubmit} />
 			</div>
 		</>
