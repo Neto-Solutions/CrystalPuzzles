@@ -1,5 +1,5 @@
 import { Page } from '@shared/ui';
-import { Notification } from '@widgets/notification';
+import { Notification } from '@widgets';
 
 export default function NotificationPage() {
 	return (
