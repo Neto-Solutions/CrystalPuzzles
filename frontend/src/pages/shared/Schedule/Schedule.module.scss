@@ -6,20 +6,10 @@
 	height: min-content;
 	border: var(--border);
 	border-radius: var(--radius);
-}
-
-.calendar {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-}
-
-@include sm() {
-	.table {
+	@include sm() {
 		max-width: 335px;
 	}
-}
-
-.last {
-	border-top: none !important;
+	.last {
+		border-top: none !important;
+	}
 }

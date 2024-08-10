@@ -36,7 +36,7 @@ export const NavMenuList = ({ role, isMobile }) => {
 								item.local && (
 									<li key={index}>
 										<NavLink to={item.path}>
-											<img src={item.img} />
+											<img src={item.img} loading="lazy" />
 										</NavLink>
 									</li>
 								)
