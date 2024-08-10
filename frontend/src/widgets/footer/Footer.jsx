@@ -1,7 +1,7 @@
 import styles from './Footer.module.scss';
-import { ReactComponent as Vk } from '../assets/vk.svg';
-import { ReactComponent as Tg } from '../assets/tg.svg';
-import neto from '../assets/neto.png';
+import { ReactComponent as Vk } from './assets/vk.svg';
+import { ReactComponent as Tg } from './assets/tg.svg';
+import neto from './assets/neto.png';
 
 export default function Footer() {
 	return (

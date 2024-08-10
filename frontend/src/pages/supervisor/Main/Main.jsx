@@ -1,7 +1,7 @@
 import styles from './Main.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { Page, Button } from '@shared/ui';
-import { Notification } from '@widgets/notification';
+import { Notification } from '@widgets';
 import { EvaluationCardLink } from './EvaluationCardLink/EvaluationCardLink';
 import { AnalyticCardLink } from './AnalyticCardLink/AnalyticCardLink';
 import { ProgressCardLink } from './ProgressCardLink/ProgressCardLink';
