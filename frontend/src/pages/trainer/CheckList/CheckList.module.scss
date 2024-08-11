@@ -1,47 +1,11 @@
 @use '~styles/mixins' as *;
 
-.profile_container {
+.profile {
 	grid-area: profile;
-	display: flex;
-	flex-direction: column;
-	gap: var(--gap);
-	.img {
-		max-width: 347px;
-		aspect-ratio: 1 / 1;
-		border-radius: var(--radius);
-		border: var(--border);
-	}
-	.name_container {
-		width: 100%;
-		border: var(--border);
-		border-radius: 13px;
-		padding: 10px;
-		background-color: #e1f1f8;
-		.name {
-			margin: auto;
-			width: min-content;
-			@include font(var(--ff-first), 20px, 500);
-			text-align: center;
-		}
-	}
 }
 
-.info_container {
+.info {
 	grid-area: info;
-	border: var(--border);
-	border-radius: 13px;
-	padding: 10px;
-	background-color: #e1f1f8;
-	.date {
-		.date_value {
-			margin-left: 10px;
-		}
-	}
-	.place {
-		.place_value {
-			margin-left: 10px;
-		}
-	}
 }
 
 .panel_container {
@@ -51,14 +15,14 @@
 	gap: var(--gap);
 }
 
-.exercises_container {
+.exercises {
 	grid-area: exercises;
 }
 
-.profile_container,
-.info_container,
+.profile,
+.info,
 .panel_container,
-.exercises_container {
+.exercises {
 	width: 100%;
 }
 

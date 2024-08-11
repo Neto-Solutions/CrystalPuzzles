@@ -10,12 +10,12 @@ class TrainingCheck(BaseModel):
     """ Схема оценки выполнения упражнения """
     training_id: int
     repetitions: int = Field(ge=1)
-    assessment: Optional[int] = Field(default=None, le=10, ge=1)
+    # assessment: Optional[int] = Field(default=None, le=10, ge=1)
 
 
 class CreateCheckSchema(BaseModel):
     """ Схема создания моделей занятий """
-    student_id: int
+    student_ids: list[int]
     lesson_id: int
     training_check: list[TrainingCheck]
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)

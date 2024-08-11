@@ -1,0 +1,43 @@
+@use '~styles/mixins' as *;
+
+.container {
+	width: 347px;
+	height: 347px;
+	padding: 20px;
+	background-color: #ffffff;
+	border: solid #0e1079 1.5px;
+	border-radius: 20px;
+	box-shadow: 8px 3px 22px 10px #9696961c;
+	user-select: none;
+
+	@include sm() {
+		width: 335px;
+	}
+
+	.body_container {
+		margin-top: 10px;
+
+		.body {
+			display: grid;
+			grid-template-columns: repeat(7, 1fr);
+			gap: 16px;
+
+			.day {
+				cursor: pointer;
+				width: 24px;
+				height: 24px;
+				font-family: 'Rubik';
+				font-size: 14px;
+				font-weight: 500;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.day[data-active='true'] {
+				color: #c4e5f1;
+				background-color: #2b2d91;
+				border-radius: 40px;
+			}
+		}
+	}
+}

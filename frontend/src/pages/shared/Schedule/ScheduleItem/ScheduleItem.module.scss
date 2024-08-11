@@ -1,0 +1,32 @@
+@use '~styles/mixins' as *;
+
+.link {
+	@include font(var(--ff-second), 24px, 400);
+	.row {
+		height: 57px;
+		display: grid;
+		grid-template-columns: 100px 1fr;
+		border-top: var(--border);
+		@include md() {
+			font-size: 22px;
+		}
+		@include sm() {
+			font-size: 18px;
+		}
+	}
+
+	.col {
+		display: flex;
+		.col_content {
+			color: #0e1079;
+			padding: 0 10px;
+			align-self: center;
+		}
+		&:first-child {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-right: var(--border);
+		}
+	}
+}

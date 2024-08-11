@@ -1,0 +1,16 @@
+.info_container {
+	border: var(--border);
+	border-radius: 13px;
+	padding: 10px;
+	background-color: #e1f1f8;
+	.date {
+		.date_value {
+			margin-left: 10px;
+		}
+	}
+	.place {
+		.place_value {
+			margin-left: 10px;
+		}
+	}
+}

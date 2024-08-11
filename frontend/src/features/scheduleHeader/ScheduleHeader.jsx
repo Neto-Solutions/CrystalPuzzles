@@ -2,12 +2,8 @@ import classNames from 'classnames';
 import { ReactComponent as Arrow } from '@shared/assets/svg/circle_arrow.svg';
 import styles from './ScheduleHeader.module.scss';
 
-export const ScheduleHeader = ({
-	onPrevClick,
-	onNextClick,
-	date,
-	className
-}) => {
+export default function ScheduleHeader(props) {
+	const { onPrevClick, onNextClick, date, className } = props;
 	// TODO: доделать функциoнал
 	return (
 		<header className={classNames(styles.top, className)}>
@@ -20,4 +16,4 @@ export const ScheduleHeader = ({
 			</button>
 		</header>
 	);
-};
+}

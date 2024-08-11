@@ -1,0 +1,20 @@
+@use '~styles/mixins' as *; 
+
+ 
+.container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	position: relative;
+}
+
+.input_text {
+	padding: 5px 10px 5px 30px;
+	width: 100%;
+	font-family: Roboto;
+	font-size: 24px;
+	font-weight: 500;
+	border: var(--border);
+	border-radius: 10px;
+}

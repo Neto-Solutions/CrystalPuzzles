@@ -20,7 +20,7 @@
 	border: 2px solid var(--accent-color);
 	border-radius: 6px;
 	background-color: transparent;
-
+	
 	@include md() {
 		width: 20px;
 		height: 20px;
@@ -30,7 +30,7 @@
 .icon {
 	opacity: 0;
 	transition: 0.2s;
-	
+
 	@include md() {
 		width: 9px;
 	}

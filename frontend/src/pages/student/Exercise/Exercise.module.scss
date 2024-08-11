@@ -1,23 +1,7 @@
 @use '~styles/mixins' as *;
 
-.container {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: var(--gap);
-
-	@include md() {
-		grid-template-columns: 196px 1fr;
-	}
-
-	@include sm() {
-		display: flex;
-		flex-direction: column;
-	}
-}
-
 .date {
-	padding: var(--btn-padding) 34px;
+	grid-area: date;
 	width: 100%;
 	background-color: var(--bg-date-picker);
 	border-radius: var(--radius);
@@ -25,7 +9,7 @@
 }
 
 .list {
-	margin-top: 10px;
+	grid-area: list;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
@@ -36,6 +20,7 @@
 }
 
 .reward_wrapper {
+	grid-area: reward;
 	height: 347px;
 	display: grid;
 	place-content: center;
@@ -49,5 +34,22 @@
 
 	span {
 		font: var(--fw-medium) var(--fz-btn) var(--ff-first);
+	}
+}
+
+.container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: var(--gap);
+	grid-template-areas: 'date reward' 'list reward';
+
+	@include lg() {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: 'date date' 'reward list';
+	}
+	@include sm() {
+		grid-template-columns: 1fr;
+		grid-template-areas: 'reward' 'date' ' list';
 	}
 }

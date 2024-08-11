@@ -1,0 +1,36 @@
+@use '~styles/mixins' as *;
+
+.container {
+	height: 25px;
+	display: flex;
+	justify-content: space-between;
+	font-family: 'Rubik';
+	font-size: 14px;
+	font-weight: 600;
+	text-align: center;
+	
+	.date {
+		display: flex;
+		flex-grow: 1;
+		align-items: center;
+		text-transform: uppercase;
+		color: #0e1079;
+		padding: 0 20px;
+		cursor: pointer;
+	}
+	.btn_container {
+		width: 56px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.btn {
+			cursor: pointer;
+			padding: 5px;
+			display: flex;
+			align-items: center;
+			.arrow {
+				rotate: 180deg;
+			}
+		}
+	}
+}
