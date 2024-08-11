@@ -1,19 +1,18 @@
-import { $authhost } from './axios.instances';
+import { $authHost } from './axios.instances';
 
 class Reward {
-	constructor(host) {
-		this.host = host;
-	}
+	#host = $authHost;
+
 	async add(id, rewardId) {
-		this.host.post(`/reward/${id}`, {
+		this.#host.post(`/reward/${id}`, {
 			params: { rewardId }
 		});
 	}
 
 	async get() {
-		const { data } = await this.host.get(`/reward`);
+		const { data } = await this.#host.get(`/reward`);
 		return data;
 	}
 }
 
-export default new Reward($authhost);
+export default new Reward();

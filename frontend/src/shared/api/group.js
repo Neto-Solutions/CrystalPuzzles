@@ -1,7 +1,7 @@
-import { $authhost } from './axios.instances';
+import { $authHost } from './axios.instances';
 
 class Group {
-	#host = $authhost;
+	#host = $authHost;
 
 	async create(group) {
 		const { data } = await this.#host.post('/group', group);

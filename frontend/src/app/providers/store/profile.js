@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Profile } from '@entities/profile';
-import LS from '@shared/lib/localStorage';
+import { Auth } from '@shared/api';
+
+const [profile, err] = await Auth.getProfile();
 
 const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
-		profile: LS.get('profile') || new Profile()
+		profile: err ? new Profile() : new Profile(profile)
 	},
 	reducers: {
 		setProfile: (state, action) => {
