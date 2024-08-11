@@ -1,20 +1,18 @@
-.notifications {
-	grid-area: notifications;
-}
-
-.schedule_card {
-	grid-area: schedule;
-}
-
-.button_container {
-	grid-area: button;
-}
-
 .wrapper {
 	display: grid;
 	gap: 20px;
 	grid-template-columns: 714px 1fr;
 	grid-template-areas:
 		'notifications schedule'
-		'notifications button';
+		'notifications schedule';
+
+	.notifications {
+		grid-area: notifications;
+
+	}
+
+	.schedule_card {
+		grid-area: schedule;
+		padding: 20px 35px;
+	}
 }

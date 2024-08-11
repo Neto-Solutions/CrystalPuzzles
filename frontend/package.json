@@ -32,8 +32,8 @@
 	},
 	"scripts": {
 		"start": "craco start",
-		"build": "craco build",
-		"serve": "node set.env.js && serve -s build -p 3000",
+		"build": "craco build && node set.env.js",
+		"serve": "serve -s build -p 3000",
 		"test": "craco test",
 		"eject": "craco eject",
 		"set:env": "node set.env.js",
