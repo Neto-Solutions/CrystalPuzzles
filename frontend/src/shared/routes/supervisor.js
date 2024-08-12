@@ -22,7 +22,7 @@ import feedback from 'assets/sidebar/feedback.svg';
 import home from 'assets/sidebar/home.svg';
 import { AvatarPage } from '@pages/shared';
 
-import { users } from '@shared/const/users';
+import { users, lessons } from '@shared/const';
 
 const supervisorRouter = [
 	{
@@ -72,11 +72,17 @@ const supervisorRouter = [
 		path: '/schedule',
 		element: <SchedulePage />,
 		local: 'Расписание',
-		img: schedule
+		img: schedule,
+		loader: () => {
+			return lessons;
+		}
 	},
 	{
 		path: '/schedule/edit',
-		element: <SchedulePage edit />
+		element: <SchedulePage edit />,
+		loader: () => {
+			return lessons;
+		}
 	},
 	{
 		path: '/feedback',

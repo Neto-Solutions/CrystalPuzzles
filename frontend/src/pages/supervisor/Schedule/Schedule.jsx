@@ -4,12 +4,12 @@ import { Page, Button } from '@shared/ui';
 import Table from './Table/Table';
 import { Modal } from '@shared/ui';
 import { AddTreanerSchedule } from './Modal/Modal';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 export default function ShedulePage({ edit = false }) {
 	const [modalActive, setModalActive] = useState(false);
+	const lessons = useLoaderData();
 	const navigate = useNavigate();
-
 	return (
 		<Page title="Составить расписание тренеров">
 			<Table edit={edit} setModalActive={setModalActive} />
