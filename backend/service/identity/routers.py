@@ -43,7 +43,7 @@ async def login(
             key="refresh_token",
             value=refresh_token,
             httponly=True,
-            secure=True,
+            # secure=True,
         )
         return TokenInfoSchema(access_token=access_token)
 
@@ -76,7 +76,7 @@ async def refresh_token(
         key="refresh_token",
         value=refresh_token,
         httponly=True,
-        secure=True,
+        # secure=True,
     )
     return TokenInfoSchema(access_token=access_token)
 
