@@ -5,6 +5,7 @@ import schedule from 'assets/sidebar/schedule.svg';
 import home from 'assets/sidebar/home.svg';
 import survey from 'assets/sidebar/survey.svg';
 
+// import { Lesson } from '@shared/api';
 import { lessons } from '../const/lessons';
 
 const studentRouter = [
