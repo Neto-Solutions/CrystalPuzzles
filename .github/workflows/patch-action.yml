@@ -44,8 +44,7 @@ jobs:
         
       - name: Shut Down Docker Compose
         if: always() 
-        run: docker compose down
-        
+        run: docker compose down        
   
   update_tag:
     needs: tests
