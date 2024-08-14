@@ -1,62 +1,55 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
+import { useResize } from '@shared/hooks';
+import { Title } from '@shared/ui';
+import { NotificationItem } from '../NotificationItem/NotificationItem';
+import { NotificationItemSeparate } from '../NotificationItemSeparate/NotificationItemSeparate';
 import styles from './Notification.module.scss';
-import { Title, Button } from '@shared/ui';
-import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-export default function Notification({
-	array = Array(2).fill(''),
-	isPage = false,
-	className
-}) {
+export default function Notification({ array = Array(2).fill(''), className }) {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const isMainPage = location.pathname === '/';
+	const isMobile = useResize('sm');
+
 	return (
-		<section className={styles.container + ' ' + className}>
-			<Title tag="h2" className={styles.title}>
-				Уведомления
-			</Title>
-			<div className={styles.notifications}>
-				{array.map((_, index) => (
-					<NotificationItem key={index} />
-				))}
-			</div>
-			<div className={styles.cont_bottom_decor}></div>
-			{!isPage && (
-				<Button
-					title="Показать все"
-					className={styles.button}
-					onClick={() => navigate('/notifications')}
-				/>
+		<section
+			className={classNames(
+				isMainPage ? styles.container : styles.container_separate,
+				className
+			)}
+			onClick={() => navigate('/notifications')}
+		>
+			{isMainPage && (
+				<Title tag="h2" className={styles.title}>
+					Уведомления
+				</Title>
+			)}
+			{isMobile ? (
+				<div className={styles.wrapper}>
+					<div className={styles.notification_wrapper}>
+						<ul className={styles.notifications}>
+							{array.map((_, index) =>
+								isMainPage ? (
+									<NotificationItem key={index} />
+								) : (
+									<NotificationItemSeparate key={index} />
+								)
+							)}
+						</ul>
+					</div>
+				</div>
+			) : (
+				<ul className={styles.notifications}>
+					{array.map((_, index) =>
+						isMainPage ? (
+							<NotificationItem key={index} />
+						) : (
+							<NotificationItemSeparate key={index} />
+						)
+					)}
+				</ul>
 			)}
 		</section>
-	);
-}
-
-function NotificationItem() {
-	const [isOpen, setIsOpen] = useState(false);
-	const ref = useRef(null);
-	return (
-		<>
-			<div className={styles.notification_item}>
-				<p className={styles.notification_item_text}>
-					<span>Михаил</span> выполнил все задания
-				</p>
-				<Button
-					title={isOpen ? 'Ответить' : 'Открыть'}
-					className={styles.button}
-					onClick={() => {
-						isOpen ? ref.current.focus() : setIsOpen(!isOpen);
-					}}
-				/>
-			</div>
-			{isOpen && (
-				<textarea
-					ref={ref}
-					name=""
-					id=""
-					className={styles.textarea}
-					placeholder="Михаил из группы “Пингвинята” выполнил задание 1ой сложности "
-				/>
-			)}
-		</>
 	);
 }

@@ -1,0 +1,44 @@
+@use '~styles/mixins' as *;
+
+.item {
+	padding: 8px 10px 8px 20px;
+	display: flex;
+	justify-content: space-between;
+	border: var(--border);
+	border-radius: var(--radius-btn);
+
+	@include sm() {
+		flex-direction: column;
+		gap: 10px;
+	}
+}
+
+.text {
+	font: var(--fw-regular) 16px var(--ff-second);
+	span {
+		display: block;
+		font: var(--fw-medium) var(--fz-text) var(--ff-first);
+
+		@include sm() {
+			display: inline-block;
+			margin-right: 5px;
+			font: var(--fw-regular) 14px var(--ff-first);
+		}
+	}
+
+	@include sm() {
+		font-size: 14px;
+	}
+}
+
+.btn {
+	padding: 6px 24px;
+	background-color: #fff;
+	border-radius: 10px;
+	color: var(--text-color);
+
+	@include sm() {
+		width: fit-content;
+		margin-left: auto;
+	}
+}

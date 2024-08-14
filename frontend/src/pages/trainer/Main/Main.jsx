@@ -2,7 +2,8 @@ import styles from './Main.module.scss';
 import { Page, CardLink, ScheduleCard } from '@shared/ui';
 import { Notification } from '@widgets/notification';
 import { useResize } from '@hooks';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import Button from '@shared/ui/button/Button';
 
 export default function MainPage() {
 	const { lessons } = useLoaderData();
@@ -11,15 +12,20 @@ export default function MainPage() {
 	return (
 		<Page title="Главная страница">
 			<div className={styles.wrapper}>
-				<Notification className={styles.notifications} />
-
 				<CardLink
 					to="/schedule"
 					title={'Расписание'}
 					className={styles.schedule_card}
 				>
-					{!isMobile && <ScheduleCard data={lessons} />}
+					<ScheduleCard data={lessons} />
 				</CardLink>
+				{isMobile ? (
+					<Link to={'/notifications'}>
+						<Button title="Уведомления" />
+					</Link>
+				) : (
+					<Notification className={styles.notifications} />
+				)}
 			</div>
 		</Page>
 	);
