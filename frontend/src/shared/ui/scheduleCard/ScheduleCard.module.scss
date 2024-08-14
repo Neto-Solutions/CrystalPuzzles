@@ -1,28 +1,78 @@
 @use '~styles/mixins' as *;
 
 .item_container {
+	position: relative;
 	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
 	&::after {
 		content: '';
-		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
 		width: 100%;
-		height: 2px;
+		height: 1px;
 		border-radius: 2px;
-		background-color: #2b2d91;
+		background-color: var(--btn-bg-hover);
 	}
 }
 
 .item {
 	margin-bottom: 10px;
-	width: 275px;
-	font-family: Roboto;
-	font-size: 20px;
-	font-weight: 500;
-	.place_container {
-		.time {
-			color: #2b2d91;
-		}
-		.place {
-		}
+	font: var(--fw-regular) var(--fz-text) / 1.5 var(--ff-first);
+
+	@include sm() {
+		margin-bottom: 0;
+		font-size: 12px;
+	}
+}
+
+.wrapper {
+	margin-bottom: 8px;
+}
+
+.date {
+	position: relative;
+	font: var(--fw-medium) 22px var(--ff-second);
+	color: var(--accent-color);
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 1px;
+		background-color: var(--accent-color);
+	}
+
+	@include sm() {
+		font-size: 16px;
+	}
+}
+
+.time {
+	font: var(--fw-medium) 22px var(--ff-second);
+	color: var(--accent-color);
+
+	@include sm() {
+		font-size: 16px;
+	}
+}
+
+.btn {
+	padding: 10px 28px;
+	font: var(--fw-medium) var(--fz-text) var(--ff-first);
+	color: var(--bg-card);
+	border: var(--border);
+	background-color: var(--accent-color);
+	border-radius: 13px;
+
+	&:hover {
+		background-color: var(--white-color);
+		border: var(--border);
+		color: var(--accent-color);
 	}
 }
