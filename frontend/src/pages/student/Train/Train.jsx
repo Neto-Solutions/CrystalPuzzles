@@ -27,11 +27,7 @@ export default function TrainPage() {
 									<div className={styles.trainer_container}>
 										<span className={styles.trainer_title}>Тренер:</span>
 										<span className={styles.trainer_content}>
-											{item.trainer.surname +
-												' ' +
-												item.trainer.firstname +
-												' ' +
-												item.trainer.lastname}
+											{item.trainer.firstname}
 										</span>
 									</div>
 									<div className={styles.place_container}>

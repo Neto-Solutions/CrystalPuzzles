@@ -25,6 +25,15 @@
 				.place_title {
 					margin-right: 5px;
 					font-weight: 500;
+					@include sm() {
+						font-size: 16px;
+					}
+				}
+				.trainer_content,
+				.place_content {
+					@include sm() {
+						font-size: 16px;
+					}
 				}
 			}
 		}

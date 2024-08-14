@@ -48,4 +48,8 @@
 		grid-template-columns: 1fr 1fr;
 		grid-template-areas: 'date date' 'reward list';
 	}
+	@include sm() {
+		grid-template-columns: 1fr;
+		grid-template-areas: 'reward' 'date' ' list';
+	}
 }

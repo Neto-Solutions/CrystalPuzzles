@@ -1,6 +1,6 @@
 import styles from './Main.module.scss';
 import { Page, CardLink, ScheduleCard } from '@shared/ui';
-import { Notification } from '@widgets/notification';
+import { Notification } from '@widgets';
 import { useResize } from '@hooks';
 import { Link, useLoaderData } from 'react-router-dom';
 import Button from '@shared/ui/button/Button';

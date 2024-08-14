@@ -35,8 +35,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/notifications',
-		element: <NotificationPage />,
-		local: 'Уведомления'
+		element: <NotificationPage />
 	},
 	{
 		path: '/schedule',
