@@ -15,7 +15,7 @@ export default function SchedulePage({ link = false }: any) {
 	});
 
 	useEffect(() => {
-		let filteredLessons = lessons.filter((item: any) =>
+		const filteredLessons = lessons.filter((item: any) =>
 			moment(item.start).isSame(date.from, 'day')
 		);
 		for (let i = 0; filteredLessons.length < 7; i++) {

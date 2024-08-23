@@ -31,21 +31,21 @@ export default function AvatarPage() {
 							type="file"
 							accept="image/png, image/jpeg"
 							hidden
-							onChange={(e) => {
-								if (e.target.files![0].size > 5 * 1024 * 1024) {
+							onChange={(e: any) => {
+								if (e.target.files[0].size > 5 * 1024 * 1024) {
 									setErr('Фото должно быть меньше 5 МБ');
 									return;
 								}
 								setErr(null);
-								setUserPhoto(e.target.files![0]);
-								setPreview(URL.createObjectURL(e.target.files![0]));
+								setUserPhoto(e.target.files[0]);
+								setPreview(URL.createObjectURL(e.target.files[0]));
 							}}
 						/>
 						<Button
 							title="Загрузить"
 							className={styles.button}
 							type="button"
-							onClick={() => document.getElementById('input_file')!.click()}
+							onClick={() => document.getElementById('input_file')?.click()}
 						>
 							<UploadIcon />
 						</Button>

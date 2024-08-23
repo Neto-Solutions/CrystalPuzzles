@@ -24,8 +24,8 @@ export default function CalendarBlock({
 		const startOfMonth = moment(month).startOf('month').day();
 		const daysInMonth = moment(month).endOf('month').date();
 		setDays(() => {
-			let skipDays: any = Array.from({ length: startOfMonth - 1 }, () => '');
-			let days: any = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+			const skipDays: any = Array.from({ length: startOfMonth - 1 }, () => '');
+			const days: any = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 			return skipDays.concat(days);
 		});
 	}, [month]);
@@ -69,7 +69,7 @@ function setRange(fn: any, month: any, day: any) {
 	fn(({ from, to }: any) => {
 		from = moment(from);
 		to = moment(to);
-		let date = moment(month).date(day);
+		const date = moment(month).date(day);
 		if (!from.isSame(to)) {
 			to = date;
 			from = date;
@@ -89,7 +89,7 @@ function setDay(fn: any, month: any, day: any) {
 	fn(({ from, to }: any) => {
 		from = moment(from);
 		to = moment(to);
-		let date = moment(month).date(day);
+		const date = moment(month).date(day);
 		from = date.startOf('day').toISOString();
 		to = date.startOf('day').toISOString();
 		return { from, to };

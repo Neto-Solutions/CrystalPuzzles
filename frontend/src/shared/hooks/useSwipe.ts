@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 
 /**
  *
- * @param {Function} callback
+ * @param {any} callback
  * @param {number} ignoreValue
  */
-export default function useSwipe(callback: Function, ignoreValue = 100) {
+export default function useSwipe(callback: any, ignoreValue = 100) {
 	let startX: number, endX: number, startY: number, endY: number;
 	startX = endX = startY = endY = 0;
 

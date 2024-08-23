@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useWorker(fn: Function) {
+export default function useWorker(fn: any) {
 	const [worker, setWorker]: any = useState(null);
 
 	useEffect(() => {

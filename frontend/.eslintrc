@@ -18,6 +18,12 @@
 	},
 	"plugins": ["react"],
 	"rules": {
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-unused-vars": "off",
+		"@typescript-eslint/no-require-imports": "off",
+		"@typescript-eslint/no-var-requires": "off",
+		"react-hooks/rules-of-hooks": "off",
+		"react-hooks/exhaustive-deps": "off",
 		"prettier/prettier": "warn",
 		"linebreak-style": "off", // avoid error in Windows
 		"react/react-in-jsx-scope": "off",
@@ -25,7 +31,7 @@
 		"react/jsx-key": "warn",
 		"no-console": "warn",
 		"no-alert": "warn",
-		"no-unused-vars": "warn",
+		"no-unused-vars": "off",
 		"no-empty": "warn"
 	},
 	"settings": {

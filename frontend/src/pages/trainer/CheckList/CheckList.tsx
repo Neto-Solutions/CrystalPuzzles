@@ -10,7 +10,7 @@ export default function CheckListPage() {
 
 	function handleSubmit(e: any) {
 		e.preventDefault();
-		let result = [];
+		const result = [];
 		for (const el of e.target) {
 			if (!el.id) continue;
 			if (el.checked) {

@@ -5,7 +5,7 @@ export default function mapUserForm(e: any) {
 	const data: any = {};
 
 	for (let i = 0; i < e.target.length; i++) {
-		let key = e.target[i].getAttribute('data-key');
+		const key = e.target[i].getAttribute('data-key');
 		if (key === 'name') {
 			const name = splitName(e.target[i].value);
 			Object.assign(data, name);
