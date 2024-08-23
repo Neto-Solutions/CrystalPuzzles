@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"start": "set BROWSER=none && craco start",
+		"start": "craco start",
 		"build": "craco build && node ./scripts/set.env.js",
 		"serve": "serve -s build -p 3000",
 		"test": "craco test",

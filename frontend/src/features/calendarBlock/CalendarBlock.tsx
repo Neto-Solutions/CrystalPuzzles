@@ -4,7 +4,7 @@ import Header from './Header/Header';
 import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 import moment from 'moment';
 
-interface ICalendarBlock extends React.PropsWithChildren {
+interface ICalendarBlock {
 	date: any;
 	setDate: any;
 	onHide?: any;
@@ -23,11 +23,11 @@ export default function CalendarBlock({
 	useEffect(() => {
 		const startOfMonth = moment(month).startOf('month').day();
 		const daysInMonth = moment(month).endOf('month').date();
-		setDays(() =>
-			Array.from({ length: startOfMonth - 1 }, () => '').concat(
-				Array.from({ length: daysInMonth }, (_, i) => i + 1).toString()
-			)
-		);
+		setDays(() => {
+			let skipDays: any = Array.from({ length: startOfMonth - 1 }, () => '');
+			let days: any = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+			return skipDays.concat(days);
+		});
 	}, [month]);
 
 	return (
