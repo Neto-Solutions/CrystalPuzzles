@@ -20,7 +20,7 @@ export default function Sidebar() {
 	const navigate = useNavigate();
 	const isMobile = useResize('md');
 
-	useSwipe((isOpen) => setIsOpen(isOpen));
+	useSwipe((isOpen: any) => setIsOpen(isOpen));
 
 	async function handleExit() {
 		LS.remove('profile');
@@ -40,7 +40,7 @@ export default function Sidebar() {
 					</button>
 				)}
 				<Account user={user} className={styles.account} isMobile={isMobile} />
-				<NavMenuList role={user.role} isMobile={isMobile} />
+				<NavMenuList role={user!.role!} isMobile={isMobile} />
 
 				<div className={styles.links}>
 					<div
