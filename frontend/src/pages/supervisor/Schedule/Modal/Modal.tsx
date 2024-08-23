@@ -3,23 +3,23 @@ import { useState } from 'react';
 import { Button } from '@shared/ui';
 import { DropDownButton, DateChanger } from '@features';
 
-export const AddTreanerSchedule = ({ day }) => {
-	const [openTrainers, setOpenTrainers] = useState(false);
-	const [openPlatform, setOpenPlatform] = useState(false);
+export const AddTreanerSchedule = ({ day }: any) => {
+	const [openTrainers, setOpenTrainers]: any = useState(false);
+	const [openPlatform, setOpenPlatform]: any = useState(false);
 
-	const [data, setData] = useState({
+	const [data, setData]: any = useState({
 		space_id: null,
 		trainer_id: null,
 		trainer_comments: '',
 		start: new Date()
 	});
 
-	const setTrainer = (id) => {
-		setData((prev) => ({ ...prev, trainer_id: id }));
+	const setTrainer = (id: string) => {
+		setData((prev: any) => ({ ...prev, trainer_id: id}));
 	};
 
-	const setSpace = (id) => {
-		setData((prev) => ({ ...prev, space_id: id }));
+	const setSpace = (id: string) => {
+		setData((prev: any) => ({ ...prev, space_id: id}));
 	};
 
 	const handleSubmit = async () => {
@@ -31,7 +31,7 @@ export const AddTreanerSchedule = ({ day }) => {
 			<main className={styles.main}>
 				<DropDownButton
 					title={'Выберите тренера'}
-					onClick={() => setOpenTrainers((prev) => !prev)}
+					onClick={() => setOpenTrainers((prev: any) => !prev)}
 					// width={'347px'}
 					// data={trainers}
 					open={openTrainers}
@@ -39,7 +39,7 @@ export const AddTreanerSchedule = ({ day }) => {
 				/>
 				<DropDownButton
 					title={'Выберите площадку'}
-					onClick={() => setOpenPlatform((prev) => !prev)}
+					onClick={() => setOpenPlatform((prev: any) => !prev)}
 					// width={'347px'}
 					// data={platforms}
 					open={openPlatform}

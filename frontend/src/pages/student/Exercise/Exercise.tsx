@@ -6,8 +6,8 @@ import { DateChanger } from '@features';
 import { Exercises } from '@widgets';
 
 export default function ExercisePage() {
-	const { lessons, id } = useLoaderData();
-	const [data] = useState(lessons.find((item) => item._id === id));
+	const { lessons, id }: any = useLoaderData();
+	const [data]: any = useState(lessons.find((item: any) => item._id === id));
 	return (
 		<Page title="Мои занятия">
 			<div className={styles.container}>

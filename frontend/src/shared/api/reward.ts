@@ -3,7 +3,7 @@ import { $authHost } from './axios.instances';
 class Reward {
 	#host = $authHost;
 
-	async add(id, rewardId) {
+	async add(id: any, rewardId: any) {
 		this.#host.post(`/reward/${id}`, {
 			params: { rewardId }
 		});

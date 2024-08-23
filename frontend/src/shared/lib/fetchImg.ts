@@ -1,4 +1,4 @@
-export default function fetchImg(baseUrl, args) {
+export default function fetchImg(baseUrl: string, args: string[] | undefined) {
 	if (!baseUrl) throw new Error('url is required');
 	if (!args) {
 		return fetch(baseUrl)

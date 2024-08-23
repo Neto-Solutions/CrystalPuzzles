@@ -2,14 +2,14 @@ import styles from './NavMenu.module.scss';
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { supervisorRouter, studentRouter, trainerRouter } from '@shared/routes';
-import { roleAdapter } from '@entities/profile';
+import { roleAdapter } from '@entities';
 
 import { ReactComponent as Arrow } from 'assets/svg/arrow.svg';
 import home from 'assets/sidebar/home.svg';
 
-export const NavMenuList = ({ role, isMobile }) => {
-	const [isOpen, setOpen] = useState(false);
-	const [list, setList] = useState([]);
+export const NavMenuList = ({ role, isMobile }: any) => {
+	const [isOpen, setOpen]: any = useState(false);
+	const [list, setList]: any = useState([]);
 
 	useEffect(() => {
 		setList(
@@ -31,7 +31,7 @@ export const NavMenuList = ({ role, isMobile }) => {
 								<img src={home} />
 							</Link>
 						</li>
-						{list?.map((item, index) => {
+						{list?.map((item: any, index: any) => {
 							return (
 								item.local && (
 									<li key={index}>
@@ -58,7 +58,7 @@ export const NavMenuList = ({ role, isMobile }) => {
 					</div>
 
 					<ul className={`${styles.menu} ${isOpen ? styles.active : ''}`}>
-						{list?.map((item, index) => {
+						{list?.map((item: any, index: any) => {
 							return (
 								item.local && (
 									<li className={styles.item} key={index}>

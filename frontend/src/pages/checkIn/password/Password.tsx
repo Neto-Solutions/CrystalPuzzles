@@ -5,7 +5,7 @@ import { ReactComponent as CrossEye } from '@shared/assets/svg/cross_eye.svg';
 import { useState } from 'react';
 
 export default function Password() {
-	const [openEye, setOpenEye] = useState(true);
+	const [openEye, setOpenEye]: any = useState(true);
 
 	return (
 		<Input

@@ -3,12 +3,12 @@ import styles from './ScheduleCard.module.scss';
 import moment from 'moment';
 import { useResize } from '@hooks';
 
-export default function ScheduleCard({ data }) {
+export default function ScheduleCard({ data} : any) {
 	const isMobile = useResize('sm');
 	return (
 		<>
 			{data
-				? data.map((item, index) => (
+				? data.map((item: any, index: number) => (
 						<div key={index} className={styles.item_container}>
 							<div className={styles.item}>
 								<div className={styles.wrapper}>

@@ -2,8 +2,8 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import styles from './Profile.module.scss';
 import { Page, Button } from '@shared/ui';
 
-export default function StudentPage({ title }) {
-	const user = useLoaderData();
+export default function StudentPage({ title }: any) {
+	const user: any = useLoaderData();
 	const navigate = useNavigate();
 	return (
 		<Page title={title}>

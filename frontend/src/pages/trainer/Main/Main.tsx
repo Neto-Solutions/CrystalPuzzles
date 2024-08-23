@@ -6,7 +6,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Button from '@shared/ui/button/Button';
 
 export default function MainPage() {
-	const { lessons } = useLoaderData();
+	const { lessons }: any = useLoaderData();
 	const isMobile = useResize('sm');
 
 	return (

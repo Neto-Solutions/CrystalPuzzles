@@ -1,19 +1,19 @@
 import styles from './CheckIn.module.scss';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Wrapper from './wrapper/Wrapper';
 import Input from './input/Input';
 import Password from './password/Password';
 import Politics from './policy/Policy';
 import { Button } from '@shared/ui';
-import { mapUserForm } from '@entities/profile';
+import { mapUserForm } from '@entities';
 import { Auth } from '@shared/api';
 
-export default function CheckInPage({ login = false }) {
+export default function CheckInPage({ login = false }: any) {
 	const navigate = useNavigate();
-	const [err, setErr] = useState(null);
+	const [err, setErr]: any = useState(null);
 
-	function handleSubmit(e) {
+	function handleSubmit(e: FormEvent) {
 		e.preventDefault();
 		const data = mapUserForm(e);
 		login ? Auth.login(data) : Auth.register(data);
@@ -72,9 +72,9 @@ export default function CheckInPage({ login = false }) {
 
 						{login && (
 							<>
-								<div htmlFor="registration" className={styles.link}>
+								<label htmlFor="registration" className={styles.link}>
 									Нет аккаунта?
-								</div>
+								</label>
 								<Button
 									title="Зарегистрироваться"
 									id="registration"

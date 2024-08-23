@@ -5,9 +5,9 @@ import { selectProfile } from '@store/profile';
 import LS from '@shared/lib/localStorage';
 import avatar from '@shared/assets/avatar/0.png';
 
-export default function Profile({ className }) {
+export default function Profile({ className} : any) {
 	const user = useSelector(selectProfile);
-	const [userPhoto, setUserPhoto] = useState(LS.get('avatar') || avatar);
+	const [userPhoto, setUserPhoto]: any = useState(LS.get('avatar') || avatar);
 
 	useEffect(() => {
 		if (user.avatar) {

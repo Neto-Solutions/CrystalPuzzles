@@ -5,7 +5,7 @@ import { Sidebar, Header, Footer } from '@widgets';
 import { NotificationModal } from '@shared/ui';
 
 export default function App() {
-	const [notification, setNotification] = useState(false);
+	const [notification, setNotification]: any = useState(false);
 	return (
 		<>
 			{notification && (

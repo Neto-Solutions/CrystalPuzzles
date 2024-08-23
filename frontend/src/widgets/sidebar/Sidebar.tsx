@@ -15,7 +15,7 @@ import edit from 'assets/sidebar/edit.svg';
 import LS from '@shared/lib/localStorage';
 
 export default function Sidebar() {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen]: any = useState(false);
 	const user = useSelector(selectProfile);
 	const navigate = useNavigate();
 	const isMobile = useResize('md');
@@ -34,7 +34,7 @@ export default function Sidebar() {
 				{isMobile && (
 					<button
 						className={isOpen ? styles.arrow_close : styles.arrow_open}
-						onClick={() => setIsOpen((prev) => !prev)}
+						onClick={() => setIsOpen((prev: any) => !prev)}
 					>
 						<Arrow className={styles.arrow_svg} />
 					</button>

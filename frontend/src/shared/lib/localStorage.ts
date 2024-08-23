@@ -1,5 +1,5 @@
 class LS {
-	get(key) {
+	get(key: string) {
 		let value = localStorage.getItem(key);
 		if (value === null || value === 'undefined' || value === 'null') {
 			return null;
@@ -7,15 +7,15 @@ class LS {
 		return JSON.parse(value);
 	}
 
-	set(key, value) {
+	set(key: string, value: any) {
 		localStorage.setItem(key, JSON.stringify(value));
 	}
 
-	has(key) {
+	has(key: string) {
 		return localStorage.getItem(key) !== null;
 	}
 
-	remove(key) {
+	remove(key: string) {
 		localStorage.removeItem(key);
 	}
 }

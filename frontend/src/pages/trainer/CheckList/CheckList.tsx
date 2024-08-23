@@ -6,9 +6,9 @@ import Info from './Info/Info';
 import { Exercises } from '@widgets';
 
 export default function CheckListPage() {
-	const data = useLoaderData();
+	const data: any = useLoaderData();
 
-	function handleSubmit(e) {
+	function handleSubmit(e: any) {
 		e.preventDefault();
 		let result = [];
 		for (const el of e.target) {

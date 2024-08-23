@@ -5,8 +5,8 @@ import { useEffect } from 'react';
  * @param {Function} callback
  * @param {number} ignoreValue
  */
-export default function useSwipe(callback, ignoreValue = 100) {
-	let startX, endX, startY, endY;
+export default function useSwipe(callback: Function, ignoreValue = 100) {
+	let startX: number, endX: number, startY: number, endY: number;
 	startX = endX = startY = endY = 0;
 
 	useEffect(() => {
@@ -40,8 +40,8 @@ export default function useSwipe(callback, ignoreValue = 100) {
 		);
 
 		return () => {
-			window.removeEventListener('touchstart', null);
-			window.removeEventListener('touchend', null);
+			window.removeEventListener('touchstart', null as any);
+			window.removeEventListener('touchend', null as any);
 		};
 	}, []);
 }

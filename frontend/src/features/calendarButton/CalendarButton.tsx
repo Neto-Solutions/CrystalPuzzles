@@ -5,8 +5,8 @@ import { ReactComponent as CalendarIcon } from '@shared/assets/svg/calendar_icon
 import { Button } from '@shared/ui';
 import CalendarBlock from '../calendarBlock/CalendarBlock';
 
-export default function CalendarButton({ date, setDate, range }) {
-	const [calendar, setCalendar] = useState(false);
+export default function CalendarButton({ date, setDate, range} : any) {
+	const [calendar, setCalendar]: any = useState(false);
 
 	return (
 		<>

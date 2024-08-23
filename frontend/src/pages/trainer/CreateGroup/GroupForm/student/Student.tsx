@@ -1,10 +1,10 @@
 import styles from './Student.module.scss';
 
-export default function Students({ data, setStudents, checked = false }) {
+export default function Students({ data, setStudents, checked = false} : any) {
 	function handleChange() {
-		setStudents((prev) => {
+		setStudents((prev: any) => {
 			if (prev.includes(data)) {
-				return prev.filter((item) => item !== data);
+				return prev.filter((item: any) => item !== data);
 			} else {
 				return [...prev, data];
 			}

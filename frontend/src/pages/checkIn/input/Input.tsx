@@ -1,6 +1,6 @@
 import styles from './Input.module.scss';
 
-export default function Input({ label, dataKey, type, required, children }) {
+export default function Input({ label, dataKey, type, required, children} : any) {
 	return (
 		<div className={styles.container}>
 			{label && <label className={styles.label}>{label}</label>}

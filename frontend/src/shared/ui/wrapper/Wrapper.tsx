@@ -1,6 +1,6 @@
 import styles from './Wrapper.module.scss';
 
-export default function Wrapper({ children, width, max_width }) {
+export default function Wrapper({ children, width, max_width} : any) {
 	return (
 		<>
 			<div

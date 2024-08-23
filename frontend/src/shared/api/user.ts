@@ -4,8 +4,10 @@ class User {
 	#host = $authHost;
 
 	// get users
-	async getAll({ search_string = '' }) {
-		const { data } = await this.#host.get(`/users`, { search_string }); // student by actual api
+	async getAll({ search_string = '' }: any) {
+		const { data } = await this.#host.get(`/users`, {
+			params: { search_string }
+		}); // student by actual api
 		return data;
 	}
 
@@ -16,7 +18,7 @@ class User {
 	}
 
 	// update avatar
-	async updateAvatar(avatar) {
+	async updateAvatar(avatar: any) {
 		if (avatar > 0 && avatar < 10) {
 			return await this.#host.post('profile/set-avatar', { avatar_id: avatar });
 		} else {
@@ -27,7 +29,7 @@ class User {
 	}
 
 	//update password
-	async updatePassword(params) {
+	async updatePassword(params: any) {
 		const { old_password, new_password } = params;
 		const { data } = await this.#host.post('/user/change-password', {
 			old_password,

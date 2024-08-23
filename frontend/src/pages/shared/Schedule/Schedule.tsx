@@ -6,16 +6,16 @@ import { CalendarBlock } from '@features';
 import moment from 'moment';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 
-export default function SchedulePage({ link = false }) {
-	const { lessons } = useLoaderData();
-	const [data, setData] = useState([]);
-	const [date, setDate] = useState({
+export default function SchedulePage({ link = false} : any) {
+	const { lessons }: any = useLoaderData();
+	const [data, setData]: any = useState([]);
+	const [date, setDate]: any = useState({
 		from: moment().startOf('day').toISOString(), // from and to are equal for this scenario
 		to: moment().startOf('day').toISOString()
 	});
 
 	useEffect(() => {
-		let filteredLessons = lessons.filter((item) =>
+		let filteredLessons = lessons.filter((item: any) =>
 			moment(item.start).isSame(date.from, 'day')
 		);
 		for (let i = 0; filteredLessons.length < 7; i++) {
@@ -28,7 +28,7 @@ export default function SchedulePage({ link = false }) {
 		<Page title="Расписание">
 			<div className={styles.table}>
 				{data
-					? data.map((item, index) => (
+					? data.map((item: any, index: number) => (
 							<ScheduleItem
 								data={item}
 								key={index}

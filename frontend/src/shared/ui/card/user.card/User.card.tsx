@@ -3,8 +3,8 @@ import Card from '../card/Card';
 // import useResize from '@shared/hooks/useResize';
 import styles from './User.card.module.scss';
 
-export default function UserCard({ img, name, children, showBtn = false }) {
-	const [show, setShow] = useState(false);
+export default function UserCard({ img, name, children, showBtn = false} : any) {
+	const [show, setShow]: any = useState(false);
 	// const isMobile = useResize('sm');
 	return (
 		<Card className={styles.card_wrapper}>

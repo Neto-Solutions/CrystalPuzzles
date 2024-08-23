@@ -1,7 +1,7 @@
 import styles from './Card.link.module.scss';
 import { Link } from 'react-router-dom';
 
-export default function CardLink({ title, children, to, className, ...props }) {
+export default function CardLink({ title, children, to, className, ...props} : any) {
 	const Tag = to ? Link : 'div';
 	return (
 		<Tag to={to} className={styles.card + ' ' + className} {...props}>

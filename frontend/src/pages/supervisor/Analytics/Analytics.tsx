@@ -5,9 +5,9 @@ import { Card, UserCard, Page, Button } from '@shared/ui';
 import { CalendarButton } from '@features';
 
 export default function AnalyticsPage() {
-	const [comment, setComment] = useState(false);
-	const { avatar, firstname, surname, lastname } = useLoaderData();
-	const [date, setDate] = useState({
+	const [comment, setComment]: any = useState(false);
+	const { avatar, firstname, surname, lastname }: any = useLoaderData();
+	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
 		to: new Date().toISOString()
 	});

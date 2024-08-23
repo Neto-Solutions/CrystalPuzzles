@@ -1,7 +1,8 @@
+import { FormEvent } from 'react';
 import { splitName } from './';
 
-export default function mapUserForm(e) {
-	const data = {};
+export default function mapUserForm(e: any) {
+	const data: any = {};
 
 	for (let i = 0; i < e.target.length; i++) {
 		let key = e.target[i].getAttribute('data-key');

@@ -10,7 +10,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(
-	({ request, url }) => {
+	({ request, url} : any) => {
 		if (
 			request.mode !== 'navigate' ||
 			url.pathname.startsWith('/_') ||
@@ -24,11 +24,11 @@ registerRoute(
 );
 
 registerRoute(
-	({ url }) =>
+	({ url} : any) =>
 		url.origin === self.location.origin && url.pathname.endsWith('.png'),
 	new StaleWhileRevalidate({
 		cacheName: 'images',
-		plugins: [new ExpirationPlugin({ maxEntries: 50 })]
+		plugins: [new ExpirationPlugin({ maxEntries: 50} : any)]
 	})
 );
 

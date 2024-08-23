@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Profile } from '@entities';
 import { Auth } from '@api';
 
-const [profile, err] = await Auth.getProfile();
+const [profile, err]: any = await Auth.getProfile();
 
 const profileSlice = createSlice({
 	name: 'profile',

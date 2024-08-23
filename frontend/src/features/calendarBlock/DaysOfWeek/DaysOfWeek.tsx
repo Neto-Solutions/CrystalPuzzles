@@ -5,7 +5,7 @@ export default function DaysOfWeek() {
 
 	return (
 		<div className={styles.container}>
-			{daysOfWeek.map((day, index) => {
+			{daysOfWeek.map((day, index: number) => {
 				return (
 					<div key={index} className={styles.day}>
 						{day}

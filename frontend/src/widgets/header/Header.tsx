@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from '@shared/assets/header/logo.svg';
 import { selectHeader } from '@store/app';
 import { useSelector } from 'react-redux';
 
-export default function Header({ check_in = false }) {
+export default function Header({ check_in = false} : any) {
 	const title = useSelector(selectHeader);
 	return (
 		<header className={styles.header} data-check-in={check_in}>

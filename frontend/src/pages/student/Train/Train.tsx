@@ -6,8 +6,8 @@ import moment from 'moment';
 import { CalendarButton } from '@features';
 
 export default function TrainPage() {
-	const { lessons: data } = useLoaderData();
-	const [date, setDate] = useState({
+	const { lessons }: any = useLoaderData();
+	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
 		to: new Date().toISOString()
 	});
@@ -15,8 +15,8 @@ export default function TrainPage() {
 	return (
 		<Page title="Мои тренировки">
 			<div className={styles.wrapper}>
-				{data &&
-					data.map((item, index) => {
+				{lessons &&
+					lessons.map((item: any, index: number) => {
 						return (
 							<Link
 								to={`/train/${item._id}`}

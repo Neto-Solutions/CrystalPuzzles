@@ -6,17 +6,17 @@ import GroupName from './group.name/GroupName';
 import Search from './search/Search';
 
 export default function GroupForm() {
-	const [students, setStudents] = useState([]);
-	const [init, setInit] = useState([]);
+	const [students, setStudents]: any = useState([]);
+	const [init, setInit]: any = useState([]);
 	// eslint-disable-next-line no-unused-vars
-	const [name, setName] = useState('');
+	const [name, setName]: any = useState('');
 	// eslint-disable-next-line no-unused-vars
-	const [data, setData] = useState([]);
+	const [data, setData]: any = useState([]);
 
 	function handleSubmit() {
 		// eslint-disable-next-line no-unused-vars
-		const data = students.map((item) => item._id);
-		// createGroup({ name: name, students: data });
+		const data = students.map((item: any) => item._id);
+		// createGroup({ name: name, students: data} : any);
 	}
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ export default function GroupForm() {
 
 	useLayoutEffect(() => {
 		setData(() => {
-			return init.filter((item) => !students.includes(item));
+			return init.filter((item: any) => !students.includes(item));
 		});
 	}, [students]);
 
@@ -35,7 +35,7 @@ export default function GroupForm() {
 				<GroupName setName={setName} />
 				<Search setInit={setInit} />
 				{students &&
-					students.map((item) => (
+					students.map((item: any) => (
 						<Student
 							key={item._id}
 							data={item}
@@ -44,7 +44,7 @@ export default function GroupForm() {
 						/>
 					))}
 				{/* {data &&
-					data.map((item) => (
+					data.map((item: any) => (
 						<Student key={item._id} data={item} setStudents={setStudents} />
 					))} */}
 				<Button title="Создать" className={styles.btn} onClick={handleSubmit} />

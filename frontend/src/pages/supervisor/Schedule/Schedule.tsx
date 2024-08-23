@@ -6,8 +6,8 @@ import { Modal } from '@shared/ui';
 import { AddTreanerSchedule } from './Modal/Modal';
 import { useNavigate } from 'react-router-dom';
 
-export default function ShedulePage({ edit = false }) {
-	const [modalActive, setModalActive] = useState(false);
+export default function ShedulePage({ edit = false} : any) {
+	const [modalActive, setModalActive]: any = useState(false);
 	// const lessons = useLoaderData();
 	const navigate = useNavigate();
 	return (

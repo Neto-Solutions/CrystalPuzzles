@@ -6,8 +6,8 @@ import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function ProgressPage() {
-	const { avatar, firstname, lastname, surname } = useLoaderData();
-	const [date, setDate] = useState({
+	const { avatar, firstname, lastname, surname }: any = useLoaderData();
+	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
 		to: new Date().toISOString()
 	});

@@ -3,7 +3,7 @@ import { $authHost } from './axios.instances';
 class Lesson {
 	#host = $authHost;
 
-	async add(params) {
+	async add(params: any) {
 		const { space_id, trainer_id, trainer_comments, start } = params;
 		const { data } = await this.#host.post(`/lesson`, {
 			space_id,
@@ -14,7 +14,7 @@ class Lesson {
 		return data;
 	}
 
-	async get(params) {
+	async get(params: any) {
 		const { start, end, limit, offset } = params;
 		const { data } = await this.#host.get(`/lesson`, {
 			params: { start, end, limit, offset }
@@ -22,12 +22,12 @@ class Lesson {
 		return data;
 	}
 
-	async getById(id) {
+	async getById(id: string) {
 		const { data } = await this.#host.get(`/lesson/${id}`);
 		return data;
 	}
 
-	async update(id, params) {
+	async update(id: string, params: any) {
 		const {
 			space_id,
 			trainer_id,
@@ -47,7 +47,7 @@ class Lesson {
 		return data;
 	}
 
-	async delete(id) {
+	async delete(id: string) {
 		const { data } = await this.#host.delete(`/lesson/${id}`);
 		return data;
 	}

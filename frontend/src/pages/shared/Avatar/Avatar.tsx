@@ -1,6 +1,6 @@
 import styles from './Avatar.module.scss';
 import { Page } from '@shared/ui';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Button } from '@shared/ui';
 import { ReactComponent as UploadIcon } from '@shared/assets/svg/upload.svg';
 import LS from '@shared/lib/localStorage';
@@ -8,13 +8,13 @@ import { useSelector } from 'react-redux';
 import { selectProfile } from '@store/profile';
 export default function AvatarPage() {
 	const { avatar } = useSelector(selectProfile);
-	const [preview, setPreview] = useState(
+	const [preview, setPreview]: any = useState(
 		LS.get('avatar') || require(`@shared/assets/avatar/${avatar}.png`)
 	);
-	const [userPhoto, setUserPhoto] = useState(null);
-	const [err, setErr] = useState(null);
+	const [userPhoto, setUserPhoto]: any = useState(null);
+	const [err, setErr]: any = useState(null);
 
-	function submitForm(e) {
+	function submitForm(e: FormEvent): any {
 		e.preventDefault();
 		if (!userPhoto) return;
 		LS.remove('avatar');
@@ -32,20 +32,20 @@ export default function AvatarPage() {
 							accept="image/png, image/jpeg"
 							hidden
 							onChange={(e) => {
-								if (e.target.files[0].size > 5 * 1024 * 1024) {
+								if (e.target.files![0].size > 5 * 1024 * 1024) {
 									setErr('Фото должно быть меньше 5 МБ');
 									return;
 								}
 								setErr(null);
-								setUserPhoto(e.target.files[0]);
-								setPreview(URL.createObjectURL(e.target.files[0]));
+								setUserPhoto(e.target.files![0]);
+								setPreview(URL.createObjectURL(e.target.files![0]));
 							}}
 						/>
 						<Button
 							title="Загрузить"
 							className={styles.button}
 							type="button"
-							onClick={() => document.getElementById('input_file').click()}
+							onClick={() => document.getElementById('input_file')!.click()}
 						>
 							<UploadIcon />
 						</Button>
@@ -54,7 +54,7 @@ export default function AvatarPage() {
 				</div>
 
 				<div className={styles.container_images}>
-					{Array.from({ length: 9 }).map((_, index) => {
+					{Array.from({ length: 9 }).map((_: any, index: number) => {
 						if (!index) return;
 						return (
 							<img

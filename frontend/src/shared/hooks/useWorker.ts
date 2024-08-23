@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-export default function useWorker(fn) {
-	const [worker, setWorker] = useState(null);
+export default function useWorker(fn: Function) {
+	const [worker, setWorker]: any = useState(null);
 
 	useEffect(() => {
 		let code = fn.toString();

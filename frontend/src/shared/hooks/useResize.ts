@@ -5,10 +5,13 @@ const config = { sm: 440, md: 840, lg: 1200 };
 /**
  * @param {string} size
  */
-export default function useResize(size) {
-	const [state, setState] = useState(window.innerWidth <= config[size]);
 
-	const handleResize = (size) => {
+type Size = 'sm' | 'md' | 'lg';
+
+export default function useResize(size: Size) {
+	const [state, setState]: any = useState(window.innerWidth <= config[size]);
+
+	const handleResize = (size: number) => {
 		const width = window.innerWidth;
 		if (width <= size) {
 			setState(true);

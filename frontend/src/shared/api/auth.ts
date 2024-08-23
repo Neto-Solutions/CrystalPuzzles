@@ -12,7 +12,7 @@ class Auth {
 		return data;
 	}
 
-	async register(params) {
+	async register(params: any) {
 		const {
 			email,
 			password,
@@ -23,7 +23,7 @@ class Auth {
 			is_man,
 			contact
 		} = params;
-		const { data } = await this.#host
+		const { data }: any = await this.#host
 			.post('/user/register', {
 				email,
 				password,
@@ -39,7 +39,7 @@ class Auth {
 		return data;
 	}
 
-	async login(params) {
+	async login(params: any) {
 		const { username, password } = params;
 		const formData = new FormData();
 		formData.append('username', username);
@@ -59,7 +59,7 @@ class Auth {
 	}
 
 	async updateToken() {
-		const { data } = await this.#host.post('/auth/refresh-token').then((res) =>
+		const { data }: any = await this.#host.post('/auth/refresh-token').then((res) =>
 			Cookies.set('token', res.data.access_token, {
 				expires: 1,
 				sameSite: 'strict'

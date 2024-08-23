@@ -10,7 +10,7 @@ export default function DaysOfWeek() {
 
 	return (
 		<ul className={classNames(styles.grid, styles.weeks)}>
-			{daysOfWeek.map((item) => (
+			{daysOfWeek.map((item: any) => (
 				<li key={item} className={styles.week}>
 					{item}
 				</li>

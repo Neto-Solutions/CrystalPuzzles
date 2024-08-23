@@ -6,7 +6,7 @@ import { NotificationItem } from './NotificationItem/NotificationItem';
 import { NotificationItemSeparate } from './NotificationItemSeparate/NotificationItemSeparate';
 import styles from './Notification.module.scss';
 
-export default function Notification({ array = Array(2).fill(''), className }) {
+export default function Notification({ array = Array(2).fill(''), className} : any) {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const isMainPage = location.pathname === '/';
@@ -29,7 +29,7 @@ export default function Notification({ array = Array(2).fill(''), className }) {
 				<div className={styles.wrapper}>
 					<div className={styles.notification_wrapper}>
 						<ul className={styles.notifications}>
-							{array.map((_, index) =>
+							{array.map((_: any, index: number) =>
 								isMainPage ? (
 									<NotificationItem key={index} />
 								) : (
@@ -41,7 +41,7 @@ export default function Notification({ array = Array(2).fill(''), className }) {
 				</div>
 			) : (
 				<ul className={styles.notifications}>
-					{array.map((_, index) =>
+					{array.map((_: any, index: number) =>
 						isMainPage ? (
 							<NotificationItem key={index} />
 						) : (

@@ -8,8 +8,8 @@ import RewardsPopup from './Reward/Reward';
 import { useLoaderData } from 'react-router-dom';
 
 export default function MainPage() {
-	const [reward, setReward] = useState(false);
-	const { lessons } = useLoaderData();
+	const [reward, setReward]: any = useState(false);
+	const { lessons }: any = useLoaderData();
 	const isMobile = useResize('sm');
 
 	return (

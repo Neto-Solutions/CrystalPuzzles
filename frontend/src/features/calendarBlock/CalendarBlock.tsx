@@ -4,21 +4,27 @@ import Header from './Header/Header';
 import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 import moment from 'moment';
 
+interface ICalendarBlock {
+	date: any;
+	setDate: any;
+	onHide?: any;
+	range?: boolean;
+}
 export default function CalendarBlock({
 	date,
 	setDate,
 	onHide,
 	range = false
-}) {
-	const [days, setDays] = useState([]);
-	const [month, setMonth] = useState(moment());
+}: ICalendarBlock) {
+	const [days, setDays]: any = useState([]);
+	const [month, setMonth]: any = useState(moment());
 
 	useEffect(() => {
 		const startOfMonth = moment(month).startOf('month').day();
 		const daysInMonth = moment(month).endOf('month').date();
 		setDays(() =>
 			Array.from({ length: startOfMonth - 1 }, () => '').concat(
-				Array.from({ length: daysInMonth }, (_, i) => i + 1)
+				Array.from({ length: daysInMonth }, (_, i) => i + 1).toString()
 			)
 		);
 	}, [month]);
@@ -29,7 +35,7 @@ export default function CalendarBlock({
 			<div className={styles.body_container}>
 				<DaysOfWeek />
 				<div className={styles.body}>
-					{days.map((day, index) => {
+					{days.map((day: any, index: any) => {
 						return (
 							<div
 								key={index}
@@ -58,8 +64,8 @@ export default function CalendarBlock({
 	);
 }
 
-function setRange(fn, month, day) {
-	fn(({ from, to }) => {
+function setRange(fn: any, month: any, day: any) {
+	fn(({ from, to }: any) => {
 		from = moment(from);
 		to = moment(to);
 		let date = moment(month).date(day);
@@ -78,8 +84,8 @@ function setRange(fn, month, day) {
 	});
 }
 
-function setDay(fn, month, day) {
-	fn(({ from, to }) => {
+function setDay(fn: any, month: any, day: any) {
+	fn(({ from, to }: any) => {
 		from = moment(from);
 		to = moment(to);
 		let date = moment(month).date(day);

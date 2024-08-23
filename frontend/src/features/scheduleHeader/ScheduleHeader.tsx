@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { ReactComponent as Arrow } from '@shared/assets/svg/circle_arrow.svg';
 import styles from './ScheduleHeader.module.scss';
 
-export default function ScheduleHeader(props) {
+export default function ScheduleHeader(props: any) {
 	const { onPrevClick, onNextClick, date, className } = props;
 	// TODO: доделать функциoнал
 	return (

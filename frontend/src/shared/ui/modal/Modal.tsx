@@ -1,13 +1,21 @@
 import classNames from 'classnames';
 import styles from './Modal.module.scss';
 
+interface IModalProps {
+	active: boolean;
+	setActive: React.Dispatch<React.SetStateAction<boolean>>;
+	children: React.ReactNode;
+	className?: string;
+	width?: string;
+}
+
 export default function Modal({
 	active,
 	setActive,
 	children,
 	className,
 	width
-}) {
+}: IModalProps) {
 	return (
 		<div
 			className={classNames(
@@ -19,7 +27,6 @@ export default function Modal({
 		>
 			<div
 				className={styles.modal_content}
-				width={width}
 				onClick={(e) => e.stopPropagation()}
 			>
 				{children}
