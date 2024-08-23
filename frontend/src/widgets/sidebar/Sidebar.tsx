@@ -7,7 +7,7 @@ import { useSwipe } from '@hooks';
 import { NavMenuList } from './navMenu/NavMenu';
 import { Account } from './accaunt/Account';
 import { selectProfile } from '@store/profile';
-import { ReactComponent as Arrow } from '@shared/assets/svg/arrow.svg';
+import { ReactComponent as Arrow } from '@assets/svg/arrow.svg';
 // import help from 'assets/sidebar/help.svg';
 import exit from 'assets/sidebar/exit.svg';
 import edit from 'assets/sidebar/edit.svg';
@@ -40,7 +40,7 @@ export default function Sidebar() {
 					</button>
 				)}
 				<Account user={user} className={styles.account} isMobile={isMobile} />
-				<NavMenuList role={user!.role!} isMobile={isMobile} />
+				<NavMenuList role={user.role} isMobile={isMobile} />
 
 				<div className={styles.links}>
 					<div

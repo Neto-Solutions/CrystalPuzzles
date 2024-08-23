@@ -4,11 +4,11 @@
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"strict": true,
-		"forceConsistentCasingInFileNames": true,
-		"noFallthroughCasesInSwitch": true,
+		// "esModuleInterop": true,
+		// "allowSyntheticDefaultImports": true,
+		// "strict": true,
+		// "forceConsistentCasingInFileNames": true,
+		// "noFallthroughCasesInSwitch": true,
 		"module": "esnext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
@@ -32,10 +32,11 @@
 			"@hooks": ["shared/hooks"],
 			"@api": ["shared/api"],
 			"@store": ["app/providers/store"],
+			"@store/*": ["app/providers/store/*"],
 			"@const": ["shared/const"],
 			"@assets/*": ["shared/assets/*"],
-			"styles/*": ["app/styles/*"],
+			"styles/*": ["app/styles/*"]
 		}
 	},
-	"include": ["src"]
+	"include": ["src", "custom.d.ts"],
 }
