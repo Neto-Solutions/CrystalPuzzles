@@ -13,8 +13,8 @@ import {
 	UsersListPage,
 	SchedulePage
 } from '@supervisor';
-
-import analytics from '@assets/sidebar/analytics.svg';
+ 
+import analytics from '../assets/sidebar/analytics.svg';
 import progress from 'assets/sidebar/progress.svg';
 import tables from 'assets/sidebar/tables.svg';
 import schedule from 'assets/sidebar/schedule.svg';

@@ -2,6 +2,23 @@ const path = require('path');
 
 module.exports = {
 	webpack: {
+		module: {
+			rules: [
+				{
+					test: /\.svg$/,
+					oneOf: [
+						{
+							loader: '@svgr/webpack',
+							options: {
+								svgoConfig: {
+									plugins: [{ removeViewBox: false }]
+								}
+							}
+						}
+					]
+				}
+			]
+		},
 		alias: {
 			'@src': path.resolve(__dirname, 'src'),
 			'@app': path.resolve(__dirname, 'src/app'),
