@@ -1,0 +1,42 @@
+{
+	"compilerOptions": {
+		"target": "es2017",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"paths": {
+			"@app/*": ["src/app/*"],
+
+			"@pages/*": ["src/pages/*"],
+			"@widgets": ["src/widgets"],
+			"@features": ["src/features"],
+			"@entities": ["src/entities"],
+			"@shared/*": ["src/shared/*"],
+
+			"@checkIn/*": ["src/pages/checkIn/*"],
+			"@supervisor/*": ["src/pages/supervisor/*"],
+			"@trainer/*": ["src/pages/trainer/*"],
+			"@student/*": ["src/pages/student/*"],
+
+			"@hooks/*": ["src/shared/hooks/*"],
+			"@api": ["src/shared/api"],
+			"@store": ["src/app/providers/store"],
+			"styles/*": ["src/app/styles/*"]
+		},
+
+	},
+	
+	"include": ["src/**/*"]
+}

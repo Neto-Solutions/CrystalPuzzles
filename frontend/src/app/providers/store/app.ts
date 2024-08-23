@@ -12,7 +12,7 @@ const appSlice = createSlice({
 	}
 });
 
-const selectHeader = (state) => state.app.header;
+const selectHeader = (state: any) => state.app.header;
 
 const { setHeader } = appSlice.actions;
 

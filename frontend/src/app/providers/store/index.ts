@@ -1,12 +1,12 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
-import { profileSlice } from '@store/profile';
+import { profileSlice } from './profile';
 import { appSlice } from './app';
 
 const mainReducer = combineSlices(profileSlice, appSlice);
 
 const store = configureStore({
 	reducer: mainReducer,
-	middleware: (getDefaultMiddleware) =>
+	middleware: (getDefaultMiddleware: any) =>
 		getDefaultMiddleware({
 			serializableCheck: false
 		})

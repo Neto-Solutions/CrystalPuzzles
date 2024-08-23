@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Profile } from '@entities/profile';
-import { Auth } from '@shared/api';
+import { Profile } from '@entities';
+import { Auth } from '@api';
 
 const [profile, err] = await Auth.getProfile();
 
@@ -16,7 +16,7 @@ const profileSlice = createSlice({
 	}
 });
 
-const selectProfile = (state) => state.profile.profile;
+const selectProfile = (state: any) => state.profile.profile;
 
 const { setProfile } = profileSlice.actions;
 
