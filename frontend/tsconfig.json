@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es2017",
+		"target": "ES2022",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -18,25 +18,20 @@
 		"baseUrl": ".",
 		"paths": {
 			"@app/*": ["src/app/*"],
-
 			"@pages/*": ["src/pages/*"],
 			"@widgets": ["src/widgets"],
 			"@features": ["src/features"],
 			"@entities": ["src/entities"],
 			"@shared/*": ["src/shared/*"],
-
 			"@checkIn/*": ["src/pages/checkIn/*"],
 			"@supervisor/*": ["src/pages/supervisor/*"],
 			"@trainer/*": ["src/pages/trainer/*"],
 			"@student/*": ["src/pages/student/*"],
-
 			"@hooks/*": ["src/shared/hooks/*"],
 			"@api": ["src/shared/api"],
 			"@store": ["src/app/providers/store"],
 			"styles/*": ["src/app/styles/*"]
-		},
-
+		}
 	},
-	
-	"include": ["src/**/*"]
+	"include": ["src"]
 }

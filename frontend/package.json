@@ -1,6 +1,6 @@
 {
 	"name": "frontend",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
 		"@nivo/line": "~0.87.0",
@@ -26,32 +26,7 @@
 		"workbox-range-requests": "~7.1.0",
 		"workbox-routing": "~7.1.0",
 		"workbox-strategies": "~7.1.0",
-		"workbox-streams": "~7.1.0"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build && node set.env.js",
-		"serve": "serve -s build -p 3000",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"set:env": "node set.env.js",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
+		"workbox-streams": "~7.1.0",
 		"@babel/plugin-proposal-private-property-in-object": "~7.21.11",
 		"@testing-library/jest-dom": "~5.17.0",
 		"@testing-library/react": "~13.4.0",
@@ -70,5 +45,34 @@
 		"react-scripts": "^5.0.1",
 		"sass": "~1.77.0",
 		"typescript": "^4.9.5"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build && node set.env.js",
+		"serve": "serve -s build -p 3000",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"set:env": "node set.env.js",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	}
 }
