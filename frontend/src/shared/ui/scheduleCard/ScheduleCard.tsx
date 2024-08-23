@@ -3,7 +3,7 @@ import styles from './ScheduleCard.module.scss';
 import moment from 'moment';
 import { useResize } from '@hooks';
 
-export default function ScheduleCard({ data} : any) {
+export default function ScheduleCard({ data }: any) {
 	const isMobile = useResize('sm');
 	return (
 		<>

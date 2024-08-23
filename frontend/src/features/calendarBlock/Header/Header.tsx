@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import { ReactComponent as Arrow } from '@shared/assets/svg/small_arrow.svg';
 
-export default function Header({ month, setMonth, onHide} : any) {
+export default function Header({ month, setMonth, onHide }: any) {
 	const monthsOfYear = [
 		'январь',
 		'февраль',

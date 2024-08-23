@@ -4,12 +4,13 @@ import Header from './Header/Header';
 import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 import moment from 'moment';
 
-interface ICalendarBlock {
+interface ICalendarBlock extends React.PropsWithChildren {
 	date: any;
 	setDate: any;
 	onHide?: any;
 	range?: boolean;
 }
+
 export default function CalendarBlock({
 	date,
 	setDate,

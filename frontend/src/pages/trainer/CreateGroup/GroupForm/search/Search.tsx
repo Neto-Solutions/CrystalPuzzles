@@ -1,6 +1,6 @@
 import styles from './Search.module.scss';
 
-export default function Search({ setInit} : any) {
+export default function Search({ setInit }: any) {
 	function handleSearch(e: any) {
 		setInit(e.target.value);
 	}

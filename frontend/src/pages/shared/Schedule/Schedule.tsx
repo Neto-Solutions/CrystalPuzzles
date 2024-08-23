@@ -6,7 +6,7 @@ import { CalendarBlock } from '@features';
 import moment from 'moment';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 
-export default function SchedulePage({ link = false} : any) {
+export default function SchedulePage({ link = false }: any) {
 	const { lessons }: any = useLoaderData();
 	const [data, setData]: any = useState([]);
 	const [date, setDate]: any = useState({

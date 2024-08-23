@@ -2,9 +2,9 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 declare global {
-  interface Window {
-    API_URL: string;
-  }
+	interface Window {
+		API_URL: string;
+	}
 }
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_API || window.API_URL;

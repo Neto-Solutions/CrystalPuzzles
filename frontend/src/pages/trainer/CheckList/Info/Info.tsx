@@ -1,7 +1,7 @@
 import styles from './Info.module.scss';
 import moment from 'moment';
 
-export default function Info({ data, className} : any) {
+export default function Info({ data, className }: any) {
 	return (
 		<section className={styles.info_container + ' ' + className}>
 			<div className={styles.date}>

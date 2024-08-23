@@ -1,6 +1,6 @@
 import styles from './GroupName.module.scss';
 
-export default function CreateForm({ setName} : any) {
+export default function CreateForm({ setName }: any) {
 	return (
 		<div className={styles.container}>
 			<input

@@ -40,7 +40,7 @@ const users = [
 	}
 ];
 
-async function validateUser({ username, password} : any) {
+async function validateUser({ username, password }: any) {
 	const user = await users.find(
 		(user) => user.email === username && user.password === password
 	);

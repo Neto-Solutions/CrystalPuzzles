@@ -13,7 +13,7 @@ import {
 	UsersListPage,
 	SchedulePage
 } from '@supervisor';
- 
+
 import analytics from 'assets/sidebar/analytics.svg';
 import progress from 'assets/sidebar/progress.svg';
 import tables from 'assets/sidebar/tables.svg';
@@ -42,7 +42,7 @@ const supervisorRouter = [
 	{
 		path: '/progress/:id',
 		element: <ProgressPage />,
-		loader: ({ params: { id }} : any) => {
+		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user._id == id);
 		}
 	},
@@ -58,7 +58,7 @@ const supervisorRouter = [
 	{
 		path: '/analytic/:id',
 		element: <AnalyticsPage />,
-		loader: ({ params: { id }} : any) => {
+		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user._id == id);
 		}
 	},
@@ -105,7 +105,7 @@ const supervisorRouter = [
 	{
 		path: '/students/:id',
 		element: <ProfilePage title="Ученики" />,
-		loader: ({ params: { id }} : any) => {
+		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user._id == id);
 		}
 	},
@@ -116,7 +116,7 @@ const supervisorRouter = [
 	{
 		path: '/trainers/:id',
 		element: <ProfilePage title="Тренеры" />,
-		loader: ({ params: { id }} : any) => {
+		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user._id == id);
 		}
 	}

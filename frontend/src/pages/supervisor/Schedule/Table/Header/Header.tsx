@@ -1,6 +1,6 @@
 import { ScheduleHeader } from '@features';
 
-export default function Header({ startDate, setStartDate} : any) {
+export default function Header({ startDate, setStartDate }: any) {
 	const generateHeader = (): any => {
 		const endDate = startDate.clone().add(13, 'days');
 
@@ -25,7 +25,9 @@ export default function Header({ startDate, setStartDate} : any) {
 			onPrevClick={() =>
 				setStartDate((prev: any) => prev.clone().subtract(14, 'days'))
 			}
-			onNextClick={() => setStartDate((prev: any) => prev.clone().add(14, 'days'))}
+			onNextClick={() =>
+				setStartDate((prev: any) => prev.clone().add(14, 'days'))
+			}
 		/>
 	);
 }

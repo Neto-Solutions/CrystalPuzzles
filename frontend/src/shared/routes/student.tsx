@@ -33,7 +33,7 @@ const studentRouter = [
 	{
 		path: '/train/:id',
 		element: <ExercisePage />,
-		loader: ({ params} : any) => {
+		loader: ({ params }: any) => {
 			return {
 				lessons,
 				id: params.id

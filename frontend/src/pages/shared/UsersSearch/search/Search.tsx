@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 import { users } from '@shared/const';
 
-export default function Search({ setUsers} : any) {
+export default function Search({ setUsers }: any) {
 	const inputRef: any = useRef();
 
 	async function search() {

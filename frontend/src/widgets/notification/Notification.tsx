@@ -6,7 +6,10 @@ import { NotificationItem } from './NotificationItem/NotificationItem';
 import { NotificationItemSeparate } from './NotificationItemSeparate/NotificationItemSeparate';
 import styles from './Notification.module.scss';
 
-export default function Notification({ array = Array(2).fill(''), className} : any) {
+export default function Notification({
+	array = Array(2).fill(''),
+	className
+}: any) {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const isMainPage = location.pathname === '/';

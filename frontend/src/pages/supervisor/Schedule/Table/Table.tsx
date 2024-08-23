@@ -6,7 +6,7 @@ import DaysList from './DaysList/DaysList';
 import Header from './Header/Header';
 import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 
-const Table = ({ setModalActive, edit} : any) => {
+const Table = ({ setModalActive, edit }: any) => {
 	const [startDate, setStartDate]: any = useState(moment());
 
 	return (

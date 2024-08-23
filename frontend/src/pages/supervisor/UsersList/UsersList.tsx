@@ -2,7 +2,7 @@ import { Page } from '@shared/ui';
 import { UserCard } from '@shared/ui/card';
 import { Link, useLoaderData } from 'react-router-dom';
 
-export default function UsersListPage({ type} : any) {
+export default function UsersListPage({ type }: any) {
 	const users: any = useLoaderData();
 	return (
 		<Page title="График прогресса тренеров">

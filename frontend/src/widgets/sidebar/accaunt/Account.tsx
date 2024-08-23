@@ -3,7 +3,7 @@ import avatar from '@shared/assets/avatar/0.png';
 import { roleAdapter } from '@entities';
 import { useMemo, useState } from 'react';
 
-export const Account = ({ user, className, isMobile} : any) => {
+export const Account = ({ user, className, isMobile }: any) => {
 	// eslint-disable-next-line no-unused-vars
 	const [userPhoto]: any = useState(
 		(user?.avatar && require(`assets/avatar/${user?.avatar}.png`)) || avatar

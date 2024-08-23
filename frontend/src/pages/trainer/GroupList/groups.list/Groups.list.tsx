@@ -1,6 +1,6 @@
 import styles from './Groups.list.module.scss';
 
-export default function GroupsList({ data} : any) {
+export default function GroupsList({ data }: any) {
 	return (
 		<div className={styles.container}>
 			{data?.map((item: any) => (

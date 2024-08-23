@@ -59,12 +59,14 @@ class Auth {
 	}
 
 	async updateToken() {
-		const { data }: any = await this.#host.post('/auth/refresh-token').then((res) =>
-			Cookies.set('token', res.data.access_token, {
-				expires: 1,
-				sameSite: 'strict'
-			})
-		);
+		const { data }: any = await this.#host
+			.post('/auth/refresh-token')
+			.then((res) =>
+				Cookies.set('token', res.data.access_token, {
+					expires: 1,
+					sameSite: 'strict'
+				})
+			);
 		return data;
 	}
 

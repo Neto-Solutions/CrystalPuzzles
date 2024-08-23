@@ -15,11 +15,11 @@ export const AddTreanerSchedule = ({ day }: any) => {
 	});
 
 	const setTrainer = (id: string) => {
-		setData((prev: any) => ({ ...prev, trainer_id: id}));
+		setData((prev: any) => ({ ...prev, trainer_id: id }));
 	};
 
 	const setSpace = (id: string) => {
-		setData((prev: any) => ({ ...prev, space_id: id}));
+		setData((prev: any) => ({ ...prev, space_id: id }));
 	};
 
 	const handleSubmit = async () => {

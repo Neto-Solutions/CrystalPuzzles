@@ -1,5 +1,5 @@
 import styles from './Spinner.module.scss';
-export default function Spinner({ children, isLoading, height} : any) {
+export default function Spinner({ children, isLoading, height }: any) {
 	return (
 		<>
 			{isLoading ? (

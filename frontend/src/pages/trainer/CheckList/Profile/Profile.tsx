@@ -5,7 +5,7 @@ import { selectProfile } from '@store/profile';
 import LS from '@shared/lib/localStorage';
 import avatar from '@shared/assets/avatar/0.png';
 
-export default function Profile({ className} : any) {
+export default function Profile({ className }: any) {
 	const user = useSelector(selectProfile);
 	const [userPhoto, setUserPhoto]: any = useState(LS.get('avatar') || avatar);
 

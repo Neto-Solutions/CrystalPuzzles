@@ -2,7 +2,7 @@ import styles from './DaysList.module.scss';
 import classNames from 'classnames';
 import { Button } from '../Button/Button';
 
-export default function DaysList({ date, setModalActive, edit} : any) {
+export default function DaysList({ date, setModalActive, edit }: any) {
 	const data = Array(14).fill('');
 
 	return (

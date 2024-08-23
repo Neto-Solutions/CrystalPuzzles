@@ -38,5 +38,5 @@
 			"styles/*": ["app/styles/*"]
 		}
 	},
-	"include": ["src", "custom.d.ts"],
+	"include": ["src", "custom.d.ts"]
 }
