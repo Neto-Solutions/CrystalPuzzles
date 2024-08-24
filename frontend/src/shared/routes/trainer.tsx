@@ -18,9 +18,7 @@ import students from 'assets/sidebar/students.svg';
 import home from 'assets/sidebar/home.svg';
 import { AvatarPage, SchedulePage } from '@pages/shared';
 
-import { lessons } from '../const/lessons';
-import { groups } from '../const/groups';
-import { users } from '../const/users';
+import { lessons, groups, users } from '@const';
 
 const trainerRouter = [
 	{

@@ -4,7 +4,7 @@ import App from '@app/App';
 import ErrorPage from '@pages/shared/Error/Error';
 import { redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectProfile } from '../../app/providers/store/profile';
+import { selectProfile } from '@app/providers/store/profile';
 
 const MainRouter = (): any => {
 	const { role } = useSelector(selectProfile);

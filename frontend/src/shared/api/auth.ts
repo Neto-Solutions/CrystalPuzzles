@@ -73,7 +73,8 @@ class Auth {
 	async logout() {
 		const data = await this.#host
 			.post('/auth/logout')
-			.then(() => Cookies.remove('token'));
+			.then(() => Cookies.remove('token'))
+			.finally(() => location.reload());
 		return data;
 	}
 }
