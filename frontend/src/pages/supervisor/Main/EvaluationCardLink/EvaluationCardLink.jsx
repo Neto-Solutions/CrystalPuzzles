@@ -3,6 +3,10 @@ import styles from './EvaluationCardLink.module.scss';
 
 export const EvaluationCardLink = () => {
 	return (
-		<CardLink to="/evaluation" title="Таблицы" className={styles.evaluation} />
+		<CardLink
+			to="/evaluation"
+			title="Учебные планы"
+			className={styles.evaluation}
+		/>
 	);
 };

@@ -1,14 +1,19 @@
 @use '~styles/mixins' as *;
 
 .reward_card {
-	background-image: url('~assets/gifs/smile-with-eyes.gif');
+	background-image: url('./assets/unicorn.svg');
 	background-repeat: no-repeat;
 	background-position: bottom;
-	background-size: 50%;
+	background-size: 35%;
 	background-position-y: 80%;
 	grid-area: reward;
-	@include sm() {
+
+	@include md() {
 		width: 100%;
+		background-image: url('./assets/fux.svg');
+	}
+
+	@include sm() {
 		background-image: none;
 	}
 }
@@ -38,7 +43,16 @@
 }
 
 .schedule_card {
+	padding: 20px;
 	grid-area: schedule;
+
+	h2 {
+		margin-bottom: 50px;
+
+		@include md() {
+			margin-bottom: 20px;
+		}
+	}
 
 	@include sm() {
 		width: 100%;
@@ -48,6 +62,7 @@
 .feedback {
 	grid-area: feedback;
 }
+
 .btn {
 	grid-area: btn;
 	background-color: #2b2d91;
