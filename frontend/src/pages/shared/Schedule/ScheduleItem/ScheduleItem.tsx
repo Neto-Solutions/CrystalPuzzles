@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import classNames from 'classnames';
 
-export default function ScheduleItem({ data, link = false, className }: any) {
+export default function ScheduleItem({ data, className }: any) {
 	return (
 		<Link to={`/schedule/${data._id}`} className={styles.link}>
 			<div className={classNames(styles.row, className)}>

@@ -6,15 +6,13 @@ interface IModalProps {
 	setActive: React.Dispatch<React.SetStateAction<boolean>>;
 	children: React.ReactNode;
 	className?: string;
-	width?: string;
 }
 
 export default function Modal({
 	active,
 	setActive,
 	children,
-	className,
-	width
+	className
 }: IModalProps) {
 	return (
 		<div

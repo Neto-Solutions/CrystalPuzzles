@@ -23,7 +23,7 @@ export default function ShedulePage({ edit = false }: any) {
 					<Modal
 						active={modalActive}
 						setActive={setModalActive}
-						width={'1078px'}
+						// width={'1078px'}
 					>
 						<AddTreanerSchedule day={modalActive} />
 					</Modal>

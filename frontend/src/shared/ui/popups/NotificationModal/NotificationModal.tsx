@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
-import { ReactPortal, useEffect } from 'react';
+import { useEffect } from 'react';
 import Title from '../../title/Title';
 import envelopeIcon from '../../../assets/svg/envelope.svg';
 import envelopeSecondIcon from '../../../assets/svg/envelope-2.svg';

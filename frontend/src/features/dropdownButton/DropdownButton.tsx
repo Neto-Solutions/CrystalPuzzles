@@ -3,7 +3,7 @@ import { ReactComponent as SmallArrow } from '@shared/assets/svg/small_arrow.svg
 import styles from './DropdownButton.module.scss';
 
 export default function DropdownButton(props: any) {
-	const { title, onClick, className, open, data = [], width, setState } = props;
+	const { title, onClick, className, open, data = [], setState } = props;
 	return (
 		<div className={classNames(styles.dropdown, className)} onClick={onClick}>
 			<button className={styles.dropdown_button}>

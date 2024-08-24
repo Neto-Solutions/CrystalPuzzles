@@ -1,4 +1,3 @@
-import { FormEvent } from 'react';
 import { splitName } from './';
 
 export default function mapUserForm(e: any) {
