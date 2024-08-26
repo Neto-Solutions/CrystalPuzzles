@@ -21,14 +21,19 @@ import schedule from 'assets/sidebar/schedule.svg';
 import feedback from 'assets/sidebar/feedback.svg';
 import home from 'assets/sidebar/home.svg';
 import { AvatarPage } from '@pages/shared';
-
 import { users } from '@shared/const/users';
+import { lessons } from '../const/lessons';
 
 const supervisorRouter = [
 	{
 		path: '/',
 		element: <MainPage />,
-		img: home
+		img: home,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/progress',

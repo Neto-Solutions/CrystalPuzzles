@@ -33,7 +33,15 @@
 
 .schedule_card {
 	grid-area: schedule;
-	padding: 20px 35px;
+	padding: 18px 10px;
+
+	h2 {
+		margin-bottom: 50px;
+	
+		@include md() {
+			margin-bottom: 20px;
+		}
+	}
 
 	@include sm() {
 		padding: 10px;

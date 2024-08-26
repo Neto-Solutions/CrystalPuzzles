@@ -18,7 +18,7 @@ export default function SchedulePage({ link = false }) {
 		let filteredLessons = lessons.filter((item) =>
 			moment(item.start).isSame(date.from, 'day')
 		);
-		for (let i = 0; filteredLessons.length < 7; i++) {
+		for (let i = 0; filteredLessons.length < 3; i++) {
 			filteredLessons.push({});
 		}
 		setData(filteredLessons);
