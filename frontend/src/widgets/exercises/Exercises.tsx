@@ -1,9 +1,10 @@
-import styles from './Exercises.module.scss';
+import classNames from 'classnames';
 import ExerciseItem from './ExerciseItem/ExerciseItem';
+import styles from './Exercises.module.scss';
 
 export default function Exercises({ data, className, disabled, checked }: any) {
 	return (
-		<ul className={styles.list + ' ' + className}>
+		<ul className={classNames(styles.list, className)}>
 			{data?.map((item: any, index: number) => (
 				<ExerciseItem
 					key={item._id}

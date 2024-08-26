@@ -28,7 +28,12 @@ const supervisorRouter = [
 	{
 		path: '/',
 		element: <MainPage />,
-		img: home
+		img: home,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	},
 	{
 		path: '/progress',

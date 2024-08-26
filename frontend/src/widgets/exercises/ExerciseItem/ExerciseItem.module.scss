@@ -28,12 +28,13 @@
 	height: 67px;
 	display: grid;
 	place-content: center;
-	background-color: rgba(255, 255, 255, 0.2);
+	// background-color: rgba(255, 255, 255, 0.2);
+	background-color: var(--bg-date-picker);
 	border-radius: 13px;
 }
 
 .icon {
-	height: 3.5em
+	height: 3em;
 }
 
 .text {
