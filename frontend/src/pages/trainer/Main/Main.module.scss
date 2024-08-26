@@ -1,18 +1,49 @@
+@use '~styles/mixins' as *;
+
 .wrapper {
+	width: 100%;
 	display: grid;
 	gap: 20px;
-	grid-template-columns: 714px 1fr;
+	grid-template-columns: 2fr 1fr;
 	grid-template-areas:
-		'notifications schedule'
-		'notifications schedule';
+		'schedule  notifications'
+		'schedule  notifications';
 
-	.notifications {
-		grid-area: notifications;
-
+	@media (max-width: 1024px) {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'schedule'
+			'notifications';
 	}
 
-	.schedule_card {
-		grid-area: schedule;
-		padding: 20px 35px;
+	@include sm() {
+		grid-template-areas:
+			'notifications'
+			'schedule';
+	}
+}
+
+.notifications {
+	grid-area: notifications;
+
+	@include md() {
+		max-width: 300px;
+	}
+}
+
+.schedule_card {
+	grid-area: schedule;
+	padding: 18px 10px;
+
+	h2 {
+		margin-bottom: 50px;
+	
+		@include md() {
+			margin-bottom: 20px;
+		}
+	}
+
+	@include sm() {
+		padding: 10px;
 	}
 }

@@ -1,14 +1,19 @@
-import styles from './ScheduleCard.module.scss';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import styles from './ScheduleCard.module.scss';
 
 export default function ScheduleCard({ data }) {
 	return (
 		<>
 			{data
 				? data.map((item, index) => (
-						<div key={index} className={styles.item_container}>
+						<Link
+							to={`/train/${item._id}`}
+							key={index}
+							className={styles.item_container}
+						>
 							<div className={styles.item}>
-								<div className={styles.place_container}>
+								<div className={styles.wrapper}>
 									<span className={styles.time}>
 										{moment(item.start).format('HH:mm')}
 									</span>
@@ -25,7 +30,7 @@ export default function ScheduleCard({ data }) {
 										'.'}
 								</div>
 							</div>
-						</div>
+						</Link>
 					))
 				: null}
 		</>
