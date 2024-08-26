@@ -1,5 +1,5 @@
 import styles from './Main.module.scss';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { Page, CardLink } from '@shared/ui';
 import { Notification } from '@widgets';
 import { EvaluationCardLink } from './EvaluationCardLink/EvaluationCardLink';
@@ -8,8 +8,7 @@ import { ProgressCardLink } from './ProgressCardLink/ProgressCardLink';
 import ScheduleCard from '@shared/ui/scheduleCard/ScheduleCard';
 
 export default function MainPage() {
-	const navigate = useNavigate();
-	const { lessons } = useLoaderData();
+	const { lessons }: any = useLoaderData();
 
 	return (
 		<Page title="Главная страница">

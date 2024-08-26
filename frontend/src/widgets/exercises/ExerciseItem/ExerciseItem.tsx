@@ -2,7 +2,7 @@ import styles from './ExerciseItem.module.scss';
 import snowflake from '../../../shared/assets/svg/snowflake.svg';
 import Checkbox from '@shared/ui/checkbox/Checkbox';
 
-export default function ExerciseItem({ index, img, text, ...props }: any) {
+export default function ExerciseItem({ index, text, ...props }: any) {
 	return (
 		<li className={styles.component}>
 			<div className={styles.number}>{index}</div>

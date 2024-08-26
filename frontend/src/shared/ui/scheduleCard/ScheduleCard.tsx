@@ -1,10 +1,8 @@
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import styles from './ScheduleCard.module.scss';
-import { useResize } from '@hooks';
 
 export default function ScheduleCard({ data }: any) {
-	const isMobile = useResize('sm');
 	return (
 		<>
 			{data
