@@ -1,27 +1,19 @@
 import styles from './Schedule.module.scss';
 import { useState, useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import { Page, Wrapper } from '@shared/ui';
 import { CalendarBlock } from '@features';
-import moment from 'moment';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
+import { Lesson } from '@api';
 
 export default function SchedulePage({ link = false }: any) {
-	const { lessons }: any = useLoaderData();
-	const [data, setData]: any = useState([]);
+	const [data, setData] = useState<any>([]);
 	const [date, setDate]: any = useState({
-		from: moment().startOf('day').toISOString(), // from and to are equal for this scenario
-		to: moment().startOf('day').toISOString()
+		from: new Date().toISOString(),
+		to: new Date().toISOString()
 	});
 
 	useEffect(() => {
-		const filteredLessons = lessons.filter((item: any) =>
-			moment(item.start).isSame(date.from, 'day')
-		);
-		for (let i = 0; filteredLessons.length < 3; i++) {
-			filteredLessons.push({});
-		}
-		setData(filteredLessons);
+		Lesson.get({ start: date.from, end: date.to }).then(setData);
 	}, [date]);
 
 	return (

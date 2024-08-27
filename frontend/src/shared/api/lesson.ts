@@ -14,12 +14,14 @@ class Lesson {
 		return data;
 	}
 
-	async get(params: any) {
+	async get(params: IParams) {
 		const { start, end, limit, offset } = params;
-		const { data } = await this.#host.get(`/lesson`, {
-			params: { start, end, limit, offset }
+		const {
+			data: { records }
+		} = await this.#host.get(`/lesson`, {
+			params: { start_date: start, end_date: end, limit, offset }
 		});
-		return data;
+		return records;
 	}
 
 	async getById(id: string) {
@@ -54,3 +56,10 @@ class Lesson {
 }
 
 export default new Lesson();
+
+interface IParams {
+	start?: Date;
+	end?: Date;
+	limit?: number;
+	offset?: number;
+}

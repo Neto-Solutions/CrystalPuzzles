@@ -1,8 +1,16 @@
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './ScheduleCard.module.scss';
+import styles from './ScheduleList.module.scss';
+import { Lesson } from '@shared/api';
 
-export default function ScheduleCard({ data }: any) {
+export default function ScheduleList() {
+	const [data, setData] = useState<any>([]);
+
+	useEffect(() => {
+		Lesson.get({}).then(setData).catch();
+	}, []);
+
 	return (
 		<>
 			{data

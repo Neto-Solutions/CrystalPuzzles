@@ -1,13 +1,20 @@
 import styles from './Exercise.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Page } from '@shared/ui';
 import { DateChanger } from '@features';
 import { Exercises } from '@widgets';
 
+import { Lesson } from '@shared/api';
+
 export default function ExercisePage() {
-	const { lessons, id }: any = useLoaderData();
-	const [data]: any = useState(lessons.find((item: any) => item._id === id));
+	const [data, setData] = useState<any>();
+	const { id }: any = useLoaderData();
+
+	useEffect(() => {
+		Lesson.get(id).then(setData);
+	}, []);
+
 	return (
 		<Page title="Мои занятия">
 			<div className={styles.container}>

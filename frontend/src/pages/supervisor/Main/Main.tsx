@@ -1,15 +1,12 @@
 import styles from './Main.module.scss';
-import { useLoaderData } from 'react-router-dom';
 import { Page, CardLink } from '@shared/ui';
 import { Notification } from '@widgets';
 import { EvaluationCardLink } from './EvaluationCardLink/EvaluationCardLink';
 import { AnalyticCardLink } from './AnalyticCardLink/AnalyticCardLink';
 import { ProgressCardLink } from './ProgressCardLink/ProgressCardLink';
-import ScheduleCard from '@shared/ui/scheduleCard/ScheduleCard';
+import { ScheduleList } from '@features';
 
 export default function MainPage() {
-	const { lessons }: any = useLoaderData();
-
 	return (
 		<Page title="Главная страница">
 			<div className={styles.page_wrapper}>
@@ -17,25 +14,9 @@ export default function MainPage() {
 				<AnalyticCardLink className={styles.analytic} />
 				<EvaluationCardLink className={styles.evaluation} />
 				<CardLink title={'Расписание'} className={styles.schedule_wrapper}>
-					<ScheduleCard data={lessons} />
+					<ScheduleList />
 				</CardLink>
 				<Notification className={styles.notification} />
-				{/* <div className={styles.btns_wrapper}>
-					<Button
-						title="Ученики"
-						width="100%"
-						onClick={() => {
-							navigate('/students');
-						}}
-					/>
-					<Button
-						title="Тренеры"
-						width="100%"
-						onClick={() => {
-							navigate('/trainers');
-						}}
-					/>
-				</div> */}
 			</div>
 		</Page>
 	);

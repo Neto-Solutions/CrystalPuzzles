@@ -24,9 +24,8 @@ $authHost.interceptors.request.use((config) => {
 $authHost.interceptors.response.use(
 	(res) => res,
 	async (err) => {
-		// if err
 		if (
-			err.response.data.error == 'Unauthorized' &&
+			err.status === 403 &&
 			location.pathname !== '/login' &&
 			location.pathname !== '/registration'
 		) {

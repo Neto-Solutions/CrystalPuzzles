@@ -9,7 +9,8 @@ import { selectProfile } from '@store/profile';
 export default function AvatarPage() {
 	const { avatar } = useSelector(selectProfile);
 	const [preview, setPreview]: any = useState(
-		LS.get('avatar') || require(`@shared/assets/avatar/${avatar}.png`)
+		LS.get('avatar') ||
+			require(`@shared/assets/avatar/${avatar == null ? 0 : avatar}.png`)
 	);
 	const [userPhoto, setUserPhoto]: any = useState(null);
 	const [err, setErr]: any = useState(null);

@@ -1,22 +1,28 @@
 import styles from './Train.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Page } from '@shared/ui';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { CalendarButton } from '@features';
 
+import { Lesson } from '@shared/api';
+
 export default function TrainPage() {
-	const { lessons }: any = useLoaderData();
+	const [data, setData] = useState<any>([]);
 	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
 		to: new Date().toISOString()
 	});
 
+	useEffect(() => {
+		Lesson.get({ start: date.from, end: date.to }).then(setData);
+	}, [date]);
+
 	return (
 		<Page title="Мои тренировки">
 			<div className={styles.wrapper}>
-				{lessons &&
-					lessons.map((item: any, index: number) => {
+				{data &&
+					data.map((item: any, index: number) => {
 						return (
 							<Link
 								to={`/train/${item._id}`}

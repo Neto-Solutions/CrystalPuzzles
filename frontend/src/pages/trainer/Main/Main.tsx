@@ -1,12 +1,12 @@
 import styles from './Main.module.scss';
-import { Page, CardLink, ScheduleCard } from '@shared/ui';
+import { Page, CardLink } from '@shared/ui';
+import { ScheduleList } from '@features';
 import { Notification } from '@widgets';
 import { useResize } from '@hooks';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '@shared/ui/button/Button';
 
 export default function MainPage() {
-	const { lessons }: any = useLoaderData();
 	const isMobile = useResize('sm');
 
 	return (
@@ -17,7 +17,7 @@ export default function MainPage() {
 					title={'Расписание'}
 					className={styles.schedule_card}
 				>
-					<ScheduleCard data={lessons} />
+					<ScheduleList />
 				</CardLink>
 				{isMobile ? (
 					<Link to={'/notifications'}>

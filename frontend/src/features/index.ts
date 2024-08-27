@@ -5,3 +5,4 @@ export { default as DropDownButton } from './dropdownButton/DropdownButton';
 export { default as Emoji } from './emoji/Emoji';
 export { default as Feedback } from './feedback/Feedback';
 export { default as ScheduleHeader } from './scheduleHeader/ScheduleHeader';
+export { default as ScheduleList } from './scheduleList/ScheduleList';
