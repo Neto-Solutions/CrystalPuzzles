@@ -17,7 +17,7 @@ const Table = ({ setModalActive, edit }: any) => {
 		for (let index = 0; index < 14; index++) {
 			obj[moment(date).add(index, 'days').format('YYYY-MM-DD')] = {
 				id: index,
-				space: { id: index, name: 'Площадка' },
+				space: { id: index, name: 'Площадка' + index },
 				trainer: {
 					id: index,
 					firstname: 'Тренер',
@@ -25,6 +25,7 @@ const Table = ({ setModalActive, edit }: any) => {
 					surname: 'Тренер',
 					avatar: '0'
 				},
+				start: moment(date).add(index, 'days').toDate(),
 				trainer_comments: 'Комментарии',
 				modified: false // customs
 			};
