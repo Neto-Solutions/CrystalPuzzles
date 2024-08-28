@@ -1,20 +1,20 @@
 import styles from './DaysList.module.scss';
 import classNames from 'classnames';
 import { Button } from '../Button/Button';
+import moment from 'moment';
 
-export default function DaysList({ date, setModalActive, edit }: any) {
-	const data = Array(14).fill('');
-
+export default function DaysList({ setModalActive, edit, data }: any) {
 	return (
 		<ul className={classNames(styles.grid, styles.days)}>
-			{data?.map((_, index: number) => (
+			{Object.keys(data)?.map((key: any, index: number) => (
 				<li key={index} className={styles.day}>
-					{date.clone().add(index, 'days').format('D')}
+					{moment(key).format('D')}
+					{data[key].space.name} {/* TODO: fix data */}
 					{edit ? (
 						<Button
 							className={styles.add_btn}
 							onclick={() => {
-								setModalActive(date.clone().add(index, 'days').format('D'));
+								setModalActive(moment(key).format('D'));
 							}}
 						/>
 					) : null}
