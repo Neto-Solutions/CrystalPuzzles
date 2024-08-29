@@ -1,3 +1,4 @@
+export { RewardPage } from './Reward/RewardPage';
 export { default as MainPage } from './Main/Main';
 export { default as ExercisePage } from './Exercise/Exercise';
 export { default as TrainPage } from './Train/Train';

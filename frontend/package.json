@@ -9,7 +9,8 @@
 		"test": "craco test",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
-		"format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc"
+		"format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
+		"clear": "node ./scripts/clear.js"
 	},
 	"dependencies": {
 		"@nivo/line": "~0.87.0",

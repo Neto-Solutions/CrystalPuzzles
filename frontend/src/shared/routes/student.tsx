@@ -1,5 +1,5 @@
 import { AvatarPage, SchedulePage } from '@pages/shared';
-import { MainPage, ExercisePage, TrainPage, SurveyPage } from '@student';
+import { MainPage, ExercisePage, TrainPage, SurveyPage, RewardPage } from '@student';
 import training from '@assets/sidebar/train.svg';
 import schedule from 'assets/sidebar/schedule.svg';
 import home from 'assets/sidebar/home.svg';
@@ -58,6 +58,12 @@ const studentRouter = [
 		path: '/survey',
 		element: <SurveyPage />,
 		local: 'Анкета',
+		img: survey
+	},
+	{
+		path: '/reward',
+		element: <RewardPage />,
+		local: 'Коллекция наград',
 		img: survey
 	}
 ];

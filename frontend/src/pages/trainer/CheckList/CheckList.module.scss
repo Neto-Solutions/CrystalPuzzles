@@ -8,13 +8,13 @@
 		'profile exercises exercises'
 		'. exercises exercises';
 	gap: var(--gap);
-	
+
 	@include md() {
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-areas:
-		'profile info'
-		'panel exercises'
-		'panel exercises';
+			'profile info'
+			'panel exercises'
+			'panel exercises';
 	}
 }
 

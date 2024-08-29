@@ -1,9 +1,14 @@
 import styles from './Page.module.scss';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { setHeader } from '@store/app';
 
-export default function Page({ title, children }: any) {
+interface PageProps {
+	title: string;
+	children: ReactNode;
+}
+
+export default function Page({ title, children }: PageProps) {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(setHeader(title));

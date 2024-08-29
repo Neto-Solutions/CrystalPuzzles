@@ -15,9 +15,9 @@ export default function MainPage() {
 			{reward && <RewardsPopup onHide={() => setReward(false)} />}
 			<div className={styles.wrapper}>
 				<CardLink
+					to="/reward"
 					title={'Мои награды'}
 					className={styles.reward_card}
-					onClick={() => setReward(true)}
 				/>
 
 				<CardLink

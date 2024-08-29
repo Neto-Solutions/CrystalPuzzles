@@ -5,36 +5,54 @@ import Table from './Table/Table';
 import { Modal } from '@shared/ui';
 import { AddTreanerSchedule } from './Modal/Modal';
 import { useNavigate } from 'react-router-dom';
+import { DropDownButton } from '@features';
 
-export default function ShedulePage({ edit = false }: any) {
+interface ShedulePageProps {
+	edit?: boolean;
+}
+
+const data = [
+	{
+		id: 1,
+		name: 'ddfddd'
+	},
+	{
+		id: 2,
+		name: 'kökö'
+	},
+	{
+		id: 3,
+		name: 'dfd'
+	},
+	{
+		id: 4,
+		name: 'asdad'
+	}
+];
+
+export default function ShedulePage({ edit = false }: ShedulePageProps) {
 	const [modalActive, setModalActive]: any = useState(false);
 	// const lessons = useLoaderData();
 	const navigate = useNavigate();
 	return (
 		<Page title="Составить расписание тренеров">
 			<Table edit={edit} setModalActive={setModalActive} />
-			{edit ? (
-				<>
-					<div className={styles.buttons_container}>
-						<Button title="Выберите тренера" downArrow />
-						<Button title="Выберите площадку" downArrow />
-						<Button title="Отправить расписание" />
-					</div>
-					<Modal
-						active={modalActive}
-						setActive={setModalActive}
-						// width={'1078px'}
-					>
-						<AddTreanerSchedule day={modalActive} />
-					</Modal>
-				</>
-			) : (
+			<div className={styles.buttons_container}>
+				<DropDownButton title="Выберите тренера" data={data} />
+				<DropDownButton title="Выберите площадку" data={data} />
 				<Button
 					className={styles.edit_btn}
-					title="Составить расписание"
-					onClick={() => navigate('./edit')}
+					title={edit ? 'Отправить расписание' : 'Составить расписание'}
+					onClick={() => {
+						edit ? null : navigate('./edit');
+					}}
 				/>
-			)}
+			</div>
+			{edit ? (
+				<Modal active={modalActive} setActive={setModalActive}>
+					<AddTreanerSchedule day={modalActive} />
+				</Modal>
+			) : null}
 		</Page>
 	);
 }

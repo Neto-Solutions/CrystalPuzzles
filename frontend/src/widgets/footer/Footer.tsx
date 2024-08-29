@@ -2,6 +2,7 @@ import styles from './Footer.module.scss';
 import { ReactComponent as Vk } from './assets/vk.svg';
 import { ReactComponent as Tg } from './assets/tg.svg';
 import neto from './assets/neto.png';
+import { Tag } from '@shared/ui/tag/Tag';
 
 export default function Footer() {
 	return (
@@ -9,6 +10,7 @@ export default function Footer() {
 			<a href="/#">
 				<img src={neto} alt="Netology" className={styles.netology} />
 			</a>
+			<Tag />
 			<div className={styles.socials}>
 				<a href="/#">
 					<Tg />

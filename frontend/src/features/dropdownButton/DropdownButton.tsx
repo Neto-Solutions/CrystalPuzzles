@@ -1,11 +1,23 @@
 import classNames from 'classnames';
 import { ReactComponent as SmallArrow } from '@shared/assets/svg/small_arrow.svg';
 import styles from './DropdownButton.module.scss';
+import { useState } from 'react';
 
-export default function DropdownButton(props: any) {
-	const { title, onClick, className, open, data = [], setState } = props;
+interface DropdownButtonProps {
+	className?: string;
+	title: string;
+	data?: any;
+	setState?: any;
+}
+
+export default function DropdownButton(props: DropdownButtonProps) {
+	const { title, className, data = [], setState } = props;
+	const [open, setOpen] = useState(false);
 	return (
-		<div className={classNames(styles.dropdown, className)} onClick={onClick}>
+		<div
+			className={classNames(styles.dropdown, className)}
+			onClick={() => setOpen((prev) => !prev)}
+		>
 			<button className={styles.dropdown_button}>
 				<span>{title}</span>
 				<SmallArrow className={styles.small_arrow} />
