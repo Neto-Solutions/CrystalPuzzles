@@ -4,18 +4,22 @@ import { useLoaderData } from 'react-router-dom';
 import Profile from './Profile/Profile';
 import Info from './Info/Info';
 import { Exercises } from '@widgets';
+import { FormEvent } from 'react';
 
 export default function CheckListPage() {
 	const data: any = useLoaderData();
 
-	function handleSubmit(e: any) {
+	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const result = [];
-		for (const el of e.target) {
-			if (!el.id) continue;
-			if (el.checked) {
+		const result: Array<{ id: string; isComplete: boolean }> = [];
+		const formElements = e.currentTarget.elements as HTMLFormControlsCollection;
+
+		for (const el of formElements) {
+			const inputElement = el as HTMLInputElement;
+			if (!inputElement.id) continue;
+			if (inputElement.checked) {
 				result.push({
-					id: el.id,
+					id: inputElement.id,
 					isComplete: false
 				});
 			}

@@ -1,10 +1,9 @@
 import styles from './Main.module.scss';
-import { Page, CardLink } from '@shared/ui';
+import { Page, CardLink, Button } from '@shared/ui';
 import { ScheduleList } from '@features';
 import { Notification } from '@widgets';
 import { useResize } from '@hooks';
-import { Link } from 'react-router-dom';
-import Button from '@shared/ui/button/Button';
+import { Link, useLoaderData } from 'react-router-dom';
 
 export default function MainPage() {
 	const isMobile = useResize('sm');
@@ -27,6 +26,7 @@ export default function MainPage() {
 					<Notification className={styles.notifications} />
 				)}
 			</div>
+			<Link to={'/exercise'}>Занятия</Link>
 		</Page>
 	);
 }

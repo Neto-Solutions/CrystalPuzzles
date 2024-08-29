@@ -8,7 +8,8 @@ import {
 	MainPage,
 	CheckListPage,
 	GroupListPage,
-	CreateGroupPage
+	CreateGroupPage,
+	TrainerExercisePage
 } from '@trainer';
 
 import feedback from 'assets/sidebar/feedback.svg';
@@ -90,6 +91,15 @@ const trainerRouter = [
 	{
 		path: '/avatar',
 		element: <AvatarPage />
+	},
+	{
+		path: '/exercise',
+		element: <TrainerExercisePage />,
+		loader: () => {
+			return {
+				lessons
+			};
+		}
 	}
 ];
 
