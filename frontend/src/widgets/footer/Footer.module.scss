@@ -1,0 +1,19 @@
+@use '~styles/mixins' as *; 
+
+ 
+.footer {
+	margin-top: auto;
+	padding: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.netology {
+		width: 40px;
+		height: 40px;
+	}
+	.socials {
+		display: flex;
+		gap: var(--gap);
+	}
+}

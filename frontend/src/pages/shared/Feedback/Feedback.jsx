@@ -1,5 +1,5 @@
 import { Page } from '@shared/ui';
-import { Feedback } from '@features/feedback';
+import { Feedback } from '@features';
 
 export default function FeedbackPage() {
 	return (

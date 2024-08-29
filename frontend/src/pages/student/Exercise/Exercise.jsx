@@ -1,24 +1,26 @@
 import styles from './Exercise.module.scss';
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { Page } from '@shared/ui';
+import { DateChanger } from '@features';
+import { Exercises } from '@widgets';
 
 export default function ExercisePage() {
-	const tempArray = Array.from({ length: 6 }, () => 1);
+	const { lessons, id } = useLoaderData();
+	const [data] = useState(lessons.find((item) => item._id === id));
 	return (
 		<Page title="Мои занятия">
 			<div className={styles.container}>
-				<div className={styles.date_picker}>
-					{new Date().toLocaleDateString()}
+				<DateChanger className={styles.date} />
+				<Exercises
+					data={data.checkList.exercises}
+					className={styles.list}
+					checked
+					disabled
+				/>
+				<div className={styles.reward_wrapper}>
+					<span>Мои награды</span>
 				</div>
-				<ul className={styles.list}>
-					{tempArray.map((item, index) => (
-						<li key={index} className={styles.item}>
-							<div className={styles.number}>{index + 1}</div>
-							<img className={styles.img} />
-							<span className={styles.text}>{item}</span>
-							<input className={styles.checkbox} type="checkbox" />
-						</li>
-					))}
-				</ul>
 			</div>
 		</Page>
 	);

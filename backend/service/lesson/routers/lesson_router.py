@@ -3,7 +3,7 @@ from http import HTTPStatus
 from fastapi import APIRouter, Response
 from starlette.responses import JSONResponse
 
-from common.dependensies import TrainerSupervisorAdminDep, AdminDep
+from common.dependensies import AdminDep, SupervisorAdminDep, UserDep
 from common.schema.base_schemas import Message
 from service.lesson.dependensies import LessonServiceDep, LessonUOWDep, LessonFilterDep, SpaceUOWDep
 from service.users.dependensies import UserUOWDep
@@ -31,10 +31,10 @@ async def get_lesson(
         lesson_id: int,
         uow: LessonUOWDep,
         lesson_service: LessonServiceDep,
-        current_user: TrainerSupervisorAdminDep,
+        current_user: UserDep,
 ):
     """ admin, supervisor, trainer """
-    result = await lesson_service.get(uow, lesson_id)
+    result = await lesson_service.get(uow, lesson_id, user=current_user)
     if result:
         return result
     return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Lesson not found")
@@ -54,10 +54,10 @@ async def get_all_lessons(
         uow: LessonUOWDep,
         lesson_service: LessonServiceDep,
         filters: LessonFilterDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: UserDep
 ):
     """ admin, supervisor, trainer """
-    result = await lesson_service.get_all_by_filters(uow, filters)
+    result = await lesson_service.get_all_by_filters(uow, filters, user=current_user)
     return result
 
 
@@ -77,9 +77,9 @@ async def create_lesson(
         user_uow: UserUOWDep,
         space_uow: SpaceUOWDep,
         lesson_service: LessonServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     result = await lesson_service.add(uow, model, user_uow=user_uow, space_uow=space_uow)
     if result:
         return result
@@ -103,9 +103,9 @@ async def edit_lesson(
         user_uow: UserUOWDep,
         space_uow: SpaceUOWDep,
         lesson_service: LessonServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     result = await lesson_service.edit(uow, model, user_uow=user_uow, space_uow=space_uow)
     if result:
         return result
@@ -126,9 +126,9 @@ async def delete_lesson(
         lesson_id: int,
         uow: LessonUOWDep,
         lesson_service: LessonServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     result = await lesson_service.delete(uow, lesson_id)
     if result:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)

@@ -3,7 +3,7 @@ from http import HTTPStatus
 from fastapi import APIRouter, Response
 from starlette.responses import JSONResponse
 
-from common.dependensies import TrainerSupervisorAdminDep, AdminDep
+from common.dependensies import TrainerSupervisorAdminDep, AdminDep, SupervisorAdminDep
 from common.schema.base_schemas import Message
 from service.lesson.dependensies import SpaceServiceDep, SpaceFilterDep, SpaceUOWDep
 
@@ -70,13 +70,13 @@ async def get_all_spaces(
         400: {"model": Message, "description": "Некорректные данные"},
         500: {"model": Message, "description": "Серверная ошибка"}},
 )
-async def create_training(
+async def create_space(
         model: CreateSpaceSchema,
         uow: SpaceUOWDep,
         space_service: SpaceServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     result = await space_service.add(uow, model)
     if result:
         return result
@@ -98,9 +98,9 @@ async def edit_training(
         model: EditSpaceSchema,
         uow: SpaceUOWDep,
         space_service: SpaceServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     result = await space_service.edit(uow, model)
     if result:
         return result
@@ -121,9 +121,9 @@ async def delete_group(
         space_id: int,
         uow: SpaceUOWDep,
         space_service: SpaceServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: SupervisorAdminDep
 ):
-    """admin, supervisor, trainer"""
+    """admin, supervisor"""
     result = await space_service.delete(uow, space_id)
     if result:
         return Response(status_code=HTTPStatus.NO_CONTENT.value)

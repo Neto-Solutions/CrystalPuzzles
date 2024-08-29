@@ -1,0 +1,26 @@
+@use '~styles/mixins' as *;
+
+.profile_container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+	.avatar {
+		max-width: 347px;
+		aspect-ratio: 1 / 1;
+		border-radius: var(--radius);
+		border: var(--border);
+	}
+	.name_container {
+		width: 100%;
+		border: var(--border);
+		border-radius: 13px;
+		padding: 10px;
+		background-color: #e1f1f8;
+		.name {
+			margin: auto;
+			width: min-content;
+			@include font(var(--ff-first), 20px, 500);
+			text-align: center;
+		}
+	}
+}

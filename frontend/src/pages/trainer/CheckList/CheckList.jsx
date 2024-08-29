@@ -1,47 +1,52 @@
 import styles from './CheckList.module.scss';
 import { Page, Button } from '@shared/ui';
+import { useLoaderData } from 'react-router-dom';
+import Profile from './Profile/Profile';
+import Info from './Info/Info';
+import { Exercises } from '@widgets';
 
 export default function CheckListPage() {
-	const tempArray = Array.from({ length: 5 });
+	const data = useLoaderData();
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		let result = [];
+		for (const el of e.target) {
+			if (!el.id) continue;
+			if (el.checked) {
+				result.push({
+					id: el.id,
+					isComplete: false
+				});
+			}
+		}
+	}
+
 	return (
 		<Page title="Чек-листы">
-			<section className={styles.avatar}>
-				<img src="" alt="" />
-			</section>
+			<div className={styles.wrapper}>
+				<Profile className={styles.profile} />
+				<Info className={styles.info} data={data} />
 
-			<section className={styles.levels}>
-				<div className={styles.level}>
-					Уровень:
-					<span className={styles.levels_text}></span>
-				</div>
-				<div className={styles.place}>
-					Площадка:
-					<span className={styles.levels_text}>
-						2- Бережковская набережная, д. 20, стр. 6
-					</span>
-				</div>
-				{tempArray.map((_, index) => (
-					<div key={index} className={styles.student}>
-						Ученик:
-						<span className={styles.levels_text}></span>
-					</div>
-				))}
-			</section>
-
-			<section className={styles.panel}>
-				<div className={styles.name}>Дмитриева Анастасия Алексеевна</div>
-				<Button title="Выберите учеников" downArrow />
-				<Button title="Выберите группу" downArrow />
-				<Button title="Выберите уровень" downArrow />
-				<Button title="Отправить чек-лист" />
-			</section>
-
-			<section className={styles.exercises}>
-				<div className={styles.exercises_header}>Чек-лист</div>
-				{tempArray.map((_, index) => (
-					<div key={index} className={styles.exercises_item}></div>
-				))}
-			</section>
+				<section className={styles.panel_container}>
+					<Button title="Выберите группу" downArrow width="100%" />
+					<Button title="Выберите учеников" downArrow width="100%" />
+					<Button
+						title="Отправить чек-лист"
+						width="100%"
+						form="exercises_form"
+					/>
+				</section>
+				<section className={styles.exercises}>
+					<form
+						onSubmit={handleSubmit}
+						id="exercises_form"
+						className={styles.exercises}
+					>
+						<Exercises data={data.checkList.exercises} />
+					</form>
+				</section>
+			</div>
 		</Page>
 	);
 }

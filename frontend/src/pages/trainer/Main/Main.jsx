@@ -1,29 +1,31 @@
 import styles from './Main.module.scss';
-import { Page, Button, CardLink } from '@shared/ui';
-import { Notification } from '@widgets/notification';
-import Schedule from '@features/schedule/Schedule';
+import { Page, CardLink, ScheduleCard } from '@shared/ui';
+import { Notification } from '@widgets';
 import { useResize } from '@hooks';
-// import { ExerciseList } from '@features/exercise.list';
+import { Link, useLoaderData } from 'react-router-dom';
+import Button from '@shared/ui/button/Button';
 
 export default function MainPage() {
+	const { lessons } = useLoaderData();
 	const isMobile = useResize('sm');
+
 	return (
 		<Page title="Главная страница">
 			<div className={styles.wrapper}>
-				<Notification className={styles.notifications} />
-
 				<CardLink
 					to="/schedule"
 					title={'Расписание'}
 					className={styles.schedule_card}
 				>
-					{!isMobile && <Schedule />}
+					<ScheduleCard data={lessons} />
 				</CardLink>
-
-				<div className={styles.button_container}>
-					<Button title="Сформировать чек-лист" className={styles.button} />
-				</div>
-				{/* <ExerciseList /> */}
+				{isMobile ? (
+					<Link to={'/notifications'}>
+						<Button title="Уведомления" />
+					</Link>
+				) : (
+					<Notification className={styles.notifications} />
+				)}
 			</div>
 		</Page>
 	);
