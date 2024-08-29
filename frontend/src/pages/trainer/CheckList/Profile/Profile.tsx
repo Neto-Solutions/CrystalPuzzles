@@ -4,8 +4,13 @@ import { useSelector } from 'react-redux';
 import { selectProfile } from '@store/profile';
 import LS from '@shared/lib/localStorage';
 import avatar from '@shared/assets/avatar/0.png';
+import classNames from 'classnames';
 
-export default function Profile({ className }: any) {
+interface ProfileProps {
+	className?: string;
+}
+
+export default function Profile({ className }: ProfileProps) {
 	const user = useSelector(selectProfile);
 	const [userPhoto, setUserPhoto]: any = useState(LS.get('avatar') || avatar);
 
@@ -17,7 +22,7 @@ export default function Profile({ className }: any) {
 	}, [user]);
 
 	return (
-		<section className={styles.profile_container + ' ' + className}>
+		<section className={classNames(styles.profile_container, className)}>
 			<img src={userPhoto} alt="" className={styles.avatar} />
 			<div className={styles.name_container}>
 				<div className={styles.name}>

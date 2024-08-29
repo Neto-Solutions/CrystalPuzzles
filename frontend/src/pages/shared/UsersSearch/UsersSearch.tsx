@@ -4,7 +4,11 @@ import { Page } from '@shared/ui';
 import Search from './search/Search';
 import UsersList from './usersList/UsersList';
 
-export default function UsersSearchPage({ title }: any) {
+interface UsersSearchPageProps {
+	title: string;
+}
+
+export default function UsersSearchPage({ title }: UsersSearchPageProps) {
 	const [users, setUsers]: any = useState([]);
 
 	return (
