@@ -6,7 +6,34 @@ on:
       - main
 
 jobs:
-  refresh_content:
+  update_tag:
+    # needs: start_docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+
+      - uses: actions-ecosystem/action-bump-semver@v1
+        id: bump-semver
+        with:
+          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+          level: major
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
+          message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
+      - name: output-new-tag
+        run: |
+          echo "NEW_TAG=${{ steps.bump-semver.outputs.new_version }}" >> $GITHUB_ENV
+          echo "New tag: ${{ steps.bump-semver.outputs.new_version }}"
+          # echo "::set-output name=new_tag::${{ steps.bump-semver.outputs.new_version }}"
+          echo "::set-output name=new_tag::$NEW_TAG"
+          
+  refresh_content:    
+    # needs: update_tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -82,9 +109,60 @@ jobs:
             sudo docker system prune --all --force \
             || echo "No docker conteiners are running"
 
+  make_env_file:
+    # needs: clean_docker_conteiners_and_images
+    needs: [update_tag, refresh_content]
+    runs-on: ubuntu-latest
+    env:
+      ENV_File: "/home/${{ secrets.SSH_USERNAME }}/Crystall/.env"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+        
+      - name: Copy .env to server
+        uses: appleboy/ssh-action@master        
+        with:
+          host: ${{ secrets.SSH_HOST_NAME }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            # echo "TAG=${{ steps.bump-semver.outputs.new_version }}"
+            # echo "LATEST_TAG=${{ steps.get-latest-tag.outputs.latest_tag }}"
+            # NEW_TAG=${{ steps.output-new-tag.outputs.new_tag }}
+            # echo $NEW_TAG
+            # echo "New tag: $NEW_TAG"
+            # echo "TAG=${{ needs.update_tag.outputs.new_tag }}"
+            LATEST_TAG=${{ steps.get-latest-tag.outputs.tag }}
+            echo "Latest tag: $LATEST_TAG"
+            echo "ENV_File = ${{ env.ENV_File }}"
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > ${{ env.ENV_File }}
+            echo "REFRESH_SECRET_KEY=${{ secrets.REFRESH_SECRET_KEY }}" >> ${{ env.ENV_File }}
+            echo "ALGORITHM=HS256" >> ${{ env.ENV_File }}
+            echo "ACCESS_TOKEN_EXPIRE_MINUTES=1" >> ${{ env.ENV_File }}
+            echo "REFRESH_TOKEN_EXPIRE_MINUTES=1" >> ${{ env.ENV_File }}
+            echo "PG_DATABASE=${{ secrets.PG_DATABASE }}" >> ${{ env.ENV_File }}
+            echo "PG_USER=${{ secrets.PG_USER }}" >> ${{ env.ENV_File }}
+            echo "PG_PASSWORD=${{ secrets.PG_PASSWORD }}" >> ${{ env.ENV_File }}
+            echo "PG_HOST=${{ secrets.PG_HOST }}" >> ${{ env.ENV_File }}
+            echo "PG_PORT=5432" >> ${{ env.ENV_File }}
+            echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> ${{ env.ENV_File }}
+            echo "SMTP_USER=${{ secrets.SMTP_USER }}" >> ${{ env.ENV_File }}
+            echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> ${{ env.ENV_File }}
+            echo "SMTP_PORT=465" >> ${{ env.ENV_File }}
+            echo "BASE_PATH=http://localhost:8000" >> ${{ env.ENV_File }}
+            echo "PAGE_SIZE=10" >> ${{ env.ENV_File }}
+            echo "PORT=8000" >> ${{ env.ENV_File }}
+            echo "REACT_APP_SERVER_API=http://203.31.40.34:8001/api/v1/" >> ${{ env.ENV_File }}
+            # echo "TAG=${{ steps.bump-semver.outputs.new_version }}" >> ${{ env.ENV_File }}
+            echo "TAG=$LATEST_TAG" >> ${{ env.ENV_File }}
+        
+
   start_docker:
-    #needs: check_docker_and_compose
-    needs: clean_docker_conteiners_and_images
+    # needs: check_docker_and_compose
+    needs: 
+      [make_env_file, clean_docker_conteiners_and_images]
     runs-on: ubuntu-latest
     steps:
       - name: Start docker compose
@@ -96,23 +174,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             sudo docker compose -f /home/${{ secrets.SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
+          command_timeout: 20m
 
-  update_tag:
-    needs: start_docker
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions-ecosystem/action-get-latest-tag@v1
-        id: get-latest-tag
-
-      - uses: actions-ecosystem/action-bump-semver@v1
-        id: bump-semver
-        with:
-          current_version: ${{ steps.get-latest-tag.outputs.tag }}
-          level: minor
-
-      - uses: actions-ecosystem/action-push-tag@v1
-        with:
-          tag: ${{ steps.bump-semver.outputs.new_version }}
-          message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
+  
