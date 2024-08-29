@@ -7,7 +7,6 @@ on:
 
 jobs:
   update_tag:
-    # needs: start_docker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,8 +31,7 @@ jobs:
           # echo "::set-output name=new_tag::${{ steps.bump-semver.outputs.new_version }}"
           echo "::set-output name=new_tag::$NEW_TAG"
           
-  refresh_content:    
-    # needs: update_tag
+  refresh_content:   
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -110,7 +108,6 @@ jobs:
             || echo "No docker conteiners are running"
 
   make_env_file:
-    # needs: clean_docker_conteiners_and_images
     needs: [update_tag, refresh_content]
     runs-on: ubuntu-latest
     env:
@@ -160,7 +157,6 @@ jobs:
         
 
   start_docker:
-    # needs: check_docker_and_compose
     needs: 
       [make_env_file, clean_docker_conteiners_and_images]
     runs-on: ubuntu-latest
@@ -174,6 +170,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             sudo docker compose -f /home/${{ secrets.SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
-          command_timeout: 20m
+          command_timeout: 30m
 
   
