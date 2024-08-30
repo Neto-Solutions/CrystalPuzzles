@@ -20,8 +20,9 @@ export default function ShedulePage({ edit = false }: ShedulePageProps) {
 
 	return (
 		<Page title="Составить расписание тренеров">
-			<Table edit={edit} setModalActive={setModalActive} />
+			<Table edit={edit} setModalActive={setModalActive} data={data} />
 			<div className={styles.buttons_container}>
+				{/* меняется высота у всех сразу, потому что состояние не у каждого отдельно, а в главном компоненте. //TODO: вернуть назад, как было */}
 				<DropDownButton
 					title="Выберите тренера"
 					data={[{ id: +'2', name: 'Тренер 2' }]}
@@ -36,16 +37,6 @@ export default function ShedulePage({ edit = false }: ShedulePageProps) {
 						onClick={() => navigate('./edit')}
 					/>
 				)}
-				{/* меняется высота у всех сразу, потому что состояние не у каждого отдельно, а в главном компоненте. //TODO: вернуть назад, как было */}
-				<DropDownButton title="Выберите тренера" data={data} />
-				<DropDownButton title="Выберите площадку" data={data} />
-				<Button
-					className={styles.edit_btn}
-					title={edit ? 'Отправить расписание' : 'Составить расписание'}
-					onClick={() => {
-						edit ? null : navigate('./edit');
-					}}
-				/>
 			</div>
 			{edit && modalActive ? (
 				<Modal active={modalActive} setActive={setModalActive}>
