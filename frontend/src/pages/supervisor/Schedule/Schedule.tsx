@@ -36,6 +36,16 @@ export default function ShedulePage({ edit = false }: ShedulePageProps) {
 						onClick={() => navigate('./edit')}
 					/>
 				)}
+				{/* меняется высота у всех сразу, потому что состояние не у каждого отдельно, а в главном компоненте. //TODO: вернуть назад, как было */}
+				<DropDownButton title="Выберите тренера" data={data} />
+				<DropDownButton title="Выберите площадку" data={data} />
+				<Button
+					className={styles.edit_btn}
+					title={edit ? 'Отправить расписание' : 'Составить расписание'}
+					onClick={() => {
+						edit ? null : navigate('./edit');
+					}}
+				/>
 			</div>
 			{edit && modalActive ? (
 				<Modal active={modalActive} setActive={setModalActive}>

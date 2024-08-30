@@ -1,5 +1,26 @@
 @use '~styles/mixins' as *;
 
+.container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: var(--gap);
+	grid-template-areas: 'date reward' 'list reward';
+
+	@include lg() {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas:
+			'date date'
+			'reward list'
+			'mood mood'
+			'feedback feedback';
+	}
+	@include sm() {
+		grid-template-columns: 1fr;
+		grid-template-areas: 'reward' 'date' ' list' 'mood' 'feedback';
+	}
+}
+
 .date {
 	grid-area: date;
 	width: 100%;
@@ -19,6 +40,40 @@
 	}
 }
 
+.title {
+	margin-bottom: 12px;
+	padding: var(--btn-padding) var(--gap);
+	font: var(--fw-medium) var(--fz-btn) var(--ff-first);
+	text-align: center;
+	background-color: var(--bg-date-picker);
+	border: var(--border);
+	border-radius: var(--radius-btn);
+}
+
+.icon_wrapper {
+	width: 100%;
+	grid-area: mood;
+	margin-bottom: 48px;
+	display: flex;
+	gap: var(--gap);
+
+	@include sm() {
+		flex-wrap: wrap;
+	}
+}
+
+.icon {
+	padding: var(--btn-padding);
+	background-color: var(--btn-bg-color);
+	border: var(--border);
+	border-radius: var(--radius);
+	cursor: pointer;
+}
+
+.feedback {
+	grid-area: feedback;
+}
+
 .reward_wrapper {
 	grid-area: reward;
 	height: 347px;
@@ -34,22 +89,5 @@
 
 	span {
 		font: var(--fw-medium) var(--fz-btn) var(--ff-first);
-	}
-}
-
-.container {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: var(--gap);
-	grid-template-areas: 'date reward' 'list reward';
-
-	@include lg() {
-		grid-template-columns: 1fr 1fr;
-		grid-template-areas: 'date date' 'reward list';
-	}
-	@include sm() {
-		grid-template-columns: 1fr;
-		grid-template-areas: 'reward' 'date' ' list';
 	}
 }
