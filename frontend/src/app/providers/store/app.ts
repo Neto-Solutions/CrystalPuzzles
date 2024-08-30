@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const appSlice = createSlice({
 	name: 'app',
 	initialState: {
-		header: 'Главная страница'
+		header: 'Главная страница',
+		place: null,
+		student: null,
+		trainer: null
 	},
 	reducers: {
 		setHeader(state, action) {

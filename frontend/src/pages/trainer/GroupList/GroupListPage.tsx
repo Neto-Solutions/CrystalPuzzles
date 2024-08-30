@@ -9,7 +9,7 @@ export default function GroupListPage() {
 	return (
 		<Page title="Группы">
 			<div className={styles.container}>
-				<GroupsList data={groups}  className={styles.list}/>
+				<GroupsList data={groups} className={styles.list} />
 				<Button
 					title="Создать группу"
 					// width="347px"

@@ -7,7 +7,7 @@ import { Exercises } from '@widgets';
 import { FormEvent } from 'react';
 
 export default function CheckListPage() {
-	const data: any = useLoaderData();
+	// const data: any = useLoaderData();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -24,13 +24,13 @@ export default function CheckListPage() {
 				});
 			}
 		}
-	}
+	}		
 
 	return (
 		<Page title="Чек-листы">
 			<div className={styles.wrapper}>
 				<Profile className={styles.profile} />
-				<Info className={styles.info} data={data} />
+				{/* <Info className={styles.info} data={data} /> */}
 
 				<section className={styles.panel_container}>
 					<Button title="Выберите группу" downArrow width="100%" />
@@ -47,7 +47,7 @@ export default function CheckListPage() {
 						id="exercises_form"
 						className={styles.exercises}
 					>
-						<Exercises data={data.checkList.exercises} />
+						{/* <Exercises data={data.checkList.exercises} /> */}
 					</form>
 				</section>
 			</div>

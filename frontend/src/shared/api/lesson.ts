@@ -1,9 +1,10 @@
 import { $authHost } from './axios.instances';
+import { IAddParams, IParams } from './lesson.interface';
 
 class Lesson {
 	#host = $authHost;
 
-	async add(params: any) {
+	async add(params: IAddParams) {
 		const { space_id, trainer_id, trainer_comments, start } = params;
 		const { data } = await this.#host.post(`/lesson`, {
 			space_id,
@@ -56,10 +57,3 @@ class Lesson {
 }
 
 export default new Lesson();
-
-interface IParams {
-	start?: Date;
-	end?: Date;
-	limit?: number;
-	offset?: number;
-}

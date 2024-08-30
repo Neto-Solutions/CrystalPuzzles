@@ -5,11 +5,10 @@ import { ReactComponent as Arrow } from '@shared/assets/svg/circle_arrow.svg';
 import styles from './DateChanger.module.scss';
 
 export default function DateChanger({ className, day }: any) {
-	const [date, setDate]: any = useState(moment().startOf('month'));
-
+	const [date, setDate]: any = useState(moment());
 	useEffect(() => {
-		setDate((prev: any) => prev.clone().add(day, 'days').subtract(1, 'days'));
-	}, []);
+		setDate(moment(day));
+	}, [day]);
 
 	return (
 		<header className={classNames(styles.top, className)}>

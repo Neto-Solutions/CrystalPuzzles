@@ -3,7 +3,7 @@ import { Page, CardLink, Button } from '@shared/ui';
 import { ScheduleList } from '@features';
 import { Notification } from '@widgets';
 import { useResize } from '@hooks';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function MainPage() {
 	const isMobile = useResize('sm');

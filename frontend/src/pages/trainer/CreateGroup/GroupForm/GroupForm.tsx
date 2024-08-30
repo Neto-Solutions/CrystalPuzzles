@@ -15,7 +15,7 @@ export default function GroupForm() {
 
 	function handleSubmit() {
 		// eslint-disable-next-line no-unused-vars
-		// const data = students.map((item: any) => item._id);
+		// const data = students.map((item: any) => item.id);
 		// createGroup({ name: name, students: data} : any);
 	}
 
@@ -37,7 +37,7 @@ export default function GroupForm() {
 				{students &&
 					students.map((item: any) => (
 						<Student
-							key={item._id}
+							key={item.id}
 							data={item}
 							setStudents={setStudents}
 							checked
@@ -45,7 +45,7 @@ export default function GroupForm() {
 					))}
 				{/* {data &&
 					data.map((item: any) => (
-						<Student key={item._id} data={item} setStudents={setStudents} />
+						<Student key={item.id} data={item} setStudents={setStudents} />
 					))} */}
 				<Button title="Создать" className={styles.btn} onClick={handleSubmit} />
 			</div>

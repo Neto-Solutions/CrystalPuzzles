@@ -50,9 +50,10 @@ const trainerRouter = [
 	{
 		path: '/schedule/:id',
 		element: <CheckListPage />,
-		loader: ({ params: { id } }: any) => {
-			return lessons.find((lesson) => lesson._id == id);
-		}
+		// loader: ({ params: { id } }: any) => {
+		// 	console.log('id', id);
+		// 	return lessons.find((lesson) => lesson.id == id);
+		// }
 	},
 	{
 		path: '/groups',
@@ -79,7 +80,7 @@ const trainerRouter = [
 		path: '/students/:id',
 		element: <ProfilePage />,
 		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user._id == id);
+			return users.find((user) => user.id == id);
 		}
 	},
 	{

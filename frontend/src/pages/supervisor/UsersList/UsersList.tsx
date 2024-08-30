@@ -7,7 +7,7 @@ export default function UsersListPage({ type }: any) {
 	return (
 		<Page title="График прогресса тренеров">
 			{users.map((item: any, index: number) => (
-				<Link to={`/${type}/${item._id}`} key={index}>
+				<Link to={`/${type}/${item.id}`} key={index}>
 					<UserCard
 						img={require(`assets/avatar/${item.avatar}.png`)}
 						name={item.surname + ' ' + item.firstname + ' ' + item.lastname}

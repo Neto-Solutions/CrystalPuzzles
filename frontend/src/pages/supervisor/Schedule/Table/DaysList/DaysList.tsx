@@ -1,24 +1,46 @@
 import styles from './DaysList.module.scss';
 import classNames from 'classnames';
 import { Button } from '../Button/Button';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
+import { useState, useEffect } from 'react';
+import { Lesson } from '@shared/api';
+import { useNavigate } from 'react-router-dom';
 
-export default function DaysList({ setModalActive, edit, data }: any) {
+export default function DaysList({ setModalActive, edit, date }: any) {
+	const [data, setData] = useState<any>(initData(date));
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		Lesson.get({
+			start: date.clone().toISOString(),
+			end: date.clone().add(13, 'days').toISOString()
+		})
+			.then((res) => {
+				const obj = data;
+				res.forEach((item: any) => {
+					const key = moment(item.start).format('YYYY-MM-DD');
+					if (!obj[key]) obj[key] = [item];
+					else obj[key] = [...obj[key], item];
+				});
+				setData(obj);
+			})
+			.finally(() => navigate(''))
+			.catch();
+	}, [date]);
+
 	return (
 		<ul className={classNames(styles.grid, styles.days)}>
-			{Object.keys(data)?.map((key: any, index: number) => (
+			{Object.keys(data).map((key: any, index: number) => (
 				<li key={index} className={styles.day}>
 					<span> {moment(key).format('D')}</span>
 					{data[key] ? (
 						<div className={styles.active}>
-							{[...Array(4)].map((_, i) => (
+							{data[key].map((el: any, i: number) => (
 								<div key={i}>
 									<span className={styles.time}>
-										{moment(data[key].start).format('hh:mm')}
+										{moment(el.start).format('hh:mm')}
 									</span>
-									<span className={styles.space_name}>
-										{data[key].space.name}
-									</span>
+									<span className={styles.space_name}>{el.space.name}</span>
 								</div>
 							))}
 						</div>
@@ -28,7 +50,7 @@ export default function DaysList({ setModalActive, edit, data }: any) {
 						<Button
 							className={styles.add_btn}
 							onclick={() => {
-								setModalActive(moment(key).format('D'));
+								setModalActive(key);
 							}}
 						/>
 					) : null}
@@ -36,4 +58,12 @@ export default function DaysList({ setModalActive, edit, data }: any) {
 			))}
 		</ul>
 	);
+}
+
+function initData(date: Moment) {
+	const obj: any = {};
+	for (let index = 0; index < 14; index++) {
+		obj[moment(date).add(index, 'days').format('YYYY-MM-DD')] = null;
+	}
+	return obj;
 }

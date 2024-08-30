@@ -1,5 +1,11 @@
 import { AvatarPage, SchedulePage } from '@pages/shared';
-import { MainPage, ExercisePage, TrainPage, SurveyPage, RewardPage } from '@student';
+import {
+	MainPage,
+	ExercisePage,
+	TrainPage,
+	SurveyPage,
+	RewardPage
+} from '@student';
 import training from '@assets/sidebar/train.svg';
 import schedule from 'assets/sidebar/schedule.svg';
 import home from 'assets/sidebar/home.svg';

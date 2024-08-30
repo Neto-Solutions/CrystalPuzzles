@@ -10,47 +10,36 @@ import { DropDownButton } from '@features';
 interface ShedulePageProps {
 	edit?: boolean;
 }
-
-const data = [
-	{
-		id: 1,
-		name: 'ddfddd'
-	},
-	{
-		id: 2,
-		name: 'kökö'
-	},
-	{
-		id: 3,
-		name: 'dfd'
-	},
-	{
-		id: 4,
-		name: 'asdad'
-	}
-];
-
 export default function ShedulePage({ edit = false }: ShedulePageProps) {
 	const [modalActive, setModalActive]: any = useState(false);
-	// const lessons = useLoaderData();
+	const [data, setData]: any = useState({
+		space_id: null,
+		trainer_id: null
+	});
 	const navigate = useNavigate();
+
 	return (
 		<Page title="Составить расписание тренеров">
 			<Table edit={edit} setModalActive={setModalActive} />
 			<div className={styles.buttons_container}>
-				<DropDownButton title="Выберите тренера" data={data} />
-				<DropDownButton title="Выберите площадку" data={data} />
-				<Button
-					className={styles.edit_btn}
-					title={edit ? 'Отправить расписание' : 'Составить расписание'}
-					onClick={() => {
-						edit ? null : navigate('./edit');
-					}}
+				<DropDownButton
+					title="Выберите тренера"
+					data={[{ id: +'2', name: 'Тренер 2' }]}
+					setState={(id: string) =>
+						setData((prev: any) => ({ ...prev, trainer_id: id }))
+					}
 				/>
+				{edit ? null : (
+					<Button
+						className={styles.edit_btn}
+						title="Составить расписание"
+						onClick={() => navigate('./edit')}
+					/>
+				)}
 			</div>
-			{edit ? (
+			{edit && modalActive ? (
 				<Modal active={modalActive} setActive={setModalActive}>
-					<AddTreanerSchedule day={modalActive} />
+					<AddTreanerSchedule day={modalActive} data={data} />
 				</Modal>
 			) : null}
 		</Page>

@@ -1,5 +1,4 @@
 import { useLoaderData } from 'react-router-dom';
-import { useState } from 'react';
 import { DateChanger, Feedback } from '@features';
 import { Exercises } from '@widgets';
 import { Button, EmojiCard, Page } from '@shared/ui';

@@ -10,7 +10,7 @@ export default function GroupsList({ data, className }: GroupsListProps) {
 	return (
 		<div className={classNames(styles.container, className)}>
 			{data?.map((item: any) => (
-				<div className={styles.group} key={item._id}>
+				<div className={styles.group} key={item.id}>
 					{item.id} группа {item.name}
 				</div>
 			))}

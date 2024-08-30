@@ -25,7 +25,7 @@ export default function TrainPage() {
 					data.map((item: any, index: number) => {
 						return (
 							<Link
-								to={`/train/${item._id}`}
+								to={`/train/${item.id}`}
 								key={index}
 								className={styles.card}
 							>

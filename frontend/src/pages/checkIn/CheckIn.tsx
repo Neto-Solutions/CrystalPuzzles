@@ -5,10 +5,10 @@ import Wrapper from './wrapper/Wrapper';
 import Input from './input/Input';
 import Password from './password/Password';
 import Politics from './policy/Policy';
-import { Button, Page } from '@shared/ui';
+import { Button } from '@shared/ui';
 import { mapUserForm } from '@entities';
 import { Auth } from '@shared/api';
-import { Footer, Tag } from '@widgets';
+import { Tag } from '@widgets';
 
 export default function CheckInPage({ login = false }: any) {
 	const navigate = useNavigate();

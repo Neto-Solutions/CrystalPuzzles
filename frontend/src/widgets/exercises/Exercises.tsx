@@ -7,8 +7,8 @@ export default function Exercises({ data, className, disabled, checked }: any) {
 		<ul className={classNames(styles.list, className)}>
 			{data?.map((item: any, index: number) => (
 				<ExerciseItem
-					key={item._id}
-					id={item._id}
+					key={item.id}
+					id={item.id}
 					index={index + 1}
 					img={item.img}
 					text={item.name}

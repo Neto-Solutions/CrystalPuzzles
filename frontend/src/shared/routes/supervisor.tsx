@@ -48,7 +48,7 @@ const supervisorRouter = [
 		path: '/progress/:id',
 		element: <ProgressPage />,
 		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user._id == id);
+			return users.find((user) => user.id == id);
 		}
 	},
 	{
@@ -64,7 +64,7 @@ const supervisorRouter = [
 		path: '/analytic/:id',
 		element: <AnalyticsPage />,
 		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user._id == id);
+			return users.find((user) => user.id == id);
 		}
 	},
 	{
@@ -111,7 +111,7 @@ const supervisorRouter = [
 		path: '/students/:id',
 		element: <ProfilePage title="Ученики" />,
 		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user._id == id);
+			return users.find((user) => user.id == id);
 		}
 	},
 	{
@@ -122,7 +122,7 @@ const supervisorRouter = [
 		path: '/trainers/:id',
 		element: <ProfilePage title="Тренеры" />,
 		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user._id == id);
+			return users.find((user) => user.id == id);
 		}
 	}
 ];

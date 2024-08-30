@@ -16,7 +16,7 @@ export default function ScheduleList() {
 			{data
 				? data.map((item: any, index: number) => (
 						<Link
-							to={`/train/${item._id}`}
+							to={`/schedule/${item.id}`}
 							key={index}
 							className={styles.item_container}
 						>
@@ -26,7 +26,7 @@ export default function ScheduleList() {
 										{moment(item.start).format('HH:mm')}
 									</span>
 									<span> - </span>
-									<span className={styles.place}>{item.place.name}</span>
+									<span className={styles.place}>{item.space.name}</span>
 								</div>
 								<div className={styles.trainer}>
 									Тренер -{' '}

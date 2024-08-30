@@ -1,6 +1,6 @@
 const users = [
 	{
-		_id: '669fb39f4602ff2db81441f5',
+		id: '669fb39f4602ff2db81441f5',
 		email: 'student@crystal.com',
 		password: 'studentpass',
 		firstname: 'Ольга',
@@ -13,7 +13,7 @@ const users = [
 		role: 'student'
 	},
 	{
-		_id: '669fb4464602ff2db81441f7',
+		id: '669fb4464602ff2db81441f7',
 		email: 'trainer@crystal.com',
 		password: 'trainerpass',
 		firstname: 'Валерия',
@@ -26,7 +26,7 @@ const users = [
 		role: 'trainer'
 	},
 	{
-		_id: '669fb3e34602ff2db81441f6',
+		id: '669fb3e34602ff2db81441f6',
 		email: 'supervisor@crystal.com',
 		password: 'supervisorpass',
 		firstname: 'Анастасия',

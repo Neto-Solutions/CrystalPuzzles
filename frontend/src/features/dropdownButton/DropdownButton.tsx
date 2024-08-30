@@ -26,17 +26,17 @@ export default function DropdownButton(props: DropdownButtonProps) {
 			<form
 				className={classNames(styles.dropdown_list, open ? styles.active : '')}
 			>
-				{data.map((item: any) => (
+				{data.map((item: any, i: number) => (
 					<div
+						key={i}
 						className={styles.list_item}
-						key={item.id}
 						onClick={(e) => {
 							e.stopPropagation();
 							setState(item.id);
 						}}
 					>
-						<label htmlFor={item.name}>{item.name}</label>
-						<input type="checkbox" className={styles.checkbox} id={item.name} />
+						<label htmlFor={item.id}>{item.name}</label>
+						<input type="checkbox" className={styles.checkbox} id={item.id} />
 					</div>
 				))}
 			</form>
