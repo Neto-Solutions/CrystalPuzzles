@@ -4,19 +4,17 @@ import { Button } from '../Button/Button';
 import moment, { Moment } from 'moment';
 import { useState, useEffect } from 'react';
 import { Lesson } from '@shared/api';
-import { useNavigate } from 'react-router-dom';
 
 export default function DaysList({ setModalActive, edit, date }: any) {
-	const [data, setData] = useState<any>(initData(date));
-	const navigate = useNavigate();
+	const [data, setData] = useState<any>({});
 
 	useEffect(() => {
+		const obj = initData(date);
 		Lesson.get({
 			start: date.clone().toISOString(),
 			end: date.clone().add(13, 'days').toISOString()
 		})
 			.then((res) => {
-				const obj = data;
 				res.forEach((item: any) => {
 					const key = moment(item.start).format('YYYY-MM-DD');
 					if (!obj[key]) obj[key] = [item];
@@ -24,7 +22,6 @@ export default function DaysList({ setModalActive, edit, date }: any) {
 				});
 				setData(obj);
 			})
-			.finally(() => navigate(''))
 			.catch();
 	}, [date]);
 
