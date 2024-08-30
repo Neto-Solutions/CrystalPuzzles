@@ -38,6 +38,7 @@ export default function ShedulePage({ edit = false }: ShedulePageProps) {
 		<Page title="Составить расписание тренеров">
 			<Table edit={edit} setModalActive={setModalActive} />
 			<div className={styles.buttons_container}>
+				{/* меняется высота у всех сразу, потому что состояние не у каждого отдельно, а в главном компоненте. //TODO: вернуть назад, как было */}
 				<DropDownButton title="Выберите тренера" data={data} />
 				<DropDownButton title="Выберите площадку" data={data} />
 				<Button

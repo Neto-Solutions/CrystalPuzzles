@@ -54,7 +54,7 @@ export default function AvatarPage() {
 					</div>
 				</div>
 
-				<div className={styles.container_images}>
+				{/* <div className={styles.container_images}>
 					{Array.from({ length: 9 }).map((_: any, index: number) => {
 						if (!index) return;
 						return (
@@ -71,7 +71,7 @@ export default function AvatarPage() {
 							/>
 						);
 					})}
-				</div>
+				</div> */}
 			</form>
 		</Page>
 	);
