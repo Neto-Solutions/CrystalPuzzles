@@ -1,13 +1,17 @@
 import styles from './CheckList.module.scss';
 import { Page, Button } from '@shared/ui';
-import { useLoaderData } from 'react-router-dom';
 import Profile from './Profile/Profile';
 import Info from './Info/Info';
 import { Exercises } from '@widgets';
-import { FormEvent } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { Exercise } from '@shared/api';
 
 export default function CheckListPage() {
-	// const data: any = useLoaderData();
+	const [exercises, setExercises] = useState([]);
+
+	useEffect(() => {
+		Exercise.get().then(setExercises).catch();
+	}, []);
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -24,13 +28,13 @@ export default function CheckListPage() {
 				});
 			}
 		}
-	}		
+	}
 
 	return (
 		<Page title="Чек-листы">
 			<div className={styles.wrapper}>
 				<Profile className={styles.profile} />
-				{/* <Info className={styles.info} data={data} /> */}
+				<Info className={styles.info} />
 
 				<section className={styles.panel_container}>
 					<Button title="Выберите группу" downArrow width="100%" />
@@ -47,7 +51,7 @@ export default function CheckListPage() {
 						id="exercises_form"
 						className={styles.exercises}
 					>
-						{/* <Exercises data={data.checkList.exercises} /> */}
+						<Exercises data={exercises} />
 					</form>
 				</section>
 			</div>

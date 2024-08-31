@@ -3,8 +3,10 @@ class Exercise {
 	#host = $authHost;
 
 	async get() {
-		const { data } = await this.#host.get('/exercise');
-		return data;
+		const {
+			data: { records }
+		} = await this.#host.get('/training');
+		return records;
 	}
 }
 
