@@ -19,9 +19,7 @@ const studentRouter = [
 		element: <MainPage />,
 		img: home,
 		loader: () => {
-			return {
-				lessons
-			};
+			return { lessons };
 		}
 	},
 	{
@@ -39,8 +37,9 @@ const studentRouter = [
 		path: '/train/:id',
 		element: <ExercisePage />,
 		loader: ({ params }: any) => {
+			const lesson = lessons.find((l) => l.id === params.id);
 			return {
-				lessons,
+				lesson,
 				id: params.id
 			};
 		}

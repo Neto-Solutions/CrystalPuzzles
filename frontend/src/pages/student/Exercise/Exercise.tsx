@@ -6,13 +6,14 @@ import { DateChanger, Feedback } from '@features';
 import { Exercises } from '@widgets';
 
 import { Lesson } from '@shared/api';
+import { lessons } from '@shared/const';
 
 export default function ExercisePage() {
-	const [data, setData] = useState<any>();
-	const { id }: any = useLoaderData();
+	const { id, lesson }: any = useLoaderData();
+	const [data, setData] = useState<any>(lesson);
 
 	useEffect(() => {
-		Lesson.get(id).then(setData);
+		// Lesson.get(id).then(setData);
 	}, []);
 
 	return (
