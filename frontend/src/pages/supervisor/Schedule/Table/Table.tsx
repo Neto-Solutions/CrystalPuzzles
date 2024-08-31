@@ -14,23 +14,21 @@ const Table = ({
 	data: { trainer_id }
 }: any) => {
 	const [date, setDate]: any = useState(moment().startOf('week'));
-	const [data, setData] = useState<any>({});
+	const [data, setData]: any = useState(initData(date));
 
 	useEffect(() => {
-		if (!trainer_id) {
-			setData(initData(date));
-			return;
-		}
+		if (!trainer_id) return;
 
-		const obj = initData(date);
 		Lesson.get({
 			start: date.clone().toISOString(),
 			end: date.clone().add(13, 'days').toISOString(),
 			trainer: trainer_id
 		})
 			.then((res) => {
+				const obj = initData(date);
 				res.forEach((item: any) => {
 					const key = moment(item.start).format('YYYY-MM-DD');
+					if (!Object.keys(obj).includes(key)) return;
 					if (!obj[key]) obj[key] = [item];
 					else obj[key] = [...obj[key], item];
 				});
