@@ -8,7 +8,6 @@ import Politics from './policy/Policy';
 import { Button } from '@shared/ui';
 import { mapUserForm } from '@entities';
 import { Auth } from '@shared/api';
-import { Tag } from '@widgets';
 
 export default function CheckInPage({ login = false }: any) {
 	const navigate = useNavigate();
@@ -92,7 +91,6 @@ export default function CheckInPage({ login = false }: any) {
 					</form>
 				</div>
 			</Wrapper>
-			<Tag />
 		</>
 	);
 }

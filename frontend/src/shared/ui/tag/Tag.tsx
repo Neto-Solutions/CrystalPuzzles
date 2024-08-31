@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import styles from './Tag.module.scss';
+import { createPortal } from 'react-dom';
 
 declare global {
 	interface Window {
@@ -7,12 +7,12 @@ declare global {
 	}
 }
 
-const tag = process.env.REACT_APP_TAG || window.TAG;
-
-interface TagProps {
-	className?: string;
+export default function Tag() {
+	const tag = process.env.REACT_APP_TAG || window.TAG;
+	return createPortal(
+		<div className={styles.container}>
+			<div className={styles.tag}>{tag}</div>
+		</div>,
+		document.getElementById('tag') as HTMLElement
+	);
 }
-
-export const Tag = ({ className }: TagProps) => {
-	return <span className={classNames(styles.tag, className)}>{tag}</span>;
-};

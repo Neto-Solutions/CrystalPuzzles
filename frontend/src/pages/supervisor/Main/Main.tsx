@@ -14,7 +14,7 @@ export default function MainPage() {
 				<AnalyticCardLink className={styles.analytic} />
 				<EvaluationCardLink className={styles.evaluation} />
 				<CardLink title={'Расписание'} className={styles.schedule_wrapper}>
-					<ScheduleList />
+					<ScheduleList link="/schedule" />
 				</CardLink>
 				<Notification className={styles.notification} />
 			</div>

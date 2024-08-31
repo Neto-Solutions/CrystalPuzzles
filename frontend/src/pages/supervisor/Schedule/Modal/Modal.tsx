@@ -5,7 +5,7 @@ import { DropDownButton, DateChanger } from '@features';
 import moment from 'moment';
 import { Lesson } from '@shared/api';
 
-export const AddTreanerSchedule = ({ day, data }: any) => {
+export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 	const [newLesson, setNewLesson]: any = useState({
 		space_id: null,
 		trainer_id: data?.trainer_id,
@@ -14,16 +14,19 @@ export const AddTreanerSchedule = ({ day, data }: any) => {
 	});
 
 	const handleSubmit = async () => {
-		Lesson.add(newLesson).then(console.log);
+		Lesson.add(newLesson)
+			.then(() => setActive(false))
+			.catch();
 		return newLesson;
 	};
 
 	return (
-		<div className={styles.component}>
+		<div className={styles.container}>
 			{/* <DateChanger day={day} className={styles.header} /> */}
 			<main className={styles.main}>
 				{/* <DropDownButton title={'Выберите тренера'} setState={setTrainer} /> */}
 				<DropDownButton
+					className={styles.place}
 					title={'Выберите площадку'}
 					data={[{ id: +'1', name: 'Площадка 1' }]}
 					setState={(id: string) =>
@@ -31,6 +34,7 @@ export const AddTreanerSchedule = ({ day, data }: any) => {
 					}
 				/>
 				<DropDownButton
+					className={styles.time}
 					title={'Выберите время'}
 					setState={(id: string) =>
 						setNewLesson((prev: any) => ({ ...prev, start: id }))
@@ -51,6 +55,7 @@ export const AddTreanerSchedule = ({ day, data }: any) => {
 					]}
 				/>
 				<textarea
+					className={styles.textarea}
 					onChange={(e) =>
 						setNewLesson((prev: any) => ({
 							...prev,
@@ -58,7 +63,9 @@ export const AddTreanerSchedule = ({ day, data }: any) => {
 						}))
 					}
 				></textarea>
-				<Button onClick={handleSubmit}>Отправить</Button>
+				<Button className={styles.submit} onClick={handleSubmit}>
+					Отправить
+				</Button>
 			</main>
 		</div>
 	);

@@ -7,7 +7,12 @@ import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 import { useState, useEffect } from 'react';
 import { Lesson } from '@shared/api';
 
-const Table = ({ setModalActive, edit, data: { trainer_id } }: any) => {
+const Table = ({
+	setModalActive,
+	modalActive,
+	edit,
+	data: { trainer_id }
+}: any) => {
 	const [date, setDate]: any = useState(moment().startOf('week'));
 	const [data, setData] = useState<any>(initData(date));
 
@@ -26,7 +31,7 @@ const Table = ({ setModalActive, edit, data: { trainer_id } }: any) => {
 				setData(obj);
 			})
 			.catch();
-	}, [date, trainer_id]);
+	}, [date, trainer_id, modalActive]);
 
 	return (
 		<>

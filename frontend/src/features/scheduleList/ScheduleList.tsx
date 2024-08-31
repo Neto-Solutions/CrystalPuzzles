@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './ScheduleList.module.scss';
 import { Lesson } from '@shared/api';
 
-export default function ScheduleList() {
+export default function ScheduleList({ link }: { link?: string }) {
 	const [data, setData] = useState<any>([]);
 
 	useEffect(() => {
@@ -16,7 +16,7 @@ export default function ScheduleList() {
 			{data
 				? data.map((item: any, index: number) => (
 						<Link
-							to={`/schedule/${item.id}`}
+							to={link ? link : `/schedule/${item.id}`}
 							key={index}
 							className={styles.item_container}
 						>
