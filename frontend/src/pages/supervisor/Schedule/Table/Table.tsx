@@ -14,13 +14,19 @@ const Table = ({
 	data: { trainer_id }
 }: any) => {
 	const [date, setDate]: any = useState(moment().startOf('week'));
-	const [data, setData] = useState<any>(initData(date));
+	const [data, setData] = useState<any>({});
 
 	useEffect(() => {
+		if (!trainer_id) {
+			setData(initData(date));
+			return;
+		}
+
 		const obj = initData(date);
 		Lesson.get({
 			start: date.clone().toISOString(),
-			end: date.clone().add(13, 'days').toISOString()
+			end: date.clone().add(13, 'days').toISOString(),
+			trainer: trainer_id
 		})
 			.then((res) => {
 				res.forEach((item: any) => {

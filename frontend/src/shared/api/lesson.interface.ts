@@ -8,6 +8,7 @@ interface IAddParams {
 interface IParams {
 	start?: string;
 	end?: string;
+	trainer?: string;
 	limit?: number;
 	offset?: number;
 }
