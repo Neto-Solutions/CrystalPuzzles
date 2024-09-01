@@ -9,8 +9,9 @@ import { DropDownButton } from '@features';
 
 interface ShedulePageProps {
 	edit?: boolean;
+	title: string;
 }
-export default function ShedulePage({ edit = false }: ShedulePageProps) {
+export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 	const [modalActive, setModalActive]: any = useState(false);
 	const [data, setData]: any = useState({
 		space_id: null,
@@ -19,7 +20,7 @@ export default function ShedulePage({ edit = false }: ShedulePageProps) {
 	const navigate = useNavigate();
 
 	return (
-		<Page title="Составить расписание тренеров">
+		<Page title={title}>
 			<Table
 				edit={edit}
 				modalActive={modalActive}

@@ -4,10 +4,13 @@ import { Page } from '@shared/ui';
 import { Link, useLoaderData } from 'react-router-dom';
 import moment from 'moment';
 import { CalendarButton } from '@features';
-
 import { Lesson } from '@shared/api';
 
-export default function TrainPage() {
+interface TrainPageProps {
+	title: string;
+}
+
+export default function TrainPage({ title }: TrainPageProps) {
 	const { lessons }: any = useLoaderData();
 	const [data, setData] = useState<any>(lessons);
 	const [date, setDate]: any = useState({
@@ -19,7 +22,7 @@ export default function TrainPage() {
 	// }, [date]);
 
 	return (
-		<Page title="Мои тренировки">
+		<Page title={title}>
 			<div className={styles.wrapper}>
 				{data &&
 					data.map((item: any, index: number) => {

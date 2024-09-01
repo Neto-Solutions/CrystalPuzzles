@@ -6,7 +6,11 @@ import { Exercises } from '@widgets';
 import { FormEvent, useEffect, useState } from 'react';
 import { Exercise } from '@shared/api';
 
-export default function CheckListPage() {
+interface CheckListPageProps {
+	title: string;
+}
+
+export default function CheckListPage({ title }: CheckListPageProps) {
 	const [exercises, setExercises] = useState([]);
 
 	useEffect(() => {
@@ -31,7 +35,7 @@ export default function CheckListPage() {
 	}
 
 	return (
-		<Page title="Чек-листы">
+		<Page title={title}>
 			<div className={styles.wrapper}>
 				<Profile className={styles.profile} />
 				<Info className={styles.info} />

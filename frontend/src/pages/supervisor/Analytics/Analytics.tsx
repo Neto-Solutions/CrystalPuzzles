@@ -4,7 +4,11 @@ import { useLoaderData } from 'react-router-dom';
 import { Card, UserCard, Page, Button } from '@shared/ui';
 import { CalendarButton } from '@features';
 
-export default function AnalyticsPage() {
+interface AnalyticsPageProps {
+	title: string;
+}
+
+export default function AnalyticsPage({ title }: AnalyticsPageProps) {
 	const [comment, setComment]: any = useState(false);
 	const { avatar, firstname, surname, lastname }: any = useLoaderData();
 	const [date, setDate]: any = useState({
@@ -13,7 +17,7 @@ export default function AnalyticsPage() {
 	});
 
 	return (
-		<Page title="Аналитика">
+		<Page title={title}>
 			<UserCard
 				img={require(`assets/avatar/${avatar}.png`)}
 				name={surname + ' ' + firstname + ' ' + lastname}

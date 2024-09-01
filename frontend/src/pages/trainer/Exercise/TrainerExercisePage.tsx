@@ -4,11 +4,17 @@ import { Exercises } from '@widgets';
 import { Button, EmojiCard, Page } from '@shared/ui';
 import styles from './TrainerExercisePage.module.scss';
 
-export default function TrainerExercisePage() {
+interface TrainerExercisePageProps {
+	title: string;
+}
+
+export default function TrainerExercisePage({
+	title
+}: TrainerExercisePageProps) {
 	const { lessons }: any = useLoaderData();
 
 	return (
-		<Page title="Занятия">
+		<Page title={title}>
 			<div className={styles.container}>
 				<DateChanger className={styles.date} />
 				<Exercises

@@ -27,7 +27,7 @@ import { users, lessons } from '@shared/const';
 const supervisorRouter = [
 	{
 		path: '/',
-		element: <MainPage />,
+		element: <MainPage title="Главная страница" />,
 		img: home,
 		loader: () => {
 			return {
@@ -37,7 +37,9 @@ const supervisorRouter = [
 	},
 	{
 		path: '/progress',
-		element: <UsersListPage type="progress" />,
+		element: (
+			<UsersListPage type="progress" title="График прогресса тренеров" />
+		),
 		local: 'Графики прогресса',
 		img: progress,
 		loader: () => {
@@ -46,14 +48,14 @@ const supervisorRouter = [
 	},
 	{
 		path: '/progress/:id',
-		element: <ProgressPage />,
+		element: <ProgressPage title="График прогресса" />,
 		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user.id == id);
 		}
 	},
 	{
 		path: '/analytic',
-		element: <UsersListPage type="analytic" />,
+		element: <UsersListPage type="analytic" title="Аналитика" />,
 		local: 'Аналитика',
 		img: analytics,
 		loader: () => {
@@ -62,20 +64,20 @@ const supervisorRouter = [
 	},
 	{
 		path: '/analytic/:id',
-		element: <AnalyticsPage />,
+		element: <AnalyticsPage title="Аналитика" />,
 		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user.id == id);
 		}
 	},
 	{
 		path: '/evaluation',
-		element: <EvaluationPage />,
+		element: <EvaluationPage title="Оценочная таблица эффективности" />,
 		local: 'Таблицы',
 		img: tables
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage />,
+		element: <SchedulePage title="Расписание тренеров" />,
 		local: 'Расписание',
 		img: schedule,
 		loader: () => {
@@ -84,24 +86,24 @@ const supervisorRouter = [
 	},
 	{
 		path: '/schedule/edit',
-		element: <SchedulePage edit />,
+		element: <SchedulePage edit title="Составить расписание тренеров" />,
 		loader: () => {
 			return lessons;
 		}
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />,
+		element: <FeedbackPage title="Обратная связь" />,
 		local: 'Обратная связь',
 		img: feedback
 	},
 	{
 		path: '/notifications',
-		element: <NotificationPage />
+		element: <NotificationPage title="Уведомления" />
 	},
 	{
 		path: '/avatar',
-		element: <AvatarPage />
+		element: <AvatarPage title="Изменить аватарку" />
 	},
 	{
 		path: '/students',
@@ -109,7 +111,7 @@ const supervisorRouter = [
 	},
 	{
 		path: '/students/:id',
-		element: <ProfilePage title="Ученики" />,
+		element: <ProfilePage title="Ученик" />,
 		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user.id == id);
 		}
@@ -120,7 +122,7 @@ const supervisorRouter = [
 	},
 	{
 		path: '/trainers/:id',
-		element: <ProfilePage title="Тренеры" />,
+		element: <ProfilePage title="Тренер" />,
 		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user.id == id);
 		}

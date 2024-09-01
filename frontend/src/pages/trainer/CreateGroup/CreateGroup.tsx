@@ -1,8 +1,13 @@
 import { Page } from '@shared/ui';
 import GroupForm from './GroupForm/GroupForm';
-export default function CreateGroupPage() {
+
+interface CreateGroupPageProps {
+	title: string;
+}
+
+export default function CreateGroupPage({ title }: CreateGroupPageProps) {
 	return (
-		<Page title="Создать группу">
+		<Page title={title}>
 			<GroupForm />
 		</Page>
 	);
