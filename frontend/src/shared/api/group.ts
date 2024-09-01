@@ -1,16 +1,19 @@
 import { $authHost } from './axios.instances';
+import { GroupI } from './group.interface';
 
 class Group {
 	#host = $authHost;
 
-	async create(group: any) {
+	async create(group: GroupI) {
 		const { data } = await this.#host.post('/group', group);
 		return data;
 	}
 
 	async getAll() {
-		const { data } = await this.#host.get('/group');
-		return data;
+		const {
+			data: { records }
+		} = await this.#host.get('/group');
+		return records;
 	}
 
 	// async getById(id: string) {

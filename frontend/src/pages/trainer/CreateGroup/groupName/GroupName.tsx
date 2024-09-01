@@ -1,6 +1,10 @@
 import styles from './GroupName.module.scss';
 
-export default function CreateForm({ setName }: any) {
+interface Props {
+	setName: any;
+}
+
+export default function CreateForm({ setName }: Props) {
 	return (
 		<div className={styles.container}>
 			<input
