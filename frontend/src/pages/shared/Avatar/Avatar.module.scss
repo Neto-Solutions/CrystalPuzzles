@@ -61,7 +61,7 @@
 	height: 134px;
 	border: var(--border);
 	border-radius: var(--radius);
-	padding: 8px;
+	// padding: 8px;
 	object-fit: cover;
 	@include md() {
 		width: 100px;
@@ -69,20 +69,20 @@
 	}
 }
 
-.container_images {
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: var(--gap);
-	place-items: center;
+// .container_images {
+// 	width: 100%;
+// 	display: grid;
+// 	grid-template-columns: repeat(4, 1fr);
+// 	gap: var(--gap);
+// 	place-items: center;
 
-	@include md() {
-		grid-template-columns: repeat(3, 1fr);
-		gap: 5px;
-	}
+// 	@include md() {
+// 		grid-template-columns: repeat(3, 1fr);
+// 		gap: 5px;
+// 	}
 
-	.img {
-		padding: 0;
-		cursor: pointer;
-	}
-}
+// 	.img {
+// 		padding: 0;
+// 		cursor: pointer;
+// 	}
+// }
