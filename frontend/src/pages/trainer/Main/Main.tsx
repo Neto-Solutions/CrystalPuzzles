@@ -5,11 +5,15 @@ import { Notification } from '@widgets';
 import { useResize } from '@hooks';
 import { Link } from 'react-router-dom';
 
-export default function MainPage() {
+interface MainPageProps {
+	title: string;
+}
+
+export default function MainPage({ title }: MainPageProps) {
 	const isMobile = useResize('sm');
 
 	return (
-		<Page title="Главная страница">
+		<Page title={title}>
 			<div className={styles.wrapper}>
 				<CardLink
 					to="/schedule"

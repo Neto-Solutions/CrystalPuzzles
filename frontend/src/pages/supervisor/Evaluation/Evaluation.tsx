@@ -2,9 +2,13 @@ import styles from './Evaluation.module.scss';
 import { Page, Button } from '@shared/ui';
 import { Table } from './table/Table';
 
-export default function EvaluationPage() {
+interface EvaluationPageProps {
+	title: string;
+}
+
+export default function EvaluationPage({ title }: EvaluationPageProps) {
 	return (
-		<Page title="Оценочная таблица эффективности">
+		<Page title={title}>
 			<Table />
 			<div className={styles['btn_wrap']}>
 				<Button>Выгрузить</Button>

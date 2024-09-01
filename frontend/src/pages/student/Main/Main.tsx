@@ -6,12 +6,16 @@ import { CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
 import RewardsPopup from './Reward/Reward';
 
-export default function MainPage() {
+interface MainPageProps {
+	title: string;
+}
+
+export default function MainPage({ title }: MainPageProps) {
 	const [reward, setReward]: any = useState(false);
 	const isMobile = useResize('sm');
 
 	return (
-		<Page title="Главная страница">
+		<Page title={title}>
 			{reward && <RewardsPopup onHide={() => setReward(false)} />}
 			<div className={styles.wrapper}>
 				<CardLink

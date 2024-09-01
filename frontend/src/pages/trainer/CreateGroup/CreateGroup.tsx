@@ -9,7 +9,11 @@ import { useSelector } from 'react-redux';
 import { selectProfile } from '@app/providers/store/profile';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateGroupPage() {
+interface CreateGroupPageProps {
+	title: string;
+}
+
+export default function CreateGroupPage({ title }: CreateGroupPageProps) {
 	const user = useSelector(selectProfile);
 	const [group, setGroup]: any = useState({ name: '', trainer_id: user.id });
 	const [students, setStudents]: any = useState([]);
@@ -22,7 +26,7 @@ export default function CreateGroupPage() {
 	}
 
 	return (
-		<Page title="Создать группу">
+		<Page title={title}>
 			<div className={styles.container} data-form>
 				<GroupName
 					setName={(value: string) => setGroup({ ...group, name: value })}

@@ -24,7 +24,7 @@ import { lessons, groups, users } from '@const';
 const trainerRouter = [
 	{
 		path: '/',
-		element: <MainPage />,
+		element: <MainPage title="Главная страница" />,
 		img: home,
 		loader: () => {
 			return {
@@ -34,11 +34,11 @@ const trainerRouter = [
 	},
 	{
 		path: '/notifications',
-		element: <NotificationPage />
+		element: <NotificationPage title="Уведомления" />
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage link />,
+		element: <SchedulePage link title="Расписание" />,
 		local: 'Расписание',
 		img: schedule,
 		loader: () => {
@@ -49,7 +49,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/schedule/:id',
-		element: <CheckListPage />,
+		element: <CheckListPage title="Чек-листы" />
 		// loader: ({ params: { id } }: any) => {
 		// 	console.log('id', id);
 		// 	return lessons.find((lesson) => lesson.id == id);
@@ -57,7 +57,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/groups',
-		element: <GroupListPage />,
+		element: <GroupListPage title="Группы" />,
 		local: 'Группы',
 		img: group,
 		loader: () => {
@@ -68,7 +68,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/group/create',
-		element: <CreateGroupPage />
+		element: <CreateGroupPage title="Создать группу" />
 	},
 	{
 		path: '/students',
@@ -78,24 +78,24 @@ const trainerRouter = [
 	},
 	{
 		path: '/students/:id',
-		element: <ProfilePage />,
+		element: <ProfilePage title="Ученик" />,
 		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user.id == id);
 		}
 	},
 	{
 		path: '/feedback',
-		element: <FeedbackPage />,
+		element: <FeedbackPage title="Обратная связь" />,
 		local: 'Обратная связь',
 		img: feedback
 	},
 	{
 		path: '/avatar',
-		element: <AvatarPage />
+		element: <AvatarPage title="Изменить аватарку" />
 	},
 	{
 		path: '/exercise',
-		element: <TrainerExercisePage />,
+		element: <TrainerExercisePage title="Занятия" />,
 		loader: () => {
 			return {
 				lessons

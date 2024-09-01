@@ -8,7 +8,11 @@ import { Exercises } from '@widgets';
 import { Lesson } from '@shared/api';
 import { lessons } from '@shared/const';
 
-export default function ExercisePage() {
+interface ExercisePageProps {
+	title: string;
+}
+
+export default function ExercisePage({ title }: ExercisePageProps) {
 	const { id, lesson }: any = useLoaderData();
 	const [data, setData] = useState<any>(lesson);
 
@@ -17,7 +21,7 @@ export default function ExercisePage() {
 	}, []);
 
 	return (
-		<Page title="Мои занятия">
+		<Page title={title}>
 			<div className={styles.container}>
 				<DateChanger className={styles.date} />
 				<Exercises
@@ -35,11 +39,11 @@ export default function ExercisePage() {
 							</div>
 						))}
 					</div>
-					<Feedback className={styles.feedback} />
 				</section>
 				<div className={styles.reward_wrapper}>
 					<span>Мои награды</span>
 				</div>
+				<Feedback className={styles.feedback} title="Комментарий тренера" />
 			</div>
 		</Page>
 	);

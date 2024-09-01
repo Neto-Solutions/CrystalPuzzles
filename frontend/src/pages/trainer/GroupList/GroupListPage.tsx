@@ -3,10 +3,14 @@ import GroupsList from './groups.list/Groups.list';
 import { useNavigate } from 'react-router-dom';
 import styles from './GroupListPage.module.scss';
 
-export default function GroupListPage() {
+interface GroupListPageProps {
+	title: string;
+}
+
+export default function GroupListPage({ title }: GroupListPageProps) {
 	const navigate = useNavigate();
 	return (
-		<Page title="Группы">
+		<Page title={title}>
 			<div className={styles.container}>
 				<GroupsList className={styles.list} />
 				<Button

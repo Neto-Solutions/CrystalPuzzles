@@ -1,9 +1,13 @@
 import { Page } from '@shared/ui';
 import { Feedback } from '@features';
 
-export default function FeedbackPage() {
+interface FeedbackPageProps {
+	title: string;
+}
+
+export default function FeedbackPage({ title }: FeedbackPageProps) {
 	return (
-		<Page title="Обратная связь">
+		<Page title={title}>
 			<Feedback placeholder="Антонина, поставь мне выходной на 30.10.2023, у меня прием у стоматолога." />
 		</Page>
 	);

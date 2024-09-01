@@ -5,7 +5,15 @@ import { CalendarBlock } from '@features';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 import { Lesson } from '@api';
 
-export default function SchedulePage({ link = false }: any) {
+interface SchedulePageProps {
+	link?: boolean;
+	title: string;
+}
+
+export default function SchedulePage({
+	link = false,
+	title
+}: SchedulePageProps) {
 	const [data, setData] = useState<any>([]);
 	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
@@ -17,7 +25,7 @@ export default function SchedulePage({ link = false }: any) {
 	}, [date]);
 
 	return (
-		<Page title="Расписание">
+		<Page title={title}>
 			<div className={styles.table}>
 				{data
 					? data.map((item: any, index: number) => (

@@ -5,10 +5,14 @@
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	gap: var(--gap);
-	grid-template-areas: 'date reward' 'list reward';
+	grid-template-areas:
+		'date reward'
+		'list reward'
+		'mood .'
+		'feedback .';
 
 	@include lg() {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'date date'
 			'reward list'
@@ -17,7 +21,12 @@
 	}
 	@include sm() {
 		grid-template-columns: 1fr;
-		grid-template-areas: 'reward' 'date' ' list' 'mood' 'feedback';
+		grid-template-areas:
+			'reward'
+			'date'
+			'list'
+			'mood'
+			'feedback';
 	}
 }
 
@@ -30,6 +39,7 @@
 }
 
 .list {
+	margin-bottom: 40px;
 	grid-area: list;
 	display: flex;
 	flex-direction: column;
@@ -50,24 +60,36 @@
 	border-radius: var(--radius-btn);
 }
 
+.mood_wrapper {
+	grid-area: mood;
+}
+
 .icon_wrapper {
 	width: 100%;
-	grid-area: mood;
 	margin-bottom: 48px;
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	justify-content: space-between;
 	gap: var(--gap);
 
 	@include sm() {
-		flex-wrap: wrap;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
 	}
 }
 
 .icon {
+	height: 102px;
+	display: grid;
+	place-content: center;
 	padding: var(--btn-padding);
 	background-color: var(--btn-bg-color);
 	border: var(--border);
 	border-radius: var(--radius);
 	cursor: pointer;
+	@include sm() {
+		padding: 5px;
+	}
 }
 
 .feedback {

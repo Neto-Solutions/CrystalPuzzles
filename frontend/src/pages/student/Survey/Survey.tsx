@@ -2,9 +2,13 @@ import styles from './Survey.module.scss';
 import { Page } from '@shared/ui';
 import { ReactComponent as File } from '@shared/assets/svg/file.svg';
 
-export default function SurveyPage() {
+interface SurveyPageProps {
+	title: string;
+}
+
+export default function SurveyPage({ title }: SurveyPageProps) {
 	return (
-		<Page title="Анкета">
+		<Page title={title}>
 			<div className={styles.section}>
 				<div className={styles.wrapper}>
 					<div>Анкета участника</div>

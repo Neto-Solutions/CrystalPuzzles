@@ -5,14 +5,18 @@ import { Graph } from './graph/Graph';
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function ProgressPage() {
+interface ProgressPageProps {
+	title: string;
+}
+
+export default function ProgressPage({ title }: ProgressPageProps) {
 	const { avatar, firstname, lastname, surname }: any = useLoaderData();
 	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
 		to: new Date().toISOString()
 	});
 	return (
-		<Page title="График прогресса">
+		<Page title={title}>
 			<Graph />
 			<div className={styles.buttons_container}>
 				<UserCard

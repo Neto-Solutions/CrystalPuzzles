@@ -6,9 +6,12 @@ import { AnalyticCardLink } from './AnalyticCardLink/AnalyticCardLink';
 import { ProgressCardLink } from './ProgressCardLink/ProgressCardLink';
 import { ScheduleList } from '@features';
 
-export default function MainPage() {
+interface MainPageProps {
+	title: string;
+}
+export default function MainPage({ title }: MainPageProps) {
 	return (
-		<Page title="Главная страница">
+		<Page title={title}>
 			<div className={styles.page_wrapper}>
 				<ProgressCardLink className={styles.progress} />
 				<AnalyticCardLink className={styles.analytic} />
