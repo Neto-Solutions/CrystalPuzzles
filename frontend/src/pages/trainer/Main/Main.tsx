@@ -15,11 +15,7 @@ export default function MainPage({ title }: MainPageProps) {
 	return (
 		<Page title={title}>
 			<div className={styles.wrapper}>
-				<CardLink
-					to="/schedule"
-					title={'Расписание'}
-					className={styles.schedule_card}
-				>
+				<CardLink title={'Расписание'} className={styles.schedule_card}>
 					<ScheduleList />
 				</CardLink>
 				{isMobile ? (

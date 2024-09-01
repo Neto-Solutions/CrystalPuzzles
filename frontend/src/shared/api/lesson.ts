@@ -16,11 +16,11 @@ class Lesson {
 	}
 
 	async get(params: IParams) {
-		const { start, end, limit, offset } = params;
+		const { start, end, limit, offset, trainer } = params;
 		const {
 			data: { records }
 		} = await this.#host.get(`/lesson`, {
-			params: { start_date: start, end_date: end, limit, offset }
+			params: { start_date: start, end_date: end, trainer, limit, offset }
 		});
 		return records;
 	}
