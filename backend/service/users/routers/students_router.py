@@ -25,5 +25,5 @@ async def get_student_list(
         current_user: TrainerSupervisorAdminDep,
         filters: UserFilterDep,
 ):
-    students = await user_service.get_all_students_by_filter(uow, filters)
+    students = await user_service.get_all_by_filter(uow, filters, role="student")
     return students
