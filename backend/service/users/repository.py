@@ -71,15 +71,16 @@ class UserRepository(BaseRepository):
             return True
         return False
 
-    async def get_all_students_by_filter(
+    async def get_all_by_filter(
             self,
-            filters: UserFilterSchema
+            filters: UserFilterSchema,
+            role: str
     ):
         stmt = (
             select(self.model)
             .filter(
                 self.model.deleted.__eq__(False),
-                self.model.role.__eq__("student")
+                self.model.role.__eq__(role)
             )
         )
         if filters.search_string:
