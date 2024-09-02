@@ -25,5 +25,6 @@ async def get_admin_list(
         current_user: AdminDep,
         filters: UserFilterDep,
 ):
-    admin_list = await user_service.get_all_by_filter(uow, filters, role="admin")
-    return admin_list
+    """ admin """
+    result = await user_service.get_all_by_filter(uow, filters, role="admin")
+    return result
