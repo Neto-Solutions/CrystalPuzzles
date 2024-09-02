@@ -1,5 +1,23 @@
 @use '~styles/mixins' as *;
 
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas:
+		'profile info panel'
+		'profile exercises exercises'
+		'. exercises exercises';
+	gap: var(--gap);
+
+	@include md() {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas:
+			'profile info'
+			'panel exercises'
+			'panel exercises';
+	}
+}
+
 .profile {
 	grid-area: profile;
 }
@@ -24,14 +42,4 @@
 .panel_container,
 .exercises {
 	width: 100%;
-}
-
-.wrapper {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-areas:
-		'profile info panel'
-		'profile exercises exercises'
-		'. exercises exercises';
-	gap: var(--gap);
 }

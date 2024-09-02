@@ -49,7 +49,7 @@ async def edit_account(
         user_service: UserServiceDep,
         current_user: UserDep
 ):
-    """ authorized """
+    """ authenticate """
     data.id = current_user.id
     result = await user_service.edit(uow, data)
     if result:
@@ -71,7 +71,7 @@ async def edit_account(
 async def edit_account_view(
         current_user: UserDep
 ):
-    """ authorized """
+    """ authenticate """
     return current_user
 
 
@@ -103,7 +103,7 @@ async def set_photo(
         file: UploadFile = File(...),
 
 ):
-    """ authorized """
+    """ authenticate """
     try:
         if file.size <= 0 or file.content_type not in ["image/jpeg", "image/png"]:
             return JSONResponse(
@@ -139,7 +139,7 @@ async def remove_photo(
         user_service: UserServiceDep,
         current_user: UserDep
 ):
-    """ authorized """
+    """ authenticate """
     if not current_user.photo:
         logger.error({"user_id": current_user.id, "message": "Photo not found"})
         return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Photo not found")
@@ -162,7 +162,7 @@ async def get_photo(
         user_service: UserServiceDep,
         current_user: UserDep
 ):
-    """ authorized """
+    """ authenticate """
     result = await user_service.get_photo(uow, current_user.id)
     if result or result is None:
         return PhotoReadSchema(photo=result)
@@ -185,6 +185,6 @@ async def set_avatar(
         avatar_schema: AvatarSchema,
         current_user: UserDep
 ):
-    """ authorized """
+    """ authenticate """
     result = await user_service.set_avatar(uow, avatar_schema, current_user.id)
     return result

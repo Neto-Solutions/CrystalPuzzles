@@ -1,0 +1,36 @@
+.container {
+	display: grid;
+	grid-template-columns: 714px 1fr;
+	grid-template-areas:
+		'date btn'
+		'exercises .'
+		'feedback wrapper';
+	gap: var(--gap);
+}
+
+.date {
+	grid-area: date;
+	background-color: var(--bg-date-picker);
+	border-radius: var(--radius);
+	border: var(--border);
+}
+
+.exercises {
+	grid-area: exercises;
+}
+
+.feedback {
+	grid-area: feedback;
+}
+
+.wrapper {
+	grid-area: wrapper;
+}
+
+.btn {
+	grid-area: btn;
+}
+
+.emoji {
+	margin-bottom: 10px;
+}

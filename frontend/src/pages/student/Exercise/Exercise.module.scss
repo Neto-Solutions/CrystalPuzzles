@@ -1,5 +1,35 @@
 @use '~styles/mixins' as *;
 
+.container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: var(--gap);
+	grid-template-areas:
+		'date reward'
+		'list reward'
+		'mood .'
+		'feedback .';
+
+	@include lg() {
+		grid-template-columns: 50% 50%;
+		grid-template-areas:
+			'date date'
+			'reward list'
+			'mood mood'
+			'feedback feedback';
+	}
+	@include sm() {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'reward'
+			'date'
+			'list'
+			'mood'
+			'feedback';
+	}
+}
+
 .date {
 	grid-area: date;
 	width: 100%;
@@ -9,6 +39,7 @@
 }
 
 .list {
+	margin-bottom: 40px;
 	grid-area: list;
 	display: flex;
 	flex-direction: column;
@@ -17,6 +48,52 @@
 	@include md() {
 		margin-top: 0;
 	}
+}
+
+.title {
+	margin-bottom: 12px;
+	padding: var(--btn-padding) var(--gap);
+	font: var(--fw-medium) var(--fz-btn) var(--ff-first);
+	text-align: center;
+	background-color: var(--bg-date-picker);
+	border: var(--border);
+	border-radius: var(--radius-btn);
+}
+
+.mood_wrapper {
+	grid-area: mood;
+}
+
+.icon_wrapper {
+	width: 100%;
+	margin-bottom: 48px;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	justify-content: space-between;
+	gap: var(--gap);
+
+	@include sm() {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+}
+
+.icon {
+	height: 102px;
+	display: grid;
+	place-content: center;
+	padding: var(--btn-padding);
+	background-color: var(--btn-bg-color);
+	border: var(--border);
+	border-radius: var(--radius);
+	cursor: pointer;
+	@include sm() {
+		padding: 5px;
+	}
+}
+
+.feedback {
+	grid-area: feedback;
 }
 
 .reward_wrapper {
@@ -34,22 +111,5 @@
 
 	span {
 		font: var(--fw-medium) var(--fz-btn) var(--ff-first);
-	}
-}
-
-.container {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: var(--gap);
-	grid-template-areas: 'date reward' 'list reward';
-
-	@include lg() {
-		grid-template-columns: 1fr 1fr;
-		grid-template-areas: 'date date' 'reward list';
-	}
-	@include sm() {
-		grid-template-columns: 1fr;
-		grid-template-areas: 'reward' 'date' ' list';
 	}
 }

@@ -1,22 +1,27 @@
-@use '~styles/mixins' as *; 
-
- 
- 
+@use '~styles/mixins' as *;
 
 .container {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
 }
+
 .group {
-	@include font(var(--ff-first), 24px, 500);
-	cursor: pointer;
-	width: 714px;
-	height: 57px;
-	background: #a1cbf1;
-	border-radius: var(--radius);
-	border: var(--border);
+	padding: 16px 30px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	font: var(--fw-medium) 24px var(--ff-first);
+	background: #a1cbf1;
+	border-radius: var(--radius);
+	border: var(--border);
+	cursor: pointer;
+
+	@include md() {
+		font-size: 20px;
+	}
+
+	@include sm() {
+		font: var(--fw-medium) 16px var(--ff-second);
+	}
 }

@@ -21,8 +21,11 @@ from service.training.router import training_router
 from service.users.initialize import RolesInitialize, BaseUserInitialize
 
 from service.users.routers.admin_panel_router import admin_panel_router
+from service.users.routers.admins_router import admin_router
 from service.users.routers.profile_router import profile_router
 from service.users.routers.students_router import student_router
+from service.users.routers.supervisors_router import supervisor_router
+from service.users.routers.trainers_router import trainer_router
 from service.users.routers.user_router import user_router
 from service.identity.routers import auth_routers
 from service.notification.routers.notification_router import notification_router
@@ -107,8 +110,11 @@ _health_checks.add(HealthCheckUri(
 all_routers = [
     auth_routers,
     user_router,
-    profile_router,
+    admin_router,
+    supervisor_router,
+    trainer_router,
     student_router,
+    profile_router,
     admin_panel_router,
     group_router,
     student_group_router,
@@ -155,5 +161,5 @@ if __name__ == '__main__':
         host="0.0.0.0",
         port=settings.port,
         reload=True,
-        loop='uvloop',  # работает только на linux
+        #loop='uvloop',  # работает только на linux
     )
