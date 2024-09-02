@@ -5,7 +5,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Response
 from starlette.responses import JSONResponse
 
-from common.dependensies import TrainerSupervisorAdminDep
+from common.dependensies import TrainerSupervisorAdminDep, TrainerDep
 from common.schema.base_schemas import Message
 from core.logger import logger
 from service.lesson.dependensies import CheckUOWDep, CheckServiceDep
@@ -36,9 +36,9 @@ async def create_check(
         model: CreateCheckSchema,
         uow: CheckUOWDep,
         check_service: CheckServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: TrainerDep
 ):
-    """admin, supervisor, trainer"""
+    """ trainer """
     result = await check_service.add(uow, model)
     if result:
         return result

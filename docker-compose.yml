@@ -45,6 +45,8 @@ services:
     depends_on:
       - db
       - redis
+    volumes:
+      - ./backend/static:/app/static
     ports:
       - 8001:8000
     networks:
