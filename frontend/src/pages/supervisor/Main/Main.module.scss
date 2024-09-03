@@ -1,0 +1,55 @@
+@use '~styles/mixins' as *;
+
+.page_wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	grid-template-areas:
+		'progress analytic evaluation'
+		'schedule schedule notification';
+
+	@include md() {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas:
+			'progress analytic'
+			'evaluation notification'
+			'schedule schedule';
+	}
+}
+
+.progress {
+	grid-area: progress;
+}
+
+.analytic {
+	grid-area: analytic;
+}
+
+.evaluation {
+	grid-area: evaluation;
+}
+
+.notification {
+	grid-area: notification;
+}
+
+.schedule_wrapper {
+	padding: 20px;
+	max-height: 360px;
+	grid-area: schedule;
+	border: var(--border);
+	border-radius: var(--radius);
+	h2 {
+		margin-bottom: 50px;
+
+		@include md() {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.btns_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+}

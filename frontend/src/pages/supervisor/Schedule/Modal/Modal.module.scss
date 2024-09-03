@@ -1,0 +1,51 @@
+@use '~styles/mixins' as *;
+
+.container {
+	padding: 30px;
+	width: 100%;
+
+	.header {
+		border-bottom: var(--border);
+		margin-bottom: 36px;
+	}
+	.main {
+		display: grid;
+		place-content: center;
+		gap: 30px;
+
+		grid-template-areas:
+			'place time'
+			'textarea textarea'
+			'submit submit';
+		@include md() {
+			grid-template-areas:
+				'place'
+				'time'
+				'textarea'
+				'submit';
+		}
+
+		.place {
+			grid-area: place;
+		}
+
+		.time {
+			grid-area: time;
+		}
+		.textarea {
+			@include font(var(--ff-first), 20px, 500);
+			grid-area: textarea;
+			resize: none;
+			width: 100%;
+			height: 30%;
+			min-height: 150px;
+			padding: 20px;
+			border: var(--border);
+			border-radius: 10px;
+			outline: none;
+		}
+		.submit {
+			grid-area: submit;
+		}
+	}
+}

@@ -15,7 +15,7 @@
 	font-size: var(--fz-btn);
 	font-weight: var(--fw-regular);
 
-	@include xs() {
+	@include sm() {
 		font-size: 14px;
 	}
 }

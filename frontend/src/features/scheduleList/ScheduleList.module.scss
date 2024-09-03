@@ -1,0 +1,38 @@
+@use '~styles/mixins' as *;
+
+.item_container {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		border-radius: 2px;
+		background-color: var(--btn-bg-hover);
+	}
+}
+
+.item {
+	margin-bottom: 10px;
+	font: var(--fw-regular) var(--fz-text) / 1.5 var(--ff-first);
+
+	@include sm() {
+		margin-bottom: 0;
+		font-size: 12px;
+	}
+}
+
+.time {
+	font: var(--fw-medium) 22px var(--ff-second);
+	color: var(--accent-color);
+
+	@include sm() {
+		font-size: 16px;
+	}
+}

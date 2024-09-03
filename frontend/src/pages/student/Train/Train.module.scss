@@ -1,62 +1,59 @@
 @use '~styles/mixins' as *;
-
-.card {
-	width: 100%;
+.wrapper {
+	width: 714px;
 	max-width: 958px;
-	padding: 30px;
-	display: flex;
-	justify-content: space-between;
-	border: var(--border);
-	border-radius: var(--radius);
-	background-color: #dae8f0;
-    margin-bottom: 15px;
-	.info {
+	.card {
+		width: 100%;
+		padding: 20px 30px;
 		display: flex;
-		flex-direction: column;
 		justify-content: space-between;
-		gap: var(--gap);
-	}
+		border: var(--border);
+		border-radius: var(--radius);
+		background-color: #dae8f0;
+		margin-bottom: 15px;
+		.info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			gap: var(--gap);
 
-	.name {
-		@include font(var(--ff-second), 22px, 500);
-	}
+			.trainer_container,
+			.place_container {
+				@include font(var(--ff-second), 24px, 400);
 
-	.trainer,
-	.combination {
-		@include font(var(--ff-second), 24px, 400);
-		
-		.trainer_title,
-		.combination_title {
-			margin-right: 5px;
-			font-weight: 500;
+				.trainer_title,
+				.place_title {
+					margin-right: 5px;
+					font-weight: 500;
+					@include sm() {
+						font-size: 16px;
+					}
+				}
+				.trainer_content,
+				.place_content {
+					@include sm() {
+						font-size: 16px;
+					}
+				}
+			}
+		}
+		@include sm() {
+			.card {
+				max-width: 335px;
+				padding: 10px;
+				text-align: center;
+				flex-direction: column;
+				.info {
+					gap: 10px;
+				}
+			}
 		}
 	}
 }
 
 .date {
 	@include font(var(--ff-first), 24px, 500);
-}
-
-
-@include sm() {
-	.card {
-		max-width: 335px;
-		padding: 10px;
-		text-align: center;
-		flex-direction: column;
-		.info {
-			gap: 10px;
-		}
-		.name {
-			font-size: 16px;
-		}
-	
-		.trainer,
-		.combination {
-			font-size: 16px;
-		}
-	}
-	.date {
+	@include sm() {
 		font-size: 16px;
 		margin-top: 8px;
 	}

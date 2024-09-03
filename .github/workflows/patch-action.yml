@@ -9,7 +9,6 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository from specific branch
         uses: actions/checkout@v3
@@ -45,24 +44,73 @@ jobs:
         
       - name: Shut Down Docker Compose
         if: always() 
-        run: docker compose down
+        run: docker compose down        
   
   update_tag:
     needs: tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
 
-      - uses: actions-ecosystem/action-get-latest-tag@v1
+      - name: check tags
+        id: check-tag
+        run: |
+          git tag | tail -n 1 
+
+
+      - name: Get the latest tag
         id: get-latest-tag
+        run: | 
+          # Get the most recent tag considering semantic versioning
+          LATEST_TAG=$(git tag --sort=-v:refname | grep -E "^v[0-9]+\.[0-9]+\.[0-9]+$" | head -n 1)
+          # echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          echo "Latest tag: $LATEST_TAG"
+          LATEST_TAG=$(git tag | tail -n 1)
+          echo "Latest tag: $LATEST_TAG"
+          echo "::set-output name=latest_tag::$LATEST_TAG"
+        shell: bash
 
-      - uses: actions-ecosystem/action-bump-semver@v1
-        id: bump-semver
-        with:
-          current_version: ${{ steps.get-latest-tag.outputs.tag }}
-          level: patch
-              
-      - uses: actions-ecosystem/action-push-tag@v1
-        with:
-          tag: ${{ steps.bump-semver.outputs.new_version }}
-          message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
+      - name: Increment patch version
+        id: increment-patch
+        run: |
+          LATEST_TAG=${{ steps.get-latest-tag.outputs.latest_tag }}
+          echo "Latest tag: $LATEST_TAG"
+          # Extract the version numbers
+          VERSION=${LATEST_TAG#v}  # Remove 'v' from the tag
+          echo "VERSION: $VERSION"
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          PATCH=$(echo $VERSION | cut -d. -f3)
+
+          echo "MAJOR: $MAJOR"
+          echo "MINOR: $MINOR"
+          echo "PATCH: $PATCH"
+
+          # Increment the patch version
+          NEW_PATCH=$((PATCH + 1))
+          NEW_TAG="v$MAJOR.$MINOR.$NEW_PATCH"
+
+          # Output the new tag
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "New tag: $NEW_TAG"
+
+          echo "::set-output name=new_tag::$NEW_TAG"
+        shell: bash
+
+      - name: Create and push new tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          NEW_TAG=${{ steps.increment-patch.outputs.new_tag }}
+          echo "New tag: $NEW_TAG"
+
+          # Create the new tag
+          git tag $NEW_TAG
+
+          # Push the new tag
+          git push origin $NEW_TAG
+        shell: bash

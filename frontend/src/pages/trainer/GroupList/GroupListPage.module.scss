@@ -1,0 +1,39 @@
+@use '~styles/mixins' as *;
+
+.container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 68% 32%;
+	grid-template-areas:
+		'list button'
+		'list .';
+	gap: 20px;
+
+	@include lg() {
+		grid-template-columns: 80%;
+		grid-template-areas:
+			'list'
+			'button';
+	}
+
+	@include md() {
+		grid-template-columns: 100%;
+	}
+}
+
+.list {
+	grid-area: list;
+}
+
+.btn {
+	grid-area: button;
+
+	@include lg() {
+		width: 55%;
+		margin-left: auto;
+	}
+
+	@include sm() {
+		width: 100%;
+	}
+}

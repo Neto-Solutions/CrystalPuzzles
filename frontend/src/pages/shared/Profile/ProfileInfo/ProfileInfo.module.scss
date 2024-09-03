@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+	padding: 15px 20px;
+	border-radius: var(--radius);
+	border: var(--border);
+	background: var(--bg-card-second);
+	font-size: var(--fz-btn);
+	font-weight: var(--fw-medium);
+}
+
+span {
+	font: var(--fw-regular) 20px var(--ff-second);
+}
+
+.title {
+	font: var(--fw-medium) var(--fz-btn) var(--ff-second);
+	display: inline-block;
+	margin-right: 8px;
+}

@@ -1,0 +1,59 @@
+@use '~styles/mixins' as *;
+
+.header {
+	padding: 20px 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	@include md() {
+		padding: 10px 0;
+	}
+	.title_wrapper {
+		margin-left: 300px;
+		width: 100%;
+
+		@include md() {
+			margin-left: 0;
+		}
+
+		.title {
+			font-family: 'Roboto';
+			font-size: 48px;
+			font-weight: 400;
+			@include md() {
+				margin: auto;
+				display: block;
+				font-size: 32px;
+				font-weight: 500;
+			}
+			@include sm() {
+				padding: 0;
+				font-size: 24px;
+			}
+		}
+
+		@include md() {
+			display: flex;
+			align-items: center;
+			gap: 10px 7px;
+			justify-content: space-between;
+		}
+	}
+
+	.logo {
+		display: flex;
+
+		&::after {
+			content: url('~assets/header/logo_title.svg');
+			margin-left: 10px;
+			display: flex;
+			flex-wrap: nowrap;
+		}
+		@include sm() {
+			&::after {
+				display: none;
+			}
+		}
+	}
+}

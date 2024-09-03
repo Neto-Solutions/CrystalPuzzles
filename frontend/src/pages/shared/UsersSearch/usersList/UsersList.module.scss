@@ -1,0 +1,19 @@
+@use '~styles/mixins' as *;
+
+.container {
+	margin-top: 10px;
+	padding: 6px 30px;
+	border: var(--border);
+	border-radius: var(--radius);
+	border: var(--border);
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	overflow: auto;
+
+	.item {
+		padding: 8px 0;
+		font: var(--fw-medium) 20px var(--ff-first);
+	}
+}

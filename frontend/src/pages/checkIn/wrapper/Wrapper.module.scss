@@ -1,0 +1,14 @@
+.container {
+	width: 100%;
+	max-width: 1448px;
+	height: 97vh;
+	margin: 0 auto;
+	padding: 0 20px;
+	display: flex;
+	flex-direction: column;
+	.content {
+		height: 100%;
+		display: grid;
+		place-content: center;
+	}
+}

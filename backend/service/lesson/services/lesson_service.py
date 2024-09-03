@@ -34,7 +34,19 @@ class LessonService(BaseService):
         return None
 
     @staticmethod
-    async def get_all_by_filters(uow: LessonUOW, filters: LessonFilterSchema):
+    async def get_all_by_filters(uow: LessonUOW, filters: LessonFilterSchema, **kwargs):
         async with uow:
-            result = await uow.repo.get_all_lesson_by_filter(filters)
+            if kwargs["user"].role.__eq__("student"):
+                result = await uow.repo.get_all_lesson_by_filter(filters, student_id=kwargs["user"].id)
+            else:
+                result = await uow.repo.get_all_lesson_by_filter(filters)
+            return result
+
+    @staticmethod
+    async def get(uow: LessonUOW, filters: LessonFilterSchema, **kwargs):
+        async with uow:
+            if kwargs["user"].role.__eq__("student"):
+                result = await uow.repo.get(filters, student_id=kwargs["user"].id)
+            else:
+                result = await uow.repo.get(filters)
             return result

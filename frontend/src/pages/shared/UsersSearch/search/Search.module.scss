@@ -1,0 +1,20 @@
+@use '~styles/mixins' as *;
+
+.input {
+	width: 100%;
+	padding: 16px 100px 16px 20px;	
+	font: var(--fw-regular) 22px var(--ff-second);
+	background-repeat: no-repeat;
+	background-position: 92% 50%;
+	background-image: url('~assets/svg/search.svg');
+	background-size: 26px;
+	
+	border-radius: var(--radius);
+	border: var(--border);
+	outline: none;
+
+	&:focus {
+		border: 1px solid #989898;
+		color: #989898;
+	}
+}
