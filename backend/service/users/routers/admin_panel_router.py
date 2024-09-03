@@ -30,6 +30,7 @@ async def get_all_users(
         current_user: AdminDep,
         deleted: bool = Query(default=None, description="Удаленные пользователи"),
 ):
+    """ admin """
     result = await admin_service.get_all_by_filters(uow, filters, deleted)
     return result
 
@@ -49,6 +50,7 @@ async def get_user_by_id(
         admin_service: AdminPanelServiceDep,
         current_user: AdminDep
 ):
+    """ admin """
     result = await admin_service.get_with_deleted(uow, user_id)
     if result:
         return result

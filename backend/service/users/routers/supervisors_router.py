@@ -1,18 +1,18 @@
 from fastapi import APIRouter
 
-from common.dependensies import TrainerSupervisorAdminDep
+from common.dependensies import AdminDep
 from common.schema.base_schemas import Message
 from service.users.dependensies import UserFilterDep, UserServiceDep, UserUOWDep
 from service.users.schemas import UserShortViewSchemaForPage
 
-student_router = APIRouter(
-    prefix="/api/v1/student",
-    tags=["Student"]
+supervisor_router = APIRouter(
+    prefix="/api/v1/supervisor",
+    tags=["Supervisor"]
 )
 
 
-@student_router.get("/",
-                    summary="Получение списка всех студентов",
+@supervisor_router.get("/",
+                    summary="Получение списка всех супервизоров",
                     response_model=UserShortViewSchemaForPage,
                     responses={
                         200: {"description": "Успешная обработка данных"},
@@ -22,9 +22,9 @@ student_router = APIRouter(
 async def get_student_list(
         uow: UserUOWDep,
         user_service: UserServiceDep,
-        current_user: TrainerSupervisorAdminDep,
+        current_user: AdminDep,
         filters: UserFilterDep,
 ):
-    """ trainer, supervisor, admin """
-    result = await user_service.get_all_by_filter(uow, filters, role="student")
-    return result
+    """ admin """
+    supervisor_list = await user_service.get_all_by_filter(uow, filters, role="supervisor")
+    return supervisor_list
