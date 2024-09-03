@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"start": "craco start",
-		"build": "craco build && node ./scripts/set.env.js",
-		"serve": "serve -s build -p 3000",
+		"build": "craco build",
+		"serve": "node ./scripts/set.env.js && serve -s build -p 3000",
 		"test": "craco test",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
