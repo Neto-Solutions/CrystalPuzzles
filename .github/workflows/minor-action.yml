@@ -147,7 +147,7 @@ jobs:
             echo "BASE_PATH=${{ secrets.BASE_PATH }}" >> ${{ env.ENV_File }}
             echo "PAGE_SIZE=${{ secrets.PAGE_SIZE }}" >> ${{ env.ENV_File }}
             echo "PORT=${{ secrets.PORT }}" >> ${{ env.ENV_File }}
-            echo "REACT_APP_TAG=${{ secrets.REACT_APP_TAG }}" >> ${{ env.ENV_File }}
+            echo "REACT_APP_TAG=$LATEST_TAG" >> ${{ env.ENV_File }}
             echo "REACT_APP_SERVER_API=http://${{ secrets.SSH_HOST_NAME }}/api/v1/" >> ${{ env.ENV_File }}
             echo "TAG=$LATEST_TAG" >> ${{ env.ENV_File }}
         
