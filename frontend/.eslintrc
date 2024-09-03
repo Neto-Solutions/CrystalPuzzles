@@ -8,7 +8,9 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:@typescript-eslint/recommended"
 	],
 	"parserOptions": {
 		"ecmaVersion": "latest",
@@ -16,6 +18,10 @@
 	},
 	"plugins": ["react"],
 	"rules": {
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-var-requires": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"react-hooks/exhaustive-deps": "off",
 		"prettier/prettier": "warn",
 		"linebreak-style": "off", // avoid error in Windows
 		"react/react-in-jsx-scope": "off",
@@ -23,7 +29,7 @@
 		"react/jsx-key": "warn",
 		"no-console": "warn",
 		"no-alert": "warn",
-		"no-unused-vars": "warn",
+		"no-unused-vars": "off",
 		"no-empty": "warn"
 	},
 	"settings": {

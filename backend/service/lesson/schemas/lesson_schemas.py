@@ -58,6 +58,7 @@ class LessonViewSchemaForPage(BaseModel):
 class LessonFilterSchema(BaseFilterSchema):
     """ Фильтрация и пагинация """
     start_date: datetime | None = Query(default=None, description="Дата начала занятия")
+    end_date: datetime | None = Query(default=None, description="Дата окончания занятия")
     trainer: int | None = Query(default=None, description="Тренер")
 
 
