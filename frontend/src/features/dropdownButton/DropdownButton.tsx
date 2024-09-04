@@ -7,8 +7,14 @@ interface DropdownButtonProps {
 	className?: string;
 	title: string;
 	data?: any;
-	setState?: any;
+	setState: any;
 }
+
+// TODO: refactor this code
+// setState must receive id or array of ids and it will be used to update state in parent component
+
+//  possible solution: create new function which will be activated onChange and update state here and send it to parent
+// or use form with scan checkbox on change and send it to parent
 
 export default function DropdownButton(props: DropdownButtonProps) {
 	const { title, className, data = [], setState } = props;

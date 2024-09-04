@@ -5,8 +5,7 @@ services:
     container_name: ${PG_HOST}
     image: postgres:latest
     env_file:
-      # - .env
-      - .env.template # для быстрого локального запуска
+      - .env
     environment:
       POSTGRES_DB: ${PG_DATABASE}
       POSTGRES_USER: ${PG_USER}
@@ -40,8 +39,7 @@ services:
     container_name: api
     build: ./backend/
     env_file:
-      # - .env
-      - .env.template # для быстрого локального запуска
+      - .env
     depends_on:
       - db
       - redis
@@ -55,8 +53,7 @@ services:
     container_name: front
     build: ./frontend/
     env_file:
-      # - .env
-      - .env.template # для быстрого локального запуска
+      - .env
     depends_on:
       - api
     ports:
