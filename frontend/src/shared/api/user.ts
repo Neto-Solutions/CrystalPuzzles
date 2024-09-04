@@ -1,13 +1,26 @@
 import { $authHost } from '@shared/api/axios.instances';
+import { IUserParam } from './user.inerface';
 
 class User {
 	#host = $authHost;
 
-	// get users
-	async getAll({ search_string = '' }: any) {
-		const { data } = await this.#host.get(`/users`, {
-			params: { search_string }
-		}); // student by actual api
+	async getStudents(params: IUserParam) {
+		const { data } = await this.#host.get('/students', { params });
+		return data;
+	}
+
+	async getTrainers(params: IUserParam) {
+		const { data } = await this.#host.get('/trainers', { params });
+		return data;
+	}
+
+	async getSupervisors(params: IUserParam) {
+		const { data } = await this.#host.get('/supervisors', { params });
+		return data;
+	}
+
+	async getAdmins(params: IUserParam) {
+		const { data } = await this.#host.get('/admins', { params });
 		return data;
 	}
 
@@ -17,7 +30,7 @@ class User {
 		return data;
 	}
 
-	// update avatar
+	// update avatar (temp)
 	async updateAvatar(avatar: any) {
 		if (avatar > 0 && avatar < 10) {
 			return await this.#host.post('profile/set-avatar', { avatar_id: avatar });
