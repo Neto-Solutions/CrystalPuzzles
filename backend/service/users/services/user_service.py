@@ -104,12 +104,13 @@ class UserService(BaseService):
             return result
 
     @staticmethod 
-    async def get_all_students_by_filter(
+    async def get_all_by_filter(
             uow: UserUOW,
-            filters: UserFilterSchema
+            filters: UserFilterSchema,
+            role: str
     ):
         async with uow:
-            result = await uow.repo.get_all_students_by_filter(filters)
+            result = await uow.repo.get_all_by_filter(filters, role)
             return result
 
     @staticmethod 
