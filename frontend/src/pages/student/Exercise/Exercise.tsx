@@ -4,9 +4,9 @@ import { useLoaderData } from 'react-router-dom';
 import { Page } from '@shared/ui';
 import { DateChanger, Feedback } from '@features';
 import { Exercises } from '@widgets';
-
 import { Lesson } from '@shared/api';
 import { lessons } from '@shared/const';
+import classNames from 'classnames';
 
 interface ExercisePageProps {
 	title: string;
@@ -34,8 +34,11 @@ export default function ExercisePage({ title }: ExercisePageProps) {
 					<div className={styles.title}>Моё настроение после тренировки</div>
 					<div className={styles.icon_wrapper}>
 						{[...Array(6)].map((_, i) => (
-							<div key={i} className={styles.icon}>
-								<img src={require(`../Main/assets/svg/${i}.svg`)} />
+							<div key={i} className={classNames(styles.icon)}>
+								<img
+									src={require(`../Main/assets/svg/${i}.svg`)}
+									className={styles.img}
+								/>
 							</div>
 						))}
 					</div>
