@@ -1,4 +1,5 @@
 export class Profile {
+	id = null;
 	_role = null;
 	avatar = 0;
 	constructor(data?: any) {

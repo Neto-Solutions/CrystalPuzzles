@@ -35,6 +35,7 @@ export function register(config?: Config) {
 			// serve assets; see https://github.com/facebook/create-react-app/issues/2374
 			return;
 		}
+		// window.addEventListener('load', () => {
 		const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
 		if (isLocalhost) {
@@ -45,14 +46,14 @@ export function register(config?: Config) {
 			// service worker/PWA documentation.
 			navigator.serviceWorker.ready.then(() => {
 				console.log(
-					'This web app is being served cache-first by a service ' +
-						'worker. To learn more, visit https://cra.link/PWA'
+					'This web app is being served cache-first by a service worker.'
 				);
 			});
 		} else {
 			// Is not localhost. Just register service worker
 			registerValidSW(swUrl, config);
 		}
+		// });
 	}
 }
 
