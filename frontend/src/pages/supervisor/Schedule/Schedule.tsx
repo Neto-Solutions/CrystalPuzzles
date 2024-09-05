@@ -1,11 +1,13 @@
 import styles from './Schedule.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Page, Button } from '@shared/ui';
 import Table from './Table/Table';
 import { Modal } from '@shared/ui';
 import { AddTreanerSchedule } from './Modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import { DropDownButton } from '@features';
+import { User } from '@shared/api';
+import joinName from 'entities/profile/assets/joinName';
 
 interface ShedulePageProps {
 	edit?: boolean;
@@ -18,6 +20,16 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 		trainer_id: null
 	});
 	const navigate = useNavigate();
+	const [trainers, setTrainers]: any = useState([]);
+
+	// TODO: переписать на Redux store
+	useEffect(() => {
+		User.getTrainers()
+			.then((res) =>
+				setTrainers(res.map((item: any) => ({ ...item, name: joinName(item) })))
+			)
+			.catch();
+	}, []);
 
 	return (
 		<Page title={title}>
@@ -31,7 +43,7 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 				{/* меняется высота у всех сразу, потому что состояние не у каждого отдельно, а в главном компоненте. //TODO: вернуть назад, как было */}
 				<DropDownButton
 					title="Выберите тренера"
-					data={[{ id: +'2', name: 'Тренер 2' }]}
+					data={trainers}
 					setState={(id: string) =>
 						setData((prev: any) => ({ ...prev, trainer_id: id }))
 					}
