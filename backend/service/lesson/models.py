@@ -57,6 +57,7 @@ class Check(Base):
     __tablename__ = "Checks"
     id: Mapped[int] = mapped_column(sa.Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)
     student_id: Mapped[int] = mapped_column(sa.ForeignKey("Users.id"), nullable=False)
+    student = relationship("User", back_populates="students")
 
     lesson_id: Mapped[int] = mapped_column(sa.ForeignKey("Lessons.id"), nullable=False)
     lesson = relationship("Lesson", back_populates="check")

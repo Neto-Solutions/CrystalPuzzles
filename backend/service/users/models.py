@@ -37,6 +37,7 @@ class User(Base):
     # ссылка для студентов на группу, которой он пренадлежит
     student_group = relationship("StudentGroup", back_populates="student")
     lessons = relationship("Lesson")
+    students = relationship("Check")
 
 
 class Role(Base):
