@@ -5,7 +5,7 @@ from starlette.responses import JSONResponse
 
 from common.dependensies import AdminDep, SupervisorAdminDep, UserDep, TrainerSupervisorAdminDep
 from common.schema.base_schemas import Message
-from service.lesson.dependensies import LessonServiceDep, LessonUOWDep, LessonFilterDep, SpaceUOWDep
+from service.lesson.dependensies import LessonServiceDep, LessonUOWDep, LessonFilterDep, SpaceUOWDep, CheckUOWDep
 from service.users.dependensies import UserUOWDep
 
 from service.lesson.schemas.lesson_schemas import LessonSchemaForTable, LessonViewSchemaForPage, \
@@ -126,13 +126,13 @@ async def edit_lesson(
 async def add_user(
         lesson_id: int,
         model: UserForLessonSchema,
-        uow: LessonUOWDep,
+        check_uow: CheckUOWDep,
         user_uow: UserUOWDep,
         lesson_service: LessonServiceDep,
         current_user: TrainerSupervisorAdminDep
 ):
     """ admin, supervisor, trainer """
-    result = await lesson_service.add_user(uow, lesson_id, model, user_uow=user_uow)
+    result = await lesson_service.add_user(check_uow, lesson_id, model, user_uow=user_uow)
     if result:
         return result
     return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="User already exists in lesson")
