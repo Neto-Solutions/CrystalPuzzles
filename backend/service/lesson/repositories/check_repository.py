@@ -35,6 +35,7 @@ class CheckRepository(BaseRepository):
         for training_check in training_check_list:
             training_check["check_id"] = check_id
             await self.__bind_training_check(training_check)
+        data["training_check"] = training_check_list
         return check_id
 
     async def add_check_for_lesson(self, data: dict) -> bool:
