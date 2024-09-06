@@ -24,9 +24,10 @@ class CheckRepository(BaseRepository):
             .limit(1)
         )).scalar_one_or_none()
 
-    # async def get_by_filter(self, **kwargs):
-    #     stmt = self._add_filters(stmt=select(self.model), kwargs)
-    #     return (await self.session.execute(stmt)).scalar_one_or_none()
+    async def get_by_filter(self, **kwargs):
+        stmt = select(self.model)
+        stmt = await self._add_filters(stmt, **kwargs)
+        return (await self.session.execute(stmt)).scalar_one_or_none()
 
     async def add(self, data: dict) -> int:
         training_check_list = data.pop("training_check")
@@ -47,6 +48,10 @@ class CheckRepository(BaseRepository):
 
     async def add_user_for_lesson(self, lesson_id, data: dict):
         """Добавить пользователя в урок."""
+
+        if await self.get_by_filter(student_id=data.get('student_id'), lesson_id=lesson_id):
+            raise HTTPException(status_code=400, detail="Student already exist in lesson")
+
         training_data = (await self.session.execute(
             select(self.model)
             .options(

@@ -7,5 +7,6 @@ class CheckService(BaseService):
     @staticmethod
     async def add_user_for_lesson(uow: CheckUOW, lesson_id, data: dict):
         async with uow:
-            await uow.repo.add_user_for_lesson(lesson_id, data)
+            result = await uow.repo.add_user_for_lesson(lesson_id, data)
             await uow.commit()
+            return result

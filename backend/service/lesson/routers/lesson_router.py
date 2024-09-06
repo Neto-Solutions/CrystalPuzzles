@@ -214,7 +214,7 @@ async def add_user(
     result = await lesson_service.add_user(uow, lesson_id, model, user_uow=user_uow, check_uow=check_uow)
     if result:
         return result
-    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="User already exists in lesson")
+    return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Exception")
 
 
 # @lesson_router.put(

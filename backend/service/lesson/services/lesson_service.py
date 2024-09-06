@@ -68,9 +68,6 @@ class LessonService(BaseService):
         # Проверка на наличие занятия
         if await self.exist(uow, model.lesson_id):
             async with kwargs.get('check_uow') as check_uow:
-
-
-
                 result = await check_uow.repo.add_check_for_lesson(model.model_dump())
                 await check_uow.commit()
                 return result
@@ -85,7 +82,7 @@ class LessonService(BaseService):
     ):
         await UserService.student_check(kwargs.get("user_uow"), model.student_id)
         if await self.exist(uow, lesson_id):
-            await CheckService.add_user_for_lesson(kwargs.get("check_uow"), lesson_id, model.model_dump())
+            return await CheckService.add_user_for_lesson(kwargs.get("check_uow"), lesson_id, model.model_dump())
 
     async def remove_user(self):
         pass
