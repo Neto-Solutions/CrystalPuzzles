@@ -39,6 +39,8 @@ class EditLessonSchema(BaseModel):
 class UserForLessonSchema(BaseModel):
     """ Схема деталей пользователя """
     student_id: int
+    date_add: datetime = Field(default_factory=datetime.now, hidden=True)
+    date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
 
 class TrainingForLessonSchema(BaseModel):

@@ -1,12 +1,16 @@
 from datetime import datetime
 
+from fastapi import HTTPException
+
 from common.service.base_service import BaseService
+from service.lesson.schemas.check_schema import CreateCheckSchema
 from service.lesson.schemas.lesson_schemas import CreateLessonSchema, LessonFilterSchema, EditLessonSchema, \
     UserForLessonSchema
 from service.lesson.services.check_service import CheckService
 from service.lesson.services.space_service import SpaceService
 from service.lesson.unit_of_work.check_uow import CheckUOW
 from service.lesson.unit_of_work.lesson_uow import LessonUOW
+from service.training.service import TrainingService
 from service.users.services.user_service import UserService
 
 
@@ -54,10 +58,34 @@ class LessonService(BaseService):
                 result = await uow.repo.get(filters)
             return result
 
-    @staticmethod
-    async def add_user(check_uow: CheckUOW, lesson_id: int, model: UserForLessonSchema, **kwargs):
+    async def add_check_for_lesson(self, uow: LessonUOW, model: CreateCheckSchema, **kwargs):
+        # Проверка на наличие студента
+        for student_id in model.student_ids:
+            await UserService.student_check(kwargs.get("user_uow"), student_id)
+        for training in model.training_check:
+            # Проверка на наличинее тренировки
+            await TrainingService.training_exist(kwargs.get("training_uow"), training.training_id)
+        # Проверка на наличие занятия
+        if await self.exist(uow, model.lesson_id):
+            async with kwargs.get('check_uow') as check_uow:
+
+
+
+                result = await check_uow.repo.add_check_for_lesson(model.model_dump())
+                await check_uow.commit()
+                return result
+        raise HTTPException(status_code=400, detail="Lesson not exist")
+
+    async def add_user(
+            self,
+            uow: LessonUOW,
+            lesson_id: int,
+            model: UserForLessonSchema,
+            **kwargs
+    ):
         await UserService.student_check(kwargs.get("user_uow"), model.student_id)
-        await CheckService.add_user_for_lesson(check_uow, lesson_id, model.model_dump())
+        if await self.exist(uow, lesson_id):
+            await CheckService.add_user_for_lesson(kwargs.get("check_uow"), lesson_id, model.model_dump())
 
     async def remove_user(self):
         pass
