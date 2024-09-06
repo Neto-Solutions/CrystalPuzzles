@@ -10,3 +10,10 @@ class CheckService(BaseService):
             result = await uow.repo.add_user_for_lesson(lesson_id, data)
             await uow.commit()
             return result
+
+    @staticmethod
+    async def delete_user_for_lesson(uow: CheckUOW, lesson_id, data: dict):
+        async with uow:
+            result = await uow.repo.delete_user_for_lesson(lesson_id, data)
+            await uow.commit()
+            return result

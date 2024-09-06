@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from sqlalchemy import insert, select, exists
+from sqlalchemy import insert, select, exists, delete
 from sqlalchemy.orm import selectinload
 
 from common.repository.base_repository import BaseRepository
@@ -47,7 +47,7 @@ class CheckRepository(BaseRepository):
             return True
         raise HTTPException(status_code=400, detail="Check exist")
 
-    async def add_user_for_lesson(self, lesson_id, data: dict):
+    async def add_user_for_lesson(self, lesson_id, data: dict) -> bool:
         """Добавить пользователя в урок."""
 
         if await self.get_by_filter(student_id=data.get('student_id'), lesson_id=lesson_id):
@@ -69,3 +69,12 @@ class CheckRepository(BaseRepository):
         data["lesson_id"] = lesson_id
         check_id = await self.add(data)
         return bool(check_id)
+
+    async def delete_user_for_lesson(self, lesson_id, data: dict):
+        """Удалить пользователя из урока."""
+        check = await self.get_by_filter(student_id=data.get('student_id'), lesson_id=lesson_id)
+        if not check:
+            raise HTTPException(status_code=404, detail="Check not found")
+        stmt = delete(TrainingCheck).filter(TrainingCheck.check_id == check.id)
+        await self.session.execute(stmt)
+        await self.delete_db(check.id)

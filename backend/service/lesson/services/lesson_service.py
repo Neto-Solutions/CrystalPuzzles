@@ -84,8 +84,16 @@ class LessonService(BaseService):
         if await self.exist(uow, lesson_id):
             return await CheckService.add_user_for_lesson(kwargs.get("check_uow"), lesson_id, model.model_dump())
 
-    async def remove_user(self):
-        pass
+    async def remove_user(
+            self,
+            uow: LessonUOW,
+            lesson_id: int,
+            model: UserForLessonSchema,
+            **kwargs
+    ):
+        await UserService.student_check(kwargs.get("user_uow"), model.student_id)
+        if await self.exist(uow, lesson_id):
+            return await CheckService.delete_user_for_lesson(kwargs.get("check_uow"), lesson_id, model.model_dump())
 
     async def add_training(self):
         pass

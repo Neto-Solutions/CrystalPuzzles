@@ -217,30 +217,28 @@ async def add_user(
     return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Exception")
 
 
-# @lesson_router.put(
-#     "/remove-user/{lesson_id}",
-#     summary="Удаление пользователя с занятия",
-#     response_model=bool,
-#     responses={
-#         200: {"description": "Успешная обработка данных"},
-#         401: {"description": "Не авторизованный пользователь"},
-#         400: {"model": Message, "description": "Некорректные данные"},
-#         409: {"model": Message, "description": "Конфликт данных"},
-#         500: {"model": Message, "description": "Серверная ошибка"}}
-# )
-# async def remove_user(
-#         lesson_id: int,
-#         model: UserForLessonSchema,
-#         uow: LessonUOWDep,
-#         user_uow: UserUOWDep,
-#         lesson_service: LessonServiceDep,
-#         current_user: TrainerSupervisorAdminDep
-# ):
-#     """ admin, supervisor, trainer """
-#     result = await lesson_service.remove_user(uow, lesson_id, model, user_uow=user_uow)
-#     if result:
-#         return result
-#     return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="User not found in lesson")
+@lesson_router.put(
+    "/remove-user/{lesson_id}",
+    summary="Удаление пользователя с занятия",
+    responses={
+        200: {"description": "Успешная обработка данных"},
+        401: {"description": "Не авторизованный пользователь"},
+        400: {"model": Message, "description": "Некорректные данные"},
+        409: {"model": Message, "description": "Конфликт данных"},
+        500: {"model": Message, "description": "Серверная ошибка"}}
+)
+async def remove_user(
+        lesson_id: int,
+        model: UserForLessonSchema,
+        uow: LessonUOWDep,
+        check_uow: CheckUOWDep,
+        user_uow: UserUOWDep,
+        lesson_service: LessonServiceDep,
+        current_user: TrainerSupervisorAdminDep
+):
+    """ admin, supervisor, trainer """
+    await lesson_service.remove_user(uow, lesson_id, model, user_uow=user_uow, check_uow=check_uow)
+    Response(status_code=204)
 #
 #
 # @lesson_router.put(
