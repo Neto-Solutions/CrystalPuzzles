@@ -11,9 +11,10 @@ interface ShedulePageProps {
 	edit?: boolean;
 	title: string;
 }
+
 export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
-	const [modalActive, setModalActive]: any = useState(false);
-	const [data, setData]: any = useState({
+	const [modalActive, setModalActive] = useState(false);
+	const [data, setData] = useState({
 		space_id: null,
 		trainer_id: null
 	});
@@ -28,10 +29,13 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 				data={data}
 			/>
 			<div className={styles.buttons_container}>
-				{/* меняется высота у всех сразу, потому что состояние не у каждого отдельно, а в главном компоненте. //TODO: вернуть назад, как было */}
 				<DropDownButton
 					title="Выберите тренера"
-					data={[{ id: +'2', name: 'Тренер 2' }]}
+					data={[
+						{ id: +'2', name: 'Сидорова' },
+						{ id: +'3', name: 'Петрова' },
+						{ id: +'4', name: 'Иванова' }
+					]}
 					setState={(id: string) =>
 						setData((prev: any) => ({ ...prev, trainer_id: id }))
 					}
