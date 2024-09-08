@@ -11,15 +11,14 @@ import {
 	CreateGroupPage,
 	TrainerExercisePage
 } from '@trainer';
+import { AvatarPage, SchedulePage } from '@pages/shared';
+import { lessons, groups } from '@const';
 
 import feedback from 'assets/sidebar/feedback.svg';
 import schedule from 'assets/sidebar//schedule.svg';
 import group from 'assets/sidebar/group.svg';
 import students from 'assets/sidebar/students.svg';
 import home from 'assets/sidebar/home.svg';
-import { AvatarPage, SchedulePage } from '@pages/shared';
-
-import { lessons, groups, users } from '@const';
 
 const trainerRouter = [
 	{
@@ -50,10 +49,6 @@ const trainerRouter = [
 	{
 		path: '/schedule/:id',
 		element: <CheckListPage title="Чек-листы" />
-		// loader: ({ params: { id } }: any) => {
-		// 	console.log('id', id);
-		// 	return lessons.find((lesson) => lesson.id == id);
-		// }
 	},
 	{
 		path: '/groups',
@@ -78,10 +73,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/students/:id',
-		element: <ProfilePage title="Ученик" />,
-		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user.id == id);
-		}
+		element: <ProfilePage title="Ученик" />
 	},
 	{
 		path: '/feedback',
@@ -101,6 +93,10 @@ const trainerRouter = [
 				lessons
 			};
 		}
+	},
+	{
+		path: '/profile',
+		element: <ProfilePage title="Мои личные данные" />
 	}
 ];
 
