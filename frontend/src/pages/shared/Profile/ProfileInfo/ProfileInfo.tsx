@@ -9,26 +9,18 @@ interface ProfileInfoProps {
 export default function ProfileInfo({ user, className }: ProfileInfoProps) {
 	return (
 		<div className={classNames(styles.container, className)}>
-			<div>
-				<span className={styles.title}>Дата рождения:</span>
+			<p className={styles.title}>
+				Дата рождения:
 				<span>{user.birthday}</span>
-			</div>
-			<div>
-				<span className={styles.title}>Адрес проживания:</span>
-			</div>
-			<div>
-				<span className={styles.title}>Сопровождающий:</span>
-			</div>
-			<div>
-				<span className={styles.title}>Номер телефона:</span>
+			</p>
+			<p className={styles.title}> Адрес проживания:</p>
+			<p className={styles.title}> Сопровождающий:</p>
+			<p className={styles.title}>
+				Номер телефона:
 				<span>{user.contact}</span>
-			</div>
-			<div>
-				<span className={styles.title}>Особенности развития: </span>
-			</div>
-			<div>
-				<span className={styles.title}>Не любит: </span>
-			</div>
+			</p>
+			<p className={styles.title}>Особенности развития:</p>
+			<p className={styles.title}> Не любит:</p>
 		</div>
 	);
 }

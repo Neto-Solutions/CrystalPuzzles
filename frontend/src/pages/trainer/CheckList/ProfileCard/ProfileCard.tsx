@@ -1,4 +1,4 @@
-import styles from './Profile.module.scss';
+import styles from './ProfileCard.module.scss';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@store/profile';
@@ -10,9 +10,9 @@ interface ProfileProps {
 	className?: string;
 }
 
-export default function Profile({ className }: ProfileProps) {
+export default function ProfileCard({ className }: ProfileProps) {
 	const user = useSelector(selectProfile);
-	const [userPhoto, setUserPhoto]: any = useState(LS.get('avatar') || avatar);
+	const [userPhoto, setUserPhoto] = useState(LS.get('avatar') || avatar);
 
 	useEffect(() => {
 		if (user.avatar) {

@@ -1,11 +1,13 @@
 import styles from './Schedule.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Page, Button } from '@shared/ui';
 import Table from './Table/Table';
 import { Modal } from '@shared/ui';
 import { AddTreanerSchedule } from './Modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import { DropDownButton } from '@features';
+import { User } from '@shared/api';
+import joinName from 'entities/profile/assets/joinName';
 
 interface ShedulePageProps {
 	edit?: boolean;
@@ -14,11 +16,21 @@ interface ShedulePageProps {
 
 export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 	const [modalActive, setModalActive] = useState(false);
+	const [trainers, setTrainers] = useState([]);
 	const [data, setData] = useState({
 		space_id: null,
 		trainer_id: null
 	});
 	const navigate = useNavigate();
+
+	// TODO: переписать на Redux store
+	useEffect(() => {
+		User.getTrainers()
+			.then((res) =>
+				setTrainers(res.map((item: any) => ({ ...item, name: joinName(item) })))
+			)
+			.catch();
+	}, []);
 
 	return (
 		<Page title={title}>
@@ -31,14 +43,12 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 			<div className={styles.buttons_container}>
 				<DropDownButton
 					title="Выберите тренера"
-					data={[
-						{ id: +'2', name: 'Сидорова' },
-						{ id: +'3', name: 'Петрова' },
-						{ id: +'4', name: 'Иванова' }
-					]}
-					setState={(id: string) =>
-						setData((prev: any) => ({ ...prev, trainer_id: id }))
-					}
+					data={trainers}
+					setState={(id: string) => {
+						setData((prev: any) => ({ ...prev, trainer_id: id }));
+					}}
+					state={data.trainer_id}
+					single
 				/>
 				{edit ? null : (
 					<Button

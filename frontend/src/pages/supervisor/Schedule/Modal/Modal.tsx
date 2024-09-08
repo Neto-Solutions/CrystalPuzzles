@@ -1,9 +1,9 @@
-import styles from './Modal.module.scss';
-import { useState } from 'react';
-import { Button } from '@shared/ui';
-import { DropDownButton, DateChanger } from '@features';
+import { useEffect, useState } from 'react';
 import moment from 'moment';
-import { Lesson } from '@shared/api';
+import { Button } from '@shared/ui';
+import { DropDownButton } from '@features';
+import { Lesson, Place } from '@shared/api';
+import styles from './Modal.module.scss';
 
 export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 	const [newLesson, setNewLesson]: any = useState({
@@ -12,6 +12,13 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 		trainer_comments: '',
 		start: moment(day).toISOString()
 	});
+	const [places, setPlaces] = useState([]);
+
+	useEffect(() => {
+		Place.get()
+			.then((data) => setPlaces(data))
+			.catch();
+	}, []);
 
 	const handleSubmit = async () => {
 		Lesson.add(newLesson)
@@ -24,14 +31,15 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 		<div className={styles.container}>
 			{/* <DateChanger day={day} className={styles.header} /> */}
 			<main className={styles.main}>
-				{/* <DropDownButton title={'Выберите тренера'} setState={setTrainer} /> */}
 				<DropDownButton
 					className={styles.place}
 					title={'Выберите площадку'}
-					data={[{ id: +'1', name: 'Площадка 1' }]}
+					data={places}
 					setState={(id: string) =>
 						setNewLesson((prev: any) => ({ ...prev, space_id: id }))
 					}
+					state={newLesson.space_id}
+					single
 				/>
 				<DropDownButton
 					className={styles.time}
@@ -39,6 +47,8 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 					setState={(id: string) =>
 						setNewLesson((prev: any) => ({ ...prev, start: id }))
 					}
+					state={newLesson.start}
+					single
 					data={[
 						{
 							id: moment(day).hours(11).toISOString(),
