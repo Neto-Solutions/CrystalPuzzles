@@ -3,6 +3,8 @@
 .card_wrapper {
 	display: flex;
 	flex-wrap: wrap;
+	background-color: var(--bg-card-second);
+
 	@include sm() {
 		flex-direction: column;
 		max-width: 164px;
@@ -13,7 +15,8 @@
 .card {
 	width: 100%;
 	display: flex;
-	gap: 20px;
+	align-items: center;
+	gap: var(--gap);
 	max-height: 138px;
 
 	@include sm() {
@@ -24,9 +27,8 @@
 	&_img {
 		height: 100%;
 		max-height: inherit;
-		aspect-ratio: 1;
+		// aspect-ratio: 1;
 		object-fit: cover;
-		border-right: var(--border);
 		border-radius: var(--radius);
 
 		@include sm() {
@@ -77,9 +79,7 @@
 		}
 		@include sm() {
 			text-align: center;
-			font:
-				400 12px 'Rubik',
-				sans-serif;
+			font: var(--fw-regular) 12px var(--ff-second);
 			padding-top: 5px;
 		}
 	}
@@ -89,7 +89,7 @@
 	border-top: var(--border);
 	width: 100%;
 	cursor: pointer;
-	
+
 	@include sm() {
 		border-top: none;
 	}
