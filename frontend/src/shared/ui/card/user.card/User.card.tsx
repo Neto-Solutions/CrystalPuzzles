@@ -3,16 +3,25 @@ import Card from '../card/Card';
 // import useResize from '@shared/hooks/useResize';
 import styles from './User.card.module.scss';
 
+interface Props {
+	img: string;
+	name: string;
+	children?: any;
+	showBtn?: boolean;
+	className?: string;
+}
+
 export default function UserCard({
 	img,
 	name,
 	children,
-	showBtn = false
-}: any) {
+	showBtn = false,
+	className = ''
+}: Props) {
 	const [show, setShow]: any = useState(false);
 	// const isMobile = useResize('sm');
 	return (
-		<Card className={styles.card_wrapper}>
+		<Card className={styles.card_wrapper + ' ' + className}>
 			<div className={styles.card + ' ' + (show ? styles.card_show : '')}>
 				<img className={styles.card_img} src={img} />
 				<div className={styles.card_content}>
