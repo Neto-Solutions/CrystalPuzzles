@@ -17,7 +17,7 @@ export const Account = ({ user, className, isMobile }: any) => {
 				src={userPhoto}
 				className={styles.avatar}
 				alt=""
-				onClick={() => navigate('./profile')}
+				onClick={() => navigate('./profile', { state: { user } })}
 			/>
 			{!isMobile && (
 				<div>

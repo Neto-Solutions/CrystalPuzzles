@@ -1,9 +1,28 @@
+import { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { DateChanger, Feedback } from '@features';
+import { Button, EmojiCard, Page, UserCard } from '@shared/ui';
 import { Exercises } from '@widgets';
-import { Button, EmojiCard, Page } from '@shared/ui';
+import { User } from '@shared/api';
+import joinName from 'entities/profile/assets/joinName';
+import DropdownButton from 'features/dropdownButton/DropdownButton';
+import image from '@shared/assets/avatar/0.png';
 import styles from './TrainerExercisePage.module.scss';
 
+//TODO: вынести тип в отдельный файл
+type Student = {
+	id: number;
+	email: string;
+	firstname: string;
+	lastname: string;
+	surname: string;
+	birthday: string;
+	is_man: boolean;
+	contact: string;
+	role: string;
+	avatar: number;
+	photo: string;
+};
 interface TrainerExercisePageProps {
 	title: string;
 }
@@ -11,23 +30,51 @@ interface TrainerExercisePageProps {
 export default function TrainerExercisePage({
 	title
 }: TrainerExercisePageProps) {
+	const [checkList, setCheckList] = useState<{ students: number[] }>({
+		students: []
+	});
+	const [data, setData] = useState<Student[]>([]);
 	const { lessons }: any = useLoaderData();
+
+	useEffect(() => {
+		User.getStudents()
+			.then((res) => {
+				setData(res.map((item: any) => ({ ...item, name: joinName(item) })));
+			})
+			.catch();
+	}, []);
+
+	const selectedStudents = data.filter((student: Student) =>
+		checkList.students.includes(student.id)
+	);
 
 	return (
 		<Page title={title}>
 			<div className={styles.container}>
 				<DateChanger className={styles.date} />
+				<DropdownButton
+					setState={(ids: string[]) => {
+						setCheckList((prev: any) => ({ ...prev, students: ids }));
+					}}
+					title="Выберите учеников"
+					state={checkList.students}
+					data={data}
+					className={styles.btn}
+				/>
+				{selectedStudents.length > 0 && (
+					<ul className={styles.students_card}>
+						{selectedStudents.map((item: any) => (
+							<li key={item.id}>
+								<UserCard name={item.name} img={image} />
+							</li>
+						))}
+					</ul>
+				)}
 				<Exercises
 					data={lessons}
 					className={styles.exercises}
 					checked
 					disabled
-				/>
-				<Button
-					title="Выберите учеников"
-					downArrow
-					width="100%"
-					className={styles.btn}
 				/>
 				<Feedback title="Оставить комментарий" className={styles.feedback} />
 				<div className={styles.wrapper}>

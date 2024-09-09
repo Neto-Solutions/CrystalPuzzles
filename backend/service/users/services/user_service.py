@@ -2,7 +2,7 @@ from datetime import datetime
 from http import HTTPStatus
 from typing import Optional
 
-from fastapi import HTTPException
+from fastapi import HTTPException, UploadFile
 
 from common.service.base_service import BaseService
 from service.users.models import User
@@ -116,17 +116,11 @@ class UserService(BaseService):
     @staticmethod 
     async def set_photo(
         uow: UserUOW,
-        photo: bytes,
+        file: UploadFile,
         user_id: int
     ):
-        data = {
-            "id": user_id,
-            "photo": photo,
-            "date_update": datetime.now(),
-            "avatar": None
-        }
         async with uow:
-            result = await uow.repo.edit(data)
+            result = await uow.repo.set_photo(user_id, file)
             await uow.commit()
             return result
 
@@ -135,15 +129,9 @@ class UserService(BaseService):
         uow: UserUOW,
         user_id: int
     ):
-        data = {
-            "id": user_id,
-            "photo": None,
-            "date_update": datetime.now()
-        }
         async with uow:
-            result = await uow.repo.edit(data)
+            await uow.repo.delete_photo(user_id)
             await uow.commit()
-            return result
 
     @staticmethod
     async def get_photo(
@@ -164,7 +152,6 @@ class UserService(BaseService):
             "id": user_id,
             "avatar": avatar_schema.avatar_id,
             "date_update": datetime.now(),
-            "photo": None
         }
         async with uow:
             result = await uow.repo.edit(data)

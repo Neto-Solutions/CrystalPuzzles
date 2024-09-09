@@ -1,6 +1,6 @@
 import styles from './CheckList.module.scss';
 import { Page, Button } from '@shared/ui';
-import Profile from './Profile/Profile';
+import ProfileCard from './ProfileCard/ProfileCard';
 import Info from './Info/Info';
 import { Exercises } from '@widgets';
 import { FormEvent, useEffect, useState } from 'react';
@@ -37,7 +37,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 	return (
 		<Page title={title}>
 			<div className={styles.wrapper}>
-				<Profile className={styles.profile} />
+				<ProfileCard className={styles.profile} />
 				<Info className={styles.info} />
 
 				<section className={styles.panel_container}>

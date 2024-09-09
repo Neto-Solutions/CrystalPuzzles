@@ -13,6 +13,8 @@ import {
 	UsersListPage,
 	SchedulePage
 } from '@supervisor';
+import { AvatarPage } from '@pages/shared';
+import { users, lessons } from '@shared/const';
 
 import analytics from 'assets/sidebar/analytics.svg';
 import progress from 'assets/sidebar/progress.svg';
@@ -20,9 +22,6 @@ import tables from 'assets/sidebar/tables.svg';
 import schedule from 'assets/sidebar/schedule.svg';
 import feedback from 'assets/sidebar/feedback.svg';
 import home from 'assets/sidebar/home.svg';
-import { AvatarPage } from '@pages/shared';
-
-import { users, lessons } from '@shared/const';
 
 const supervisorRouter = [
 	{
@@ -126,6 +125,10 @@ const supervisorRouter = [
 		loader: ({ params: { id } }: any) => {
 			return users.find((user) => user.id == id);
 		}
+	},
+	{
+		path: '/profile',
+		element: <ProfilePage title="Мои личные данные" />
 	}
 ];
 

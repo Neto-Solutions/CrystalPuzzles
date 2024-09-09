@@ -1,5 +1,3 @@
-import math
-
 from datetime import datetime
 from typing import Optional
 
@@ -31,12 +29,14 @@ class LessonRepository(BaseRepository):
                 self.model.deleted.__eq__(False))
             .options(
                 joinedload(self.model.trainer),
-                joinedload(self.model.space)
+                joinedload(self.model.space),
+                joinedload(self.model.check).joinedload(Check.training_data),
+                joinedload(self.model.check).joinedload(Check.student)
             )
         )
         if student_id:
             stmt = await self.user_filter(stmt, student_id)
-        result = (await self.session.execute(stmt)).scalar_one_or_none()
+        result = (await self.session.execute(stmt)).unique().scalar_one_or_none()
         return result
 
     async def get_by_start_time_and_space(self, space: int, startime: datetime) -> Optional[Lesson]:
@@ -51,8 +51,12 @@ class LessonRepository(BaseRepository):
     async def get_all_lesson_by_filter(self, filters: LessonFilterSchema, student_id: Optional[int] = None):
         stmt = (
             select(self.model)
-            .options(joinedload(self.model.trainer))
-            .options(joinedload(self.model.space))
+            .options(
+                joinedload(self.model.trainer),
+                joinedload(self.model.space),
+                joinedload(self.model.check).joinedload(Check.training_data),
+                joinedload(self.model.check).joinedload(Check.student),
+            )
             .filter(self.model.deleted.__eq__(False))
         )
         if filters.search_string:

@@ -1,16 +1,17 @@
 from pydantic import Field
 
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 from common.schema.base_schemas import BaseModel
+from common.schema.base_user_schema import UserShortSchema
 
 
 class TrainingCheck(BaseModel):
     """ Схема оценки выполнения упражнения """
     training_id: int
     repetitions: int = Field(ge=1)
-    # assessment: Optional[int] = Field(default=None, le=10, ge=1)
+    assessment: Optional[int] = Field(default=None, le=10, ge=1)
 
 
 class CreateCheckSchema(BaseModel):
@@ -21,7 +22,15 @@ class CreateCheckSchema(BaseModel):
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
-#
+
+class CheckSchemaForTable(BaseModel):
+    """ Схема деталей чек-листа """
+    id: int
+    student: UserShortSchema
+    comment: Optional[str]
+    awards: Optional[int]
+    training_data: List[TrainingCheck]
+
 # class EditLessonSchema(BaseModel):
 #     """ Схема изменения моделей занятий """
 #     id: int
