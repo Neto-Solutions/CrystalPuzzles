@@ -4,8 +4,10 @@ class Place {
 	#host = $authHost;
 
 	async get() {
-		const { data } = await this.#host.get(`/space`);
-		return data;
+		const {
+			data: { records }
+		} = await this.#host.get(`/space`);
+		return records;
 	}
 
 	async getById(id: string) {

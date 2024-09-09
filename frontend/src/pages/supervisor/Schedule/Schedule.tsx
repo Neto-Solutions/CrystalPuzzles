@@ -1,23 +1,36 @@
 import styles from './Schedule.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Page, Button } from '@shared/ui';
 import Table from './Table/Table';
 import { Modal } from '@shared/ui';
 import { AddTreanerSchedule } from './Modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import { DropDownButton } from '@features';
+import { User } from '@shared/api';
+import joinName from 'entities/profile/assets/joinName';
 
 interface ShedulePageProps {
 	edit?: boolean;
 	title: string;
 }
+
 export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
-	const [modalActive, setModalActive]: any = useState(false);
-	const [data, setData]: any = useState({
+	const [modalActive, setModalActive] = useState(false);
+	const [trainers, setTrainers] = useState([]);
+	const [data, setData] = useState({
 		space_id: null,
 		trainer_id: null
 	});
 	const navigate = useNavigate();
+
+	// TODO: переписать на Redux store
+	useEffect(() => {
+		User.getTrainers()
+			.then((res) =>
+				setTrainers(res.map((item: any) => ({ ...item, name: joinName(item) })))
+			)
+			.catch();
+	}, []);
 
 	return (
 		<Page title={title}>
@@ -28,13 +41,14 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 				data={data}
 			/>
 			<div className={styles.buttons_container}>
-				{/* меняется высота у всех сразу, потому что состояние не у каждого отдельно, а в главном компоненте. //TODO: вернуть назад, как было */}
 				<DropDownButton
 					title="Выберите тренера"
-					data={[{ id: +'2', name: 'Тренер 2' }]}
-					setState={(id: string) =>
-						setData((prev: any) => ({ ...prev, trainer_id: id }))
-					}
+					data={trainers}
+					setState={(id: string) => {
+						setData((prev: any) => ({ ...prev, trainer_id: id }));
+					}}
+					state={data.trainer_id}
+					single
 				/>
 				{edit ? null : (
 					<Button

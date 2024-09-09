@@ -6,6 +6,7 @@
 		'exercises .'
 		'feedback wrapper';
 	gap: var(--gap);
+	position: relative;
 }
 
 .date {
@@ -29,6 +30,7 @@
 
 .btn {
 	grid-area: btn;
+	position: absolute;
 }
 
 .emoji {
