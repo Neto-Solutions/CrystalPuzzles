@@ -6,12 +6,11 @@ import {
 	SurveyPage,
 	RewardPage
 } from '@student';
+import { lessons } from '@const';
 import training from '@assets/sidebar/train.svg';
 import schedule from 'assets/sidebar/schedule.svg';
 import home from 'assets/sidebar/home.svg';
 import survey from 'assets/sidebar/survey.svg';
-import { lessons } from '@const';
-import store from '@app/providers/store';
 
 const studentRouter = [
 	{
@@ -73,10 +72,7 @@ const studentRouter = [
 	},
 	{
 		path: '/profile',
-		element: <ProfilePage title="Мои личные данные" />,
-		loader: () => {
-			return store.getState().profile.profile;
-		}
+		element: <ProfilePage title="Мои личные данные" />
 	}
 ];
 

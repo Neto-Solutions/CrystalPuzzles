@@ -4,24 +4,32 @@ import { IUserParam } from './user.inerface';
 class User {
 	#host = $authHost;
 
-	async getStudents(params: IUserParam) {
-		const { data } = await this.#host.get('/students', { params });
-		return data;
+	async getStudents(params: IUserParam = {}) {
+		const {
+			data: { records }
+		} = await this.#host.get('/student', { params });
+		return records;
 	}
 
-	async getTrainers(params: IUserParam) {
-		const { data } = await this.#host.get('/trainers', { params });
-		return data;
+	async getTrainers(params: IUserParam = {}) {
+		const {
+			data: { records }
+		} = await this.#host.get('/trainer', { params });
+		return records;
 	}
 
-	async getSupervisors(params: IUserParam) {
-		const { data } = await this.#host.get('/supervisors', { params });
-		return data;
+	async getSupervisors(params: IUserParam = {}) {
+		const {
+			data: { records }
+		} = await this.#host.get('/supervisor', { params });
+		return records;
 	}
 
-	async getAdmins(params: IUserParam) {
-		const { data } = await this.#host.get('/admins', { params });
-		return data;
+	async getAdmins(params: IUserParam = {}) {
+		const {
+			data: { records }
+		} = await this.#host.get('/admin', { params });
+		return records;
 	}
 
 	// get user avatar (temp)

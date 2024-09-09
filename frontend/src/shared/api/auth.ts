@@ -34,7 +34,7 @@ class Auth {
 				is_man,
 				contact
 			})
-			.then(() => this.login({ email, password }))
+			.then(() => this.login({ username: email, password }))
 			.catch((err) => [null, err]);
 		return data;
 	}
