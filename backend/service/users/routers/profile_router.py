@@ -105,20 +105,17 @@ async def set_photo(
 ):
     """ authenticate """
     try:
-        if file.size <= 0 or file.content_type not in ["image/jpeg", "image/png"]:
+        if file.size <= 0 or file.content_type not in ["image/jpeg", "image/jpeg", "image/png"]:
             return JSONResponse(
                 status_code=HTTPStatus.BAD_REQUEST.value,
                 content=f"Invalid image file. Expected format: FastAPI.UploadFile, "
                         f"Content-type: image/jpeg, but got {file.content_type}")
-        contents = await file.read()
-        encoded_file = base64.b64encode(contents)
-        result = await user_service.set_photo(uow, encoded_file, current_user.id)
-        if result:
-            return result
-        return JSONResponse(
-            status_code=HTTPStatus.BAD_REQUEST.value,
-            content=f"Invalid image file"
-        )
+        if file.size > 500000:
+            return JSONResponse(
+                status_code=HTTPStatus.BAD_REQUEST.value,
+                content=f"The file must not exceed 5MB.")
+        result = await user_service.set_photo(uow, file, current_user.id)
+        return result
     except Exception as e:
         logger.error(e)
         raise HTTPException(status_code=500, detail=e.__str__())

@@ -26,7 +26,7 @@ class User(Base):
     code: Mapped[int] = mapped_column(nullable=True)
     birthday: Mapped[datetime] = mapped_column(sa.DateTime, nullable=True)
     avatar: Mapped[int] = mapped_column(sa.Integer, CheckConstraint('avatar >= 1 AND avatar <= 8'), nullable=True)
-    photo: Mapped[bytes] = mapped_column(BYTEA, nullable=True)
+    photo: Mapped[str] = mapped_column(sa.String, nullable=True)
     role: Mapped[str] = mapped_column(sa.String, sa.ForeignKey("Roles.name"), nullable=True, default="student")
     is_man: Mapped[bool] = mapped_column(sa.Boolean, nullable=False, default=True)
     rank_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("Ranks.id"), nullable=True)
@@ -37,6 +37,7 @@ class User(Base):
     # ссылка для студентов на группу, которой он пренадлежит
     student_group = relationship("StudentGroup", back_populates="student")
     lessons = relationship("Lesson")
+    students = relationship("Check")
 
 
 class Role(Base):
