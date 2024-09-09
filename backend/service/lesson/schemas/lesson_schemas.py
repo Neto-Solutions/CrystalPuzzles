@@ -19,6 +19,7 @@ class CreateLessonSchema(BaseModel):
     trainer_id: int
     trainer_comments: Optional[str]
     start: datetime
+    status: str = Field(default="created", hidden=True)
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 # endregion --------------------------------------------------------------

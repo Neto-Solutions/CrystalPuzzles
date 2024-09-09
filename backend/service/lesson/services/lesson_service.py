@@ -70,6 +70,16 @@ class LessonService(BaseService):
             async with kwargs.get('check_uow') as check_uow:
                 result = await check_uow.repo.add_check_for_lesson(model.model_dump())
                 await check_uow.commit()
+                async with uow:
+                    await uow.repo.edit(
+                        {
+                            "id": model.lesson_id,
+                            "status": "in_editing",
+                            "date_update": datetime.now()
+                        }
+                    )
+                    await uow.commit()
+
                 return result
         raise HTTPException(status_code=400, detail="Lesson not exist")
 

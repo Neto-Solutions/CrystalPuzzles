@@ -17,7 +17,7 @@ down_revision: Union[str, None] = 'bc27348192dd'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 # Define the enum type
-status_type_enum = sa.Enum('created', 'in_progress', 'completed', name='status_type_enum')
+status_type_enum = sa.Enum('created', 'in_editing', 'in_progress', 'finished', name='status_type_enum')
 
 
 def upgrade() -> None:
