@@ -1,22 +1,23 @@
 .dropdown {
-	width: 347px;
+	width: 100%;
 	height: fit-content;
 	background-color: var(--bg-card-second);
 	border: var(--border);
 	border-radius: var(--radius);
+	cursor: pointer;
 }
 
 .small_arrow {
 	transform: rotate(-90deg);
+	margin-left: auto;
 }
 
 .dropdown_button {
-	margin: auto;
+	width: 100%;
 	padding: 16px;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	gap: 30px;
+	justify-content: space-between;
 	background-color: transparent;
 	border: none;
 	outline: none;
@@ -37,9 +38,9 @@
 }
 
 .list_item {
+	padding: 10px 22px;
 	display: flex;
 	justify-content: space-between;
-	padding: 10px 22px;
 
 	span {
 		font: var(--fw-regular) var(--fz-text) var(--ff-second);
