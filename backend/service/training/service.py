@@ -1,9 +1,17 @@
+from fastapi import HTTPException
+
 from common.service.base_service import BaseService
 from service.training.schemas import EditTrainingSchema, CreateTrainingSchema, TrainingFilterSchema
 from service.training.unit_of_work import TrainingUOW
 
 
 class TrainingService(BaseService):
+    @staticmethod
+    async def training_exist(uow: TrainingUOW, training_id):
+        async with uow:
+            if not await uow.repo.exist(training_id):
+                raise HTTPException(status_code=404, detail="Training not found")
+
 
     @staticmethod
     async def get_by_name(uow: TrainingUOW, training_name: str):

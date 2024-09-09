@@ -1,27 +1,24 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Card from '../card/Card';
-// import useResize from '@shared/hooks/useResize';
-import styles from './User.card.module.scss';
+import styles from './UserCard.module.scss';
 
-interface Props {
+interface UserCardProps {
 	img: string;
 	name: string;
-	children?: any;
+	children?: ReactNode;
 	showBtn?: boolean;
-	className?: string;
 }
 
 export default function UserCard({
 	img,
 	name,
 	children,
-	showBtn = false,
-	className = ''
-}: Props) {
-	const [show, setShow]: any = useState(false);
-	// const isMobile = useResize('sm');
+	showBtn = false
+}: UserCardProps) {
+	const [show, setShow] = useState(false);
+
 	return (
-		<Card className={styles.card_wrapper + ' ' + className}>
+		<Card className={styles.card_wrapper}>
 			<div className={styles.card + ' ' + (show ? styles.card_show : '')}>
 				<img className={styles.card_img} src={img} />
 				<div className={styles.card_content}>

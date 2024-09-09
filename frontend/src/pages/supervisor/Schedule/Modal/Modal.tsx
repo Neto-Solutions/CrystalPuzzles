@@ -51,15 +51,15 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 					single
 					data={[
 						{
-							id: moment(day).hours(11).toISOString(),
+							id: moment(day).hours(11).format(),
 							name: '11:00'
 						},
 						{
-							id: moment(day).hours(12).toISOString(),
+							id: moment(day).hours(12).format(),
 							name: '12:00'
 						},
 						{
-							id: moment(day).hours(15).toISOString(),
+							id: moment(day).hours(15).format(),
 							name: '15:00'
 						}
 					]}

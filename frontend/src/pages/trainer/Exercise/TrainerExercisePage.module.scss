@@ -3,7 +3,7 @@
 	grid-template-columns: 714px 1fr;
 	grid-template-areas:
 		'date btn'
-		'exercises .'
+		'exercises card'
 		'feedback wrapper';
 	gap: var(--gap);
 	position: relative;
@@ -16,6 +16,18 @@
 	border: var(--border);
 }
 
+.btn {
+	grid-area: btn;
+	position: absolute;
+}
+
+.students_card {
+	grid-area: card;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+}
+
 .exercises {
 	grid-area: exercises;
 }
@@ -26,11 +38,6 @@
 
 .wrapper {
 	grid-area: wrapper;
-}
-
-.btn {
-	grid-area: btn;
-	position: absolute;
 }
 
 .emoji {
