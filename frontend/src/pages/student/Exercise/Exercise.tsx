@@ -4,8 +4,6 @@ import { useLoaderData } from 'react-router-dom';
 import { Page } from '@shared/ui';
 import { DateChanger, Feedback } from '@features';
 import { Exercises } from '@widgets';
-import { Lesson } from '@shared/api';
-import { lessons } from '@shared/const';
 import classNames from 'classnames';
 
 interface ExercisePageProps {
@@ -13,8 +11,8 @@ interface ExercisePageProps {
 }
 
 export default function ExercisePage({ title }: ExercisePageProps) {
-	const { id, lesson }: any = useLoaderData();
-	const [data, setData] = useState<any>(lesson);
+	const { lesson }: any = useLoaderData();
+	const [data] = useState<any>(lesson);
 
 	useEffect(() => {
 		// Lesson.get(id).then(setData);

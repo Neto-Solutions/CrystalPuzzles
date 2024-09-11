@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { DateChanger, Feedback } from '@features';
 import { Button, EmojiCard, Page, UserCard } from '@shared/ui';
 import { Exercises } from '@widgets';
-import { User } from '@shared/api';
+import { Lesson, User } from '@shared/api';
 import joinName from 'entities/profile/assets/joinName';
 import DropdownButton from 'features/dropdownButton/DropdownButton';
 import image from '@shared/assets/avatar/0.png';
@@ -34,7 +34,18 @@ export default function TrainerExercisePage({
 		students: []
 	});
 	const [data, setData] = useState<Student[]>([]);
-	const { lessons }: any = useLoaderData();
+	const { id }: any = useLoaderData();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		//loads lesson and checks if there are checklist data
+		//if false redirects to checklist page
+		Lesson.getById(id).then((res) => {
+			if (!res.check.length) {
+				navigate(`/schedule/${id}`);
+			}
+		});
+	}, []);
 
 	useEffect(() => {
 		User.getStudents()
@@ -70,12 +81,7 @@ export default function TrainerExercisePage({
 						))}
 					</ul>
 				)}
-				<Exercises
-					data={lessons}
-					className={styles.exercises}
-					checked
-					disabled
-				/>
+				<Exercises data={[]} className={styles.exercises} checked disabled />
 				<Feedback title="Оставить комментарий" className={styles.feedback} />
 				<div className={styles.wrapper}>
 					<EmojiCard className={styles.emoji} />

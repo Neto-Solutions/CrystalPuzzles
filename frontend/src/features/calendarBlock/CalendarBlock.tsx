@@ -42,10 +42,8 @@ export default function CalendarBlock({
 								key={index}
 								data-active={moment(month)
 									.date(day)
-									.isBetween(
-										moment(date.from).subtract(1, 'day'),
-										moment(date.to)
-									)}
+									.add(1, 'day')
+									.isBetween(moment(date.from), moment(date.to))}
 								{...(Number(day) && {
 									className: styles.day,
 									onClick: () => {
@@ -91,7 +89,7 @@ function setDay(fn: any, month: any, day: any) {
 		to = moment(to);
 		const date = moment(month).date(day);
 		from = date.startOf('day').toISOString();
-		to = date.startOf('day').toISOString();
+		to = date.endOf('day').toISOString();
 		return { from, to };
 	});
 }

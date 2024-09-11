@@ -1,4 +1,4 @@
-import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Page, Button } from '@shared/ui';
 import avatar from '@shared/assets/avatar/0.png';
 import styles from './Profile.module.scss';
@@ -9,7 +9,7 @@ export default function ProfilePage({ title }: any) {
 	const {
 		state: { user }
 	} = useLocation();
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	return (
 		<Page title={title}>
