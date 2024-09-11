@@ -4,6 +4,7 @@ import { Page, Wrapper } from '@shared/ui';
 import { CalendarBlock } from '@features';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 import { Lesson } from '@api';
+import moment from 'moment';
 
 interface SchedulePageProps {
 	link?: boolean;
@@ -16,8 +17,8 @@ export default function SchedulePage({
 }: SchedulePageProps) {
 	const [data, setData] = useState<any>([]);
 	const [date, setDate]: any = useState({
-		from: new Date().toISOString(),
-		to: new Date().toISOString()
+		from: moment().startOf('day').toISOString(),
+		to: moment().endOf('day').toISOString()
 	});
 
 	useEffect(() => {
