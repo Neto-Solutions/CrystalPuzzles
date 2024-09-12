@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import Place from '@shared/api/place';
+import { createSlice } from '@reduxjs/toolkit';
+// import Place from '@shared/api/place';
 
 interface AppState {
 	header: string;
@@ -28,17 +28,17 @@ const appSlice = createSlice({
 	}
 });
 
-export const fetchPlaces = createAsyncThunk(
-	'app/fetchPlaces',
-	async (_, { dispatch }) => {
-		try {
-			const places = await Place.get();
-			dispatch(setPlace(places));
-		} catch (error) {
-			console.error(error);
-		}
-	}
-);
+// export const fetchPlaces = createAsyncThunk(
+// 	'app/fetchPlaces',
+// 	async (_, { dispatch }) => {
+// 		try {
+// 			const places = await Place.get();
+// 			dispatch(setPlace(places));
+// 		} catch (error) {
+// 			/* empty */
+// 		}
+// 	}
+// );
 
 const selectHeader = (state: any) => state.app.header;
 

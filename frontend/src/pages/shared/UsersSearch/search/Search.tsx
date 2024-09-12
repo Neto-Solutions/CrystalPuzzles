@@ -7,8 +7,6 @@ import {
 	distinctUntilChanged,
 	fromEvent
 } from 'rxjs';
-import { error } from 'console';
-// import { users } from '@shared/const';
 
 export default function Search({ setUsers }: any) {
 	const inputRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
@@ -18,14 +16,6 @@ export default function Search({ setUsers }: any) {
 			User.getStudents({ search_string: inputRef.current.value })
 				.then(setUsers)
 				.catch();
-			// setUsers(
-			// 	users.filter((user) => {
-			// 		const name = `${user.surname} ${user.firstname} ${user.lastname}`;
-			// 		return name
-			// 			.toLowerCase()
-			// 			.includes(inputRef.current!.value.toLowerCase());
-			// 	})
-			// );
 		}
 	}
 

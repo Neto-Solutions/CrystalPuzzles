@@ -24,7 +24,7 @@ export default function DaysList({
 							{data[key].map((el: any, i: number) => (
 								<div key={i}>
 									<span className={styles.time}>
-										{moment(el.start).format('hh:mm')}
+										{moment(el.start).format('HH:mm')}
 									</span>
 									<span className={styles.space_name}>{el.space.name}</span>
 								</div>

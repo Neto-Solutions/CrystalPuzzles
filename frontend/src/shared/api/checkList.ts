@@ -1,12 +1,29 @@
 import { $authHost } from './axios.instances';
+import { UserI, CheckListI } from './checkList.interface';
 
 class CheckList {
 	#host = $authHost;
-
-	async get({ lessonId, studentId = null }: any) {
-		const { data } = await this.#host.get('/checkList', {
-			params: { lesson_id: lessonId, student_id: studentId }
-		});
+	async create(params: CheckListI) {
+		const { data } = await this.#host.post(
+			`/lesson/create-check/${params.lesson_id}`,
+			{ params }
+		);
+		return data;
+	}
+	async addUser(params: UserI) {
+		const { data } = await this.#host.put(
+			`/lesson/add-student/${params.lesson_id}`,
+			{ params }
+		);
+		return data;
+	}
+	async removeUser(params: UserI) {
+		const { data } = await this.#host.put(
+			`/lesson/remove-user/${params.lesson_id}`,
+			{
+				params
+			}
+		);
 		return data;
 	}
 }

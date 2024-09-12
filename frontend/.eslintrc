@@ -37,5 +37,11 @@
 			"version": "detect"
 		}
 	},
-	"overrides": [{ "files": ["*.js", "*.jsx"] }]
+	"overrides": [{ "files": ["*.js", "*.jsx"] }],
+	"ignorePatterns": [
+		"build/**/*",
+		"node_modules/**/*",
+		"service-worker.ts",
+		"serviceWorkerRegistration.ts"
+	]
 }

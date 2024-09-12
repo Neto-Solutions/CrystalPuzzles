@@ -1,10 +1,9 @@
 import styles from './Train.module.scss';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Page } from '@shared/ui';
 import { Link, useLoaderData } from 'react-router-dom';
 import moment from 'moment';
 import { CalendarButton } from '@features';
-import { Lesson } from '@shared/api';
 
 interface TrainPageProps {
 	title: string;
@@ -12,7 +11,7 @@ interface TrainPageProps {
 
 export default function TrainPage({ title }: TrainPageProps) {
 	const { lessons }: any = useLoaderData();
-	const [data, setData] = useState<any>(lessons);
+	const [data] = useState<any>(lessons);
 	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
 		to: new Date().toISOString()

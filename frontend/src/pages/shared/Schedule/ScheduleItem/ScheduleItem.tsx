@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 export default function ScheduleItem({ data, className }: any) {
 	return (
-		<Link to={`/schedule/${data.id}`} className={styles.link}>
+		<Link to={`/exercise/${data.id}`} className={styles.link}>
 			<div className={classNames(styles.row, className)}>
 				<div className={styles.col}>
 					{data.start ? moment(data.start).format('HH:mm') : null}
