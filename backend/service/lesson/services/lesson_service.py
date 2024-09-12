@@ -5,10 +5,9 @@ from fastapi import HTTPException
 from common.service.base_service import BaseService
 from service.lesson.schemas.check_schema import CreateCheckSchema
 from service.lesson.schemas.lesson_schemas import CreateLessonSchema, LessonFilterSchema, EditLessonSchema, \
-    UserForLessonSchema
+    UserForLessonSchema, ChangeStatusSchema
 from service.lesson.services.check_service import CheckService
 from service.lesson.services.space_service import SpaceService
-from service.lesson.unit_of_work.check_uow import CheckUOW
 from service.lesson.unit_of_work.lesson_uow import LessonUOW
 from service.training.service import TrainingService
 from service.users.services.user_service import UserService
@@ -110,3 +109,18 @@ class LessonService(BaseService):
 
     async def delete_training(self):
         pass
+
+    @staticmethod
+    async def edit_status_lesson(uow: LessonUOW, lesson_id: int, model: ChangeStatusSchema):
+        async with uow:
+            if await uow.repo.exist(lesson_id):
+                result = await uow.repo.edit(
+                    {
+                        "id": lesson_id,
+                        "status": model.status,
+                        "date_update": datetime.now()
+                    }
+                )
+                await uow.commit()
+                return result
+            raise HTTPException(status_code=400, detail="Lesson does not exist")
