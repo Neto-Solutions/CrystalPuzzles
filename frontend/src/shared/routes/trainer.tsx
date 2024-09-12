@@ -47,8 +47,14 @@ const trainerRouter = [
 		}
 	},
 	{
+		path: '/exercise/:id',
+		element: <TrainerExercisePage title="Занятия" />,
+		loader: ({ params: { id } }: any) => ({ id })
+	},
+	{
 		path: '/schedule/:id',
-		element: <CheckListPage title="Чек-листы" />
+		element: <CheckListPage title="Чек-лист" />,
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/groups',
@@ -84,15 +90,6 @@ const trainerRouter = [
 	{
 		path: '/avatar',
 		element: <AvatarPage title="Изменить аватарку" />
-	},
-	{
-		path: '/exercise',
-		element: <TrainerExercisePage title="Занятия" />,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
 	},
 	{
 		path: '/profile',
