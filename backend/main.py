@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 import logging
 from os.path import realpath
@@ -135,10 +136,13 @@ app.add_api_route(
     endpoint=health_check_route(factory=_health_checks),
     include_in_schema=False
 )
+static_path = realpath(f'{realpath(__file__)}/../static/')
+if not os.path.exists(static_path):
+    os.makedirs(static_path)
 
 app.mount(
     "/pages",
-    StaticFiles(directory=realpath(f'{realpath(__file__)}/../static/')),
+    StaticFiles(directory=static_path),
     name="Files"
 )
 # endregion -------------------------------------------------------------------------
