@@ -15,7 +15,7 @@ from service.group.routers.group_router import group_router
 from service.group.routers.student_group_router import student_group_router
 from service.healthcheck.routers import health_check_route
 from service.healthcheck.healthcheck_factory import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
-from service.lesson.routers.check_router import check_router
+# from service.lesson.routers.check_router import check_router
 from service.lesson.routers.lesson_router import lesson_router
 from service.lesson.routers.space_router import space_router
 from service.training.initialize import TrainingLevelInitialize
