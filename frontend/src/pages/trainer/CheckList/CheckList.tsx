@@ -5,6 +5,7 @@ import Info from './Info/Info';
 import { Exercises } from '@widgets';
 import { FormEvent, useEffect, useState } from 'react';
 import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
+import PlacesDropdown from 'features/placesDropdown/PlacesDropdown';
 
 interface CheckListPageProps {
 	title: string;
@@ -13,11 +14,13 @@ interface CheckListPageProps {
 export default function CheckListPage({ title }: CheckListPageProps) {
 	const [exercises, setExercises] = useState([]);
 	const [students, setStudents] = useState([]);
+	const [places, setPlaces] = useState([]);
 
 	useEffect(() => {
 		console.log('exercises', exercises);
 		console.log('studets', students);
-	}, [exercises, students]);
+		console.log('places', places);
+	}, [exercises, students, places]);
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -41,7 +44,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 				<Info className={styles.info} />
 
 				<section className={styles.panel_container}>
-					<Button title="Выберите группу" downArrow width="100%" />
+					<PlacesDropdown state={places} setState={setPlaces} />
 					<StudentsDropdown state={students} setState={setStudents} />
 					<Button
 						title="Отправить чек-лист"
