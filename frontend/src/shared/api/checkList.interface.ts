@@ -6,7 +6,7 @@ interface TrainingI {
 
 interface CheckListI {
 	lesson_id: number;
-	student_ids: string;
+	student_ids: number[];
 	training_check: TrainingI[];
 }
 

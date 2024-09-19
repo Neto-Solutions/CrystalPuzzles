@@ -5,7 +5,7 @@ import { Button, EmojiCard, Page, UserCard } from '@shared/ui';
 import { Exercises } from '@widgets';
 import { Lesson, User } from '@shared/api';
 import joinName from 'entities/profile/assets/joinName';
-import DropdownButton from 'features/dropdownButton/DropdownButton';
+import DropdownButton from '@shared/ui/dropdownButton/DropdownButton';
 import image from '@shared/assets/avatar/0.png';
 import styles from './TrainerExercisePage.module.scss';
 

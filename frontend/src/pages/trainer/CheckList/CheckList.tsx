@@ -4,7 +4,7 @@ import ProfileCard from './ProfileCard/ProfileCard';
 import Info from './Info/Info';
 import { Exercises } from '@widgets';
 import { FormEvent, useEffect, useState } from 'react';
-import { Exercise } from '@shared/api';
+import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
 
 interface CheckListPageProps {
 	title: string;
@@ -12,26 +12,26 @@ interface CheckListPageProps {
 
 export default function CheckListPage({ title }: CheckListPageProps) {
 	const [exercises, setExercises] = useState([]);
+	const [students, setStudents] = useState([]);
 
 	useEffect(() => {
-		Exercise.get().then(setExercises).catch();
-	}, []);
+		console.log('exercises', exercises);
+		console.log('studets', students);
+	}, [exercises, students]);
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const result: Array<{ id: string; isComplete: boolean }> = [];
+		const result: any = [];
 		const formElements = e.currentTarget.elements as HTMLFormControlsCollection;
 
 		for (const el of formElements) {
 			const inputElement = el as HTMLInputElement;
 			if (!inputElement.id) continue;
 			if (inputElement.checked) {
-				result.push({
-					id: inputElement.id,
-					isComplete: false
-				});
+				result.push(inputElement.value);
 			}
 		}
+		setExercises(result);
 	}
 
 	return (
@@ -42,7 +42,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 
 				<section className={styles.panel_container}>
 					<Button title="Выберите группу" downArrow width="100%" />
-					<Button title="Выберите учеников" downArrow width="100%" />
+					<StudentsDropdown state={students} setState={setStudents} />
 					<Button
 						title="Отправить чек-лист"
 						width="100%"
@@ -55,7 +55,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 						id="exercises_form"
 						className={styles.exercises}
 					>
-						<Exercises data={exercises} />
+						<Exercises />
 					</form>
 				</section>
 			</div>
