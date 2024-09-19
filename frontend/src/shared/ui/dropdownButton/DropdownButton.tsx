@@ -7,7 +7,7 @@ import styles from './DropdownButton.module.scss';
 interface DropdownButtonProps {
 	className?: string;
 	title: string;
-	data?: any;
+	data?: any[];
 	state?: any;
 	setState: any;
 	single?: boolean;
