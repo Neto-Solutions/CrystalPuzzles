@@ -40,8 +40,10 @@ export default function TrainerExercisePage({
 	useEffect(() => {
 		//loads lesson and checks if there are checklist data
 		//if false redirects to checklist page
-		Lesson.getById(id).then((res) => {
-			if (!res.check.length) {
+		//TODO
+		Lesson.getById(id).then(([data, err]) => {
+			if (err) return;
+			if (!data.check.length) {
 				navigate(`/schedule/${id}`);
 			}
 		});
@@ -49,8 +51,9 @@ export default function TrainerExercisePage({
 
 	useEffect(() => {
 		User.getStudents()
-			.then((res) => {
-				setData(res.map((item: any) => ({ ...item, name: joinName(item) })));
+			.then(([data, err]) => {
+				if (err) return;
+				setData(data.map((item: any) => ({ ...item, name: joinName(item) })));
 			})
 			.catch();
 	}, []);

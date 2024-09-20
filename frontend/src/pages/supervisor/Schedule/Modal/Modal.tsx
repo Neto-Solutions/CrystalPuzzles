@@ -15,15 +15,17 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 	const [places, setPlaces] = useState([]);
 
 	useEffect(() => {
-		Place.get()
-			.then((data) => setPlaces(data))
-			.catch();
+		Place.get().then(([data, err]) => {
+			if (err) return;
+			setPlaces(data);
+		});
 	}, []);
 
 	const handleSubmit = async () => {
-		Lesson.add(newLesson)
-			.then(() => setActive(false))
-			.catch();
+		Lesson.create(newLesson).then(([, err]) => {
+			if (err) return;
+			setActive(false);
+		});
 		return newLesson;
 	};
 

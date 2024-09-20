@@ -10,9 +10,4 @@ interface CheckListI {
 	training_check: TrainingI[];
 }
 
-interface UserI {
-	student_id: number;
-	lesson_id: number;
-}
-
-export { type CheckListI, type UserI };
+export { type TrainingI, type CheckListI };

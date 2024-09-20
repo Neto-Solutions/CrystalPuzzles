@@ -3,35 +3,42 @@ import { Page, Button } from '@shared/ui';
 import ProfileCard from './ProfileCard/ProfileCard';
 import Info from './Info/Info';
 import { Exercises } from '@widgets';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
+import { CheckList } from '@shared/api';
+import { TrainingI } from '@shared/api/checklist/checkList.interface';
+import { useLoaderData } from 'react-router-dom';
 
 interface CheckListPageProps {
 	title: string;
 }
 
 export default function CheckListPage({ title }: CheckListPageProps) {
-	const [exercises, setExercises] = useState([]);
 	const [students, setStudents] = useState([]);
-
-	useEffect(() => {
-		console.log('exercises', exercises);
-		console.log('studets', students);
-	}, [exercises, students]);
+	const { id }: any = useLoaderData();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const result: any = [];
+		const result: TrainingI[] = [];
 		const formElements = e.currentTarget.elements as HTMLFormControlsCollection;
 
 		for (const el of formElements) {
 			const inputElement = el as HTMLInputElement;
 			if (!inputElement.id) continue;
 			if (inputElement.checked) {
-				result.push(inputElement.value);
+				result.push({
+					training_id: +inputElement.value,
+					repetitions: 1,
+					assessment: 1
+				});
 			}
 		}
-		setExercises(result);
+
+		CheckList.create({
+			lesson_id: id,
+			student_ids: students,
+			training_check: result
+		}).catch();
 	}
 
 	return (

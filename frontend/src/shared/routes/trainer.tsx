@@ -11,8 +11,7 @@ import {
 	CreateGroupPage,
 	TrainerExercisePage
 } from '@trainer';
-import { AvatarPage, SchedulePage } from '@pages/shared';
-import { lessons, groups } from '@const';
+import { SchedulePage } from '@pages/shared';
 
 import feedback from 'assets/sidebar/feedback.svg';
 import schedule from 'assets/sidebar//schedule.svg';
@@ -24,12 +23,7 @@ const trainerRouter = [
 	{
 		path: '/',
 		element: <MainPage title="Главная страница" />,
-		img: home,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
+		img: home
 	},
 	{
 		path: '/notifications',
@@ -39,12 +33,7 @@ const trainerRouter = [
 		path: '/schedule',
 		element: <SchedulePage link title="Расписание" />,
 		local: 'Расписание',
-		img: schedule,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
+		img: schedule
 	},
 	{
 		path: '/exercise/:id',
@@ -60,12 +49,7 @@ const trainerRouter = [
 		path: '/groups',
 		element: <GroupListPage title="Группы" />,
 		local: 'Группы',
-		img: group,
-		loader: () => {
-			return {
-				groups
-			};
-		}
+		img: group
 	},
 	{
 		path: '/group/create',
@@ -79,21 +63,14 @@ const trainerRouter = [
 	},
 	{
 		path: '/students/:id',
-		element: <ProfilePage title="Ученик" />
+		element: <ProfilePage title="Ученик" />,
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/feedback',
 		element: <FeedbackPage title="Обратная связь" />,
 		local: 'Обратная связь',
 		img: feedback
-	},
-	{
-		path: '/avatar',
-		element: <AvatarPage title="Изменить аватарку" />
-	},
-	{
-		path: '/profile',
-		element: <ProfilePage title="Мои личные данные" />
 	}
 ];
 

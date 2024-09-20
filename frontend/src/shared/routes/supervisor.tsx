@@ -13,8 +13,6 @@ import {
 	UsersListPage,
 	SchedulePage
 } from '@supervisor';
-import { AvatarPage } from '@pages/shared';
-import { users, lessons } from '@shared/const';
 
 import analytics from 'assets/sidebar/analytics.svg';
 import progress from 'assets/sidebar/progress.svg';
@@ -27,12 +25,7 @@ const supervisorRouter = [
 	{
 		path: '/',
 		element: <MainPage title="Главная страница" />,
-		img: home,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
+		img: home
 	},
 	{
 		path: '/progress',
@@ -40,33 +33,23 @@ const supervisorRouter = [
 			<UsersListPage type="progress" title="График прогресса тренеров" />
 		),
 		local: 'Графики прогресса',
-		img: progress,
-		loader: () => {
-			return users;
-		}
+		img: progress
 	},
 	{
 		path: '/progress/:id',
 		element: <ProgressPage title="График прогресса" />,
-		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user.id == id);
-		}
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/analytic',
 		element: <UsersListPage type="analytic" title="Аналитика" />,
 		local: 'Аналитика',
-		img: analytics,
-		loader: () => {
-			return users;
-		}
+		img: analytics
 	},
 	{
 		path: '/analytic/:id',
 		element: <AnalyticsPage title="Аналитика" />,
-		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user.id == id);
-		}
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/evaluation',
@@ -78,17 +61,11 @@ const supervisorRouter = [
 		path: '/schedule',
 		element: <SchedulePage title="Расписание тренеров" />,
 		local: 'Расписание',
-		img: schedule,
-		loader: () => {
-			return lessons;
-		}
+		img: schedule
 	},
 	{
 		path: '/schedule/edit',
-		element: <SchedulePage edit title="Составить расписание тренеров" />,
-		loader: () => {
-			return lessons;
-		}
+		element: <SchedulePage edit title="Составить расписание тренеров" />
 	},
 	{
 		path: '/feedback',
@@ -101,19 +78,13 @@ const supervisorRouter = [
 		element: <NotificationPage title="Уведомления" />
 	},
 	{
-		path: '/avatar',
-		element: <AvatarPage title="Изменить аватарку" />
-	},
-	{
 		path: '/students',
 		element: <UsersSearchPage title="Ученики" />
 	},
 	{
 		path: '/students/:id',
 		element: <ProfilePage title="Ученик" />,
-		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user.id == id);
-		}
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/trainers',
@@ -122,13 +93,7 @@ const supervisorRouter = [
 	{
 		path: '/trainers/:id',
 		element: <ProfilePage title="Тренер" />,
-		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user.id == id);
-		}
-	},
-	{
-		path: '/profile',
-		element: <ProfilePage title="Мои личные данные" />
+		loader: ({ params: { id } }: any) => ({ id })
 	}
 ];
 

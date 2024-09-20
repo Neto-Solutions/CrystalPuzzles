@@ -8,7 +8,10 @@ export default function ScheduleList({ link }: { link?: string }) {
 	const [data, setData] = useState<any>([]);
 
 	useEffect(() => {
-		Lesson.get({}).then(setData).catch();
+		Lesson.get().then(([data, err]) => {
+			if (err) return;
+			setData(data);
+		});
 	}, []);
 
 	return (

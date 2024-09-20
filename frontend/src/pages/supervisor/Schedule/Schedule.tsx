@@ -25,11 +25,10 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 
 	// TODO: переписать на Redux store
 	useEffect(() => {
-		User.getTrainers()
-			.then((res) =>
-				setTrainers(res.map((item: any) => ({ ...item, name: joinName(item) })))
-			)
-			.catch();
+		User.getTrainers().then(([data, err]) => {
+			if (err) return;
+			setTrainers(data.map((item: any) => ({ ...item, name: joinName(item) })));
+		});
 	}, []);
 
 	return (
