@@ -48,7 +48,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 				<Info className={styles.info} />
 
 				<section className={styles.panel_container}>
-					<Button title="Выберите группу" downArrow width="100%" />
+					<Button title="Выберите группу" downArrow width="100%" />{' '}
 					<StudentsDropdown state={students} setState={setStudents} />
 					<Button
 						title="Отправить чек-лист"

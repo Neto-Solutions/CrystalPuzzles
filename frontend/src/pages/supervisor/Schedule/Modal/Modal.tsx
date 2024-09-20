@@ -3,6 +3,7 @@ import moment from 'moment';
 import { Button } from '@shared/ui';
 import { DropDownButton } from '@features';
 import { Lesson, Place } from '@shared/api';
+import PlacesDropdown from 'features/placesDropdown/PlacesDropdown';
 import styles from './Modal.module.scss';
 
 export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
@@ -33,14 +34,12 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 		<div className={styles.container}>
 			{/* <DateChanger day={day} className={styles.header} /> */}
 			<main className={styles.main}>
-				<DropDownButton
-					className={styles.place}
-					title={'Выберите площадку'}
-					data={places}
-					setState={(id: string) =>
-						setNewLesson((prev: any) => ({ ...prev, space_id: id }))
-					}
+				<PlacesDropdown
 					state={newLesson.space_id}
+					setState={(id: string) =>
+						setNewLesson((prev:any) => ({ ...prev, space_id: id }))
+					}
+					className={styles.place}
 					single
 				/>
 				<DropDownButton

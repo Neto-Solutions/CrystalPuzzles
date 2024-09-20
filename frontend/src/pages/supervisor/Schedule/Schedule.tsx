@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { DropDownButton } from '@features';
 import { User } from '@shared/api';
 import joinName from 'entities/profile/assets/joinName';
+import TrainersDropdown from 'features/trainersDropdown/TrainersDropdown';
 
 interface ShedulePageProps {
 	edit?: boolean;

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import classNames from 'classnames';
 import { ReactComponent as SmallArrow } from '@shared/assets/svg/small_arrow.svg';
-import { useClickOutside } from '@shared/hooks/useClickOutside';
+// import { useClickOutside } from '@shared/hooks/useClickOutside';
 import styles from './DropdownButton.module.scss';
 
 interface DropdownButtonProps {
@@ -23,7 +23,7 @@ export default function DropdownButton({
 }: DropdownButtonProps) {
 	const [open, setOpen] = useState(false);
 	// const [selectedIds, setSelectedIds] = useState<string[]>([]);
-	const dropdownRef = useRef<HTMLDivElement>(null);
+	// const dropdownRef = useRef<HTMLDivElement>(null);
 
 	const handleCheckboxChange = (itemId: string) => {
 		if (single) {
@@ -37,16 +37,16 @@ export default function DropdownButton({
 		}
 	};
 
-	useClickOutside({
-		ref: dropdownRef,
-		handleClickOutside: () => setOpen(false)
-	});
+	// useClickOutside({
+	// 	ref: dropdownRef,
+	// 	handleClickOutside: () => setOpen(false)
+	// });
 
 	return (
 		<div
 			className={classNames(styles.dropdown, className)}
 			onClick={() => setOpen((prev) => !prev)}
-			ref={dropdownRef}
+			// ref={dropdownRef}
 		>
 			<button className={styles.dropdown_button}>
 				<span>{title}</span>
