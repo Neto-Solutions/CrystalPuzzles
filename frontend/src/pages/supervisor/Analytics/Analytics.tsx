@@ -13,8 +13,7 @@ export default function AnalyticsPage({ title }: AnalyticsPageProps) {
 	const { avatar, firstname, surname, lastname }: any = useLoaderData();
 	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
-		to: new Date().toISOString()
-	});
+		to: new Date()	});
 
 	return (
 		<Page title={title}>

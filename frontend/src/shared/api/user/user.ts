@@ -56,9 +56,17 @@ class User {
 
 	async setDefaultAvatar(id = 1) {
 		const data = await this.#host
-			.put('/profile/set-photo', { avatar_id: id })
+			.put('/profile/set-avatar', { avatar_id: id })
 			.then(({ data }) => [data, null])
 			.catch(() => [null, 'Не удалось установить аватар']);
+		return data;
+	}
+
+	async removeAvatar() {
+		const data = await this.#host
+			.delete('/profile/remove-photo')
+			.then(({ data }) => [data, null])
+			.catch(() => [null, 'Не удалось удалить аватар']);
 		return data;
 	}
 

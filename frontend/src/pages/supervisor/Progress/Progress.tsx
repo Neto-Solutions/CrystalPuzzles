@@ -13,8 +13,7 @@ export default function ProgressPage({ title }: ProgressPageProps) {
 	const { avatar, firstname, lastname, surname }: any = useLoaderData();
 	const [date, setDate]: any = useState({
 		from: new Date().toISOString(),
-		to: new Date().toISOString()
-	});
+		to: new Date()	});
 	return (
 		<Page title={title}>
 			<Graph />

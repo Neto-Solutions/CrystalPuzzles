@@ -8,13 +8,17 @@ export default function ScheduleList({ link }: { link?: string }) {
 	const [data, setData] = useState<any>([]);
 
 	useEffect(() => {
-		Lesson.get({
-			start: moment().add('day', 1).startOf('day').toISOString(),
-			end: moment().add('day', 1).endOf('day').toISOString()
-		})
-			.then(setData)
-			.catch();
+		getSchedule();
 	}, []);
+
+	async function getSchedule() {
+		const [data, err] = await Lesson.get({
+			start_date: moment().add(1, 'day').startOf('day').toISOString(),
+			end_date: moment().add(1, 'day').endOf('day').toISOString()
+		});
+		if (err) return;
+		setData(data);
+	}
 
 	return (
 		<>

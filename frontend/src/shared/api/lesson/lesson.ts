@@ -17,7 +17,7 @@ class Lesson {
 		return data;
 	}
 
-	async get(params: LessonGetParams = {}) {
+	async get(params: LessonGetParams) {
 		const data = await this.#host
 			.get(`/lesson`, { params: params })
 			.then(({ data: { records } }) => [records, null])

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
 import { Button } from '@shared/ui';
 import { DropDownButton } from '@features';
-import { Lesson, Place } from '@shared/api';
+import { Lesson } from '@shared/api';
 import PlacesDropdown from 'features/placesDropdown/PlacesDropdown';
 import styles from './Modal.module.scss';
 
@@ -11,24 +11,13 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 		space_id: null,
 		trainer_id: data?.trainer_id,
 		trainer_comments: '',
-		start: moment(day).toISOString()
-	});
-	const [places, setPlaces] = useState([]);
+		start: moment(day)	});
 
-	useEffect(() => {
-		Place.get().then(([data, err]) => {
-			if (err) return;
-			setPlaces(data);
-		});
-	}, []);
-
-	const handleSubmit = async () => {
-		Lesson.create(newLesson).then(([, err]) => {
-			if (err) return;
-			setActive(false);
-		});
-		return newLesson;
-	};
+	async function handleSubmit() {
+		const [, err] = await Lesson.create(newLesson);
+		if (err) return;
+		setActive(false);
+	}
 
 	return (
 		<div className={styles.container}>
@@ -37,7 +26,7 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 				<PlacesDropdown
 					state={newLesson.space_id}
 					setState={(id: string) =>
-						setNewLesson((prev:any) => ({ ...prev, space_id: id }))
+						setNewLesson((prev: any) => ({ ...prev, space_id: id }))
 					}
 					className={styles.place}
 					single

@@ -13,15 +13,18 @@ interface TrainPageProps {
 export default function TrainPage({ title }: TrainPageProps) {
 	const [data, setData] = useState<any>();
 	const [date, setDate]: any = useState({
-		from: new Date().toISOString(),
-		to: new Date().toISOString()
+		from: moment().startOf('day'),
+		to: moment().endOf('day')
 	});
 	useEffect(() => {
 		getLessons();
 	}, [date]);
 
 	async function getLessons() {
-		const [data, err] = await Lesson.get({ start: date.from, end: date.to });
+		const [data, err] = await Lesson.get({
+			start_date: date.from.toISOString(),
+			end_date: date.to.toISOString()
+		});
 		if (err) return;
 		setData(data);
 	}

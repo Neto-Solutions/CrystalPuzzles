@@ -24,7 +24,10 @@ export default function CalendarBlock({
 		const startOfMonth = moment(month).startOf('month').day();
 		const daysInMonth = moment(month).endOf('month').date();
 		setDays(() => {
-			const skipDays: any = Array.from({ length: startOfMonth - 1 }, () => '');
+			const skipDays: any = Array.from(
+				{ length: startOfMonth ? startOfMonth - 1 : 6 },
+				() => ''
+			);
 			const days: any = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 			return skipDays.concat(days);
 		});
@@ -41,15 +44,17 @@ export default function CalendarBlock({
 							<div
 								key={index}
 								data-active={moment(month)
-									.date(day)
-									.add(1, 'day')
-									.isBetween(moment(date.from), moment(date.to))}
+									.set('date', day)
+									.isBetween(
+										moment(date.from).startOf('day'),
+										moment(date.to).endOf('day')
+									)}
 								{...(Number(day) && {
 									className: styles.day,
 									onClick: () => {
 										range
-											? setRange(setDate, month, ++day)
-											: setDay(setDate, month, ++day);
+											? setRange(setDate, month, day)
+											: setDay(setDate, month, day);
 									}
 								})}
 							>
@@ -63,33 +68,31 @@ export default function CalendarBlock({
 	);
 }
 
-function setRange(fn: any, month: any, day: any) {
+function setRange(fn: any, month: number, day: number) {
 	fn(({ from, to }: any) => {
-		from = moment(from);
-		to = moment(to);
-		const date = moment(month).date(day);
+		from = moment(from).startOf('day');
+		to = moment(to).startOf('day');
+		const newDate = moment(month).set('date', day);
 		if (!from.isSame(to)) {
-			to = date;
-			from = date;
+			to = newDate;
+			from = newDate;
 		}
-		if (date.isBefore(from)) {
-			from = date;
-		} else if (date.isAfter(from)) {
-			to = date;
+		if (newDate.isBefore(from)) {
+			from = newDate;
+		} else if (newDate.isAfter(from)) {
+			to = newDate;
 		}
-		from = from.startOf('day').toISOString();
-		to = to.startOf('day').toISOString();
+		from = from.clone().startOf('day');
+		to = to.clone().endOf('day');
 		return { from, to };
 	});
 }
 
 function setDay(fn: any, month: any, day: any) {
 	fn(({ from, to }: any) => {
-		from = moment(from);
-		to = moment(to);
 		const date = moment(month).date(day);
-		from = date.startOf('day').toISOString();
-		to = date.endOf('day').toISOString();
+		from = date.startOf('day');
+		to = date.endOf('day');
 		return { from, to };
 	});
 }

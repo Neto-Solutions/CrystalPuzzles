@@ -17,9 +17,14 @@ export default function PlacesDropdown({
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		Place.get().then((data) => setData(data));
+		getPlace();
 	}, []);
 
+	async function getPlace() {
+		const [data, err] = await Place.get();
+		if (err) return;
+		setData(data);
+	}
 	return (
 		<DropdownButton
 			className={className}

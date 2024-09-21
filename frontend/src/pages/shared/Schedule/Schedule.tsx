@@ -18,13 +18,21 @@ export default function SchedulePage({
 	const [data, setData] = useState<any>([]);
 	const [date, setDate]: any = useState({
 		from: moment().startOf('day').toISOString(),
-		to: moment().endOf('day').toISOString()
+		to: moment().endOf('day')
 	});
 
 	useEffect(() => {
-		Lesson.get({ start: date.from, end: date.to }).then(setData);
+		getLessons();
 	}, [date]);
 
+	async function getLessons() {
+		const [data, err] = await Lesson.get({
+			start_date: date.from.toISOString(),
+			end_date: date.to.toISOString()
+		});
+		if (err) return;
+		setData(data);
+	}
 	return (
 		<Page title={title}>
 			<div className={styles.table}>

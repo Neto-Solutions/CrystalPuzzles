@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 import { ReactComponent as SmallArrow } from '@shared/assets/svg/small_arrow.svg';
 // import { useClickOutside } from '@shared/hooks/useClickOutside';

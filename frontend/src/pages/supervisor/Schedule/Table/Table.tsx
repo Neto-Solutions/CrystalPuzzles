@@ -20,8 +20,8 @@ const Table = ({
 		if (!trainer_id) return;
 
 		Lesson.get({
-			start: date.clone().toISOString(),
-			end: date.clone().add(13, 'days').toISOString(),
+			start_date: date.clone().toISOString(),
+			end_date: date.clone().add(13, 'days').toISOString(),
 			trainer: trainer_id
 		})
 			.then((res) => {
