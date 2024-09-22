@@ -42,12 +42,7 @@ export default function CheckInPage({ login = false }: any) {
 							</>
 						)}
 
-						<Input
-							label="Ваш e-mail"
-							dataKey={login ? 'username' : 'email'}
-							type="email"
-							required
-						/>
+						<Input label="Ваш e-mail" dataKey="email" type="email" required />
 
 						<Password />
 

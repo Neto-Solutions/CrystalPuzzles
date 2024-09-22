@@ -1,7 +1,10 @@
+import { serverUrl } from '@entities';
+import { User } from '@shared/api';
 import { Page } from '@shared/ui';
 import { UserCard } from '@shared/ui/card';
 import joinName from 'entities/profile/assets/joinName';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface UsersListPageProps {
 	type?: any;
@@ -9,16 +12,34 @@ interface UsersListPageProps {
 }
 
 export default function UsersListPage({ type, title }: UsersListPageProps) {
-	const users: any = useLoaderData();
+	const [trainers, setTrainers] = useState([]);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		getTrainers();
+	}, []);
+
+	async function getTrainers() {
+		const [data, err] = await User.getTrainers();
+		if (err) return;
+		setTrainers(data.map((item: any) => ({ ...item, name: joinName(item) })));
+	}
 	return (
 		<Page title={title}>
-			{users.map((item: any, index: number) => (
-				<Link to={`/${type}/${item.id}`} key={index}>
+			{trainers.map((user: any, index: number) => (
+				<div
+					key={index}
+					onClick={() => navigate(`/${type}/${user.id}`, { state: { user } })}
+				>
 					<UserCard
-						img={require(`assets/avatar/${item.avatar}.png`)}
-						name={joinName(item)}
+						img={
+							user.photo
+								? serverUrl() + user.photo
+								: require(`assets/avatar/${user.avatar || 0}.png`)
+						}
+						name={joinName(user)}
 					/>
-				</Link>
+				</div>
 			))}
 		</Page>
 	);

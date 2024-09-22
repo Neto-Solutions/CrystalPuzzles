@@ -5,26 +5,32 @@ import { CalendarBlock } from '@features';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 import { Lesson } from '@api';
 import moment from 'moment';
+import ScheduleRouteTo from '@shared/lib/scheduleRouteTo';
 
 interface SchedulePageProps {
-	link?: boolean;
 	title: string;
+	link?: string | null;
 }
 
-export default function SchedulePage({
-	link = false,
-	title
-}: SchedulePageProps) {
+export default function SchedulePage({ link, title }: SchedulePageProps) {
 	const [data, setData] = useState<any>([]);
 	const [date, setDate]: any = useState({
-		from: moment().startOf('day').toISOString(),
-		to: moment().endOf('day').toISOString()
+		from: moment().startOf('day'),
+		to: moment().endOf('day')
 	});
 
 	useEffect(() => {
-		Lesson.get({ start: date.from, end: date.to }).then(setData);
+		getLessons();
 	}, [date]);
 
+	async function getLessons() {
+		const [data, err] = await Lesson.get({
+			start_date: date.from.toISOString(),
+			end_date: date.to.toISOString()
+		});
+		if (err) return;
+		setData(data);
+	}
 	return (
 		<Page title={title}>
 			<div className={styles.table}>
@@ -33,8 +39,10 @@ export default function SchedulePage({
 							<ScheduleItem
 								data={item}
 								key={index}
-								link={link}
-								className={index === 0 && styles.last}
+								link={
+									link ? link + item.id : ScheduleRouteTo(item.status) + item.id
+								}
+								className={index === 0 ? styles.last : ''}
 							/>
 						))
 					: null}

@@ -1,44 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
 import { Button } from '@shared/ui';
 import { DropDownButton } from '@features';
-import { Lesson, Place } from '@shared/api';
+import { Lesson } from '@shared/api';
+import PlacesDropdown from 'features/placesDropdown/PlacesDropdown';
 import styles from './Modal.module.scss';
+import TrainersDropdown from 'features/trainersDropdown/TrainersDropdown';
 
 export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 	const [newLesson, setNewLesson]: any = useState({
 		space_id: null,
 		trainer_id: data?.trainer_id,
-		trainer_comments: '',
-		start: moment(day).toISOString()
+		trainer_comments: null,
+		start: null
 	});
-	const [places, setPlaces] = useState([]);
 
-	useEffect(() => {
-		Place.get()
-			.then((data) => setPlaces(data))
-			.catch();
-	}, []);
-
-	const handleSubmit = async () => {
-		Lesson.add(newLesson)
-			.then(() => setActive(false))
-			.catch();
-		return newLesson;
-	};
+	async function handleSubmit() {
+		const { space_id, trainer_id, start } = newLesson;
+		if (!space_id || !trainer_id || !start) return;
+		const [, err] = await Lesson.create(newLesson);
+		if (err) return;
+		setActive(false);
+	}
 
 	return (
 		<div className={styles.container}>
 			{/* <DateChanger day={day} className={styles.header} /> */}
 			<main className={styles.main}>
-				<DropDownButton
-					className={styles.place}
-					title={'Выберите площадку'}
-					data={places}
+				<TrainersDropdown
+					state={newLesson.trainer_id}
 					setState={(id: string) =>
-						setNewLesson((prev: any) => ({ ...prev, space_id: id }))
+						setNewLesson({ ...newLesson, trainer_id: id })
 					}
-					state={newLesson.space_id}
+					className={styles.trainer}
 					single
 				/>
 				<DropDownButton
@@ -63,6 +57,14 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 							name: '15:00'
 						}
 					]}
+				/>
+				<PlacesDropdown
+					state={newLesson.space_id}
+					setState={(id: string) =>
+						setNewLesson((prev: any) => ({ ...prev, space_id: id }))
+					}
+					className={styles.place}
+					single
 				/>
 				<textarea
 					className={styles.textarea}

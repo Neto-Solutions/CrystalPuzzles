@@ -6,13 +6,8 @@ interface TrainingI {
 
 interface CheckListI {
 	lesson_id: number;
-	student_ids: string;
+	student_ids: number[];
 	training_check: TrainingI[];
 }
 
-interface UserI {
-	student_id: number;
-	lesson_id: number;
-}
-
-export { type CheckListI, type UserI };
+export { type TrainingI, type CheckListI };

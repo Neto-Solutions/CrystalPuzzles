@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface AppState {
 	header: string;
-	places: any;
-	students: any;
-	trainers: any;
+	places: any[] | null;
+	students: any[] | null;
+	trainers: any[] | null;
 }
 
 const initialState: AppState = {
@@ -22,25 +22,19 @@ const appSlice = createSlice({
 		setHeader(state, action) {
 			state.header = action.payload;
 		},
-		setPlace(state, action) {
+		setPlaces(state, action) {
 			state.places = action.payload;
+		},
+		setStudents(state, action) {
+			state.students = action.payload;
+		},
+		setTrainers(state, action) {
+			state.trainers = action.payload;
 		}
 	}
 });
 
-// export const fetchPlaces = createAsyncThunk(
-// 	'app/fetchPlaces',
-// 	async (_, { dispatch }) => {
-// 		try {
-// 			const places = await Place.get();
-// 			dispatch(setPlace(places));
-// 		} catch (error) {
-// 			/* empty */
-// 		}
-// 	}
-// );
-
 const selectHeader = (state: any) => state.app.header;
 
-const { setHeader, setPlace } = appSlice.actions;
-export { appSlice, setHeader, setPlace, selectHeader };
+const { setHeader, setPlaces } = appSlice.actions;
+export { appSlice, setHeader, setPlaces, selectHeader };
