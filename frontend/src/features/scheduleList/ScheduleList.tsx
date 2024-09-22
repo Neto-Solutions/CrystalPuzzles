@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Lesson } from '@shared/api';
 import styles from './ScheduleList.module.scss';
+import ScheduleRouteTo from '@shared/lib/scheduleRouteTo';
 
 interface ScheduleListProps {
 	today?: boolean;
@@ -35,11 +36,7 @@ export default function ScheduleList({ today }: ScheduleListProps) {
 			{data
 				? data.map((item: any, index: number) => (
 						<Link
-							to={
-								item.status === 'created'
-									? '/exercise/' + item.id
-									: '/schedule/' + item.id
-							}
+							to={ScheduleRouteTo(item.status) + item.id}
 							key={index}
 							className={styles.item_container}
 						>

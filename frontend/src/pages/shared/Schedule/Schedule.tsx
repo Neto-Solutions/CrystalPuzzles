@@ -5,6 +5,7 @@ import { CalendarBlock } from '@features';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
 import { Lesson } from '@api';
 import moment from 'moment';
+import ScheduleRouteTo from '@shared/lib/scheduleRouteTo';
 
 interface SchedulePageProps {
 	title: string;
@@ -39,11 +40,7 @@ export default function SchedulePage({ link, title }: SchedulePageProps) {
 								data={item}
 								key={index}
 								link={
-									link
-										? link + item.id
-										: item.status == 'in_editing'
-											? '/schedule/' + item.id
-											: '/exercise/' + item.id
+									link ? link + item.id : ScheduleRouteTo(item.status) + item.id
 								}
 								className={index === 0 ? styles.last : ''}
 							/>

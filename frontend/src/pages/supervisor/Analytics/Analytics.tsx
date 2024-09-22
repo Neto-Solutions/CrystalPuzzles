@@ -1,10 +1,11 @@
 import styles from './Analytics.module.scss';
 import { useState } from 'react';
-import { useLoaderData, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Card, UserCard, Page, Button } from '@shared/ui';
 import { CalendarButton } from '@features';
 import { serverUrl } from '@entities';
 import joinName from 'entities/profile/assets/joinName';
+import moment from 'moment';
 
 interface AnalyticsPageProps {
 	title: string;
@@ -16,8 +17,8 @@ export default function AnalyticsPage({ title }: AnalyticsPageProps) {
 	} = useLocation();
 	const [comment, setComment]: any = useState(false);
 	const [date, setDate]: any = useState({
-		from: new Date().toISOString(),
-		to: new Date()
+		from: moment().startOf('day'),
+		to: moment().endOf('day')
 	});
 
 	return (
