@@ -1,7 +1,7 @@
 from pydantic import Field
 
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, List, Literal
 
 from fastapi import Query
 
@@ -80,6 +80,8 @@ class LessonFilterSchema(BaseFilterSchema):
 # endregion --------------------------------------------------------------
 
 
+class ChangeStatusSchema(BaseModel):
+    status: Literal["created", "in_editing", "in_progress", "finished"]
 
 # class TestChecksSchema:
 #     student_id: int
