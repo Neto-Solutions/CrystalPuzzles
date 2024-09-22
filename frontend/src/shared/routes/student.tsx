@@ -30,7 +30,7 @@ const studentRouter = [
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage title="Расписание" />,
+		element: <SchedulePage link="/train/" title="Расписание" />,
 		local: 'Расписание',
 		img: schedule,
 		loader: ({ params: { id } }: any) => ({ id })

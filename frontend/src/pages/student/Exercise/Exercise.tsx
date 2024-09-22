@@ -16,11 +16,14 @@ export default function ExercisePage({ title }: ExercisePageProps) {
 	const [data, setData] = useState<any>();
 
 	useEffect(() => {
-		Lesson.getById(id).then(([data, err]) => {
-			if (err) return;
-			setData(data);
-		});
-	}, []);
+		getLessons();
+	}, [id]);
+
+	async function getLessons() {
+		const [data, err] = await Lesson.getById(id);
+		if (err) return;
+		setData(data);
+	}
 
 	return (
 		<Page title={title}>

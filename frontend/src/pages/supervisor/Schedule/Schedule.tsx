@@ -1,13 +1,11 @@
 import styles from './Schedule.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Page, Button } from '@shared/ui';
 import Table from './Table/Table';
 import { Modal } from '@shared/ui';
 import { AddTreanerSchedule } from './Modal/Modal';
 import { useNavigate } from 'react-router-dom';
-import { DropDownButton } from '@features';
-import { User } from '@shared/api';
-import joinName from 'entities/profile/assets/joinName';
+import TrainersDropdown from 'features/trainersDropdown/TrainersDropdown';
 
 interface ShedulePageProps {
 	edit?: boolean;
@@ -16,20 +14,11 @@ interface ShedulePageProps {
 
 export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 	const [modalActive, setModalActive] = useState(false);
-	const [trainers, setTrainers] = useState([]);
 	const [data, setData] = useState({
 		space_id: null,
 		trainer_id: null
 	});
 	const navigate = useNavigate();
-
-	// TODO: переписать на Redux store
-	useEffect(() => {
-		User.getTrainers().then(([data, err]) => {
-			if (err) return;
-			setTrainers(data.map((item: any) => ({ ...item, name: joinName(item) })));
-		});
-	}, []);
 
 	return (
 		<Page title={title}>
@@ -40,9 +29,7 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 				data={data}
 			/>
 			<div className={styles.buttons_container}>
-				<DropDownButton
-					title="Выберите тренера"
-					data={trainers}
+				<TrainersDropdown
 					setState={(id: string) => {
 						setData((prev: any) => ({ ...prev, trainer_id: id }));
 					}}

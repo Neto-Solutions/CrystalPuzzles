@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import styles from './TrainerExercisePage.module.scss';
+import { useEffect, useMemo, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { DateChanger, Feedback } from '@features';
 import { Button, EmojiCard, Page, UserCard } from '@shared/ui';
 import { Exercises } from '@widgets';
 import { Lesson, User } from '@shared/api';
 import joinName from 'entities/profile/assets/joinName';
-import DropdownButton from '@shared/ui/dropdownButton/DropdownButton';
-import image from '@shared/assets/avatar/0.png';
-import styles from './TrainerExercisePage.module.scss';
-
+import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
+import avatar from '@shared/assets/avatar/0.png';
 //TODO: вынести тип в отдельный файл
 type Student = {
 	id: number;
@@ -30,43 +29,30 @@ interface TrainerExercisePageProps {
 export default function TrainerExercisePage({
 	title
 }: TrainerExercisePageProps) {
-	const [checkList, setCheckList] = useState<{ students: number[] }>({
-		students: []
-	});
-	const [data, setData] = useState<Student[]>([]);
 	const { id }: any = useLoaderData();
-	const navigate = useNavigate();
+	const [data, setData] = useState<Student[]>([]);
 
 	useEffect(() => {
-		//loads lesson and checks if there are checklist data
-		//if false redirects to checklist page
-		//TODO
-		Lesson.getById(id).then(([data, err]) => {
-			if (err) return;
-			if (!data.check.length) {
-				navigate(`/schedule/${id}`);
-			}
-		});
+		getLessons();
 	}, []);
 
-	useEffect(() => {
-		User.getStudents()
-			.then(([data, err]) => {
-				if (err) return;
-				setData(data.map((item: any) => ({ ...item, name: joinName(item) })));
-			})
-			.catch();
-	}, []);
+	async function getLessons() {
+		const [data, err] = await Lesson.getById(id);
+		if (err) return;
+		setData([data]);
+	}
 
-	const selectedStudents = data.filter((student: Student) =>
-		checkList.students.includes(student.id)
-	);
+	const selectedStudents = useMemo(() => {
+		if (!data.length) return [];
+		return [data];
+	}, [data]);
 
 	return (
 		<Page title={title}>
 			<div className={styles.container}>
 				<DateChanger className={styles.date} />
-				<DropdownButton
+				<StudentsDropdown state={data} setState={setData} />
+				{/* <DropdownButton
 					setState={(ids: string[]) => {
 						setCheckList((prev: any) => ({ ...prev, students: ids }));
 					}}
@@ -74,12 +60,12 @@ export default function TrainerExercisePage({
 					state={checkList.students}
 					data={data}
 					className={styles.btn}
-				/>
-				{selectedStudents.length > 0 && (
+				/> */}
+				{selectedStudents && selectedStudents.length > 0 && (
 					<ul className={styles.students_card}>
 						{selectedStudents.map((item: any) => (
 							<li key={item.id}>
-								<UserCard name={item.name} img={image} />
+								<UserCard name={item.name} img={avatar} />
 							</li>
 						))}
 					</ul>

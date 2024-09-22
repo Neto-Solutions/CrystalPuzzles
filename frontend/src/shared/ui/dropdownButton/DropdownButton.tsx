@@ -16,7 +16,7 @@ interface DropdownButtonProps {
 export default function DropdownButton({
 	title,
 	className,
-	data = [],
+	data,
 	state,
 	setState,
 	single = false
@@ -61,19 +61,23 @@ export default function DropdownButton({
 				className={classNames(styles.dropdown_list, open ? styles.active : '')}
 				onClick={(e) => e.stopPropagation()}
 			>
-				{data.map((item: any) => (
-					<div key={item.id} className={styles.list_item}>
-						{/* // data должна содержать name *нужно размапить */}
-						<label htmlFor={item.id}>{item.name}</label>
-						<input
-							type="checkbox"
-							className={styles.checkbox}
-							id={item.id}
-							checked={single ? state === item.id : state?.includes(item.id)}
-							onChange={() => handleCheckboxChange(item.id)}
-						/>
-					</div>
-				))}
+				{data?.length
+					? data.map((item: any) => (
+							<div key={item.id} className={styles.list_item}>
+								{/* // data должна содержать name *нужно размапить */}
+								<label htmlFor={item.id}>{item.name}</label>
+								<input
+									type="checkbox"
+									className={styles.checkbox}
+									id={item.id}
+									checked={
+										single ? state === item.id : state?.includes(item.id)
+									}
+									onChange={() => handleCheckboxChange(item.id)}
+								/>
+							</div>
+						))
+					: null}
 			</form>
 		</div>
 	);

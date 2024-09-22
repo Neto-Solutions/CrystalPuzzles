@@ -90,9 +90,9 @@ function setRange(fn: any, month: number, day: number) {
 
 function setDay(fn: any, month: any, day: any) {
 	fn(({ from, to }: any) => {
-		const date = moment(month).date(day);
-		from = date.startOf('day');
-		to = date.endOf('day');
+		const date = moment(month).set('date', day);
+		from = date.clone().startOf('day');
+		to = date.clone().endOf('day');
 		return { from, to };
 	});
 }

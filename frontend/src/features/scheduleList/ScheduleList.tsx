@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import { Lesson } from '@shared/api';
 import styles from './ScheduleList.module.scss';
 
-export default function ScheduleList({ link }: { link?: string }) {
+interface ScheduleListProps {
+	today?: boolean;
+}
+
+export default function ScheduleList({ today }: ScheduleListProps) {
 	const [data, setData] = useState<any>([]);
 
 	useEffect(() => {
@@ -12,6 +16,12 @@ export default function ScheduleList({ link }: { link?: string }) {
 	}, []);
 
 	async function getSchedule() {
+		if (!today) {
+			const [data, err] = await Lesson.get({});
+			if (err) return;
+			setData(data);
+			return;
+		}
 		const [data, err] = await Lesson.get({
 			start_date: moment().add(1, 'day').startOf('day').toISOString(),
 			end_date: moment().add(1, 'day').endOf('day').toISOString()
@@ -25,7 +35,11 @@ export default function ScheduleList({ link }: { link?: string }) {
 			{data
 				? data.map((item: any, index: number) => (
 						<Link
-							to={link ? link : `/schedule/${item.id}`}
+							to={
+								item.status === 'created'
+									? '/exercise/' + item.id
+									: '/schedule/' + item.id
+							}
 							key={index}
 							className={styles.item_container}
 						>

@@ -13,9 +13,11 @@ export default function Search({ setUsers }: any) {
 
 	async function search() {
 		if (inputRef.current && inputRef.current.value) {
-			User.getStudents({ search_string: inputRef.current.value })
-				.then(setUsers)
-				.catch();
+			const [data, err] = await User.getStudents({
+				search_string: inputRef.current.value
+			});
+			if (err) return;
+			setUsers(data);
 		}
 	}
 

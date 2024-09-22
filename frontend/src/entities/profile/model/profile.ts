@@ -1,3 +1,5 @@
+import { serverUrl } from '../assets';
+
 export class Profile {
 	id = null;
 	_role = null;
@@ -8,12 +10,7 @@ export class Profile {
 		const { role, avatar, photo, ...rest } = data;
 		this._role = role;
 		this.avatar = avatar;
-		this.photo = photo
-			? (process.env.REACT_APP_SERVER_API || window.API_URL)?.replace(
-					new RegExp(/\/api\/.*$/, 'g'),
-					''
-				) + photo
-			: null;
+		this.photo = photo ? serverUrl() + photo : null;
 		Object.assign(this, rest);
 	}
 	get role() {

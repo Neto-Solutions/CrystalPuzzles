@@ -10,8 +10,14 @@ export default function Exercises({ data, className, disabled, checked }: any) {
 
 	useEffect(() => {
 		if (data) return;
-		Exercise.get().then(setExercises).catch();
+		getExercises();
 	}, []);
+
+	async function getExercises() {
+		const [data, err] = await Exercise.get();
+		if (err) return;
+		setExercises(data);
+	}
 
 	return (
 		<ul className={classNames(styles.list, className)}>

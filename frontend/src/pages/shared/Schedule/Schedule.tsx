@@ -7,17 +7,14 @@ import { Lesson } from '@api';
 import moment from 'moment';
 
 interface SchedulePageProps {
-	link?: boolean;
 	title: string;
+	link?: string | null;
 }
 
-export default function SchedulePage({
-	link = false,
-	title
-}: SchedulePageProps) {
+export default function SchedulePage({ link, title }: SchedulePageProps) {
 	const [data, setData] = useState<any>([]);
 	const [date, setDate]: any = useState({
-		from: moment().startOf('day').toISOString(),
+		from: moment().startOf('day'),
 		to: moment().endOf('day')
 	});
 
@@ -41,8 +38,14 @@ export default function SchedulePage({
 							<ScheduleItem
 								data={item}
 								key={index}
-								link={link}
-								className={index === 0 && styles.last}
+								link={
+									link
+										? link + item.id
+										: item.status == 'in_editing'
+											? '/schedule/' + item.id
+											: '/exercise/' + item.id
+								}
+								className={index === 0 ? styles.last : ''}
 							/>
 						))
 					: null}

@@ -28,7 +28,7 @@ export default function PlacesDropdown({
 	return (
 		<DropdownButton
 			className={className}
-			title="Выберите группу"
+			title="Выберите площадку"
 			state={state}
 			setState={setState}
 			data={data}

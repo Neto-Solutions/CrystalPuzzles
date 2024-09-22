@@ -5,15 +5,19 @@ import { DropDownButton } from '@features';
 import { Lesson } from '@shared/api';
 import PlacesDropdown from 'features/placesDropdown/PlacesDropdown';
 import styles from './Modal.module.scss';
+import TrainersDropdown from 'features/trainersDropdown/TrainersDropdown';
 
 export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 	const [newLesson, setNewLesson]: any = useState({
 		space_id: null,
 		trainer_id: data?.trainer_id,
-		trainer_comments: '',
-		start: moment(day)	});
+		trainer_comments: null,
+		start: null
+	});
 
 	async function handleSubmit() {
+		const { space_id, trainer_id, start } = newLesson;
+		if (!space_id || !trainer_id || !start) return;
 		const [, err] = await Lesson.create(newLesson);
 		if (err) return;
 		setActive(false);
@@ -23,12 +27,12 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 		<div className={styles.container}>
 			{/* <DateChanger day={day} className={styles.header} /> */}
 			<main className={styles.main}>
-				<PlacesDropdown
-					state={newLesson.space_id}
+				<TrainersDropdown
+					state={newLesson.trainer_id}
 					setState={(id: string) =>
-						setNewLesson((prev: any) => ({ ...prev, space_id: id }))
+						setNewLesson({ ...newLesson, trainer_id: id })
 					}
-					className={styles.place}
+					className={styles.trainer}
 					single
 				/>
 				<DropDownButton
@@ -53,6 +57,14 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 							name: '15:00'
 						}
 					]}
+				/>
+				<PlacesDropdown
+					state={newLesson.space_id}
+					setState={(id: string) =>
+						setNewLesson((prev: any) => ({ ...prev, space_id: id }))
+					}
+					className={styles.place}
+					single
 				/>
 				<textarea
 					className={styles.textarea}

@@ -31,7 +31,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage link title="Расписание" />,
+		element: <SchedulePage title="Расписание" />,
 		local: 'Расписание',
 		img: schedule
 	},
