@@ -12,7 +12,7 @@ class Training(Base):
     name: Mapped[str] = mapped_column(sa.String(50), nullable=False)
     description: Mapped[str] = mapped_column(sa.Text, nullable=True)
 
-    level_id: Mapped[int] = mapped_column(sa.ForeignKey("TrainingLevels.id"), nullable=False)
+    level_id: Mapped[int] = mapped_column(sa.ForeignKey("TrainingLevels.id"), nullable=True)
     level = relationship("TrainingLevel")
 
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False, nullable=False)

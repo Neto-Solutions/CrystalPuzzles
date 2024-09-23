@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 import logging
 from os.path import realpath
@@ -15,7 +16,7 @@ from service.group.routers.group_router import group_router
 from service.group.routers.student_group_router import student_group_router
 from service.healthcheck.routers import health_check_route
 from service.healthcheck.healthcheck_factory import HealthCheckFactory, HealthCheckSQLAlchemy, HealthCheckUri
-from service.lesson.routers.check_router import check_router
+# from service.lesson.routers.check_router import check_router
 from service.lesson.routers.lesson_router import lesson_router
 from service.lesson.routers.space_router import space_router
 from service.training.initialize import TrainingLevelInitialize
@@ -135,10 +136,13 @@ app.add_api_route(
     endpoint=health_check_route(factory=_health_checks),
     include_in_schema=False
 )
+static_path = realpath(f'{realpath(__file__)}/../static/')
+if not os.path.exists(static_path):
+    os.makedirs(static_path)
 
 app.mount(
     "/pages",
-    StaticFiles(directory=realpath(f'{realpath(__file__)}/../static/')),
+    StaticFiles(directory=static_path),
     name="Files"
 )
 # endregion -------------------------------------------------------------------------

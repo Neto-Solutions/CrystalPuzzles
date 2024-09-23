@@ -28,7 +28,7 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('id')
     )
-    op.add_column('Trainings', sa.Column('level_id', sa.Integer(), nullable=False))
+    op.add_column('Trainings', sa.Column('level_id', sa.Integer(), nullable=True))
     op.create_foreign_key(None, 'Trainings', 'TrainingLevels', ['level_id'], ['id'])
     # ### end Alembic commands ###
 
