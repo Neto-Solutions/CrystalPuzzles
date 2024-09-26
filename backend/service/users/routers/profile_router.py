@@ -110,7 +110,7 @@ async def set_photo(
                 status_code=HTTPStatus.BAD_REQUEST.value,
                 content=f"Invalid image file. Expected format: FastAPI.UploadFile, "
                         f"Content-type: image/jpeg, but got {file.content_type}")
-        if file.size > 500000:
+        if file.size > 5000000:
             return JSONResponse(
                 status_code=HTTPStatus.BAD_REQUEST.value,
                 content=f"The file must not exceed 5MB.")
