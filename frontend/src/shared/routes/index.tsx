@@ -1,7 +1,7 @@
 import { studentRouter, supervisorRouter, trainerRouter } from '.';
 import CheckInPage from '@checkIn/CheckIn';
 import App from '@app/App';
-import ErrorPage from '@pages/shared/Error/Error';
+import { AvatarPage, ProfilePage, ErrorPage } from '@pages/shared';
 import { redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@app/providers/store/profile';
@@ -17,10 +17,21 @@ const MainRouter = (): any => {
 				if (!role) return redirect('/login');
 				return null;
 			},
-			children:
-				(role == 'student' && studentRouter) ||
-				(role == 'supervisor' && supervisorRouter) ||
-				(role == 'trainer' && trainerRouter)
+			children: [
+				{
+					path: '/profile',
+					element: <ProfilePage title="Мои личные данные" />
+				},
+				{
+					path: '/avatar',
+					element: <AvatarPage title="Изменить аватарку" />
+				},
+				...(role === 'student'
+					? studentRouter
+					: role === 'trainer'
+						? trainerRouter
+						: supervisorRouter)
+			]
 		},
 		{
 			path: 'login',
@@ -34,3 +45,7 @@ const MainRouter = (): any => {
 };
 
 export default MainRouter;
+
+export { default as supervisorRouter } from './supervisor';
+export { default as trainerRouter } from './trainer';
+export { default as studentRouter } from './student';

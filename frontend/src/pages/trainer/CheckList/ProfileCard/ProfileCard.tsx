@@ -1,9 +1,7 @@
 import styles from './ProfileCard.module.scss';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@store/profile';
-import LS from '@shared/lib/localStorage';
-import avatar from '@shared/assets/avatar/0.png';
 import classNames from 'classnames';
 
 interface ProfileProps {
@@ -12,14 +10,9 @@ interface ProfileProps {
 
 export default function ProfileCard({ className }: ProfileProps) {
 	const user = useSelector(selectProfile);
-	const [userPhoto, setUserPhoto] = useState(LS.get('avatar') || avatar);
-
-	useEffect(() => {
-		if (user.avatar) {
-			setUserPhoto(require(`@shared/assets/avatar/${user.avatar}.png`));
-			return;
-		}
-	}, [user]);
+	const [userPhoto] = useState(
+		user.photo ? user.photo : require(`assets/avatar/${user.avatar || 0}.png`)
+	);
 
 	return (
 		<section className={classNames(styles.profile_container, className)}>

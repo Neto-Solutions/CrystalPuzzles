@@ -6,25 +6,31 @@ import { ReactComponent as UploadIcon } from '@shared/assets/svg/upload.svg';
 import LS from '@shared/lib/localStorage';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@store/profile';
+import { User } from '@shared/api';
+import avatar from '@shared/assets/avatar/0.png';
 
 interface AvatarPageProps {
 	title: string;
 }
 
 export default function AvatarPage({ title }: AvatarPageProps) {
-	const { avatar } = useSelector(selectProfile);
-	const [preview, setPreview] = useState<string>(
-		LS.get('avatar') ||
-			require(`@shared/assets/avatar/${avatar == null ? 0 : avatar}.png`)
-	);
+	const { photo } = useSelector(selectProfile);
+	const [preview, setPreview] = useState<string>(photo || avatar);
 	const [userPhoto, setUserPhoto]: any = useState(null);
 	const [err, setErr] = useState<string | null>(null);
 
-	function submitForm(e: FormEvent): any {
+	async function submitForm(e: FormEvent) {
 		e.preventDefault();
 		if (!userPhoto) return;
+		const [, err] = await User.setAvatar(userPhoto);
+		if (err) {
+			setErr(err);
+			return;
+		}
 		LS.remove('avatar');
+		location.replace('/');
 	}
+
 	return (
 		<Page title={title}>
 			<form onSubmit={submitForm} className={styles.container}>

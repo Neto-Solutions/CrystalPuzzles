@@ -3,23 +3,23 @@ import { Page, Button } from '@shared/ui';
 import ProfileCard from './ProfileCard/ProfileCard';
 import Info from './Info/Info';
 import { Exercises } from '@widgets';
-import { FormEvent, useEffect, useState } from 'react';
-import { Exercise } from '@shared/api';
+import { FormEvent, useState } from 'react';
+import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
+import { CheckList } from '@shared/api';
+import { TrainingI } from '@shared/api/checklist/checkList.interface';
+import { useLoaderData } from 'react-router-dom';
 
 interface CheckListPageProps {
 	title: string;
 }
 
 export default function CheckListPage({ title }: CheckListPageProps) {
-	const [exercises, setExercises] = useState([]);
-
-	useEffect(() => {
-		Exercise.get().then(setExercises).catch();
-	}, []);
+	const [students, setStudents] = useState([]);
+	const { id }: any = useLoaderData();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const result: Array<{ id: string; isComplete: boolean }> = [];
+		const result: TrainingI[] = [];
 		const formElements = e.currentTarget.elements as HTMLFormControlsCollection;
 
 		for (const el of formElements) {
@@ -27,11 +27,18 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 			if (!inputElement.id) continue;
 			if (inputElement.checked) {
 				result.push({
-					id: inputElement.id,
-					isComplete: false
+					training_id: +inputElement.value,
+					repetitions: 1,
+					assessment: 1
 				});
 			}
 		}
+
+		CheckList.create({
+			lesson_id: id,
+			student_ids: students,
+			training_check: result
+		}).catch();
 	}
 
 	return (
@@ -41,8 +48,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 				<Info className={styles.info} />
 
 				<section className={styles.panel_container}>
-					<Button title="Выберите группу" downArrow width="100%" />
-					<Button title="Выберите учеников" downArrow width="100%" />
+					<StudentsDropdown state={students} setState={setStudents} />
 					<Button
 						title="Отправить чек-лист"
 						width="100%"
@@ -55,7 +61,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 						id="exercises_form"
 						className={styles.exercises}
 					>
-						<Exercises data={exercises} />
+						<Exercises />
 					</form>
 				</section>
 			</div>
