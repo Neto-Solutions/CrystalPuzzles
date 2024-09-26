@@ -27,7 +27,7 @@
 	&_img {
 		height: 100%;
 		max-height: inherit;
-		// aspect-ratio: 1;
+		aspect-ratio: 1 / 1;
 		object-fit: cover;
 		border-radius: var(--radius);
 

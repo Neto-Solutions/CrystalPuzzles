@@ -17,36 +17,36 @@ const Table = ({
 	const [data, setData]: any = useState(initData(date));
 
 	useEffect(() => {
-		if (!trainer_id) return;
-
-		Lesson.get({
-			start: date.clone().toISOString(),
-			end: date.clone().add(13, 'days').toISOString(),
-			trainer: trainer_id
-		})
-			.then((res) => {
-				const obj = initData(date);
-				res.forEach((item: any) => {
-					const key = moment(item.start).format('YYYY-MM-DD');
-					if (!Object.keys(obj).includes(key)) return;
-					if (!obj[key]) obj[key] = [item];
-					else obj[key] = [...obj[key], item];
-				});
-				setData(obj);
-			})
-			.catch();
+		setData(initData(date));
+		getLessons();
 	}, [date, trainer_id, modalActive]);
 
+	async function getLessons() {
+		if (!trainer_id || !date) return;
+		const [data, err] = await Lesson.get({
+			start_date: date.clone().toISOString(),
+			end_date: date.clone().add(13, 'days').toISOString(),
+			trainer: trainer_id
+		});
+		if (err) return;
+		const obj = initData(date);
+		data.forEach((item: any) => {
+			const key = moment(item.start).format('YYYY-MM-DD');
+			if (!Object.keys(obj).includes(key)) return;
+			if (!obj[key]) obj[key] = [item];
+			else obj[key] = [...obj[key], item];
+		});
+		setData(obj);
+	}
+
 	return (
-		<>
-			<div className={styles.datepicker}>
-				<Header setStartDate={setDate} startDate={date} />
-				<div className={styles.grid_wrap}>
-					<DaysOfWeek />
-					<DaysList data={data} setModalActive={setModalActive} edit={edit} />
-				</div>
+		<div className={styles.datepicker}>
+			<Header setStartDate={setDate} startDate={date} />
+			<div className={styles.grid_wrap}>
+				<DaysOfWeek />
+				<DaysList data={data} setModalActive={setModalActive} edit={edit} />
 			</div>
-		</>
+		</div>
 	);
 };
 

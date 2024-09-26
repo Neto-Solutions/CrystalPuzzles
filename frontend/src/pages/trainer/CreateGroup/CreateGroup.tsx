@@ -20,9 +20,13 @@ export default function CreateGroupPage({ title }: CreateGroupPageProps) {
 	const navigate = useNavigate();
 
 	function handleSubmit() {
-		Group.create(group).then(() => {
-			navigate('/groups', { replace: true });
-		});
+		createGroup();
+	}
+
+	async function createGroup() {
+		const [, err] = await Group.create(group);
+		if (err) return;
+		navigate('/groups', { replace: true });
 	}
 
 	return (
@@ -31,7 +35,7 @@ export default function CreateGroupPage({ title }: CreateGroupPageProps) {
 				<GroupName
 					setName={(value: string) => setGroup({ ...group, name: value })}
 				/>
-				<Search />
+				{/* <Search /> */}
 				{students &&
 					students.map((item: any) => (
 						<Student

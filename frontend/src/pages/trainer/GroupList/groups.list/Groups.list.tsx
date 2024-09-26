@@ -11,9 +11,10 @@ export default function GroupsList({ className }: GroupsListProps) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		Group.getAll()
-			.then((res) => res.sort((a: any, b: any) => a.id - b.id))
-			.then(setData);
+		Group.get().then(([data, err]) => {
+			if (err) return;
+			setData(data.sort((a: any, b: any) => a.id - b.id));
+		});
 	}, []);
 
 	return (

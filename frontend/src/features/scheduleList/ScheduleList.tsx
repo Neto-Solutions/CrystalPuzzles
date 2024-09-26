@@ -1,22 +1,42 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './ScheduleList.module.scss';
 import { Lesson } from '@shared/api';
+import styles from './ScheduleList.module.scss';
+import ScheduleRouteTo from '@shared/lib/scheduleRouteTo';
 
-export default function ScheduleList({ link }: { link?: string }) {
+interface ScheduleListProps {
+	today?: boolean;
+}
+
+export default function ScheduleList({ today }: ScheduleListProps) {
 	const [data, setData] = useState<any>([]);
 
 	useEffect(() => {
-		Lesson.get({}).then(setData).catch();
+		getSchedule();
 	}, []);
+
+	async function getSchedule() {
+		if (!today) {
+			const [data, err] = await Lesson.get({});
+			if (err) return;
+			setData(data);
+			return;
+		}
+		const [data, err] = await Lesson.get({
+			start_date: moment().add(1, 'day').startOf('day').toISOString(),
+			end_date: moment().add(1, 'day').endOf('day').toISOString()
+		});
+		if (err) return;
+		setData(data);
+	}
 
 	return (
 		<>
 			{data
 				? data.map((item: any, index: number) => (
 						<Link
-							to={link ? link : `/schedule/${item.id}`}
+							to={ScheduleRouteTo(item.status) + item.id}
 							key={index}
 							className={styles.item_container}
 						>
@@ -29,13 +49,8 @@ export default function ScheduleList({ link }: { link?: string }) {
 									<span className={styles.place}>{item.space.name}</span>
 								</div>
 								<div className={styles.trainer}>
-									Тренер -{' '}
-									{item.trainer.surname +
-										' ' +
-										item.trainer.firstname +
-										' ' +
-										item.trainer.lastname.slice(0, 1) +
-										'.'}
+									Тренер —
+									{` ${item.trainer.surname} ${item.trainer.firstname} ${item.trainer.lastname.charAt(0)}.`}
 								</div>
 							</div>
 						</Link>
