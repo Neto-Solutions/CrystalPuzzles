@@ -39,11 +39,10 @@ export default function MainPage({ title }: MainPageProps) {
 				</CardLink>
 
 				<CardLink
-					to="/schedule"
 					title={'Моё расписание на сегодня'}
 					className={styles.schedule_card}
 				>
-					{!isMobile && <ScheduleList />}
+					{!isMobile && <ScheduleList today />}
 				</CardLink>
 
 				{isMobile ? (

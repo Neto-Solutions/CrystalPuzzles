@@ -5,29 +5,38 @@ import { Page } from '@shared/ui';
 import { DateChanger, Feedback } from '@features';
 import { Exercises } from '@widgets';
 import classNames from 'classnames';
+import { Lesson } from '@shared/api';
 
 interface ExercisePageProps {
 	title: string;
 }
 
 export default function ExercisePage({ title }: ExercisePageProps) {
-	const { lesson }: any = useLoaderData();
-	const [data] = useState<any>(lesson);
+	const { id }: any = useLoaderData();
+	const [data, setData] = useState<any>();
 
 	useEffect(() => {
-		// Lesson.get(id).then(setData);
-	}, []);
+		getLessons();
+	}, [id]);
+
+	async function getLessons() {
+		const [data, err] = await Lesson.getById(id);
+		if (err) return;
+		setData(data);
+	}
 
 	return (
 		<Page title={title}>
 			<div className={styles.container}>
 				<DateChanger className={styles.date} />
-				<Exercises
-					data={data.checkList.exercises}
-					className={styles.list}
-					checked
-					disabled
-				/>
+				{data?.check ? (
+					<Exercises
+						data={data?.check}
+						className={styles.list}
+						checked
+						disabled
+					/>
+				) : null}
 				<section className={styles.mood_wrapper}>
 					<div className={styles.title}>Моё настроение после тренировки</div>
 					<div className={styles.icon_wrapper}>
