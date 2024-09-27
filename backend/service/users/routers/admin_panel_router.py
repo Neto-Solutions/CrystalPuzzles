@@ -58,7 +58,7 @@ async def get_user_by_id(
 
 
 @admin_panel_router.put(
-    "/users/",
+    "/users/{user_id}",
     response_model=bool,
     summary="Редактирование пользователей",
     responses={
@@ -70,9 +70,11 @@ async def edit_user(
         data: AdminPanelEditSchema,
         uow: UserUOWDep,
         admin_service: AdminPanelServiceDep,
-        current_user: AdminDep
+        current_user: AdminDep,
+        user_id: int
 ):
     """ admin """
+    data.id = user_id
     result = await admin_service.edit(uow, data)
     if result:
         return result

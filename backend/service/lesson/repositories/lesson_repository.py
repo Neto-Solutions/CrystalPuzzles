@@ -69,9 +69,9 @@ class LessonRepository(BaseRepository):
                 )
             )
         if filters.start_date:
-            stmt = stmt.filter(self.model.start >= filters.start_date.date())
+            stmt = stmt.filter(self.model.start >= filters.start_date.replace(tzinfo=None))
         if filters.end_date:
-            stmt = stmt.filter(self.model.start < filters.end_date.date())
+            stmt = stmt.filter(self.model.start < filters.end_date.replace(tzinfo=None))
         if filters.trainer:
             stmt = await self._add_filters(stmt, trainer_id=filters.trainer)
         if student_id:

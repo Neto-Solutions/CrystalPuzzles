@@ -83,7 +83,7 @@ async def create_training(
 
 
 @training_router.put(
-    "/",
+    "/{training_id}",
     summary="Изменение тренировки",
     response_model=bool,
     responses={
@@ -97,9 +97,11 @@ async def edit_training(
         model: EditTrainingSchema,
         uow: TrainingUOWDep,
         training_service: TrainingServiceDep,
-        current_user: SupervisorAdminDep
+        current_user: SupervisorAdminDep,
+        training_id: int
 ):
     """admin, supervisor"""
+    model.id = training_id
     result = await training_service.edit(uow, model)
     if result:
         return result
