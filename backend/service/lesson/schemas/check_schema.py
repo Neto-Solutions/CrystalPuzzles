@@ -5,6 +5,7 @@ from typing import Optional, List
 
 from common.schema.base_schemas import BaseModel
 from common.schema.base_user_schema import UserShortSchema
+from service.training.models import Training
 
 
 class TrainingCheck(BaseModel):
@@ -12,6 +13,14 @@ class TrainingCheck(BaseModel):
     training_id: int
     repetitions: int = Field(ge=1)
     assessment: Optional[int] = Field(default=None, le=10, ge=1)
+
+
+class TrainingSchema(BaseModel):
+    name: str
+
+
+class TrainingCheckResponseSchema(TrainingCheck):
+    training: TrainingSchema
 
 
 class CreateCheckSchema(BaseModel):
@@ -29,7 +38,7 @@ class CheckSchemaForTable(BaseModel):
     student: UserShortSchema
     comment: Optional[str]
     awards: Optional[int]
-    training_data: List[TrainingCheck]
+    training_data: List[TrainingCheckResponseSchema]
 
 # class EditLessonSchema(BaseModel):
 #     """ Схема изменения моделей занятий """
