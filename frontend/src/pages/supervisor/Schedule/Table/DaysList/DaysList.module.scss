@@ -38,15 +38,22 @@
 .active {
 	position: absolute;
 	inset: 0;
-	text-align: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	place-content: center;
 	gap: 8px;
 	background-color: var(--bg-card);
-	font: var(--fw-regular) 12px var(--ff-second);
+	font: var(--fw-regular) 13px var(--ff-second);
 	z-index: -1;
+	.schedule {
+		text-align: center;
+		margin-top: 25%;
+		padding: 5px;
+		display: flex;
+		flex-direction: column;
+		overflow: scroll;
+		scrollbar-width: none;
+		gap: 5px;
+	}
 }
 
 .time {
