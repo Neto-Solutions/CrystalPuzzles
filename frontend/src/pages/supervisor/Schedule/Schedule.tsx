@@ -30,6 +30,7 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 			/>
 			<div className={styles.buttons_container}>
 				<TrainersDropdown
+					className={styles.trainer}
 					setState={(id: string) => {
 						setData((prev: any) => ({ ...prev, trainer_id: id }));
 					}}
