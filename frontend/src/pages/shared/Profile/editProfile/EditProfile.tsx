@@ -26,7 +26,6 @@ export default function EditProfile({ active, setActive }: any) {
 	async function submitForm(e: FormEvent) {
 		e.preventDefault();
 		const data = mapUserForm(e);
-		console.log(data);
 		if (!userPhoto) return;
 		const [, err] = await User.setAvatar(userPhoto);
 		if (err) {
@@ -35,7 +34,6 @@ export default function EditProfile({ active, setActive }: any) {
 		}
 		location.replace('/');
 	}
-	console.log(profile)
 	return (
 		<Modal active={active} setActive={setActive} className={styles.modal}>
 			<header className={styles.header}>Редактировать данные</header>
@@ -63,7 +61,9 @@ export default function EditProfile({ active, setActive }: any) {
 						<input
 							data-key="birthday"
 							type="text"
-							defaultValue={moment(profile.birthday).format('DD-MM-YYYY')}
+							defaultValue={
+								moment(profile.birthday).format('DD.MM.YYYY') + ' г.'
+							}
 						/>
 					</div>
 					<div>
@@ -76,7 +76,12 @@ export default function EditProfile({ active, setActive }: any) {
 					</div>
 					<div>
 						<label htmlFor="">Номер телефона</label>
-						<input type="text" />
+						<input
+							type="tel"
+							pattern="^\+?7\d{10}$"
+							defaultValue={profile.contact}
+							placeholder="+71231231212"
+						/>
 					</div>
 					<div>
 						<label htmlFor="">Особенности развития</label>
@@ -89,7 +94,7 @@ export default function EditProfile({ active, setActive }: any) {
 				</div>
 				<div className={styles.buttons}>
 					<Button title="Сохранить" type="submit" className={styles.btn} />
-					<Button title="Закрыть" className={styles.btn} />
+					{/* <Button title="Закрыть" className={styles.btn} /> */}
 				</div>
 			</form>
 		</Modal>
