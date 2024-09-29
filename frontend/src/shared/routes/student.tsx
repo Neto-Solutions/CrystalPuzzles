@@ -1,4 +1,4 @@
-import { AvatarPage, ProfilePage, SchedulePage } from '@pages/shared';
+import { SchedulePage } from '@pages/shared';
 import {
 	MainPage,
 	ExercisePage,
@@ -10,54 +10,30 @@ import training from '@assets/sidebar/train.svg';
 import schedule from 'assets/sidebar/schedule.svg';
 import home from 'assets/sidebar/home.svg';
 import survey from 'assets/sidebar/survey.svg';
-import { lessons } from '@const';
-import store from '@app/providers/store';
 
 const studentRouter = [
 	{
 		path: '/',
 		element: <MainPage title="Главная страница" />,
-		img: home,
-		loader: () => {
-			return { lessons };
-		}
+		img: home
 	},
 	{
 		path: '/train',
 		element: <TrainPage title="Мои тренировки" />,
 		local: 'Тренировки',
-		img: training,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
+		img: training
 	},
 	{
 		path: '/train/:id',
 		element: <ExercisePage title="Мои занятия" />,
-		loader: ({ params }: any) => {
-			const lesson = lessons.find((l) => l.id === params.id);
-			return {
-				lesson,
-				id: params.id
-			};
-		}
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage title="Расписание" />,
+		element: <SchedulePage link="/train/" title="Расписание" />,
 		local: 'Расписание',
 		img: schedule,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
-	},
-	{
-		path: '/avatar',
-		element: <AvatarPage title="Изменить аватарку" />
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/survey',
@@ -70,13 +46,6 @@ const studentRouter = [
 		element: <RewardPage title="Коллекция наград" />,
 		local: 'Коллекция наград',
 		img: survey
-	},
-	{
-		path: '/profile',
-		element: <ProfilePage title="Мои личные данные" />,
-		loader: () => {
-			return store.getState().profile.profile;
-		}
 	}
 ];
 

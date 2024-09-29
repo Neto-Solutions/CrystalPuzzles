@@ -16,7 +16,7 @@ export default function MainPage({ title }: MainPageProps) {
 		<Page title={title}>
 			<div className={styles.wrapper}>
 				<CardLink title={'Расписание'} className={styles.schedule_card}>
-					<ScheduleList />
+					<ScheduleList today />
 				</CardLink>
 				{isMobile ? (
 					<Link to={'/notifications'}>
@@ -26,7 +26,6 @@ export default function MainPage({ title }: MainPageProps) {
 					<Notification className={styles.notifications} />
 				)}
 			</div>
-			<Link to={'/exercise'}>Занятия</Link>
 		</Page>
 	);
 }

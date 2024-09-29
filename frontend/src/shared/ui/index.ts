@@ -6,6 +6,7 @@ export { default as Wrapper } from './wrapper/Wrapper';
 export { default as Button } from './button/Button';
 export { default as Modal } from './modal/Modal';
 export { default as Tag } from './tag/Tag';
+export { default as DropdownButton } from './dropdownButton/DropdownButton';
 
 export * from './popups';
 export * from './card';

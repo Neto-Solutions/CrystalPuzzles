@@ -1,9 +1,15 @@
 from datetime import datetime
 
+from fastapi import HTTPException
+
 from common.service.base_service import BaseService
-from service.lesson.schemas.lesson_schemas import CreateLessonSchema, LessonFilterSchema, EditLessonSchema
+from service.lesson.schemas.check_schema import CreateCheckSchema
+from service.lesson.schemas.lesson_schemas import CreateLessonSchema, LessonFilterSchema, EditLessonSchema, \
+    UserForLessonSchema, ChangeStatusSchema
+from service.lesson.services.check_service import CheckService
 from service.lesson.services.space_service import SpaceService
 from service.lesson.unit_of_work.lesson_uow import LessonUOW
+from service.training.service import TrainingService
 from service.users.services.user_service import UserService
 
 
@@ -50,3 +56,71 @@ class LessonService(BaseService):
             else:
                 result = await uow.repo.get(filters)
             return result
+
+    async def add_check_for_lesson(self, uow: LessonUOW, model: CreateCheckSchema, **kwargs):
+        # Проверка на наличие студента
+        for student_id in model.student_ids:
+            await UserService.student_check(kwargs.get("user_uow"), student_id)
+        for training in model.training_check:
+            # Проверка на наличинее тренировки
+            await TrainingService.training_exist(kwargs.get("training_uow"), training.training_id)
+        # Проверка на наличие занятия
+        if await self.exist(uow, model.lesson_id):
+            async with kwargs.get('check_uow') as check_uow:
+                result = await check_uow.repo.add_check_for_lesson(model.model_dump())
+                await check_uow.commit()
+                async with uow:
+                    await uow.repo.edit(
+                        {
+                            "id": model.lesson_id,
+                            "status": "in_editing",
+                            "date_update": datetime.now()
+                        }
+                    )
+                    await uow.commit()
+
+                return result
+        raise HTTPException(status_code=400, detail="Lesson not exist")
+
+    async def add_user(
+            self,
+            uow: LessonUOW,
+            lesson_id: int,
+            model: UserForLessonSchema,
+            **kwargs
+    ):
+        await UserService.student_check(kwargs.get("user_uow"), model.student_id)
+        if await self.exist(uow, lesson_id):
+            return await CheckService.add_user_for_lesson(kwargs.get("check_uow"), lesson_id, model.model_dump())
+
+    async def remove_user(
+            self,
+            uow: LessonUOW,
+            lesson_id: int,
+            model: UserForLessonSchema,
+            **kwargs
+    ):
+        await UserService.student_check(kwargs.get("user_uow"), model.student_id)
+        if await self.exist(uow, lesson_id):
+            return await CheckService.delete_user_for_lesson(kwargs.get("check_uow"), lesson_id, model.model_dump())
+
+    async def add_training(self):
+        pass
+
+    async def delete_training(self):
+        pass
+
+    @staticmethod
+    async def edit_status_lesson(uow: LessonUOW, lesson_id: int, model: ChangeStatusSchema):
+        async with uow:
+            if await uow.repo.exist(lesson_id):
+                result = await uow.repo.edit(
+                    {
+                        "id": lesson_id,
+                        "status": model.status,
+                        "date_update": datetime.now()
+                    }
+                )
+                await uow.commit()
+                return result
+            raise HTTPException(status_code=400, detail="Lesson does not exist")

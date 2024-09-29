@@ -3,7 +3,17 @@ import classNames from 'classnames';
 import { Button } from '../Button/Button';
 import moment from 'moment';
 
-export default function DaysList({ setModalActive, edit, data }: any) {
+interface DaysListProps {
+	setModalActive: (day: string) => void;
+	edit: boolean;
+	data: any;
+}
+
+export default function DaysList({
+	setModalActive,
+	edit,
+	data
+}: DaysListProps) {
 	return (
 		<ul className={classNames(styles.grid, styles.days)}>
 			{Object.keys(data).map((key: any, index: number) => (
@@ -14,7 +24,7 @@ export default function DaysList({ setModalActive, edit, data }: any) {
 							{data[key].map((el: any, i: number) => (
 								<div key={i}>
 									<span className={styles.time}>
-										{moment(el.start).format('hh:mm')}
+										{moment(el.start).format('HH:mm')}
 									</span>
 									<span className={styles.space_name}>{el.space.name}</span>
 								</div>
