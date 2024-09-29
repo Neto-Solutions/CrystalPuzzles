@@ -15,7 +15,7 @@ export default function ProfilePage({ title }: any) {
 
 	return (
 		<Page title={title}>
-			{edit ? <EditProfile /> : null}
+			<EditProfile active={edit} setActive={setEdit} />
 			<div className={styles.container}>
 				<section className={styles.student}>
 					<img className={styles.avatar} src={user?.photo || avatar} />

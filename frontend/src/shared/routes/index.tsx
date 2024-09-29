@@ -23,6 +23,7 @@ const MainRouter = (): any => {
 					element: <ProfilePage title="Мои личные данные" />
 				},
 				{
+					// TODO: delete
 					path: '/avatar',
 					element: <AvatarPage title="Изменить аватарку" />
 				},

@@ -1,0 +1,61 @@
+.header {
+	width: 100%;
+	background-color: var(--bg-card);
+	text-align: center;
+	padding: 10px;
+	font: var(--fw-medium) var(--fz-btn) var(--ff-second);
+}
+.container {
+	width: fit-content;
+	padding: 50px;
+	display: grid;
+	grid-template-areas:
+		'avatar info'
+		'avatar buttons';
+	.avatar {
+		grid-area: avatar;
+		height: 200px;
+		aspect-ratio: 1 / 1;
+		border-radius: 10px;
+		overflow: hidden;
+		position: relative;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	.info {
+		grid-area: info;
+		& > div {
+			margin-bottom: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			& > label {
+				margin-right: 20px;
+				font: var(--fw-medium) var(--fz-btn) var(--ff-second);
+			}
+			& > input {
+				padding: 10px;
+				font: var(--fw-regular) var(--fz-btn) var(--ff-second);
+				border: var(--border);
+				border-radius: var(--radius);
+				outline: none;
+				text-align: center;
+			}
+		}
+	}
+	.buttons {
+		grid-area: buttons;
+		display: flex;
+		justify-content: flex-end;
+		& > * {
+			margin-left: 10px;
+			width: max-content;
+			max-height: 54px;
+			background-color: #2b2d91;
+			color: white;
+		}
+	}
+}

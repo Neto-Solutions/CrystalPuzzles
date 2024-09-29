@@ -125,7 +125,7 @@ class UserShortViewSchemaForPage(BaseModel):
 
 class AdminPanelEditSchema(BaseModel):
     """ Валидация редактирования данных пользователя """
-    id: int
+    id: Optional[int] = Field(default=None, hidden=True)
     firstname: Optional[str] = None
     lastname: Optional[str] = None
     surname: Optional[str] = None

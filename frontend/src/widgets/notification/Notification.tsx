@@ -21,7 +21,6 @@ export default function Notification({
 				isMainPage ? styles.container : styles.container_separate,
 				className
 			)}
-			onClick={() => navigate('/notifications')}
 		>
 			{isMainPage && (
 				<Title tag="h2" className={styles.title}>
