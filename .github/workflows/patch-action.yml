@@ -67,7 +67,7 @@ jobs:
         run: docker compose down        
   
   update_tag:
-    needs: tests
+    needs: [app_tests, pytest]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
