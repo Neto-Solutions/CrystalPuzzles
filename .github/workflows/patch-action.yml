@@ -10,17 +10,22 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Обновлено до версии 3
+
       - name: Set up Python 3.12
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4  # Обновлено до версии 4
         with:
           python-version: 3.12
+
       - name: Install pipenv
         run: pip install pipenv
+
+      - name: Install dependencies
+        run: pipenv install --dev
+
       - name: Run tests
-        run: |
-          pipenv install --dev
-          pipenv run pytest
+        run: pipenv run pytest
           
   app_tests:
     runs-on: ubuntu-latest
