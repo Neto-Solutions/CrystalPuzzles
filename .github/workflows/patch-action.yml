@@ -7,7 +7,22 @@ on:
       [test]
 
 jobs:
-  tests:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.12
+      - name: Install pipenv
+        run: pip install pipenv
+      - name: Run tests
+        run: |
+          pipenv install --dev
+          pipenv run pytest
+          
+  app_tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository from specific branch
