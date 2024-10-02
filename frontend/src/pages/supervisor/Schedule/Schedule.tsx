@@ -39,6 +39,7 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 				/>
 				{edit ? null : (
 					<Button
+						bgColor="dark"
 						className={styles.edit_btn}
 						title="Составить расписание"
 						onClick={() => navigate('./edit')}

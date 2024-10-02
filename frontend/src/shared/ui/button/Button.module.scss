@@ -5,13 +5,15 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font: var(--medium) var(--fz-btn) var(--ff-first);
+	font-size: var(--fz-btn);
+	font-weight: var(--medium);
+	font-family: var(--ff-first);
 	border: var(--border);
 	border-radius: var(--radius);
 	cursor: pointer;
 	transition: all 0.3s ease-in-out;
 
-	@include sm() {
+	@include md() {
 		font-size: var(--fz-mob-btn);
 	}
 }
@@ -21,7 +23,7 @@
 	color: var(--bg-card);
 
 	&:hover {
-		background-color: var(--bg-card);
+		background-color: transparent;
 		color: var(--accent-color);
 	}
 }

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { Dispatch, FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { User } from '@shared/api';
@@ -11,7 +11,17 @@ import joinName from 'entities/profile/assets/joinName';
 import UploadAvatar from './uploadAvatar/UploadAvatar';
 import styles from './EditProfile.module.scss';
 
-export default function EditProfile({ active, setActive }: any) {
+interface EditProfileProps {
+	active: boolean;
+	setActive: Dispatch<React.SetStateAction<boolean>>;
+	onClick?: () => void;
+}
+
+export default function EditProfile({
+	active,
+	setActive,
+	onClick
+}: EditProfileProps) {
 	const profile = useSelector(selectProfile);
 
 	const [preview, setPreview] = useState<string>(
@@ -42,7 +52,7 @@ export default function EditProfile({ active, setActive }: any) {
 					<Title tag="h2" className={styles.title}>
 						Редактировать данные
 					</Title>
-					<button className={styles.close_btn}>
+					<button className={styles.close_btn} onClick={onClick}>
 						<CloseButton className={styles.icon} />
 					</button>
 				</header>

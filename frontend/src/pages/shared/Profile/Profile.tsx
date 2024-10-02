@@ -7,15 +7,23 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import EditProfile from './editProfile/EditProfile';
 import styles from './Profile.module.scss';
 
-export default function ProfilePage({ title }: any) {
-	const [edit, setEdit] = useState(false);
+interface ProfilePageProps {
+	title: string;
+}
+
+export default function ProfilePage({ title }: ProfilePageProps) {
+	const [edit, setEdit] = useState<boolean>(false);
 	const {
 		state: { user }
 	} = useLocation();
 
 	return (
 		<Page title={title}>
-			<EditProfile active={edit} setActive={setEdit} />
+			<EditProfile
+				active={edit}
+				setActive={setEdit}
+				onClick={() => setEdit(false)}
+			/>
 			<div className={styles.container}>
 				<div className={styles.student}>
 					<img className={styles.avatar} src={user?.photo || avatar} />
