@@ -64,6 +64,7 @@ export default function CheckInPage({ login = false }: any) {
 								type="submit"
 								width="100%"
 								height="53px"
+								bgColor='light'
 							/>
 
 							{login && (
@@ -79,6 +80,7 @@ export default function CheckInPage({ login = false }: any) {
 											navigate('/registration');
 										}}
 										className={styles.register_btn}
+										bgColor='dark'
 									/>
 								</>
 							)}
