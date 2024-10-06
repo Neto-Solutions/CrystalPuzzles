@@ -22,11 +22,11 @@ const MainRouter = (): any => {
 					path: '/profile',
 					element: <ProfilePage title="Мои личные данные" />
 				},
-				{
-					// TODO: delete
-					path: '/avatar',
-					element: <AvatarPage title="Изменить аватарку" />
-				},
+				// {
+				// 	// TODO: delete
+				// 	path: '/avatar',
+				// 	element: <AvatarPage title="Изменить аватарку" />
+				// },
 				...(role === 'student'
 					? studentRouter
 					: role === 'trainer'

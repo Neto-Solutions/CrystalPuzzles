@@ -1,12 +1,13 @@
 @use '~styles/mixins' as *;
 
 .body {
+	padding-inline: 20px;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
 
-	@include lg() {
+	@include xl() {
 		justify-content: center;
 	}
 }
