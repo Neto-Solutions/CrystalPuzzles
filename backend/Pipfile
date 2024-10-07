@@ -22,6 +22,8 @@ pydantic-settings = "*"
 sqlalchemy = "*"
 aiofiles = "*"
 pytest = "*"
+httpx = "*"
+pytest-mock = "*"
 
 [dev-packages]
 
