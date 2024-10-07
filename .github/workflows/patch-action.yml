@@ -19,10 +19,10 @@ jobs:
           python-version: 3.12
 
       - name: Install pipenv 
-        run:  pip install pipenv
+        run:  pip install pipenv && pipenv shell
         
       - name: Install dependencies
-        run: cd backend && ls && pipenv install -dev --python $(which python3.11)
+        run: cd backend && ls && pipenv install -dev
 
       - name: Install pytest
         run: cd backend && ls && pipenv install pytest && pipenv install httpx
