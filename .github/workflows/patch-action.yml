@@ -28,6 +28,11 @@ jobs:
         run: cd backend && ls && pipenv install pytest && pipenv install httpx
 
       - name: Run tests
+        env:
+            pg_user: test_pg_user
+            pg_password: test_pg_password
+            pg_db: test_pg_db
+            pg_host: localhost 
         run: cd backend && ls && PYTHONPATH=$(pwd) pipenv run pytest
           
   app_tests:
