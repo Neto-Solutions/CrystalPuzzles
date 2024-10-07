@@ -28,7 +28,7 @@ jobs:
         run: cd backend && ls && pipenv install pytest && pipenv install httpx
         
       - name: Copy env
-        run: cp .env /backend/.env
+        run: cp .env backend/.env
 
       - name: Run tests
         run: cd backend && ls && PYTHONPATH=$(pwd) pipenv run pytest
