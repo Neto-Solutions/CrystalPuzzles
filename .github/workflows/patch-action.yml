@@ -19,7 +19,7 @@ jobs:
           python-version: 3.11
 
       - name: Install pipenv
-        run: cd backend && ls && pip install pipenv && pipenv shell
+        run: cd backend && ls && pip install pipenv
 
       - name: Install pytest
         run: pip install pytest
