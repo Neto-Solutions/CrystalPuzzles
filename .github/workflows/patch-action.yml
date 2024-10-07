@@ -19,7 +19,7 @@ jobs:
           python-version: 3.11
 
       - name: Install pipenv 
-        run:  pip install pipenv && pipenv shell
+        run:  pip install pipenv
         
       - name: Install dependencies
         run: cd backend && ls && pipenv install
