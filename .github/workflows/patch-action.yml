@@ -27,7 +27,7 @@ jobs:
       - name: Install pytest
         run: cd backend && ls && pipenv install pytest && pipenv install httpx
         
-      -name: Copy env
+      - name: Copy env
         run: cp .env /backend/.env
 
       - name: Run tests
