@@ -19,13 +19,13 @@ jobs:
           python-version: 3.12
 
       - name: Install pipenv
-        run: pip install pipenv
+        run: cd backend && ls && pip install pipenv
 
       - name: Install pytest
         run: pip install pytest
 
       - name: Install dependencies
-        run: cd backend && pipenv install --dev
+        run: pipenv install --dev
 
       - name: Run tests
         run: PYTHONPATH=$(pwd) pipenv run pytest
