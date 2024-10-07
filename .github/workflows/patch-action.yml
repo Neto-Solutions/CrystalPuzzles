@@ -22,10 +22,10 @@ jobs:
         run: cd backend && ls && pip install pipenv
 
       - name: Install pytest
-        run: pip install pytest && pip install httpx
+        run: pipenv install && pipenv install pytest && pipenv install httpx
 
-      - name: Install dependencies
-        run: pipenv install --dev
+      # - name: Install dependencies
+      #   run: pipenv install --dev
 
       - name: Run tests
         run: PYTHONPATH=$(pwd) pipenv run pytest
