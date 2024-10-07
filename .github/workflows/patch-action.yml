@@ -22,7 +22,7 @@ jobs:
         run:  pip install pipenv
         
       - name: Install dependencies
-        run: cd backend && ls && pipenv install -dev
+        run: cd backend && ls && pipenv install -dev --python $(which python3.12)
 
       - name: Install pytest
         run: cd backend && ls && pipenv install pytest && pipenv install httpx
