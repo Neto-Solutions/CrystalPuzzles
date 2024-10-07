@@ -26,15 +26,11 @@ jobs:
 
       - name: Install pytest
         run: cd backend && ls && pipenv install pytest && pipenv install httpx
+        
+      -name: Copy env
+        run: cp .env /backend/.env
 
       - name: Run tests
-        env:
-            pg_user: test_pg_user
-            pg_password: test_pg_password
-            pg_db: test_pg_db
-            pg_host: localhost 
-            pg_port: 5432
-            pg_database: test_pg_database
         run: cd backend && ls && PYTHONPATH=$(pwd) pipenv run pytest
           
   app_tests:
