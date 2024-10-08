@@ -1,7 +1,6 @@
 @use '~styles/mixins' as *;
 
 .body {
-	padding-inline: 20px;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -9,5 +8,13 @@
 
 	@include xl() {
 		justify-content: center;
+	}
+
+	@include md() {
+		padding-left: 20px;
+	}
+
+	@include sm() {
+		padding-left: 10px;
 	}
 }
