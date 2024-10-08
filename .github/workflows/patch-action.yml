@@ -11,24 +11,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3  # Обновлено до версии 3
+        uses: actions/checkout@v3 
 
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v4  # Обновлено до версии 4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4  
         with:
-          python-version: 3.12
+          python-version: 3.11
+          
 
       - name: Install pipenv
         run: pip install pipenv
+        
+      - name: Install dependencies
+        run: cd backend && pipenv install
 
       - name: Install pytest
-        run: pip install pytest
-
-      - name: Install dependencies
-        run: pipenv install --dev
+        run: cd backend && pipenv install pytest && pipenv install httpx
+        
+      - name: Copy env
+        run: cp .env backend/.env
 
       - name: Run tests
-        run: pipenv run pytest
+        run: cd backend && ls && PYTHONPATH=$(pwd) pipenv run pytest
           
   app_tests:
     runs-on: ubuntu-latest
