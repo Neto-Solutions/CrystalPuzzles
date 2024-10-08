@@ -7,8 +7,75 @@ on:
       - release
 
 jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3 
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4  
+        with:
+          python-version: 3.11
+          
+
+      - name: Install pipenv
+        run: pip install pipenv
+        
+      - name: Install dependencies
+        run: cd backend && pipenv install
+
+      - name: Install pytest
+        run: cd backend && pipenv install pytest && pipenv install httpx
+        
+      - name: Copy env
+        run: cp .env backend/.env
+
+      - name: Run tests
+        run: cd backend && ls && PYTHONPATH=$(pwd) pipenv run pytest
+          
+  app_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository from specific branch
+        uses: actions/checkout@v3
+        with:
+          ref: test 
+      - name: find_docker_compose
+        run: |
+          result=$(find $GITHUB_WORKSPACE -name "docker-compose.prod.yml")
+          if [ -z "$result" ]; then
+            echo "docker-compose.yml not found"
+            exit 1  # Завершить выполнение
+          else
+            directory=$(dirname "$result")
+            echo "Found docker-compose.yml at: $result"
+          fi
+          
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Compose
+        run: sudo apt-get update && sudo apt-get install docker-compose 
+      - name: Build and Start Docker Compose
+        run: docker compose up -d 
+      - name: Check Services list
+        run: docker-compose ps
+      - name: Check api
+        run: nc -z "127.0.0.1" "8001" && echo "api is available" || exit 1
+      - name: Check postgres
+        run: nc -z "127.0.0.1" "5432" && echo "postgres is available" || exit 1
+      - name: Check front
+        run: nc -z "127.0.0.1" "8080" && echo "front is available" || exit 1
+      - name: Check redis
+        run: nc -z "127.0.0.1" "6379" && echo "redis is available" || exit 1      
+        
+      - name: Shut Down Docker Compose
+        if: always() 
+        run: docker compose down  
+
   update_tag:
     runs-on: ubuntu-latest
+    needs: [pytest, app_tests]
     steps:
       - uses: actions/checkout@v2
 
@@ -34,6 +101,7 @@ jobs:
           
   refresh_content:   
     runs-on: ubuntu-latest
+    needs: [pytest, app_tests]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -149,8 +217,7 @@ jobs:
             echo "PORT=${{ secrets.PORT }}" >> ${{ env.ENV_File }}
             echo "REACT_APP_TAG=$LATEST_TAG" >> ${{ env.ENV_File }}
             echo "REACT_APP_SERVER_API=http://${{ secrets.SSH_HOST_NAME }}/api/v1/" >> ${{ env.ENV_File }}
-            echo "TAG=$LATEST_TAG" >> ${{ env.ENV_File }}
-        
+            echo "TAG=$LATEST_TAG" >> ${{ env.ENV_File }}        
 
   start_docker:
     needs: 

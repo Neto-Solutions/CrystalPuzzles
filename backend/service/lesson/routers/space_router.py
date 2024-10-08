@@ -84,7 +84,7 @@ async def create_space(
 
 
 @space_router.put(
-    "/",
+    "/{space_id}",
     summary="Изменение кабинета занятия",
     response_model=bool,
     responses={
@@ -98,9 +98,11 @@ async def edit_training(
         model: EditSpaceSchema,
         uow: SpaceUOWDep,
         space_service: SpaceServiceDep,
-        current_user: SupervisorAdminDep
+        current_user: SupervisorAdminDep,
+        space_id: int
 ):
     """admin, supervisor"""
+    model.id = space_id
     result = await space_service.edit(uow, model)
     if result:
         return result

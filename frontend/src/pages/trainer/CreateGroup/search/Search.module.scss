@@ -1,9 +1,9 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
- 
 .container {
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: end;
 	position: relative;
@@ -17,4 +17,8 @@
 	font-weight: 500;
 	border: var(--border);
 	border-radius: 10px;
+}
+.students_container {
+	padding: 20px;
+	width: 100%;
 }

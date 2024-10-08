@@ -65,7 +65,7 @@ class GroupViewSchemaForPage(BaseModel):
 
 
 class EditGroupSchema(BaseModel):
-    id: int
+    id: Optional[int] = Field(default=None, hidden=True)
     name: str  # AllowEmpty
     trainer_id: Optional[int]
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)

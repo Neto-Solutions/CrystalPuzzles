@@ -3,49 +3,62 @@
 .container {
 	padding: 30px;
 	width: 100%;
+	overflow: scroll;
+}
 
-	.header {
-		border-bottom: var(--border);
-		margin-bottom: 36px;
+.main {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(1, 347px);
+	place-content: center;
+	gap: 20px;
+	grid-template-areas:
+		'trainer'
+		'place'
+		'time'
+		'textarea'
+		'submit';
+
+	.trainer {
+		grid-area: trainer;
 	}
-	.main {
-		display: grid;
-		place-content: center;
-		gap: 30px;
 
-		grid-template-areas:
-			'place time'
-			'textarea textarea'
-			'submit submit';
-		@include md() {
-			grid-template-areas:
-				'place'
-				'time'
-				'textarea'
-				'submit';
-		}
+	.place {
+		grid-area: place;
+	}
 
-		.place {
-			grid-area: place;
-		}
-
-		.time {
-			grid-area: time;
-		}
-		.textarea {
-			@include font(var(--ff-first), 20px, 500);
-			grid-area: textarea;
-			resize: none;
-			width: 100%;
-			height: 30%;
-			min-height: 150px;
-			padding: 20px;
+	.time {
+		grid-area: time;
+		width: 50%;
+		margin: 0 auto;
+		& > div {
+			cursor: pointer;
 			border: var(--border);
-			border-radius: 10px;
-			outline: none;
+			border-radius: var(--radius-btn);
 		}
-		.submit {
-			grid-area: submit;
+		& div {
+			padding: 5px 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 22px;
 		}
+	}
+
+	.textarea {
+		grid-area: textarea;
+		padding: 20px;
+		width: 100%;
+		height: 30%;
+		min-height: 150px;
+		font: var(--fw-medium) var(--fz-text) var(--ff-first);
+		border: var(--border);
+		border-radius: var(--radius-btn);
+		resize: none;
+		outline: none;
+	}
+
+	.submit {
+		grid-area: submit;
 	}
 }

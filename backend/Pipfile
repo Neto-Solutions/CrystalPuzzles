@@ -20,6 +20,7 @@ psycopg2-binary = "*"
 pylint = "*"
 pydantic-settings = "*"
 sqlalchemy = "*"
+aiofiles = "*"
 
 [dev-packages]
 

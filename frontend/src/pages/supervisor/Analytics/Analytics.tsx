@@ -1,26 +1,35 @@
 import styles from './Analytics.module.scss';
 import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Card, UserCard, Page, Button } from '@shared/ui';
 import { CalendarButton } from '@features';
+import { serverUrl } from '@entities';
+import joinName from 'entities/profile/assets/joinName';
+import moment from 'moment';
 
 interface AnalyticsPageProps {
 	title: string;
 }
 
 export default function AnalyticsPage({ title }: AnalyticsPageProps) {
+	const {
+		state: { user }
+	} = useLocation();
 	const [comment, setComment]: any = useState(false);
-	const { avatar, firstname, surname, lastname }: any = useLoaderData();
 	const [date, setDate]: any = useState({
-		from: new Date().toISOString(),
-		to: new Date().toISOString()
+		from: moment().startOf('day'),
+		to: moment().endOf('day')
 	});
 
 	return (
 		<Page title={title}>
 			<UserCard
-				img={require(`assets/avatar/${avatar}.png`)}
-				name={surname + ' ' + firstname + ' ' + lastname}
+				img={
+					user.photo
+						? serverUrl() + user.photo
+						: require(`assets/avatar/${user.avatar || 0}.png`)
+				}
+				name={joinName(user)}
 				showBtn
 			>
 				<ul className={styles.list}>

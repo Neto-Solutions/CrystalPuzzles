@@ -1,30 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Place from '@shared/api/place';
+// import Place from '@shared/api/place';
+
+interface AppState {
+	header: string;
+	places: any[] | null;
+	students: any[] | null;
+	trainers: any[] | null;
+}
+
+const initialState: AppState = {
+	header: 'Главная страница',
+	places: null,
+	students: null,
+	trainers: null
+};
 
 const appSlice = createSlice({
 	name: 'app',
-	initialState: {
-		header: 'Главная страница',
-		places: null,
-		students: null,
-		trainers: null
-	},
+	initialState,
 	reducers: {
 		setHeader(state, action) {
 			state.header = action.payload;
 		},
-		updatePlace(state, action) {
-			// TODO: написать запрос на сервер получить places, посмотреть как сделано в profile.ts
-			// Place.get().then;
-			//(shared/api/place)
+		setPlaces(state, action) {
+			state.places = action.payload;
+		},
+		setStudents(state, action) {
+			state.students = action.payload;
+		},
+		setTrainers(state, action) {
+			state.trainers = action.payload;
 		}
 	}
 });
 
 const selectHeader = (state: any) => state.app.header;
 
-const { setHeader } = appSlice.actions;
-
-export { appSlice };
-export { selectHeader };
-export { setHeader };
+const { setHeader, setPlaces } = appSlice.actions;
+export { appSlice, setHeader, setPlaces, selectHeader };

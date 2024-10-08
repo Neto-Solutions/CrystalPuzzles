@@ -3,7 +3,17 @@ import classNames from 'classnames';
 import { Button } from '../Button/Button';
 import moment from 'moment';
 
-export default function DaysList({ setModalActive, edit, data }: any) {
+interface DaysListProps {
+	setModalActive: (day: string) => void;
+	edit: boolean;
+	data: any;
+}
+
+export default function DaysList({
+	setModalActive,
+	edit,
+	data
+}: DaysListProps) {
 	return (
 		<ul className={classNames(styles.grid, styles.days)}>
 			{Object.keys(data).map((key: any, index: number) => (
@@ -11,14 +21,20 @@ export default function DaysList({ setModalActive, edit, data }: any) {
 					<span> {moment(key).format('D')}</span>
 					{data[key] ? (
 						<div className={styles.active}>
-							{data[key].map((el: any, i: number) => (
-								<div key={i}>
-									<span className={styles.time}>
-										{moment(el.start).format('hh:mm')}
-									</span>
-									<span className={styles.space_name}>{el.space.name}</span>
-								</div>
-							))}
+							<div className={styles.schedule}>
+								{data[key]
+									.sort((a: any, b: any) =>
+										moment(a.start).isSameOrAfter(b.start)
+									)
+									.map((el: any, i: number) => (
+										<div key={i}>
+											<span className={styles.time}>
+												{moment(el.start).format('HH:mm')}
+											</span>
+											<span className={styles.space_name}>{el.space.name}</span>
+										</div>
+									))}
+							</div>
 						</div>
 					) : null}
 

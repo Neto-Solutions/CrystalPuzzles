@@ -11,26 +11,19 @@ import {
 	CreateGroupPage,
 	TrainerExercisePage
 } from '@trainer';
+import { SchedulePage } from '@pages/shared';
 
 import feedback from 'assets/sidebar/feedback.svg';
 import schedule from 'assets/sidebar//schedule.svg';
 import group from 'assets/sidebar/group.svg';
 import students from 'assets/sidebar/students.svg';
 import home from 'assets/sidebar/home.svg';
-import { AvatarPage, SchedulePage } from '@pages/shared';
-
-import { lessons, groups, users } from '@const';
 
 const trainerRouter = [
 	{
 		path: '/',
 		element: <MainPage title="Главная страница" />,
-		img: home,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
+		img: home
 	},
 	{
 		path: '/notifications',
@@ -38,33 +31,25 @@ const trainerRouter = [
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage link title="Расписание" />,
+		element: <SchedulePage title="Расписание" />,
 		local: 'Расписание',
-		img: schedule,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
+		img: schedule
+	},
+	{
+		path: '/exercise/:id',
+		element: <TrainerExercisePage title="Занятия" />,
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/schedule/:id',
-		element: <CheckListPage title="Чек-листы" />
-		// loader: ({ params: { id } }: any) => {
-		// 	console.log('id', id);
-		// 	return lessons.find((lesson) => lesson.id == id);
-		// }
+		element: <CheckListPage title="Чек-лист" />,
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/groups',
 		element: <GroupListPage title="Группы" />,
 		local: 'Группы',
-		img: group,
-		loader: () => {
-			return {
-				groups
-			};
-		}
+		img: group
 	},
 	{
 		path: '/group/create',
@@ -79,28 +64,13 @@ const trainerRouter = [
 	{
 		path: '/students/:id',
 		element: <ProfilePage title="Ученик" />,
-		loader: ({ params: { id } }: any) => {
-			return users.find((user) => user.id == id);
-		}
+		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{
 		path: '/feedback',
 		element: <FeedbackPage title="Обратная связь" />,
 		local: 'Обратная связь',
 		img: feedback
-	},
-	{
-		path: '/avatar',
-		element: <AvatarPage title="Изменить аватарку" />
-	},
-	{
-		path: '/exercise',
-		element: <TrainerExercisePage title="Занятия" />,
-		loader: () => {
-			return {
-				lessons
-			};
-		}
 	}
 ];
 
