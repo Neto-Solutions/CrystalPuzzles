@@ -1,8 +1,10 @@
 import pytest
+from fastapi.testclient import TestClient
+from main import app  # Импортируем app из нового файла
+# from backend.main import app
 
-def test_two_plas_two():
-    assert 2+2 == 4
 
-def test_always_passes():
-    assert True
+client = TestClient(app)
 
+def test_test():
+    assert 2 + 2 == 4
