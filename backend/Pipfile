@@ -21,6 +21,8 @@ pylint = "*"
 pydantic-settings = "*"
 sqlalchemy = "*"
 aiofiles = "*"
+pytest = "*"
+httpx = "*"
 
 [dev-packages]
 
