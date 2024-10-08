@@ -23,6 +23,11 @@ sqlalchemy = "*"
 aiofiles = "*"
 pytest = "*"
 httpx = "*"
+pytest-asyncio = "*"
+pytest-tornasync = "*"
+pytest-trio = "*"
+pytest-twisted = "*"
+twisted = "*"
 
 [dev-packages]
 

@@ -1,5 +1,5 @@
 import pytest
-# from backend.common.schema.base_user_schema import UserShortSchema
+from fastapi.testclient import TestClient
 from common.schema.base_user_schema import UserShortSchema
 
 def test_user_short_schema():
