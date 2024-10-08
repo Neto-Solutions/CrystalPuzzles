@@ -16,8 +16,12 @@ export default function MainPage({ title }: MainPageProps) {
 				<ProgressCardLink className={styles.progress} />
 				<AnalyticCardLink className={styles.analytic} />
 				<EvaluationCardLink className={styles.evaluation} />
-				<CardLink title={'Расписание'} className={styles.schedule_wrapper}>
-					<ScheduleList link="/schedule" />
+				<CardLink
+					to="/schedule"
+					title={'Расписание'}
+					className={styles.schedule_wrapper}
+				>
+					<ScheduleList link={false} />
 				</CardLink>
 				<Notification className={styles.notification} />
 			</div>

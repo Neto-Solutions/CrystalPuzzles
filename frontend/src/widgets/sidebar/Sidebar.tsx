@@ -40,13 +40,13 @@ export default function Sidebar() {
 				<NavMenuList role={user.role} isMobile={isMobile} />
 
 				<div className={styles.links}>
-					<div
+					{/* <div
 						className={`${styles.sidebar_btn} ${styles.help}`}
 						onClick={() => navigate('/avatar')}
 					>
 						<img src={edit} className={styles.link_icon} />
 						{!isMobile && <span>Изменить аватарку</span>}
-					</div>
+					</div> */}
 
 					<div
 						className={`${styles.sidebar_btn} ${styles.exit}`}

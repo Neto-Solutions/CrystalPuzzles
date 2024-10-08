@@ -1,7 +1,7 @@
 import styles from './Train.module.scss';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Page } from '@shared/ui';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { CalendarButton } from '@features';
 import { Lesson } from '@shared/api';
@@ -11,15 +11,23 @@ interface TrainPageProps {
 }
 
 export default function TrainPage({ title }: TrainPageProps) {
-	const { lessons }: any = useLoaderData();
-	const [data, setData] = useState<any>(lessons);
+	const [data, setData] = useState<any>();
 	const [date, setDate]: any = useState({
-		from: new Date().toISOString(),
-		to: new Date().toISOString()
+		from: moment().startOf('day'),
+		to: moment().endOf('day')
 	});
-	// useEffect(() => {
-	// 	Lesson.get({ start: date.from, end: date.to }).then(setData);
-	// }, [date]);
+	useEffect(() => {
+		getLessons();
+	}, [date]);
+
+	async function getLessons() {
+		const [data, err] = await Lesson.get({
+			start_date: date.from.toISOString(),
+			end_date: date.to.toISOString()
+		});
+		if (err) return;
+		setData(data);
+	}
 
 	return (
 		<Page title={title}>
@@ -42,7 +50,7 @@ export default function TrainPage({ title }: TrainPageProps) {
 									<div className={styles.place_container}>
 										<span className={styles.place_title}>Место:</span>
 										<span className={styles.place_content}>
-											{item.place.name}
+											{item.space.name}
 										</span>
 									</div>
 								</div>

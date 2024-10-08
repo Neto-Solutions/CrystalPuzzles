@@ -10,12 +10,12 @@
 	font-weight: var(--fw-medium);
 }
 
-span {
-	font: var(--fw-regular) 20px var(--ff-second);
-}
-
 .title {
 	font: var(--fw-medium) var(--fz-btn) var(--ff-second);
 	display: inline-block;
-	margin-right: 8px;
+
+	span {
+		margin-left: 8px;
+		font: var(--fw-regular) 20px var(--ff-second);
+	}
 }

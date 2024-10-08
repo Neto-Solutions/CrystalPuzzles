@@ -1,0 +1,53 @@
+.dropdown {
+	width: 100%;
+	height: fit-content;
+	background-color: var(--bg-card-second);
+	border: var(--border);
+	border-radius: var(--radius);
+	cursor: pointer;
+}
+
+.small_arrow {
+	transform: rotate(-90deg);
+	margin-left: auto;
+}
+
+.dropdown_button {
+	width: 100%;
+	padding: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+
+	span {
+		font: var(--fw-medium) var(--fz-text) var(--ff-first);
+	}
+}
+
+.dropdown_list {
+	height: 0;
+	overflow: hidden;
+}
+
+.active {
+	height: 100%;
+}
+
+.list_item {
+	padding: 10px 22px;
+	display: flex;
+	justify-content: space-between;
+
+	span {
+		font: var(--fw-regular) var(--fz-text) var(--ff-second);
+	}
+}
+.checkbox {
+	width: 28px;
+	height: 28px;
+	border: 1.5px solid #252525;
+}

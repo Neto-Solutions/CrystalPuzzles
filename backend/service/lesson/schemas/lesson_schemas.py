@@ -1,58 +1,75 @@
-from typing import List
-
 from pydantic import Field
 
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List, Literal
 
 from fastapi import Query
 
-from common.schema.base_schemas import BaseModel, BaseFilterSchema
+from common.schema.base_schemas import BaseModel, BaseFilterSchema, PageSchema
+from common.enum import lesson as enum
+from common.schema.base_user_schema import UserShortSchema
+from service.lesson.schemas.check_schema import CheckSchemaForTable
 from service.lesson.schemas.space_schemas import SpaceSchemaForTable
 
 
+# region --------------------------- POST ---------------------------------
 class CreateLessonSchema(BaseModel):
     """ Схема создания моделей занятий """
     space_id: int
     trainer_id: int
     trainer_comments: Optional[str]
     start: datetime
+    status: str = Field(default="created", hidden=True)
     date_add: datetime = Field(default_factory=datetime.now, hidden=True)
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
+# endregion --------------------------------------------------------------
 
+
+# region --------------------------- PUT ----------------------------------
 
 class EditLessonSchema(BaseModel):
     """ Схема изменения моделей занятий """
-    id: int
+    id: Optional[int] = Field(default=None, hidden=True)
     space_id: int
     trainer_id: int
     trainer_comments: Optional[str]
     start: datetime
+    date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
 
-class TrainerShortSchema(BaseModel):
-    id: int
-    firstname: Optional[str] = None
-    lastname: Optional[str] = None
-    surname: Optional[str] = None
-    avatar: Optional[int]
+class UserForLessonSchema(BaseModel):
+    """ Схема деталей пользователя """
+    student_id: int
+    date_add: datetime = Field(default_factory=datetime.now, hidden=True)
+    date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 
 
-class LessonSchemaForTable(BaseModel):
+class TrainingForLessonSchema(BaseModel):
+    """ Схема деталей модели тренировки """
+    training_id: int
+    repetitions: int
+# endregion --------------------------------------------------------------
+
+
+# region --------------------------- GET ---------------------------------
+class LessonShortSchema(BaseModel):
     """ Схема деталей занятия """
     id: int
     space: SpaceSchemaForTable
-    trainer: TrainerShortSchema
+    status: enum.StatusTypeEnum
+    trainer: UserShortSchema
     trainer_comments: Optional[str]
     start: datetime
 
 
-class LessonViewSchemaForPage(BaseModel):
-    """ Помтраничный вывод деталей моделей тренировок """
-    page: int
-    max_page_count: int
-    count_records: int
-    records: List[LessonSchemaForTable]
+class LessonSchemaForTable(LessonShortSchema):
+    """ Схема деталей занятий в виде таблицы """
+    check: List[CheckSchemaForTable]
+
+
+class LessonViewSchemaForPage(PageSchema[LessonShortSchema]):
+    """ Постраничный вывод деталей модели тренировок """
+    pass
 
 
 class LessonFilterSchema(BaseFilterSchema):
@@ -60,8 +77,11 @@ class LessonFilterSchema(BaseFilterSchema):
     start_date: datetime | None = Query(default=None, description="Дата начала занятия")
     end_date: datetime | None = Query(default=None, description="Дата окончания занятия")
     trainer: int | None = Query(default=None, description="Тренер")
+# endregion --------------------------------------------------------------
 
 
+class ChangeStatusSchema(BaseModel):
+    status: Literal["created", "in_editing", "in_progress", "finished"]
 
 # class TestChecksSchema:
 #     student_id: int

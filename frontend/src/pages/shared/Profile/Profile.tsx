@@ -1,33 +1,41 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Page, Button } from '@shared/ui';
-import avatar from '@shared/assets/avatar/0.png';
-import styles from './Profile.module.scss';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
 import joinName from 'entities/profile/assets/joinName';
+import avatar from '@shared/assets/avatar/0.png';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+import EditProfile from './editProfile/EditProfile';
+import styles from './Profile.module.scss';
 
-export default function ProfilePage({ title }: any) {
-	const user: any = useLoaderData();
-	const navigate = useNavigate();
+interface ProfilePageProps {
+	title: string;
+}
+
+export default function ProfilePage({ title }: ProfilePageProps) {
+	const [edit, setEdit] = useState<boolean>(false);
+	const {
+		state: { user }
+	} = useLocation();
 
 	return (
 		<Page title={title}>
+			<EditProfile
+				active={edit}
+				setActive={setEdit}
+				onClick={() => setEdit(false)}
+			/>
 			<div className={styles.container}>
-				<section className={styles.student}>
-					<img
-						className={styles.avatar}
-						src={
-							(user?.avatar && require(`assets/avatar/${user?.avatar}.png`)) ||
-							avatar
-						}
-					/>
-					<Button title="Редактировать данные" className={styles.btn_edit} />
-				</section>
+				<div className={styles.student}>
+					<img className={styles.avatar} src={user?.photo || avatar} />
+				</div>
+				<Button
+					bgColor="dark"
+					title="Редактировать данные"
+					className={styles.btn_edit}
+					onClick={() => setEdit(!edit)}
+				/>
 				<div className={styles.name}>{joinName(user)}</div>
 				<ProfileInfo user={user} className={styles.info} />
-				{/* <div className={styles.button_wrapper}>
-					<Button title="Добавить в группу" />
-					<Button title="Вернуться" onClick={() => navigate(-1)} />
-				</div> */}
 			</div>
 		</Page>
 	);

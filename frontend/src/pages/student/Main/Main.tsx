@@ -39,11 +39,10 @@ export default function MainPage({ title }: MainPageProps) {
 				</CardLink>
 
 				<CardLink
-					to="/schedule"
 					title={'Моё расписание на сегодня'}
 					className={styles.schedule_card}
 				>
-					{!isMobile && <ScheduleList />}
+					{!isMobile && <ScheduleList today />}
 				</CardLink>
 
 				{isMobile ? (
@@ -51,7 +50,11 @@ export default function MainPage({ title }: MainPageProps) {
 				) : (
 					<>
 						<Feedback className={styles.feedback} title="Обратная связь" />
-						<Button className={styles.btn} title="Отправить комментарий" />
+						<Button
+							className={styles.btn}
+							title="Отправить комментарий"
+							bgColor="dark"
+						/>
 					</>
 				)}
 			</div>
