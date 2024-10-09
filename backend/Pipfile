@@ -28,6 +28,7 @@ pytest-tornasync = "*"
 pytest-trio = "*"
 pytest-twisted = "*"
 twisted = "*"
+pytest-cov = "*"
 
 [dev-packages]
 
