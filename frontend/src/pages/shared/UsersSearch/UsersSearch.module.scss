@@ -6,7 +6,7 @@
 	flex-direction: column;
 	height: 100%;
 
-	@include lg() {
+	@include xl() {
 		width: 85%;
 	}
 

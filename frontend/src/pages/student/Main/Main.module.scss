@@ -1,7 +1,7 @@
 @use '~styles/mixins' as *;
 
 .reward_card {
-	background-image: url('./assets/unicorn.svg');
+	background-image: url('./assets/fux.svg');
 	background-repeat: no-repeat;
 	background-position: bottom;
 	background-size: 35%;
@@ -10,7 +10,6 @@
 
 	@include md() {
 		width: 100%;
-		background-image: url('./assets/fux.svg');
 	}
 
 	@include sm() {
@@ -65,15 +64,9 @@
 
 .btn {
 	grid-area: btn;
-	background-color: #2b2d91;
-	color: white;
+
 	@include sm() {
 		width: 100%;
-		background-color: transparent;
-		color: black;
-	}
-	&:hover {
-		background-color: #2b2d91;
 	}
 }
 
@@ -86,7 +79,7 @@
 		'feedback feedback schedule'
 		'btn btn schedule';
 
-	@include lg() {
+	@include xl() {
 		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'reward train'

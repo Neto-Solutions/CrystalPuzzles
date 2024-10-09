@@ -50,7 +50,11 @@ export default function MainPage({ title }: MainPageProps) {
 				) : (
 					<>
 						<Feedback className={styles.feedback} title="Обратная связь" />
-						<Button className={styles.btn} title="Отправить комментарий" />
+						<Button
+							className={styles.btn}
+							title="Отправить комментарий"
+							bgColor="dark"
+						/>
 					</>
 				)}
 			</div>

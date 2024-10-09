@@ -21,14 +21,22 @@ export default function Notification({
 				isMainPage ? styles.container : styles.container_separate,
 				className
 			)}
-			onClick={() => navigate('/notifications')}
 		>
 			{isMainPage && (
 				<Title tag="h2" className={styles.title}>
 					Уведомления
 				</Title>
 			)}
-			{isMobile ? (
+			<ul className={styles.notifications}>
+				{array.map((_: any, index: number) =>
+					isMainPage ? (
+						<NotificationItem key={index} />
+					) : (
+						<NotificationItemSeparate key={index} />
+					)
+				)}
+			</ul>
+			{/* {isMobile ? (
 				<div className={styles.wrapper}>
 					<div className={styles.notification_wrapper}>
 						<ul className={styles.notifications}>
@@ -52,7 +60,7 @@ export default function Notification({
 						)
 					)}
 				</ul>
-			)}
+			)} */}
 		</section>
 	);
 }

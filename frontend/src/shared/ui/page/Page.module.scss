@@ -6,7 +6,15 @@
 	flex-wrap: wrap;
 	gap: 20px;
 
-	@include lg() {
+	@include xl() {
 		justify-content: center;
+	}
+
+	@include md() {
+		padding-left: 20px;
+	}
+
+	@include sm() {
+		padding-left: 10px;
 	}
 }

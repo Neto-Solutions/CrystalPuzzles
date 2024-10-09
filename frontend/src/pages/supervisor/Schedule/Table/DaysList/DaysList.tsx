@@ -1,7 +1,7 @@
-import styles from './DaysList.module.scss';
 import classNames from 'classnames';
-import { Button } from '../Button/Button';
 import moment from 'moment';
+import { Button } from '../Button/Button';
+import styles from './DaysList.module.scss';
 
 interface DaysListProps {
 	setModalActive: (day: string) => void;
@@ -21,14 +21,20 @@ export default function DaysList({
 					<span> {moment(key).format('D')}</span>
 					{data[key] ? (
 						<div className={styles.active}>
-							{data[key].map((el: any, i: number) => (
-								<div key={i}>
-									<span className={styles.time}>
-										{moment(el.start).format('HH:mm')}
-									</span>
-									<span className={styles.space_name}>{el.space.name}</span>
-								</div>
-							))}
+							<div className={styles.schedule}>
+								{data[key]
+									.sort((a: any, b: any) =>
+										moment(a.start).isSameOrAfter(b.start)
+									)
+									.map((el: any, i: number) => (
+										<div key={i}>
+											<span className={styles.time}>
+												{moment(el.start).format('HH:mm')}
+											</span>
+											<span className={styles.space_name}>{el.space.name}</span>
+										</div>
+									))}
+							</div>
 						</div>
 					) : null}
 

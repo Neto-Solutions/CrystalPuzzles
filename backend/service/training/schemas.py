@@ -18,7 +18,7 @@ class CreateTrainingSchema(BaseModel):
 
 class EditTrainingSchema(BaseModel):
     """ Схема изменения моделей тренировок """
-    id: int
+    id: Optional[int] = Field(default=None, hidden=True)
     name: Optional[str] = None
     description: Optional[str] = None
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)

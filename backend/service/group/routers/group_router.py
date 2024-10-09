@@ -84,7 +84,7 @@ async def create_group(
 
 
 @group_router.put(
-    "/",
+    "/{group_id}",
     summary="Изменение группы",
     response_model=bool,
     responses={
@@ -98,9 +98,11 @@ async def edit_group(
         uow: GroupUOWDep,
         user_uow: UserUOWDep,
         group_service: GroupServiceDep,
-        current_user: TrainerSupervisorAdminDep
+        current_user: TrainerSupervisorAdminDep,
+        group_id: int
 ):
     """admin, supervisor, trainer"""
+    model.id = group_id
     result = await group_service.edit(uow, model, user_uow=user_uow)
     if result:
         return result

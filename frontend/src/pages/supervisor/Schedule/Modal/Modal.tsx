@@ -1,18 +1,20 @@
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
 import { useState } from 'react';
 import moment from 'moment';
 import { Button } from '@shared/ui';
-import { DropDownButton } from '@features';
 import { Lesson } from '@shared/api';
 import PlacesDropdown from 'features/placesDropdown/PlacesDropdown';
 import styles from './Modal.module.scss';
 import TrainersDropdown from 'features/trainersDropdown/TrainersDropdown';
+import TimePicker from 'react-time-picker';
 
 export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 	const [newLesson, setNewLesson]: any = useState({
 		space_id: null,
 		trainer_id: data?.trainer_id,
 		trainer_comments: null,
-		start: null
+		start: moment(day).set({ hour: 12, minute: 0 }).format()
 	});
 
 	async function handleSubmit() {
@@ -35,29 +37,30 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 					className={styles.trainer}
 					single
 				/>
-				<DropDownButton
+				<TimePicker
 					className={styles.time}
-					title={'Выберите время'}
-					setState={(id: string) =>
-						setNewLesson((prev: any) => ({ ...prev, start: id }))
-					}
-					state={newLesson.start}
-					single
-					data={[
-						{
-							id: moment(day).hours(11).format(),
-							name: '11:00'
-						},
-						{
-							id: moment(day).hours(12).format(),
-							name: '12:00'
-						},
-						{
-							id: moment(day).hours(15).format(),
-							name: '15:00'
+					maxDetail="minute"
+					onInput={(e) => {
+						if (e.target.value.length >= 2) {
+							e.target.value = e.target.value.slice(0, 2);
 						}
-					]}
+					}}
+					onChange={(e: any) => {
+						if (!e) return;
+						setNewLesson((prev: any) => ({
+							...prev,
+							start: moment(day)
+								.set({ hour: e.split(':')[0], minute: e.split(':')[1] })
+								.format()
+						}));
+					}}
+					value={moment(newLesson.start).format('HH:mm')}
+					format="HH:mm"
+					locale="sv-sv"
+					disableClock
+					clearIcon={null}
 				/>
+
 				<PlacesDropdown
 					state={newLesson.space_id}
 					setState={(id: string) =>

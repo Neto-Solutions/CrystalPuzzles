@@ -23,11 +23,16 @@
 		gap: 24px;
 	}
 
+	@include md() {
+		.title {
+			font-size: 20px;
+		}
+	}
+
 	@include sm() {
 		height: 100%;
 		align-items: center;
-		justify-content: center;
-		
+
 		.title {
 			font: var(--fw-semibold) 16px (var(--ff-second));
 		}

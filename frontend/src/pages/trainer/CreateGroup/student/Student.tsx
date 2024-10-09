@@ -1,3 +1,4 @@
+import joinName from 'entities/profile/assets/joinName';
 import styles from './Student.module.scss';
 
 export default function Students({ data, setStudents, checked = false }: any) {
@@ -12,7 +13,7 @@ export default function Students({ data, setStudents, checked = false }: any) {
 	}
 	return (
 		<div className={styles.container}>
-			<div className={styles.student_name}>{data.firstname}</div>
+			<div className={styles.student_name}>{joinName(data)}</div>
 			<div className={styles.checkbox_container}>
 				<input
 					className={styles.checkbox}

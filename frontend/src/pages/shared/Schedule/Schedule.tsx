@@ -35,16 +35,20 @@ export default function SchedulePage({ link, title }: SchedulePageProps) {
 		<Page title={title}>
 			<div className={styles.table}>
 				{data
-					? data.map((item: any, index: number) => (
-							<ScheduleItem
-								data={item}
-								key={index}
-								link={
-									link ? link + item.id : ScheduleRouteTo(item.status) + item.id
-								}
-								className={index === 0 ? styles.last : ''}
-							/>
-						))
+					? data
+							.sort((a: any, b: any) => moment(a.start).isSameOrAfter(b.start))
+							.map((item: any, index: number) => (
+								<ScheduleItem
+									data={item}
+									key={index}
+									link={
+										link
+											? link + item.id
+											: ScheduleRouteTo(item.status) + item.id
+									}
+									className={index === 0 ? styles.last : ''}
+								/>
+							))
 					: null}
 			</div>
 			<Wrapper>
