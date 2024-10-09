@@ -1,7 +1,7 @@
-import styles from './DaysList.module.scss';
 import classNames from 'classnames';
-import { Button } from '../Button/Button';
 import moment from 'moment';
+import { Button } from '../Button/Button';
+import styles from './DaysList.module.scss';
 
 interface DaysListProps {
 	setModalActive: (day: string) => void;

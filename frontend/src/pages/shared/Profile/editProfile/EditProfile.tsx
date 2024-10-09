@@ -57,15 +57,17 @@ export default function EditProfile({
 					</button>
 				</header>
 				<form onSubmit={submitForm} className={styles.form}>
-					<div className={styles.avatar}>
-						<img src={preview} alt="avatar" className={styles.img} />
-						<UploadAvatar
-							setPreview={setPreview}
-							setUserPhoto={setUserPhoto}
-							setErr={setErr}
-						/>
+					<div className={styles.avatar_wrapper}>
+						<div className={styles.avatar}>
+							<img src={preview} alt="avatar" className={styles.img} />
+							<UploadAvatar
+								setPreview={setPreview}
+								setUserPhoto={setUserPhoto}
+								setErr={setErr}
+							/>
+						</div>
+						{err ? <div className={styles.err}>{err}</div> : null}
 					</div>
-					{err ? <div className={styles.err}>{err}</div> : null}
 					<div className={styles.info}>
 						<div className={styles.input_wrapper}>
 							<label htmlFor="">ФИО</label>

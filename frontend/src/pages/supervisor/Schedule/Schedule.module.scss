@@ -7,13 +7,28 @@
 	grid-template-areas: 'trainer . edit';
 	gap: 20px;
 	place-content: end;
-	button {
-		max-height: 57px;
+
+	@include xl() {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas: 'trainer edit';
 	}
-	.trainer {
-		grid-area: trainer;
+
+	@include sm() {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'trainer'
+			'edit';
 	}
-	.edit_btn {
-		grid-area: edit;
-	}
+}
+
+button {
+	max-height: 57px;
+}
+
+.trainer {
+	grid-area: trainer;
+}
+
+.edit_btn {
+	grid-area: edit;
 }
