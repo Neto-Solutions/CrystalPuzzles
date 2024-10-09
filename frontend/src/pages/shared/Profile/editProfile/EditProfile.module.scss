@@ -55,6 +55,11 @@
 			'buttons';
 	}
 }
+.avatar_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
 
 .avatar {
 	margin: 0 auto;
@@ -98,7 +103,7 @@
 
 	label {
 		font: var(--fw-medium) var(--fz-btn) var(--ff-second);
-	
+
 		@include md() {
 			font-size: 20px;
 		}

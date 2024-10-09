@@ -1,3 +1,5 @@
+@use '~styles/mixins' as *;
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -14,8 +16,23 @@
 	font: var(--fw-medium) var(--fz-btn) var(--ff-second);
 	display: inline-block;
 
+	@include md() {
+		font: var(--fw-medium) 20px var(--ff-second);
+	}
+
+	@include sm() {
+		font: var(--fw-medium) 16px var(--ff-second);
+	}
+	
 	span {
 		margin-left: 8px;
 		font: var(--fw-regular) 20px var(--ff-second);
+
+		@include md() {
+			font: var(--fw-medium) 18px var(--ff-second);
+		}
+		@include sm() {
+			font: var(--fw-medium) 14px var(--ff-second);
+		}
 	}
 }

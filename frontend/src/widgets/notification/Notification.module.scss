@@ -28,23 +28,23 @@
 	gap: 10px;
 }
 
-.wrapper {
-	border: var(--border);
-	border-radius: var(--radius);
-	overflow: hidden;
+// .wrapper {
+// 	border: var(--border);
+// 	border-radius: var(--radius);
+// 	overflow: hidden;
 
-	.notifications {
-		padding: 10px 5px;
-	}
-}
+// 	.notifications {
+// 		padding: 10px 5px;
+// 	}
+// }
 
-.notification_wrapper {
-	&::before,
-	&::after {
-		content: '';
-		display: block;
-		width: 100%;
-		height: 22px;
-		background-color: var(--btn-bg-hover);
-	}
-}
+// .notification_wrapper {
+// 	&::before,
+// 	&::after {
+// 		content: '';
+// 		display: block;
+// 		width: 100%;
+// 		height: 22px;
+// 		background-color: var(--btn-bg-hover);
+// 	}
+// }

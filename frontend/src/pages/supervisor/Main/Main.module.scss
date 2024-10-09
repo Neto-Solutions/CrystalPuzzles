@@ -1,19 +1,41 @@
 @use '~styles/mixins' as *;
 
 .page_wrapper {
+	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
 	gap: 20px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto;
 	grid-template-areas:
 		'progress analytic evaluation'
-		'schedule schedule notification';
+		'schedule schedule notification'
+		'schedule schedule buttons';
+
+	@include xl() {
+		grid-template-columns: 2fr 3fr;
+		grid-template-areas:
+			'progress notification'
+			'progress schedule'
+			'analytic schedule'
+			'evaluation buttons';
+	}
 
 	@include md() {
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-areas:
 			'progress analytic'
 			'evaluation notification'
-			'schedule schedule';
+			'schedule schedule'
+			'buttons buttons';
+	}
+	@include sm() {
+		gap: 10px;
+		grid-template-columns: 2fr 1fr;
+		grid-template-areas:
+			'schedule  buttons'
+			'schedule notification'
+			'progress analytic'
+			'evaluation evaluation';
 	}
 }
 
@@ -31,14 +53,23 @@
 
 .notification {
 	grid-area: notification;
+
+	@include xl() {
+		max-height: 220px;
+	}
 }
 
 .schedule_wrapper {
+	grid-area: schedule;
 	padding: 20px;
 	max-height: 360px;
-	grid-area: schedule;
 	border: var(--border);
 	border-radius: var(--radius);
+
+	@include xl() {
+		max-height: fit-content;
+	}
+
 	h2 {
 		margin-bottom: 50px;
 
@@ -49,7 +80,17 @@
 }
 
 .btns_wrapper {
+	grid-area: buttons;
 	display: flex;
 	flex-direction: column;
 	gap: var(--gap);
+
+	@include md() {
+		flex-direction: row;
+	}
+
+	@include sm() {
+		flex-direction: column;
+		gap: 10px;
+	}
 }
