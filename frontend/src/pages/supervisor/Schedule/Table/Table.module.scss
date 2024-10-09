@@ -1,17 +1,21 @@
 @use '~styles/mixins' as *;
 
 .datepicker {
-	min-width: 1078px;
+	min-width: 100%;
 	border: var(--border);
 	border-radius: var(--radius);
 	overflow: hidden;
 }
 
 .grid_wrap {
-	font-family: var(--ff-second);
-	font-weight: var(--fw-regular);
-	font-size: var(--fz-text);
+
+	font: var(--fw-regular) var(--fz-text) var(--ff-second);
 	border-bottom-right-radius: var(--radius);
 	border-bottom-left-radius: var(--radius);
-	background-color: #fff;
+	background-color: var(--white-color);
+
+	@include lg() {
+		display: grid;
+		grid-template-columns: 48px 1fr;
+	}
 }

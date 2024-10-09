@@ -3,10 +3,28 @@
 .grid {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
+
+	@include lg() {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 .days {
-	grid-template-rows: repeat(2, 154px);
+	min-height: 35vh;
+	grid-template-rows: repeat(2, 1fr);
+
+	@include xl() {
+		min-height: 25vh;
+	}
+
+	@include lg() {
+		min-height: auto;
+		grid-template-rows: repeat(7, 154px);
+	}
+
+	@include sm {
+		grid-template-rows: repeat(7, 120px);
+	}
 }
 
 .day {
@@ -33,6 +51,24 @@
 			display: block;
 		}
 	}
+
+	@include lg() {
+		border-top: var(--border);
+		border-bottom: none;
+
+		&:nth-child(n) {
+			border-right: var(--border);
+			border-bottom: none;
+		}
+
+		&:nth-child(2n + 2) {
+			border-right: none;
+		}
+
+		&:nth-child(7) {
+			border-right: var(--border);
+		}
+	}
 }
 
 .active {
@@ -44,6 +80,7 @@
 	background-color: var(--bg-card);
 	font: var(--fw-regular) 13px var(--ff-second);
 	z-index: -1;
+
 	.schedule {
 		text-align: center;
 		margin-top: 25%;

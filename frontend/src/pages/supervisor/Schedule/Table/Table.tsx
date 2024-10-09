@@ -1,18 +1,25 @@
-import styles from './Table.module.scss';
+import { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
 import 'moment/locale/ru';
-import DaysList from './DaysList/DaysList';
-import Header from './Header/Header';
-import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
-import { useState, useEffect } from 'react';
 import { Lesson } from '@shared/api';
+import Header from './Header/Header';
+import DaysList from './DaysList/DaysList';
+import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
+import styles from './Table.module.scss';
+
+interface TableProps {
+	setModalActive: (active: any) => void;
+	modalActive: boolean;
+	edit: boolean;
+	data: any;
+}
 
 const Table = ({
 	setModalActive,
 	modalActive,
 	edit,
 	data: { trainer_id }
-}: any) => {
+}: TableProps) => {
 	const [date, setDate]: any = useState(moment().startOf('week'));
 	const [data, setData]: any = useState(initData(date));
 
