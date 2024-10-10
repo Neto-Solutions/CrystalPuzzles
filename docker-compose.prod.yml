@@ -1,30 +1,30 @@
 version: "3.8"
 
 services:
-  # db:
-  #   container_name: ${PG_HOST}
-  #   image: postgres:latest
-  #   env_file:
-  #     - .env
-  #   environment:
-  #     POSTGRES_DB: ${PG_DATABASE}
-  #     POSTGRES_USER: ${PG_USER}
-  #     POSTGRES_PASSWORD: ${PG_PASSWORD}
-  #     POSTGRES_PORT: ${PG_HOST}
-  #     PGDATA: /var/lib/postgresql/data/pgdata
-  #   volumes:
-  #     - ./pgdata:/var/lib/postgresql/data/pgdata
-  #   healthcheck:
-  #     test: pg_isready -U ${PG_USER} -d ${PG_DATABASE}
-  #     interval: 10s
-  #     timeout: 30s
-  #     retries: 5
-  #     start_period: 30s
-  #   restart: unless-stopped
-  #   ports:
-  #     - ${PG_PORT}:5432
-  #   networks:
-  #     - backend
+  db:
+    container_name: ${PG_HOST}
+    image: postgres:latest
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${PG_DATABASE}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_PORT: ${PG_HOST}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: pg_isready -U ${PG_USER} -d ${PG_DATABASE}
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    ports:
+      - ${PG_PORT}:5432
+    networks:
+      - backend
 
   redis:
     container_name: redis
@@ -44,7 +44,7 @@ services:
       - .env
     command: sh -c "cd /backend && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
     depends_on:
-      # - db
+      - db
       - redis
     restart: always
     ports:
@@ -83,8 +83,6 @@ services:
     networks:
       - frontend
       - backend
-
-  
 
 networks:
   backend:
