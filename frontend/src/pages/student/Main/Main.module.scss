@@ -37,12 +37,11 @@
 	background-position-y: 80%;
 	grid-area: reward;
 
-
 	@include sm() {
 		background-size: auto 50%;
-	// 	background-image: none;
-	// 	display: grid;
-	// 	place-content: center;
+		// 	background-image: none;
+		// 	display: grid;
+		// 	place-content: center;
 	}
 }
 
@@ -57,7 +56,6 @@
 		min-height: 180px;
 	}
 
-	
 	@include sm() {
 		width: 100%;
 		min-height: 120px;
@@ -74,7 +72,7 @@
 			@include font(var(--ff-first), 24px, 500);
 			text-align: center;
 			margin-top: auto;
-			
+
 			@include md() {
 				font-size: 20px;
 			}
@@ -107,10 +105,28 @@
 
 .btn {
 	grid-area: btn;
-
+	cursor: pointer;
 	@include sm() {
 		width: 100%;
 		display: grid;
 		place-content: center;
+	}
+}
+.modal_container {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.modal > div {
+	background-color: transparent;
+	border: none;
+}
+.feedback_btn {
+	width: 100%;
+	margin-top: 20px;
+
+	&:hover {
+		background-color: white;
 	}
 }

@@ -8,6 +8,8 @@ interface CardLinkProps {
 	children?: ReactNode | string;
 	to?: any;
 	className?: string;
+
+	[key: string]: any;
 }
 
 export default function CardLink({

@@ -1,8 +1,9 @@
 import styles from './Main.module.scss';
-import { Page } from '@shared/ui';
+import { Modal, Page } from '@shared/ui';
 import { Feedback, ScheduleList } from '@features';
 import { CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
+import { useState } from 'react';
 // import { useState } from 'react';
 
 interface MainPageProps {
@@ -11,6 +12,7 @@ interface MainPageProps {
 
 export default function MainPage({ title }: MainPageProps) {
 	const isMobile = useResize('sm');
+	const [feedbackModal, setFeedbackModal] = useState(false);
 
 	//TODO: нужен будет рефактор стилей
 	return (
@@ -45,8 +47,25 @@ export default function MainPage({ title }: MainPageProps) {
 				</CardLink>
 
 				{isMobile ? (
-					// <Button title="Написать тренеру" className={styles.btn} />
-					<CardLink title="Обратная связь" className={styles.btn} />
+					<>
+						<Modal
+							active={feedbackModal}
+							setActive={setFeedbackModal}
+							className={styles.modal}
+						>
+							<Feedback className={styles.feedback} title="Обратная связь" />
+							<Button
+								className={styles.feedback_btn}
+								bgColor="dark"
+								title="Отправить комментарий"
+							/>
+						</Modal>
+						<CardLink
+							title="Обратная связь"
+							className={styles.btn}
+							onClick={() => setFeedbackModal(true)}
+						/>
+					</>
 				) : (
 					<>
 						<Feedback className={styles.feedback} title="Обратная связь" />
