@@ -4,20 +4,17 @@ import { Feedback, ScheduleList } from '@features';
 import { CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
 // import { useState } from 'react';
-// import RewardsPopup from './Reward/Reward';
 
 interface MainPageProps {
 	title: string;
 }
 
 export default function MainPage({ title }: MainPageProps) {
-	// const [reward, setReward]: any = useState(false);
 	const isMobile = useResize('sm');
 
 	//TODO: нужен будет рефактор стилей
 	return (
 		<Page title={title}>
-			{/* {reward && <RewardsPopup onHide={() => setReward(false)} />} */}
 			<div className={styles.wrapper}>
 				<CardLink
 					to="/reward"

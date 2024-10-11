@@ -33,18 +33,16 @@
 	background-image: url('./assets/fux.svg');
 	background-repeat: no-repeat;
 	background-position: bottom;
-	background-size: 35%;
+	background-size: auto 70%;
 	background-position-y: 80%;
 	grid-area: reward;
 
-	@include md() {
-		width: 100%;
-	}
 
 	@include sm() {
-		background-image: none;
-		display: grid;
-		place-content: center;
+		background-size: auto 50%;
+	// 	background-image: none;
+	// 	display: grid;
+	// 	place-content: center;
 	}
 }
 
@@ -55,6 +53,11 @@
 	min-height: 238px;
 	// aspect-ratio: 1;
 
+	@include md() {
+		min-height: 180px;
+	}
+
+	
 	@include sm() {
 		width: 100%;
 		min-height: 120px;
@@ -83,13 +86,13 @@
 	padding: 20px;
 	grid-area: schedule;
 
-	h2 {
-		margin-bottom: 50px;
+	// h2 {
+	// 	margin-bottom: 50px;
 
-		@include md() {
-			margin-bottom: 20px;
-		}
-	}
+	// 	@include md() {
+	// 		margin-bottom: 20px;
+	// 	}
+	// }
 
 	@include sm() {
 		width: 100%;
