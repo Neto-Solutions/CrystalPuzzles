@@ -28,7 +28,6 @@
 }
 
 .error {
-	margin-top: -15px;
 	color: red;
 	&::before {
 		content: '* ';
@@ -42,9 +41,13 @@
 }
 
 .link {
+	cursor: pointer;
 	color: #2b2d91;
 	font-family: 'Rubik';
 	font-size: 14px;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .btn_container {

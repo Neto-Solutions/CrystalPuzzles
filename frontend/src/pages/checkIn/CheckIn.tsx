@@ -1,6 +1,6 @@
 import styles from './CheckIn.module.scss';
 import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Wrapper from './wrapper/Wrapper';
 import Input from './input/Input';
 import Password from './password/Password';
@@ -15,8 +15,18 @@ export default function CheckInPage({ login = false }: any) {
 
 	function handleSubmit(e: FormEvent) {
 		e.preventDefault();
+		checkIn(e);
+	}
+
+	async function checkIn(e: FormEvent) {
 		const data = mapUserForm(e);
-		login ? Auth.login(data) : Auth.register(data);
+		let err;
+		if (login) {
+			[, err] = await Auth.login(data);
+		} else {
+			[, err] = await Auth.register(data);
+		}
+		setErr(err);
 	}
 
 	return (
@@ -29,7 +39,14 @@ export default function CheckInPage({ login = false }: any) {
 					<form onSubmit={handleSubmit} className={styles.form}>
 						{!login && (
 							<>
-								<Input label="ФИО" dataKey="name" type="text" />
+								<Input
+									label="ФИО"
+									dataKey="name"
+									type="text"
+									required
+									// pattern="^[а-яА-ЯёЁ]{3,} [а-яА-ЯёЁ]{3,} [а-яА-ЯёЁ]{3,}$"
+									placeholder="Иванов Иван Иванович"
+								/>
 							</>
 						)}
 						{!login && (
@@ -38,11 +55,20 @@ export default function CheckInPage({ login = false }: any) {
 									label="Введите дату рождения"
 									dataKey="birthday"
 									type="date"
+									min="1900-01-01"
+									max="2024-01-01"
+									required
 								/>
 							</>
 						)}
 
-						<Input label="Ваш e-mail" dataKey="email" type="email" required />
+						<Input
+							label="Ваш e-mail"
+							dataKey="email"
+							type="email"
+							required
+							placeholder="ivanov@example.com"
+						/>
 
 						<Password />
 
@@ -50,9 +76,9 @@ export default function CheckInPage({ login = false }: any) {
 
 						{login && (
 							<div className={styles.forget_password}>
-								<a href="/#" className={styles.link}>
+								<Link to="/registration" className={styles.link}>
 									Забыли пароль?
-								</a>
+								</Link>
 							</div>
 						)}
 
@@ -64,7 +90,7 @@ export default function CheckInPage({ login = false }: any) {
 								type="submit"
 								width="100%"
 								height="53px"
-								bgColor='light'
+								bgColor="light"
 							/>
 
 							{login && (
@@ -80,7 +106,7 @@ export default function CheckInPage({ login = false }: any) {
 											navigate('/registration');
 										}}
 										className={styles.register_btn}
-										bgColor='dark'
+										bgColor="dark"
 									/>
 								</>
 							)}

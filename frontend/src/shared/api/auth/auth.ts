@@ -13,15 +13,22 @@ class Auth {
 		return data;
 	}
 
-	async register(params: RegisterParams) {
-		const { data }: any = await this.#host
+	async register(params: RegisterParams): Promise<void | any> {
+		const data = await this.#host
 			.post('/user/register', params)
-			.then(() => this.login(params))
+			.then((res) => {
+				if (res.status === 409) {
+					return [null, 'Такой пользователь уже существует'];
+				} else {
+					return this.login(params);
+				}
+			})
 			.catch(() => [null, 'Не удалось зарегистрироваться']);
+
 		return data;
 	}
 
-	async login(params: LoginParams) {
+	async login(params: LoginParams): Promise<void | any> {
 		const { email, password } = params;
 		const formData = new FormData();
 		formData.append('username', email);
@@ -29,9 +36,13 @@ class Auth {
 
 		const data = await this.#host
 			.post('/auth/login', formData)
-			.then(({ data: { access_token } }) => Cookies.set('token', access_token))
-			.then(() => location.replace('/'))
-			.catch(() => [null, 'Не удалось войти']);
+			.then(({ data: { access_token } }) => {
+				Cookies.set('token', access_token);
+			})
+			.then(() => {
+				location.replace('/');
+			})
+			.catch(() => [null, 'Не верное сочетание логина/пароля']);
 		return data;
 	}
 
