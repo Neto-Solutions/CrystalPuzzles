@@ -11,19 +11,28 @@
 		'button info';
 
 	@include md() {
+		padding-right: 10px;
 		grid-template-areas:
 			'student info'
 			'name info'
 			'button info';
 	}
-
-	@include sm() {
+	
+	@media (max-width: 550px) {
 		grid-template-columns: 40% 60%;
 		grid-template-areas:
 			'student name'
 			'student button'
 			'info info';
 	}
+
+	// @include sm() {
+	// 	grid-template-columns: 40% 60%;
+	// 	grid-template-areas:
+	// 		'student name'
+	// 		'student button'
+	// 		'info info';
+	// }
 }
 
 .student {
