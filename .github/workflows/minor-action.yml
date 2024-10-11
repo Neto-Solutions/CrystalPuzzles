@@ -172,7 +172,10 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker stop $(docker ps -aq) && \
+            stop docker stop nginx && \
+            stop docker stop front && \
+            stop docker stop api && \
+            stop docker stop redis && \
             sudo docker system prune --all --force \
             || echo "No docker conteiners are running"
 

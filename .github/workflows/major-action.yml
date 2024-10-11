@@ -61,8 +61,8 @@ jobs:
         run: docker-compose ps
       - name: Check api
         run: nc -z "127.0.0.1" "8001" && echo "api is available" || exit 1
-      - name: Check postgres
-        run: nc -z "127.0.0.1" "5432" && echo "postgres is available" || exit 1
+      # - name: Check postgres
+      #   run: nc -z "127.0.0.1" "5432" && echo "postgres is available" || exit 1
       - name: Check front
         run: nc -z "127.0.0.1" "8080" && echo "front is available" || exit 1
       - name: Check redis
@@ -171,7 +171,10 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            sudo docker stop $(docker ps -aq) && \
+            stop docker stop nginx && \
+            stop docker stop front && \
+            stop docker stop api && \
+            stop docker stop redis && \
             sudo docker system prune --all --force \
             || echo "No docker conteiners are running"
 
