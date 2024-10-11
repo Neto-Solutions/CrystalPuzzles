@@ -47,11 +47,16 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 				)}
 			</div>
 			{edit && modalActive ? (
-				<Modal active={modalActive} setActive={setModalActive}>
+				<Modal
+					active={modalActive}
+					setActive={setModalActive}
+					className={styles.modal}
+				>
 					<AddTreanerSchedule
 						day={modalActive}
 						data={data}
 						setActive={setModalActive}
+						closeModal={() => setModalActive(false)}
 					/>
 				</Modal>
 			) : null}
