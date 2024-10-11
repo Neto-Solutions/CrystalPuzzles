@@ -5,22 +5,26 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	gap: var(--gap);
 
 	@include md() {
 		padding: 10px 0;
 	}
+
 	.title_wrapper {
 		margin-left: 300px;
 		width: 100%;
-
-		@include md() {
+		@include lg() {
 			margin-left: 0;
+			display: grid;
+			place-content: center;
 		}
 
 		.title {
 			font-family: 'Roboto';
 			font-size: 48px;
 			font-weight: 400;
+			text-wrap: nowrap;
 			@include md() {
 				margin: auto;
 				display: block;
@@ -50,7 +54,7 @@
 			display: flex;
 			flex-wrap: nowrap;
 		}
-		@include sm() {
+		@include md() {
 			&::after {
 				display: none;
 			}
