@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { ReactComponent as DownArrow } from '@shared/assets/svg/arrow.svg';
 import styles from './Button.module.scss';
 
 type ButtonColors = 'dark' | 'light';
@@ -16,7 +15,6 @@ interface IButtonProps {
 
 export default function Button({
 	title = false,
-	downArrow = false,
 	children,
 	className,
 	width,
@@ -35,17 +33,8 @@ export default function Button({
 			}}
 			{...props}
 		>
-			{downArrow ? (
-				<>
-					{title}
-					{<DownArrow />}
-				</>
-			) : (
-				<>
-					{title}
-					{children}
-				</>
-			)}
+			{title}
+			{children ? <>{children}</> : null}
 		</button>
 	);
 }
