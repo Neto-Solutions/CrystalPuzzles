@@ -13,7 +13,7 @@ services:
       POSTGRES_PORT: ${PG_HOST}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - ./pgdata:/var/lib/postgresql/data/pgdata
+      - pgdata:/var/lib/postgresql/data/pgdata
     healthcheck:
       test: pg_isready -U ${PG_USER} -d ${PG_DATABASE}
       interval: 10s
@@ -90,3 +90,7 @@ networks:
 
   frontend:
     driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
