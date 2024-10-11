@@ -30,90 +30,88 @@ export default function CheckInPage({ login = false }: any) {
 	}
 
 	return (
-		<>
-			<Wrapper>
-				<div className={styles.container}>
-					<h1 className={styles.header}>
-						{login ? 'Войти' : 'Зарегистрироваться'}
-					</h1>
-					<form onSubmit={handleSubmit} className={styles.form}>
-						{!login && (
-							<>
-								<Input
-									label="ФИО"
-									dataKey="name"
-									type="text"
-									required
-									// pattern="^[а-яА-ЯёЁ]{3,} [а-яА-ЯёЁ]{3,} [а-яА-ЯёЁ]{3,}$"
-									placeholder="Иванов Иван Иванович"
-								/>
-							</>
-						)}
-						{!login && (
-							<>
-								<Input
-									label="Введите дату рождения"
-									dataKey="birthday"
-									type="date"
-									min="1900-01-01"
-									max="2024-01-01"
-									required
-								/>
-							</>
-						)}
+		<Wrapper>
+			<div className={styles.container}>
+				<h1 className={styles.header}>
+					{login ? 'Войти' : 'Зарегистрироваться'}
+				</h1>
+				<form onSubmit={handleSubmit} className={styles.form}>
+					{!login && (
+						<>
+							<Input
+								label="ФИО"
+								dataKey="name"
+								type="text"
+								required
+								// pattern="^[а-яА-ЯёЁ]{3,} [а-яА-ЯёЁ]{3,} [а-яА-ЯёЁ]{3,}$"
+								placeholder="Иванов Иван Иванович"
+							/>
+						</>
+					)}
+					{!login && (
+						<>
+							<Input
+								label="Введите дату рождения"
+								dataKey="birthday"
+								type="date"
+								min="1900-01-01"
+								max="2024-01-01"
+								required
+							/>
+						</>
+					)}
 
-						<Input
-							label="Ваш e-mail"
-							dataKey="email"
-							type="email"
-							required
-							placeholder="ivanov@example.com"
+					<Input
+						label="Ваш e-mail"
+						dataKey="email"
+						type="email"
+						required
+						placeholder="ivanov@example.com"
+					/>
+
+					<Password />
+
+					{login && (
+						<div className={styles.forget_password}>
+							<Link to="/change-password" className={styles.link}>
+								Забыли пароль?
+							</Link>
+						</div>
+					)}
+
+					{err && <div className={styles.error}>{err}</div>}
+
+					<Politics />
+
+					<div className={styles.btn_container}>
+						<Button
+							title={login ? 'Войти' : 'Зарегистрироваться'}
+							type="submit"
+							width="100%"
+							height="53px"
+							bgColor="light"
 						/>
 
-						<Password />
-
-						{err && <div className={styles.error}>{err}</div>}
-
 						{login && (
-							<div className={styles.forget_password}>
-								<Link to="/change-password" className={styles.link}>
-									Забыли пароль?
-								</Link>
-							</div>
+							<>
+								<label htmlFor="registration" className={styles.link}>
+									Нет аккаунта?
+								</label>
+								<Button
+									title="Зарегистрироваться"
+									id="registration"
+									onClick={() => {
+										setErr(null);
+										navigate('/registration');
+									}}
+									className={styles.register_btn}
+									bgColor="dark"
+								/>
+							</>
 						)}
-
-						<Politics />
-
-						<div className={styles.btn_container}>
-							<Button
-								title={login ? 'Войти' : 'Зарегистрироваться'}
-								type="submit"
-								width="100%"
-								height="53px"
-								bgColor="light"
-							/>
-
-							{login && (
-								<>
-									<label htmlFor="registration" className={styles.link}>
-										Нет аккаунта?
-									</label>
-									<Button
-										title="Зарегистрироваться"
-										id="registration"
-										onClick={() => {
-											setErr(null);
-											navigate('/registration');
-										}}
-										className={styles.register_btn}
-										bgColor="dark"
-									/>
-								</>
-							)}
-						</div>
-					</form>
-				</div>
-			</Wrapper>
-		</>
+					</div>
+				</form>
+			</div>
+		</Wrapper>
 	);
 }

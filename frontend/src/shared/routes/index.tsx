@@ -5,7 +5,7 @@ import { ProfilePage, ErrorPage } from '@pages/shared';
 import { redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@app/providers/store/profile';
-import ChangePass from '@pages/changePass/ChangePass';
+import ChangePass from '@pages/checkIn/changePass/ChangePass';
 
 const MainRouter = (): any => {
 	const { role } = useSelector(selectProfile);
