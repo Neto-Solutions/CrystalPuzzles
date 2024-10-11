@@ -1,9 +1,19 @@
 @use '~styles/mixins' as *;
 
+.wrapper {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: var(--gap);
+	@include xl() {
+		grid-template-columns: 1fr;
+	}
+}
 .table {
 	width: 100%;
-	max-width: 714px;
-	height: min-content;
+	// max-width: 714px;
+	// height: min-content;
 	border: var(--border);
 	border-radius: var(--radius);
 	@include sm() {
