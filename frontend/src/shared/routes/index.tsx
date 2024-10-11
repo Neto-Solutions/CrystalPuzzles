@@ -6,6 +6,7 @@ import { redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@app/providers/store/profile';
 import ChangePass from '@pages/checkIn/changePass/ChangePass';
+import Cookies from 'js-cookie';
 
 const MainRouter = (): any => {
 	const { role } = useSelector(selectProfile);
@@ -15,7 +16,10 @@ const MainRouter = (): any => {
 			element: <App />,
 			errorElement: <ErrorPage />,
 			loader: () => {
-				if (!role) return redirect('/login');
+				if (!role || role === 'admin') {
+					Cookies.remove('token');
+					return redirect('/login');
+				}
 				return null;
 			},
 			children: [
