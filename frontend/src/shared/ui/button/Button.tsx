@@ -34,7 +34,7 @@ export default function Button({
 			{...props}
 		>
 			{title}
-			{children ? <>{children}</> : null}
+			{children ? children : null}
 		</button>
 	);
 }

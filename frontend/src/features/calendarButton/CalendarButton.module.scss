@@ -11,4 +11,13 @@
 	@include sm() {
 		font-size: var(--fz-btn-xs);
 	}
+
+	.icon {
+		transition: all 0.3s ease-in-out;
+	}
+	&:hover {
+		.icon {
+			stroke: white;
+		}
+	}
 }
