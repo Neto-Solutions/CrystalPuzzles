@@ -5,6 +5,7 @@ import { ProfilePage, ErrorPage } from '@pages/shared';
 import { redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@app/providers/store/profile';
+import ChangePass from '@pages/changePass/ChangePass';
 
 const MainRouter = (): any => {
 	const { role } = useSelector(selectProfile);
@@ -26,7 +27,9 @@ const MainRouter = (): any => {
 					? studentRouter
 					: role === 'trainer'
 						? trainerRouter
-						: supervisorRouter)
+						: role === 'supervisor'
+							? supervisorRouter
+							: [])
 			]
 		},
 		{
@@ -36,6 +39,10 @@ const MainRouter = (): any => {
 		{
 			path: 'registration',
 			element: <CheckInPage />
+		},
+		{
+			path: 'change-password',
+			element: <ChangePass />
 		}
 	];
 };

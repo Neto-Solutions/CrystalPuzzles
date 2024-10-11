@@ -76,7 +76,7 @@ export default function CheckInPage({ login = false }: any) {
 
 						{login && (
 							<div className={styles.forget_password}>
-								<Link to="/registration" className={styles.link}>
+								<Link to="/change-password" className={styles.link}>
 									Забыли пароль?
 								</Link>
 							</div>
