@@ -1,0 +1,47 @@
+@use '~styles/mixins' as *;
+.component {
+	padding-inline: 10px;
+}
+
+.wrapper {
+	margin-bottom: 40px;
+	padding: 20px;
+	display: flex;
+	gap: 60px;
+	border: var(--border);
+	border-radius: var(--radius);
+	background-color: var(--bg-card);
+
+	@include lg() {
+		flex-direction: column;
+		gap: 30px;
+	}
+}
+
+.revard_wrapper {
+	width: 100%;
+	display: flex;
+	gap: 40px;
+
+	@include sm() {
+		gap: 20px;
+	}
+}
+
+.img {
+	width: 130px;
+	filter: grayscale(100%);
+	transform: scale(0.7);
+
+	@media (max-width: 580px) {
+		width: 100px;
+	}
+	@include sm() {
+		width: 80px;
+	}
+}
+
+.active {
+	filter: grayscale(0);
+	transform: scale(1);
+}

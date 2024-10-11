@@ -1,15 +1,21 @@
-import 'react-time-picker/dist/TimePicker.css';
-import 'react-clock/dist/Clock.css';
 import { useState } from 'react';
+import TimePicker from 'react-time-picker';
 import moment from 'moment';
 import { Button } from '@shared/ui';
 import { Lesson } from '@shared/api';
 import PlacesDropdown from 'features/placesDropdown/PlacesDropdown';
-import styles from './Modal.module.scss';
 import TrainersDropdown from 'features/trainersDropdown/TrainersDropdown';
-import TimePicker from 'react-time-picker';
+import { ReactComponent as CloseButton } from '@shared/assets/svg/close.svg';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
+import styles from './Modal.module.scss';
 
-export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
+export const AddTreanerSchedule = ({
+	day,
+	data,
+	setActive,
+	closeModal
+}: any) => {
 	const [newLesson, setNewLesson]: any = useState({
 		space_id: null,
 		trainer_id: data?.trainer_id,
@@ -25,9 +31,15 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 		setActive(false);
 	}
 
+	//TODO: почистить стили
 	return (
 		<div className={styles.container}>
 			{/* <DateChanger day={day} className={styles.header} /> */}
+			<header className={styles.header}>
+				<button className={styles.close_btn} onClick={closeModal}>
+					<CloseButton className={styles.icon} width={16} />
+				</button>
+			</header>
 			<main className={styles.main}>
 				<TrainersDropdown
 					state={newLesson.trainer_id}
@@ -37,30 +49,6 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 					className={styles.trainer}
 					single
 				/>
-				<TimePicker
-					className={styles.time}
-					maxDetail="minute"
-					onInput={(e) => {
-						if (e.target.value.length >= 2) {
-							e.target.value = e.target.value.slice(0, 2);
-						}
-					}}
-					onChange={(e: any) => {
-						if (!e) return;
-						setNewLesson((prev: any) => ({
-							...prev,
-							start: moment(day)
-								.set({ hour: e.split(':')[0], minute: e.split(':')[1] })
-								.format()
-						}));
-					}}
-					value={moment(newLesson.start).format('HH:mm')}
-					format="HH:mm"
-					locale="sv-sv"
-					disableClock
-					clearIcon={null}
-				/>
-
 				<PlacesDropdown
 					state={newLesson.space_id}
 					setState={(id: string) =>
@@ -69,6 +57,31 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 					className={styles.place}
 					single
 				/>
+				<div className={styles.time_wrapper}>
+					<TimePicker
+						className={styles.time}
+						maxDetail="minute"
+						onInput={(e) => {
+							if (e.target.value.length >= 2) {
+								e.target.value = e.target.value.slice(0, 2);
+							}
+						}}
+						onChange={(e: any) => {
+							if (!e) return;
+							setNewLesson((prev: any) => ({
+								...prev,
+								start: moment(day)
+									.set({ hour: e.split(':')[0], minute: e.split(':')[1] })
+									.format()
+							}));
+						}}
+						value={moment(newLesson.start).format('HH:mm')}
+						format="HH:mm"
+						locale="sv-sv"
+						disableClock
+						clearIcon={null}
+					/>
+				</div>
 				<textarea
 					className={styles.textarea}
 					onChange={(e) =>
@@ -78,7 +91,7 @@ export const AddTreanerSchedule = ({ day, data, setActive }: any) => {
 						}))
 					}
 				></textarea>
-				<Button className={styles.submit} onClick={handleSubmit}>
+				<Button className={styles.submit} onClick={handleSubmit} bgColor="dark">
 					Отправить
 				</Button>
 			</main>
