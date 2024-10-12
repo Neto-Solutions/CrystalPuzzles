@@ -5,7 +5,7 @@ import Info from './Info/Info';
 import { Exercises } from '@widgets';
 import { FormEvent, useState } from 'react';
 import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
-import { CheckList, Lesson } from '@shared/api';
+import { CheckList } from '@shared/api';
 import { TrainingI } from '@shared/api/checklist/checkList.interface';
 import { useLoaderData } from 'react-router-dom';
 
@@ -34,11 +34,17 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 			}
 		}
 
-		CheckList.create({
+		createCheckList();
+	}
+
+	async function createCheckList() {
+		const [, err] = await CheckList.create({
 			lesson_id: id,
 			student_ids: students,
-			training_check: result
-		}).catch();
+			training_check: []
+		});
+		if (err) return;
+		location.replace('/exercises/' + id);
 	}
 
 	return (
