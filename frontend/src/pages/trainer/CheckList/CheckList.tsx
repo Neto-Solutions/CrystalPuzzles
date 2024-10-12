@@ -5,7 +5,7 @@ import Info from './Info/Info';
 import { Exercises } from '@widgets';
 import { FormEvent, useState } from 'react';
 import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
-import { CheckList } from '@shared/api';
+import { CheckList, Lesson } from '@shared/api';
 import { TrainingI } from '@shared/api/checklist/checkList.interface';
 import { useLoaderData } from 'react-router-dom';
 
@@ -15,8 +15,6 @@ interface CheckListPageProps {
 
 export default function CheckListPage({ title }: CheckListPageProps) {
 	const [students, setStudents] = useState([]);
-	// const [places, setPlaces] = useState([]);
-
 	const { id }: any = useLoaderData();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -47,7 +45,7 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 		<Page title={title}>
 			<div className={styles.wrapper}>
 				<ProfileCard className={styles.profile} />
-				<Info className={styles.info} />
+				<Info className={styles.info} lessonId={id} />
 
 				<section className={styles.panel_container}>
 					<StudentsDropdown state={students} setState={setStudents} />
