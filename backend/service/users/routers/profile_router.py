@@ -7,11 +7,10 @@ from starlette.responses import JSONResponse
 
 from common.dependensies import UserDep
 from common.schema.base_schemas import Message
-from common.schema.base_user_schema import BaseUserSchema
 from core.logger import logger
 from service.users.dependensies import UserServiceDep, UserUOWDep
 from service.users.schemas import EditUserSchema, PhotoReadSchema, EditViewSchema, \
-    AvatarSchema
+    AvatarSchema, ProfileUserSchema
 
 profile_router = APIRouter(
     prefix="/api/v1/profile",
@@ -21,7 +20,7 @@ profile_router = APIRouter(
 
 @profile_router.get(
     "/",
-    response_model=BaseUserSchema,
+    response_model=ProfileUserSchema,
     summary="Возвращает данные пользователя",
     responses={
         401: {"description": "Не авторизованный пользователь"},
@@ -51,7 +50,7 @@ async def edit_account(
 ):
     """ authenticate """
     data.id = current_user.id
-    result = await user_service.edit(uow, data)
+    result = await user_service.edit_user(uow, data)
     if result:
         return result
     return JSONResponse(
