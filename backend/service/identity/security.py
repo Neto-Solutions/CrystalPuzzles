@@ -3,6 +3,7 @@ import string
 from datetime import timedelta, datetime
 from typing import Any, Optional, Union, Callable, Coroutine
 import sqlalchemy as sa
+from sqlalchemy.orm import selectinload
 from fastapi import Depends, HTTPException
 import bcrypt
 
@@ -99,6 +100,7 @@ async def get_user_by_email(email: str) -> Optional[User]:  # ToDo: Замени
                 User.email == email,
                 User.deleted.__eq__(False),
             ))
+            .options(selectinload(User.extensions))
         )
         user = result.scalar_one_or_none()
         return None if not user else user
