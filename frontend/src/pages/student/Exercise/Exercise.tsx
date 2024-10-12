@@ -13,7 +13,7 @@ interface ExercisePageProps {
 
 export default function ExercisePage({ title }: ExercisePageProps) {
 	const { id }: any = useLoaderData();
-	const [data, setData] = useState<any>();
+	const [data, setData] = useState<any>(null);
 	const [exercises, setExercises] = useState<any>([]);
 
 	useEffect(() => {
@@ -61,7 +61,7 @@ export default function ExercisePage({ title }: ExercisePageProps) {
 					</div>
 				</section>
 				<div className={styles.reward_wrapper}>
-					<span>{data.award || 'Мои награды'}</span>
+					<span>{data?.award || 'Мои награды'}</span>
 				</div>
 				<Feedback className={styles.feedback} title="Комментарий тренера" />
 			</div>
