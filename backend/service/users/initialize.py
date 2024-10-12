@@ -37,20 +37,20 @@ class RolesInitialize(AbstractInitializer):
 class BaseUserInitialize(AbstractInitializer):
     model = User
     entities = [
-        {
-            "email": "admin@crystal.com",
-            "hashed_password": hash_password("adminpass"),
-            "role": "admin",
-            "firstname": "Смирнов",
-            "lastname": "Алексей",
-            "surname": "Иванович",
-            "birthday": datetime(1985, 3, 12),
-            "is_superuser": True,
-            "is_active": True,
-            "is_verified": True,
-            "date_add": datetime.now(),
-            "date_update": datetime.now()
-        },
+        # {
+        #     "email": "admin@crystal.com",
+        #     "hashed_password": hash_password("adminpass"),
+        #     "role": "admin",
+        #     "firstname": "Смирнов",
+        #     "lastname": "Алексей",
+        #     "surname": "Иванович",
+        #     "birthday": datetime(1985, 3, 12),
+        #     "is_superuser": True,
+        #     "is_active": True,
+        #     "is_verified": True,
+        #     "date_add": datetime.now(),
+        #     "date_update": datetime.now()
+        # },
         {
             "email": "trainer@crystal.com",
             "hashed_password": hash_password("trainerpass"),
