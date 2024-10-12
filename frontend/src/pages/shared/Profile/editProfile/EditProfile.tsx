@@ -113,44 +113,51 @@ export default function EditProfile({
 								defaultValue={profile.extensions?.area}
 							/>
 						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Сопровождающий</label>
-							<input
-								className={styles.input}
-								type="text"
-								data-key="accompanying"
-								defaultValue={profile.extensions?.accompanying}
-							/>
-						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Номер телефона</label>
-							<input
-								className={styles.input}
-								type="tel"
-								pattern="^\+?7\d{10}$"
-								defaultValue={profile.contact}
-								placeholder="+71231231212"
-								data-key="contact"
-							/>
-						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Особенности развития</label>
-							<input
-								className={styles.input}
-								type="text"
-								data-key="health_data"
-								defaultValue={profile.extensions?.health_data}
-							/>
-						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Не любит</label>
-							<input
-								className={styles.input}
-								type="text"
-								data-key="triggers"
-								defaultValue={profile.extensions?.triggers}
-							/>
-						</div>
+
+						{profile.role === 'student' ? (
+							<>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Сопровождающий</label>
+									<input
+										className={styles.input}
+										type="text"
+										data-key="accompanying"
+										defaultValue={profile.extensions?.accompanying}
+									/>
+								</div>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Номер телефона</label>
+									<input
+										className={styles.input}
+										type="tel"
+										pattern="^\+?7\d{10}$"
+										defaultValue={profile.contact}
+										placeholder="+71231231212"
+										data-key="contact"
+									/>
+								</div>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Особенности развития</label>
+									<input
+										className={styles.input}
+										type="text"
+										data-key="health_data"
+										defaultValue={profile.extensions?.health_data}
+									/>
+								</div>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Не любит</label>
+									<input
+										className={styles.input}
+										type="text"
+										data-key="triggers"
+										defaultValue={profile.extensions?.triggers}
+									/>
+								</div>
+							</>
+						) : (
+							''
+						)}
 					</div>
 					<div className={styles.button_wrapper}>
 						<Button title="Сохранить" type="submit" className={styles.btn} />
