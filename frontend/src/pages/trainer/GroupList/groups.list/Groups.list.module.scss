@@ -24,4 +24,10 @@
 	@include sm() {
 		font: var(--fw-medium) 16px var(--ff-second);
 	}
+	.students {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
 }
+
