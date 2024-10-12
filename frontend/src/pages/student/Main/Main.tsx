@@ -43,7 +43,7 @@ export default function MainPage({ title }: MainPageProps) {
 					className={styles.schedule_card}
 					to={'/schedule'}
 				>
-					{!isMobile && <ScheduleList today />}
+					{!isMobile && <ScheduleList today link={false} />}
 				</CardLink>
 
 				{isMobile ? (

@@ -30,7 +30,7 @@ export default function TrainPage({ title }: TrainPageProps) {
 	}
 
 	return (
-		<Page title={title}>
+		<Page title={title} className={styles.container}>
 			<div className={styles.wrapper}>
 				{data &&
 					data.map((item: any, index: number) => {
