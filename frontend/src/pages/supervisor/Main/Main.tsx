@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Page, CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
 import { ScheduleList } from '@features';
@@ -13,6 +13,7 @@ interface MainPageProps {
 }
 
 export default function MainPage({ title }: MainPageProps) {
+	const navigate = useNavigate();
 	const isMobile = useResize('sm');
 
 	return (
@@ -41,12 +42,14 @@ export default function MainPage({ title }: MainPageProps) {
 					bgColor="dark"
 					className={styles.btn_trainer}
 					width="100%"
+					onClick={() => navigate('/trainers')}
 				/>
 				<Button
 					title="Ученики"
 					bgColor="dark"
 					className={styles.btn_student}
 					width="100%"
+					onClick={() => navigate('/students')}
 				/>
 			</div>
 		</Page>
