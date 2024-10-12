@@ -4,30 +4,37 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-}
 
-.group {
-	padding: 16px 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font: var(--fw-medium) 24px var(--ff-first);
-	background: #a1cbf1;
-	border-radius: var(--radius);
-	border: var(--border);
-	cursor: pointer;
-
-	@include md() {
-		font-size: 20px;
-	}
-
-	@include sm() {
-		font: var(--fw-medium) 16px var(--ff-second);
-	}
-	.students {
+	.group_container {
+		height: 57px;
+		padding: 14px 30px;
+		border: var(--border);
+		border-radius: var(--radius);
+		background: #a1cbf1;
 		display: flex;
-		align-items: center;
-		gap: 10px;
+		flex-direction: column;
+		gap: var(--gap);
+		overflow: hidden;
+
+		.group {
+			align-self: center;
+			font: var(--fw-medium) 24px var(--ff-first);
+			cursor: pointer;
+
+			@include md() {
+				font-size: 20px;
+			}
+
+			@include sm() {
+				font: var(--fw-medium) 16px var(--ff-second);
+			}
+		}
+
+		.students {
+			display: flex;
+			flex-direction: column;
+			// align-items: center;
+			gap: 10px;
+		}
 	}
 }
-
