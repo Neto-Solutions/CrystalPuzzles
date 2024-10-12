@@ -29,7 +29,7 @@ class Auth {
 	}
 
 	async login(params: LoginParams): Promise<void | any> {
-		const { email, password } = params;
+		const { email, password, reload = true } = params;
 		const formData = new FormData();
 		formData.append('username', email);
 		formData.append('password', password);
@@ -38,11 +38,30 @@ class Auth {
 			.post('/auth/login', formData)
 			.then(({ data: { access_token } }) => {
 				Cookies.set('token', access_token);
+				if (reload) location.replace('/');
 			})
-			.then(() => {
-				location.replace('/');
-			})
+			.then(() => [null, null])
 			.catch(() => [null, 'Не верное сочетание логина/пароля']);
+		return data;
+	}
+
+	async changePassword(params: {
+		email: string;
+		old_password: string;
+		new_password: string;
+	}) {
+		const { email, old_password, new_password } = params;
+		let data = await this.login({
+			email,
+			password: old_password,
+			reload: false
+		});
+		if (data[1]) return data;
+		data = await this.#host
+			.post('/user/change-password', { old_password, new_password })
+			.then(({ data }) => [data, null])
+			.then(() => location.replace('/'))
+			.catch(() => [null, 'Не удалось изменить пароль']);
 		return data;
 	}
 

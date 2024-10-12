@@ -6,9 +6,9 @@ import styles from './ChangePass.module.scss';
 import { FormEvent, useState } from 'react';
 import Wrapper from '../wrapper/Wrapper';
 import Input from '../input/Input';
+import { Auth } from '@shared/api';
 
 export default function ChangePass() {
-	const [data, setData] = useState();
 	const [err, setErr] = useState<string | null>(null);
 
 	async function handleSubmit(e: FormEvent) {
@@ -19,8 +19,12 @@ export default function ChangePass() {
 			setErr('Пароли не совпадают');
 			return;
 		}
-		// const [, err] = await Auth.changePassword(data);
-		// setData(err);
+
+		const [, err] = await Auth.changePassword(data);
+		if (err) {
+			setErr(err);
+			return;
+		}
 	}
 
 	return (
