@@ -22,13 +22,15 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 
 	return (
 		<Page title={title}>
-			<Table
-				edit={edit}
-				modalActive={modalActive}
-				setModalActive={setModalActive}
-				data={data}
-			/>
-			<div className={styles.buttons_container}>
+			<div className={styles.component}>
+				<Table
+					edit={edit}
+					modalActive={modalActive}
+					setModalActive={setModalActive}
+					data={data}
+					className={styles.table}
+				/>
+				{/* <div className={styles.buttons_container}> */}
 				<TrainersDropdown
 					className={styles.trainer}
 					setState={(id: string) => {
@@ -45,6 +47,7 @@ export default function ShedulePage({ edit = false, title }: ShedulePageProps) {
 						onClick={() => navigate('./edit')}
 					/>
 				)}
+				{/* </div> */}
 			</div>
 			{edit && modalActive ? (
 				<Modal

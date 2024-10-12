@@ -1,24 +1,25 @@
 @use '~styles/mixins' as *;
-
-.buttons_container {
+.component {
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-areas: 'trainer . edit';
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas:
+		'table table table'
+		'trainer . edit';
 	gap: 20px;
-	place-content: end;
 
 	@include xl() {
 		grid-template-columns: repeat(2, 1fr);
-		grid-template-areas: 'trainer edit';
+		grid-template-areas: 'trainer edit' 'table table';
 	}
-
-	@include sm() {
+	@media (max-width: 600px) {
 		grid-template-columns: 1fr;
-		grid-template-areas:
-			'trainer'
-			'edit';
+		grid-template-areas: 'trainer' 'edit' 'table ';
 	}
+}
+
+.table {
+	grid-area: table;
 }
 
 button {
