@@ -61,7 +61,7 @@ export default function ExercisePage({ title }: ExercisePageProps) {
 					</div>
 				</section>
 				<div className={styles.reward_wrapper}>
-					<span>{data?.award || 'Мои награды'}</span>
+					<span>{'Мои награды'}</span>
 				</div>
 				<Feedback className={styles.feedback} title="Комментарий тренера" />
 			</div>

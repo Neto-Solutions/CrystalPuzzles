@@ -1,6 +1,10 @@
 import { $authHost } from '@shared/api/axios.instances';
 import Cookies from 'js-cookie';
-import { LoginParams, RegisterParams } from './auth.interface';
+import {
+	EditProfileParams,
+	LoginParams,
+	RegisterParams
+} from './auth.interface';
 
 class Auth {
 	#host = $authHost;
@@ -42,6 +46,14 @@ class Auth {
 			})
 			.then(() => [null, null])
 			.catch(() => [null, 'Не верное сочетание логина/пароля']);
+		return data;
+	}
+
+	async updateProfile(params: EditProfileParams) {
+		const data = await this.#host
+			.put('/profile/edit', params)
+			.then(({ data }) => [data, null])
+			.catch(() => [null, 'Не удалось обновить профиль']);
 		return data;
 	}
 

@@ -15,8 +15,6 @@ interface CheckListPageProps {
 
 export default function CheckListPage({ title }: CheckListPageProps) {
 	const [students, setStudents] = useState([]);
-	// const [places, setPlaces] = useState([]);
-
 	const { id }: any = useLoaderData();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -36,18 +34,24 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 			}
 		}
 
-		CheckList.create({
+		createCheckList();
+	}
+
+	async function createCheckList() {
+		const [, err] = await CheckList.create({
 			lesson_id: id,
 			student_ids: students,
-			training_check: result
-		}).catch();
+			training_check: []
+		});
+		if (err) return;
+		location.replace('/exercises/' + id);
 	}
 
 	return (
 		<Page title={title}>
 			<div className={styles.wrapper}>
 				<ProfileCard className={styles.profile} />
-				<Info className={styles.info} />
+				<Info className={styles.info} lessonId={id} />
 
 				<section className={styles.panel_container}>
 					<StudentsDropdown state={students} setState={setStudents} />
