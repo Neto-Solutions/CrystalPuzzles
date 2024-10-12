@@ -1,6 +1,7 @@
 @use '~styles/mixins' as *;
 
 .wrapper {
+
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-areas:
@@ -17,16 +18,40 @@
 	}
 
 	@include lg() {
-		
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas:
+			'profile panel'
+			'profile info'
+			'exercises exercises';
 	}
 
-
 	@include md() {
+		padding-left: 20px;
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-areas:
 			'profile info'
 			'panel exercises'
 			'panel exercises';
+	}
+
+	@media (max-width: 700px) {
+		grid-template-areas:
+			'profile info'
+			'panel panel'
+			'exercises exercises';
+	}
+	@include sm() {
+
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'profile'
+			'info'
+			'panel'
+			'exercises';
+			img {
+				width: 200px;
+				margin: 0 auto;
+			}
 	}
 }
 
