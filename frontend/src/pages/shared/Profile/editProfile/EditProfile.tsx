@@ -54,7 +54,7 @@ export default function EditProfile({
 			setErr(err);
 			return;
 		}
-		if (!userPhoto) location.replace('/profile');
+		if (!userPhoto) location.replace('/');
 		[, err] = await User.setAvatar(userPhoto);
 		if (err) {
 			setErr(err);
