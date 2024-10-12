@@ -105,8 +105,10 @@
 
 .exit {
 	margin-top: 20px;
-	display: grid;
-	place-content: center;
+	@include md() {
+		display: grid;
+		place-content: center;
+	}
 	span {
 		color: #2b2d91;
 	}
