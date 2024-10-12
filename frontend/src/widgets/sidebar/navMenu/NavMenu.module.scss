@@ -57,7 +57,7 @@
 
 .active {
 	height: 100%;
-}
+}z
 
 .item:nth-last-child(1) {
 	margin-bottom: 30px;
@@ -86,4 +86,9 @@
 .role {
 	font: var(--fw-regular) 12px var(--ff-second);
 	text-transform: uppercase;
+}
+
+.mobile_item {
+	display: grid;
+	place-content: center;
 }
