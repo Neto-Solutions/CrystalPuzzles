@@ -12,8 +12,8 @@
 }
 .table {
 	width: 100%;
-	// max-width: 714px;
-	// height: min-content;
+	max-width: 714px;
+	height: min-content;
 	border: var(--border);
 	border-radius: var(--radius);
 	@include sm() {

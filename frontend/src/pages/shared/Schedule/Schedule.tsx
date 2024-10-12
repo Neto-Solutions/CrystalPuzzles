@@ -29,7 +29,8 @@ export default function SchedulePage({ link, title }: SchedulePageProps) {
 			end_date: date.to.toISOString()
 		});
 		if (err) return;
-		setData(data);
+		if (data.length) setData(data);
+		else setData(Array(6).fill({}));
 	}
 	return (
 		<Page title={title}>
