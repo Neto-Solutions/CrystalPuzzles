@@ -30,7 +30,7 @@ export default function SchedulePage({ link, title }: SchedulePageProps) {
 		});
 		if (err) return;
 		if (data.length) setData(data);
-		else setData(Array(6).fill({}));
+		// else setData(Array(6).fill({}));
 	}
 	return (
 		<Page title={title}>

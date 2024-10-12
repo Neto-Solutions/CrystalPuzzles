@@ -9,6 +9,18 @@
 		'. exercises exercises';
 	gap: var(--gap);
 
+	@include xl() {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas:
+			'profile info'
+			'panel exercises';
+	}
+
+	@include lg() {
+		
+	}
+
+
 	@include md() {
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-areas:
@@ -42,4 +54,10 @@
 .panel_container,
 .exercises {
 	width: 100%;
+}
+
+.btn {
+	@media (max-width: 1400px) {
+		font-size: 20px;
+	}
 }
