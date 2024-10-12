@@ -9,10 +9,14 @@ import styles from './Profile.module.scss';
 
 interface ProfilePageProps {
 	title: string;
+	blockEdit?: boolean;
 }
 
-export default function ProfilePage({ title }: ProfilePageProps) {
-	const [edit, setEdit] = useState<boolean>(false);
+export default function ProfilePage({
+	title,
+	blockEdit = false
+}: ProfilePageProps) {
+	const [editProfile, setEditProfile] = useState<boolean>(false);
 	const {
 		state: { user }
 	} = useLocation();
@@ -20,20 +24,22 @@ export default function ProfilePage({ title }: ProfilePageProps) {
 	return (
 		<Page title={title}>
 			<EditProfile
-				active={edit}
-				setActive={setEdit}
-				onClick={() => setEdit(false)}
+				active={editProfile}
+				setActive={setEditProfile}
+				onClick={() => setEditProfile(false)}
 			/>
 			<div className={styles.container}>
 				<div className={styles.student}>
 					<img className={styles.avatar} src={user?.photo || avatar} />
 				</div>
-				<Button
-					bgColor="dark"
-					title="Редактировать данные"
-					className={styles.btn_edit}
-					onClick={() => setEdit(!edit)}
-				/>
+				{blockEdit ? null : (
+					<Button
+						bgColor="dark"
+						title="Редактировать данные"
+						className={styles.btn_edit}
+						onClick={() => setEditProfile(!editProfile)}
+					/>
+				)}
 				<div className={styles.name}>{joinName(user)}</div>
 				<ProfileInfo user={user} className={styles.info} />
 			</div>

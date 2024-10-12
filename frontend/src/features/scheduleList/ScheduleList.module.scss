@@ -6,7 +6,7 @@
 	justify-content: space-between;
 	align-items: center;
 
-	&::after {
+	&:not(:last-child):after {
 		content: '';
 		position: absolute;
 		bottom: 0;

@@ -11,6 +11,7 @@ interface RegisterParams {
 interface LoginParams {
 	email: string;
 	password: string;
+	reload?: boolean;
 }
 
 export type { RegisterParams, LoginParams };

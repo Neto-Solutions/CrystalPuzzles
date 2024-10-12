@@ -51,7 +51,10 @@ export default function DropdownButton({
 			<button className={styles.dropdown_button}>
 				<span>{title}</span>
 				<SmallArrow
-					className={styles.small_arrow}
+					className={classNames(
+						styles.small_arrow,
+						open ? styles.arrow_open : ''
+					)}
 					height={'16px'}
 					width={'20px'}
 				/>

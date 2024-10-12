@@ -13,6 +13,14 @@
 		font: var(--fw-medium) var(--fz-btn) var(--ff-first);
 		padding: 0 30px;
 		text-align: center;
+
+		@include md() {
+			padding: 0 20px;
+		}
+
+		@include sm() {
+			padding: 10px;
+		}
 	}
 
 	.content {

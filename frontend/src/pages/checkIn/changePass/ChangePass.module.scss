@@ -6,6 +6,9 @@
 	height: fit-content;
 	margin: 0 auto;
 	max-width: 470px;
+	@include sm() {
+		width: 100%;
+	}
 }
 
 .header {
@@ -16,6 +19,12 @@
 	letter-spacing: 0em;
 	text-align: center;
 	margin-bottom: 42px;
+	@include sm() {
+		width: 100%;
+		font-size: 24px;
+		font-weight: 500;
+		margin-bottom: 10px;
+	}
 }
 
 .form {
@@ -26,8 +35,8 @@
 	font-size: 14px;
 	font-weight: 400;
 	gap: 20px;
-
 	@include sm() {
+		font-size: 12px;
 		gap: 25px;
 	}
 }
@@ -40,20 +49,6 @@
 	}
 }
 
-.forget_password {
-	text-align: end;
-}
-
-.link {
-	cursor: pointer;
-	color: #2b2d91;
-	font-family: 'Rubik';
-	font-size: 14px;
-	&:hover {
-		text-decoration: underline;
-	}
-}
-
 .btn_container {
 	margin-top: 30px;
 	width: 100%;
@@ -61,30 +56,4 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
-}
-
-.register_btn {
-	width: fit-content;
-	height: 53px;
-}
-
-@include sm() {
-	.container {
-		width: 100%;
-	}
-
-	.header {
-		width: 100%;
-		font-size: 24px;
-		font-weight: 500;
-		margin-bottom: 10px;
-	}
-
-	.form {
-		font-size: 12px;
-	}
-
-	.link {
-		font-size: 12px;
-	}
 }

@@ -46,7 +46,7 @@ class Group {
 
 	async addStudent(params: AddStudentI) {
 		const data = await this.#host
-			.post('/group/add-student', params)
+			.post('/group/add-student/', params)
 			.then(({ data }) => [data, null])
 			.catch(() => [null, 'Не удалось удалить группу']);
 		return data;

@@ -1,5 +1,23 @@
+@use '~styles/mixins' as *;
+
 .btn {
-	width: 347px;
+	width: 100%;
+	max-width: 347px;
 	height: 57px;
 	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	@include sm() {
+		font-size: var(--fz-btn-xs);
+	}
+
+	.icon {
+		transition: all 0.3s ease-in-out;
+	}
+	&:hover {
+		.icon {
+			stroke: white;
+		}
+	}
 }

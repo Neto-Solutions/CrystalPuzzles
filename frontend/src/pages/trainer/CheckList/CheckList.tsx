@@ -15,6 +15,8 @@ interface CheckListPageProps {
 
 export default function CheckListPage({ title }: CheckListPageProps) {
 	const [students, setStudents] = useState([]);
+	// const [places, setPlaces] = useState([]);
+
 	const { id }: any = useLoaderData();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -49,10 +51,13 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 
 				<section className={styles.panel_container}>
 					<StudentsDropdown state={students} setState={setStudents} />
+					{/* <PlacesDropdown /> */}
 					<Button
 						title="Отправить чек-лист"
 						width="100%"
 						form="exercises_form"
+						bgColor="dark"
+						className={styles.btn}
 					/>
 				</section>
 				<section className={styles.exercises}>

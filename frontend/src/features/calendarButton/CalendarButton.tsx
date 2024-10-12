@@ -20,14 +20,14 @@ export default function CalendarButton({ date, setDate, range }: any) {
 			) : (
 				<Button
 					title={
-						moment(date.from).subtract(1, 'day').format('DD.MM.YYYY') +
+						moment(date.from).format('DD.MM.YYYY') +
 						' - ' +
-						moment(date.to).subtract(1, 'day').format('DD.MM.YYYY')
+						moment(date.to).format('DD.MM.YYYY')
 					}
 					onClick={() => setCalendar(!calendar)}
 					className={styles.btn}
 				>
-					<CalendarIcon />
+					<CalendarIcon className={styles.icon} />
 				</Button>
 			)}
 		</>

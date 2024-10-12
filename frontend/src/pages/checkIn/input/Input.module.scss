@@ -1,9 +1,12 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
- 
 .container {
-	margin-bottom: 20px;
 	position: relative;
+	display: grid;
+	gap: 5px;
+	@include sm() {
+		font-size: inherit;
+	}
 }
 
 .label {
@@ -23,15 +26,7 @@
 	border: var(--border);
 	background-color: white;
 	outline: none;
-}
-
-@include sm() {
-	.container {
-		font-size: inherit;
-		margin-bottom: 4px;
-	}
-
-	.input {
+	@include sm() {
 		width: 100%;
 	}
 }

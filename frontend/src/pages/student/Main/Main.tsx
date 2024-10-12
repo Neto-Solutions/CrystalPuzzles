@@ -1,22 +1,22 @@
 import styles from './Main.module.scss';
-import { Page } from '@shared/ui';
-import { useState } from 'react';
+import { Modal, Page } from '@shared/ui';
 import { Feedback, ScheduleList } from '@features';
 import { CardLink, Button } from '@shared/ui';
 import { useResize } from '@shared/hooks';
-import RewardsPopup from './Reward/Reward';
+import { useState } from 'react';
+// import { useState } from 'react';
 
 interface MainPageProps {
 	title: string;
 }
 
 export default function MainPage({ title }: MainPageProps) {
-	const [reward, setReward]: any = useState(false);
 	const isMobile = useResize('sm');
+	const [feedbackModal, setFeedbackModal] = useState(false);
 
+	//TODO: нужен будет рефактор стилей
 	return (
 		<Page title={title}>
-			{reward && <RewardsPopup onHide={() => setReward(false)} />}
 			<div className={styles.wrapper}>
 				<CardLink
 					to="/reward"
@@ -41,12 +41,31 @@ export default function MainPage({ title }: MainPageProps) {
 				<CardLink
 					title={'Моё расписание на сегодня'}
 					className={styles.schedule_card}
+					to={'/schedule'}
 				>
 					{!isMobile && <ScheduleList today />}
 				</CardLink>
 
 				{isMobile ? (
-					<Button title="Написать тренеру" className={styles.btn} />
+					<>
+						<Modal
+							active={feedbackModal}
+							setActive={setFeedbackModal}
+							className={styles.modal}
+						>
+							<Feedback className={styles.feedback} title="Обратная связь" />
+							<Button
+								className={styles.feedback_btn}
+								bgColor="dark"
+								title="Отправить комментарий"
+							/>
+						</Modal>
+						<CardLink
+							title="Обратная связь"
+							className={styles.btn}
+							onClick={() => setFeedbackModal(true)}
+						/>
+					</>
 				) : (
 					<>
 						<Feedback className={styles.feedback} title="Обратная связь" />

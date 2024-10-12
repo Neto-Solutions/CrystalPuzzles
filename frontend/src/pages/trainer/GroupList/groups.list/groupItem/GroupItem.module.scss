@@ -1,0 +1,11 @@
+.student {
+	font: var(--fw-medium) 20px var(--ff-first);
+	&::after {
+		content: '';
+		margin-top: 5px;
+		display: block;
+		height: 1px;
+		width: 100%;
+		background-color: var(--accent-color);
+	}
+}
