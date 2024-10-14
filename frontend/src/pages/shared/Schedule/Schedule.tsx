@@ -29,31 +29,36 @@ export default function SchedulePage({ link, title }: SchedulePageProps) {
 			end_date: date.to.toISOString()
 		});
 		if (err) return;
-		setData(data);
+		if (data.length) setData(data);
+		// else setData(Array(6).fill({}));
 	}
 	return (
 		<Page title={title}>
-			<div className={styles.table}>
-				{data
-					? data
-							.sort((a: any, b: any) => moment(a.start).isSameOrAfter(b.start))
-							.map((item: any, index: number) => (
-								<ScheduleItem
-									data={item}
-									key={index}
-									link={
-										link
-											? link + item.id
-											: ScheduleRouteTo(item.status) + item.id
-									}
-									className={index === 0 ? styles.last : ''}
-								/>
-							))
-					: null}
+			<div className={styles.wrapper}>
+				<div className={styles.table}>
+					{data
+						? data
+								.sort((a: any, b: any) =>
+									moment(a.start).isSameOrAfter(b.start)
+								)
+								.map((item: any, index: number) => (
+									<ScheduleItem
+										data={item}
+										key={index}
+										link={
+											link
+												? link + item.id
+												: ScheduleRouteTo(item.status) + item.id
+										}
+										className={index === 0 ? styles.last : ''}
+									/>
+								))
+						: null}
+				</div>
+				<Wrapper>
+					<CalendarBlock date={date} setDate={setDate} />
+				</Wrapper>
 			</div>
-			<Wrapper>
-				<CalendarBlock date={date} setDate={setDate} />
-			</Wrapper>
 		</Page>
 	);
 }

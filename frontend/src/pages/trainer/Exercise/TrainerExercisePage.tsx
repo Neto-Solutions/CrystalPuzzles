@@ -70,7 +70,7 @@ export default function TrainerExercisePage({
 							</li>
 						))}
 				</ul>
-				{exercises.length && (
+				{exercises.length ? (
 					<Exercises
 						data={exercises.map((item: any) => ({
 							...item,
@@ -79,6 +79,8 @@ export default function TrainerExercisePage({
 						className={styles.exercises}
 						checked
 					/>
+				) : (
+					''
 				)}
 				<Feedback title="Оставить комментарий" className={styles.feedback} />
 				<div className={styles.wrapper}>

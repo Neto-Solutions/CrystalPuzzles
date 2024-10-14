@@ -42,7 +42,8 @@ export default function ScheduleList({
 			{data
 				? data.map((item: any, index: number) => (
 						<Tag
-							to={ScheduleRouteTo(item.status) + item.id}
+							{...(link ? { to: ScheduleRouteTo(item.status) + item.id } : {})}
+							// to={ScheduleRouteTo(item.status) + item.id}
 							key={index}
 							className={styles.item_container}
 						>
@@ -56,7 +57,7 @@ export default function ScheduleList({
 								</div>
 								<div className={styles.trainer}>
 									Тренер —
-									{` ${item.trainer.surname} ${item.trainer.firstname} ${item.trainer.lastname.charAt(0)}.`}
+									{` ${item.trainer.surname} ${item.trainer.firstname} ${item.trainer.lastname?.charAt(0) || ''}.`}
 								</div>
 							</div>
 						</Tag>

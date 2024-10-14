@@ -1,7 +1,14 @@
 @use '~styles/mixins' as *;
+.container {
+	display: grid;
+	grid-template-columns: 2fr max-content;
+	gap: var(--gap);
+	@include xl() {
+		grid-template-columns: 1fr;
+	}
+}
 .wrapper {
-	width: 714px;
-	max-width: 958px;
+	width: 100%;
 	.card {
 		width: 100%;
 		padding: 20px 30px;

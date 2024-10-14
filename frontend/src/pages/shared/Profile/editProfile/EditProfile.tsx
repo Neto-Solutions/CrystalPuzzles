@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-import { User } from '@shared/api';
+import { Auth, User } from '@shared/api';
 import { Button, Modal, Title } from '@shared/ui';
 import { selectProfile } from '@app/providers/store/profile';
 import avatar from '@shared/assets/avatar/0.png';
@@ -37,8 +37,25 @@ export default function EditProfile({
 	async function submitForm(e: FormEvent) {
 		e.preventDefault();
 		const data = mapUserForm(e);
-		if (!userPhoto) return;
-		const [, err] = await User.setAvatar(userPhoto);
+		const { area, accompanying, health_data, triggers, ...rest } = data;
+		const newData = {
+			...rest,
+			birthday: moment(data.birthday).toDate(),
+			extensions: {
+				area,
+				accompanying,
+				health_data,
+				triggers
+			}
+		};
+
+		let [, err] = await Auth.updateProfile(newData);
+		if (err) {
+			setErr(err);
+			return;
+		}
+		if (!userPhoto) location.replace('/');
+		[, err] = await User.setAvatar(userPhoto);
 		if (err) {
 			setErr(err);
 			return;
@@ -83,38 +100,64 @@ export default function EditProfile({
 							<input
 								className={styles.input}
 								data-key="birthday"
-								type="text"
-								defaultValue={
-									moment(profile.birthday).format('DD.MM.YYYY') + ' г.'
-								}
+								type="date"
+								defaultValue={profile.birthday}
 							/>
 						</div>
 						<div className={styles.input_wrapper}>
 							<label htmlFor="">Район проживания</label>
-							<input className={styles.input} type="text" />
-						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Сопровождающий</label>
-							<input className={styles.input} type="text" />
-						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Номер телефона</label>
 							<input
 								className={styles.input}
-								type="tel"
-								pattern="^\+?7\d{10}$"
-								defaultValue={profile.contact}
-								placeholder="+71231231212"
+								type="text"
+								data-key="area"
+								defaultValue={profile.extensions?.area}
 							/>
 						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Особенности развития</label>
-							<input className={styles.input} type="text" />
-						</div>
-						<div className={styles.input_wrapper}>
-							<label htmlFor="">Не любит</label>
-							<input className={styles.input} type="text" />
-						</div>
+
+						{profile.role === 'student' ? (
+							<>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Сопровождающий</label>
+									<input
+										className={styles.input}
+										type="text"
+										data-key="accompanying"
+										defaultValue={profile.extensions?.accompanying}
+									/>
+								</div>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Номер телефона</label>
+									<input
+										className={styles.input}
+										type="tel"
+										pattern="^\+?7\d{10}$"
+										defaultValue={profile.contact}
+										placeholder="+71231231212"
+										data-key="contact"
+									/>
+								</div>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Особенности развития</label>
+									<input
+										className={styles.input}
+										type="text"
+										data-key="health_data"
+										defaultValue={profile.extensions?.health_data}
+									/>
+								</div>
+								<div className={styles.input_wrapper}>
+									<label htmlFor="">Не любит</label>
+									<input
+										className={styles.input}
+										type="text"
+										data-key="triggers"
+										defaultValue={profile.extensions?.triggers}
+									/>
+								</div>
+							</>
+						) : (
+							''
+						)}
 					</div>
 					<div className={styles.button_wrapper}>
 						<Button title="Сохранить" type="submit" className={styles.btn} />

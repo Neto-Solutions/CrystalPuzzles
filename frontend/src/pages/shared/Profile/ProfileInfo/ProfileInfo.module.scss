@@ -13,7 +13,7 @@
 }
 
 .title {
-	font: var(--fw-medium) var(--fz-btn) var(--ff-second);
+	font: var(--fw-medium) var(--fz-btn) var(--ff-first);
 	display: inline-block;
 
 	@include md() {

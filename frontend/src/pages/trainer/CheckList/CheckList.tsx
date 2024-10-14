@@ -34,25 +34,34 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 			}
 		}
 
-		CheckList.create({
+		createCheckList();
+	}
+
+	async function createCheckList() {
+		const [, err] = await CheckList.create({
 			lesson_id: id,
 			student_ids: students,
-			training_check: result
-		}).catch();
+			training_check: []
+		});
+		if (err) return;
+		location.replace('/exercises/' + id);
 	}
 
 	return (
 		<Page title={title}>
 			<div className={styles.wrapper}>
 				<ProfileCard className={styles.profile} />
-				<Info className={styles.info} />
+				<Info className={styles.info} lessonId={id} />
 
 				<section className={styles.panel_container}>
 					<StudentsDropdown state={students} setState={setStudents} />
+					{/* <PlacesDropdown /> */}
 					<Button
 						title="Отправить чек-лист"
 						width="100%"
 						form="exercises_form"
+						bgColor="dark"
+						className={styles.btn}
 					/>
 				</section>
 				<section className={styles.exercises}>

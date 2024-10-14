@@ -14,7 +14,6 @@ from common.schema.base_user_schema import BaseUserSchema
 
 
 # region ------------------------------- Profile ------------------------------------
-
 class CreateUserSchema(BaseModel):
     """ Валидация регистрационных данных """
     email: EmailStr
@@ -41,6 +40,15 @@ class CreateUserSchema(BaseModel):
             return value.replace(tzinfo=None)
 
 
+class ExtendedData(BaseModel):
+    """ Расширенные данные ученика """
+    phone_number: Optional[str] = Field(default=None)
+    area: Optional[str] = Field(default=None)
+    accompanying: Optional[str] = Field(default=None)
+    health_data: Optional[str] = Field(default=None)
+    triggers: Optional[str] = Field(default=None)
+
+
 class EditViewSchema(BaseModel):
     """ Валидация редактирования данных пользователя """
     firstname: Optional[str] = None
@@ -49,6 +57,7 @@ class EditViewSchema(BaseModel):
     birthday: Optional[datetime] = None
     is_man: Optional[bool] = True
     contact: Optional[str] = None
+    extensions: Optional[ExtendedData] = Field(default=None)
 
 
 class EditUserSchema(EditViewSchema):
@@ -60,6 +69,10 @@ class EditUserSchema(EditViewSchema):
     def validate_birthday(cls, value):
         if value is not None:
             return value.replace(tzinfo=None)
+
+
+class ProfileUserSchema(BaseUserSchema):
+    extensions: Optional[ExtendedData] = Field(default=None)
 
 
 class UserFilterSchema(BaseFilterSchema):
