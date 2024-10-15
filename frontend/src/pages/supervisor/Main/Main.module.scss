@@ -69,6 +69,11 @@
 	@include xl() {
 		max-height: fit-content;
 	}
+	@include sm() {
+		max-height: 179px;
+		overflow-y: scroll;
+		scrollbar-width: none;
+	}
 
 	h2 {
 		margin-bottom: 50px;

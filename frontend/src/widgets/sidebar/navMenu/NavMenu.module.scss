@@ -87,3 +87,8 @@
 	font: var(--fw-regular) 12px var(--ff-second);
 	text-transform: uppercase;
 }
+
+.mobile_item {
+	display: grid;
+	place-content: center;
+}

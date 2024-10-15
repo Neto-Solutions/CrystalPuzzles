@@ -5,7 +5,7 @@ import { Place } from '@shared/api';
 interface PlacesDropdownProps {
 	className?: string;
 	state?: any;
-	setState: any;
+	setState?: any;
 	single?: boolean;
 }
 export default function PlacesDropdown({

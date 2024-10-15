@@ -25,6 +25,7 @@ export default function TrainersDropdown({
 	async function getTrainers() {
 		const [data, err] = await User.getTrainers();
 		if (err) return;
+		setState(data[0].id);
 		setData(data.map((item: any) => ({ ...item, name: joinName(item) })));
 	}
 

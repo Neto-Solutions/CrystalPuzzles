@@ -8,6 +8,8 @@ interface CardLinkProps {
 	children?: ReactNode | string;
 	to?: any;
 	className?: string;
+
+	[key: string]: any;
 }
 
 export default function CardLink({
@@ -21,7 +23,7 @@ export default function CardLink({
 	return (
 		<Tag to={to} className={classNames(styles.card, className)} {...props}>
 			<h2 className={styles.title}>{title}</h2>
-			{children && <div className={styles.content}>{children}</div>}
+			{children ? <div className={styles.content}>{children}</div> : null}
 		</Tag>
 	);
 }

@@ -1,5 +1,7 @@
+@use '~styles/mixins' as *;
+
 .top {
-    padding: 0 20px;
+	padding: 0 20px;
 	height: 48px;
 	display: flex;
 	justify-content: space-between;
@@ -26,5 +28,13 @@
 }
 
 .month_title {
-    font: var(--fw-medium) var(--fz-btn) var(--ff-first);
+	font: var(--fw-medium) var(--fz-btn) var(--ff-first);
+
+	@include md() {
+		font-size: 20px;
+	}
+
+	@include sm() {
+		font-size: 14px;
+	}
 }

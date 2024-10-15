@@ -7,10 +7,11 @@
 }
 
 .avatar {
-	max-width: 347px;
+	width: 100%;
 	aspect-ratio: 1 / 1;
 	border-radius: var(--radius);
 	border: var(--border);
+	object-fit: cover	;
 }
 
 .name_container {
@@ -19,10 +20,15 @@
 	border-radius: 13px;
 	padding: 10px;
 	background-color: #e1f1f8;
+
 	.name {
 		margin: auto;
 		width: min-content;
 		font: var(--fw-medium) 20px var(--ff-first);
 		text-align: center;
+
+		@include lg() {
+			font-size: 16px;
+		}
 	}
 }

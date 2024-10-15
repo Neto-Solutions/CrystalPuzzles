@@ -12,6 +12,7 @@ class StudentViewModel(BaseModel):
     id: int
     firstname: Optional[str] = None
     lastname: Optional[str] = None
+    surname: Optional[str] = None
     is_man: bool
     birthday: Optional[datetime] = None
     avatar: Optional[int]

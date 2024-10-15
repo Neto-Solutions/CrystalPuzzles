@@ -1,0 +1,59 @@
+@use '~styles/mixins' as *;
+
+.container {
+	display: flex;
+	flex-direction: column;
+	height: fit-content;
+	margin: 0 auto;
+	max-width: 470px;
+	@include sm() {
+		width: 100%;
+	}
+}
+
+.header {
+	font-family: Roboto;
+	font-size: 40px;
+	font-weight: 400;
+	line-height: 47px;
+	letter-spacing: 0em;
+	text-align: center;
+	margin-bottom: 42px;
+	@include sm() {
+		width: 100%;
+		font-size: 24px;
+		font-weight: 500;
+		margin-bottom: 10px;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	color: #2b2d91;
+	font-family: Rubik;
+	font-size: 14px;
+	font-weight: 400;
+	gap: 20px;
+	@include sm() {
+		font-size: 12px;
+		gap: 25px;
+	}
+}
+
+.error {
+	color: red;
+	&::before {
+		content: '* ';
+		color: red;
+	}
+}
+
+.btn_container {
+	margin-top: 30px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
