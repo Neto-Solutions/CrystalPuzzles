@@ -85,7 +85,7 @@ export default function TrainerExercisePage({
 				<Feedback title="Оставить комментарий" className={styles.feedback} />
 				<div className={styles.wrapper}>
 					<EmojiCard className={styles.emoji} />
-					<Button title="Отправить комментарий" />
+					<Button title="Отправить комментарий" bgColor='dark'  width='100%'/>
 				</div>
 			</div>
 		</Page>
