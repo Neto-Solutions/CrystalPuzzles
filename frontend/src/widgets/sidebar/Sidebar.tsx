@@ -1,25 +1,31 @@
 import styles from './Sidebar.module.scss';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useResize from '@shared/hooks/useResize';
-import { useSwipe } from '@hooks';
-import { NavMenuList } from './navMenu/NavMenu';
-import { Account } from './accaunt/Account';
+import { useEffect, useState } from 'react';
+import { useSwipe, useResize } from '@hooks';
 import { selectProfile } from '@store/profile';
 import { ReactComponent as Arrow } from '@assets/svg/arrow.svg';
 import exit from 'assets/sidebar/exit.svg';
-import edit from 'assets/sidebar/edit.svg';
-
 import { Auth } from '@api';
+import { NavMenuList } from './navMenu/NavMenu';
+import { Account } from './accaunt/Account';
 
 export default function Sidebar() {
 	const [isOpen, setIsOpen]: any = useState(false);
 	const user = useSelector(selectProfile);
-	const navigate = useNavigate();
 	const isMobile = useResize('md');
 
-	useSwipe((isOpen: any) => setIsOpen(isOpen));
+	useSwipe(
+		(isOpen: any) => {
+			if (isMobile) {
+				setIsOpen(isOpen);
+			}
+		},
+		[isMobile]
+	);
+
+	useEffect(() => {
+		window.addEventListener('resize', () => setIsOpen(false));
+	}, []);
 
 	async function handleExit(): Promise<void> {
 		await Auth.logout();
@@ -40,14 +46,6 @@ export default function Sidebar() {
 				<NavMenuList role={user.role} isMobile={isMobile} />
 
 				<div className={styles.links}>
-					{/* <div
-						className={`${styles.sidebar_btn} ${styles.help}`}
-						onClick={() => navigate('/avatar')}
-					>
-						<img src={edit} className={styles.link_icon} />
-						{!isMobile && <span>Изменить аватарку</span>}
-					</div> */}
-
 					<div
 						className={`${styles.sidebar_btn} ${styles.exit}`}
 						onClick={handleExit}

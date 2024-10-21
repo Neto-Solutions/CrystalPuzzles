@@ -28,7 +28,15 @@ export const NavMenuList = ({ role, isMobile }: any) => {
 					<ul className={styles.mobile_list}>
 						<li className={styles.mobile_item}>
 							<Link to="/">
-								<img src={home} />
+								<img
+									src={home}
+									loading="eager"
+									alt=""
+									onError={(e) => {
+										const img = e.target as HTMLImageElement;
+										img.src = home;
+									}}
+								/>
 							</Link>
 						</li>
 						{list?.map((item: any, index: any) => {
@@ -36,7 +44,15 @@ export const NavMenuList = ({ role, isMobile }: any) => {
 								item.local && (
 									<li key={index} className={styles.mobile_item}>
 										<NavLink to={item.path}>
-											<img src={item.img} loading="lazy" />
+											<img
+												src={item.img}
+												loading="eager"
+												alt=""
+												onError={(e) => {
+													const img = e.target as HTMLImageElement;
+													img.src = item.img;
+												}}
+											/>
 										</NavLink>
 									</li>
 								)
