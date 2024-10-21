@@ -34,15 +34,17 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 			}
 		}
 
-		createCheckList();
-	}
-
-	async function createCheckList() {
-		const [, err] = await CheckList.create({
+		const data = {
 			lesson_id: id,
 			student_ids: students,
-			training_check: []
-		});
+			training_check: result
+		};
+
+		createCheckList(data);
+	}
+
+	async function createCheckList(data: any) {
+		const [, err] = await CheckList.create(data);
 		if (err) return;
 		location.replace('/exercises/' + id);
 	}
