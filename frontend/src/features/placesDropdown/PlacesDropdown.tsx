@@ -23,7 +23,7 @@ export default function PlacesDropdown({
 
 	useEffect(() => {
 		getPlace();
-	}, []);
+	}, [places]);
 
 	async function getPlace() {
 		if (places) {
