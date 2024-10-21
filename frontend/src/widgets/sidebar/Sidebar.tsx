@@ -1,6 +1,6 @@
 import styles from './Sidebar.module.scss';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSwipe, useResize } from '@hooks';
 import { selectProfile } from '@store/profile';
 import { ReactComponent as Arrow } from '@assets/svg/arrow.svg';
@@ -22,6 +22,10 @@ export default function Sidebar() {
 		},
 		[isMobile]
 	);
+
+	useEffect(() => {
+		window.addEventListener('resize', () => setIsOpen(false));
+	}, []);
 
 	async function handleExit(): Promise<void> {
 		await Auth.logout();
