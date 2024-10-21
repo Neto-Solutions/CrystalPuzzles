@@ -13,6 +13,7 @@
 	overflow: auto;
 
 	.item {
+		cursor: pointer;
 		padding: 8px 0;
 		font: var(--fw-medium) 20px var(--ff-first);
 	}
