@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Lesson } from '@shared/api';
 import styles from './ScheduleList.module.scss';
 import ScheduleRouteTo from '@shared/lib/scheduleRouteTo';
+import { selectProfile } from '@app/providers/store/profile';
+import { useSelector } from 'react-redux';
 
 interface ScheduleListProps {
 	today?: boolean;
@@ -14,6 +16,7 @@ export default function ScheduleList({
 	today,
 	link = true
 }: ScheduleListProps) {
+	const profile = useSelector(selectProfile);
 	const [data, setData] = useState<any>([]);
 
 	useEffect(() => {
@@ -23,7 +26,8 @@ export default function ScheduleList({
 	async function getSchedule() {
 		if (!today) {
 			const [data, err] = await Lesson.get({
-				start_date: moment().startOf('day').toISOString()
+				start_date: moment().startOf('day').toISOString(),
+				trainer: profile.role === 'trainer' ? profile.id : undefined
 			});
 			if (err) return;
 			setData(data);
@@ -31,7 +35,8 @@ export default function ScheduleList({
 		}
 		const [data, err] = await Lesson.get({
 			start_date: moment().startOf('day').toISOString(),
-			end_date: moment().endOf('day').toISOString()
+			end_date: moment().endOf('day').toISOString(),
+			trainer: profile.role === 'trainer' ? profile.id : undefined
 		});
 		if (err) return;
 		setData(data);
