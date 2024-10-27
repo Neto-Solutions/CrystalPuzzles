@@ -3,7 +3,7 @@ import { Page, Button } from '@shared/ui';
 import ProfileCard from './ProfileCard/ProfileCard';
 import Info from './Info/Info';
 import { Exercises } from '@widgets';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import StudentsDropdown from 'features/studentsDropdown/StudentsDropdown';
 import { CheckList } from '@shared/api';
 import { TrainingI } from '@shared/api/checklist/checkList.interface';
@@ -12,9 +12,9 @@ import { useLoaderData } from 'react-router-dom';
 interface CheckListPageProps {
 	title: string;
 }
-
+//TODO: optimize
 export default function CheckListPage({ title }: CheckListPageProps) {
-	const [students, setStudents] = useState([]);
+	let students: number[] = [];
 	const { id }: any = useLoaderData();
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -56,7 +56,8 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 				<Info className={styles.info} lessonId={id} />
 
 				<section className={styles.panel_container}>
-					<StudentsDropdown state={students} setState={setStudents} />
+					<DropStudents onChange={(ids: any) => (students = ids)} />
+					{/* <StudentsDropdown state={students} setState={setStudents} /> */}
 					{/* <PlacesDropdown /> */}
 					<Button
 						title="Отправить чек-лист"
@@ -78,4 +79,14 @@ export default function CheckListPage({ title }: CheckListPageProps) {
 			</div>
 		</Page>
 	);
+}
+
+function DropStudents({ onChange }: any) {
+	const [students, setStudents] = useState([]);
+
+	useEffect(() => {
+		onChange(students);
+	}, [students]);
+
+	return <StudentsDropdown state={students} setState={setStudents} />;
 }
