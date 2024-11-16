@@ -3,6 +3,10 @@
 .grid {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
+
+	@include lg() {
+		grid-template-columns: 1fr;
+	}
 }
 
 .weeks {
@@ -10,12 +14,35 @@
 	border-bottom: var(--border);
 	border-top: var(--border);
 
-	.week {
-		padding: 12px;
-		align-self: center;
+	@include lg() {
+		grid-template-rows: 154px;
+		border-right: var(--border);
+		border-bottom: none;
+	}
+
+	@include sm() {
+		grid-template-rows: 120px;
+	}
+}
+
+.week {
+	padding: 12px;
+	align-self: center;
+
+	&:nth-child(n):not(:last-child) {
+		border-right: var(--border);
+	}
+
+	@include lg() {
+		border-bottom: var(--border);
+		height: 100%;
 
 		&:nth-child(n):not(:last-child) {
-			border-right: var(--border);
+			border-right: none;
+		}
+
+		&:last-child {
+			border-bottom: none;
 		}
 	}
 }

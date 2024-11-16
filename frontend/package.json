@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"start": "craco start",
+		"start": "craco start --watch",
 		"build": "craco build",
 		"serve": "node ./scripts/set.env.js && serve -s build -p 3000",
 		"test": "craco test",
@@ -23,6 +23,7 @@
 		"react-dom": "~18.3.0",
 		"react-redux": "~9.1.0",
 		"react-router-dom": "~6.23.0",
+		"react-time-picker": "^7.0.0",
 		"rxjs": "~7.8.1",
 		"serve": "~14.2.3",
 		"uuid": "^10.0.0"

@@ -4,13 +4,16 @@ import { ReactComponent as Eye } from '@shared/assets/svg/eye_icon.svg';
 import { ReactComponent as CrossEye } from '@shared/assets/svg/cross_eye.svg';
 import { useState } from 'react';
 
-export default function Password() {
+export default function Password({
+	title = 'Пароль',
+	dataKey = 'password'
+}: any) {
 	const [openEye, setOpenEye]: any = useState(true);
 
 	return (
 		<Input
-			label="Пароль"
-			dataKey="password"
+			label={title}
+			dataKey={dataKey}
 			type={openEye ? 'password' : 'text'}
 			required
 		>

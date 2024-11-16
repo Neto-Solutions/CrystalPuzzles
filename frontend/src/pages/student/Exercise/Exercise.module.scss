@@ -11,7 +11,7 @@
 		'feedback .'
 		'mood .';
 
-	@include lg() {
+	@include xl() {
 		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'date date'

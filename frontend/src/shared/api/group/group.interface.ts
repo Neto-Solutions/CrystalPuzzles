@@ -3,8 +3,9 @@ interface GroupI {
 	trainer_id: number;
 }
 
-interface UpdateGroupI extends GroupI {
-	id: number;
+interface AddStudentI {
+	student_id: number;
+	group_id: number;
 }
 
-export type { GroupI, UpdateGroupI };
+export type { GroupI, AddStudentI };

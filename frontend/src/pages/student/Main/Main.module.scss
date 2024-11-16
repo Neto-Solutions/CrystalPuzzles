@@ -1,82 +1,5 @@
 @use '~styles/mixins' as *;
 
-.reward_card {
-	background-image: url('./assets/unicorn.svg');
-	background-repeat: no-repeat;
-	background-position: bottom;
-	background-size: 35%;
-	background-position-y: 80%;
-	grid-area: reward;
-
-	@include md() {
-		width: 100%;
-		background-image: url('./assets/fux.svg');
-	}
-
-	@include sm() {
-		background-image: none;
-	}
-}
-
-.train_card {
-	grid-area: train;
-	overflow: hidden;
-	height: 100%;
-	min-height: 238px;
-	// aspect-ratio: 1;
-	@include sm() {
-		width: 100%;
-		min-height: auto;
-	}
-
-	.train_text_container {
-		width: 100%;
-		height: 100%;
-		display: flex;
-
-		.train_text {
-			@include font(var(--ff-first), 24px, 500);
-			text-align: center;
-			margin-top: auto;
-		}
-	}
-}
-
-.schedule_card {
-	padding: 20px;
-	grid-area: schedule;
-
-	h2 {
-		margin-bottom: 50px;
-
-		@include md() {
-			margin-bottom: 20px;
-		}
-	}
-
-	@include sm() {
-		width: 100%;
-	}
-}
-
-.feedback {
-	grid-area: feedback;
-}
-
-.btn {
-	grid-area: btn;
-	background-color: #2b2d91;
-	color: white;
-	@include sm() {
-		width: 100%;
-		background-color: transparent;
-		color: black;
-	}
-	&:hover {
-		background-color: #2b2d91;
-	}
-}
-
 .wrapper {
 	display: grid;
 	gap: var(--gap);
@@ -86,7 +9,7 @@
 		'feedback feedback schedule'
 		'btn btn schedule';
 
-	@include lg() {
+	@include xl() {
 		grid-template-columns: 50% 50%;
 		grid-template-areas:
 			'reward train'
@@ -102,5 +25,108 @@
 			'reward schedule'
 			'train btn';
 		gap: 8px;
+		align-items: center;
+	}
+}
+
+.reward_card {
+	background-image: url('./assets/fox.svg');
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: auto 70%;
+	background-position-y: 80%;
+	grid-area: reward;
+
+	@include sm() {
+		background-size: auto 50%;
+		// 	background-image: none;
+		// 	display: grid;
+		// 	place-content: center;
+	}
+}
+
+.train_card {
+	grid-area: train;
+	overflow: hidden;
+	height: 100%;
+	min-height: 238px;
+	// aspect-ratio: 1;
+
+	@include md() {
+		min-height: 180px;
+	}
+
+	@include sm() {
+		width: 100%;
+		min-height: 120px;
+		display: grid;
+		place-content: center;
+	}
+
+	.train_text_container {
+		width: 100%;
+		height: 100%;
+		display: flex;
+
+		.train_text {
+			@include font(var(--ff-first), 24px, 500);
+			text-align: center;
+			margin-top: auto;
+
+			@include md() {
+				font-size: 20px;
+			}
+		}
+	}
+}
+
+.schedule_card {
+	padding: 20px;
+	grid-area: schedule;
+
+	// h2 {
+	// 	margin-bottom: 50px;
+
+	// 	@include md() {
+	// 		margin-bottom: 20px;
+	// 	}
+	// }
+
+	@include sm() {
+		width: 100%;
+		display: grid;
+		place-content: center;
+	}
+}
+
+.feedback {
+	grid-area: feedback;
+}
+
+.btn {
+	grid-area: btn;
+	cursor: pointer;
+	@include sm() {
+		width: 100%;
+		display: grid;
+		place-content: center;
+	}
+}
+.modal_container {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.modal > div {
+	background-color: transparent;
+	border: none;
+}
+.feedback_btn {
+	width: 100%;
+	margin-top: 20px;
+
+	&:hover {
+		background-color: white;
 	}
 }

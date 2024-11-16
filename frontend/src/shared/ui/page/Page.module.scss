@@ -5,8 +5,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
+	padding: 0 20px;
 
-	@include lg() {
+	@include xl() {
 		justify-content: center;
+	}
+
+	@include md() {
+		padding: 0 20px;
+	}
+
+	@include sm() {
+		padding: 0 10px;
 	}
 }

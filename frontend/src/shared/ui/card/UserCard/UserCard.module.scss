@@ -4,7 +4,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	background-color: var(--bg-card-second);
-
+	cursor: pointer;
 	@include sm() {
 		flex-direction: column;
 		max-width: 164px;

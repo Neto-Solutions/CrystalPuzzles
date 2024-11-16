@@ -12,6 +12,7 @@ class StudentViewModel(BaseModel):
     id: int
     firstname: Optional[str] = None
     lastname: Optional[str] = None
+    surname: Optional[str] = None
     is_man: bool
     birthday: Optional[datetime] = None
     avatar: Optional[int]
@@ -65,7 +66,7 @@ class GroupViewSchemaForPage(BaseModel):
 
 
 class EditGroupSchema(BaseModel):
-    id: int
+    id: Optional[int] = Field(default=None, hidden=True)
     name: str  # AllowEmpty
     trainer_id: Optional[int]
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)

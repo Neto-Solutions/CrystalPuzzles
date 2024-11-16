@@ -1,30 +1,39 @@
-@use '~styles/mixins' as *; 
+@use '~styles/mixins' as *;
 
 .btn {
-	// width: 347px;
+	padding: var(--btn-padding) 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: var(--btn-padding) 30px;
-	background-color: transparent;
-	font-family: var(--ff-first);
-	font-weight: var(--medium);
 	font-size: var(--fz-btn);
-	color: var(--accent-color);
+	font-weight: var(--medium);
+	font-family: var(--ff-first);
 	border: var(--border);
 	border-radius: var(--radius);
 	cursor: pointer;
-	gap: 15px;
-	stroke: #000;
-	@include sm() {
+	transition: all 0.3s ease-in-out;
+
+	@include md() {
 		font-size: var(--fz-mob-btn);
 	}
+}
+
+.dark {
+	background-color: var(--accent-color);
+	color: var(--bg-card);
+
+	&:hover {
+		background-color: transparent;
+		color: var(--accent-color);
+	}
+}
+
+.light {
+	background-color: transparent;
+	color: var(--accent-color);
+
 	&:hover {
 		background-color: var(--accent-color);
-		color: #fff;
-		fill: #fff;
-		svg {
-			stroke: #fff;
-		}
+		color: var(--bg-card);
 	}
 }

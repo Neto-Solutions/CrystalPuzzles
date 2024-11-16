@@ -17,7 +17,7 @@ class CreateSpaceSchema(BaseModel):
 
 class EditSpaceSchema(BaseModel):
     """ Схема изменения моделей кабинетов """
-    id: int
+    id: Optional[int] = Field(default=None, hidden=True)
     name: Optional[str] = None
     date_update: datetime = Field(default_factory=datetime.now, hidden=True)
 

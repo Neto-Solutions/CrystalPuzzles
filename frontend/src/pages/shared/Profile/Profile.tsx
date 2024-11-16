@@ -1,30 +1,45 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Page, Button } from '@shared/ui';
-import avatar from '@shared/assets/avatar/0.png';
-import styles from './Profile.module.scss';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
 import joinName from 'entities/profile/assets/joinName';
-import { useState } from 'react';
+import avatar from '@shared/assets/avatar/0.png';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 import EditProfile from './editProfile/EditProfile';
+import styles from './Profile.module.scss';
 
-export default function ProfilePage({ title }: any) {
-	const [edit, setEdit] = useState(false);
+interface ProfilePageProps {
+	title: string;
+	blockEdit?: boolean;
+}
+
+export default function ProfilePage({
+	title,
+	blockEdit = false
+}: ProfilePageProps) {
+	const [editProfile, setEditProfile] = useState<boolean>(false);
 	const {
 		state: { user }
 	} = useLocation();
 
 	return (
 		<Page title={title}>
-			{edit ? <EditProfile /> : null}
+			<EditProfile
+				active={editProfile}
+				setActive={setEditProfile}
+				onClick={() => setEditProfile(false)}
+			/>
 			<div className={styles.container}>
-				<section className={styles.student}>
+				<div className={styles.student}>
 					<img className={styles.avatar} src={user?.photo || avatar} />
+				</div>
+				{blockEdit ? null : (
 					<Button
+						bgColor="dark"
 						title="Редактировать данные"
 						className={styles.btn_edit}
-						onClick={() => setEdit(!edit)}
+						onClick={() => setEditProfile(!editProfile)}
 					/>
-				</section>
+				)}
 				<div className={styles.name}>{joinName(user)}</div>
 				<ProfileInfo user={user} className={styles.info} />
 			</div>

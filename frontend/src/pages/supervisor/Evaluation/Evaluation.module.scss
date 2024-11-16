@@ -6,7 +6,7 @@
 	justify-content: space-between;
 	gap: 20px;
 
-	@include lg() {
+	@include xl() {
 		max-width: 347px;
 		margin-right: auto;
 		flex-direction: column;

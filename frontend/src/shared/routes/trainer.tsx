@@ -63,7 +63,7 @@ const trainerRouter = [
 	},
 	{
 		path: '/students/:id',
-		element: <ProfilePage title="Ученик" />,
+		element: <ProfilePage title="Ученик" blockEdit />,
 		loader: ({ params: { id } }: any) => ({ id })
 	},
 	{

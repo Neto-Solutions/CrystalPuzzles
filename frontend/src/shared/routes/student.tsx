@@ -6,10 +6,11 @@ import {
 	SurveyPage,
 	RewardPage
 } from '@student';
-import training from '@assets/sidebar/train.svg';
 import schedule from 'assets/sidebar/schedule.svg';
 import home from 'assets/sidebar/home.svg';
 import survey from 'assets/sidebar/survey.svg';
+import reward from 'assets/sidebar/reward.svg';
+import exercise from 'assets/sidebar/exercise.svg';
 
 const studentRouter = [
 	{
@@ -21,7 +22,7 @@ const studentRouter = [
 		path: '/train',
 		element: <TrainPage title="Мои тренировки" />,
 		local: 'Тренировки',
-		img: training
+		img: exercise
 	},
 	{
 		path: '/train/:id',
@@ -45,7 +46,7 @@ const studentRouter = [
 		path: '/reward',
 		element: <RewardPage title="Коллекция наград" />,
 		local: 'Коллекция наград',
-		img: survey
+		img: reward
 	}
 ];
 
