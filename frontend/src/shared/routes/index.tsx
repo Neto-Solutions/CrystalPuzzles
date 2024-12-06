@@ -1,10 +1,12 @@
 import { studentRouter, supervisorRouter, trainerRouter } from '.';
 import CheckInPage from '@checkIn/CheckIn';
 import App from '@app/App';
-import { AvatarPage, ProfilePage, ErrorPage } from '@pages/shared';
+import { ProfilePage, ErrorPage } from '@pages/shared';
 import { redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@app/providers/store/profile';
+import ChangePass from '@pages/checkIn/changePass/ChangePass';
+import Cookies from 'js-cookie';
 
 const MainRouter = (): any => {
 	const { role } = useSelector(selectProfile);
@@ -14,7 +16,10 @@ const MainRouter = (): any => {
 			element: <App />,
 			errorElement: <ErrorPage />,
 			loader: () => {
-				if (!role) return redirect('/login');
+				if (!role || role === 'admin') {
+					Cookies.remove('token');
+					return redirect('/login');
+				}
 				return null;
 			},
 			children: [
@@ -22,15 +27,13 @@ const MainRouter = (): any => {
 					path: '/profile',
 					element: <ProfilePage title="Мои личные данные" />
 				},
-				{
-					path: '/avatar',
-					element: <AvatarPage title="Изменить аватарку" />
-				},
 				...(role === 'student'
 					? studentRouter
 					: role === 'trainer'
 						? trainerRouter
-						: supervisorRouter)
+						: role === 'supervisor'
+							? supervisorRouter
+							: [])
 			]
 		},
 		{
@@ -40,6 +43,10 @@ const MainRouter = (): any => {
 		{
 			path: 'registration',
 			element: <CheckInPage />
+		},
+		{
+			path: 'change-password',
+			element: <ChangePass />
 		}
 	];
 };

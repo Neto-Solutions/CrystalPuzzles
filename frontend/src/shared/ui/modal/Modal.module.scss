@@ -1,4 +1,5 @@
 .modal {
+	padding-inline: 10px;
 	height: 100vh;
 	width: 100vw;
 	position: fixed;
@@ -19,7 +20,6 @@
 }
 
 .modal_content {
-	padding-bottom: 20px;
 	border: var(--border);
 	border-radius: var(--radius);
 	background-color: #fff;

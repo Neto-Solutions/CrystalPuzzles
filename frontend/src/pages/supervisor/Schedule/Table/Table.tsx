@@ -1,18 +1,28 @@
-import styles from './Table.module.scss';
-import moment, { Moment } from 'moment';
-import 'moment/locale/ru';
-import DaysList from './DaysList/DaysList';
-import Header from './Header/Header';
-import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
 import { useState, useEffect } from 'react';
+import moment, { Moment } from 'moment';
+import classNames from 'classnames';
+import 'moment/locale/ru';
 import { Lesson } from '@shared/api';
+import Header from './Header/Header';
+import DaysList from './DaysList/DaysList';
+import DaysOfWeek from './DaysOfWeek/DaysOfWeek';
+import styles from './Table.module.scss';
+
+interface TableProps {
+	setModalActive: (active: any) => void;
+	modalActive: boolean;
+	edit: boolean;
+	data: any;
+	className?: string;
+}
 
 const Table = ({
 	setModalActive,
 	modalActive,
 	edit,
-	data: { trainer_id }
-}: any) => {
+	data: { trainer_id },
+	className
+}: TableProps) => {
 	const [date, setDate]: any = useState(moment().startOf('week'));
 	const [data, setData]: any = useState(initData(date));
 
@@ -40,7 +50,7 @@ const Table = ({
 	}
 
 	return (
-		<div className={styles.datepicker}>
+		<div className={classNames(styles.datepicker, className)}>
 			<Header setStartDate={setDate} startDate={date} />
 			<div className={styles.grid_wrap}>
 				<DaysOfWeek />

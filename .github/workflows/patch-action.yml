@@ -7,7 +7,33 @@ on:
       [test]
 
 jobs:
-  tests:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3 
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4  
+        with:
+          python-version: 3.11          
+
+      - name: Install pipenv
+        run: pip install pipenv
+        
+      - name: Install dependencies
+        run: cd backend && pipenv install
+
+      - name: Install pytest
+        run: cd backend && pipenv install pytest && pipenv install httpx
+        
+      - name: Copy env
+        run: cp .env backend/.env
+
+      - name: Run tests
+        run: cd backend && ls && PYTHONPATH=$(pwd) pipenv run pytest
+          
+  app_tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository from specific branch
@@ -47,7 +73,7 @@ jobs:
         run: docker compose down        
   
   update_tag:
-    needs: tests
+    needs: [app_tests, pytest]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

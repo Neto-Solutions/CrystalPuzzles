@@ -29,7 +29,7 @@ class CreateLessonSchema(BaseModel):
 
 class EditLessonSchema(BaseModel):
     """ Схема изменения моделей занятий """
-    id: int
+    id: Optional[int] = Field(default=None, hidden=True)
     space_id: int
     trainer_id: int
     trainer_comments: Optional[str]

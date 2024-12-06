@@ -6,8 +6,9 @@ from sqlalchemy.orm import joinedload
 
 from common.repository.base_repository import BaseRepository
 from service.lesson.schemas.lesson_schemas import LessonFilterSchema
+from service.training.models import Training
 from service.users.models import User
-from service.lesson.models import Lesson, Space, Check
+from service.lesson.models import Lesson, Space, Check, TrainingCheck
 
 
 class LessonRepository(BaseRepository):
@@ -30,7 +31,7 @@ class LessonRepository(BaseRepository):
             .options(
                 joinedload(self.model.trainer),
                 joinedload(self.model.space),
-                joinedload(self.model.check).joinedload(Check.training_data),
+                joinedload(self.model.check).joinedload(Check.training_data).joinedload(TrainingCheck.training).load_only(Training.name),
                 joinedload(self.model.check).joinedload(Check.student)
             )
         )
@@ -68,9 +69,9 @@ class LessonRepository(BaseRepository):
                 )
             )
         if filters.start_date:
-            stmt = stmt.filter(self.model.start >= filters.start_date.date())
+            stmt = stmt.filter(self.model.start >= filters.start_date.replace(tzinfo=None))
         if filters.end_date:
-            stmt = stmt.filter(self.model.start < filters.end_date.date())
+            stmt = stmt.filter(self.model.start < filters.end_date.replace(tzinfo=None))
         if filters.trainer:
             stmt = await self._add_filters(stmt, trainer_id=filters.trainer)
         if student_id:

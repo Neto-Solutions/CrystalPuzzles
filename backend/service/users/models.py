@@ -31,6 +31,7 @@ class User(Base):
     is_man: Mapped[bool] = mapped_column(sa.Boolean, nullable=False, default=True)
     rank_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("Ranks.id"), nullable=True)
     contact: Mapped[str] = mapped_column(sa.String, nullable=True)
+    extended_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey("ExtendedDataset.id"), nullable=True)
 
     # ссылка для тренера на список групп, в которых он числиться преподователем
     group = relationship("Group", back_populates="trainer")
@@ -38,6 +39,19 @@ class User(Base):
     student_group = relationship("StudentGroup", back_populates="student")
     lessons = relationship("Lesson")
     students = relationship("Check")
+    extensions = relationship("ExtendedData", uselist=False)
+
+
+class ExtendedData(Base):
+    __tablename__ = "ExtendedDataset"
+    id: Mapped[int] = mapped_column(sa.Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)
+    phone_number: Mapped[str] = mapped_column(sa.String, nullable=True, default=None)
+    area: Mapped[str] = mapped_column(sa.String, nullable=True, default=None)
+    accompanying: Mapped[str] = mapped_column(sa.String, nullable=True, default=None)
+    health_data: Mapped[str] = mapped_column(sa.String, nullable=True, default=None)
+    triggers: Mapped[str] = mapped_column(sa.String, nullable=True, default=None)
+    student = relationship("User", back_populates="extensions", uselist=False)
+
 
 
 class Role(Base):

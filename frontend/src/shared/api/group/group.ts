@@ -1,5 +1,5 @@
 import { $authHost } from '../axios.instances';
-import { GroupI, UpdateGroupI } from './group.interface';
+import { AddStudentI, GroupI } from './group.interface';
 
 class Group {
 	#host = $authHost;
@@ -28,9 +28,9 @@ class Group {
 		return data;
 	}
 
-	async update(params: UpdateGroupI) {
+	async update(id: string, params: GroupI) {
 		const data = await this.#host
-			.put(`/group`, params)
+			.put('/group/' + id, params)
 			.then(({ data }) => [data, null])
 			.catch(() => [null, 'Не удалось обновить группу']);
 		return data;
@@ -39,6 +39,14 @@ class Group {
 	async delete(id: string) {
 		const data = await this.#host
 			.delete('/group/' + id)
+			.then(({ data }) => [data, null])
+			.catch(() => [null, 'Не удалось удалить группу']);
+		return data;
+	}
+
+	async addStudent(params: AddStudentI) {
+		const data = await this.#host
+			.post('/group/add-student/', params)
 			.then(({ data }) => [data, null])
 			.catch(() => [null, 'Не удалось удалить группу']);
 		return data;

@@ -5,11 +5,16 @@
 	border: var(--border);
 	border-radius: var(--radius);
 	cursor: pointer;
+	overflow: hidden;
 }
 
 .small_arrow {
 	transform: rotate(-90deg);
 	margin-left: auto;
+}
+
+.arrow_open {
+	transform: rotate(90deg);
 }
 
 .dropdown_button {
@@ -30,11 +35,24 @@
 
 .dropdown_list {
 	height: 0;
-	overflow: hidden;
+	// overflow: hidden;
+	overflow-y: scroll;
+	transition: height 0.3s ease;
+
+	&::-webkit-scrollbar {
+		width: 0;
+		width: 5px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--accent-color);
+		border-radius: 5px;
+	}
 }
 
 .active {
-	height: 100%;
+	// height: 100%;
+	height: 150px;
 }
 
 .list_item {

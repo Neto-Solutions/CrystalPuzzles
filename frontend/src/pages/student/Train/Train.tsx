@@ -13,7 +13,7 @@ interface TrainPageProps {
 export default function TrainPage({ title }: TrainPageProps) {
 	const [data, setData] = useState<any>();
 	const [date, setDate]: any = useState({
-		from: moment().startOf('day'),
+		from: moment().startOf('week').startOf('day'),
 		to: moment().endOf('day')
 	});
 	useEffect(() => {
@@ -30,7 +30,7 @@ export default function TrainPage({ title }: TrainPageProps) {
 	}
 
 	return (
-		<Page title={title}>
+		<Page title={title} className={styles.container}>
 			<div className={styles.wrapper}>
 				{data &&
 					data.map((item: any, index: number) => {

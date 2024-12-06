@@ -4,10 +4,10 @@ from typing import Optional
 
 import aiofiles
 from fastapi import UploadFile
-from sqlalchemy import select, update, or_
+from sqlalchemy import select, update, or_, insert
 
 from common.repository.base_repository import BaseRepository
-from service.users.models import User
+from service.users.models import User, ExtendedData
 from service.users.schemas import UserFilterSchema
 
 
@@ -70,6 +70,31 @@ class UserRepository(BaseRepository):
         stmt = select(self.model).filter(self.model.id == user_id)
         result = (await self.session.execute(stmt)).scalar_one_or_none()
         return result
+
+    async def edit_user(self, data: dict):
+        if extended_data := data.pop("extensions"):
+            extended_id_exist = (
+                await self.session.execute(
+                    select(self.model.extended_id)
+                    .where(self.model.id.__eq__(data['id']))
+                )
+            ).scalar_one_or_none()
+            if extended_id_exist:
+                await self.session.execute(
+                    update(ExtendedData)
+                    .where(ExtendedData.id.__eq__(extended_id_exist))
+                    .values(**extended_data)
+                )
+            else:
+                extended_data_id = (
+                    await self.session.execute(
+                        insert(ExtendedData)
+                        .values(**extended_data)
+                        .returning(ExtendedData.id)
+                    )
+                ).scalar_one_or_none()
+                data["extended_id"] = extended_data_id
+        return await super().edit(data)
 
     async def edit_with_deleted(
             self,

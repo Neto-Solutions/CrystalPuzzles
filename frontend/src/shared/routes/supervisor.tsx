@@ -59,13 +59,13 @@ const supervisorRouter = [
 	},
 	{
 		path: '/schedule',
-		element: <SchedulePage title="Расписание тренеров" />,
+		element: <SchedulePage title="Расписание" />,
 		local: 'Расписание',
 		img: schedule
 	},
 	{
 		path: '/schedule/edit',
-		element: <SchedulePage edit title="Составить расписание тренеров" />
+		element: <SchedulePage edit title="Составить расписание" />
 	},
 	{
 		path: '/feedback',
