@@ -21,6 +21,14 @@ pylint = "*"
 pydantic-settings = "*"
 sqlalchemy = "*"
 aiofiles = "*"
+pytest = "*"
+httpx = "*"
+pytest-asyncio = "*"
+pytest-tornasync = "*"
+pytest-trio = "*"
+pytest-twisted = "*"
+twisted = "*"
+pytest-cov = "*"
 
 [dev-packages]
 

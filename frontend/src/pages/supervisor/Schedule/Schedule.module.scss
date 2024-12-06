@@ -1,17 +1,39 @@
 @use '~styles/mixins' as *;
-
-.buttons_container {
+.component {
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas:
+		'table table table'
+		'trainer . edit';
 	gap: 20px;
 
-	button {
-		width: 100%;
-		max-height: 57px;
+	@include xl() {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas: 'trainer edit' 'table table';
+	}
+	@media (max-width: 600px) {
+		grid-template-columns: 1fr;
+		grid-template-areas: 'trainer' 'edit' 'table ';
 	}
 }
 
+.table {
+	grid-area: table;
+}
+
+button {
+	max-height: 57px;
+}
+
+.trainer {
+	grid-area: trainer;
+}
+
 .edit_btn {
-	margin-left: auto;
+	grid-area: edit;
+}
+
+.modal {
+	padding-right: 10px;
 }

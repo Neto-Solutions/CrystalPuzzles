@@ -13,7 +13,8 @@ interface ExercisePageProps {
 
 export default function ExercisePage({ title }: ExercisePageProps) {
 	const { id }: any = useLoaderData();
-	const [data, setData] = useState<any>();
+	const [data, setData] = useState<any>(null);
+	const [exercises, setExercises] = useState<any>([]);
 
 	useEffect(() => {
 		getLessons();
@@ -23,15 +24,24 @@ export default function ExercisePage({ title }: ExercisePageProps) {
 		const [data, err] = await Lesson.getById(id);
 		if (err) return;
 		setData(data);
+		setExercises(
+			data?.check[0]?.training_data.map((item: any) => ({
+				...item,
+				name: item.training.name
+			}))
+		);
 	}
 
 	return (
 		<Page title={title}>
 			<div className={styles.container}>
 				<DateChanger className={styles.date} />
-				{data?.check ? (
+				{exercises.length ? (
 					<Exercises
-						data={data?.check}
+						data={exercises.map((item: any) => ({
+							...item,
+							name: item.training.name
+						}))}
 						className={styles.list}
 						checked
 						disabled
@@ -51,7 +61,7 @@ export default function ExercisePage({ title }: ExercisePageProps) {
 					</div>
 				</section>
 				<div className={styles.reward_wrapper}>
-					<span>Мои награды</span>
+					<span>{'Мои награды'}</span>
 				</div>
 				<Feedback className={styles.feedback} title="Комментарий тренера" />
 			</div>

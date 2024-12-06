@@ -6,5 +6,5 @@ interface user {
 
 export default function joinName(user: user) {
 	const { surname, firstname, lastname } = user;
-	return `${surname} ${firstname} ${lastname}`;
+	return `${surname ? surname : ''} ${firstname ? firstname : ''} ${lastname ? lastname : ''}`.trim();
 }

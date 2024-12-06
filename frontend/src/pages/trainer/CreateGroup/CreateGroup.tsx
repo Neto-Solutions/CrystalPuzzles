@@ -3,7 +3,6 @@ import { Page, Button } from '@shared/ui';
 import { useState } from 'react';
 import GroupName from './groupName/GroupName';
 import Search from './search/Search';
-import Student from './student/Student';
 import { Group } from '@shared/api';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '@app/providers/store/profile';
@@ -22,9 +21,14 @@ export default function CreateGroupPage({ title }: CreateGroupPageProps) {
 	function handleSubmit() {
 		createGroup();
 	}
-
 	async function createGroup() {
-		const [, err] = await Group.create(group);
+		let [data, err] = await Group.create(group);
+		if (err) return;
+		[data, err] = await Promise.all(
+			students.map((student: any) =>
+				Group.addStudent({ student_id: student.id, group_id: data })
+			)
+		);
 		if (err) return;
 		navigate('/groups', { replace: true });
 	}
@@ -35,16 +39,7 @@ export default function CreateGroupPage({ title }: CreateGroupPageProps) {
 				<GroupName
 					setName={(value: string) => setGroup({ ...group, name: value })}
 				/>
-				{/* <Search /> */}
-				{students &&
-					students.map((item: any) => (
-						<Student
-							key={item.id}
-							data={item}
-							setStudents={setStudents}
-							checked
-						/>
-					))}
+				<Search students={students} setStudents={setStudents} />
 				<Button title="Создать" className={styles.btn} onClick={handleSubmit} />
 			</div>
 		</Page>

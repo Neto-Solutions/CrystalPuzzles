@@ -7,7 +7,7 @@ from fastapi import HTTPException, UploadFile
 from common.service.base_service import BaseService
 from service.users.models import User
 from service.identity.security import hash_password, verify_password
-from service.users.schemas import CreateUserSchema, UserChangePasswordSchema, UserFilterSchema
+from service.users.schemas import CreateUserSchema, UserChangePasswordSchema, UserFilterSchema, EditUserSchema
 from service.users.unit_of_work import UserUOW
 
 
@@ -58,6 +58,14 @@ class UserService(BaseService):
                 await uow.commit()
                 return result
         return None
+
+    @staticmethod
+    async def edit_user(uow: UserUOW, model: EditUserSchema):
+        obj_data = model.model_dump()
+        async with uow:
+            result = await uow.repo.edit_user(obj_data)
+            await uow.commit()
+            return result
 
     @staticmethod
     async def change_password(

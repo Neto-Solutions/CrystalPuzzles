@@ -16,7 +16,7 @@ export default function GroupListPage({ title }: GroupListPageProps) {
 				<Button
 					title="Создать группу"
 					onClick={() => navigate('/group/create')}
-					className={styles.btn}
+					className={styles.btn} bgColor='dark'
 				/>
 			</div>
 		</Page>

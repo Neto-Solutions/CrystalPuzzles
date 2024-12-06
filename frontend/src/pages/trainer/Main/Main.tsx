@@ -19,7 +19,7 @@ export default function MainPage({ title }: MainPageProps) {
 					<ScheduleList today />
 				</CardLink>
 				{isMobile ? (
-					<Link to={'/notifications'}>
+					<Link to={'/notifications'} className={styles.btn}>
 						<Button title="Уведомления" />
 					</Link>
 				) : (

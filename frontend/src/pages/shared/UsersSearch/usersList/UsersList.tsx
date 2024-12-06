@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './UsersList.module.scss';
+import joinName from 'entities/profile/assets/joinName';
 
 export default function UsersList({ users, ...props }: any) {
 	const navigate = useNavigate();
@@ -8,12 +9,11 @@ export default function UsersList({ users, ...props }: any) {
 		<div className={styles.container} {...props}>
 			{users?.map((user: any) => (
 				<div
-					onClick={() => navigate(`./${user.id}`, { state: { user } })}
 					key={user.id}
+					className={styles.item}
+					onClick={() => navigate(`./${user.id}`, { state: { user } })}
 				>
-					<div className={styles.item}>
-						{user.surname + ' ' + user.firstname + ' ' + user.lastname}
-					</div>
+					{joinName(user)}
 				</div>
 			))}
 		</div>

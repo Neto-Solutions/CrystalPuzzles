@@ -35,6 +35,19 @@ const appSlice = createSlice({
 });
 
 const selectHeader = (state: any) => state.app.header;
+const selectPlaces = (state: any) => state.app.places;
+const selectStudents = (state: any) => state.app.students;
+const selectTrainers = (state: any) => state.app.trainers;
 
-const { setHeader, setPlaces } = appSlice.actions;
-export { appSlice, setHeader, setPlaces, selectHeader };
+const { setHeader, setPlaces, setStudents, setTrainers } = appSlice.actions;
+export {
+	appSlice,
+	setHeader,
+	setPlaces,
+	setStudents,
+	setTrainers,
+	selectPlaces,
+	selectStudents,
+	selectTrainers,
+	selectHeader
+};

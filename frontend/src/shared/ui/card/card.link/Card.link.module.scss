@@ -13,6 +13,14 @@
 		font: var(--fw-medium) var(--fz-btn) var(--ff-first);
 		padding: 0 30px;
 		text-align: center;
+
+		@include md() {
+			padding: 0 20px;
+		}
+
+		@include sm() {
+			padding: 10px;
+		}
 	}
 
 	.content {
@@ -23,11 +31,16 @@
 		gap: 24px;
 	}
 
+	@include md() {
+		.title {
+			font-size: 20px;
+		}
+	}
+
 	@include sm() {
 		height: 100%;
 		align-items: center;
-		justify-content: center;
-		
+
 		.title {
 			font: var(--fw-semibold) 16px (var(--ff-second));
 		}

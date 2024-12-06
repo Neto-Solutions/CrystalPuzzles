@@ -26,17 +26,33 @@ export const NavMenuList = ({ role, isMobile }: any) => {
 				<nav className={styles.nav}>
 					<div className={styles.role}>{roleAdapter(role)}</div>
 					<ul className={styles.mobile_list}>
-						<li>
+						<li className={styles.mobile_item}>
 							<Link to="/">
-								<img src={home} />
+								<img
+									src={home}
+									loading="eager"
+									alt=""
+									onError={(e) => {
+										const img = e.target as HTMLImageElement;
+										img.src = home;
+									}}
+								/>
 							</Link>
 						</li>
 						{list?.map((item: any, index: any) => {
 							return (
 								item.local && (
-									<li key={index}>
+									<li key={index} className={styles.mobile_item}>
 										<NavLink to={item.path}>
-											<img src={item.img} loading="lazy" />
+											<img
+												src={item.img}
+												loading="eager"
+												alt=""
+												onError={(e) => {
+													const img = e.target as HTMLImageElement;
+													img.src = item.img;
+												}}
+											/>
 										</NavLink>
 									</li>
 								)

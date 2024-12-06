@@ -25,10 +25,14 @@
 	font-family: Rubik;
 	font-size: 14px;
 	font-weight: 400;
+	gap: 20px;
+
+	@include sm() {
+		gap: 25px;
+	}
 }
 
 .error {
-	margin-top: -15px;
 	color: red;
 	&::before {
 		content: '* ';
@@ -38,13 +42,16 @@
 
 .forget_password {
 	text-align: end;
-	margin-bottom: 28px;
 }
 
 .link {
+	cursor: pointer;
 	color: #2b2d91;
 	font-family: 'Rubik';
 	font-size: 14px;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .btn_container {
@@ -59,8 +66,6 @@
 .register_btn {
 	width: fit-content;
 	height: 53px;
-	color: white !important;
-	background-color: #0e1079 !important;
 }
 
 @include sm() {

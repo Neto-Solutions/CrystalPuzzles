@@ -96,15 +96,22 @@
 	}
 }
 
-.help {
-	margin-top: 20px;
-	span {
-		color: #989898;
-	}
-}
+// .help {
+// 	margin-top: 20px;
+// 	span {
+// 		color: #989898;
+// 	}
+// }
 
-.exit span {
-	color: #2b2d91;
+.exit {
+	margin-top: 20px;
+	@include md() {
+		display: grid;
+		place-content: center;
+	}
+	span {
+		color: #2b2d91;
+	}
 }
 
 .link_icon {

@@ -1,5 +1,16 @@
-import styles from './Card.link.module.scss';
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+import styles from './Card.link.module.scss';
+
+interface CardLinkProps {
+	title: string;
+	children?: ReactNode | string;
+	to?: any;
+	className?: string;
+
+	[key: string]: any;
+}
 
 export default function CardLink({
 	title,
@@ -7,12 +18,12 @@ export default function CardLink({
 	to,
 	className,
 	...props
-}: any) {
+}: CardLinkProps) {
 	const Tag = to ? Link : 'div';
 	return (
-		<Tag to={to} className={styles.card + ' ' + className} {...props}>
+		<Tag to={to} className={classNames(styles.card, className)} {...props}>
 			<h2 className={styles.title}>{title}</h2>
-			{children && <div className={styles.content}>{children}</div>}
+			{children ? <div className={styles.content}>{children}</div> : null}
 		</Tag>
 	);
 }

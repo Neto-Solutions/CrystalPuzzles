@@ -89,7 +89,7 @@ async def create_lesson(
 
 
 @lesson_router.put(
-    "/",
+    "/{lesson_id}",
     summary="Изменение занятия",
     response_model=bool,
     responses={
@@ -105,9 +105,11 @@ async def edit_lesson(
         user_uow: UserUOWDep,
         space_uow: SpaceUOWDep,
         lesson_service: LessonServiceDep,
-        current_user: SupervisorAdminDep
+        current_user: SupervisorAdminDep,
+        lesson_id: int
 ):
     """admin, supervisor"""
+    model.id = lesson_id
     result = await lesson_service.edit(uow, model, user_uow=user_uow, space_uow=space_uow)
     if result:
         return result

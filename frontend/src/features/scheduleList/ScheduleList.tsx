@@ -4,12 +4,19 @@ import { Link } from 'react-router-dom';
 import { Lesson } from '@shared/api';
 import styles from './ScheduleList.module.scss';
 import ScheduleRouteTo from '@shared/lib/scheduleRouteTo';
+import { selectProfile } from '@app/providers/store/profile';
+import { useSelector } from 'react-redux';
 
 interface ScheduleListProps {
 	today?: boolean;
+	link?: boolean;
 }
 
-export default function ScheduleList({ today }: ScheduleListProps) {
+export default function ScheduleList({
+	today,
+	link = true
+}: ScheduleListProps) {
+	const profile = useSelector(selectProfile);
 	const [data, setData] = useState<any>([]);
 
 	useEffect(() => {
@@ -18,25 +25,30 @@ export default function ScheduleList({ today }: ScheduleListProps) {
 
 	async function getSchedule() {
 		if (!today) {
-			const [data, err] = await Lesson.get({});
+			const [data, err] = await Lesson.get({
+				start_date: moment().startOf('day').toISOString(),
+				trainer: profile.role === 'trainer' ? profile.id : undefined
+			});
 			if (err) return;
 			setData(data);
 			return;
 		}
 		const [data, err] = await Lesson.get({
-			start_date: moment().add(1, 'day').startOf('day').toISOString(),
-			end_date: moment().add(1, 'day').endOf('day').toISOString()
+			start_date: moment().startOf('day').toISOString(),
+			end_date: moment().endOf('day').toISOString(),
+			trainer: profile.role === 'trainer' ? profile.id : undefined
 		});
 		if (err) return;
 		setData(data);
 	}
-
+	const Tag: any = link ? Link : 'div';
 	return (
 		<>
 			{data
 				? data.map((item: any, index: number) => (
-						<Link
-							to={ScheduleRouteTo(item.status) + item.id}
+						<Tag
+							{...(link ? { to: ScheduleRouteTo(item.status) + item.id } : {})}
+							// to={ScheduleRouteTo(item.status) + item.id}
 							key={index}
 							className={styles.item_container}
 						>
@@ -50,10 +62,10 @@ export default function ScheduleList({ today }: ScheduleListProps) {
 								</div>
 								<div className={styles.trainer}>
 									Тренер —
-									{` ${item.trainer.surname} ${item.trainer.firstname} ${item.trainer.lastname.charAt(0)}.`}
+									{` ${item.trainer.surname} ${item.trainer.firstname} ${item.trainer.lastname?.charAt(0) || ''}.`}
 								</div>
 							</div>
-						</Link>
+						</Tag>
 					))
 				: null}
 		</>

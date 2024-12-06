@@ -9,7 +9,7 @@
 		'list .';
 	gap: 20px;
 
-	@include lg() {
+	@include xl() {
 		grid-template-columns: 80%;
 		grid-template-areas:
 			'list'
@@ -28,7 +28,7 @@
 .btn {
 	grid-area: button;
 
-	@include lg() {
+	@include xl() {
 		width: 55%;
 		margin-left: auto;
 	}
