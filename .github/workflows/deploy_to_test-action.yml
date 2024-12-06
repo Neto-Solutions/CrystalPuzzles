@@ -110,7 +110,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_TEST_HOST_NAME }}
           username: ${{ secrets.TEST_SSH_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
             sudo mkdir /var/log/nginx 2>/dev/null
@@ -123,13 +123,13 @@ jobs:
         with:
           host: ${{ secrets.SSH_TEST_HOST_NAME }}
           username: ${{ secrets.TEST_SSH_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
           port: ${{ secrets.TEST_SSH_PORT }}              
             
       - name: Refresh content
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+          ssh-private-key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
       - name: Sync Repository via SSH
         run: |
           rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p ${{ secrets.TEST_SSH_PORT }}" --archive --compress --delete \
@@ -140,7 +140,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_TEST_HOST_NAME }}
           username: ${{ secrets.TEST_SSH_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
           port: ${{ secrets.TEST_SSH_PORT }}
 
   check_docker_and_compose:
@@ -152,7 +152,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_TEST_HOST_NAME }}
           username: ${{ secrets.TEST_SSH_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
              /home/${{ secrets.TEST_SSH_USERNAME }}/Crystall/devops/check_docker.sh || \
@@ -168,7 +168,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_TEST_HOST_NAME }}
           username: ${{ secrets.TEST_SSH_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
             sudo docker stop $(docker ps -aq) && \
@@ -191,7 +191,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_TEST_HOST_NAME }}
           username: ${{ secrets.TEST_SSH_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
             LATEST_TAG=${{ steps.get-latest-tag.outputs.tag }}
@@ -228,7 +228,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_TEST_HOST_NAME }}
           username: ${{ secrets.TEST_SSH_USERNAME }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          key: ${{ secrets.TEST_DEPLOY_SSH_KEY }}
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
             sudo docker compose -f /home/${{ secrets.TEST_SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
