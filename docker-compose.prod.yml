@@ -13,7 +13,7 @@ services:
       POSTGRES_PORT: ${PG_HOST}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - pgdata:/var/lib/postgresql/data/pgdata:Z crystal
+      - ./pgdata:/var/lib/postgresql/data/pgdata
     healthcheck:
       test: pg_isready -U ${PG_USER} -d ${PG_DATABASE}
       interval: 10s
@@ -43,12 +43,12 @@ services:
     env_file:
       - .env
     command: sh -c "cd /backend && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
-    volumes:
-      - static:/app/static
     depends_on:
       - db
       - redis
     restart: always
+    volumes:
+      - static:/app/static
     ports:
       - 8001:8000
     networks:
@@ -75,12 +75,9 @@ services:
     container_name: nginx
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro 
       - /var/log/nginx/access.log:/var/log/nginx/access.log
-      - /etc/letsencrypt/archive/crystalpuzzles.pt/fullchain1.pem:/etc/letsencrypt/live/crystalpuzzles.pt/fullchain.pem:ro
-      - /etc/letsencrypt/archive/crystalpuzzles.pt/privkey1.pem:/etc/letsencrypt/live/crystalpuzzles.pt/privkey.pem:ro
     depends_on:
       - api
       - front
@@ -88,6 +85,8 @@ services:
     networks:
       - frontend
       - backend
+
+  
 
 networks:
   backend:
