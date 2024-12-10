@@ -232,6 +232,6 @@ jobs:
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
             sudo docker compose -f /home/${{ secrets.TEST_SSH_USERNAME }}/Crystall/docker-compose.prod.yml up -d
-          command_timeout: 30m
+          command_timeout: 60m
 
   
