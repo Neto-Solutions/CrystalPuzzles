@@ -26,14 +26,14 @@ class CheckRepository(BaseRepository):
             .filter(self.model.lesson_id == lesson_id)
             .limit(1)
         )).scalar_one_or_none()
-    
+
     async def __checks_student_exist(self, student_id: int):
         return (await self.session.execute(
             select(User)
             .filter(User.id == student_id)
             .limit(1)
         )).scalar_one_or_none()
-    
+
     async def __checks_lesson_exist(self, lesson_id: int):
         return (await self.session.execute(
             select(Lesson)
@@ -66,10 +66,10 @@ class CheckRepository(BaseRepository):
         Получение чек-листов с фильтрацией по lesson_id, student_id и другим параметрам.
         """
         stmt = select(self.model).options(
-            joinedload(self.model.lesson),               # Загрузка связанного урока
-            joinedload(self.model.student),              # Загрузка связанного студента
-            joinedload(self.model.training_data)         # Загрузка данных тренировки
-            .joinedload(TrainingCheck.training)          # Загрузка данных тренировок
+            joinedload(self.model.lesson),  # Загрузка связанного урока
+            joinedload(self.model.student),  # Загрузка связанного студента
+            joinedload(self.model.training_data)  # Загрузка данных тренировки
+            .joinedload(TrainingCheck.training)  # Загрузка данных тренировок
         )
 
         # Применяем фильтры
@@ -90,10 +90,10 @@ class CheckRepository(BaseRepository):
         """
 
         print(f'repository: check_id: {check_id}')
-        
+
         stmt = select(self.model).options(
-            joinedload(self.model.lesson),        # Подгрузка связанного урока
-            joinedload(self.model.student),       # Подгрузка связанного студента
+            joinedload(self.model.lesson),  # Подгрузка связанного урока
+            joinedload(self.model.student),  # Подгрузка связанного студента
             joinedload(self.model.training_data)  # Подгрузка данных тренировки
         ).filter(self.model.id == check_id)
 
@@ -101,7 +101,7 @@ class CheckRepository(BaseRepository):
         return result.unique().scalar_one_or_none()
 
     # Добавление записи check в урок
-    async def add_check_for_lesson(self, data: dict) -> bool:       
+    async def add_check_for_lesson(self, data: dict) -> bool:
 
         lesson_id = data.get("lesson_id")
 
@@ -112,12 +112,11 @@ class CheckRepository(BaseRepository):
                 print(f"Lesson found. lesson_id: {lesson_id}.")
             else:
                 raise HTTPException(status_code=400, detail=f"The Lesson with id: {lesson_id} not exist.")
-            
 
             for student_id in student_ids:
-                
+
                 print(f'student_id: {student_id}')
-                
+
                 data["student_id"] = student_id
                 check_id = await self.add(data)
 
@@ -131,7 +130,7 @@ class CheckRepository(BaseRepository):
                     raise HTTPException(status_code=400, detail="No record found for student_id: {lesson_id}.")
 
             return True
-        
+
         raise HTTPException(status_code=400, detail="Check exist")
 
     async def add_user_for_lesson(self, lesson_id, data: dict) -> bool:
@@ -153,7 +152,7 @@ class CheckRepository(BaseRepository):
         data["training_check"] = (
             {
                 "training_id": training.training_id, "repetitions": training.repetitions
-                } for training in training_data
+            } for training in training_data
         )
         data["lesson_id"] = lesson_id
         check_id = await self.add(data)
@@ -167,4 +166,3 @@ class CheckRepository(BaseRepository):
         stmt = delete(TrainingCheck).filter(TrainingCheck.check_id == check.id)
         await self.session.execute(stmt)
         await self.delete_db(check.id)
-

@@ -7,6 +7,7 @@ class CheckService(BaseService):
     """
     Сервисный слой, который содержит бизнес-логику работы с чек-листами.
     """
+
     @staticmethod
     async def add_user_for_lesson(uow: CheckUOW, lesson_id, data: dict):
         # Открываем контекст uow, чтобы начать транзакцию
@@ -26,17 +27,16 @@ class CheckService(BaseService):
 
     @staticmethod
     async def add_check_for_lesson(uow: CheckUOW, lesson_id, data: dict):
-        
-        print(f'add_check_for_lesson: lesson_id: {lesson_id}') 
+        print(f'add_check_for_lesson: lesson_id: {lesson_id}')
         pprint(dict)
 
         async with uow:
             result = await uow.repo.add_check_for_lesson(data)
             await uow.commit()
             return result
-        
+
         return True
-    
+
     @staticmethod
     async def get_check_by_id(uow: CheckUOW, check_id: int):
         """
