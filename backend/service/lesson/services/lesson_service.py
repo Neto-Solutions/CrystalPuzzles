@@ -15,6 +15,11 @@ from service.users.services.user_service import UserService
 
 class LessonService(BaseService):
 
+    async def lesson_exist(self, uow: LessonUOW, lesson_id):
+        async with uow:
+            if not await self.exist(lesson_id):
+                raise HTTPException(status_code=404, detail="Lesson not found")
+
     @staticmethod
     async def get_by_start_time_and_space(uow: LessonUOW, space_id: int, lesson_start_time: datetime):
         async with uow:

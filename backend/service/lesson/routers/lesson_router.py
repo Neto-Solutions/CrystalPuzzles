@@ -13,6 +13,8 @@ from service.users.dependensies import UserUOWDep
 from service.lesson.schemas.lesson_schemas import LessonSchemaForTable, LessonViewSchemaForPage, \
     CreateLessonSchema, EditLessonSchema, TrainingForLessonSchema, UserForLessonSchema, ChangeStatusSchema
 
+from pprint import pprint
+
 lesson_router = APIRouter(
     prefix="/api/v1/lesson",
     tags=["Lesson"]
@@ -204,6 +206,8 @@ async def create_check(
         current_user: TrainerDep
 ):
     """ trainer """
+    print('model')
+    pprint(model)
     result = await service.add_check_for_lesson(
         uow, model,
         check_uow=check_uow,
@@ -316,3 +320,22 @@ async def remove_user(
 #     if result:
 #         return result
 #     return JSONResponse(status_code=HTTPStatus.BAD_REQUEST.value, content="Training already exists in lesson")
+
+@lesson_router.get(
+    "/tasks/test/{lesson_id}",
+    summary="Тестирование приложения",    
+    responses={
+        200: {"description": "Успешная обработка данных"},
+        401: {"description": "Не авторизованный пользователь"},
+        400: {"model": Message, "description": "Некорректные данные"},
+        500: {"model": Message, "description": "Серверная ошибка"}
+    }
+)
+def get_tasks(current_user: UserDep,
+              lesson_id: int):
+    """Тестирование приложения для авторизованных пользователей."""
+    task = TestSchema(name="Test of tests! (Made by SM)", 
+                      lesson_id=lesson_id,
+                      descripton="Just a simple lesson test")
+    return {"data": task}
+

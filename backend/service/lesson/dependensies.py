@@ -1,9 +1,10 @@
 from typing import Annotated
 
-from fastapi import Depends
+from fastapi import Depends, Body
 
 from core.abstractions.uow_abstract import AbstractUnitOfWork
-from service.lesson.schemas.lesson_schemas import LessonFilterSchema
+from service.lesson.schemas.check_schema import CheckFilterSchema, CheckNoFilterSchema, CheckViewSchemaForPage
+from service.lesson.schemas.lesson_schemas import LessonFilterSchema, MakeCheckList
 from service.lesson.schemas.space_schemas import SpaceFilterSchema
 from service.lesson.services.check_service import CheckService
 from service.lesson.services.lesson_service import LessonService
@@ -16,7 +17,9 @@ from service.lesson.unit_of_work.space_uow import SpaceUOW
 # region ------------------------------- Service ------------------------------------
 LessonServiceDep = Annotated[LessonService, Depends(LessonService)]
 SpaceServiceDep = Annotated[SpaceService, Depends(SpaceService)]
-CheckServiceDep = Annotated[CheckService, Depends(CheckService)]
+CheckServiceDep = Annotated[CheckService, Depends(CheckService)] 
+
+MakeCheckListDep = Annotated[MakeCheckList,  Body()]
 # endregion -------------------------------------------------------------------------
 
 
@@ -30,5 +33,7 @@ CheckUOWDep = Annotated[AbstractUnitOfWork, Depends(CheckUOW)]
 # region ------------------------------- Filers -------------------------------------
 LessonFilterDep = Annotated[LessonFilterSchema, Depends()]
 SpaceFilterDep = Annotated[SpaceFilterSchema, Depends()]
-# CheckFilterDep = Annotated[CheckFilterSchema, Depends()]
+CheckFilterDep = Annotated[CheckFilterSchema, Depends()]
+CheckNoFilterSchemaDep = Annotated[CheckNoFilterSchema, Depends()]
+CheckViewSchemaForPageDep = Annotated[CheckViewSchemaForPage, Depends()]
 # endregion -------------------------------------------------------------------------

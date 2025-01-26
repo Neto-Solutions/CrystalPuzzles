@@ -17,14 +17,14 @@ Cоздание и запуск web-приложения для автомати
     В командной строке выполнить команду `docker-compose down`
 
 #### Проверка работоспособности
-    backend, по умолчанию, доступен по адресу: `http://localhost:8001`
+    backend, по умолчанию, доступен по адресу: `https://localhost:8001`
 
     Документация к API: 
 
-    `http://localhost:8001/docs`
-    `http://localhost:8001/redoc`
+    `https://localhost:8001/docs`
+    `https://localhost:8001/redoc`
 
-    frontend, по умолчанию, доступен по адресу: `http://localhost:8080`
+    frontend, по умолчанию, доступен по адресу: `https://localhost:8080`
 
 
 ## Дизайн

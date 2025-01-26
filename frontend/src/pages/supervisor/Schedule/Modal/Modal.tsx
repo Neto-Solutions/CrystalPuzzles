@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TimePicker from 'react-time-picker';
 import moment from 'moment';
 import { Button } from '@shared/ui';
@@ -22,6 +22,10 @@ export const AddTreanerSchedule = ({
 		trainer_comments: null,
 		start: moment(day).set({ hour: 12, minute: 0 }).format()
 	});
+
+	useEffect(() => {
+		setNewLesson({ ...newLesson, trainer_id: data?.trainer_id });
+	}, [data.trainer_id]);
 
 	async function handleSubmit() {
 		const { space_id, trainer_id, start } = newLesson;

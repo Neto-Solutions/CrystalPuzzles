@@ -12,7 +12,7 @@ class UserShortSchema(BaseModel):
     firstname: Optional[str]
     lastname: Optional[str]
     surname: Optional[str]
-    photo: Optional[str]
+    avatar: Optional[str]
 
 
 class BaseUserSchema(UserShortSchema):

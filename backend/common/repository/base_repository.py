@@ -100,20 +100,30 @@ class BaseRepository(AbstractRepository):
     # endregion ---------------------------------------------------------------
 
     async def add(self, data: RegisterData) -> Union[str, int]:
-        """Добавить данные в БД."""
+        """Добавить данные в БД.
+        Вставляет новую запись в таблицу.
+        Использует SQL-запрос insert. Поля и их значения передаются через data.
+        Возвращает идентификатор новой записи.
+        """
         stmt = insert(self.model).values(**data).returning(self.model.id)
         res = await self.session.execute(stmt)
         return res.scalar_one()
 
     async def add_range(self, dataset: list[TSchema]) -> bool:
-        """Добавить диапазон данных в БД."""
+        """Добавить диапазон данных в БД.
+        Добавляет сразу несколько записей. Использует метод add_all, 
+        который добавляет объекты ORM, создаваемые из переданных данных (model_dump() 
+        используется для преобразования схемы TSchema в словарь).
+        """
         self.session.add_all(
             [self.model(**(entity.model_dump())) for entity in dataset]
         )
         return True
 
     async def get(self, data_id: Union[int, UUID]) -> Optional[TModel]:
-        """Получить данные из БД."""
+        """Получить данные из БД.
+        Возвращает одну запись по её идентификатору (data_id).
+        Проверяет, что запись не помечена как удалённая (deleted = False)."""
         stmt = (
             select(self.model)
             .filter(
@@ -124,7 +134,9 @@ class BaseRepository(AbstractRepository):
         return res
 
     async def get_all(self) -> ScalarResult:
-        """Получить все существующие данные из БД."""
+        """Получить все существующие данные из БД.
+        Возвращает все записи, которые не помечены как удалённые.
+        """
         stmt = select(self.model).filter(self.model.deleted.__eq__(False))
         res = await self.session.execute(stmt)
         return res.scalars()

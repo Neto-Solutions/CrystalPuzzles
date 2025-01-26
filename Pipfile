@@ -5,8 +5,11 @@ name = "pypi"
 
 [packages]
 fastapi = "*"
+pytest = "*"
+httpx = "*"
 
 [dev-packages]
+ipykernel = "*"
 
 [requires]
 python_version = "3.12"

@@ -11,27 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v3
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4  
-        with:
-          python-version: 3.11          
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
 
-      - name: Install pipenv
-        run: pip install pipenv
-        
-      - name: Install dependencies
-        run: cd backend && pipenv install
+      - name: Install Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
 
-      - name: Install pytest
-        run: cd backend && pipenv install pytest && pipenv install httpx
-        
-      - name: Copy env
-        run: cp .env backend/.env
+      - name: Build and Start Test Containers
+        run: docker compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from tests
 
-      - name: Run tests
-        run: cd backend && ls && PYTHONPATH=$(pwd) pipenv run pytest
+      - name: Shut Down Docker Compose
+        if: always()
+        run: docker compose -f docker-compose.test.yml down
           
   app_tests:
     runs-on: ubuntu-latest
@@ -216,7 +209,7 @@ jobs:
             echo "PAGE_SIZE=${{ secrets.PAGE_SIZE }}" >> ${{ env.ENV_File }}
             echo "PORT=${{ secrets.PORT }}" >> ${{ env.ENV_File }}
             echo "REACT_APP_TAG=$LATEST_TAG" >> ${{ env.ENV_File }}
-            echo "REACT_APP_SERVER_API=http://${{ secrets.SSH_HOST_NAME }}/api/v1/" >> ${{ env.ENV_File }}
+            echo "REACT_APP_SERVER_API=https://${{ secrets.SSH_HOST_NAME }}/api/v1/" >> ${{ env.ENV_File }}
             echo "TAG=$LATEST_TAG" >> ${{ env.ENV_File }}        
 
   start_docker:

@@ -42,9 +42,8 @@ services:
       dockerfile: Dockerfile.prod
     env_file:
       - .env
-    command: sh -c "cd /backend && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
-    volumes:
-      - static:/app/static
+    # command: sh -c "cd /backend && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    command: sh -c "cd /backend && uvicorn main:app --workers 1 --host 0.0.0.0 --port 8000"
     depends_on:
       - db
       - redis
