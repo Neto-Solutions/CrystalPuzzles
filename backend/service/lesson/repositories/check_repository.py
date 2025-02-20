@@ -3,7 +3,7 @@ from pprint import pprint
 from fastapi import HTTPException
 import sqlalchemy as sa
 from sqlalchemy import insert, select, exists, delete
-from sqlalchemy.orm import selectinload, joinedload
+from sqlalchemy.orm import selectinload, joinedload, subqueryload
 
 from common.repository.base_repository import BaseRepository
 from service.lesson.models import Check, TrainingCheck, Lesson
@@ -105,10 +105,16 @@ class CheckRepository(BaseRepository):
 
         print(f'repository: check_id: {check_id}')
         
+        # stmt = select(self.model).options(
+        #     joinedload(self.model.lesson),        
+        #     joinedload(self.model.student),       
+        #     joinedload(self.model.training_data)  
+        # ).filter(self.model.id == check_id)
+
         stmt = select(self.model).options(
-            joinedload(self.model.lesson),        
-            joinedload(self.model.student),       
-            joinedload(self.model.training_data)  
+        joinedload(self.model.lesson),        
+        joinedload(self.model.student),       
+        subqueryload(self.model.training_data).subqueryload(TrainingCheck.training)
         ).filter(self.model.id == check_id)
 
         result = await self.session.execute(stmt)

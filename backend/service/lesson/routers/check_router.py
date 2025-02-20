@@ -16,7 +16,7 @@ from service.lesson.schemas.lesson_schemas import MakeCheckList, GetCheckList
 
 # from service.identity.security import get_current_user
 # from service.lesson.repositories.lesson_repository import LessonRepository
-from service.lesson.schemas.check_schema import ChecSchemaId, CheckSimpleFilterSchema, CheckViewSchemaForPage, CreateCheckSchema
+from service.lesson.schemas.check_schema import ChecSchemaById, ChecSchemaId, CheckSimpleFilterSchema, CheckViewSchemaForPage, CreateCheckSchema
 
 from service.lesson.dependensies import LessonServiceDep, LessonUOWDep, LessonFilterDep, SpaceUOWDep, CheckUOWDep, MakeCheckListDep
 
@@ -49,7 +49,8 @@ async def get_all_checks(
 @check_router.get(
     "/{check_id}",
     summary="Получение чек-листа по check_id",
-    response_model=ChecSchemaId,
+    # response_model=ChecSchemaId,
+    response_model=ChecSchemaById,
     responses={
         200: {"description": "Успешная обработка данных"},
         401: {"description": "Не авторизованный пользователь"},
