@@ -78,6 +78,16 @@ class ChecSchemaId(BaseFilterSchema):
     comment: Optional[str]
     awards: Optional[int]
 
+class ChecSchemaById(BaseFilterSchema):
+    """ Фильтрация и пагинация """
+    id: int
+    lesson_id: int
+    student_id: int
+    training_data: List[TrainingCheckResponseSchema]
+    comment: Optional[str]
+    awards: Optional[int]
+
+
 class CheckSimpleFilterSchema(BaseFilterSchema):
     """ Фильтрация и пагинация """
     id: int
